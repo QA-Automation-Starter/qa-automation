@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2022 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<project>
+  <build>
+    <plugins>
+      <!--
+        NOTE: due to some Maven test plugin bug plugin parameters are not
+        initialized to their defauls and must be specified here
+      -->
+      <plugin>
+        <groupId>dev.aherscu.qa</groupId>
+        <artifactId>qa-orcanos-publisher-maven-plugin</artifactId>
+        <configuration>
+          <reportsDirectory>target/test-classes/jgiven-report-samples/qa-html
+          </reportsDirectory>
+          <filePattern>(.*[\\|/])([^\\|/]+)-([^\\|/]+)-([^\\|/]+)$</filePattern>
+          <reportFileExtension>.html</reportFileExtension>
+          <!-- NOTE: overriden by test during runtime -->
+          <orcanosUrl>TBD</orcanosUrl>
+          <orcanosProjectId>12345</orcanosProjectId>
+          <connectTimeoutMs>10000</connectTimeoutMs>
+          <readTimeoutMs>10000</readTimeoutMs>
+          <retriesLimit>3</retriesLimit>
+          <additionalExecutionFields>
+            <property>
+              <name>/run/version</name>
+              <value>0.0.0.0</value>
+            </property>
+          </additionalExecutionFields>
+        </configuration>
+        <executions>
+          <execution>
+            <id>updating-orcanos</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>publish</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

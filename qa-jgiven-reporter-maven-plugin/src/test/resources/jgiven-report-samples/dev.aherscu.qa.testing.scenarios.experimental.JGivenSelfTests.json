@@ -1,0 +1,314 @@
+{
+  "className": "dev.aherscu.qa.testing.scenarios.experimental.JGivenSelfTests",
+  "name": "J Given Self",
+  "scenarios": [
+    {
+      "className": "dev.aherscu.qa.testing.scenarios.experimental.JGivenSelfTests",
+      "testMethodName": "shouldLaunch",
+      "description": "Should launch",
+      "tagIds": [
+        "dev.aherscu.qa.jgiven.commons.tags.UITest",
+        "dev.aherscu.qa.jgiven.commons.tags.Reference-12345",
+        "DeviceName-Samsung Galaxy S9 Plus WQHD GoogleAPI Emulator",
+        "PlatformName-Android",
+        "PlatformVersion-8.0"
+      ],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "casesAsTable": false,
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "starting the application",
+              "words": [
+                {
+                  "value": "starting the application"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 0,
+              "isSectionTitle": true
+            },
+            {
+              "name": "a web driver",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "a web driver"
+                },
+                {
+                  "value": "",
+                  "argumentInfo": {
+                    "argumentName": "webDriver",
+                    "formattedValue": "Samsung Galaxy S9 Plus WQHD GoogleAPI Emulator Android 8.0"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 3380167500
+            },
+            {
+              "name": "setting environment if needed",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "setting environment if needed"
+                },
+                {
+                  "value": "",
+                  "argumentInfo": {
+                    "argumentName": "label",
+                    "formattedValue": ""
+                  }
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "typing $ into",
+                  "words": [
+                    {
+                      "value": "when",
+                      "isIntroWord": true
+                    },
+                    {
+                      "value": "typing"
+                    },
+                    {
+                      "value": "",
+                      "argumentInfo": {
+                        "argumentName": "value",
+                        "formattedValue": ""
+                      }
+                    },
+                    {
+                      "value": "into"
+                    },
+                    {
+                      "value": "By.xpath: //input",
+                      "argumentInfo": {
+                        "argumentName": "locator",
+                        "formattedValue": "\"//input\" located by xpath"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 6089644200
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 11292841000,
+              "attachments": []
+            },
+            {
+              "name": "on login screen",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "on login screen"
+                },
+                {
+                  "value": "is \u003ctrue\u003e",
+                  "argumentInfo": {
+                    "argumentName": "matcher",
+                    "formattedValue": "is \u003ctrue\u003e"
+                  }
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "element",
+                  "words": [
+                    {
+                      "value": "element"
+                    },
+                    {
+                      "value": "By.xpath: //*[contains(text(),\u0027Login\u0027)]",
+                      "argumentInfo": {
+                        "argumentName": "locator",
+                        "formattedValue": "\"//*[contains(text(),\u0027Login\u0027)]\" located by xpath"
+                      }
+                    },
+                    {
+                      "value": "is \u003ctrue\u003e",
+                      "argumentInfo": {
+                        "argumentName": "matcher",
+                        "formattedValue": "is \u003ctrue\u003e"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 2725975500
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 6725680000,
+              "attachments": []
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 21524442400
+        }
+      ],
+      "durationInNanos": 21524442400
+    },
+    {
+      "className": "dev.aherscu.qa.testing.scenarios.experimental.JGivenSelfTests",
+      "testMethodName": "shouldBeOnLoginScreen",
+      "description": "Should be on login screen",
+      "tagIds": [
+        "dev.aherscu.qa.jgiven.commons.tags.UITest",
+        "dev.aherscu.qa.jgiven.commons.tags.Reference-77777",
+        "DeviceName-Samsung Galaxy S9 Plus WQHD GoogleAPI Emulator",
+        "PlatformName-Android",
+        "PlatformVersion-8.0"
+      ],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "casesAsTable": false,
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "continuing on running application",
+              "words": [
+                {
+                  "value": "continuing on running application"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 0,
+              "isSectionTitle": true
+            },
+            {
+              "name": "a web driver",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "a web driver"
+                },
+                {
+                  "value": "",
+                  "argumentInfo": {
+                    "argumentName": "webDriver",
+                    "formattedValue": "Samsung Galaxy S9 Plus WQHD GoogleAPI Emulator Android 8.0"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 598720100
+            },
+            {
+              "name": "on login screen",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "on login screen"
+                },
+                {
+                  "value": "is \u003ctrue\u003e",
+                  "argumentInfo": {
+                    "argumentName": "matcher",
+                    "formattedValue": "is \u003ctrue\u003e"
+                  }
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "element",
+                  "words": [
+                    {
+                      "value": "element"
+                    },
+                    {
+                      "value": "By.xpath: //*[contains(text(),\u0027Login\u0027)]",
+                      "argumentInfo": {
+                        "argumentName": "locator",
+                        "formattedValue": "\"//*[contains(text(),\u0027Login\u0027)]\" located by xpath"
+                      }
+                    },
+                    {
+                      "value": "is \u003ctrue\u003e",
+                      "argumentInfo": {
+                        "argumentName": "matcher",
+                        "formattedValue": "is \u003ctrue\u003e"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 3294649800
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 8123892500,
+              "attachments": []
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 8725772900
+        }
+      ],
+      "durationInNanos": 8725772900
+    }
+  ],
+  "tagMap": {
+    "dev.aherscu.qa.jgiven.commons.tags.UITest": {
+      "fullType": "dev.aherscu.qa.jgiven.commons.tags.UITest",
+      "type": "UITest",
+      "name": "UI Test",
+      "description": "Tests interacting with user interface",
+      "href": ""
+    },
+    "dev.aherscu.qa.jgiven.commons.tags.Reference-12345": {
+      "fullType": "dev.aherscu.qa.jgiven.commons.tags.Reference",
+      "type": "Reference",
+      "name": "Reference",
+      "value": "12345",
+      "description": "",
+      "prependType": true,
+      "style": "background-color: darkgreen; color: white; font-weight: bold",
+      "href": ""
+    },
+    "dev.aherscu.qa.jgiven.commons.tags.Reference-77777": {
+      "fullType": "dev.aherscu.qa.jgiven.commons.tags.Reference",
+      "type": "Reference",
+      "name": "Reference",
+      "value": "77777",
+      "description": "",
+      "prependType": true,
+      "style": "background-color: darkgreen; color: white; font-weight: bold",
+      "href": ""
+    },
+    "DeviceName-Samsung Galaxy S9 Plus WQHD GoogleAPI Emulator": {
+      "fullType": "DeviceName",
+      "value": "Samsung Galaxy S9 Plus WQHD GoogleAPI Emulator"
+    },
+    "PlatformName-Android": {
+      "fullType": "PlatformName",
+      "value": "Android"
+    },
+    "PlatformVersion-8.0": {
+      "fullType": "PlatformVersion",
+      "value": "8.0"
+    }
+  }
+}

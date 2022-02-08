@@ -1,0 +1,189 @@
+<!--
+  ~ Copyright 2022 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+                      "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+  <title>Design Verification Procedure</title>
+  <style type="text/css">
+    @page {
+      @top-left {
+        content: "{{jgivenReport.model.name}}";
+      }
+
+      @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+      }
+
+      margin: 25mm 25mm 25mm 25mm;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    table {
+      table-layout: fixed;
+      width: 100%;
+      page-break-inside: auto;
+      -fs-table-paginate: paginate;
+    }
+
+    tr {
+      page-break-inside: avoid;
+      page-break-after: auto
+    }
+
+    caption {
+      font-size: large;
+      font-weight: bold;
+      margin: 25px;
+    }
+
+    .header {
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    body {
+      counter-reset: h1counter;
+    }
+
+    h1:before {
+      content: counter(h1counter) ". ";
+      counter-increment: h1counter;
+    }
+
+    h1 {
+      counter-reset: h2counter;
+    }
+
+    h2:before {
+      content: counter(h1counter) "." counter(h2counter) ". ";
+      counter-increment: h2counter;
+    }
+
+    h2 {
+      counter-reset: h3counter;
+    }
+
+    h3:before {
+      content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) ". ";
+      counter-increment: h3counter;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .right-aligned {
+      text-align: right;
+    }
+
+    .word-wrapped {
+      word-wrap: break-word;
+    }
+
+
+
+
+  </style>
+</head>
+
+<body>
+
+{{#jgivenReport.model}}
+<h1><b>{{name}}</b></h1>
+
+{{#scenarios}}
+<h2><b>{{description}}</b></h2>
+
+{{#scenarioCases}}
+<h3>Test case:{{-index}}</h3>
+<table>
+  <thead>
+  <tr>
+    <th><!-- column for kind of step or empty if its a section --></th>
+    <th class="centered" style="width: 50%">Step &amp; Expected Result</th>
+    <th class="centered" style="width: 30%">Actual Observed Result</th>
+    <th class="centered">Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#steps}}
+  <tr>
+    {{#isSectionTitle}}
+    <!-- section name -->
+    <td class="centered" colspan="4"><b>{{name}}</b></td>
+    {{/isSectionTitle}}
+    {{^isSectionTitle}}
+    {{^isIntroWord}}
+    {{#words}}
+    {{#-first}}
+    <!-- kind of step -->
+    <td class="right-aligned">
+      <b>{{value}}</b>
+    </td>
+    {{/-first}}
+    {{/words}}
+    <!-- Step & Expected Result -->
+    <td class="word-wrapped">
+      {{#words}}
+      {{^-first}}
+      <span>{{value}}</span>
+      {{/-first}}
+      {{/words}}
+    </td>
+    <!-- Actual Observed Result -->
+    <td class="word-wrapped">
+      {{#attachments}}
+      {{#-first}}
+      {{#binary}}
+      <!-- ISSUE: some servers may block data images -->
+      <!-- see https://content-security-policy.com/ -->
+      <!-- and https://www.w3.org/TR/CSP2/ -->
+      <!-- Some Jenkins servers, for example, may send -->
+      <!-- content-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline'; -->
+      <!-- NOTE: assuming binary attachements are always images -->
+      <img alt="Actual screenshot might be blocked by server"
+           src="data:{{mediaType}};base64,{{#scaleImage}}{{value}}{{/scaleImage}}"/>
+      {{/binary}}
+      {{^binary}}
+      {{value}}
+      {{/binary}}
+      {{/-first}}
+      {{/attachments}}
+    </td>
+    <!-- Status -->
+    <td class="centered">
+      {{status}}
+    </td>
+    {{/isIntroWord}}
+    {{/isSectionTitle}}
+  </tr>
+  {{/steps}}
+  </tbody>
+</table>
+{{/scenarioCases}}
+{{/scenarios}}
+{{/jgivenReport.model}}
+</body>
+</html>

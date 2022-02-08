@@ -1,0 +1,65 @@
+{
+  "mappings": [
+    {
+      "request": {
+        "method": "GET",
+        "url": "/self-test"
+      },
+      "response": {
+        "status": 200,
+        "body": "ok",
+        "headers": {
+          "Content-Type": "text/plain"
+        }
+      }
+    },
+    {
+      "scenarioName": "report",
+      "requiredScenarioState": "Started",
+      "newScenarioState": "HasExecutionRunDetails",
+      "request": {
+        "method": "POST",
+        "url": "/Get_Execution_Run_Details_XML"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "run-details.xml",
+        "headers": {
+          "Content-Type": "application/xml"
+        }
+      }
+    },
+    {
+      "scenarioName": "report",
+      "requiredScenarioState": "HasExecutionRunDetails",
+      "newScenarioState": "AttachedReport",
+      "request": {
+        "method": "POST",
+        "url": "/QW_Add_MiscAttachment?ProjectID=12345"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "upload.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    },
+    {
+      "scenarioName": "report",
+      "requiredScenarioState": "AttachedReport",
+      "newScenarioState": "RecordedExecutionResult",
+      "request": {
+        "method": "POST",
+        "url": "/Record_Execution_Results_New"
+      },
+      "response": {
+        "status": 200,
+        "bodyFileName": "execution-record.json",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      }
+    }
+  ]
+}

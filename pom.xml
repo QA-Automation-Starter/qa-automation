@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2022 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>dev.aherscu.qa</groupId>
+  <artifactId>qa-automation</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>QA Automation</name>
+  <url>TBD</url>
+
+  <organization>
+    <name>TBD</name>
+    <url>TBD</url>
+  </organization>
+
+  <modules>
+    <module>qa-tester-utils</module>
+    <module>qa-jgiven-reporter-maven-plugin</module>
+    <module>qa-orcanos-publisher-maven-plugin</module>
+    <module>qa-s3-uploader-maven-plugin</module>
+    <module>qa-jgiven-commons</module>
+    <module>qa-testing-example</module>
+  </modules>
+
+  <properties>
+    <!-- IMPORTANT: do not override version properties in child projects;
+      this may lead to having different versions of same library -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=552687 -->
+    <aspectj.version>1.9.6</aspectj.version>
+    <aspectj.showWeaveInfo>true</aspectj.showWeaveInfo>
+    <aspectj.verbose>true</aspectj.verbose>
+    <!-- NOTE: currently supported 1.8 and 11+; specified via profiles -->
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.xlint>all</maven.compiler.xlint>
+    <jgiven.version>1.1.0</jgiven.version>
+    <jersey.version>2.31</jersey.version>
+    <slf4j.version>1.7.30</slf4j.version>
+    <log.root.level>info</log.root.level>
+    <connection.mstimeout>30000</connection.mstimeout>
+    <read.mstimeout>30000</read.mstimeout>
+    <test.properties.file>test.properties</test.properties.file>
+    <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
+    <surefire.version>3.0.0-M3</surefire.version>
+    <maven.version>3.6.1</maven.version>
+    <!-- NOTE: may cause the console logs to blow out -->
+    <jgiven.report.text>true</jgiven.report.text>
+    <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+  </properties>
+
+  <distributionManagement>
+    <!-- TODO determine relevant Artifactory -->
+  </distributionManagement>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjrt</artifactId>
+        <version>${aspectj.version}</version>
+      </dependency>
+      <!-- NOTE: using compile-time weaving -->
+      <!--dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>${aspectj.version}</version>
+      </dependency-->
+      <dependency>
+        <groupId>com.tngtech.jgiven</groupId>
+        <artifactId>jgiven-html5-report</artifactId>
+        <version>${jgiven.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>7.4.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.20</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>javax.validation</groupId>
+        <artifactId>validation-api</artifactId>
+        <version>2.0.1.Final</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.code.findbugs</groupId>
+        <artifactId>annotations</artifactId>
+        <version>3.0.1</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.2.3</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+
+    <pluginManagement>
+      <plugins>
+        <!--This plugin's configuration is used to store Eclipse m2e settings only.
+        It has no influence on the Maven build itself.-->
+        <plugin>
+          <groupId>org.eclipse.m2e</groupId>
+          <artifactId>lifecycle-mapping</artifactId>
+          <version>1.0.0</version>
+          <configuration>
+            <lifecycleMappingMetadata>
+              <pluginExecutions>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-plugin-plugin</artifactId>
+                    <versionRange>[3.6.1,)</versionRange>
+                    <goals>
+                      <goal>descriptor</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-help-plugin</artifactId>
+                    <versionRange>[3.2.0,)</versionRange>
+                    <goals>
+                      <goal>active-profiles</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore></ignore>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <!-- The update site for Findbugs M2E connector
+                  https://github.com/m2e-code-quality/m2e-code-quality
+                  is invalid-->
+                  <pluginExecutionFilter>
+                    <groupId>com.github.spotbugs</groupId>
+                    <artifactId>spotbugs-maven-plugin</artifactId>
+                    <versionRange>[1.0.0,)</versionRange>
+                    <goals>
+                      <goal>check</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore/>
+                  </action>
+                </pluginExecution>
+                <pluginExecution>
+                  <pluginExecutionFilter>
+                    <groupId>com.nickwongdev</groupId>
+                    <artifactId>aspectj-maven-plugin</artifactId>
+                    <versionRange>[1.0,)</versionRange>
+                    <goals>
+                      <goal>compile</goal>
+                      <goal>test-compile</goal>
+                    </goals>
+                  </pluginExecutionFilter>
+                  <action>
+                    <ignore/>
+                  </action>
+                </pluginExecution>
+              </pluginExecutions>
+            </lifecycleMappingMetadata>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>net.revelc.code.formatter</groupId>
+          <artifactId>formatter-maven-plugin</artifactId>
+          <version>2.8.1</version>
+          <configuration>
+            <configFile>${project.basedir}/code-formatter-rules.xml</configFile>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>format</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>net.revelc.code</groupId>
+          <artifactId>impsort-maven-plugin</artifactId>
+          <version>1.5.0</version>
+          <configuration>
+            <groups>java.,javax.,org.,com.,*</groups>
+            <removeUnused>true</removeUnused>
+          </configuration>
+          <executions>
+            <execution>
+              <id>sort-imports</id>
+              <goals>
+                <goal>sort
+                </goal><!-- runs at process-sources phase by default -->
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <!-- required to support jdk 16 -->
+          <!-- see https://github.com/mojohaus/aspectj-maven-plugin/pull/45 -->
+          <groupId>com.nickwongdev</groupId>
+          <artifactId>aspectj-maven-plugin</artifactId>
+          <version>1.12.6</version>
+          <dependencies>
+            <dependency>
+              <groupId>org.aspectj</groupId>
+              <artifactId>aspectjtools</artifactId>
+              <version>${aspectj.version}</version>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <complianceLevel>${java.version}</complianceLevel>
+            <source>${java.version}</source>
+            <target>${java.version}</target>
+            <showWeaveInfo>${aspectj.showWeaveInfo}</showWeaveInfo>
+            <sources/>
+            <testSources/>
+            <verbose>${aspectj.verbose}</verbose>
+            <Xlint>ignore</Xlint>
+            <!-- NOTE: Lombok requires compilation via javac,
+            hence this one is required too, otherwise aspects will not weave -->
+            <forceAjcCompile>true</forceAjcCompile>
+          </configuration>
+          <executions>
+            <execution>
+              <id>weave-application-classes</id>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>compile</goal>
+              </goals>
+              <configuration>
+                <!-- NOTE: required in order to work with Lombok -->
+                <weaveDirectories>
+                  <weaveDirectory>${project.build.directory}/classes
+                  </weaveDirectory>
+                </weaveDirectories>
+              </configuration>
+            </execution>
+            <execution>
+              <id>weave-test-classes</id>
+              <phase>process-test-classes</phase>
+              <goals>
+                <goal>test-compile</goal>
+              </goals>
+              <configuration>
+                <!-- NOTE: required in order to work with Lombok -->
+                <weaveDirectories>
+                  <weaveDirectory>${project.build.directory}/test-classes
+                  </weaveDirectory>
+                </weaveDirectories>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+          <!-- ISSUE https://github.com/projectlombok/lombok/issues/2839 -->
+          <configuration>
+            <compilerArgs>
+              <arg>-Xlint:${maven.compiler.xlint}</arg>
+            </compilerArgs>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.20</version>
+              </path>
+            </annotationProcessorPaths>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <!--version>3.0.0-M5</version-->
+          <!--
+            [WARNING] Error injecting: org.apache.maven.plugin.surefire.SurefirePlugin
+            java.lang.NoClassDefFoundError: org/apache/maven/surefire/api/testset/TestSetFailedException
+            seems to fail when used for testing Maven plugins -->
+          <version>${surefire.version}</version>
+          <configuration>
+            <systemPropertyVariables>
+              <log.root.level>${log.root.level}</log.root.level>
+              <test.properties.file>${test.properties.file}
+              </test.properties.file>
+              <!-- NOTE: on *nix systems the Oracle Database driver gets a
+                "connect reset" socket exception while trying to establish an SSL connection.
+                This happens due to the way the random number generator is seeded on *nix
+                systems. This switch forces the JVM to use an unblocking source of randomness.
+                see http://bugs.java.com/view_bug.do?bug_id=4705093 and https://bugs.openjdk.java.net/browse/JDK-4705093
+                and https://bugs.openjdk.java.net/browse/JDK-6366924 and https://community.oracle.com/message/3701989/ -->
+              <java.security.egd>file:///dev/urandom</java.security.egd>
+              <sun.net.client.defaultConnectTimeout>30000
+              </sun.net.client.defaultConnectTimeout>
+              <sun.net.client.defaultReadTimeout>30000
+              </sun.net.client.defaultReadTimeout>
+              <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
+              <jgiven.report.text>${jgiven.report.text}</jgiven.report.text>
+              <testng.dtd.http>false</testng.dtd.http>
+            </systemPropertyVariables>
+            <argLine>-noverify -Dfile.encoding=${project.build.sourceEncoding}
+            </argLine>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>${surefire.version}</version>
+          <configuration>
+            <systemPropertyVariables>
+              <log.root.level>${log.root.level}</log.root.level>
+              <test.properties.file>${test.properties.file}
+              </test.properties.file>
+              <!-- NOTE: on *nix systems the Oracle Database driver gets a
+                "connect reset" socket exception while trying to establish an SSL connection.
+                This happens due to the way the random number generator is seeded on *nix
+                systems. This switch forces the JVM to use an unblocking source of randomness.
+                see http://bugs.java.com/view_bug.do?bug_id=4705093 and https://bugs.openjdk.java.net/browse/JDK-4705093
+                and https://bugs.openjdk.java.net/browse/JDK-6366924 and https://community.oracle.com/message/3701989/ -->
+              <java.security.egd>file:///dev/urandom</java.security.egd>
+              <sun.net.client.defaultConnectTimeout>${connection.mstimeout}
+              </sun.net.client.defaultConnectTimeout>
+              <sun.net.client.defaultReadTimeout>${read.mstimeout}
+              </sun.net.client.defaultReadTimeout>
+              <java.net.preferIPv4Stack>true</java.net.preferIPv4Stack>
+              <jgiven.report.text>${jgiven.report.text}</jgiven.report.text>
+              <testng.dtd.http>false</testng.dtd.http>
+            </systemPropertyVariables>
+            <argLine>-noverify -Dfile.encoding=${project.build.sourceEncoding}
+            </argLine>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>com.tngtech.jgiven</groupId>
+          <artifactId>jgiven-maven-plugin</artifactId>
+          <version>${jgiven.version}</version>
+          <dependencies>
+            <!-- NOTE: log to stderr-->
+            <dependency>
+              <groupId>org.slf4j</groupId>
+              <artifactId>slf4j-simple</artifactId>
+              <version>1.7.13</version>
+            </dependency>
+          </dependencies>
+          <!-- executions>
+            <execution>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+          </executions-->
+          <configuration>
+            <format>html5</format>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-help-plugin</artifactId>
+        <version>3.2.0</version>
+        <!-- ISSUE: too much noise when configured as below -->
+        <!--        <executions>-->
+        <!--          <execution>-->
+        <!--            <id>show-profiles</id>-->
+        <!--            <phase>initialize</phase>-->
+        <!--            <goals>-->
+        <!--              <goal>active-profiles</goal>-->
+        <!--            </goals>-->
+        <!--          </execution>-->
+        <!--        </executions>-->
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>enforce-java</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>[${java.version},)</version>
+                </requireJavaVersion>
+                <requireMavenVersion>
+                  <version>[3.6,)</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+        <version>4.4.2.1</version>
+        <configuration>
+          <effort>Max</effort>
+          <failOnError>false</failOnError>
+          <threshold>Low</threshold>
+          <xmlOutput>true</xmlOutput>
+          <spotbugsXmlOutputDirectory>${project.build.directory}/findbugs
+          </spotbugsXmlOutputDirectory>
+          <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
+        </configuration>
+        <executions>
+          <execution>
+            <id>analyze-compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.0.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <phase>verify</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>3.0.0-M1</version>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>3.0.0-M1</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>platform-jdk8</id>
+      <activation>
+        <jdk>1.8</jdk>
+      </activation>
+      <properties>
+        <java.version>1.8</java.version>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>platform-jdk11</id>
+      <activation>
+        <jdk>[11,)</jdk>
+      </activation>
+      <properties>
+        <java.version>11</java.version>
+        <maven.compiler.release>${java.version}</maven.compiler.release>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>mode-logs-level-debug</id>
+      <properties>
+        <log.root.level>debug</log.root.level>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>mode-logs-level-error</id>
+      <properties>
+        <log.root.level>error</log.root.level>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>mode-logs-level-trace</id>
+      <properties>
+        <log.root.level>trace</log.root.level>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>mode-build-fast</id>
+      <properties>
+        <findbugs.skip>true</findbugs.skip>
+        <formatter.skip>true</formatter.skip>
+        <impsort.skip>true</impsort.skip>
+        <maven.test.skip>true</maven.test.skip>
+        <spotbugs.skip>true</spotbugs.skip>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>mode-build-quiet</id>
+      <properties>
+        <aspectj.showWeaveInfo>false</aspectj.showWeaveInfo>
+        <aspectj.verbose>false</aspectj.verbose>
+        <spotbugs.skip>true</spotbugs.skip>
+        <maven.compiler.xlint>none</maven.compiler.xlint>
+      </properties>
+    </profile>
+  </profiles>
+</project>

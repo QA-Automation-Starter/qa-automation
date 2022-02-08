@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2022 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<project>
+  <build>
+    <plugins>
+      <!--
+        NOTE: due to some Maven test plugin bug plugin parameters are not
+        initialized to their defauls an need to be specified here
+      -->
+      <plugin>
+        <groupId>dev.aherscu.qa</groupId>
+        <artifactId>qa-jgiven-reporter-maven-plugin</artifactId>
+
+        <configuration>
+          <skip>false</skip>
+          <debug>true</debug>
+          <sourceDirectory>target/test-classes/jgiven-report-samples
+          </sourceDirectory>
+          <outputDirectory>target/test-classes/jgiven-reports/qa-html
+          </outputDirectory>
+          <pdf>true</pdf>
+          <screenshotScale>0.2</screenshotScale>
+          <!-- NOTE: suppressing date generation in order to simplify testing -->
+          <datePattern>--</datePattern>
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>segregated-permethod-report</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>segregated-permethod-report</goal>
+            </goals>
+            <configuration>
+              <skip>false</skip>
+              <referenceTag>Reference</referenceTag>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>segregated-report</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>segregated-report</goal>
+            </goals>
+            <configuration>
+              <skip>false</skip>
+            </configuration>
+          </execution>
+
+          <execution>
+            <id>report</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <skip>false</skip>
+              <productName>App/Product Name</productName>
+              <productVersion>ProductVersion</productVersion>
+              <testDocumentId>TestDocIdD</testDocumentId>
+              <testDocumentRev>TestDocRev</testDocumentRev>
+              <specDocumentId>SpecDocId</specDocumentId>
+              <specDocumentRev>SpecDocRev</specDocumentRev>
+              <planDocumentId>PlanDocId</planDocumentId>
+              <planDocumentRev>PlanDocRev</planDocumentRev>
+              <traceabilityDocumentId>TraceabilityDocId</traceabilityDocumentId>
+              <traceabilityDocumentRev>TraceabilityDocRev
+              </traceabilityDocumentRev>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

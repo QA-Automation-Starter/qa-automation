@@ -1,0 +1,432 @@
+<!--
+  ~ Copyright 2022 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Design Verification Procedure</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      word-wrap: break-word;
+    }
+
+    table {
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    caption {
+      font-size: large;
+      font-weight: bold;
+      margin: 25px;
+    }
+
+    .header {
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    body {
+      counter-reset: h1counter;
+    }
+
+    h1:before {
+      content: counter(h1counter) ". ";
+      counter-increment: h1counter;
+    }
+
+    h1 {
+      counter-reset: h2counter;
+    }
+
+    h2:before {
+      content: counter(h1counter) "." counter(h2counter) ". ";
+      counter-increment: h2counter;
+    }
+
+    h2 {
+      counter-reset: h3counter;
+    }
+
+    h3:before {
+      content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) ". ";
+      counter-increment: h3counter;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    @page {
+      margin: 25mm 25mm 25mm 25mm;
+    }
+
+    .centered {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+
+
+
+  </style>
+</head>
+
+<body>
+
+<div class="header">
+  <div>
+    <strong>Design Verification Procedure</strong>
+  </div>
+  <div>
+    <span>Product Name:</span>
+    <span>{{productName}}</span>
+  </div>
+  <div>
+    <span>Product Revision:</span>
+    <span>{{specDocumentRev}}</span>
+  </div>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Function</th>
+    <th>Signature</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th>Author</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>{{date}}</td>
+  </tr>
+  <tr>
+    <th>Reviewer</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th>Approver</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th>Tester</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Introduction</h1>
+
+<h2>Purpose</h2>
+<p>This document's ({{testDocumentId}}) purpose is to test the {{productName}},
+  according to the detailed specifications defined in
+  the '{{productName}}' Design Requirements Specification ({{specDocumentId}}
+  -Rev {{specDocumentRev}}). It contains test procedures and related test
+  cases, and test results.</p>
+
+<h2>Scope</h2>
+<p>This Design Verification Procedure contains the System Testing activity as
+  specified in the '{{productName}}' Design Verification Plan
+  {{planDocumentId}}
+  -Rev {{planDocumentRev}}.</p>
+
+<h1>References</h1>
+<p>The following table references related program documents:</p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Document Name</th>
+    <th>Document Id</th>
+    <th>Revision</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Design Requirements Specification</td>
+    <td>{{specDocumentId}}</td>
+    <td>{{specDocumentRev}}</td>
+  </tr>
+  <tr>
+    <td>Design Verification Plan</td>
+    <td>{{planDocumentId}}</td>
+    <td>{{planDocumentRev}}</td>
+  </tr>
+  <tr>
+    <td>Traceability Matrix</td>
+    <td>{{traceabilityDocumentId}}</td>
+    <td>{{traceabilityDocumentRev}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Definitions, Acronyms, Abbreviations</h1>
+<p>The following are the acronyms and abbreviations used in this document:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Term</th>
+    <th>Definition</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>--</td>
+    <td>--</td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Traceability</h1>
+<p>Traceability between the requirements and test procedures is provided in
+  the '{{productName}}' Traceability Matrix {{traceabilityDocumentId}}
+  -Rev {{traceabilityDocumentRev}}.</p>
+
+<h1>Configurations and Environments</h1>
+<p>The following configurations, along with specific environment details
+  required, are required for the test procedures:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Configuration</th>
+    <th>Environment Details</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>TBD</td>
+    <td>TBD</td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>Setup and Initial Conditions</h2>
+<p>The following setup steps must be performed prior to executing the test
+  procedure:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Sequence</th>
+    <th>Setup Instructions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>TBD</td>
+    <td>TBD</td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Test Equipment, Tools, and Data</h1>
+<p>The following tools are used during testing:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Version</th>
+    <th>Intended Use</th>
+    <th>Validation Evidence</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{productName}}</td>
+    <td>{{productVersion}}</td>
+    <td>Verification (Test Automation, BDD testing)</td>
+    <td>{{validationEvidenceDocumentId}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Design Output Under Test</h1>
+<p>{{productName}}-Rev {{specDocumentId}}</p>
+
+
+<h1>Test Procedures</h1>
+
+{{#jgivenReport.allReportModels}}
+<h2>{{model.name}}</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Tag</th>
+    <th>Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#model.tagMap.entrySet}}
+  {{#value}}
+  <tr>
+    <td>{{name}}</td>
+    <td>{{value}}</td>
+  </tr>
+  {{/value}}
+  {{/model.tagMap.entrySet}}
+  </tbody>
+</table>
+
+{{#model.scenarios}}
+<h3>[T-{{#asId}}{{description}}{{/asId}}] {{description}}</h3>
+
+{{#scenarioCases}}
+<p>Test scenario:{{-index}}</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 50%">Step / Expected Result</th>
+    <th class="centered" style="width: 30%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{#steps}}
+  <tr>
+    <td>{{-index}}</td>
+    {{#isSectionTitle}}
+    <td><b>Section</b></td>
+    <td colspan="4"><b>{{name}}</b></td>
+    {{/isSectionTitle}}
+    {{^isSectionTitle}}
+    {{^isIntroWord}}
+    {{#words}}
+    {{#-first}}
+    <td>
+      <b>{{#translateIntroWord}}{{value}}{{/translateIntroWord}}</b>
+    </td>
+    {{/-first}}
+    {{/words}}
+    <td>
+      {{#words}}
+      {{^-first}}
+      <span>{{value}}</span>
+      {{/-first}}
+      {{/words}}
+    </td>
+
+    <td>
+      {{#attachments}}
+      {{#-first}}
+      {{#binary}}
+      <!-- ISSUE: current Jenkins configuration blocks data images -->
+      <!-- see https://content-security-policy.com/ -->
+      <!-- and https://www.w3.org/TR/CSP2/ -->
+      <!-- Jenkins sends content-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline'; -->
+      <!-- NOTE: assuming binary attachements are always images -->
+      <img alt="Actual screenshot might be blocked by server"
+           src="data:{{mediaType}};base64,{{#scaleImage}}{{value}}{{/scaleImage}}">
+      {{/binary}}
+      {{^binary}}
+      {{value}}
+      {{/binary}}
+      {{/-first}}
+      {{/attachments}}
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+    {{/isIntroWord}}
+    {{/isSectionTitle}}
+  </tr>
+  {{/steps}}
+  </tbody>
+</table>
+{{/scenarioCases}}
+
+{{/model.scenarios}}
+{{/jgivenReport.allReportModels}}
+
+<h1>Test Summary</h1>
+<p>The following summarizes the results for all test procedures:</p>
+
+<table>
+  <tbody>
+  <tr>
+    <td>Total scenarios</td>
+    <td>{{jgivenReportModel.totalStatistics.numScenarios}}</td>
+  </tr>
+  <tr>
+    <td>Total duration [nanoseconds]</td>
+    <td>{{jgivenReportModel.totalStatistics.durationInNanos}}</td>
+  </tr>
+  <tr>
+    <td>Successful scenarios</td>
+    <td>{{jgivenReportModel.totalStatistics.numSuccessfulScenarios}}</td>
+  </tr>
+  <tr>
+    <td>Failed scenarios</td>
+    <td>{{jgivenReportModel.totalStatistics.numFailedScenarios}}</td>
+  </tr>
+  <tr>
+    <td>Manual scenarios</td>
+    <td>{{jgivenReportModel.totalStatistics.numPendingScenarios}}</td>
+  </tr>
+  </tbody>
+</table>
+
+
+<h1>Revision History</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Revision</th>
+    <th>Date</th>
+    <th>Reason for change</th>
+    <th>Author</th>
+  </tr>
+  </thead>
+  <tbody>
+  {{^revisions}}
+  <tr>
+    <td colspan="4">
+      no revision data
+    </td>
+  </tr>
+  {{/revisions}}
+  {{#revisions}}
+  <tr>
+    <td>{{number}}</td>
+    <td>{{date}}</td>
+    <td>{{reason}}</td>
+    <td>{{author}}</td>
+  </tr>
+  {{/revisions}}
+  </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2022 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>dev.aherscu.qa</groupId>
+    <artifactId>qa-automation</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>qa-jgiven-commons</artifactId>
+  <packaging>jar</packaging>
+
+  <name>QA JGiven Commons</name>
+
+  <properties>
+    <aspectj.skip>false</aspectj.skip>
+    <powermock.version>2.0.5</powermock.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.aspectj</groupId>
+      <artifactId>aspectjrt</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.findbugs</groupId>
+      <artifactId>annotations</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.validation</groupId>
+      <artifactId>validation-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.dropwizard.metrics</groupId>
+      <artifactId>metrics-core</artifactId>
+      <version>4.1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>dev.aherscu.qa</groupId>
+      <artifactId>qa-tester-utils</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
+    <dependency>
+      <groupId>io.appium</groupId>
+      <artifactId>java-client</artifactId>
+      <version>7.5.1</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mvel</groupId>
+      <artifactId>mvel2</artifactId>
+      <version>2.4.8.Final</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.jodah</groupId>
+      <artifactId>failsafe</artifactId>
+      <version>2.4.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.danhaywood.java</groupId>
+      <artifactId>danhaywood-java-assertjext</artifactId>
+      <version>0.1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-vfs2</artifactId>
+      <version>2.2</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-dbutils</groupId>
+      <artifactId>commons-dbutils</artifactId>
+      <version>1.7</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>1.9.3</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>com.hierynomus</groupId>
+      <artifactId>sshj</artifactId>
+      <version>0.26.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.jersey.core</groupId>
+      <artifactId>jersey-client</artifactId>
+      <version>${jersey.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.glassfish.jersey.inject</groupId>
+      <artifactId>jersey-hk2</artifactId>
+      <version>${jersey.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.unitils</groupId>
+      <artifactId>unitils-testng</artifactId>
+      <version>3.4.6</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.unitils</groupId>
+      <artifactId>unitils-io</artifactId>
+      <version>3.4.6</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.unitils</groupId>
+      <artifactId>unitils-dbunit</artifactId>
+      <version>3.4.6</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-nop</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>com.zaxxer</groupId>
+      <artifactId>HikariCP</artifactId>
+      <version>3.2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.tngtech.jgiven</groupId>
+      <artifactId>jgiven-testng</artifactId>
+      <version>${jgiven.version}</version>
+    </dependency>
+    <!-- ISSUE: when relying on the dependency brought by tester-utils,
+    the tests are failing with method not found exceptions... -->
+    <dependency>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path-assert</artifactId>
+      <version>2.5.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.skyscreamer</groupId>
+      <artifactId>jsonassert</artifactId>
+      <version>1.5.0</version>
+    </dependency>
+
+    <!-- dependency>
+      ISSUE: cannot read the descriptor perhaps due to missing configuration
+      <groupId>com.oracle.jdbc</groupId>
+      <artifactId>OracleJdbcDriver12</artifactId>
+    </dependency-->
+    <dependency>
+      <groupId>com.tngtech.jgiven</groupId>
+      <artifactId>jgiven-html5-report</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derbyclient</artifactId>
+      <version>10.14.2.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.saucelabs</groupId>
+      <artifactId>saucerest</artifactId>
+      <version>1.0.42</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+      <version>4.2.2</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>3.2.4</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-testng</artifactId>
+      <version>0.1.1</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>htmlunit-driver</artifactId>
+      <version>2.39.0</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-failsafe-plugin</artifactId>
+        <configuration>
+          <systemPropertyVariables>
+            <!-- NOTE: Selenium/Appium is using Apache HTTP Client library
+              see https://hc.apache.org/httpcomponents-client-4.2.x/tutorial/html/connmgmt.html -->
+            <!-- not verified yet -->
+            <http.connection.timeout>${connection.mstimeout}
+            </http.connection.timeout>
+            <http.socket.timeout>${read.mstimeout}</http.socket.timeout>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <systemPropertyVariables>
+            <!-- NOTE: Selenium/Appium is using Apache HTTP Client library
+              see https://hc.apache.org/httpcomponents-client-4.2.x/tutorial/html/connmgmt.html -->
+            <!-- not verified yet -->
+            <http.connection.timeout>${connection.mstimeout}
+            </http.connection.timeout>
+            <http.socket.timeout>${read.mstimeout}</http.socket.timeout>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.nickwongdev</groupId>
+        <artifactId>aspectj-maven-plugin</artifactId>
+        <configuration>
+          <weaveDependencies>
+            <weaveDependency>
+              <groupId>org.seleniumhq.selenium</groupId>
+              <artifactId>selenium-remote-driver</artifactId>
+            </weaveDependency>
+            <weaveDependency>
+              <groupId>com.tngtech.jgiven</groupId>
+              <artifactId>jgiven-core</artifactId>
+            </weaveDependency>
+          </weaveDependencies>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>net.revelc.code</groupId>
+        <artifactId>impsort-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>net.revelc.code.formatter</groupId>
+        <artifactId>formatter-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>com.tngtech.jgiven</groupId>
+        <artifactId>jgiven-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reports>
+    <report>maven-emma-plugin</report>
+  </reports>
+
+  <profiles>
+    <profile>
+      <id>platform-jdk11</id>
+      <activation>
+        <jdk>[11,)</jdk>
+      </activation>
+      <properties>
+        <!-- ISSUE https://issues.apache.org/jira/projects/MCOMPILER/issues/MCOMPILER-464 -->
+        <maven.test.skip>true</maven.test.skip>
+      </properties>
+    </profile>
+  </profiles>
+</project>

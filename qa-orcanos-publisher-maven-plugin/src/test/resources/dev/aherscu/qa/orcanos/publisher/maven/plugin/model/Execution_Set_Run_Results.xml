@@ -1,0 +1,84 @@
+<!--
+  ~ Copyright 2022 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<Execution_Set_Run_Results ID="1234" Name="some name" Cycle="1"
+                           xmlns="">
+  <Run Name="some run" Version="1.0.0.0" Start="" End=""
+       User="some.user" Type="Auto" TestCount="1">
+    <TestInExecLine ID="1234" Order="1">
+      <Test ID="1234"></Test>
+      <ImportStatus></ImportStatus>
+      <ErrorDesc></ErrorDesc>
+      <Name>
+        <![CDATA[]]>
+      </Name>
+      <LastRunStatus>PASS</LastRunStatus>
+      <LastRunVersion>00.00.000.0000</LastRunVersion>
+      <Tester>some.tester</Tester>
+      <WorkPlanStatus></WorkPlanStatus>
+      <Description>
+        <![CDATA[]]>
+      </Description>
+      <Steps>
+        <Step ID="1" Order="1">
+          <Description>
+            <![CDATA[]]>
+          </Description>
+          <Expected>
+            <![CDATA[]]>
+          </Expected>
+          <Actual></Actual>
+          <Command>
+            <![CDATA[]]>
+          </Command>
+          <CommandParams></CommandParams>
+          <SQLQry>
+            <![CDATA[]]>
+          </SQLQry>
+          <Run Status=""/>
+          <Time Start="" End=""/>
+        </Step>
+        <Step ID="1" Order="2">
+          <Description>
+            <![CDATA[]]>
+          </Description>
+          <Expected><![CDATA[]]></Expected>
+          <Actual></Actual>
+          <Command>
+            <![CDATA[]]>
+          </Command>
+          <CommandParams></CommandParams>
+          <SQLQry>
+            <![CDATA[]]>
+          </SQLQry>
+          <Run Status=""/>
+          <Time Start="" End=""/>
+        </Step>
+      </Steps>
+      <InputTestParams>
+        <Param Name="" Value=""/>
+      </InputTestParams>
+      <ResultParams>
+        <Param Name="" Expected="" Actual=""/>
+      </ResultParams>
+    </TestInExecLine>
+    <InputRunParams>
+      <Param Name="Device brand and Model name"
+             Value="Samsung Galaxy S9 Plus WQHD"/>
+      <Param Name="OS" Value="Android 8"/>
+      <Param Name="Serial Number" Value="GoogleAPI Emulator"/>
+    </InputRunParams>
+  </Run>
+</Execution_Set_Run_Results>

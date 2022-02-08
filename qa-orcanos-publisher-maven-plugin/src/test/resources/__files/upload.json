@@ -1,0 +1,8 @@
+{
+  "IsSuccess": false,
+  "Data": {
+    "image.html": "https://orcanos.host///QpackFTP/PROJECT_1234/image.html"
+  },
+  "Message": "Image/File uploaded successfully. Please check the response data for image/file URL.",
+  "HttpCode": 200
+}
