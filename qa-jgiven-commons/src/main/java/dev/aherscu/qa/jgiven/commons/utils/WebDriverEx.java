@@ -34,6 +34,7 @@ import dev.aherscu.qa.jgiven.commons.*;
 import io.appium.java_client.*;
 import io.appium.java_client.android.*;
 import io.appium.java_client.ios.*;
+import io.appium.java_client.windows.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
@@ -273,6 +274,22 @@ public class WebDriverEx {
         value = "BC_UNCONFIRMED_CAST")
     public <T extends WebElement> MobileDriver<T> asMobile() {
         return (MobileDriver<T>) driver;
+    }
+
+    /**
+     * Casts an WebDriver into a WindowsDriver.
+     *
+     * @param <T>
+     *            type of WebElement
+     * @return the WindowsDriver interface
+     * @throws ClassCastException
+     *             if the driver is not of WindowsDriver type
+     */
+    @SuppressWarnings("unchecked")
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+        value = "BC_UNCONFIRMED_CAST")
+    public <T extends WebElement> WindowsDriver<T> asWindows() {
+        return (WindowsDriver<T>) driver;
     }
 
     /**
