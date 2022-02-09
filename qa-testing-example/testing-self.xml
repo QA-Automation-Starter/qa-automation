@@ -27,7 +27,7 @@
 
   <test name="Self Tests" parallel="classes" thread-count="15">
     <classes>
-      <class name="dev.aherscu.qa.testing.example.scenarios.tutorial._3_TestingWebApplication" />
+      <class name="dev.aherscu.qa.testing.example.scenarios.tutorial._8_TestingWithConfiguration" />
     </classes>
   </test>
 </suite>

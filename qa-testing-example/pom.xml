@@ -360,7 +360,12 @@
       </properties>
     </profile>
 
-    <!-- TODO: add device-win10 -->
+    <profile>
+      <id>device-windows</id>
+      <properties>
+        <device.type>windows</device.type>
+      </properties>
+    </profile>
 
     <profile>
       <id>device-web</id>
@@ -496,6 +501,8 @@
     <profile>
       <id>testing-self</id>
       <properties>
+        <application.filename>Microsoft.WindowsCalculator_8wekyb3d8bbwe!App
+        </application.filename>
         <surefire.suiteXmlFiles>testing-self.xml</surefire.suiteXmlFiles>
       </properties>
     </profile>

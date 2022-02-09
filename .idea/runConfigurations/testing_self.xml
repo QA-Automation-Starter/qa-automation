@@ -16,18 +16,13 @@
           <option name="pomFileName" value="pom.xml" />
           <option name="profilesMap">
             <map>
-              <entry key="testing-self" value="true" />
-              <entry key="provider-saucelabs-appium" value="true" />
-              <entry key="environment-default" value="true" />
               <entry key="mode-logs-level-trace" value="true" />
-              <entry key="trace" value="true" />
-              <entry key="mode-build-quiet" value="true" />
-              <entry key="mode-proxy" value="true" />
-              <entry key="mode-es-logs-verification-skip" value="true" />
+              <entry key="environment-default" value="true" />
+              <entry key="testing-self" value="true" />
             </map>
           </option>
           <option name="resolveToWorkspace" value="false" />
-          <option name="workingDirPath" value="$PROJECT_DIR$/qa-testing" />
+          <option name="workingDirPath" value="$PROJECT_DIR$/qa-testing-example" />
         </MavenRunnerParameters>
       </option>
     </MavenSettings>
