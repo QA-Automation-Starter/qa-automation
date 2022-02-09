@@ -32,14 +32,24 @@ public class _8_TestingWithConfiguration
             equalTo("Calculator"));
     }
 
-    @Test
-    public void shouldCalculate() {
+    @Test(dataProvider = INTERNAL_DATA_PROVIDER)
+    public void shouldCalculate(final String expression, final String result) {
         webDriver.get().asWindows()
             .findElementByAccessibilityId("CalculatorResults")
-            .sendKeys("8+7=");
+            .sendKeys(expression + "=");
         assertThat(webDriver.get().asWindows()
             .findElementByAccessibilityId("CalculatorResults")
             .getText(),
-            stringContainsInOrder("Display is", "15"));
+            stringContainsInOrder("Display is", result));
+    }
+
+    @DataProvider
+    static Object[][] data() {
+        return new Object[][] {
+            { "7+8", "15" },
+            { "7-8", "-1" },
+            { "2*5", "11" },
+            { "6/2", "3" },
+        };
     }
 }
