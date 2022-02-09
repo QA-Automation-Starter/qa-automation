@@ -22,6 +22,7 @@ import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static java.util.Collections.*;
 import static java.util.Locale.*;
+import static java.util.Objects.requireNonNull;
 import static java.util.stream.Collectors.*;
 import static org.openqa.selenium.Platform.*;
 
@@ -200,7 +201,9 @@ public class WebDriverConfiguration extends BaseConfiguration {
         final Platform deviceType) {
         return requiredCapabilities.get()
             .stream()
-            .filter(capabilities -> capabilities.getPlatform().is(deviceType))
+            .filter(capabilities -> requireNonNull(capabilities.getPlatform(),
+                "must supply platform or platformName in configuration")
+                    .is(deviceType))
             .collect(toList());
     }
 
