@@ -124,15 +124,15 @@ public class WebDriverVerifications<SELF extends WebDriverVerifications<SELF>>
     }
 
     /**
-     * Verifies the page title is as expected.
+     * Verifies the title is as expected.
      *
      * @param expected
-     *            the expected page title
+     *            the expected title
      * @return {@link #self()}
      */
-    public SELF the_page_title(final Matcher<String> expected) {
+    public SELF the_title(final Matcher<String> expected) {
         return eventually(self -> {
-            log.debug("page title matches {}", expected);
+            log.debug("title matches {}", expected);
             MatcherAssert.assertThat(thisWebDriver().asGeneric().getTitle(),
                 expected);
             return self();

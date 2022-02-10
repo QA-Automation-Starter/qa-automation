@@ -55,7 +55,7 @@ public final class GenericWebDriverTest
     public void shouldFailFinding() {
         given().a_web_driver(driver);
         // same browser on same page as set by previous method
-        then().the_page_title(containsString("hello"))
+        then().the_title(containsString("hello"))
             .and().element(By.xpath("bad-xpath["),
                 adaptedObject(WebElement::getText, is("kuku")));
     }
@@ -67,7 +67,7 @@ public final class GenericWebDriverTest
     public void shouldOpenWebDriver() {
         given().a_web_driver(driver);
         when().opening(wireMockServer.baseUrl());
-        then().the_page_title(containsString("hello"));
+        then().the_title(containsString("hello"));
     }
 
     @SuppressFBWarnings(
