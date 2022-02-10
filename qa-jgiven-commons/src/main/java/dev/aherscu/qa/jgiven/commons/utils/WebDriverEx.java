@@ -248,7 +248,7 @@ public class WebDriverEx {
     }
 
     /**
-     * Casts an WebDriver into a MobileDriver.
+     * Casts an WebDriver into a JavascriptExecutor.
      *
      * @return the JavascriptExecutor interface
      * @throws ClassCastException
@@ -367,6 +367,12 @@ public class WebDriverEx {
      * @return the element
      */
     public WebElement scrollIntoView(final WebElement element) {
+        if (driver instanceof WindowsDriver)
+            // TODO implement scrolling for WinAppDriver
+            // https://github.com/microsoft/WinAppDriver/issues/1538
+            // meanwhile do nothing
+            return element;
+
         // ISSUE isDisplayed method is not reliable
         // if (!element.isDisplayed())
         asJavaScriptExecutor()
