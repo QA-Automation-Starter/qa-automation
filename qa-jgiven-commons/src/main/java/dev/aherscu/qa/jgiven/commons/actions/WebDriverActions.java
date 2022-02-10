@@ -33,6 +33,7 @@ import com.tngtech.jgiven.annotation.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import io.appium.java_client.windows.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
@@ -430,6 +431,10 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
     @Hidden
     protected SELF hiding_keyboard() {
         log.debug("hiding the keyboard");
+        if (webDriver.get().asGeneric() instanceof WindowsDriver)
+            // WORKAROUND: temporary solution for desktop apps
+            return self();
+
         // WORKAROUND: not supported on all devices or operating systems
         // webDriver.get().asMobile().hideKeyboard();
         return forcefullyClicking(By.xpath("/html/body"));
