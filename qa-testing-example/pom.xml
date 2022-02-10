@@ -63,7 +63,7 @@
     </jgiven.report.dir>
     <jgiven.report.text>false</jgiven.report.text>
 
-    <poll.timeout>120</poll.timeout>
+    <poll.timeout>15</poll.timeout>
     <poll.delay>5</poll.delay>
 
     <aspectj.skip>false</aspectj.skip>
