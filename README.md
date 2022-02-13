@@ -1,5 +1,5 @@
-[![Dryrun Status](TBD)
-[![Sanity Nightly Status](TBD)
+![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/maven.yml/badge.svg)
+
 
 # System Testing
 
