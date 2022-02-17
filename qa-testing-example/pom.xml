@@ -39,10 +39,6 @@
     <groups/>
     <silent>true</silent>
 
-    <!-- NOTE: this module does not create any installable/deployable artifact -->
-    <maven.install.skip>true</maven.install.skip>
-    <maven.deploy.skip>true</maven.deploy.skip>
-
     <environment>UNDEFINED</environment>
 
     <!-- NOTE: these properties are referenced by the failsafe plugin below -->
