@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.testing.example;
+package dev.aherscu.qa.jgiven.commons;
 
 import static java.util.Objects.*;
 
 import org.testng.annotations.*;
 
+import dev.aherscu.qa.jgiven.commons.actions.*;
+import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.commons.verifications.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
@@ -28,8 +31,8 @@ import lombok.extern.slf4j.*;
  * <p>
  * Support for multi-threaded application tests. Manages WebDriver per test
  * method by opening it with default provider and device types per
- * {@link TestConfiguration}. This enables each test method to run in its own
- * thread.
+ * {@link WebDriverConfiguration}. This enables each test method to run in its
+ * own thread.
  * </p>
  * 
  * <p>
@@ -41,8 +44,12 @@ import lombok.extern.slf4j.*;
  */
 @UITest
 @Slf4j
-public abstract class ApplicationPerMethodWebSessionTest
-    extends ApplicationUnmanagedSessionTest {
+public abstract class ApplicationPerMethodWebSessionTest<C extends WebDriverConfiguration, GIVEN extends WebDriverFixtures<?>, WHEN extends WebDriverActions<?>, THEN extends WebDriverVerifications<?>>
+    extends ApplicationUnmanagedSessionTest<C, GIVEN, WHEN, THEN> {
+
+    protected ApplicationPerMethodWebSessionTest(Class<C> configurationType) {
+        super(configurationType);
+    }
 
     /**
      * WebDriver client to be managed by this scenario.
@@ -63,7 +70,7 @@ public abstract class ApplicationPerMethodWebSessionTest
 
     /**
      * Before each test method begins execution, opens the managed WebDriver
-     * using {@link TestConfiguration}.
+     * using {@link WebDriverConfiguration}.
      */
     @BeforeMethod
     @SneakyThrows

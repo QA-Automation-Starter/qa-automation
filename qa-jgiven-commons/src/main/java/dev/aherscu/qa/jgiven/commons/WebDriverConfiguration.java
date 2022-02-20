@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.commons.utils;
+package dev.aherscu.qa.jgiven.commons;
 
 import static com.google.common.base.Suppliers.*;
 import static dev.aherscu.qa.jgiven.commons.utils.SessionName.*;
@@ -22,7 +22,7 @@ import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static java.util.Collections.*;
 import static java.util.Locale.*;
-import static java.util.Objects.requireNonNull;
+import static java.util.Objects.*;
 import static java.util.stream.Collectors.*;
 import static org.openqa.selenium.Platform.*;
 
@@ -37,6 +37,7 @@ import org.openqa.selenium.chrome.*;
 
 import com.google.common.collect.*;
 
+import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.tester.utils.config.BaseConfiguration;
 import lombok.*;
 import lombok.extern.slf4j.*;

@@ -21,7 +21,7 @@ import javax.annotation.concurrent.*;
 
 import org.apache.commons.configuration.*;
 
-import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.commons.*;
 import lombok.extern.slf4j.*;
 
 /**

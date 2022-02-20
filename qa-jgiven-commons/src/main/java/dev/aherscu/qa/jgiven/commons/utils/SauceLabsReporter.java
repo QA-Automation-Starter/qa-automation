@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.example.utils;
+package dev.aherscu.qa.jgiven.commons.utils;
 
 import static dev.aherscu.qa.tester.utils.UriUtils.*;
 import static java.util.Objects.*;
 
 import com.saucelabs.saucerest.*;
 
-import dev.aherscu.qa.jgiven.commons.utils.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
