@@ -14,13 +14,16 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.example;
+package dev.aherscu.qa.jgiven.commons;
 
 import static java.util.Objects.*;
 
 import org.testng.annotations.*;
 
+import dev.aherscu.qa.jgiven.commons.actions.*;
+import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.commons.verifications.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
@@ -47,8 +50,12 @@ import lombok.extern.slf4j.*;
 // when running with parallel="methods" different threads are used
 // causing tests to fail due to uninitialized WebDriver.
 // Same for TestNG 7.3.0.
-public abstract class ApplicationPerClassWebSessionTest extends
-    ApplicationPerMethodWebSessionTest {
+public abstract class ApplicationPerClassWebSessionTest<C extends WebDriverConfiguration, GIVEN extends WebDriverFixtures<?>, WHEN extends WebDriverActions<?>, THEN extends WebDriverVerifications<?>>
+    extends ApplicationPerMethodWebSessionTest<C, GIVEN, WHEN, THEN> {
+    protected ApplicationPerClassWebSessionTest(Class<C> configurationType) {
+        super(configurationType);
+    }
+
     /**
      * Closes the managed WebDriver after all test methods finished.
      */

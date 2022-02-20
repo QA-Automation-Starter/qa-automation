@@ -13,25 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package dev.aherscu.qa.testing.example.steps;
 
-import javax.annotation.concurrent.*;
+import static io.appium.java_client.MobileBy.*;
 
+import org.hamcrest.*;
+
+import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
-import lombok.extern.slf4j.*;
 
-/**
- * Application specific UI verifications.
- *
- * @param <SELF>
- *            the type of the subclass
- * @author aherscu
- */
-@SuppressWarnings({ "boxing", "UnusedReturnValue", "WeakerAccess",
-    "ClassWithTooManyMethods" })
-@ThreadSafe
-@Slf4j
-public class ApplicationUIVerifications<SELF extends ApplicationUIVerifications<SELF>>
+public class CalculatorVerifications<SELF extends CalculatorVerifications<SELF>>
     extends WebDriverVerifications<SELF> {
 
+    @AttachesScreenshot
+    public SELF the_result(final Matcher<String> matcher) {
+        return eventually_assert_that(
+            () -> element(AccessibilityId("CalculatorResults")).getText(),
+            matcher);
+    }
 }

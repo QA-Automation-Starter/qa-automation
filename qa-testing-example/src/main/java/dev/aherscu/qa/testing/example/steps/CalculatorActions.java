@@ -13,21 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.testing.example;
 
-/**
- * Temporary experimental code; consider using
- * {@link dev.aherscu.qa.jgiven.commons.tags.SelfTest} or similar instead.
- *
- * @author Adrian Herscu
- */
-@Deprecated
-public class Experiments {
-    /**
-     * @param args
-     *            command line arguments
-     */
-    public static void main(final String[] args) {
-        // nothing here
+package dev.aherscu.qa.testing.example.steps;
+
+import static io.appium.java_client.MobileBy.*;
+
+import dev.aherscu.qa.jgiven.commons.actions.*;
+
+public class CalculatorActions<SELF extends CalculatorActions<SELF>>
+    extends WebDriverActions<SELF> {
+    public SELF typing(final String expression) {
+        return typing_$_into(expression, AccessibilityId("CalculatorResults"));
     }
 }

@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.commons.utils;
+package dev.aherscu.qa.jgiven.commons;
 
-import static dev.aherscu.qa.jgiven.commons.utils.WebDriverConfiguration.*;
+import static dev.aherscu.qa.jgiven.commons.WebDriverConfiguration.*;
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
 import static org.hamcrest.MatcherAssert.*;

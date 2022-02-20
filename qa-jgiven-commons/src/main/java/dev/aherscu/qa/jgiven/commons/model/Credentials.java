@@ -13,22 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.testing.example.steps;
+package dev.aherscu.qa.jgiven.commons.model;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import lombok.extern.slf4j.*;
+import lombok.*;
 
 /**
- * Application specific REST actions.
- *
- * @param <SELF>
- *            the type of the subclass
+ * Username/password pair.
  *
  * @author Adrian Herscu
  *
  */
-@Slf4j
-public class ApplicationRestActions<SELF extends ApplicationRestActions<SELF>>
-    extends RestActions<SELF> {
+@Builder
+@ToString
+public class Credentials {
 
+    /**
+     * The username.
+     */
+    public final Name     userName;
+    /**
+     * The password.
+     */
+    public final Password password;
 }

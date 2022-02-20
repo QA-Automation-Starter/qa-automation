@@ -13,33 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package dev.aherscu.qa.testing.example.steps;
 
-import javax.annotation.concurrent.*;
-
 import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.jgiven.commons.formatters.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import lombok.extern.slf4j.*;
 
-/**
- * Application specific UI fixtures.
- *
- * @param <SELF>
- *            the type of the subclass
- * @author aherscu
- */
-@Slf4j
-@ThreadSafe
-public class ApplicationUIFixtures<SELF extends ApplicationUIFixtures<SELF>>
+public class CalculatorFixtures<SELF extends CalculatorFixtures<SELF>>
     extends WebDriverFixtures<SELF> {
-
-    @Override
-    public SELF a_web_driver(
-        @WebDriverFormatter.Annotation final WebDriverEx webDriver) {
-        return super.a_web_driver(webDriver)
-            .and().at(webDriver.originalCapabilities
-                .getCapability("target")
-                .toString());
+    public SELF a_calculator(final WebDriverEx driver) {
+        return a_web_driver(driver);
     }
 }

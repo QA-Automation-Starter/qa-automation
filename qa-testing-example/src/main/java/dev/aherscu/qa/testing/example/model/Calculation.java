@@ -13,22 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.testing.example.steps;
 
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import lombok.extern.slf4j.*;
+package dev.aherscu.qa.testing.example.model;
 
-/**
- * Application specific REST fixtures.
- *
- * @param <SELF>
- *            the type of the subclass
- *
- * @author Adrian Herscu
- *
- */
-@Slf4j
-public class ApplicationRestFixtures<SELF extends ApplicationRestFixtures<SELF>>
-    extends RestFixtures<SELF> {
+import lombok.*;
 
+@Builder
+@ToString
+public class Calculation {
+    public final String expression;
+    public final String result;
 }

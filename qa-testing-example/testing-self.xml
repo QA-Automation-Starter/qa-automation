@@ -20,7 +20,7 @@
 <suite name="testng-self-tests" verbose="1" thread-count="15">
   <listeners>
     <!--    <listener-->
-    <!--      class-name="dev.aherscu.qa.testing.example.utils.SauceLabsReporter"/>-->
+    <!--      class-name="dev.aherscu.qa.jgiven.commons.utils.SauceLabsReporter"/>-->
     <!--    <listener-->
     <!--        class-name="dev.aherscu.qa.jgiven.commons.utils.TestRetryAnalyzer" />-->
   </listeners>
@@ -28,7 +28,7 @@
   <test name="Self Tests" parallel="classes" thread-count="15">
     <classes>
       <class
-        name="dev.aherscu.qa.testing.example.scenarios.tutorial._8_TestingWithConfiguration"/>
+        name="dev.aherscu.qa.testing.example.scenarios.tutorial._8_TestingWindowsWithJGiven"/>
     </classes>
   </test>
 </suite>
