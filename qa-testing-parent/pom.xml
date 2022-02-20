@@ -482,8 +482,6 @@
     <profile>
       <id>testing-self</id>
       <properties>
-        <application.filename>Microsoft.WindowsCalculator_8wekyb3d8bbwe!App
-        </application.filename>
         <surefire.suiteXmlFiles>testing-self.xml</surefire.suiteXmlFiles>
       </properties>
     </profile>
