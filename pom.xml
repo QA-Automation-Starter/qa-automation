@@ -38,9 +38,10 @@
     <module>qa-orcanos-publisher-maven-plugin</module>
     <module>qa-s3-uploader-maven-plugin</module>
     <module>qa-jgiven-commons</module>
+    <module>qa-testing-parent</module>
     <module>qa-testing-example</module>
   </modules>
-  
+
   <properties>
     <!-- IMPORTANT: do not override version properties in child projects;
       this may lead to having different versions of same library -->
@@ -70,10 +71,6 @@
 
   <repositories>
     <repository>
-      <id>central</id>
-      <url>https://repo1.maven.org/maven2</url>
-    </repository>
-    <repository>
       <id>github</id>
       <url>https://maven.pkg.github.com/adrian-herscu/qa-automation</url>
       <snapshots>
@@ -81,14 +78,14 @@
       </snapshots>
     </repository>
   </repositories>
-      
+
   <distributionManagement>
-     <repository>
-       <id>github</id>
-       <name>GitHub Adrian Herscu Apache Maven Packages</name>
-       <url>https://maven.pkg.github.com/adrian-herscu/qa-automation</url>
-     </repository>
-  </distributionManagement>  
+    <repository>
+      <id>github</id>
+      <name>GitHub Adrian Herscu Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/adrian-herscu/qa-automation</url>
+    </repository>
+  </distributionManagement>
 
   <dependencyManagement>
     <dependencies>
@@ -327,6 +324,7 @@
             </annotationProcessorPaths>
           </configuration>
         </plugin>
+
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
