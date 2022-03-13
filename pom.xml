@@ -46,6 +46,7 @@
     <!-- IMPORTANT: do not override version properties in child projects;
       this may lead to having different versions of same library -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <delombok.directory>${project.build.directory}/delombok</delombok.directory>
     <!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=552687 -->
     <aspectj.version>1.9.6</aspectj.version>
     <aspectj.showWeaveInfo>true</aspectj.showWeaveInfo>
@@ -221,15 +222,21 @@
           <version>2.8.1</version>
           <configuration>
             <configFile>${project.basedir}/code-formatter-rules.xml</configFile>
+            <directories>
+              <directory>${project.build.sourceDirectory}</directory>
+              <directory>${delombok.directory}</directory>
+            </directories>
           </configuration>
           <executions>
             <execution>
               <goals>
+                <!-- runs at process-sources phase by default -->
                 <goal>format</goal>
               </goals>
             </execution>
           </executions>
         </plugin>
+
         <plugin>
           <groupId>net.revelc.code</groupId>
           <artifactId>impsort-maven-plugin</artifactId>
@@ -237,20 +244,26 @@
           <configuration>
             <groups>java.,javax.,org.,com.,*</groups>
             <removeUnused>true</removeUnused>
+            <directories>
+              <directory>${project.build.sourceDirectory}</directory>
+              <directory>${delombok.directory}</directory>
+            </directories>
           </configuration>
           <executions>
             <execution>
               <id>sort-imports</id>
               <goals>
-                <goal>sort
-                </goal><!-- runs at process-sources phase by default -->
+                <!-- runs at process-sources phase by default -->
+                <goal>sort</goal>
               </goals>
             </execution>
           </executions>
         </plugin>
+
         <plugin>
-          <!-- required to support jdk 16 -->
+          <!-- required to support jdk 11+ -->
           <!-- see https://github.com/mojohaus/aspectj-maven-plugin/pull/45 -->
+          <!-- see also https://github.com/mojohaus/aspectj-maven-plugin/issues/52 -->
           <groupId>com.nickwongdev</groupId>
           <artifactId>aspectj-maven-plugin</artifactId>
           <version>1.12.6</version>
@@ -410,6 +423,79 @@
           <configuration>
             <format>html5</format>
           </configuration>
+        </plugin>
+
+        <!-- see https://stackoverflow.com/questions/52362413/create-and-install-de-lomboked-source-jar-in-maven -->
+        <plugin>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok-maven-plugin</artifactId>
+          <version>1.18.20.0</version>
+          <executions>
+            <execution>
+              <id>delombok-sources</id>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>delombok</goal>
+              </goals>
+              <configuration>
+                <sourceDirectory>${project.build.sourceDirectory}
+                </sourceDirectory>
+                <outputDirectory>${delombok.directory}</outputDirectory>
+                <addOutputDirectory>false</addOutputDirectory>
+                <formatPreferences>
+                  <indent>4</indent>
+                </formatPreferences>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>3.0.0</version>
+          <executions>
+            <execution>
+              <id>generate-delomboked-sources-jar</id>
+              <phase>package</phase>
+              <goals>
+                <goal>run</goal>
+              </goals>
+              <configuration>
+                <target>
+                  <jar
+                    destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
+                    basedir="${delombok.directory}"/>
+                </target>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>3.3.0</version>
+          <executions>
+            <execution>
+              <id>attach-delomboked-sources-jar</id>
+              <phase>package</phase>
+              <goals>
+                <goal>attach-artifact</goal>
+              </goals>
+              <configuration>
+                <artifacts>
+                  <artifact>
+                    <file>
+                      ${project.build.directory}/${project.build.finalName}-sources.jar
+                    </file>
+                    <type>jar</type>
+                    <classifier>sources</classifier>
+                  </artifact>
+                </artifacts>
+              </configuration>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
