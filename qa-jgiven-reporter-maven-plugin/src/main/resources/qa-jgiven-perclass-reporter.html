@@ -125,6 +125,7 @@
     <th class="centered" style="width: 30%">Step &amp; Expected Result</th>
     <th class="centered" style="width: 50%">Actual Observed Result</th>
     <th class="centered">Status</th>
+    <th class="centered">Duration [ms]</th>
   </tr>
   </thead>
   <tbody>
@@ -148,12 +149,38 @@
     <td class="word-wrapped">
       {{#words}}
       {{^-first}}
+      {{#argumentInfo}}
+      <span>{{formattedValue}}</span>
+      {{/argumentInfo}}
+      {{^argumentInfo}}
       <span>{{value}}</span>
+      {{/argumentInfo}}
       {{/-first}}
       {{/words}}
     </td>
     <!-- Actual Observed Result -->
-    <td class="word-wrapped">
+    <td class="centered word-wrapped">
+      {{#isStepFailed}}
+      <p>{{errorMessage}}</p>
+      {{/isStepFailed}}
+      {{#isStepPassed}}
+      <p>
+        <!-- duplicated from previous column -->
+        {{#words}}
+        {{^-first}}
+        {{#argumentInfo}}
+        <span>{{formattedValue}}</span>
+        {{/argumentInfo}}
+        {{^argumentInfo}}
+        <span>{{value}}</span>
+        {{/argumentInfo}}
+        {{/-first}}
+        {{/words}}
+      </p>
+      {{/isStepPassed}}
+      {{^attachments}}
+      <p>[Nothing to attach]</p>
+      {{/attachments}}
       {{#attachments}}
       {{#-first}}
       {{#binary}}
@@ -162,7 +189,7 @@
       <!-- and https://www.w3.org/TR/CSP2/ -->
       <!-- Some Jenkins servers, for example, may send -->
       <!-- content-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline'; -->
-      <!-- NOTE: assuming binary attachements are always images -->
+      <!-- NOTE: assuming binary attachments are always images -->
       <img alt="Actual screenshot might be blocked by server"
            src="data:{{mediaType}};base64,{{#scaleImage}}{{value}}{{/scaleImage}}"/>
       {{/binary}}
@@ -175,6 +202,10 @@
     <!-- Status -->
     <td class="centered">
       {{status}}
+    </td>
+    <!-- Duration [ms] -->
+    <td class="centered">
+      {{#nanoToMillis}}{{durationInNanos}}{{/nanoToMillis}}
     </td>
     {{/isIntroWord}}
     {{/isSectionTitle}}
