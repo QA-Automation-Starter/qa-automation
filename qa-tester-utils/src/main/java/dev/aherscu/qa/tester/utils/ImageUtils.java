@@ -26,12 +26,13 @@ import java.util.function.*;
 
 import javax.imageio.*;
 
+import org.apache.commons.lang3.tuple.*;
+
 import com.google.common.collect.*;
 
 import lombok.*;
 import lombok.experimental.*;
 import net.coobird.thumbnailator.*;
-import org.apache.commons.lang3.tuple.*;
 
 /**
  * Image manipulation utilities.
