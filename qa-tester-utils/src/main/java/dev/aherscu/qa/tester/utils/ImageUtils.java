@@ -31,6 +31,7 @@ import com.google.common.collect.*;
 import lombok.*;
 import lombok.experimental.*;
 import net.coobird.thumbnailator.*;
+import org.apache.commons.lang3.tuple.*;
 
 /**
  * Image manipulation utilities.
@@ -168,6 +169,39 @@ public class ImageUtils {
         return Thumbnails.of(inputImage)
             .scale(widthScale, heightScale)
             .asBufferedImage();
+    }
+
+    /**
+     * @param image
+     *            the image
+     * @return the area of image
+     */
+    public static double areaOf(final BufferedImage image) {
+        return image.getWidth() * image.getHeight();
+    }
+
+    /**
+     * Makes two images same size by scaling down the image with bigger area.
+     * 
+     * @param pair
+     *            images to adapt
+     * @return adapted images
+     */
+    public static Pair<BufferedImage, BufferedImage> adapt(
+        final Pair<BufferedImage, BufferedImage> pair) {
+        return areaOf(pair.getLeft()) < areaOf(pair.getRight())
+            ? Pair.of(pair.getLeft(),
+                Pipeline.from(pair.getRight()).scale(
+                    1d * pair.getLeft().getWidth()
+                        / pair.getRight().getWidth(),
+                    1d * pair.getLeft().getHeight()
+                        / pair.getRight().getHeight()).image)
+            : Pair.of(Pipeline.from(pair.getLeft()).scale(
+                1d * pair.getRight().getWidth()
+                    / pair.getLeft().getWidth(),
+                1d * pair.getRight().getHeight()
+                    / pair.getLeft().getHeight()).image,
+                pair.getRight());
     }
 
     /**
@@ -311,6 +345,42 @@ public class ImageUtils {
             final Map<Key, Object> hints) {
             return new Pipeline(ImageUtils
                 .scale(image, widthScale, heightScale, hints));
+        }
+
+        /**
+         * Difference between this image and other image.
+         * 
+         * @param other
+         *            image to find difference from
+         * @param differentiator
+         *            a differentiating method
+         * @param adapter
+         *            an adaptation method
+         * @param <D>
+         *            type of difference
+         * @return the difference
+         */
+        public <D> D diff(final BufferedImage other,
+            final Function<Pair<BufferedImage, BufferedImage>, D> differentiator,
+            final Function<Pair<BufferedImage, BufferedImage>, Pair<BufferedImage, BufferedImage>> adapter) {
+            return differentiator.apply(adapter.apply(Pair.of(image, other)));
+        }
+
+        /**
+         * Difference between this image and other image, using a
+         * {@link ImageUtils#adapt(Pair)} as default adapter.
+         *
+         * @param other
+         *            image to find difference from
+         * @param differentiator
+         *            a differentiating method
+         * @param <D>
+         *            type of difference
+         * @return the difference
+         */
+        public <D> D diff(final BufferedImage other,
+            final Function<Pair<BufferedImage, BufferedImage>, D> differentiator) {
+            return diff(other, differentiator, ImageUtils::adapt);
         }
     }
 }

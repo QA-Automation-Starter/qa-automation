@@ -16,10 +16,17 @@
 
 package dev.aherscu.qa.tester.utils;
 
+import static dev.aherscu.qa.tester.utils.ClassUtilsExtensions.getRelativeResourceAsStream;
 import static dev.aherscu.qa.tester.utils.ImageUtils.*;
+import static dev.aherscu.qa.tester.utils.ImageUtils.Pipeline.from;
+import static javax.imageio.ImageIO.read;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 import java.io.*;
 
+import com.github.romankh3.image.comparison.*;
+import com.github.romankh3.image.comparison.model.*;
 import org.jooq.lambda.*;
 import org.testng.annotations.*;
 
@@ -79,5 +86,37 @@ public class ImageUtilsTest {
                 () -> new FileOutputStream(
                     "scaled-down-grayed-image.png")),
                 "png");
+    }
+
+    @Test
+    @SneakyThrows
+    public void shouldMismatchSize() {
+        assertThat(Pipeline
+            .from(read(getRelativeResourceAsStream(getClass(),
+                "colored-image.png")))
+            .diff(read(getRelativeResourceAsStream(getClass(),
+                "colored-image-small.png")),
+                p -> new ImageComparison(p.getRight(),
+                    p.getLeft()),
+                p -> p)
+            .setAllowingPercentOfDifferentPixels(5)
+            .compareImages()
+            .getImageComparisonState(),
+            is(ImageComparisonState.SIZE_MISMATCH));
+    }
+
+    @Test
+    @SneakyThrows
+    public void shouldBeSimilar() {
+        assertThat(Pipeline
+            .from(read(getRelativeResourceAsStream(getClass(),
+                "colored-image.png")))
+            .diff(read(getRelativeResourceAsStream(getClass(),
+                "colored-image-small.png")),
+                p -> new ImageComparison(p.getRight(), p.getLeft()))
+            .setAllowingPercentOfDifferentPixels(5)
+            .compareImages()
+            .getImageComparisonState(),
+            is(ImageComparisonState.MATCH));
     }
 }
