@@ -113,7 +113,8 @@ public class ImageUtilsTest {
                 "colored-image.png")))
             .diff(read(getRelativeResourceAsStream(getClass(),
                 "colored-image-small.png")),
-                p -> new ImageComparison(p.getRight(), p.getLeft()))
+                p -> new ImageComparison(p.getRight(), p.getLeft()),
+                ImageUtils::adapt)
             .setAllowingPercentOfDifferentPixels(5)
             .compareImages()
             .getImageComparisonState(),
@@ -128,7 +129,8 @@ public class ImageUtilsTest {
                 "colored-image.png")))
             .diff(read(getRelativeResourceAsStream(getClass(),
                 "colored-image-different.png")),
-                p -> new ImageComparison(p.getRight(), p.getLeft()))
+                p -> new ImageComparison(p.getRight(), p.getLeft()),
+                ImageUtils::adapt)
             .setAllowingPercentOfDifferentPixels(5)
             .compareImages()
             .getImageComparisonState(),

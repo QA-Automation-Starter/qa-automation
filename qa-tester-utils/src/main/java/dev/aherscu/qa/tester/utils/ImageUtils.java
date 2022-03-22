@@ -16,6 +16,8 @@
 
 package dev.aherscu.qa.tester.utils;
 
+import static java.util.function.Function.*;
+
 import java.awt.*;
 import java.awt.RenderingHints.*;
 import java.awt.geom.*;
@@ -301,8 +303,8 @@ public class ImageUtils {
          * @return this pipeline
          */
         public Pipeline reduce(final IndexColorModel indexColorModel) {
-            return new Pipeline(
-                ImageUtils.reduce(image, indexColorModel));
+            return new Pipeline(ImageUtils
+                .reduce(image, indexColorModel));
         }
 
         /**
@@ -356,7 +358,7 @@ public class ImageUtils {
          * @param differentiator
          *            a differentiating method
          * @param adapter
-         *            an adaptation method
+         *            an adaptation method, e.g. {@link #adapt(Pair)}
          * @param <D>
          *            type of difference
          * @return the difference
@@ -368,8 +370,7 @@ public class ImageUtils {
         }
 
         /**
-         * Difference between this image and other image, using a
-         * {@link ImageUtils#adapt(Pair)} as default adapter.
+         * Difference between this image and other image.
          *
          * @param other
          *            image to find difference from
@@ -381,7 +382,7 @@ public class ImageUtils {
          */
         public <D> D diff(final BufferedImage other,
             final Function<Pair<BufferedImage, BufferedImage>, D> differentiator) {
-            return diff(other, differentiator, ImageUtils::adapt);
+            return diff(other, differentiator, identity());
         }
     }
 }
