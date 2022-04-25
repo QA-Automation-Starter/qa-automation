@@ -4,6 +4,8 @@
 
 * AspectJ + Lombok projects are incorrectly imported (must ensure post-compile
   weaving for each module)
+* Since IntelliJ 2022.1 profiles from parent POMs are no longer displayed (there
+  are several open issues on JetBrains tracker)
 
 # Android on Local Emulator/Device
 
