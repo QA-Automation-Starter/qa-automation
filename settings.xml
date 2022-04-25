@@ -15,5 +15,14 @@
   -->
 
 <settings>
-  <!-- NOTE if needed to override machine-wide settings -->
+  <servers>
+    <!-- ISSUE authentication is required even for reading GitHub package
+    repositories; see
+    https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry -->
+    <server>
+      <id>github</id>
+      <username>adrian-herscu</username>
+      <password>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</password>
+    </server>
+  </servers>
 </settings>
