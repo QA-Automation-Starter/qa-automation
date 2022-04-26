@@ -19,6 +19,7 @@ package dev.aherscu.qa.testing.example.scenarios.tutorial;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import io.github.bonigarcia.wdm.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 import org.testng.annotations.*;
@@ -52,12 +53,10 @@ public class _3_TestingWebApplication {
     @BeforeClass
     @SneakyThrows
     private void beforeClassOpenWebDriver() {
-        // NOTE: ensure you have matching ChromeDriver from
-        // https://chromedriver.chromium.org/downloads
-        // and added it to system path
+        WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
 
-        Thread.sleep(10_000); // just to re-position the window
+        webDriver.manage().window().maximize();
 
         // NOTE: should uncomment in order to deal with latencies
         // webDriver.manage().timeouts().implicitlyWait(10, SECONDS);
