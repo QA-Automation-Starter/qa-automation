@@ -14,7 +14,7 @@ see [qa-testing/README.md](qa-testing/README.md)
 For local execution you must have a usable Maven `settings.xml` file in place,
 otherwise your Maven build will fail.
 
-Either copy [settings.xml](settings.xml) to your `~/.m2`, or run Maven with
+Either copy [settings.xml](example-maven-settings.xml) to your `~/.m2`, or run Maven with
 `-settings` option to point to this file.
 
 ## IntelliJ Configuration
