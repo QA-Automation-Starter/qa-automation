@@ -27,7 +27,6 @@
 
 * Java 8 SDK (Java 11+ support is experimental)
   -- <https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html>
-* Maven 3.6.x -- <https://maven.apache.org/download.cgi>
 
 ## Optional
 
