@@ -56,14 +56,14 @@ https://developer.android.com/studio/run/emulator
 
 After setting up all the above your environment variables should include:
 
-| VAR_NAME         | VAR_VALUE   |
-| -----------------|-------------|
-| ANDROID_HOME     | ANDROID installation (usually: %USERPROFILE%\AppData\Local\Android\Sdk)|
-| ANDROID_PLATFORM | ANDROID platform (usually: %ANDROID_HOME%\platform-tools)|
-| ANDROID_SDK_ROOT | ANDROID installation (usually: %ANDROID_HOME%)|
-| JAVA_HOME        | JDK installation (usually: %ProgramFiles%\Java\jdk1.8.x)|
-| MAVEN_HOME       | Maven installation (usually: %ProgramFiles%\Java\apache-maven-3.x)|   
-| OPEN_SSH         | OPEN_SSH installation (usually: %ProgramFiles%\OpenSSH\bin)|
+| VAR_NAME         | VAR_VALUE                                                               |
+|------------------|-------------------------------------------------------------------------|
+| ANDROID_HOME     | ANDROID installation (usually: %USERPROFILE%\AppData\Local\Android\Sdk) |
+| ANDROID_PLATFORM | ANDROID platform (usually: %ANDROID_HOME%\platform-tools)               |
+| ANDROID_SDK_ROOT | ANDROID installation (usually: %ANDROID_HOME%)                          |
+| JAVA_HOME        | JDK installation (usually: %ProgramFiles%\Java\jdk1.8.x)                |
+| MAVEN_HOME       | Maven installation (usually: %ProgramFiles%\Java\apache-maven-3.x)      |   
+| OPEN_SSH         | OPEN_SSH installation (usually: %ProgramFiles%\OpenSSH\bin)             |
 
 Your PATH variable should
 include: `%ANDROID_PLATFORM%;%JAVA_HOME%\bin;%MAVEN_HOME%\bin;%OPEN_SSH%\bin`.
