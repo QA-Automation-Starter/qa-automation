@@ -12,6 +12,30 @@ on:
 jobs:
   build:
 
+    name: mvn install without tests on JDK ${{ matrix.java-version }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        java-version: [ 17, 11 ]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v2
+        with:
+          java-version: ${{ matrix.java-version }}
+          distribution: 'temurin'
+          cache: maven
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+      - name: Build only
+        run: mvn install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
+
+  deploy:
+
+    name: mvn deploy on JDK 8
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +50,6 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build and deploy to Github Packages
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
       env:
         GITHUB_TOKEN: ${{ github.token }}
