@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        java-version: [ 17, 11, 8 ]
+        java-version: [ 17, 11 ]
 
     steps:
       - uses: actions/checkout@v2
@@ -30,7 +30,7 @@ jobs:
           settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - name: Build only
-        run: mvn install -s $GITHUB_WORKSPACE/settings.xml
+        run: mvn install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml
 
   deploy:
 
