@@ -242,7 +242,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
                     .findFirst()
                     .orElseThrow(() -> new NoSuchContextException(
                         "within " + join(contexts, COMMA))));
-            return self();
+            return (SELF) self();
         });
     }
 
