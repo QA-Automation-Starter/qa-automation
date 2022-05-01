@@ -272,6 +272,38 @@
 
   <profiles>
     <profile>
+      <id>generate-standalone</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.3.0</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+                <configuration>
+                  <archive>
+                    <manifest>
+                      <mainClass>org.testng.TestNG</mainClass>
+                    </manifest>
+                  </archive>
+                  <descriptors>
+                    <!-- NOTE: child projects should have such descriptor -->
+                    <descriptor>src/assembly/test-with-dependencies.xml
+                    </descriptor>
+                  </descriptors>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
       <id>mode-logs-simple</id>
       <!-- NOTE: omits thread ids in log -->
       <properties>
