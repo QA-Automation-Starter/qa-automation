@@ -1,0 +1,3 @@
+tasks:
+  - before: chmod +x mvnw
+  - init: ./mvnw install -DskipTests=true
