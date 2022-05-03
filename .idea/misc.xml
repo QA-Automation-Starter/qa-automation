@@ -16,6 +16,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/qa-testing-example/pom.xml" />
+        <option value="$PROJECT_DIR$/qa-testing-archetype/pom.xml" />
       </list>
     </option>
   </component>
