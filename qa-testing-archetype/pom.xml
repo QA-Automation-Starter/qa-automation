@@ -22,8 +22,9 @@
   <!-- NOTE: see also https://github.com/Bernardo-MG/archetype-pom -->
   <parent>
     <groupId>dev.aherscu.qa</groupId>
-    <artifactId>qa-automation</artifactId>
+    <artifactId>qa-testing-parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <relativePath>../qa-testing-parent</relativePath>
   </parent>
 
   <groupId>dev.aherscu.qa</groupId>

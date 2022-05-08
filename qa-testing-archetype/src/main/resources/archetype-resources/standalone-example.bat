@@ -10,10 +10,10 @@ java ^
 -Dapplication.filename=Microsoft.WindowsCalculator_8wekyb3d8bbwe!App ^
 -Dapplication.workingdir= ^
 -Denvironment.label=default ^
--Djgiven.report.dir=target\jgiven-reports ^
+-Djgiven.report.dir=target/jgiven-reports ^
 -Ddryrun=true ^
 -Dscreenshots=false ^
 -DscreenshotDelayMs=500 ^
--jar target\qa-testing-example-0.0.1-SNAPSHOT-test-with-dependencies.jar ^
--d target\test-output ^
+-jar target/${artifactId}-${version}-test-with-dependencies.jar ^
+-d target/test-output ^
 testing-self.xml

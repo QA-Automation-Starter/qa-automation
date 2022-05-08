@@ -26,13 +26,45 @@
     <fileSet filtered="true" packaged="false">
       <directory/>
       <includes>
-        <include>code-formatter-rules.xml</include>
-        <include>spotbugs-exclude.xml</include>
-        <include>standalone-example.bat</include>
-        <include>testing-self.xml</include>
-        <include>testing-tutorials.xml</include>
-        <include>testng.xml</include>
-        <include>README.md</include>
+        <include>*</include>
+      </includes>
+      <excludes>
+        <exclude>mvnw</exclude>
+      </excludes>
+    </fileSet>
+
+    <fileSet filtered="false" packaged="false">
+      <directory/>
+      <includes>
+        <include>mvnw</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="false" packaged="false">
+      <directory>.github</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="true" packaged="false">
+      <directory>.idea</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="false" packaged="false">
+      <directory>.mvn</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+
+    <fileSet filtered="false" packaged="false">
+      <directory>docs</directory>
+      <includes>
+        <include>**/*</include>
       </includes>
     </fileSet>
 
@@ -56,6 +88,7 @@
         <include>**/*</include>
       </includes>
     </fileSet>
+
     <fileSet filtered="false" packaged="false">
       <directory>src/test/resources</directory>
       <includes>
