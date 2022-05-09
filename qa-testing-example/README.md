@@ -5,6 +5,8 @@
 [HOWTO](#howto) |
 [Architecture](#architecture)
 
+> For generating a working project see [qa-testing-archetype](../qa-testing-archetype).
+
 > First, for how it works -- a brief [Tutorial](docs/TUTORIAL.md)
 
 > Then, for what should be done -- TBD

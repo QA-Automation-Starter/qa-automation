@@ -7,7 +7,7 @@ Contains common build definitions.
 
 ## Application specifics
 
-see [qa-testing/README.md](qa-testing/README.md)
+see [qa-testing-example/README.md](qa-testing-example/README.md)
 
 ## Maven Settings on local workstation
 
