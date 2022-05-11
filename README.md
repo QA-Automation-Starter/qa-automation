@@ -1,4 +1,5 @@
 ![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/maven.yml/badge.svg)
+[![Coverage Status](https://coveralls.io/repos/github/adrian-herscu/qa-automation/badge.svg?branch=main)](https://coveralls.io/github/adrian-herscu/qa-automation?branch=main)
 
 
 # System Testing
