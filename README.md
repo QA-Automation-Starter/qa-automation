@@ -1,4 +1,6 @@
+[![Apache License 2.0](https://img.shields.io/badge/license-apache2-red.svg?style=flat-square)](http://opensource.org/licenses/Apache-2.0)
 ![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/maven.yml/badge.svg)
+
 
 
 # System Testing
