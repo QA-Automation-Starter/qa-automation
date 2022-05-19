@@ -115,6 +115,7 @@ TBD
 ### Android Emulator
 
 > see [Known Issues](docs/KNOWN-ISSUES.md)
+> see also <https://gist.github.com/mrk-han/66ac1a724456cadf1c93f4218c6060ae>
 
   1. `choco install -y android-sdk`
   2. `cd %ANDROID_HOME%`
