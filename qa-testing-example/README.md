@@ -136,9 +136,10 @@ Check DOM Inspector connects to application via <chrome://inspect/#devices>
 
 ## Support for Windows Applications Testing
 
-1. `choco install -y winappdriver`
+1. Enable Windows Developer Mode
+2. `choco install -y winappdriver`
    > Now, **WinAppDriver** should be at `%ProgramFiles(x86)%\Windows Application Driver`.
-2. for GUI element discovery --
+3. for GUI element discovery --
    <https://github.com/microsoft/WinAppDriver/releases/tag/UIR-v1.1> or similar tool
 
 If remote file access is required, then OpenSSH, or similar, is required:
