@@ -10,10 +10,14 @@ on:
     branches: [ main ]
 
 jobs:
+
+  # NOTE ensures the project builds on various JDK versions
+  # TODO disable GPG signing in mode-build-fast Maven profile
   build:
 
     name: JDK ${{ matrix.java-version }} building w/o tests
     runs-on: ubuntu-latest
+    environment: development
 
     strategy:
       matrix:
@@ -41,6 +45,7 @@ jobs:
 
     name: JDK 8 GitHub Packages publishing
     runs-on: ubuntu-latest
+    environment: development
 
     steps:
     - uses: actions/checkout@v2
