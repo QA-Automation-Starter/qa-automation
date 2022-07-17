@@ -748,6 +748,9 @@
         <impsort.skip>true</impsort.skip>
         <maven.test.skip>true</maven.test.skip>
         <spotbugs.skip>true</spotbugs.skip>
+        <archetype.test.skip>true</archetype.test.skip>
+        <maven.javadoc.skip>true</maven.javadoc.skip>
+        <gpg.skip>true</gpg.skip>
       </properties>
     </profile>
 
