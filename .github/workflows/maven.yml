@@ -51,9 +51,10 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-        gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
+        gpg-passphrase: GPG_PASSPHRASE
 
     - name: Build and deploy to Github Packages
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
       env:
         GITHUB_TOKEN: ${{ github.token }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
