@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    name: mvn install without tests on JDK ${{ matrix.java-version }}
+    name: JDK ${{ matrix.java-version }} building w/o tests
     runs-on: ubuntu-latest
 
     strategy:
@@ -29,13 +29,15 @@ jobs:
           cache: maven
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Build only
         run: mvn install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
 
   deploy:
 
-    name: mvn deploy on JDK 8
+    name: JDK 8 GitHub Packages publishing
     runs-on: ubuntu-latest
 
     steps:
@@ -48,6 +50,8 @@ jobs:
         cache: maven
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
+        gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+        gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
     - name: Build and deploy to Github Packages
       run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
