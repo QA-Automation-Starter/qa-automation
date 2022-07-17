@@ -11,11 +11,8 @@ on:
 
 jobs:
 
-  # NOTE ensures the project builds on various JDK versions
-  # TODO disable GPG signing in mode-build-fast Maven profile
-  build:
-
-    name: JDK ${{ matrix.java-version }} building w/o tests
+  build-for-future-jdks:
+    name: Ensures JDK ${{ matrix.java-version }} builds w/o tests
     runs-on: ubuntu-latest
     environment: development
 
@@ -33,17 +30,12 @@ jobs:
           cache: maven
           server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
-          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-          gpg-passphrase: GPG_PASSPHRASE
 
-      - name: Build only
+      - name: Maven Install
         run: mvn install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
-        env:
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
-  deploy:
-
-    name: JDK 8 GitHub Packages publishing
+  deploy-for-jdk8:
+    name: Deploys JDK 8
     runs-on: ubuntu-latest
     environment: development
 
@@ -60,8 +52,8 @@ jobs:
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         gpg-passphrase: GPG_PASSPHRASE
 
-    - name: Build and deploy to Github Packages
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
+    - name: Maven Deploy
+      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
       env:
         GITHUB_TOKEN: ${{ github.token }}
         GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
