@@ -21,19 +21,8 @@
 
 ## Basic
 
-* git 2.x -- <https://git-scm.com/download/win>; clone this repo via SSH
-  only <https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh>
-
-  IMPORTANT: for IntelliJ settings synchronization to work, generate an RSA key
-  using `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`
-
-* Java 8 SDK (Java 11+ support is experimental)
-  -- <https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html>
-
-## Optional
-
-* TortoiseGIT -- <https://tortoisegit.org/download/>
-* IntelliJ Ultimate -- <https://www.jetbrains.com/idea/download>
+If you are already here then JDK 8 and Maven 3.6+ are already installed on your
+workstation, right?
 
 ## Advanced
 
