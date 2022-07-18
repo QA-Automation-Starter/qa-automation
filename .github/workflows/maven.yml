@@ -90,5 +90,5 @@ jobs:
             -DartifactId=testing \
             -Dversion=1.0-SNAPSHOT \
             -Dpackage=com.acme.testing  
-          chdir testing
+          cd testing
           mvn
