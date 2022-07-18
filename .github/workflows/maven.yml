@@ -10,9 +10,9 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
 
-    name: mvn install without tests on JDK ${{ matrix.java-version }}
+  build-for-future-jdks:
+    name: Ensures JDK ${{ matrix.java-version }} builds w/o tests
     runs-on: ubuntu-latest
 
     strategy:
@@ -21,35 +21,74 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK ${{ matrix.java-version }}
-        uses: actions/setup-java@v2
+      - uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java-version }}
           distribution: 'temurin'
           cache: maven
-          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
+          settings-path: ${{ github.workspace }}
 
-      - name: Build only
-        run: mvn install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
+      - run: mvn install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
 
-  deploy:
-
-    name: mvn deploy on JDK 8
+  deploy-for-jdk8:
+    name: Deploys JDK 8
     runs-on: ubuntu-latest
+    environment: development
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 8
-      uses: actions/setup-java@v2
+    - uses: actions/setup-java@v3
       with:
         java-version: '8'
         distribution: 'temurin'
         cache: maven
-        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
+        settings-path: ${{ github.workspace }}
+        server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
+        server-username: OSSRH_USERNAME
+        server-password: OSSRH_PASSWORD
+        gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+        gpg-passphrase: GPG_PASSPHRASE
 
-    - name: Build and deploy to Github Packages
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
+    - run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
       env:
-        GITHUB_TOKEN: ${{ github.token }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+        OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+
+  generate-automation-project:
+    name: Generates new automation project and builds it
+    needs: deploy-for-jdk8
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: whelk-io/maven-settings-xml-action@v20
+        with:
+          repositories: >
+            [
+              {
+                "id": "archetype",
+                "url": "https://s01.oss.sonatype.org/content/repositories/snapshots",
+                "snapshots": {
+                    "enabled": "false",
+                    "checksumPolicy": "warn"
+                }
+              }
+            ]
+
+      - uses: aahmed-se/setup-maven@v3
+        with:
+          maven-version: 3.6.1
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
+      - run: |
+          mvn --batch-mode archetype:generate \
+            -DarchetypeGroupId=dev.aherscu.qa \
+            -DarchetypeArtifactId=qa-testing-archetype \
+            -DarchetypeVersion=0.0.1-SNAPSHOT \
+            -DgroupId=com.acme \
+            -DartifactId=testing \
+            -Dversion=1.0-SNAPSHOT \
+            -Dpackage=com.acme.testing  
+          cd testing
+          mvn
