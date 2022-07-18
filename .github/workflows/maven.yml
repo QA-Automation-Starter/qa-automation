@@ -76,8 +76,8 @@ jobs:
             ]
 
       - uses: aahmed-se/setup-maven@v3
-          with:
-            maven-version: 3.6.1
+        with:
+          maven-version: 3.6.1
 
       - run: |
           mvn --batch-mode archetype:generate \
