@@ -54,3 +54,42 @@ jobs:
         GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
         OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+
+  generate-automation-project:
+    name: Generates new automation project and builds it
+    needs: deploy-for-jdk8
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+      - uses: whelk-io/maven-settings-xml-action@v20
+        with:
+          repositories: >
+            [
+              {
+                "id": "archetype",
+                "url": "https://s01.oss.sonatype.org/content/repositories/snapshots",
+                "snapshots": {
+                    "enabled": "false",
+                    "checksumPolicy": "warn"
+                }
+              }
+            ]
+
+      - run: |
+          mvn --batch-mode archetype:generate \
+            -DarchetypeGroupId=dev.aherscu.qa \
+            -DarchetypeArtifactId=qa-testing-archetype \
+            -DarchetypeVersion=0.0.1-SNAPSHOT \
+            -DgroupId=com.acme \
+            -DartifactId=testing \
+            -Dversion=1.0-SNAPSHOT \
+            -Dpackage=com.acme.testing  
+          chdir testing
+          mvn
