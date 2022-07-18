@@ -45,7 +45,7 @@ public class ATest extends CalculatorTest {
 }
 ```
 
-After running it, a BDD report will reflect above code.
+After running it, above code will be nicely reflected in a BDD report.
 
 see [Working Examples](qa-testing-example/README.md) 
 
