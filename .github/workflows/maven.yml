@@ -26,7 +26,6 @@ jobs:
           java-version: ${{ matrix.java-version }}
           distribution: 'temurin'
           cache: maven
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
 
       - run: mvn install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
 
@@ -45,7 +44,6 @@ jobs:
         server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
         server-username: OSSRH_USERNAME
         server-password: OSSRH_PASSWORD
-        settings-path: ${{ github.workspace }} # location for the settings.xml file
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
         gpg-passphrase: GPG_PASSPHRASE
 
@@ -61,13 +59,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/setup-java@v3
-        with:
-          java-version: '8'
-          distribution: 'temurin'
-          cache: maven
-          settings-path: ${{ github.workspace }} # location for the settings.xml file
-
       - uses: whelk-io/maven-settings-xml-action@v20
         with:
           repositories: >
@@ -81,6 +72,12 @@ jobs:
                 }
               }
             ]
+
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
 
       - run: |
           mvn --batch-mode archetype:generate \
