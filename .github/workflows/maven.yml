@@ -75,12 +75,9 @@ jobs:
               }
             ]
 
-      - uses: actions/setup-java@v3
-        with:
-          java-version: '8'
-          distribution: 'temurin'
-          cache: maven
-          settings-path: ${{ github.workspace }}
+      - uses: aahmed-se/setup-maven@v3
+          with:
+            maven-version: 3.6.1
 
       - run: |
           mvn --batch-mode archetype:generate \
