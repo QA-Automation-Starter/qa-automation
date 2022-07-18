@@ -2,23 +2,78 @@
 ![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/maven.yml/badge.svg)
 [![Open Source Helpers](https://www.codetriage.com/adrian-herscu/qa-automation/badges/users.svg)](https://www.codetriage.com/adrian-herscu/qa-automation)
 
+# Abstract
 
+How about having an automation project running in several minutes?
 
-# System Testing
+How about having BDD, Selenium, and database support already baked-in?
 
-Contains common build definitions.
+How about having support for different configurations, environments,
+and multiple device types, ready to run on your Jenkins?
 
-## Application specifics
+Then, assuming JDK 8 and Maven 3.6+ are already installed,
+on Windows it would be:
+```shell
+mvn --batch-mode archetype:generate ^
+  -Dmaven.wagon.http.ssl.insecure=true ^
+  -DarchetypeGroupId=dev.aherscu.qa ^
+  -DarchetypeArtifactId=qa-testing-archetype ^
+  -DarchetypeVersion=0.0.1-SNAPSHOT ^
+  -DgroupId=com.acme ^
+  -DartifactId=testing ^
+  -Dversion=1.0-SNAPSHOT ^
+  -Dpackage=com.acme.testing
+```
 
-see [qa-testing-example/README.md](qa-testing-example/README.md)
+and building it:
+```shell
+cd testing
+mvn
+```
 
-## Maven Settings on local workstation
+and coding a test would look like this:
+```java
+public class ATest extends CalculatorTest {
+    @Test(dataProvider = INTERNAL_DATA_PROVIDER)
+    public void shouldCalculate(final Calculation calculation) {
+        given().a_calculator(webDriver.get());
 
-For local execution you must have a usable Maven `settings.xml` file in place,
-otherwise your Maven build will fail.
+        when().typing(calculation.expression + "=");
 
-Either copy [settings.xml](example-maven-settings.xml) to your `~/.m2`, or run Maven with
-`-settings` option to point to this file.
+        then().the_result(is(stringContainsInOrder("Display is", calculation.result)));
+    }
+}
+```
+
+After running it, a BDD report will reflect above code.
+
+see [Working Examples](qa-testing-example/README.md) 
+
+# More details
+[QA Testing Archetype](qa-testing-archetype/README.md) generates an automation
+project, with all required dependencies for TestNG, BDD-reporting, Selenium,
+Appium, SouceLabs integration, Unitils, DbUnit, and many other utility libraries
+which I found useful across a dozen of projects.
+
+All above pieces are already integrated, all you have to do is:
+1. derive your automation classes from specific base class
+2. define your own configuration and environments
+
+The generated project contains example tests.
+
+see [QA Testing Example](qa-testing-example/README.md)
+
+# How to use snapshot builds
+
+see [QA Testing Archetype](qa-testing-archetype/README.md)
+
+# Development Instructions
+
+## Maven Settings
+
+Either copy [development-maven-settings.xml](development-maven-settings.xml) to
+your `~/.m2` as `settings.xml`, or run Maven with
+`mvn -settings development-maven-settings.xml` from this directory.
 
 ## IntelliJ Configuration
 

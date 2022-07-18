@@ -2,7 +2,7 @@
 
 See [generate-example-project.bat](generate-example-project.bat) for an working demo.
 
-In addition, the following sections must be added to `.m2/settings.xml`:
+Snapshots require following sections to present in `.m2/settings.xml`:
 
 ```xml
 <settings>
