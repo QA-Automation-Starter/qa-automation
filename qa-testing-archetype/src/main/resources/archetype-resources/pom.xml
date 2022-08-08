@@ -25,6 +25,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
+  <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
   <version>${version}</version>
   <packaging>jar</packaging>
