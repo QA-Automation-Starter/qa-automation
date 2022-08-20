@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.example.steps;
+package dev.aherscu.qa.testing.example.steps.tutorial;
 
 import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;

@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.example.model;
+package dev.aherscu.qa.testing.example.steps.tutorial;
 
-import lombok.*;
+import static io.appium.java_client.MobileBy.*;
 
-@Builder
-@ToString
-public class Calculation {
-    public final String expression;
-    public final String result;
+import dev.aherscu.qa.jgiven.commons.actions.*;
+
+public class CalculatorActions<SELF extends CalculatorActions<SELF>>
+    extends WebDriverActions<SELF> {
+    public SELF typing(final String expression) {
+        return typing_$_into(expression, AccessibilityId("CalculatorResults"));
+    }
 }

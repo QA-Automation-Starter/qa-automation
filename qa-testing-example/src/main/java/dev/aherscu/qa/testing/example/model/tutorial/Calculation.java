@@ -14,22 +14,13 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.example.steps;
+package dev.aherscu.qa.testing.example.model.tutorial;
 
-import static io.appium.java_client.MobileBy.*;
+import lombok.*;
 
-import org.hamcrest.*;
-
-import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
-
-public class CalculatorVerifications<SELF extends CalculatorVerifications<SELF>>
-    extends WebDriverVerifications<SELF> {
-
-    @AttachesScreenshot
-    public SELF the_result(final Matcher<String> matcher) {
-        return eventually_assert_that(
-            () -> element(AccessibilityId("CalculatorResults")).getText(),
-            matcher);
-    }
+@Builder
+@ToString
+public class Calculation {
+    public final String expression;
+    public final String result;
 }
