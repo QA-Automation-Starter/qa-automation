@@ -145,4 +145,10 @@ public class StreamMatchersExtensionsTest {
                 hasItemsMatching(
                     is(4), is(2), greaterThan(6))));
     }
+
+    public void shouldMatchAll() {
+        assertThat(Stream.of("bardjffoodjio", "foobar", "jfbarioffoo"),
+            allMatch(both(containsString("foo"))
+                .and(containsString("bar"))));
+    }
 }
