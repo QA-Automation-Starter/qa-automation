@@ -16,27 +16,43 @@
 
 package dev.aherscu.qa.testing.example.scenarios.tutorial;
 
+import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+import static uk.co.probablyfine.matchers.StreamMatchers.*;
 
-import io.github.bonigarcia.wdm.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 import org.testng.annotations.*;
 
 import edu.umd.cs.findbugs.annotations.*;
+import io.github.bonigarcia.wdm.*;
 import lombok.*;
+import lombok.extern.slf4j.*;
 
+@Slf4j
 public class _3_TestingWebApplication {
 
     private WebDriver webDriver;
 
     @Test
     public void shouldOpenWeb() {
-        webDriver
-            .get("https://google.com");
+        assertThat(webDriver.getTitle(), containsString("Google"));
+    }
 
-        assertThat(webDriver.getTitle(), equalTo("Google"));
+    @Test
+    public void shouldFind() {
+        // NOTE the search keyword must be unique such that it is not
+        // translated to other languages or written differently
+        final String SEARCH_KEYWORD = "testng";
+        webDriver.findElement(By.name("q"))
+            .sendKeys(SEARCH_KEYWORD + Keys.ENTER);
+        assertThat(
+            webDriver.findElements(By.xpath("//a/h3"))
+                .stream()
+                .map(webElement -> webElement.getAttribute("textContent"))
+                .peek(resultTitle -> log.debug("found {}", resultTitle)),
+            allMatch(containsStringIgnoringCase(SEARCH_KEYWORD)));
     }
 
     @SuppressFBWarnings(
@@ -55,10 +71,8 @@ public class _3_TestingWebApplication {
     private void beforeClassOpenWebDriver() {
         WebDriverManager.chromedriver().setup();
         webDriver = new ChromeDriver();
-
         webDriver.manage().window().maximize();
-
-        // NOTE: should uncomment in order to deal with latencies
-        // webDriver.manage().timeouts().implicitlyWait(10, SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(10, SECONDS);
+        webDriver.get("https://google.com");
     }
 }
