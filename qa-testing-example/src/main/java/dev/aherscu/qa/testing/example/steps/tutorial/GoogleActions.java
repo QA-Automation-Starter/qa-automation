@@ -24,6 +24,6 @@ public class GoogleActions<SELF extends GoogleActions<SELF>>
     extends WebDriverActions<SELF> {
     public SELF searching_for(final Text something) {
         return typing_$_into(something.value + Keys.ENTER,
-            By.xpath("//input[@name='q']"));
+            By.name("q"));
     }
 }

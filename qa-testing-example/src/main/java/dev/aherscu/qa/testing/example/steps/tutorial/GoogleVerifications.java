@@ -18,29 +18,28 @@ package dev.aherscu.qa.testing.example.steps.tutorial;
 
 import java.util.stream.*;
 
-import dev.aherscu.qa.jgiven.commons.utils.*;
 import org.hamcrest.*;
 import org.openqa.selenium.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.testing.example.model.tutorial.*;
+import lombok.extern.slf4j.*;
 
+@Slf4j
 public class GoogleVerifications<SELF extends GoogleVerifications<SELF>>
     extends WebDriverVerifications<SELF> {
 
     @AttachesScreenshot
     public SELF the_results(final Matcher<Stream<GoogleResult>> matcher) {
         return eventually_assert_that(
-            () -> elements(By.xpath("//*[@id='rso']/div"))
+            () -> elements(By.xpath("//a/h3"))
                 .stream()
                 .map(resultElement -> GoogleResult.builder()
                     .title(new Text(resultElement
-                        .findElement(By.xpath("//a/h3"))
-                        .getText()))
-                    .summary(new Text(resultElement
-                        .findElement(By.xpath("//*[@data-content-feature='1']"))
-                        .getText()))
+                        .getAttribute("textContent")))
+                    // populate other fields per need
                     .build()),
             matcher);
     }

@@ -21,6 +21,9 @@ import static org.apache.commons.lang3.RandomStringUtils.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
+import java.util.stream.*;
+
+import org.hamcrest.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
@@ -38,31 +41,30 @@ public class _9_TestingGoogleWithJGiven
         super(TestConfiguration.class);
     }
 
-    @Test
-    public void shouldFind() {
+    @DataProvider
+    private Object[][] data() {
+        return new Object[][] {
+            { new Text(randomAlphanumeric(40)),
+                counts(equalTo(0L)) },
+            { new Text("testng"),
+                allMatch(containsStringIgnoringCase("testng")) }
+        };
+    }
+
+    @Test(dataProvider = INTERNAL_DATA_PROVIDER)
+    public void shouldFind(
+        final Text textToSearch,
+        final Matcher<Stream<String>> titleRule) {
         given()
             .google(webDriver.get());
 
         when()
-            .searching_for(new Text("something"));
+            .searching_for(textToSearch);
 
         then()
             .the_results(
                 adaptedStream(googleResult -> googleResult.title.value,
-                    hasItemsMatching(
-                        containsStringIgnoringCase("something"))));
-    }
-
-    @Test
-    public void shouldNotFind() {
-        given()
-            .google(webDriver.get());
-
-        when()
-            .searching_for(new Text(randomAlphanumeric(40)));
-
-        then()
-            .the_results(counts(equalTo(0L)));
+                    titleRule));
     }
 
     @BeforeClass
