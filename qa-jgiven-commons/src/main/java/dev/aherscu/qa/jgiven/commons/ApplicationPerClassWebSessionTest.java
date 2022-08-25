@@ -93,7 +93,7 @@ public abstract class ApplicationPerClassWebSessionTest<C extends WebDriverConfi
     @BeforeClass
     @SneakyThrows
     protected void beforeClassOpenWebDriver() {
-        log.debug("before class openning web driver");
+        log.debug("before class opening web driver");
         webDriver.set(WebDriverEx.from(configuration().capabilities()));
     }
 
