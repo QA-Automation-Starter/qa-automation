@@ -763,5 +763,12 @@
         <maven.compiler.xlint>none</maven.compiler.xlint>
       </properties>
     </profile>
+
+    <profile>
+      <id>mode-aspectj-skip</id>
+      <properties>
+        <aspectj.skip>true</aspectj.skip>
+      </properties>
+    </profile>
   </profiles>
 </project>

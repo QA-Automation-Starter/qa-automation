@@ -62,7 +62,6 @@
     <poll.timeout>15</poll.timeout>
     <poll.delay>5</poll.delay>
 
-    <aspectj.skip>false</aspectj.skip>
     <dryrun/>
     <screenshots>true</screenshots>
 
@@ -354,7 +353,6 @@
       </properties>
     </profile>
 
-    <!-- TODO: pull up -->
     <profile>
       <id>mode-proxy</id>
       <build>
