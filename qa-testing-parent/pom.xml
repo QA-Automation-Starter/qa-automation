@@ -388,13 +388,6 @@
     </profile>
 
     <profile>
-      <id>device-web</id>
-      <properties>
-        <device.type>web</device.type>
-      </properties>
-    </profile>
-
-    <profile>
       <id>device-android</id>
       <properties>
         <device.type>android</device.type>
