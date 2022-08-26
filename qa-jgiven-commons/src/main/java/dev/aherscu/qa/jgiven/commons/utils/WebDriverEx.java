@@ -121,7 +121,7 @@ public class WebDriverEx {
      *            <tt>name</tt> for registering this web driver for some sort of
      *            status reporting mechanism -- see
      *            {@link AbstractSauceLabsReporter}
-     * @return the initialized driver
+     * @return the initialized driver, or null if {@link DryRunAspect#dryRun}
      *
      * @throws RuntimeException
      *             or derivative, if the initialization failed

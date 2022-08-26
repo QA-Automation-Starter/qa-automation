@@ -31,7 +31,6 @@
   <name>QA JGiven Commons</name>
 
   <properties>
-    <aspectj.skip>false</aspectj.skip>
     <powermock.version>2.0.5</powermock.version>
   </properties>
 
