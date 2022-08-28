@@ -377,7 +377,7 @@ public class WebDriverEx {
         // if (!element.isDisplayed())
         asJavaScriptExecutor()
             .executeScript(
-                "arguments[0].scrollIntoViewIfNeeded();",
+                "arguments[0].scrollIntoView();",
                 element);
         return element;
     }
