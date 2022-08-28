@@ -16,6 +16,7 @@
 
 package dev.aherscu.qa.testing.example.scenarios.tutorial;
 
+import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
 import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -42,7 +43,7 @@ import lombok.extern.slf4j.*;
 public class _3_TestingWebApplication {
     private WebDriver webDriver;
 
-    @Factory(dataProvider = "data")
+    @Factory(dataProvider = INTERNAL_DATA_PROVIDER)
     public _3_TestingWebApplication(Supplier<WebDriver> webDriver) {
         this.webDriver = webDriver.get();
         log.trace("testing with {}", webDriver);
