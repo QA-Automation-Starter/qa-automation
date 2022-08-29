@@ -5,15 +5,18 @@
 [HOWTO](#howto) |
 [Architecture](#architecture)
 
-> For generating a working project see [qa-testing-archetype](../qa-testing-archetype).
+> For generating a working project
+> see [qa-testing-archetype](../qa-testing-archetype).
 
 > First, for how it works -- a brief [Tutorial](docs/TUTORIAL.md)
 
 > Then, for what should be done -- TBD
 
-> and, for how it should be done -- start with the [Prerequisites](#prerequisites)
+> and, for how it should be done -- start with
+> the [Prerequisites](#prerequisites)
 
-> Last, there are things which are not perfect -- [Known Issues](docs/KNOWN-ISSUES.md)
+> Last, there are things which are not perfect
+> -- [Known Issues](docs/KNOWN-ISSUES.md)
 
 > One more thing... [Old Stuff](docs/OLD-STUFF.md) which may come back to us...
 
@@ -53,13 +56,20 @@ commands for Mac and various Linux distros.
 
 There might be better job schedulers out there.
 
-## Selenium Controller Machine
+## Selenium
+
+For a quick standalone Selenium Grid with several Nods, refer
+to [Selenium Hub Docker](selenium-hub-docker.yml). The Grid UI will be
+at <http://localhost:4444/ui>.
+
+### Selenium Hub
 
 1. `choco install -y selenium --params "'/role:hub /service /autostart'"`
-   > Now, Selenium Grid should be available at <http://localhost:4444/grid/console>
+   > Now, Selenium Grid should be available
+   at <http://localhost:4444/grid/console>
    > Additional reading <https://github.com/dhoer/choco-selenium#hub>
 
-## Selenium Node
+### Selenium Node
 
 TBD
 
@@ -117,16 +127,18 @@ TBD
 > see [Known Issues](docs/KNOWN-ISSUES.md)
 > see also <https://gist.github.com/mrk-han/66ac1a724456cadf1c93f4218c6060ae>
 
-  1. `choco install -y android-sdk`
-  2. `cd %ANDROID_HOME%`
-  3. `.\tools\bin\sdkmanager.bat --no_https --proxy=http --proxy_host=<host> --proxy_port=<port>
-    --install "system-images;android-30;google_apis_playstore;x86"`
-  4. `.\tools\bin\sdkmanager.bat --no_https --proxy=http --proxy_host=<host> --proxy_port=<port>
-    --install "platform-tools"`
+1. `choco install -y android-sdk`
+2. `cd %ANDROID_HOME%`
+3. `.\tools\bin\sdkmanager.bat --no_https --proxy=http --proxy_host=<host> --proxy_port=<port>
+   --install "system-images;android-30;google_apis_playstore;x86"`
+4. `.\tools\bin\sdkmanager.bat --no_https --proxy=http --proxy_host=<host> --proxy_port=<port>
+   --install "platform-tools"`
 
-> `.\platform-tools\adb.exe devices` -- should list your devices either real or emulated
+> `.\platform-tools\adb.exe devices` -- should list your devices either real or
+> emulated
 
 ### iOS
+
     - install XCode to get the iOS Simulator
 
 Check Android setup by running `adb devices` -- it should list your device
@@ -138,9 +150,11 @@ Check DOM Inspector connects to application via <chrome://inspect/#devices>
 
 1. Enable Windows Developer Mode
 2. `choco install -y winappdriver`
-   > Now, **WinAppDriver** should be at `%ProgramFiles(x86)%\Windows Application Driver`.
+   > Now, **WinAppDriver** should be
+   at `%ProgramFiles(x86)%\Windows Application Driver`.
 3. for GUI element discovery --
-   <https://github.com/microsoft/WinAppDriver/releases/tag/UIR-v1.1> or similar tool
+   <https://github.com/microsoft/WinAppDriver/releases/tag/UIR-v1.1> or similar
+   tool
 
 If remote file access is required, then OpenSSH, or similar, is required:
 
@@ -172,7 +186,7 @@ Jobs with different profiles are available at <TBD>.
 ## On Local Workstation
 
 Maven `settings.xml` should contain proper proxy configuration; see
-[Maven Settings on Local Workstation](./../README.md#maven-settings-on-local-workstation)
+[Maven Settings on Local Workstation](./../development-maven-settings.xml)
 .
 
 Assuming everything is setup correctly, and this repository cloned, then
@@ -212,8 +226,12 @@ selected:
 
 #### Provider profiles, mutually-exclusive:
 
+* `provider-selenium`: will use hosted Selenium Grid
 * `provider-saucelabs-*`: will run GUI tests on selected SauceLabs provider
   type; if not specified will try to run on local Appium Server.
+
+If no provider is specified, will try to run with local WebDriver per
+`provider.local.web`.
 
 #### Provider profiles, for application uploading:
 
@@ -230,8 +248,6 @@ skipped to save time and start the tests faster.
 Troubleshooting --
 
 1. Check SauceLabs access <https://app.saucelabs.com>
-
-
 2. Uploading to SauceLabs now is done via Maven profiles, but this might be
    helpful for understanding how this mechanism works. Binaries under [bin](bin)
    must be uploaded to SauceLabs, see
@@ -250,7 +266,8 @@ see <https://github.com/cjnygard/rest-maven-plugin/issues/12>
 
 * `mode-logs-*`: sets the logging level (`debug|error|trace`); if not specified
   defaults to `info`
-* `mode-es-logs-verification-skip`: skips backend logs verification
+* `mode-aspectj-skip`: for debugging, it is easier to see code without AspectJ
+  weaved code
 * `mode-build-fast`: disables self unit tests, static analysis and source code
   formatting
 * `mode-build-quiet`: silent output for several build plugins (e.g. aspectj)
