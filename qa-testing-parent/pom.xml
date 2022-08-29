@@ -126,11 +126,6 @@
       <version>2.11.1</version>
       <scope>runtime</scope>
     </dependency>
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>5.1.1</version>
-    </dependency>
   </dependencies>
 
   <build>
@@ -398,6 +393,13 @@
       <id>device-ios</id>
       <properties>
         <device.type>ios</device.type>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>provider-selenium</id>
+      <properties>
+        <provider>provider.selenium.</provider>
       </properties>
     </profile>
 

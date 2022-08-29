@@ -30,7 +30,6 @@ import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.testing.example.*;
 import dev.aherscu.qa.testing.example.steps.tutorial.*;
-import io.github.bonigarcia.wdm.*;
 import lombok.*;
 
 public class _9_TestingGoogleWithJGiven
@@ -71,7 +70,6 @@ public class _9_TestingGoogleWithJGiven
     @SneakyThrows
     @Override
     public void beforeClassOpenWebDriver() {
-        WebDriverManager.chromedriver().setup();
         super.beforeClassOpenWebDriver();
         webDriver.get().asRemote().manage().window().maximize();
     }

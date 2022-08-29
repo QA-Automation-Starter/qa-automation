@@ -73,7 +73,7 @@ public class WebDriverConfigurationTest {
                     .matchingCapabilities(1)
                     .build() },
             { new MapConfiguration(ImmutableMap.<String, String> builder()
-                .put("provider", "provider.saucelabs.")
+                .put("provider", "provider.selenium.")
                 .put("device.type", "android")
                 .build()),
                 ExpectedCapabilities.builder()
@@ -82,11 +82,11 @@ public class WebDriverConfigurationTest {
                         "Google Pixel 3a XL GoogleAPI Emulator",
                         "Google Pixel 3 XL GoogleAPI Emulator",
                         "Google Pixel 3 GoogleAPI Emulator"))
-                    .provider("provider.saucelabs.")
+                    .provider("provider.selenium.")
                     .matchingCapabilities(3)
                     .build() },
             { new MapConfiguration(ImmutableMap.<String, String> builder()
-                .put("provider", "provider.saucelabs.")
+                .put("provider", "provider.selenium.")
                 .put("device.type", "any")
                 .build()),
                 ExpectedCapabilities.builder()
@@ -96,7 +96,7 @@ public class WebDriverConfigurationTest {
                         "iPhone 12 Pro",
                         "Google Pixel 3 XL GoogleAPI Emulator",
                         "Google Pixel 3 GoogleAPI Emulator"))
-                    .provider("provider.saucelabs.")
+                    .provider("provider.selenium.")
                     .matchingCapabilities(4)
                     .build() }
         };
@@ -166,7 +166,7 @@ public class WebDriverConfigurationTest {
     @Test
     public void shouldRetrieveCapabilitiesBySpecificPrefix() {
         assertThat(configuration
-            .capabilitiesFor("provider.saucelabs.simulator")
+            .capabilitiesFor("provider.selenium.simulator")
             .getCapability("class"),
             is("org.openqa.selenium.remote.RemoteWebDriver"));
     }
