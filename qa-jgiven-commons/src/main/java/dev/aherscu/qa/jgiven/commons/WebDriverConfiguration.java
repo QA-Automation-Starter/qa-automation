@@ -220,10 +220,7 @@ public class WebDriverConfiguration extends BaseConfiguration {
             .map(group -> new DesiredCapabilitiesEx(
                 capabilitiesFor(provider() + group.get("type")))
                     .with(DEVICE_NAME, group.get("device.name"))
-                    // ISSUE an empty platform is interpreted as WINDOWS
-                    // instead of ANY
-                    .with(PLATFORM,
-                        group.getOrDefault("platform", EMPTY))
+                    .with(PLATFORM, group.get("platform"))
                     .with(PLATFORM_VERSION, group.get("platform.version"))
                     .with("appiumVersion", group.get("appium.version")));
     }
