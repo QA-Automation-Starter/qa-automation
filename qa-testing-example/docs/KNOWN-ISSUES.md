@@ -16,3 +16,5 @@
 * Sometimes the Android Debug Bridge (adb) is getting stuck. This can be
   verified by issuing a `adb devices` command. If the command does not return
   then `adb` process must be killed.
+* No internet access when running behind a proxy server that uses self-signed
+  certificates 
