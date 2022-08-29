@@ -34,6 +34,10 @@
   <name>QA Testing Archetype</name>
   <url>TBD</url>
 
+  <properties>
+    <spotbugs.skip>true</spotbugs.skip>
+  </properties>
+
   <build>
     <extensions>
       <extension>

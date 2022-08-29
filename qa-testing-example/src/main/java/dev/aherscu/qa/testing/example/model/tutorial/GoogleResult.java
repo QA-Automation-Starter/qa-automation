@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.example.model;
+package dev.aherscu.qa.testing.example.model.tutorial;
 
+import dev.aherscu.qa.jgiven.commons.model.*;
 import lombok.*;
 
 @Builder
 @ToString
-public class Calculation {
-    public final String expression;
-    public final String result;
+public class GoogleResult {
+    public final Text title, summary;
 }

@@ -25,6 +25,8 @@ import java.text.*;
 import java.util.*;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.remote.*;
 
 import com.google.common.collect.*;
@@ -35,6 +37,7 @@ import io.appium.java_client.*;
 import io.appium.java_client.android.*;
 import io.appium.java_client.ios.*;
 import io.appium.java_client.windows.*;
+import io.github.bonigarcia.wdm.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
@@ -121,7 +124,7 @@ public class WebDriverEx {
      *            <tt>name</tt> for registering this web driver for some sort of
      *            status reporting mechanism -- see
      *            {@link AbstractSauceLabsReporter}
-     * @return the initialized driver
+     * @return the initialized driver, or null if {@link DryRunAspect#dryRun}
      *
      * @throws RuntimeException
      *             or derivative, if the initialization failed
@@ -191,10 +194,19 @@ public class WebDriverEx {
     @SneakyThrows
     private static Class<? extends WebDriver> webDriverClassFor(
         final Capabilities capabilities) {
-        return Class.forName(requireNonNull(capabilities
+        val driverClass = Class.forName(requireNonNull(capabilities
             .getCapability("class"), "must have a class capability")
                 .toString())
             .asSubclass(WebDriver.class);
+
+        if (driverClass.isAssignableFrom(ChromeDriver.class))
+            WebDriverManager.chromedriver().setup();
+        if (driverClass.isAssignableFrom(FirefoxDriver.class))
+            WebDriverManager.firefoxdriver().setup();
+
+        // TODO add initialization for other types of local drivers
+
+        return driverClass;
     }
 
     /**
@@ -377,7 +389,7 @@ public class WebDriverEx {
         // if (!element.isDisplayed())
         asJavaScriptExecutor()
             .executeScript(
-                "arguments[0].scrollIntoViewIfNeeded();",
+                "arguments[0].scrollIntoView();",
                 element);
         return element;
     }

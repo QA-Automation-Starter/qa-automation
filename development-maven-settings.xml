@@ -16,16 +16,14 @@
 
 <settings>
   <servers>
-    <!-- ISSUE authentication is required even for reading GitHub package
-      repositories; see
-      https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry -->
     <server>
-      <id>github</id>
-      <username>adrian-herscu</username>
-      <!-- ISSUE GitHub revokes PATs pushed to public repos; see
-        https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/token-expiration-and-revocation#token-revoked-when-pushed-to-a-public-repository-or-public-gist -->
-      <password>NA</password>
-      <!-- TODO deploy to Maven Central instead -->
+      <id>gpg.passphrase</id>
+      <passphrase>...</passphrase>
+    </server>
+    <server>
+      <id>ossrh</id>
+      <username>adrian.herscu</username>
+      <password>...</password>
     </server>
   </servers>
 </settings>
