@@ -67,12 +67,14 @@ public class DesiredCapabilitiesEx extends DesiredCapabilities {
      * @param key
      *            the capability to chain
      * @param value
-     *            the value
+     *            the value; if null, it will be ignored
      * @return chained capabilities, on new set of capabilities
      */
     public DesiredCapabilitiesEx with(
         final String key,
         final Object value) {
+        if (isNull(value))
+            return this;
         val ammendedCapabilities = new DesiredCapabilitiesEx(this);
         ammendedCapabilities.setCapability(key, value);
         return ammendedCapabilities;
