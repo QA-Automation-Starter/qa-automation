@@ -31,7 +31,6 @@
   <name>QA JGiven Commons</name>
 
   <properties>
-    <aspectj.skip>false</aspectj.skip>
     <powermock.version>2.0.5</powermock.version>
   </properties>
 
@@ -78,6 +77,12 @@
           <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>5.1.1</version>
     </dependency>
 
     <dependency>

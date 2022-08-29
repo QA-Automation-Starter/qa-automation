@@ -62,7 +62,6 @@
     <poll.timeout>15</poll.timeout>
     <poll.delay>5</poll.delay>
 
-    <aspectj.skip>false</aspectj.skip>
     <dryrun/>
     <screenshots>true</screenshots>
 
@@ -126,12 +125,6 @@
       <artifactId>log4j-to-slf4j</artifactId>
       <version>2.11.1</version>
       <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>5.1.1</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -355,7 +348,6 @@
       </properties>
     </profile>
 
-    <!-- TODO: pull up -->
     <profile>
       <id>mode-proxy</id>
       <build>
@@ -391,13 +383,6 @@
     </profile>
 
     <profile>
-      <id>device-web</id>
-      <properties>
-        <device.type>web</device.type>
-      </properties>
-    </profile>
-
-    <profile>
       <id>device-android</id>
       <properties>
         <device.type>android</device.type>
@@ -408,6 +393,13 @@
       <id>device-ios</id>
       <properties>
         <device.type>ios</device.type>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>provider-selenium</id>
+      <properties>
+        <provider>provider.selenium.</provider>
       </properties>
     </profile>
 

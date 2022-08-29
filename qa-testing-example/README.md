@@ -5,65 +5,168 @@
 [HOWTO](#howto) |
 [Architecture](#architecture)
 
-> For generating a working project see [qa-testing-archetype](../qa-testing-archetype).
+> For generating a working project
+> see [qa-testing-archetype](../qa-testing-archetype).
 
 > First, for how it works -- a brief [Tutorial](docs/TUTORIAL.md)
 
 > Then, for what should be done -- TBD
 
-> and, for how it should be done -- start with the [Prerequisites](#prerequisites)
+> and, for how it should be done -- start with
+> the [Prerequisites](#prerequisites)
 
-> Last, there are things which are not perfect -- [Known Issues](docs/KNOWN-ISSUES.md)
+> Last, there are things which are not perfect
+> -- [Known Issues](docs/KNOWN-ISSUES.md)
 
 > One more thing... [Old Stuff](docs/OLD-STUFF.md) which may come back to us...
 
 # Prerequisites
 
-## Basic
+Following instructions apply to Windows machines. There should be alternative
+commands for Mac and various Linux distros.
 
-If you are already here then JDK 8 and Maven 3.6+ are already installed on your
-workstation, right?
+## Basic - for all types of machines
 
-## Advanced
+1. Run PowerShell as Administrator -- required by Chocolatey
+2. Install Chocolatey -- <https://chocolatey.org/install#individual>
+3. `choco install -y jdk8`
+4. `choco install -y git`
 
-For on-desktop mobile testing and development:
+## Development Machine
 
-* WINDOWS
-    - Appium 1.x --  <https://github.com/appium/appium-desktop/releases>
-    - for Android SDK Platform, must use API Level 26 or higher otherwise Appium
-      won't work
-    - Android SDK Tools latest
-      -- <https://developer.android.com/studio/#command-tools>
-    - or, attach a real Android device via USB
-      **and** install appropriate USB drivers for it
-    - the Android device/emulator may need Internet access
+1. `choco install -y tortoisegit`
+2. `choco install -y intellijidea-community`
 
-* MAC
+## Scheduler Machine (with Jenkins)
+
+1. `choco install -y jenkins`
+   > Now, Jenkins should be available at <http://localhost:8080>
+2. install required plugins, beyond the default installation:
+    * Active Directory Plugin -- allow log-in with AD/SSO credentials
+    * Maven Plugin -- support for building Maven projects
+3. Configure Global Security
+    * Security Realm -- Active Directory
+4. Global Tool Configuration
+    * JDK installations -- something
+      like, `%ProgramFiles%\OpenJDK\jdk-8.0.292.10-hotspot`
+    * Git installations -- usually, `%ProgramFiles%\Git\cmd\git.exe`
+5. Credentials
+    * add Global Credentials Store (Unrestricted)
+    * add SSH private key to this GitHub repo
+
+There might be better job schedulers out there.
+
+## Selenium
+
+For a quick standalone Selenium Grid with several Nods, refer
+to [Selenium Hub Docker](selenium-hub-docker.yml). The Grid UI will be
+at <http://localhost:4444/ui>.
+
+### Selenium Hub
+
+1. `choco install -y selenium --params "'/role:hub /service /autostart'"`
+   > Now, Selenium Grid should be available
+   at <http://localhost:4444/grid/console>
+   > Additional reading <https://github.com/dhoer/choco-selenium#hub>
+
+### Selenium Node
+
+TBD
+
+## Appium Node
+
+1. `choco install -y nodejs` -- and restart the console to refresh the env vars
+2. `npm --proxy http(s)://<host>:<port> install -g appium`
+   > Now, **Appium** should be at `%APPDATA%\npm`.
+3. Configure Appium
+    1. add `nodeconfig.json` to Appium's installation directory
+       ```json
+        {
+          "capabilities": [
+            {
+              "browserName": "",
+              "version": "",
+              "maxInstances": 1,
+              "platform": "WINDOWS"
+            }
+          ],
+          "configuration": {
+            "cleanUpCycle": 2000,
+            "timeout": 30000,
+            "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
+            "url": "http://<machine-hostname>:4723/wd/hub",
+            "host": "<machine-hostname>",
+            "port": 4723,
+            "maxSession": 1,
+            "register": true,
+            "registerCycle": 5000,
+            "hubPort": 4444,
+            "hubHost": "<grid-hostname>",
+            "hubProtocol": "http"
+          }
+        }
+       ```
+    2. add `appium-startup.cmd` to Appium's installation directory
+       ```shell
+       appium.cmd --nodeconfig %APPDATA%\npm\nodeconfig.json ^
+       --log %APPDATA%\npm\appium.log ^
+       --log-timestamp ^
+       --log-level error:debug ^
+       --log-no-colors
+       ```
+4. add Appium to Windows' Start-up Tasks:
+    1. open `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup`
+    2. create shortcut to `appium-startup.cmd`
+    3. run it
+   > Open the Selenium Grid Console to ensure proper registration.
+
+## Support for Mobile Testing
+
+### Android Emulator
+
+> see [Known Issues](docs/KNOWN-ISSUES.md)
+> see also <https://gist.github.com/mrk-han/66ac1a724456cadf1c93f4218c6060ae>
+
+1. `choco install -y android-sdk`
+2. `cd %ANDROID_HOME%`
+3. `.\tools\bin\sdkmanager.bat --no_https --proxy=http --proxy_host=<host> --proxy_port=<port>
+   --install "system-images;android-30;google_apis_playstore;x86"`
+4. `.\tools\bin\sdkmanager.bat --no_https --proxy=http --proxy_host=<host> --proxy_port=<port>
+   --install "platform-tools"`
+
+> `.\platform-tools\adb.exe devices` -- should list your devices either real or
+> emulated
+
+### iOS
+
     - install XCode to get the iOS Simulator
-
-NOTE: currently installing Android emulator is done via IntelliJ IDE -- see:
-https://developer.android.com/studio/run/emulator
-
-After setting up all the above your environment variables should include:
-
-| VAR_NAME         | VAR_VALUE                                                               |
-|------------------|-------------------------------------------------------------------------|
-| ANDROID_HOME     | ANDROID installation (usually: %USERPROFILE%\AppData\Local\Android\Sdk) |
-| ANDROID_PLATFORM | ANDROID platform (usually: %ANDROID_HOME%\platform-tools)               |
-| ANDROID_SDK_ROOT | ANDROID installation (usually: %ANDROID_HOME%)                          |
-| JAVA_HOME        | JDK installation (usually: %ProgramFiles%\Java\jdk1.8.x)                |
-| MAVEN_HOME       | Maven installation (usually: %ProgramFiles%\Java\apache-maven-3.x)      |   
-| OPEN_SSH         | OPEN_SSH installation (usually: %ProgramFiles%\OpenSSH\bin)             |
-
-Your PATH variable should
-include: `%ANDROID_PLATFORM%;%JAVA_HOME%\bin;%MAVEN_HOME%\bin;%OPEN_SSH%\bin`.
-
-Check Appium by starting its server.
 
 Check Android setup by running `adb devices` -- it should list your device
 either real or emulated.
 
 Check DOM Inspector connects to application via <chrome://inspect/#devices>
+
+## Support for Windows Applications Testing
+
+1. Enable Windows Developer Mode
+2. `choco install -y winappdriver`
+   > Now, **WinAppDriver** should be
+   at `%ProgramFiles(x86)%\Windows Application Driver`.
+3. for GUI element discovery --
+   <https://github.com/microsoft/WinAppDriver/releases/tag/UIR-v1.1> or similar
+   tool
+
+If remote file access is required, then OpenSSH, or similar, is required:
+
+`Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0`
+
+## Running GUI Tests on a Remote Windows Machine
+
+For running Android Emulators, Web-Browsers, or Windows applications
+on remote machines there must be an open desktop session:
+
+1. `choco install -y autologon`
+2. `autologon %USERNAME% $USERDOMAIN% <user-password>`
 
 # Execution
 
@@ -83,7 +186,7 @@ Jobs with different profiles are available at <TBD>.
 ## On Local Workstation
 
 Maven `settings.xml` should contain proper proxy configuration; see
-[Maven Settings on Local Workstation](./../README.md#maven-settings-on-local-workstation)
+[Maven Settings on Local Workstation](./../development-maven-settings.xml)
 .
 
 Assuming everything is setup correctly, and this repository cloned, then
@@ -123,8 +226,12 @@ selected:
 
 #### Provider profiles, mutually-exclusive:
 
+* `provider-selenium`: will use hosted Selenium Grid
 * `provider-saucelabs-*`: will run GUI tests on selected SauceLabs provider
   type; if not specified will try to run on local Appium Server.
+
+If no provider is specified, will try to run with local WebDriver per
+`provider.local.web`.
 
 #### Provider profiles, for application uploading:
 
@@ -141,8 +248,6 @@ skipped to save time and start the tests faster.
 Troubleshooting --
 
 1. Check SauceLabs access <https://app.saucelabs.com>
-
-
 2. Uploading to SauceLabs now is done via Maven profiles, but this might be
    helpful for understanding how this mechanism works. Binaries under [bin](bin)
    must be uploaded to SauceLabs, see
@@ -161,7 +266,8 @@ see <https://github.com/cjnygard/rest-maven-plugin/issues/12>
 
 * `mode-logs-*`: sets the logging level (`debug|error|trace`); if not specified
   defaults to `info`
-* `mode-es-logs-verification-skip`: skips backend logs verification
+* `mode-aspectj-skip`: for debugging, it is easier to see code without AspectJ
+  weaved code
 * `mode-build-fast`: disables self unit tests, static analysis and source code
   formatting
 * `mode-build-quiet`: silent output for several build plugins (e.g. aspectj)

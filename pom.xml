@@ -540,6 +540,8 @@
         </plugin>
 
         <plugin>
+          <!-- NOTE have to package de-lomboked code,
+            otherwise the attached sources JAR will not match their bytecode -->
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>3.0.0</version>
@@ -562,6 +564,8 @@
         </plugin>
 
         <plugin>
+          <!-- NOTE have to attach de-lomboked sources,
+            otherwise the attached sources JAR will not match their bytecode -->
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>3.3.0</version>
@@ -651,6 +655,7 @@
       </plugin>
 
       <plugin>
+        <!-- NOTE enforce Java runtime version for Maven -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
         <version>3.0.0</version>
@@ -712,6 +717,7 @@
     </profile>
 
     <profile>
+      <!-- on JDKs from version 11 onwards, compile as Java 11 -->
       <id>platform-jdk11</id>
       <activation>
         <jdk>[11,)</jdk>
@@ -731,6 +737,8 @@
     </profile>
 
     <profile>
+      <!-- NOTE debug, error and informal logs,
+        if none selected, the default is informal -->
       <id>mode-logs-level-debug</id>
       <properties>
         <log.root.level>debug</log.root.level>
@@ -738,6 +746,7 @@
     </profile>
 
     <profile>
+      <!-- NOTE only errors and informal are required to log -->
       <id>mode-logs-level-error</id>
       <properties>
         <log.root.level>error</log.root.level>
@@ -745,6 +754,7 @@
     </profile>
 
     <profile>
+      <!-- NOTE most detailed log level; includes all others -->
       <id>mode-logs-level-trace</id>
       <properties>
         <log.root.level>trace</log.root.level>
@@ -752,6 +762,7 @@
     </profile>
 
     <profile>
+      <!-- NOTE for having faster Maven builds -->
       <id>mode-build-fast</id>
       <properties>
         <findbugs.skip>true</findbugs.skip>
@@ -766,12 +777,22 @@
     </profile>
 
     <profile>
+      <!-- NOTE for having lighter Maven logs -->
       <id>mode-build-quiet</id>
       <properties>
         <aspectj.showWeaveInfo>false</aspectj.showWeaveInfo>
         <aspectj.verbose>false</aspectj.verbose>
         <spotbugs.skip>true</spotbugs.skip>
         <maven.compiler.xlint>none</maven.compiler.xlint>
+      </properties>
+    </profile>
+
+    <profile>
+      <!-- NOTE for clean code during debugging
+        it is sometimes necessary to turn off AspectJ weaving -->
+      <id>mode-aspectj-skip</id>
+      <properties>
+        <aspectj.skip>true</aspectj.skip>
       </properties>
     </profile>
   </profiles>
