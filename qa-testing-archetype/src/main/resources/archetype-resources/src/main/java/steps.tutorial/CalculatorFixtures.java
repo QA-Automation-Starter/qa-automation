@@ -14,22 +14,14 @@
  * limitations under the License.
  */
 
-package ${package}.steps;
+package ${package}.steps.tutorial;
 
-import static io.appium.java_client.MobileBy.*;
-
-import org.hamcrest.*;
-
+import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
 
-public class CalculatorVerifications<SELF extends CalculatorVerifications<SELF>>
-    extends WebDriverVerifications<SELF> {
-
-    @AttachesScreenshot
-    public SELF the_result(final Matcher<String> matcher) {
-        return eventually_assert_that(
-            () -> element(AccessibilityId("CalculatorResults")).getText(),
-            matcher);
+public class CalculatorFixtures<SELF extends CalculatorFixtures<SELF>>
+    extends WebDriverFixtures<SELF> {
+    public SELF a_calculator(final WebDriverEx driver) {
+        return a_web_driver(driver);
     }
 }

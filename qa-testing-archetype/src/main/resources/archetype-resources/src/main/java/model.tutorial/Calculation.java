@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package ${package}.steps;
+package ${package}.model.tutorial;
 
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.jgiven.commons.utils.*;
+import lombok.*;
 
-public class CalculatorFixtures<SELF extends CalculatorFixtures<SELF>>
-    extends WebDriverFixtures<SELF> {
-    public SELF a_calculator(final WebDriverEx driver) {
-        return a_web_driver(driver);
-    }
+@Builder
+@ToString
+public class Calculation {
+    public final String expression;
+    public final String result;
 }

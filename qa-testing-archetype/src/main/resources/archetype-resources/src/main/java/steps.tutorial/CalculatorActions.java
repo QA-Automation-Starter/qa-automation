@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ${package}.steps;
+package ${package}.steps.tutorial;
 
 import static io.appium.java_client.MobileBy.*;
 

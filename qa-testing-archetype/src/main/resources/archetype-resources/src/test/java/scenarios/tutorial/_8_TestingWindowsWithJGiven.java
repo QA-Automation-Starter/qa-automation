@@ -22,8 +22,8 @@ import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
 import ${package}.*;
-import ${package}.model.*;
-import ${package}.steps.*;
+import ${package}.model.tutorial.*;
+import ${package}.steps.tutorial.*;
 
 public class _8_TestingWindowsWithJGiven
     extends
