@@ -1,3 +1,4 @@
+cd target
 mvn --batch-mode archetype:generate ^
   -Dmaven.wagon.http.ssl.insecure=true ^
   -DarchetypeGroupId=dev.aherscu.qa ^
