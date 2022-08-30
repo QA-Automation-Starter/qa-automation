@@ -69,7 +69,7 @@ jobs:
                 "id": "archetype",
                 "url": "https://s01.oss.sonatype.org/content/repositories/snapshots",
                 "snapshots": {
-                    "enabled": "false",
+                    "enabled": "true",
                     "checksumPolicy": "warn"
                 }
               }
