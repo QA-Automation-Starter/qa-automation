@@ -16,27 +16,83 @@
 
 package ${package}.scenarios.tutorial;
 
+import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
+import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+import static org.openqa.selenium.remote.CapabilityType.*;
+import static uk.co.probablyfine.matchers.StreamMatchers.*;
 
-import io.github.bonigarcia.wdm.*;
+import java.net.*;
+import java.util.function.*;
+
+import org.jooq.lambda.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.remote.*;
 import org.testng.annotations.*;
 
+import dev.aherscu.qa.jgiven.commons.utils.*;
 import edu.umd.cs.findbugs.annotations.*;
+import io.github.bonigarcia.wdm.*;
 import lombok.*;
+import lombok.extern.slf4j.*;
 
+@Slf4j
 public class _3_TestingWebApplication {
-
     private WebDriver webDriver;
+
+    @Factory(dataProvider = INTERNAL_DATA_PROVIDER)
+    public _3_TestingWebApplication(Supplier<WebDriver> webDriver) {
+        this.webDriver = webDriver.get();
+        log.trace("testing with {}", webDriver);
+    }
+
+    @DataProvider
+    private static Object[][] data() {
+        // NOTE we use suppliers in order to lazily create drivers;
+        // thus, only when the test is constructed by TestNG
+        return new Object[][] {
+            { Unchecked.supplier(() -> {
+                log.trace("setting up firefox driver");
+                WebDriverManager.firefoxdriver().setup();
+                return new FirefoxDriver();
+            }) },
+            { Unchecked.supplier(() -> {
+                log.trace("setting up chrome driver");
+                WebDriverManager.chromedriver().setup();
+                return new ChromeDriver();
+            }) },
+            { Unchecked.supplier(() -> new RemoteWebDriver(
+                new URL("http://localhost:4444"),
+                new DesiredCapabilitiesEx() {
+                    {
+                        setCapability(BROWSER_NAME, "firefox");
+                    }
+                })) }
+        };
+
+    }
 
     @Test
     public void shouldOpenWeb() {
-        webDriver
-            .get("https://google.com");
+        assertThat(webDriver.getTitle(), containsString("Google"));
+    }
 
-        assertThat(webDriver.getTitle(), equalTo("Google"));
+    @Test
+    public void shouldFind() {
+        // NOTE the search keyword must be unique such that it is not
+        // translated to other languages or written differently
+        val SEARCH_KEYWORD = "testng";
+        webDriver.findElement(By.name("q"))
+            .sendKeys(SEARCH_KEYWORD + Keys.ENTER);
+        assertThat(
+            webDriver.findElements(By.xpath("//a/h3"))
+                .stream()
+                .map(webElement -> webElement.getAttribute("textContent"))
+                .peek(resultTitle -> log.debug("found {}", resultTitle)),
+            allMatch(containsStringIgnoringCase(SEARCH_KEYWORD)));
     }
 
     @SuppressFBWarnings(
@@ -53,12 +109,9 @@ public class _3_TestingWebApplication {
     @BeforeClass
     @SneakyThrows
     private void beforeClassOpenWebDriver() {
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
-
+        log.trace("before connecting selenium");
         webDriver.manage().window().maximize();
-
-        // NOTE: should uncomment in order to deal with latencies
-        // webDriver.manage().timeouts().implicitlyWait(10, SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(10, SECONDS);
+        webDriver.get("https://google.com");
     }
 }

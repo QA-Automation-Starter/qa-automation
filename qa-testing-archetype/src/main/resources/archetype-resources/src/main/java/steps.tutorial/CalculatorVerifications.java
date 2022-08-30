@@ -14,15 +14,22 @@
  * limitations under the License.
  */
 
-package ${package}.steps;
+package ${package}.steps.tutorial;
 
 import static io.appium.java_client.MobileBy.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
+import org.hamcrest.*;
 
-public class CalculatorActions<SELF extends CalculatorActions<SELF>>
-    extends WebDriverActions<SELF> {
-    public SELF typing(final String expression) {
-        return typing_$_into(expression, AccessibilityId("CalculatorResults"));
+import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.commons.verifications.*;
+
+public class CalculatorVerifications<SELF extends CalculatorVerifications<SELF>>
+    extends WebDriverVerifications<SELF> {
+
+    @AttachesScreenshot
+    public SELF the_result(final Matcher<String> matcher) {
+        return eventually_assert_that(
+            () -> element(AccessibilityId("CalculatorResults")).getText(),
+            matcher);
     }
 }
