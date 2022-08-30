@@ -14,14 +14,8 @@
  * limitations under the License.
  */
 
-package ${package}.steps;
+package ${package}.scenarios;
 
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.jgiven.commons.utils.*;
-
-public class CalculatorFixtures<SELF extends CalculatorFixtures<SELF>>
-    extends WebDriverFixtures<SELF> {
-    public SELF a_calculator(final WebDriverEx driver) {
-        return a_web_driver(driver);
-    }
+public class SelfTests {
+    // try here your hamcrest assertions
 }

@@ -14,22 +14,33 @@
  * limitations under the License.
  */
 
-package ${package}.steps;
+package ${package}.steps.tutorial;
 
-import static io.appium.java_client.MobileBy.*;
+import java.util.stream.*;
 
 import org.hamcrest.*;
+import org.openqa.selenium.*;
 
+import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
+import ${package}.model.tutorial.*;
+import lombok.extern.slf4j.*;
 
-public class CalculatorVerifications<SELF extends CalculatorVerifications<SELF>>
+@Slf4j
+public class GoogleVerifications<SELF extends GoogleVerifications<SELF>>
     extends WebDriverVerifications<SELF> {
 
     @AttachesScreenshot
-    public SELF the_result(final Matcher<String> matcher) {
+    public SELF the_results(final Matcher<Stream<GoogleResult>> matcher) {
         return eventually_assert_that(
-            () -> element(AccessibilityId("CalculatorResults")).getText(),
+            () -> elements(By.xpath("//a/h3"))
+                .stream()
+                .map(resultElement -> GoogleResult.builder()
+                    .title(new Text(resultElement
+                        .getAttribute("textContent")))
+                    // populate other fields per need
+                    .build()),
             matcher);
     }
 }
