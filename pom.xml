@@ -764,7 +764,7 @@
         <!-- FIXME javadoc, sources and gpg should be done only for releases;
           split these into a dedicated profile and uncomment the below -->
         <!--        <lombok.delombok.skip>true</lombok.delombok.skip>-->
-        <!--        <maven.source.skip>true</maven.source.skip>-->
+        <!--        <maven.antrun.skip>true</maven.antrun.skip.>-->
         <!--        <maven.javadoc.skip>true</maven.javadoc.skip>-->
         <!--        <gpg.skip>true</gpg.skip>-->
       </properties>
