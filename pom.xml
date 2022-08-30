@@ -772,8 +772,12 @@
         <maven.test.skip>true</maven.test.skip>
         <spotbugs.skip>true</spotbugs.skip>
         <archetype.test.skip>true</archetype.test.skip>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
-        <gpg.skip>true</gpg.skip>
+        <!-- FIXME javadoc, sources and gpg should be done only for releases;
+          split these into a dedicated profile and uncomment the below -->
+        <!--        <lombok.delombok.skip>true</lombok.delombok.skip>-->
+        <!--        <maven.source.skip>true</maven.source.skip>-->
+        <!--        <maven.javadoc.skip>true</maven.javadoc.skip>-->
+        <!--        <gpg.skip>true</gpg.skip>-->
       </properties>
     </profile>
 
