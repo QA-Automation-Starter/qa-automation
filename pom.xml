@@ -292,18 +292,22 @@
           </configuration>
         </plugin>
 
-        <!-- ISSUE: fixing the javadocs is too slow and generates lots of errors;
-          disable javadoc lint -->
-        <!--plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.4.0</version>
+          <executions>
+            <execution>
+              <id>attach-javadocs</id>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
           <configuration>
-            <defaultVersion>${project.version}</defaultVersion>
-            <defaultAuthor>Adrian Herscu</defaultAuthor>
-            <force>true</force>
+            <doclint>none</doclint>
           </configuration>
-        </plugin-->
+        </plugin>
 
         <plugin>
           <groupId>net.revelc.code.formatter</groupId>
@@ -625,18 +629,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.4.0</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <doclint>none</doclint>
-        </configuration>
       </plugin>
 
       <plugin>

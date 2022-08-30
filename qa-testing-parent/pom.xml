@@ -68,10 +68,6 @@
     <maven.test.skip>false</maven.test.skip>
 
     <title>${project.name} ${device.type} [#${build.label}]</title>
-
-    <maven.javadoc.skip>true</maven.javadoc.skip>
-    <maven.deploy.skip>true</maven.deploy.skip>
-    <gpg.skip>true</gpg.skip>
   </properties>
 
   <dependencies>
@@ -145,7 +141,9 @@
               </goals>
               <configuration>
                 <files>
-                  <file>src/test/resources/environments/${environment}/test.properties</file>
+                  <file>
+                    src/test/resources/environments/${environment}/test.properties
+                  </file>
                   <file>src/test/resources/webdriver.properties</file>
                 </files>
               </configuration>
@@ -157,7 +155,8 @@
                 <goal>write-project-properties</goal>
               </goals>
               <configuration>
-                <outputFile>${project.build.directory}/build.properties</outputFile>
+                <outputFile>${project.build.directory}/build.properties
+                </outputFile>
               </configuration>
             </execution>
           </executions>
@@ -192,19 +191,24 @@
             <suiteXmlFiles>${surefire.suiteXmlFiles}</suiteXmlFiles>
             <systemPropertyVariables>
               <!-- NOTE: system properties, a.k.a. -D options, should be added here -->
-              <logback.configurationFile>${logback.configurationFile}</logback.configurationFile>
+              <logback.configurationFile>${logback.configurationFile}
+              </logback.configurationFile>
               <poll.timeout>${poll.timeout}</poll.timeout>
               <poll.delay>${poll.delay}</poll.delay>
-              <saucelabs.reporter.url>${saucelabs.reporter.url}</saucelabs.reporter.url>
+              <saucelabs.reporter.url>${saucelabs.reporter.url}
+              </saucelabs.reporter.url>
               <provider>${provider}</provider>
               <device.type>${device.type}</device.type>
               <build.label>${build.label}</build.label>
               <build.tags>${build.tags},${environment}</build.tags>
-              <application.filename>${application.filename}</application.filename>
-              <application.workingdir>${application.workingdir}</application.workingdir>
+              <application.filename>${application.filename}
+              </application.filename>
+              <application.workingdir>${application.workingdir}
+              </application.workingdir>
               <environment.label>${environment}</environment.label>
               <jgiven.report.dir>${jgiven.report.dir}</jgiven.report.dir>
-              <identifiers.file>${jgiven.report.dir}/identifiers.txt</identifiers.file>
+              <identifiers.file>${jgiven.report.dir}/identifiers.txt
+              </identifiers.file>
               <testobject.ipa.id>${testobject.ipa.id}</testobject.ipa.id>
               <testobject.apk.id>${testobject.apk.id}</testobject.apk.id>
               <!-- Dry run support planned for JGiven 1.0.0 -->
@@ -213,9 +217,12 @@
               <dryrun>${dryrun}</dryrun>
               <screenshots>${screenshots}</screenshots>
               <screenshotDelayMs>500</screenshotDelayMs>
-              <logs.verification.skip>${logs.verification.skip}</logs.verification.skip>
-              <reference.href><![CDATA[@{StringUtilsExtensions.format('${orcanos.href}', '(\\d+)_(\\d+)', value)}]]></reference.href>
-              <reference.templatelink><![CDATA[@{StringUtilsExtensions.format('<a target="_blank" href="${orcanos.href}">Click here to open Orcanos {0}</a>', '(\\d+)_(\\d+)', value)}]]></reference.templatelink>
+              <logs.verification.skip>${logs.verification.skip}
+              </logs.verification.skip>
+              <reference.href>
+                <![CDATA[@{StringUtilsExtensions.format('${orcanos.href}', '(\\d+)_(\\d+)', value)}]]></reference.href>
+              <reference.templatelink>
+                <![CDATA[@{StringUtilsExtensions.format('<a target="_blank" href="${orcanos.href}">Click here to open Orcanos {0}</a>', '(\\d+)_(\\d+)', value)}]]></reference.templatelink>
               <java.awt.headless>true</java.awt.headless>
             </systemPropertyVariables>
           </configuration>
@@ -330,7 +337,8 @@
         <application.filename>NA</application.filename>
         <device.type/>
 
-        <jgiven.report.dir>target/jgiven-reports/dryrun/${build.label}</jgiven.report.dir>
+        <jgiven.report.dir>target/jgiven-reports/dryrun/${build.label}
+        </jgiven.report.dir>
 
         <title>Dry-run of ${project.name} [#${build.label}]</title>
       </properties>
@@ -407,7 +415,9 @@
       <id>provider-saucelabs-selenium</id>
       <properties>
         <provider>provider.saucelabs.</provider>
-        <saucelabs.reporter.url>https://TBD:TBD@ondemand.saucelabs.com:443/wd/hub</saucelabs.reporter.url>
+        <saucelabs.reporter.url>
+          https://TBD:TBD@ondemand.saucelabs.com:443/wd/hub
+        </saucelabs.reporter.url>
       </properties>
     </profile>
 
@@ -415,7 +425,9 @@
       <id>provider-saucelabs-appium</id>
       <properties>
         <provider>provider.saucelabs.</provider>
-        <saucelabs.reporter.url>https://TBD:TBD@ondemand.saucelabs.com:443/wd/hub</saucelabs.reporter.url>
+        <saucelabs.reporter.url>
+          https://TBD:TBD@ondemand.saucelabs.com:443/wd/hub
+        </saucelabs.reporter.url>
       </properties>
       <build>
         <plugins>
@@ -464,7 +476,8 @@
                   <goal>rest-request</goal>
                 </goals>
                 <configuration>
-                  <resource>${commons.saucelabs.application.filename}.apk</resource>
+                  <resource>${commons.saucelabs.application.filename}.apk
+                  </resource>
                   <filesets>
                     <fileset>
                       <includes>
