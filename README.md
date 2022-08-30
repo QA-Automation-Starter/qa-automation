@@ -93,3 +93,9 @@ In Eclipse, this file is supported natively.
 
 Maven builds, by default, format the code, unless launched with
 'mode-build-fast' profile. 
+
+## GPG Public Key
+<https://keys.openpgp.org/search?q=39F1B2495B0260B2D974C634F89B5DBA3AF082E0>
+
+## Sonatype Repo
+<https://s01.oss.sonatype.org/>
