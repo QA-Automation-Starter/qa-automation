@@ -77,20 +77,21 @@ jobs:
               }
             ]
 
-      # FIXME should set java version explicitly
-      # this one fails due to missing pom.xml ...
-      #      - uses: actions/setup-java@v3
-      #        with:
-      #          java-version: '8'
-      #          distribution: 'temurin'
-      #          cache: maven
+      # FIXME should run with controlled java version
       - uses: aahmed-se/setup-maven@v3
         with:
           maven-version: 3.6.1
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
-      - run: ls
+      - name: Cache local Maven repository
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - run: |
           mvn --batch-mode archetype:generate \
             -DarchetypeGroupId=dev.aherscu.qa \
@@ -100,5 +101,5 @@ jobs:
             -DartifactId=testing \
             -Dversion=1.0-SNAPSHOT \
             -Dpackage=com.acme.testing
-      - run: cd testing
-      - run: mvn
+          cd testing
+          mvn
