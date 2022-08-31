@@ -29,7 +29,7 @@ jobs:
           settings-path: ${{ github.workspace }}
 
       - run: chmod +x mvnw
-      - run: ./mvnw install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
+      - run: ./mvnw clean install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
 
   deploy-for-jdk8:
     name: Deploys JDK 8
@@ -51,7 +51,7 @@ jobs:
           gpg-passphrase: GPG_PASSPHRASE
 
       - run: chmod +x mvnw
-      - run: ./mvnw deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
+      - run: ./mvnw clean deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
