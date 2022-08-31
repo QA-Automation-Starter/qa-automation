@@ -772,6 +772,9 @@
         <maven.test.skip>true</maven.test.skip>
         <spotbugs.skip>true</spotbugs.skip>
         <archetype.test.skip>true</archetype.test.skip>
+        <lombok.delombok.skip>true</lombok.delombok.skip>
+        <maven.antrun.skip>true</maven.antrun.skip>
+        <maven.source.skip>true</maven.source.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <gpg.skip>true</gpg.skip>
       </properties>
