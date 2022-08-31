@@ -1,10 +1,12 @@
 # QA Testing Archetype
 
-See [generate-example-project.bat](generate-example-project.bat) for an working demo.
+See [generate-example-project.bat](generate-example-project.bat) for an working
+demo.
 
 Snapshots require following sections to present in `.m2/settings.xml`:
 
 ```xml
+
 <settings>
   ...
   <profiles>
@@ -12,7 +14,8 @@ Snapshots require following sections to present in `.m2/settings.xml`:
       <id>ossrh</id>
       <repositories>
         <repository>
-          <id>archetype</id><!-- id expected by maven-archetype-plugin to avoid fetching from everywhere -->
+          <!-- id expected by maven-archetype-plugin to avoid fetching from everywhere -->
+          <id>archetype</id>
           <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
           <snapshots>
             <enabled>true</enabled>
@@ -22,7 +25,7 @@ Snapshots require following sections to present in `.m2/settings.xml`:
       </repositories>
     </profile>
   </profiles>
-  
+
   <activeProfiles>
     <activeProfile>ossrh</activeProfile>
   </activeProfiles>

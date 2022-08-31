@@ -24,7 +24,7 @@
       <username>adrian-herscu</username>
       <!-- NOTE: this is a read-only to packages repo; only needed because github requires authentication -->
       <!-- ISSUE cannot put the Personal Access Token (PAT) here -->
-     <password>TBD</password>
+      <password>TBD</password>
     </server>
   </servers>
 </settings>
