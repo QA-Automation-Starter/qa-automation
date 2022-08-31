@@ -28,9 +28,8 @@ jobs:
           cache: maven
           settings-path: ${{ github.workspace }}
 
-      - run: |
-          chmod +x mvnw
-          ./mvnw install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
+      - run: chmod +x mvnw
+      - run: ./mvnw install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
 
   deploy-for-jdk8:
     name: Deploys JDK 8
@@ -38,26 +37,25 @@ jobs:
     environment: development
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-java@v3
-      with:
-        java-version: '8'
-        distribution: 'temurin'
-        cache: maven
-        settings-path: ${{ github.workspace }}
-        server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
-        server-username: OSSRH_USERNAME
-        server-password: OSSRH_PASSWORD
-        gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
-        gpg-passphrase: GPG_PASSPHRASE
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
+          settings-path: ${{ github.workspace }}
+          server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
+          server-username: OSSRH_USERNAME
+          server-password: OSSRH_PASSWORD
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: GPG_PASSPHRASE
 
-    - run: |
-        chmod +x mvnw
-        ./mvnw deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
-      env:
-        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-        OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+      - run: chmod +x mvnw
+      - run: ./mvnw deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
 
   generate-automation-project:
     name: Generates new automation project and builds it
@@ -78,19 +76,22 @@ jobs:
                 }
               }
             ]
-      - uses: actions/setup-java@v3
-        with:
-          java-version: '8'
-          distribution: 'temurin'
-          cache: maven
+
+      # FIXME should set java version explicitly
+      # this one fails due to missing pom.xml ...
+      #      - uses: actions/setup-java@v3
+      #        with:
+      #          java-version: '8'
+      #          distribution: 'temurin'
+      #          cache: maven
       - uses: aahmed-se/setup-maven@v3
         with:
           maven-version: 3.6.1
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
+      - run: ls
       - run: |
-          ls
           mvn --batch-mode archetype:generate \
             -DarchetypeGroupId=dev.aherscu.qa \
             -DarchetypeArtifactId=qa-testing-archetype \
@@ -99,5 +100,5 @@ jobs:
             -DartifactId=testing \
             -Dversion=1.0-SNAPSHOT \
             -Dpackage=com.acme.testing
-          cd testing
-          mvn
+      - run: cd testing
+      - run: mvn
