@@ -66,6 +66,7 @@
     <screenshots>true</screenshots>
 
     <maven.test.skip>false</maven.test.skip>
+    <gpg.skip>true</gpg.skip>
 
     <title>${project.name} ${device.type} [#${build.label}]</title>
   </properties>
