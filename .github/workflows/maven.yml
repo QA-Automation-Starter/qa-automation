@@ -32,7 +32,7 @@ jobs:
       - run: |
           ./mvnw clean install \
             -DskipTests=true \
-            -s $GITHUB_WORKSPACE/settings.xml 
+            -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-fast,mode-build-quiet
 
   deploy-for-jdk8:
