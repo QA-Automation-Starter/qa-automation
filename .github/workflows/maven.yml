@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java CI with Maven
+name: snapshot build and publish
 
 on:
   push:
@@ -12,7 +12,7 @@ on:
 jobs:
 
   build-for-future-jdks:
-    name: Ensures JDK ${{ matrix.java-version }} builds w/o tests
+    name: jdk-${{ matrix.java-version }} build w/o tests
     runs-on: ubuntu-latest
 
     strategy:
@@ -32,7 +32,7 @@ jobs:
       - run: ./mvnw clean install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
 
   deploy-for-jdk8:
-    name: Deploys JDK 8
+    name: jdk-8 snapshot publish
     runs-on: ubuntu-latest
     environment: development
 
@@ -84,8 +84,7 @@ jobs:
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
-      - name: Cache local Maven repository
-        uses: actions/cache@v2
+      - uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
