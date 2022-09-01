@@ -76,6 +76,7 @@ jobs:
           repositories: >
             [
               {
+                "id": "ossrh",
                 "url": "https://s01.oss.sonatype.org/content/repositories/snapshots",
                 "snapshots": {
                     "enabled": "true",
