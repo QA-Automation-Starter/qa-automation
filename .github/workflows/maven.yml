@@ -29,7 +29,11 @@ jobs:
           settings-path: ${{ github.workspace }}
 
       - run: chmod +x mvnw
-      - run: ./mvnw clean install -DskipTests=true -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-fast,mode-build-quiet
+      - run: |
+          ./mvnw clean install \
+            -DskipTests=true \
+            -s $GITHUB_WORKSPACE/settings.xml 
+            -Pmode-build-fast,mode-build-quiet
 
   deploy-for-jdk8:
     name: jdk-8 snapshot publish
@@ -51,7 +55,10 @@ jobs:
           gpg-passphrase: GPG_PASSPHRASE
 
       - run: chmod +x mvnw
-      - run: ./mvnw clean deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
+      - run: |
+          ./mvnw clean deploy \
+            -s $GITHUB_WORKSPACE/settings.xml \
+            -Pmode-build-quiet
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
@@ -61,9 +68,11 @@ jobs:
     name: Generates new automation project and builds it
     needs: deploy-for-jdk8
     runs-on: ubuntu-latest
+    environment: development
 
     steps:
-      - uses: whelk-io/maven-settings-xml-action@v20
+      - name: setup maven for sonatype snapshots
+        uses: whelk-io/maven-settings-xml-action@v20
         with:
           repositories: >
             [
@@ -78,20 +87,23 @@ jobs:
             ]
 
       # FIXME should run with controlled java version
-      - uses: aahmed-se/setup-maven@v3
+      - name: bootstrap maven
+        uses: aahmed-se/setup-maven@v3
         with:
           maven-version: 3.6.1
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
-      - uses: actions/cache@v2
+      - name: setup maven cache
+        uses: actions/cache@v2
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - run: |
+      - name: generate testing project
+        run: |
           mvn --batch-mode archetype:generate \
             -DarchetypeGroupId=dev.aherscu.qa \
             -DarchetypeArtifactId=qa-testing-archetype \
@@ -100,4 +112,8 @@ jobs:
             -DartifactId=testing \
             -Dversion=1.0-SNAPSHOT \
             -Dpackage=com.acme.testing
-      - run: cd testing && mvn
+
+      - name: build testing project
+        run: cd testing && chmod +x mvnw && ./mvnw
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
