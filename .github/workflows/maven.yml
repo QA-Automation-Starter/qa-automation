@@ -71,21 +71,6 @@ jobs:
     environment: development
 
     steps:
-      - name: setup maven for sonatype snapshots
-        uses: whelk-io/maven-settings-xml-action@v20
-        with:
-          repositories: >
-            [
-              {
-                "id": "archetype",
-                "url": "https://s01.oss.sonatype.org/content/repositories/snapshots",
-                "snapshots": {
-                    "enabled": "true",
-                    "checksumPolicy": "warn"
-                }
-              }
-            ]
-
       # FIXME should run with controlled java version
       - name: bootstrap maven
         uses: aahmed-se/setup-maven@v3
