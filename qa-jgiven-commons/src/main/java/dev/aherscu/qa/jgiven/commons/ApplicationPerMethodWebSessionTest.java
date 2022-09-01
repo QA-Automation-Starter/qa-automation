@@ -75,7 +75,7 @@ public abstract class ApplicationPerMethodWebSessionTest<C extends WebDriverConf
     @BeforeMethod
     @SneakyThrows
     protected void beforeMethodOpenWebDriver() {
-        log.debug("before method openning web driver");
+        log.debug("before method opening web driver");
         webDriver.set(WebDriverEx
             .from(configuration().capabilities()));
     }
