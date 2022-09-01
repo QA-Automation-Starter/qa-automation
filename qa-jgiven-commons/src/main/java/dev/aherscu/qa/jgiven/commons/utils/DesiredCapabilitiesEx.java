@@ -19,6 +19,8 @@ package dev.aherscu.qa.jgiven.commons.utils;
 import static java.util.Objects.*;
 
 import java.lang.SuppressWarnings;
+import java.util.*;
+import java.util.stream.*;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
@@ -48,6 +50,14 @@ public class DesiredCapabilitiesEx extends DesiredCapabilities {
      */
     public DesiredCapabilitiesEx(final Capabilities capabilities) {
         super(capabilities);
+    }
+
+    public DesiredCapabilitiesEx with(
+        final Stream<Map.Entry<String, Object>> properties) {
+        val ammendedCapabilities = new DesiredCapabilitiesEx(this);
+        properties.forEach(e -> ammendedCapabilities
+            .setCapability(e.getKey(), e.getValue()));
+        return ammendedCapabilities;
     }
 
     /**
