@@ -68,7 +68,6 @@ jobs:
     name: Generates new automation project and builds it
     needs: deploy-for-jdk8
     runs-on: ubuntu-latest
-    environment: development
 
     steps:
       # FIXME should run with controlled java version
@@ -100,5 +99,3 @@ jobs:
 
       - name: build testing project
         run: cd testing && chmod +x mvnw && ./mvnw
-        env:
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
