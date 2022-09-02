@@ -222,6 +222,7 @@ public class WebDriverConfiguration extends BaseConfiguration {
                         .with(requiredCapabilitiesGroup
                             .entrySet()
                             .stream()
+                            .filter(e -> !"type".equals(e.getKey()))
                             .map(e -> Maps.immutableEntry(
                                 e.getKey(),
                                 e.getValue()))));
