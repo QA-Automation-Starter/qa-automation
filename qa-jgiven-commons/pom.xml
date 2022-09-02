@@ -14,7 +14,9 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -27,6 +29,17 @@
   <packaging>jar</packaging>
 
   <name>QA JGiven Commons</name>
+  <description>
+    Provides JGiven-style actions and verifications around various
+    types of WebDrivers, JAX-RS, and SSH protocol. All actions and
+    verifications, reuse generic ones, which use the FailFast retry mechanism to
+    ensure failures are never due to application latency. In addition,
+    adapts Apache Commons Configuration to be used for loading test
+    properties and DBUtils for managing database-driven tests.
+  </description>
+  <url>
+    https://github.com/QA-Automation-Starter/qa-automation/tree/main/qa-jgiven-commons
+  </url>
 
   <properties>
     <powermock.version>2.0.5</powermock.version>

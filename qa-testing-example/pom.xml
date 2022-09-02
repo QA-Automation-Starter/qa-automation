@@ -31,7 +31,13 @@
   <packaging>jar</packaging>
 
   <name>QA Testing Example</name>
-  <url>TBD</url>
+  <description>
+    Demonstrates how to use QA Automation infrastructure for testing. Provides
+    overviews and example tests.
+  </description>
+  <url>
+    https://github.com/QA-Automation-Starter/qa-automation/tree/main/qa-testing-example
+  </url>
 
   <properties>
     <application.filename>Microsoft.WindowsCalculator_8wekyb3d8bbwe!App

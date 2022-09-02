@@ -1,5 +1,7 @@
 # QA Testing Archetype
 
+Generates a template Maven project with the QA Automation built-in.
+
 See [generate-example-project.bat](generate-example-project.bat) for an working
 demo.
 

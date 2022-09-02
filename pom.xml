@@ -31,12 +31,12 @@
   <packaging>pom</packaging>
 
   <name>QA Automation</name>
-  <description>Support for BDD-style Selenium-based QA automation.
+  <description>Support for BDD-style QA automation.
     Generates skeleton project with all required dependencies, preconfigured
     loggers, execution profiles for different environments and devices.
     Compatible with Java 8 and Java 11 and beyond.
   </description>
-  <url>https://github.com/adrian-herscu/qa-automation</url>
+  <url>https://github.com/QA-Automation-Starter/qa-automation</url>
 
   <licenses>
     <license>

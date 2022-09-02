@@ -29,8 +29,13 @@
   <packaging>maven-plugin</packaging>
 
   <name>QA S3 Uploader Maven Plugin</name>
-  <description>Maven plugin for uploading static site content to AWS S3
+  <description>
+    Binds to Maven's prepare-package phase to publish test reports on
+    an AWS S3 bucket.
   </description>
+  <url>
+    https://github.com/QA-Automation-Starter/qa-automation/tree/main/qa-s3-uploader-maven-plugin
+  </url>
 
   <properties>
     <maven.test.skip>true</maven.test.skip>

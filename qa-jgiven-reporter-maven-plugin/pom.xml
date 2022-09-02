@@ -15,7 +15,9 @@
   ~ limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -29,7 +31,14 @@
   <packaging>maven-plugin</packaging>
 
   <name>QA JGiven Reporter Maven Plugin</name>
-  <url>TBD</url>
+  <description>
+    Binds to Maven's verify phase to generate HTML/PDF reports from JGiven's
+    JSON Report files. Currently, works with internal JMustache templates
+    providing no customization means.
+  </description>
+  <url>
+    https://github.com/QA-Automation-Starter/qa-automation/tree/main/qa-jgiven-reporter-maven-plugin
+  </url>
 
   <dependencies>
     <dependency>
