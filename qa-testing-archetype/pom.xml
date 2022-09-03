@@ -45,6 +45,16 @@
   </properties>
 
   <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources/archetype-resources</directory>
+        <includes>
+          <!-- NOTE contains project.version reference -->
+          <include>pom.xml</include>
+        </includes>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
     <extensions>
       <extension>
         <groupId>org.apache.maven.archetype</groupId>
