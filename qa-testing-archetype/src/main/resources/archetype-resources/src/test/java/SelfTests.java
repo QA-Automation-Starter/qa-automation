@@ -16,6 +16,8 @@
 
 package ${package}.scenarios;
 
+import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
+
 import org.testng.annotations.*;
 
 import lombok.extern.slf4j.*;

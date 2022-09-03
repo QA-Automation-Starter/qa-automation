@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ${model}.scenarios;
+package ${package}.scenarios;
 
 import org.testng.annotations.*;
 
