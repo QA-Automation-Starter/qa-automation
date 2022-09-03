@@ -1,3 +1,4 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/dev.aherscu.qa/qa-automation/badge.svg)](https://maven-badges.herokuapp.com/maven-central/dev.aherscu.qa/qa-automation)
 [![Apache License 2.0](https://img.shields.io/badge/license-apache2-red.svg?style=flat-square)](http://opensource.org/licenses/Apache-2.0)
 ![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/maven.yml/badge.svg)
 [![Open Source Helpers](https://www.codetriage.com/adrian-herscu/qa-automation/badges/users.svg)](https://www.codetriage.com/adrian-herscu/qa-automation)
@@ -13,6 +14,7 @@ and multiple device types, ready to run on your Jenkins?
 
 Then, assuming JDK 8 and Maven 3.6+ are already installed,
 on Windows it would be:
+
 ```shell
 mvn --batch-mode archetype:generate ^
   -Dmaven.wagon.http.ssl.insecure=true ^
@@ -26,12 +28,14 @@ mvn --batch-mode archetype:generate ^
 ```
 
 and building it:
+
 ```shell
 cd testing
 mvn
 ```
 
 and coding a test would look like this:
+
 ```java
 public class ATest extends CalculatorTest {
     @Test(dataProvider = INTERNAL_DATA_PROVIDER)
@@ -47,15 +51,17 @@ public class ATest extends CalculatorTest {
 
 After running it, above code will be nicely reflected in a BDD report.
 
-see [Working Examples](qa-testing-example/README.md) 
+see [Working Examples](qa-testing-example/README.md)
 
 # More details
+
 [QA Testing Archetype](qa-testing-archetype/README.md) generates an automation
 project, with all required dependencies for TestNG, BDD-reporting, Selenium,
 Appium, SouceLabs integration, Unitils, DbUnit, and many other utility libraries
 which I found useful across a dozen of projects.
 
 All above pieces are already integrated, all you have to do is:
+
 1. derive your automation classes from specific base class
 2. define your own configuration and environments
 
@@ -92,10 +98,12 @@ In IntelliJ, this file should be imported via the Eclipse Code Formatter plugin
 In Eclipse, this file is supported natively.
 
 Maven builds, by default, format the code, unless launched with
-'mode-build-fast' profile. 
+'mode-build-fast' profile.
 
 ## GPG Public Key
+
 <https://keys.openpgp.org/search?q=39F1B2495B0260B2D974C634F89B5DBA3AF082E0>
 
 ## Sonatype Repo
+
 <https://s01.oss.sonatype.org/>

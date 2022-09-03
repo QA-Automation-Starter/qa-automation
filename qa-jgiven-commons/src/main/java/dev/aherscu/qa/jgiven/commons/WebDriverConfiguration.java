@@ -19,7 +19,6 @@ package dev.aherscu.qa.jgiven.commons;
 import static com.google.common.base.Suppliers.*;
 import static dev.aherscu.qa.jgiven.commons.utils.SessionName.*;
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
-import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static java.util.Collections.*;
 import static java.util.Locale.*;
 import static java.util.Objects.*;
@@ -217,12 +216,16 @@ public class WebDriverConfiguration extends BaseConfiguration {
 
     private Stream<DesiredCapabilitiesEx> loadRequiredCapabilities() {
         return groupsOf("required.capability")
-            .map(group -> new DesiredCapabilitiesEx(
-                capabilitiesFor(provider() + group.get("type")))
-                    .with(DEVICE_NAME, group.get("device.name"))
-                    .with(PLATFORM, group.get("platform"))
-                    .with(PLATFORM_VERSION, group.get("platform.version"))
-                    .with("appiumVersion", group.get("appium.version")));
+            .map(requiredCapabilitiesGroup -> new DesiredCapabilitiesEx(
+                capabilitiesFor(
+                    provider() + requiredCapabilitiesGroup.get("type")))
+                        .with(requiredCapabilitiesGroup
+                            .entrySet()
+                            .stream()
+                            .filter(e -> !"type".equals(e.getKey()))
+                            .map(e -> Maps.immutableEntry(
+                                e.getKey(),
+                                e.getValue()))));
     }
 
     /**

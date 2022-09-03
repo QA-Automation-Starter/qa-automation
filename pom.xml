@@ -14,9 +14,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <!-- see
@@ -27,16 +25,16 @@
 
   <groupId>dev.aherscu.qa</groupId>
   <artifactId>qa-automation</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>QA Automation</name>
-  <description>Support for BDD-style Selenium-based QA automation.
+  <description>Support for BDD-style QA automation.
     Generates skeleton project with all required dependencies, preconfigured
     loggers, execution profiles for different environments and devices.
     Compatible with Java 8 and Java 11 and beyond.
   </description>
-  <url>https://github.com/adrian-herscu/qa-automation</url>
+  <url>https://github.com/QA-Automation-Starter/qa-automation</url>
 
   <licenses>
     <license>
@@ -56,9 +54,10 @@
     <connection>scm:git:https://github.com/adrian-herscu/qa-automation.git
     </connection>
     <developerConnection>
-      scm:git:ssh://git@github.com:adrian-herscu/qa-automation.git
+      scm:git:ssh://git@github.com/adrian-herscu/qa-automation.git
     </developerConnection>
     <url>https://github.com/adrian-herscu/qa-automation</url>
+    <tag>HEAD</tag>
   </scm>
 
   <modules>
@@ -191,6 +190,17 @@
     <pluginManagement>
       <plugins>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.0.0-M6</version>
+          <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <useReleaseProfile>false</useReleaseProfile>
+            <goals>deploy</goals>
+          </configuration>
+        </plugin>
+
+        <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.2.0</version>
         </plugin>
@@ -209,76 +219,6 @@
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>3.0.0-M1</version>
-        </plugin>
-
-        <!--This plugin's configuration is used to store Eclipse m2e settings only.
-        It has no influence on the Maven build itself.-->
-        <plugin>
-          <groupId>org.eclipse.m2e</groupId>
-          <artifactId>lifecycle-mapping</artifactId>
-          <version>1.0.0</version>
-          <configuration>
-            <lifecycleMappingMetadata>
-              <pluginExecutions>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-plugin-plugin</artifactId>
-                    <versionRange>[3.6.1,)</versionRange>
-                    <goals>
-                      <goal>descriptor</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-help-plugin</artifactId>
-                    <versionRange>[3.2.0,)</versionRange>
-                    <goals>
-                      <goal>active-profiles</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore></ignore>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <!-- The update site for Findbugs M2E connector
-                  https://github.com/m2e-code-quality/m2e-code-quality
-                  is invalid-->
-                  <pluginExecutionFilter>
-                    <groupId>com.github.spotbugs</groupId>
-                    <artifactId>spotbugs-maven-plugin</artifactId>
-                    <versionRange>[1.0.0,)</versionRange>
-                    <goals>
-                      <goal>check</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore/>
-                  </action>
-                </pluginExecution>
-                <pluginExecution>
-                  <pluginExecutionFilter>
-                    <groupId>com.nickwongdev</groupId>
-                    <artifactId>aspectj-maven-plugin</artifactId>
-                    <versionRange>[1.0,)</versionRange>
-                    <goals>
-                      <goal>compile</goal>
-                      <goal>test-compile</goal>
-                    </goals>
-                  </pluginExecutionFilter>
-                  <action>
-                    <ignore/>
-                  </action>
-                </pluginExecution>
-              </pluginExecutions>
-            </lifecycleMappingMetadata>
-          </configuration>
         </plugin>
 
         <!-- ISSUE: fixing the javadocs is too slow and generates lots of errors;
@@ -357,8 +297,8 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
             <showWeaveInfo>${aspectj.showWeaveInfo}</showWeaveInfo>
-            <sources/>
-            <testSources/>
+            <sources />
+            <testSources />
             <verbose>${aspectj.verbose}</verbose>
             <Xlint>ignore</Xlint>
             <!-- NOTE: Lombok requires compilation via javac,
@@ -543,9 +483,7 @@
               </goals>
               <configuration>
                 <target>
-                  <jar
-                    destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
-                    basedir="${delombok.directory}"/>
+                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}" />
                 </target>
               </configuration>
             </execution>
@@ -591,7 +529,8 @@
         <configuration>
           <serverId>ossrh</serverId>
           <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
+          <!-- TODO mark as true after everything works -->
+          <autoReleaseAfterClose>false</autoReleaseAfterClose>
         </configuration>
       </plugin>
 
@@ -624,6 +563,7 @@
         </executions>
         <configuration>
           <doclint>none</doclint>
+          <quiet>true</quiet>
         </configuration>
       </plugin>
 
@@ -783,6 +723,91 @@
       <properties>
         <aspectj.skip>true</aspectj.skip>
       </properties>
+    </profile>
+
+    <profile>
+      <!--This plugin's configuration is used to store Eclipse m2e settings only.
+        It has no influence on the Maven build itself.-->
+      <!-- https://stackoverflow.com/questions/7905501/get-rid-of-pom-not-found-warning-for-org-eclipse-m2elifecycle-mapping -->
+      <id>mode-eclipse</id>
+      <activation>
+        <property>
+          <name>m2e.version</name>
+        </property>
+      </activation>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.eclipse.m2e</groupId>
+              <artifactId>lifecycle-mapping</artifactId>
+              <version>1.0.0</version>
+              <configuration>
+                <lifecycleMappingMetadata>
+                  <pluginExecutions>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-plugin-plugin</artifactId>
+                        <versionRange>[3.6.1,)</versionRange>
+                        <goals>
+                          <goal>descriptor</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-help-plugin</artifactId>
+                        <versionRange>[3.2.0,)</versionRange>
+                        <goals>
+                          <goal>active-profiles</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <!-- The update site for Findbugs M2E connector
+                      https://github.com/m2e-code-quality/m2e-code-quality
+                      is invalid-->
+                      <pluginExecutionFilter>
+                        <groupId>com.github.spotbugs</groupId>
+                        <artifactId>spotbugs-maven-plugin</artifactId>
+                        <versionRange>[1.0.0,)</versionRange>
+                        <goals>
+                          <goal>check</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                    <pluginExecution>
+                      <pluginExecutionFilter>
+                        <groupId>com.nickwongdev</groupId>
+                        <artifactId>aspectj-maven-plugin</artifactId>
+                        <versionRange>[1.0,)</versionRange>
+                        <goals>
+                          <goal>compile</goal>
+                          <goal>test-compile</goal>
+                        </goals>
+                      </pluginExecutionFilter>
+                      <action>
+                        <ignore />
+                      </action>
+                    </pluginExecution>
+                  </pluginExecutions>
+                </lifecycleMappingMetadata>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
     </profile>
   </profiles>
 </project>

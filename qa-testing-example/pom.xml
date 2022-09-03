@@ -15,15 +15,13 @@
   ~ limitations under the License.
   -->
 <!--suppress ALL -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-testing-parent</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <relativePath>../qa-testing-parent</relativePath>
   </parent>
 
@@ -31,7 +29,13 @@
   <packaging>jar</packaging>
 
   <name>QA Testing Example</name>
-  <url>TBD</url>
+  <description>
+    Demonstrates how to use QA Automation infrastructure for testing. Provides
+    overviews and example tests.
+  </description>
+  <url>
+    https://github.com/QA-Automation-Starter/qa-automation/tree/main/qa-testing-example
+  </url>
 
   <properties>
     <application.filename>Microsoft.WindowsCalculator_8wekyb3d8bbwe!App
@@ -42,6 +46,21 @@
     <defaultGoal>verify</defaultGoal>
 
     <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok-maven-plugin</artifactId>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+      </plugin>
+
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>properties-maven-plugin</artifactId>

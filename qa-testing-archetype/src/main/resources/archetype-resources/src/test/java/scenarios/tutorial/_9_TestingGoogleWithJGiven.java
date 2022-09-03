@@ -34,7 +34,8 @@ import lombok.*;
 
 public class _9_TestingGoogleWithJGiven
     extends
-    ApplicationPerClassWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
+    ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>,
+            GoogleActions<?>, GoogleVerifications<?>> {
 
     protected _9_TestingGoogleWithJGiven() {
         super(TestConfiguration.class);
@@ -66,11 +67,11 @@ public class _9_TestingGoogleWithJGiven
                     titleRule));
     }
 
-    @BeforeClass
+    @BeforeMethod
     @SneakyThrows
     @Override
-    public void beforeClassOpenWebDriver() {
-        super.beforeClassOpenWebDriver();
+    public void beforeMethodOpenWebDriver() {
+        super.beforeMethodOpenWebDriver();
         webDriver.get().asRemote().manage().window().maximize();
     }
 }

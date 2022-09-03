@@ -16,24 +16,29 @@
 
 package ${package}.scenarios;
 
-import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
-
 import org.testng.annotations.*;
 
 import lombok.extern.slf4j.*;
 
 @Slf4j
-public class SelfTests extends AbstractSelfTests {
-    // try here your hamcrest assertions
-
-    @Test(dataProvider = INTERNAL_DATA_PROVIDER)
-    public void shouldRun(final int id) {
-        log.debug("runs with {}", id);
+public class AbstractSelfTests {
+    @AfterMethod
+    protected void afterMethod() {
+        log.debug("after method");
     }
 
-    @DataProvider
-    private Object[][] data() {
-        return new Object[][] { { 1 }, { 2 } };
+    @BeforeMethod
+    protected void beforeMethod() {
+        log.debug("before method");
     }
 
+    @BeforeClass
+    public void beforeClass() {
+        log.debug("before class");
+    }
+
+    @AfterClass
+    public void afterClass() {
+        log.debug("after class");
+    }
 }

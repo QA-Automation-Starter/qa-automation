@@ -47,15 +47,15 @@ import lombok.extern.slf4j.*;
 public abstract class ApplicationPerMethodWebSessionTest<C extends WebDriverConfiguration, GIVEN extends WebDriverFixtures<?>, WHEN extends WebDriverActions<?>, THEN extends WebDriverVerifications<?>>
     extends ApplicationUnmanagedSessionTest<C, GIVEN, WHEN, THEN> {
 
-    protected ApplicationPerMethodWebSessionTest(Class<C> configurationType) {
-        super(configurationType);
-    }
-
     /**
      * WebDriver client to be managed by this scenario.
      */
     protected final ThreadLocal<WebDriverEx> webDriver =
         new ThreadLocal<>();
+
+    protected ApplicationPerMethodWebSessionTest(Class<C> configurationType) {
+        super(configurationType);
+    }
 
     /**
      * After each test method finishes, closes the managed WebDriver.
@@ -75,7 +75,7 @@ public abstract class ApplicationPerMethodWebSessionTest<C extends WebDriverConf
     @BeforeMethod
     @SneakyThrows
     protected void beforeMethodOpenWebDriver() {
-        log.debug("before method openning web driver");
+        log.debug("before method opening web driver");
         webDriver.set(WebDriverEx
             .from(configuration().capabilities()));
     }

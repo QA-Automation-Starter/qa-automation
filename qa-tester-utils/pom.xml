@@ -14,21 +14,30 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-tester-utils</artifactId>
   <packaging>jar</packaging>
 
   <name>QA Tester Utilities</name>
+  <description>
+    JAX-RS generic providers, authenticators and logging filters, an
+    auto-returning pool implementation based on Apache Commons Pooling, a
+    wrapper around Apache Commons Configuration, various assertions for JSON and
+    XML, a Read-Multi-Write lock, Hamcrest Matchers extensions for streams,
+    and many other utilities for handling text, streams, lists, maps, etc.
+    In addition, provides an AWS Cognito SRP filter for JAX-RS and a CLI for it.
+  </description>
+  <url>
+    https://github.com/QA-Automation-Starter/qa-automation/tree/main/qa-tester-utils
+  </url>
 
   <repositories>
     <repository>
@@ -417,8 +426,7 @@
                     </filter>
                   </filters>
                   <transformers>
-                    <transformer
-                      implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                       <manifestEntries>
                         <Main-Class>
                           dev.aherscu.qa.tester.utils.rest.AwsCognitoSrpAuthenticator

@@ -16,6 +16,24 @@
 
 package dev.aherscu.qa.testing.example.scenarios;
 
-public class SelfTests {
+import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
+
+import org.testng.annotations.*;
+
+import lombok.extern.slf4j.*;
+
+@Slf4j
+public class SelfTests extends AbstractSelfTests {
     // try here your hamcrest assertions
+
+    @Test(dataProvider = INTERNAL_DATA_PROVIDER)
+    public void shouldRun(final int id) {
+        log.debug("runs with {}", id);
+    }
+
+    @DataProvider
+    private Object[][] data() {
+        return new Object[][] { { 1 }, { 2 } };
+    }
+
 }
