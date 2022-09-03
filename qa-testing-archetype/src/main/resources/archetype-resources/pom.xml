@@ -23,8 +23,8 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-testing-parent</artifactId>
-    <!-- NOTE filtered by maven-resources-pluging -->
-    <version>${project.version}</version>
+    <!-- FIXME must bump-up automatically during release -->
+    <version>0.0.2-SNAPSHOT</version>
   </parent>
 
   <groupId>${groupId}</groupId>
