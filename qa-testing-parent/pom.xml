@@ -15,13 +15,15 @@
   ~ limitations under the License.
   -->
 <!--suppress ALL -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.3-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-testing-parent</artifactId>
@@ -42,7 +44,7 @@
     <logback.configurationFile>logback-test.xml</logback.configurationFile>
 
     <!-- NOTE: we are not using TestNG grouping mechanism -->
-    <groups />
+    <groups/>
     <silent>true</silent>
 
     <environment>UNDEFINED</environment>
@@ -50,7 +52,7 @@
     <!-- NOTE: these properties are referenced by the failsafe plugin below -->
     <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
     <provider>provider.local.</provider>
-    <device.type />
+    <device.type/>
     <application.uploading.phase>none</application.uploading.phase>
     <!-- NOTE: overriden by jenkins profile below -->
     <build.label>${user.name}@local-${maven.build.timestamp}</build.label>
@@ -68,7 +70,7 @@
     <poll.timeout>15</poll.timeout>
     <poll.delay>5</poll.delay>
 
-    <dryrun />
+    <dryrun/>
     <screenshots>true</screenshots>
 
     <maven.test.skip>false</maven.test.skip>
@@ -98,7 +100,7 @@
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-commons</artifactId>
-      <version>0.0.3-SNAPSHOT</version>
+      <version>0.0.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.javalite</groupId>
@@ -331,7 +333,7 @@
     <profile>
       <id>mode-noscreenshots</id>
       <properties>
-        <screenshots />
+        <screenshots/>
       </properties>
     </profile>
 
@@ -342,7 +344,7 @@
 
         <build.tags>dryrun</build.tags>
         <application.filename>NA</application.filename>
-        <device.type />
+        <device.type/>
 
         <jgiven.report.dir>target/jgiven-reports/dryrun/${build.label}
         </jgiven.report.dir>
