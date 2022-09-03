@@ -22,6 +22,12 @@
   xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
   name="${artifactId}">
 
+  <requiredProperties>
+    <requiredProperty key="projectVersion">
+      <defaultValue>${project.version}</defaultValue>
+    </requiredProperty>
+  </requiredProperties>
+
   <fileSets>
     <fileSet filtered="true" packaged="false">
       <directory/>
