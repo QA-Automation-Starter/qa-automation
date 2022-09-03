@@ -732,7 +732,7 @@
       <!--This plugin's configuration is used to store Eclipse m2e settings only.
         It has no influence on the Maven build itself.-->
       <!-- https://stackoverflow.com/questions/7905501/get-rid-of-pom-not-found-warning-for-org-eclipse-m2elifecycle-mapping -->
-      <id>eclipse</id>
+      <id>mode-eclipse</id>
       <activation>
         <property>
           <name>m2e.version</name>
