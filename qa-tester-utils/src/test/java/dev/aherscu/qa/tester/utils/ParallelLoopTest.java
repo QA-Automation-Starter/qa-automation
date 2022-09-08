@@ -43,7 +43,7 @@ public class ParallelLoopTest {
     @Test(timeOut = TIMEOUT_MS)
     public void shouldLoopFasterInParallel() {
         ParallelLoop.PROTOTYPE
-            .withThreadPool(new ForkJoinPool(10))
+            .withThreadPool(new ForkJoinPool())
             .withRepetitions(REPETITIONS)
             .run(i -> {
                 sleep(INTERVAL_MS);
