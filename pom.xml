@@ -136,7 +136,7 @@ git@github.com: Permission denied (publickey).
 fatal: Could not read from remote repository.
       -->
       <url>
-        scm:git:ssh://git@github-personal/QA-Automation-Starter/qa-automation.git
+        scm:git:ssh://git@github.com/QA-Automation-Starter/qa-automation.git
       </url>
     </site>
     <repository>
