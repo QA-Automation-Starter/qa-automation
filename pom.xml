@@ -14,7 +14,9 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <!-- see
@@ -51,12 +53,13 @@
   </developers>
 
   <scm>
-    <connection>scm:git:https://github.com/adrian-herscu/qa-automation.git
+    <connection>
+      scm:git:https://github.com/QA-Automation-Starter/qa-automation.git
     </connection>
     <developerConnection>
-      scm:git:ssh://git@github.com/adrian-herscu/qa-automation.git
+      scm:git:ssh://git@github.com/QA-Automation-Starter/qa-automation.git
     </developerConnection>
-    <url>https://github.com/adrian-herscu/qa-automation</url>
+    <url>https://github.com/QA-Automation-Starter/qa-automation</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -120,6 +123,20 @@
   </pluginRepositories>
 
   <distributionManagement>
+    <site>
+      <id>github</id>
+      <!--
+[INFO] Checking out the pub tree from scm:git:ssh://git@github-personal/QA-Automation-Starter/qa-automation.git into C:\projects\qa-automation\target\scmpublish-checkout
+[INFO] Executing: cmd.exe /X /C "git clone -branch gh-pages ssh:********@github-personal/QA-Automation-Starter/qa-automation.git scmpublish-checkout"
+[INFO] Working directory: C:\projects\qa-automation\target
+[ERROR] Failed to check out from SCM: The git-clone command failed. Cloning into 'scmpublish-checkout'...
+git@github.com: Permission denied (publickey).
+fatal: Could not read from remote repository.
+      -->
+      <url>
+        scm:git:ssh://git@github-personal/QA-Automation-Starter/qa-automation.git
+      </url>
+    </site>
     <repository>
       <id>ossrh</id>
       <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/
@@ -189,6 +206,14 @@
 
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-scm-publish-plugin</artifactId>
+          <version>3.1.0</version>
+          <configuration>
+            <scmBranch>gh-pages</scmBranch>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
@@ -297,8 +322,8 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
             <showWeaveInfo>${aspectj.showWeaveInfo}</showWeaveInfo>
-            <sources />
-            <testSources />
+            <sources/>
+            <testSources/>
             <verbose>${aspectj.verbose}</verbose>
             <Xlint>ignore</Xlint>
             <!-- NOTE: Lombok requires compilation via javac,
@@ -483,7 +508,9 @@
               </goals>
               <configuration>
                 <target>
-                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}" />
+                  <jar
+                    destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
+                    basedir="${delombok.directory}"/>
                 </target>
               </configuration>
             </execution>
@@ -765,7 +792,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -778,7 +805,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -794,7 +821,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -808,7 +835,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                   </pluginExecutions>
