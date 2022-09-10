@@ -160,7 +160,7 @@
     <dependency>
       <groupId>net.sf.oval</groupId>
       <artifactId>oval</artifactId>
-      <version>2.1.5</version>
+      <version>3.2.1</version>
     </dependency>
 
     <dependency>
