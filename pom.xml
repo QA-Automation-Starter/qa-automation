@@ -125,16 +125,9 @@
   <distributionManagement>
     <site>
       <id>github</id>
-      <!--
-mvnw clean site site:stage scm-publish:publish-scm
-fails with:
-[INFO] Checking out the pub tree from scm:git:ssh://git@github-personal/QA-Automation-Starter/qa-automation.git into C:\projects\qa-automation\target\scmpublish-checkout
-[INFO] Executing: cmd.exe /X /C "git clone -branch gh-pages ssh:********@github-personal/QA-Automation-Starter/qa-automation.git scmpublish-checkout"
-[INFO] Working directory: C:\projects\qa-automation\target
-[ERROR] Failed to check out from SCM: The git-clone command failed. Cloning into 'scmpublish-checkout'...
-git@github.com: Permission denied (publickey).
-fatal: Could not read from remote repository.
-      -->
+      <!-- NOTE: publish Maven site using:
+          mvnw clean site site:stage scm-publish:publish-scm
+          -->
       <url>
         scm:git:ssh://git@github.com/QA-Automation-Starter/qa-automation.git
       </url>
