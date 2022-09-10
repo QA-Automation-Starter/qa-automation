@@ -126,6 +126,8 @@
     <site>
       <id>github</id>
       <!--
+mvnw clean site site:stage scm-publish:publish-scm
+fails with:
 [INFO] Checking out the pub tree from scm:git:ssh://git@github-personal/QA-Automation-Starter/qa-automation.git into C:\projects\qa-automation\target\scmpublish-checkout
 [INFO] Executing: cmd.exe /X /C "git clone -branch gh-pages ssh:********@github-personal/QA-Automation-Starter/qa-automation.git scmpublish-checkout"
 [INFO] Working directory: C:\projects\qa-automation\target
