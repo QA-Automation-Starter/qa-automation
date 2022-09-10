@@ -127,6 +127,8 @@
       <id>github</id>
       <!-- NOTE: publish Maven site using:
           mvnw clean site site:stage scm-publish:publish-scm
+          then, the site will appear at:
+          https://qa-automation-starter.github.io/qa-automation/
           -->
       <url>
         scm:git:ssh://git@github.com/QA-Automation-Starter/qa-automation.git
