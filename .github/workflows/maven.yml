@@ -56,7 +56,7 @@ jobs:
 
       - run: chmod +x mvnw
       - run: |
-          ./mvnw clean deploy \
+          ./mvnw clean deploy site site:stage scm-publish:publish-scm \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-quiet
         env:
