@@ -545,6 +545,12 @@
     </pluginManagement>
 
     <plugins>
+      <!-- NOTE: configured according to following guides
+      https://central.sonatype.org/publish/publish-guide/
+      https://maven.apache.org/repository/guide-central-repository-upload.html
+      https://theoverengineered.blog/posts/publishing-my-first-artifact-to-maven-central-using-github-actions
+      https://dzone.com/articles/deploy-maven-central
+      -->
       <plugin>
         <groupId>org.sonatype.plugins</groupId>
         <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -844,4 +850,18 @@
       </build>
     </profile>
   </profiles>
+
+  <reporting>
+    <!-- NOTE: generate a site by running
+      mvnw site site:stage scm-publish:publish-scm
+      -->
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>3.0.0-M7</version>
+      </plugin>
+    </plugins>
+  </reporting>
+
 </project>
