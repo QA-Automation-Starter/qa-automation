@@ -24,7 +24,7 @@ jobs:
           gpg-passphrase: GPG_PASSPHRASE
 
       - run: chmod +x mvnw
-      - run: ./mvnw clean install -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
+      - run: ./mvnw install -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
@@ -33,10 +33,10 @@ jobs:
         with:
           allowUpdates: true
           artifacts: "${{ github.workspace }}/**/target/*.jar"
-#          token: ${{ secrets.GITHUB_TOKEN }}
       - run: chmod +x mvnw
-      - run: ./mvnw clean deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
+      - run: ./mvnw deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+      # TODO run site site:stage scm-publish:publish-scm
