@@ -17,16 +17,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
-    <option name="ignoredFiles">
-      <set>
-        <option value="$PROJECT_DIR$/qa-jgiven-commons/pom.xml" />
-        <option value="$PROJECT_DIR$/qa-jgiven-reporter-maven-plugin/pom.xml" />
-        <option value="$PROJECT_DIR$/qa-orcanos-publisher-maven-plugin/pom.xml" />
-        <option value="$PROJECT_DIR$/qa-s3-uploader-maven-plugin/pom.xml" />
-        <option value="$PROJECT_DIR$/qa-tester-utils/pom.xml" />
-        <option value="$PROJECT_DIR$/qa-testing-parent/pom.xml" />
-      </set>
-    </option>
   </component>
   <component name="ProjectPlainTextFileTypeManager">
     <file url="file://$PROJECT_DIR$/.mvn/jvm.config" />
