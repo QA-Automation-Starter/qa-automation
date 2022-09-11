@@ -30,7 +30,7 @@ jobs:
 
       - run: chmod +x mvnw
       - run: |
-          ./mvnw clean install \
+          ./mvnw install \
             -DskipTests=true \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-fast,mode-build-quiet
@@ -56,7 +56,7 @@ jobs:
 
       - run: chmod +x mvnw
       - run: |
-          ./mvnw clean deploy \
+          ./mvnw deploy \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-quiet
         env:

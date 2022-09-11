@@ -100,6 +100,25 @@ In Eclipse, this file is supported natively.
 Maven builds, by default, format the code, unless launched with
 'mode-build-fast' profile.
 
+## Releasing
+
+Basically, it is just running:
+
+```shell
+mvn release:clean release:prepare
+mvn release:perform
+```
+
+The above have the following effects:
+
+* sources will be tagged according to current version
+* `SNAPSHOT` suffix will be removed
+* artifacts will be deployed to OSSRH releases repository
+* a staging repository will appear
+  at <https://s01.oss.sonatype.org/#stagingRepositories>
+
+The staging repository needs manual approval to be synced to Maven Central.
+
 ## GPG Public Key
 
 <https://keys.openpgp.org/search?q=39F1B2495B0260B2D974C634F89B5DBA3AF082E0>
