@@ -35,7 +35,8 @@ public class ExecutorUtilsTest {
     @SneakyThrows
     @Test(expectedExceptions = TimeoutException.class,
         timeOut = 1_500, // millis
-        invocationCount = 10)
+        invocationCount = 10,
+        groups = { "time-sensitive" })
     public void shouldTimeout() {
         val timeout = Duration.ofSeconds(1);
         assertThat(ExecutorUtils.timeout(() -> {

@@ -15,10 +15,10 @@
   -->
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="QA Tester Utils" verbose="1">
-  <test name="utils" parallel="methods">
+  <test name="utils-slow">
     <groups>
       <run>
-        <exclude name=".*"/>
+        <include name="time-sensitive"/>
       </run>
     </groups>
     <packages>

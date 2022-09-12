@@ -34,8 +34,8 @@ public class ReadMultiWriteLockTest {
         // NOTE: when running with trace may take long time
         .withRepetitions(200_000);
 
-    @Test
-    public void shouldExclusivlyLockForReadsAndWrites() {
+    @Test(groups = { "time-sensitive" })
+    public void shouldExclusivelyLockForReadsAndWrites() {
         val sharedState = new State(MAX_DELAY_MS);
         PARALLEL_LOOP
             .run(id -> State.randomReadWrite()
@@ -57,7 +57,8 @@ public class ReadMultiWriteLockTest {
         });
     }
 
-    @Test(expectedExceptions = ExecutionException.class)
+    @Test(expectedExceptions = ExecutionException.class,
+            groups = { "time-sensitive" })
     public void shouldFailIfNeitherLocked() {
         val sharedState = new State(MAX_DELAY_MS);
         PARALLEL_LOOP
@@ -66,7 +67,8 @@ public class ReadMultiWriteLockTest {
                 : sharedState.read(id));
     }
 
-    @Test(expectedExceptions = ExecutionException.class)
+    @Test(expectedExceptions = ExecutionException.class,
+            groups = { "time-sensitive" })
     public void shouldFailIfNotReadLocked() {
         val sharedState = new State(MAX_DELAY_MS);
         PARALLEL_LOOP
@@ -75,7 +77,8 @@ public class ReadMultiWriteLockTest {
                 : sharedState.read(id));
     }
 
-    @Test(expectedExceptions = ExecutionException.class)
+    @Test(expectedExceptions = ExecutionException.class,
+            groups = { "time-sensitive" })
     public void shouldFailIfNotWriteLocked() {
         val sharedState = new State(MAX_DELAY_MS);
         PARALLEL_LOOP

@@ -28,7 +28,7 @@ import lombok.*;
 public class ParallelLoopTest {
     // NOTE: with less interval will spend more time switching threads
     private static final int INTERVAL_MS = 10;
-    // NOTE: with less repetitions will be more likely to fail due to thread
+    // NOTE: with fewer repetitions will be more likely to fail due to thread
     // setup time
     private static final int REPETITIONS = 1_000;
     private static final int TIMEOUT_MS  = REPETITIONS * INTERVAL_MS * 3 / 10;
@@ -40,12 +40,14 @@ public class ParallelLoopTest {
             sleep(INTERVAL_MS);
     }
 
-    @Test(timeOut = TIMEOUT_MS)
+    @Test(timeOut = TIMEOUT_MS,
+        groups = { "time-sensitive" })
+    // ISSUE not stable when running with 2 processors
     public void shouldLoopFasterInParallel() {
         ParallelLoop.PROTOTYPE
             .withThreadPool(new ForkJoinPool(10))
             .withRepetitions(REPETITIONS)
-            .run(i -> {
+            .run(__ -> {
                 sleep(INTERVAL_MS);
             });
     }
@@ -55,7 +57,7 @@ public class ParallelLoopTest {
     public void shouldLoopSlowly() {
         ParallelLoop.PROTOTYPE
             .withRepetitions(REPETITIONS)
-            .run(i -> {
+            .run(__ -> {
                 sleep(INTERVAL_MS);
             });
     }
