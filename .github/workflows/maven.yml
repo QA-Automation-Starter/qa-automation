@@ -64,6 +64,27 @@ jobs:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
 
+  build-and-test-on-windows:
+    name: windows build&test
+    runs-on: windows-latest
+    environment: development
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
+          settings-path: ${{ github.workspace }}
+
+      - run: chmod +x mvnw
+      # TODO maybe, should re-publish the site from here (?)
+      - run: |
+          ./mvnw install \
+            -s $GITHUB_WORKSPACE/settings.xml \
+            -Pmode-build-quiet,environment-default,testing-windows
+
   generate-automation-project:
     name: Generates new automation project and builds it
     needs: deploy-for-jdk8
