@@ -56,9 +56,9 @@ jobs:
 
       - run: chmod +x mvnw
       - run: |
-          ./mvnw deploy \
+          ./mvnw deploy site site:stage scm-publish:publish-scm \
             -s $GITHUB_WORKSPACE/settings.xml \
-            -Pmode-build-quiet
+            -Pmode-build-quiet,environment-default,testing-tutorials
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
