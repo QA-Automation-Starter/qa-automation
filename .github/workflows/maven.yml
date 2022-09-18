@@ -81,9 +81,10 @@ jobs:
       - run: chmod +x mvnw
       # TODO maybe, should re-publish the site from here (?)
       - run: |
-          ./mvnw install \
-            -s $GITHUB_WORKSPACE/settings.xml \
-            "-Pmode-build-quiet,environment-default,testing-windows"
+          mvnw install ^
+            -s $GITHUB_WORKSPACE/settings.xml ^
+            -Pmode-build-quiet,environment-default,testing-windows
+        shell: cmd
 
   generate-automation-project:
     name: Generates new automation project and builds it
