@@ -41,7 +41,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 5894600,
+              "durationInNanos": 6381400,
               "depth": 0,
               "parentFailed": false
             },
@@ -56,16 +56,16 @@
                   "value": "searching for"
                 },
                 {
-                  "value": "FMUcxT7LW6aynK3U29Wimc5w79CPrGmGsJIUGzvQ",
+                  "value": "mvHSgw3Snb422xsdVZ0wxUcxI3p3AkFs2DAcsHT6",
                   "argumentInfo": {
                     "parameterName": "textToSearch",
                     "argumentName": "something",
-                    "formattedValue": "FMUcxT7LW6aynK3U29Wimc5w79CPrGmGsJIUGzvQ"
+                    "formattedValue": "mvHSgw3Snb422xsdVZ0wxUcxI3p3AkFs2DAcsHT6"
                   }
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 820600,
+              "durationInNanos": 1322800,
               "depth": 0,
               "parentFailed": false
             },
@@ -89,20 +89,20 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 971600,
+              "durationInNanos": 1677400,
               "depth": 0,
               "parentFailed": false
             }
           ],
           "explicitArguments": [
-            "FMUcxT7LW6aynK3U29Wimc5w79CPrGmGsJIUGzvQ",
+            "mvHSgw3Snb422xsdVZ0wxUcxI3p3AkFs2DAcsHT6",
             "contains \u003c0L\u003e items"
           ],
           "derivedArguments": [
-            "FMUcxT7LW6aynK3U29Wimc5w79CPrGmGsJIUGzvQ",
+            "mvHSgw3Snb422xsdVZ0wxUcxI3p3AkFs2DAcsHT6",
             "contains \u003c0L\u003e items"
           ],
-          "durationInNanos": 34260400
+          "durationInNanos": 70656300
         },
         {
           "caseNr": 2,
@@ -126,7 +126,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 558600,
+              "durationInNanos": 566700,
               "depth": 0,
               "parentFailed": false
             },
@@ -150,7 +150,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 474200,
+              "durationInNanos": 1878400,
               "depth": 0,
               "parentFailed": false
             },
@@ -174,7 +174,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 542900,
+              "durationInNanos": 937600,
               "depth": 0,
               "parentFailed": false
             }
@@ -187,10 +187,10 @@
             "testng",
             "All to match \u003ca string containing \"testng\" ignoring case\u003e"
           ],
-          "durationInNanos": 2717400
+          "durationInNanos": 5063700
         }
       ],
-      "durationInNanos": 36977800
+      "durationInNanos": 75720000
     }
   ],
   "tagMap": {
