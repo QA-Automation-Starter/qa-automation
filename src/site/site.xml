@@ -35,20 +35,17 @@
       <!-- TODO: publish GitHub Pages under custom domain -->
       <!--      <googleSearch/>-->
     </fluidoSkin>
-    <p>Custom content</p>
   </custom>
 
   <body>
     <head>
       <![CDATA[<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>]]>
     </head>
-    <menu name="Overview">
-      <item name="Custom Content" href="custom-content.html"/>
-      <!-- TODO link JGiven Report;
-       otherwise, implement a Maven Report Plugin for JGiven;
-       see https://maven.apache.org/guides/plugin/guide-java-report-plugin-development.html -->
-    </menu>
+    <!--    <menu name="Overview">-->
+    <!--      <item name="Custom Content" href="custom-content.html"/>-->
+    <!--    </menu>-->
     <menu ref="parent" inherit="top"/>
+    <menu ref="modules" inherit="bottom"/>
     <menu ref="reports" inherit="bottom"/>
     <!--    <links>-->
     <!--      <item name="link-Foo" href="http://www.apache.org"/>-->
