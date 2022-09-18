@@ -82,7 +82,7 @@ jobs:
       - run: |
           mvnw install ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
-            -Pmode-build-fast,mode-build-quiet,mode-build-quiet,environment-default,testing-windows
+            -Pmode-build-fast,mode-build-quiet,environment-default,testing-windows
         shell: cmd
 
   generate-automation-project:
