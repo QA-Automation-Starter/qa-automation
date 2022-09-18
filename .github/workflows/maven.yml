@@ -78,11 +78,10 @@ jobs:
           cache: maven
           settings-path: ${{ github.workspace }}
 
-      - run: chmod +x mvnw
       # TODO maybe, should re-publish the site from here (?)
       - run: |
           mvnw install ^
-            -s $GITHUB_WORKSPACE/settings.xml ^
+            -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-default,testing-windows
         shell: cmd
 
