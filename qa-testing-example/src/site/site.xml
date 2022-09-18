@@ -20,7 +20,7 @@
 
   <body>
     <menu name="Overview">
-      <item name="Custom Content" href="custom-content.html"/>
+      <item name="JGiven Report" href="${jgiven.reports}/html/index.html"/>
     </menu>
   </body>
 </project>
