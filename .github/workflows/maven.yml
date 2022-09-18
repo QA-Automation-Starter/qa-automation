@@ -83,7 +83,7 @@ jobs:
       - run: |
           ./mvnw install \
             -s $GITHUB_WORKSPACE/settings.xml \
-            -Pmode-build-quiet,environment-default,testing-windows
+            "-Pmode-build-quiet,environment-default,testing-windows"
 
   generate-automation-project:
     name: Generates new automation project and builds it
