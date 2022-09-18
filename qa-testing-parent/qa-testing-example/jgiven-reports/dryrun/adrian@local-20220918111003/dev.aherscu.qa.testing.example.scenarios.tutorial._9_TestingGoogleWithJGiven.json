@@ -1,0 +1,205 @@
+{
+  "className": "dev.aherscu.qa.testing.example.scenarios.tutorial._9_TestingGoogleWithJGiven",
+  "name": "_9_ Testing Google With J Given",
+  "scenarios": [
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial._9_TestingGoogleWithJGiven",
+      "testMethodName": "shouldFind",
+      "description": "Should find",
+      "tagIds": [
+        "dev.aherscu.qa.jgiven.commons.tags.UITest"
+      ],
+      "explicitParameters": [
+        "textToSearch",
+        "titleRule"
+      ],
+      "derivedParameters": [
+        "textToSearch",
+        "titleRule"
+      ],
+      "casesAsTable": true,
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "google",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "google"
+                },
+                {
+                  "value": "null",
+                  "argumentInfo": {
+                    "argumentName": "driver",
+                    "formattedValue": "null"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 5894600,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "searching for",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "searching for"
+                },
+                {
+                  "value": "FMUcxT7LW6aynK3U29Wimc5w79CPrGmGsJIUGzvQ",
+                  "argumentInfo": {
+                    "parameterName": "textToSearch",
+                    "argumentName": "something",
+                    "formattedValue": "FMUcxT7LW6aynK3U29Wimc5w79CPrGmGsJIUGzvQ"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 820600,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the results",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the results"
+                },
+                {
+                  "value": "contains \u003c0L\u003e items",
+                  "argumentInfo": {
+                    "parameterName": "titleRule",
+                    "argumentName": "matcher",
+                    "formattedValue": "contains \u003c0L\u003e items"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 971600,
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [
+            "FMUcxT7LW6aynK3U29Wimc5w79CPrGmGsJIUGzvQ",
+            "contains \u003c0L\u003e items"
+          ],
+          "derivedArguments": [
+            "FMUcxT7LW6aynK3U29Wimc5w79CPrGmGsJIUGzvQ",
+            "contains \u003c0L\u003e items"
+          ],
+          "durationInNanos": 34260400
+        },
+        {
+          "caseNr": 2,
+          "steps": [
+            {
+              "name": "google",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "google"
+                },
+                {
+                  "value": "null",
+                  "argumentInfo": {
+                    "argumentName": "driver",
+                    "formattedValue": "null"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 558600,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "searching for",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "searching for"
+                },
+                {
+                  "value": "testng",
+                  "argumentInfo": {
+                    "parameterName": "textToSearch",
+                    "argumentName": "something",
+                    "formattedValue": "testng"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 474200,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the results",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the results"
+                },
+                {
+                  "value": "All to match \u003ca string containing \"testng\" ignoring case\u003e",
+                  "argumentInfo": {
+                    "parameterName": "titleRule",
+                    "argumentName": "matcher",
+                    "formattedValue": "All to match \u003ca string containing \"testng\" ignoring case\u003e"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 542900,
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [
+            "testng",
+            "All to match \u003ca string containing \"testng\" ignoring case\u003e"
+          ],
+          "derivedArguments": [
+            "testng",
+            "All to match \u003ca string containing \"testng\" ignoring case\u003e"
+          ],
+          "durationInNanos": 2717400
+        }
+      ],
+      "durationInNanos": 36977800
+    }
+  ],
+  "tagMap": {
+    "dev.aherscu.qa.jgiven.commons.tags.UITest": {
+      "fullType": "dev.aherscu.qa.jgiven.commons.tags.UITest",
+      "type": "UITest",
+      "name": "UI Test",
+      "description": "Tests interacting with user interface",
+      "href": ""
+    }
+  }
+}
