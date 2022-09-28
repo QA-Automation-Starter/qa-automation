@@ -140,7 +140,9 @@ public class WebDriverConfiguration extends BaseConfiguration {
     @SneakyThrows
     public DesiredCapabilitiesEx capabilities(final Platform deviceType) {
         return capabilitiesFor(provider()
-            + deviceType.toString().toLowerCase(US));
+            + (ANY == deviceType
+                ? "web"
+                : deviceType.toString().toLowerCase(US)));
     }
 
     /**
