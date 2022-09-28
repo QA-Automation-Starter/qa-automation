@@ -19,6 +19,7 @@ package dev.aherscu.qa.jgiven.commons;
 import static dev.aherscu.qa.jgiven.commons.WebDriverConfiguration.*;
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
+import static org.apache.commons.lang3.StringUtils.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.openqa.selenium.Platform.*;
@@ -67,13 +68,13 @@ public class WebDriverConfigurationTest {
         return new Object[][] {
             { new MapConfiguration(ImmutableMap.<String, String> builder()
                 .put("provider", "provider.local.")
-                .put("device.type", "ios")
+                .put("device.type", EMPTY)
                 .build()),
                 ExpectedCapabilities.builder()
-                    .deviceType(IOS)
+                    .deviceType(ANY)
                     .deviceNames(singletonList("iPhone 12 Pro"))
                     .provider("provider.local.")
-                    .matchingRequiredCapabilities(1)
+                    .matchingRequiredCapabilities(4)
                     .build() },
             { new MapConfiguration(ImmutableMap.<String, String> builder()
                 .put("provider", "provider.local.")
@@ -96,22 +97,18 @@ public class WebDriverConfigurationTest {
                     .deviceType(WINDOWS)
                     .deviceNames(singletonList("WindowsPC"))
                     .provider("provider.local.")
-                    .matchingRequiredCapabilities(1)
+                    .matchingRequiredCapabilities(0)
                     .build() },
-            // { new MapConfiguration(ImmutableMap.<String, String> builder()
-            // .put("provider", "provider.selenium.")
-            // .put("device.type", "any")
-            // .build()),
-            // ExpectedCapabilities.builder()
-            // .deviceType(ANY)
-            // .deviceNames(asList(
-            // "Google Pixel 3a XL GoogleAPI Emulator",
-            // "iPhone 12 Pro",
-            // "Google Pixel 3 XL GoogleAPI Emulator",
-            // "Google Pixel 3 GoogleAPI Emulator"))
-            // .provider("provider.selenium.")
-            // .matchingCapabilities(4)
-            // .build() }
+            { new MapConfiguration(ImmutableMap.<String, String> builder()
+                .put("provider", "provider.local.")
+                .put("device.type", EMPTY)
+                .build()),
+                ExpectedCapabilities.builder()
+                    .deviceType(ANY)
+                    .deviceNames(emptyList())
+                    .provider("provider.local.")
+                    .matchingRequiredCapabilities(4)
+                    .build() }
         };
     }
 
