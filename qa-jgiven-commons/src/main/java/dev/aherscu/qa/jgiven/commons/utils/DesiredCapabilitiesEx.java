@@ -44,7 +44,7 @@ public class DesiredCapabilitiesEx extends DesiredCapabilities {
 
     /**
      * Begins chaining with specified capabilities.
-     * 
+     *
      * @param capabilities
      *            the capabilities to chain on
      */
@@ -52,6 +52,13 @@ public class DesiredCapabilitiesEx extends DesiredCapabilities {
         super(capabilities);
     }
 
+    /**
+     * Chains additional properties to this set of capabilities.
+     *
+     * @param properties
+     *            properties to chain
+     * @return this set of capabilities
+     */
     public DesiredCapabilitiesEx with(
         final Stream<Map.Entry<String, Object>> properties) {
         val ammendedCapabilities = new DesiredCapabilitiesEx(this);
