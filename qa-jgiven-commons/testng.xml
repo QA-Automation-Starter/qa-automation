@@ -25,10 +25,8 @@
   <!-- ISSUE: JGiven does not support parallel methods -->
   <test name="development" parallel="classes">
     <packages>
-      <!-- NOTE: there are 12 ignored tests (designed to fail) -->
-      <!-- ISSUE: WebDriverConfigurationTest has failures -->
-      <!--package
-        name="dev.aherscu.qa.jgiven.commons"/-->
+      <package
+        name="dev.aherscu.qa.jgiven.commons"/>
       <package
         name="dev.aherscu.qa.jgiven.commons.scenarios"/>
       <package
