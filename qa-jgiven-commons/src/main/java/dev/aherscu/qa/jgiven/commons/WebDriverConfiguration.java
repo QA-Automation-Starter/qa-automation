@@ -18,12 +18,12 @@ package dev.aherscu.qa.jgiven.commons;
 
 import static com.google.common.base.Suppliers.*;
 import static dev.aherscu.qa.jgiven.commons.utils.SessionName.*;
+import static dev.aherscu.qa.tester.utils.EnumUtils.*;
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static java.util.Collections.*;
 import static java.util.Locale.*;
 import static java.util.Objects.*;
 import static java.util.stream.Collectors.*;
-import static org.openqa.selenium.Platform.*;
 
 import java.util.*;
 import java.util.concurrent.atomic.*;
@@ -37,6 +37,7 @@ import org.openqa.selenium.chrome.*;
 import com.google.common.collect.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.tester.utils.*;
 import dev.aherscu.qa.tester.utils.config.BaseConfiguration;
 import lombok.*;
 import lombok.extern.slf4j.*;
@@ -46,13 +47,26 @@ import lombok.extern.slf4j.*;
  */
 @Slf4j
 public class WebDriverConfiguration extends BaseConfiguration {
+
+    private static final AtomicReference<DeviceType> theDeviceType                 =
+        new AtomicReference<>();
+
     // NOTE must be static otherwise all tests will run with same capabilities.
     // This also means that if two instances are created with different
     // devices, hence different sets of capabilities, this mechanism will break.
     private static final AtomicInteger                  nextRequiredCapabilitiesIndex =
         new AtomicInteger(0);
-    private static final AtomicReference<Platform>      theDeviceType                 =
-        new AtomicReference<>();
+
+    /**
+     * @param deviceType
+     *            a specific device type
+     * @return matching capabilities for configured {@link #provider()} and
+     *         specified device type
+     */
+    @SneakyThrows
+    public DesiredCapabilitiesEx capabilities(final DeviceType deviceType) {
+        return capabilitiesFor(provider() + deviceType.toString());
+    }
     private final Supplier<List<DesiredCapabilitiesEx>> requiredCapabilities          =
         memoize(() -> unmodifiableList(loadRequiredCapabilities()
             .peek(capabilities -> log.trace("loaded {}", capabilities))
@@ -132,17 +146,11 @@ public class WebDriverConfiguration extends BaseConfiguration {
     }
 
     /**
-     * @param deviceType
-     *            a specific device type
-     * @return matching capabilities for configured {@link #provider()} and
-     *         specified device type
+     * @return the `device.type` as specified in source configuration, or
+     *         {@link Platform#ANY} if none specified
      */
-    @SneakyThrows
-    public DesiredCapabilitiesEx capabilities(final Platform deviceType) {
-        return capabilitiesFor(provider()
-            + (ANY == deviceType
-                ? "web"
-                : deviceType.toString().toLowerCase(US)));
+    public DeviceType deviceType() {
+        return DeviceType.from(getString("device.type"));
     }
 
     /**
@@ -177,14 +185,23 @@ public class WebDriverConfiguration extends BaseConfiguration {
     }
 
     /**
-     * @return the `device.type` as specified in source configuration, or
-     *         {@link Platform#ANY} if none specified
+     * @param deviceType
+     *            device type to filter by
+     * @return all matching device capabilities, if any
      */
-    public Platform deviceType() {
-        val deviceType = getString("device.type");
-        return isBlank(deviceType)
-            ? ANY
-            : fromString(deviceType);
+    public List<DesiredCapabilitiesEx> requiredCapabilities(
+        final DeviceType deviceType) {
+        return requiredCapabilities.get()
+            .stream()
+            .filter(capabilities -> DeviceType
+                .from(requireNonNull(capabilities
+                    .getCapability("type"),
+                    "internal error, no type capability")
+                        .toString())
+                .equals(deviceType))
+            .peek(capabilities -> log.trace("found required capabilities {}",
+                capabilities))
+            .collect(toList());
     }
 
     /**
@@ -197,47 +214,11 @@ public class WebDriverConfiguration extends BaseConfiguration {
     /**
      * @param deviceType
      *            device type to filter by
-     * @return all matching device capabilities, if any
-     */
-    public List<DesiredCapabilitiesEx> requiredCapabilities(
-        final Platform deviceType) {
-        return requiredCapabilities.get()
-            .stream()
-            .filter(capabilities -> requireNonNull(capabilities.getPlatform(),
-                "must supply platform or platformName in configuration")
-                    .is(deviceType))
-            .collect(toList());
-    }
-
-    /**
-     * @return device capabilities per configuration
-     */
-    public List<DesiredCapabilitiesEx> requiredCapabilities() {
-        return requiredCapabilities(deviceType());
-    }
-
-    private Stream<DesiredCapabilitiesEx> loadRequiredCapabilities() {
-        return groupsOf("required.capability")
-            .map(requiredCapabilitiesGroup -> new DesiredCapabilitiesEx(
-                capabilitiesFor(
-                    provider() + requiredCapabilitiesGroup.get("type")))
-                        .with(requiredCapabilitiesGroup
-                            .entrySet()
-                            .stream()
-                            .filter(e -> !"type".equals(e.getKey()))
-                            .map(e -> Maps.immutableEntry(
-                                e.getKey(),
-                                e.getValue()))));
-    }
-
-    /**
-     * @param deviceType
-     *            device type to filter by
      * @return next matching device capabilities as listed in
      *         <tt>required-capabilities.properties</tt>
      */
     private Optional<DesiredCapabilitiesEx> nextRequiredCapabilities(
-        final Platform deviceType) {
+        final DeviceType deviceType) {
         val capabilities = requiredCapabilities(deviceType);
 
         // NOTE: this method might be called from multiple tests running in
@@ -256,5 +237,41 @@ public class WebDriverConfiguration extends BaseConfiguration {
                 // to assign them a test (thread) name because these are not
                 // running yet -- hence we do it here
                 .with("name", generateFromCurrentThreadAndTime()));
+    }
+
+    /**
+     * @return device capabilities per configuration
+     */
+    public List<DesiredCapabilitiesEx> requiredCapabilities() {
+        return requiredCapabilities(deviceType());
+    }
+
+    private Stream<DesiredCapabilitiesEx> loadRequiredCapabilities() {
+        return groupsOf("required.capability")
+            .map(requiredCapabilitiesGroup -> new DesiredCapabilitiesEx(
+                capabilitiesFor(
+                    provider() + requiredCapabilitiesGroup.get("type")))
+                        .with(requiredCapabilitiesGroup
+                            .entrySet()
+                            .stream()
+                            .map(e -> Maps.immutableEntry(
+                                e.getKey(),
+                                e.getValue()))));
+    }
+
+    enum DeviceType {
+        _WINDOWS, _IOS, _ANDROID, _WEB;
+
+        static DeviceType from(final String deviceType) {
+            return isBlank(deviceType)
+                ? _WEB
+                : fromString(DeviceType.class,
+                    deviceType.toUpperCase(ROOT));
+        }
+
+        @Override
+        public String toString() {
+            return EnumUtils.toString(this).toLowerCase(ROOT);
+        }
     }
 }

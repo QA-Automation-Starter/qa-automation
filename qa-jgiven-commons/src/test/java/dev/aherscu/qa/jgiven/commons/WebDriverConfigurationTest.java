@@ -17,17 +17,16 @@
 package dev.aherscu.qa.jgiven.commons;
 
 import static dev.aherscu.qa.jgiven.commons.WebDriverConfiguration.*;
+import static dev.aherscu.qa.jgiven.commons.WebDriverConfiguration.DeviceType.*;
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
 import static org.apache.commons.lang3.StringUtils.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.openqa.selenium.Platform.*;
 
 import java.util.*;
 
 import org.apache.commons.configuration.*;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.chrome.*;
 import org.testng.annotations.*;
 
@@ -71,17 +70,17 @@ public class WebDriverConfigurationTest {
                 .put("device.type", EMPTY)
                 .build()),
                 ExpectedCapabilities.builder()
-                    .deviceType(ANY)
-                    .deviceNames(singletonList("iPhone 12 Pro"))
+                    .deviceType(DeviceType._WEB)
+                    .deviceNames(emptyList())
                     .provider("provider.local.")
-                    .matchingRequiredCapabilities(4)
+                    .matchingRequiredCapabilities(1)
                     .build() },
             { new MapConfiguration(ImmutableMap.<String, String> builder()
                 .put("provider", "provider.local.")
                 .put("device.type", "android")
                 .build()),
                 ExpectedCapabilities.builder()
-                    .deviceType(ANDROID)
+                    .deviceType(DeviceType._ANDROID)
                     .deviceNames(asList(
                         "Google Pixel 3a XL GoogleAPI Emulator",
                         "Google Pixel 3 XL GoogleAPI Emulator",
@@ -94,21 +93,11 @@ public class WebDriverConfigurationTest {
                 .put("device.type", "windows")
                 .build()),
                 ExpectedCapabilities.builder()
-                    .deviceType(WINDOWS)
+                    .deviceType(DeviceType._WINDOWS)
                     .deviceNames(singletonList("WindowsPC"))
                     .provider("provider.local.")
                     .matchingRequiredCapabilities(0)
                     .build() },
-            { new MapConfiguration(ImmutableMap.<String, String> builder()
-                .put("provider", "provider.local.")
-                .put("device.type", EMPTY)
-                .build()),
-                ExpectedCapabilities.builder()
-                    .deviceType(ANY)
-                    .deviceNames(emptyList())
-                    .provider("provider.local.")
-                    .matchingRequiredCapabilities(4)
-                    .build() }
         };
     }
 
@@ -160,7 +149,7 @@ public class WebDriverConfigurationTest {
     // hence this test must run first, otherwise this index is unexpected
     @Test(priority = -1, dataProvider = "expectedDevices")
     public void shouldLoopOverCapabilities(
-        final Platform deviceType,
+        final DeviceType deviceType,
         final String deviceName) {
         assertThat(configuration
             .capabilities()
@@ -178,10 +167,10 @@ public class WebDriverConfigurationTest {
 
     @Test(dataProvider = "capabilitiesPerPlatform")
     public void shouldRetrieveCapabilitiesForSpecificPlatform(
-        final Platform platform,
+        final WebDriverConfiguration.DeviceType deviceType,
         final Class<?> clazz) {
         assertThat(configuration
-            .capabilities(platform)
+            .capabilities(deviceType)
             .getCapability("class"),
             is(clazz.getName()));
     }
@@ -189,17 +178,17 @@ public class WebDriverConfigurationTest {
     @DataProvider
     private Object[][] capabilitiesPerPlatform() {
         return new Object[][] {
-            { ANDROID, AndroidDriver.class },
-            { WINDOWS, WindowsDriver.class },
-            { IOS, IOSDriver.class },
-            { ANY, ChromeDriver.class }
+            { _ANDROID, AndroidDriver.class },
+            { _WINDOWS, WindowsDriver.class },
+            { _IOS, IOSDriver.class },
+            { _WEB, ChromeDriver.class }
         };
     }
 
     @Builder
     @ToString
     private static class ExpectedCapabilities {
-        final Platform     deviceType;
+        final DeviceType   deviceType;
         final String       provider;
         final List<String> deviceNames;
         final int          matchingRequiredCapabilities;
