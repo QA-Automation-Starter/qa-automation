@@ -37,7 +37,7 @@ public class _8_TestingWindowsWithJGiven
     static Object[][] data() {
         return new Object[][] {
             { Calculation.builder().expression("7+8").result("15").build() },
-            { Calculation.builder().expression("2*5").result("11").build() },
+            { Calculation.builder().expression("2*5").result("10").build() },
             { Calculation.builder().expression("333/111").result("3").build() },
             { Calculation.builder().expression("7-8").result("-1").build() },
         };
