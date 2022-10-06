@@ -88,7 +88,7 @@ public final class EnumUtils {
     /**
      * If no matching enum member found.
      */
-    public class NoSuchMemberException extends RuntimeException {
+    public static final class NoSuchMemberException extends RuntimeException {
 
         public NoSuchMemberException(final String message) {
             super(message);
