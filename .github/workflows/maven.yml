@@ -66,7 +66,8 @@ jobs:
 
   build-and-test-on-windows:
     name: windows build&test
-    runs-on: windows-latest
+    # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+    runs-on: windows-2022
     environment: development
 
     steps:
@@ -78,8 +79,13 @@ jobs:
           cache: maven
           settings-path: ${{ github.workspace }}
 
+      # ISSUE somehow should run WinAppDriver
+      # see https://github.com/microsoft/WinAppDriver/issues/1722
+      # and https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
+
       # TODO maybe, should re-publish the site from here (?)
       - run: |
+          C:\Program Files\Windows Application Driver\WinAppDriver.exe
           mvnw install ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-fast,mode-build-quiet,environment-default,testing-windows,device-windows
