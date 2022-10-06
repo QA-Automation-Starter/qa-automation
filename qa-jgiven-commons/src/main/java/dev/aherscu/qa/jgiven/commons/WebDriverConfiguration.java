@@ -54,7 +54,7 @@ public class WebDriverConfiguration extends BaseConfiguration {
     // NOTE must be static otherwise all tests will run with same capabilities.
     // This also means that if two instances are created with different
     // devices, hence different sets of capabilities, this mechanism will break.
-    private static final AtomicInteger                  nextRequiredCapabilitiesIndex =
+    private static final AtomicInteger               nextRequiredCapabilitiesIndex =
         new AtomicInteger(0);
 
     /**
@@ -67,7 +67,8 @@ public class WebDriverConfiguration extends BaseConfiguration {
     public DesiredCapabilitiesEx capabilities(final DeviceType deviceType) {
         return capabilitiesFor(provider() + deviceType.toString());
     }
-    private final Supplier<List<DesiredCapabilitiesEx>> requiredCapabilities          =
+
+    private final Supplier<List<DesiredCapabilitiesEx>> requiredCapabilities =
         memoize(() -> unmodifiableList(loadRequiredCapabilities()
             .peek(capabilities -> log.trace("loaded {}", capabilities))
             .collect(toList())));
