@@ -83,12 +83,11 @@ jobs:
       # see https://github.com/microsoft/WinAppDriver/issues/1722
       # and https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
 
-      - run: |
-          start cmd /c "C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe"
-        shell: cmd
-
       # TODO maybe, should re-publish the site from here (?)
       - run: |
+          choco install -y autologon
+          autologon %USERNAME% $USERDOMAIN%
+          start cmd /c "C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe"
           cd qa-testing-example
           mvn install ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
