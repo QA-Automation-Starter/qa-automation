@@ -85,8 +85,7 @@ jobs:
 
       # TODO maybe, should re-publish the site from here (?)
       - run: |
-          rem FIXME must somehow run WinAppDriver in separate process
-          rem "C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe"
+          start cmd /c "C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe"
           mvnw install ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-fast,mode-build-quiet,environment-default,testing-windows,device-windows
