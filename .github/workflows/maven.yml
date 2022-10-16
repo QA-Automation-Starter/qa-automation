@@ -29,7 +29,7 @@ jobs:
           cache: maven
           settings-path: ${{ github.workspace }}
 
-      - if: ${{ contains(matrix.os != 'windows') }}
+      - if: !contains(matrix.os, 'windows')
         run: |
           chmod +x mvnw && ./mvnw install \
             -DskipTests=true \
