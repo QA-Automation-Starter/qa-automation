@@ -30,8 +30,7 @@ jobs:
           settings-path: ${{ github.workspace }}
 
       - run: |
-          chmod +x mvnw
-          ./mvnw install \
+          chmod +x mvnw && ./mvnw install \
             -DskipTests=true \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-fast,mode-build-quiet
