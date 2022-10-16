@@ -115,6 +115,13 @@
         <surefire.suiteXmlFiles>testing-windows.xml</surefire.suiteXmlFiles>
       </properties>
     </profile>
+
+    <profile>
+      <id>testing-web</id>
+      <properties>
+        <surefire.suiteXmlFiles>testing-web.xml</surefire.suiteXmlFiles>
+      </properties>
+    </profile>
   </profiles>
 
 </project>
