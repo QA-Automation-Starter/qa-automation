@@ -29,12 +29,14 @@ jobs:
           cache: maven
           settings-path: ${{ github.workspace }}
 
-      - run: chmod +x mvnw
       - run: |
+          chmod +x mvnw
           ./mvnw install \
             -DskipTests=true \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-fast,mode-build-quiet
+        shell: bash
+        name: mvn install
 
   deploy-for-jdk8:
     name: jdk-8 snapshot publish
