@@ -13,11 +13,12 @@ jobs:
 
   build-for-future-jdks:
     name: jdk-${{ matrix.java-version }} build w/o tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
         java-version: [ 17, 11 ]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
       - uses: actions/checkout@v2
