@@ -29,22 +29,22 @@ jobs:
           cache: maven
           settings-path: ${{ github.workspace }}
 
-      - name: mvn install
-        shell: bash
+      - name: unix mvn install
+        if: ${{ !contains(matrix.os, 'windows') }}
         run: |
           chmod +x mvnw && ./mvnw install \
             -DskipTests=true \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-fast,mode-build-quiet
 
-  #      - if: ${{ contains(matrix.os, 'windows') }}
-  #        run: |
-  #          mvnw install ^
-  #            -DskipTests=true ^
-  #            -s %GITHUB_WORKSPACE%\settings.xml ^
-  #            -Pmode-build-fast,mode-build-quiet
-  #        name: windows mvn install
-  #        shell: cmd
+      - name: windows mvn install
+        if: ${{ contains(matrix.os, 'windows') }}
+        shell: cmd
+        run: |
+          mvnw install ^
+            -DskipTests=true ^
+            -s %GITHUB_WORKSPACE%\settings.xml ^
+            -Pmode-build-fast,mode-build-quiet
 
   deploy-for-jdk8:
     name: jdk-8 snapshot publish
