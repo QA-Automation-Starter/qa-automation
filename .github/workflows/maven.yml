@@ -12,7 +12,7 @@ on:
 jobs:
 
   build-for-future-jdks:
-    name: jdk-${{ matrix.java-version }} build w/o tests
+    name: ${{ matrix.os }} jdk-${{ matrix.java-version }} build w/o tests
     runs-on: ${{ matrix.os }}
 
     strategy:
