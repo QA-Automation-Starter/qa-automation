@@ -15,8 +15,10 @@
  */
 package dev.aherscu.qa.tester.utils.config;
 
+import static com.google.common.collect.Maps.*;
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.toMap;
 
 import java.util.*;
 import java.util.stream.*;
@@ -86,7 +88,7 @@ public class BaseConfiguration
     public Stream<Map<String, String>> groupsOf(final String prefix) {
         return entrySet()
             .stream()
-            .map(entry -> new AbstractMap.SimpleImmutableEntry<>(
+            .map(entry -> immutableEntry(
                 entry.getKey().toString(),
                 entry.getValue().toString()))
             .filter(entry -> entry.getKey().startsWith(prefix))
@@ -101,8 +103,15 @@ public class BaseConfiguration
                     Entry::getValue)));
     }
 
+    /**
+     * @param delimiter
+     *            character(s) to delimit between entries
+     * @return string representation of all entries, where each entry is
+     *         abbreviated to 127 characters.
+     */
     public String toString(final CharSequence delimiter) {
-        return entrySet().stream()
+        return entrySet()
+            .stream()
             .map(Object::toString)
             .map(s -> abbreviate(s, 127))
             .sorted()

@@ -15,8 +15,9 @@
  */
 package dev.aherscu.qa.tester.utils.config;
 
+import static java.nio.charset.StandardCharsets.*;
+
 import java.io.*;
-import java.nio.charset.*;
 import java.util.*;
 
 import org.apache.commons.configuration.*;
@@ -111,7 +112,7 @@ public abstract class AbstractConfiguration<T extends Configuration>
                     .getClassLoader()
                     .getResource(path),
                     "cannot find or access resource"),
-                StandardCharsets.UTF_8.toString());
+                UTF_8);
     }
 
     @Delegate(excludes = MapExcludedMethodsForDelegation.class)

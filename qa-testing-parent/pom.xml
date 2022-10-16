@@ -525,19 +525,5 @@
         </plugins>
       </build>
     </profile>
-
-    <profile>
-      <id>testing-tutorials</id>
-      <properties>
-        <surefire.suiteXmlFiles>testing-tutorials.xml</surefire.suiteXmlFiles>
-      </properties>
-    </profile>
-
-    <profile>
-      <id>testing-self</id>
-      <properties>
-        <surefire.suiteXmlFiles>testing-self.xml</surefire.suiteXmlFiles>
-      </properties>
-    </profile>
   </profiles>
 </project>

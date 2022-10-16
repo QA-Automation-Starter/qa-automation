@@ -17,42 +17,45 @@
 package dev.aherscu.qa.jgiven.commons;
 
 import static dev.aherscu.qa.jgiven.commons.WebDriverConfiguration.*;
+import static dev.aherscu.qa.jgiven.commons.WebDriverConfiguration.DeviceType.*;
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
+import static org.apache.commons.lang3.StringUtils.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.openqa.selenium.Platform.*;
 
 import java.util.*;
-import java.util.stream.*;
 
 import org.apache.commons.configuration.*;
-import org.openqa.selenium.Platform;
+import org.openqa.selenium.chrome.*;
 import org.testng.annotations.*;
 
 import com.google.common.collect.*;
 
 import edu.umd.cs.findbugs.annotations.*;
+import io.appium.java_client.android.*;
+import io.appium.java_client.ios.*;
+import io.appium.java_client.windows.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
 @Slf4j
 public class WebDriverConfigurationTest {
     private final WebDriverConfiguration configuration;
-    private final ExpectedCapabilities   expectedCapabilities;
+    private final ExpectedCapabilities   expected;
 
-    @Factory(dataProvider = "runtimeConfigurations")
+    @Factory(dataProvider = "additionalConfigurations")
     public WebDriverConfigurationTest(
-        final Configuration runtimeConfiguration,
-        final ExpectedCapabilities expectedCapabilities)
+        final Configuration additionalConfigurations,
+        final ExpectedCapabilities expected)
         throws ConfigurationException {
         // NOTE: must rename thread in order to avoid SessionName warnings
         Thread.currentThread().setName("a:b:c:d:e");
-        log.info("initializing {}", expectedCapabilities);
+        log.info("initializing {}", expected);
         this.configuration = new WebDriverConfiguration(
             defaultConfiguration(),
-            runtimeConfiguration);
-        this.expectedCapabilities = expectedCapabilities;
+            additionalConfigurations);
+        this.expected = expected;
     }
 
     // NOTE: configuration instances share a global capabilities index
@@ -60,45 +63,41 @@ public class WebDriverConfigurationTest {
     @java.lang.SuppressWarnings("DefaultAnnotationParam")
     @SuppressFBWarnings("UPM_UNCALLED_PRIVATE_METHOD")
     @DataProvider(parallel = false)
-    private static Object[][] runtimeConfigurations() {
+    private static Object[][] additionalConfigurations() {
         return new Object[][] {
             { new MapConfiguration(ImmutableMap.<String, String> builder()
                 .put("provider", "provider.local.")
-                .put("device.type", "ios")
+                .put("device.type", EMPTY)
                 .build()),
                 ExpectedCapabilities.builder()
-                    .deviceType(IOS)
-                    .deviceNames(singletonList("iPhone 12 Pro"))
+                    .deviceType(DeviceType._WEB)
+                    .deviceNames(emptyList())
                     .provider("provider.local.")
-                    .matchingCapabilities(1)
+                    .matchingRequiredCapabilities(1)
                     .build() },
             { new MapConfiguration(ImmutableMap.<String, String> builder()
-                .put("provider", "provider.selenium.")
+                .put("provider", "provider.local.")
                 .put("device.type", "android")
                 .build()),
                 ExpectedCapabilities.builder()
-                    .deviceType(ANDROID)
+                    .deviceType(DeviceType._ANDROID)
                     .deviceNames(asList(
                         "Google Pixel 3a XL GoogleAPI Emulator",
                         "Google Pixel 3 XL GoogleAPI Emulator",
                         "Google Pixel 3 GoogleAPI Emulator"))
-                    .provider("provider.selenium.")
-                    .matchingCapabilities(3)
+                    .provider("provider.local.")
+                    .matchingRequiredCapabilities(3)
                     .build() },
             { new MapConfiguration(ImmutableMap.<String, String> builder()
-                .put("provider", "provider.selenium.")
-                .put("device.type", "any")
+                .put("provider", "provider.local.")
+                .put("device.type", "windows")
                 .build()),
                 ExpectedCapabilities.builder()
-                    .deviceType(ANY)
-                    .deviceNames(asList(
-                        "Google Pixel 3a XL GoogleAPI Emulator",
-                        "iPhone 12 Pro",
-                        "Google Pixel 3 XL GoogleAPI Emulator",
-                        "Google Pixel 3 GoogleAPI Emulator"))
-                    .provider("provider.selenium.")
-                    .matchingCapabilities(4)
-                    .build() }
+                    .deviceType(DeviceType._WINDOWS)
+                    .deviceNames(singletonList("WindowsPC"))
+                    .provider("provider.local.")
+                    .matchingRequiredCapabilities(0)
+                    .build() },
         };
     }
 
@@ -106,26 +105,18 @@ public class WebDriverConfigurationTest {
     // hence we still need to reset the next capabilities index just before
     // tests methods begin to execute in each instance
     @BeforeClass
-    public void beforeClassResetNextCapabilitiesIndex() {
+    protected void beforeClassResetNextCapabilitiesIndex() {
         log.debug("resetting next capabilities index from {}",
             resetNextRequiredCapabilitiesIndex());
     }
 
     @DataProvider
-    public Iterator<Object[]> expectedDevices() {
-        return Stream.concat(
-
-            expectedCapabilities.deviceNames
-                .stream()
-                .map(deviceName -> new Object[] {
-                    expectedCapabilities.deviceType,
-                    deviceName }),
-
-            Stream.<Object[]> of(
-                new Object[] {
-                    expectedCapabilities.deviceType,
-                    expectedCapabilities.deviceNames.get(0) }))
-
+    private Iterator<Object[]> expectedDevices() {
+        return expected.deviceNames
+            .stream()
+            .map(deviceName -> new Object[] {
+                expected.deviceType,
+                deviceName })
             .peek(o -> log.debug("expecting device name {}", o[0]))
             .iterator();
     }
@@ -133,7 +124,7 @@ public class WebDriverConfigurationTest {
     @Test
     public void shouldHaveDeviceType() {
         assertThat(configuration.deviceType(),
-            is(expectedCapabilities.deviceType));
+            is(expected.deviceType));
     }
 
     // TODO must test how next required capabilities index behaves across
@@ -142,20 +133,23 @@ public class WebDriverConfigurationTest {
     @Test
     public void shouldHaveProvider() {
         assertThat(configuration.provider(),
-            is(expectedCapabilities.provider));
+            is(expected.provider));
     }
 
+    /**
+     * Required capabilities as defined in required-capabilities.properties
+     */
     @Test
     public void shouldHaveRequiredNumberOfCapabilities() {
         assertThat(configuration.requiredCapabilities(),
-            hasSize(expectedCapabilities.matchingCapabilities));
+            hasSize(expected.matchingRequiredCapabilities));
     }
 
     // NOTE: configuration instances share a global capabilities index
     // hence this test must run first, otherwise this index is unexpected
     @Test(priority = -1, dataProvider = "expectedDevices")
     public void shouldLoopOverCapabilities(
-        final Platform deviceType,
+        final DeviceType deviceType,
         final String deviceName) {
         assertThat(configuration
             .capabilities()
@@ -166,25 +160,37 @@ public class WebDriverConfigurationTest {
     @Test
     public void shouldRetrieveCapabilitiesBySpecificPrefix() {
         assertThat(configuration
-            .capabilitiesFor("provider.selenium.simulator")
-            .getCapability("class"),
-            is("org.openqa.selenium.remote.RemoteWebDriver"));
-    }
-
-    @Test
-    public void shouldRetrieveCapabilitiesForSpecificPlatform() {
-        assertThat(configuration
-            .capabilities(ANDROID)
+            .capabilitiesFor("provider.local.android")
             .getCapability("class"),
             is("io.appium.java_client.android.AndroidDriver"));
+    }
+
+    @Test(dataProvider = "capabilitiesPerPlatform")
+    public void shouldRetrieveCapabilitiesForSpecificPlatform(
+        final WebDriverConfiguration.DeviceType deviceType,
+        final Class<?> clazz) {
+        assertThat(configuration
+            .capabilities(deviceType)
+            .getCapability("class"),
+            is(clazz.getName()));
+    }
+
+    @DataProvider
+    private Object[][] capabilitiesPerPlatform() {
+        return new Object[][] {
+            { _ANDROID, AndroidDriver.class },
+            { _WINDOWS, WindowsDriver.class },
+            { _IOS, IOSDriver.class },
+            { _WEB, ChromeDriver.class }
+        };
     }
 
     @Builder
     @ToString
     private static class ExpectedCapabilities {
-        final Platform     deviceType;
+        final DeviceType   deviceType;
         final String       provider;
         final List<String> deviceNames;
-        final int          matchingCapabilities;
+        final int          matchingRequiredCapabilities;
     }
 }
