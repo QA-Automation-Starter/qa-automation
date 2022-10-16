@@ -1,5 +1,6 @@
 # TODO add a custom docker file from gitpod/workspace-base to include openjdk:8-jdk
 # otherwise the build and execution will occur on JDK 11
+# ISSUE https://stackoverflow.com/questions/49927792/include-aspectj-support-to-vs-code
 tasks:
   - before: chmod +x mvnw
   - init: ./mvnw install -DskipTests=true

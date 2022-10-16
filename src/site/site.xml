@@ -1,0 +1,62 @@
+<!--
+  ~ Copyright 2022 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/DECORATION/1.8.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 https://maven.apache.org/xsd/decoration-1.8.0.xsd">
+  <skin>
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>1.11.1</version>
+  </skin>
+
+  <custom>
+    <fluidoSkin>
+      <profile>pre-release</profile>
+      <gitHub>
+        <projectId>QA-Automation-Starter/qa-automation</projectId>
+        <ribbonOrientation>right</ribbonOrientation>
+        <ribbonColor>black</ribbonColor>
+      </gitHub>
+      <!-- NOTE: seems to require a custom domain -->
+      <!-- TODO: publish GitHub Pages under custom domain -->
+      <!--      <googleSearch/>-->
+    </fluidoSkin>
+  </custom>
+
+  <body>
+    <head>
+      <![CDATA[<script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>]]>
+    </head>
+    <!--    <menu name="Overview">-->
+    <!--      <item name="Custom Content" href="custom-content.html"/>-->
+    <!--    </menu>-->
+    <menu ref="parent" inherit="top"/>
+    <menu ref="modules" inherit="bottom"/>
+    <menu ref="reports" inherit="bottom"/>
+    <!--    <links>-->
+    <!--      <item name="link-Foo" href="http://www.apache.org"/>-->
+    <!--      <item name="link-Kuku" href="https://maven.apache.org"/>-->
+    <!--    </links>-->
+    <!--    <breadcrumbs>-->
+    <!--      <item name="breadcrumb-Bar"-->
+    <!--            href="https://maven.apache.org/doxia/index.html"/>-->
+    <!--      <item name="breadcrumb-Baz"-->
+    <!--            href="https://maven.apache.org/doxia/doxia/index.html"/>-->
+    <!--    </breadcrumbs>-->
+    <!--    <footer><![CDATA[All rights reserved.]]></footer>-->
+  </body>
+</project>

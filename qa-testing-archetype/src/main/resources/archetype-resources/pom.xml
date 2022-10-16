@@ -94,4 +94,27 @@
     </plugins>
   </build>
 
+  <profiles>
+    <profile>
+      <id>testing-tutorials</id>
+      <properties>
+        <surefire.suiteXmlFiles>testing-tutorials.xml</surefire.suiteXmlFiles>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>testing-self</id>
+      <properties>
+        <surefire.suiteXmlFiles>testing-self.xml</surefire.suiteXmlFiles>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>testing-windows</id>
+      <properties>
+        <surefire.suiteXmlFiles>testing-windows.xml</surefire.suiteXmlFiles>
+      </properties>
+    </profile>
+  </profiles>
+
 </project>
