@@ -18,7 +18,7 @@ jobs:
     strategy:
       matrix:
         java-version: [ 17, 11, 8 ]
-        os: [ ubuntu-latest, macOS-latest ]
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
 
     steps:
       - uses: actions/checkout@v2
@@ -29,12 +29,12 @@ jobs:
           cache: maven
           settings-path: ${{ github.workspace }}
 
-      - run: |
+      - if: ${{ contains(matrix.os != 'windows') }}
+        run: |
           chmod +x mvnw && ./mvnw install \
             -DskipTests=true \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-fast,mode-build-quiet
-        shell: bash
         name: mvn install
 
   deploy-for-jdk8:
