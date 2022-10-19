@@ -16,8 +16,17 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Tutorials" verbose="1">
   <test name="JGiven Tutorial">
-    <packages>
+    <!-- NOTE: contains tests that fail on purpose -->
+    <!--packages>
       <package name="dev.aherscu.qa.testing.example.scenarios.tutorial"/>
-    </packages>
+    </packages-->
+    <classes>
+      <class
+        name="dev.aherscu.qa.testing.example.scenarios.tutorial._3_TestingWebApplication"/>
+      <class
+        name="dev.aherscu.qa.testing.example.scenarios.tutorial._7_TestingWindowsApplication"/>
+      <class
+        name="dev.aherscu.qa.testing.example.scenarios.tutorial._9_TestingGoogleWithJGiven"/>
+    </classes>
   </test>
 </suite>
