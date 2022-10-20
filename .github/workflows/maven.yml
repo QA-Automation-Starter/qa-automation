@@ -66,6 +66,7 @@ jobs:
           gpg-passphrase: GPG_PASSPHRASE
 
       - name: mvn deploy
+        shell: cmd
         run: |
           mvnw deploy ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
