@@ -67,8 +67,8 @@ jobs:
 
       - name: mvn deploy
         run: |
-          chmod +x mvnw && ./mvnw deploy \
-            -s $GITHUB_WORKSPACE/settings.xml \
+          mvnw deploy ^
+            -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-default,testing-tutorials
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
