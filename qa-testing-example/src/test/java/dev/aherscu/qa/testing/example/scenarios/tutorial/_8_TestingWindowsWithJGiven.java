@@ -21,16 +21,29 @@ import static org.hamcrest.Matchers.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
+import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.testing.example.*;
 import dev.aherscu.qa.testing.example.model.tutorial.*;
 import dev.aherscu.qa.testing.example.steps.tutorial.*;
+import lombok.*;
+import lombok.extern.slf4j.*;
 
+@Slf4j
 public class _8_TestingWindowsWithJGiven
     extends
     ApplicationPerClassWebSessionTest<TestConfiguration, CalculatorFixtures<?>, CalculatorActions<?>, CalculatorVerifications<?>> {
 
     protected _8_TestingWindowsWithJGiven() {
         super(TestConfiguration.class);
+    }
+
+    @BeforeClass
+    @SneakyThrows
+    @Override
+    protected void beforeClassOpenWebDriver() {
+        log.debug("before class opening WinAppDriver");
+        webDriver.set(WebDriverEx.from(configuration()
+            .capabilitiesFor("provider.local.windows")));
     }
 
     @DataProvider

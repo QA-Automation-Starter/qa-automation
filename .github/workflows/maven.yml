@@ -48,7 +48,11 @@ jobs:
 
   deploy-for-jdk8:
     name: jdk-8 snapshot publish
-    runs-on: ubuntu-latest
+    # ISSUE ChromeDriver/GeckoDriver fail to initialize on Ubuntu
+    # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3294884059/jobs/5432863668
+    # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+    # and https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
+    runs-on: windows-2022
     environment: development
 
     steps:
@@ -66,47 +70,15 @@ jobs:
           gpg-passphrase: GPG_PASSPHRASE
 
       - name: mvn deploy
+        shell: cmd
         run: |
-          chmod +x mvnw && ./mvnw deploy \
-            -s $GITHUB_WORKSPACE/settings.xml \
-            -Pmode-build-quiet
-
+          mvnw deploy ^
+            -s %GITHUB_WORKSPACE%\settings.xml ^
+            -Pmode-build-quiet,environment-default,testing-tutorials
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-
-  # ISSUE fails with WebDriverException: Package was not found
-  # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3234841483/jobs/5298454871
-  #  build-and-test-on-windows:
-  #    name: windows build&test
-  #    # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
-  #    runs-on: windows-2022
-  #    environment: development
-  #
-  #    steps:
-  #      - uses: actions/checkout@v2
-  #      - uses: actions/setup-java@v3
-  #        with:
-  #          java-version: '8'
-  #          distribution: 'temurin'
-  #          cache: maven
-  #          settings-path: ${{ github.workspace }}
-  #
-  #      # ISSUE somehow should run WinAppDriver
-  #      # see https://github.com/microsoft/WinAppDriver/issues/1722
-  #      # and https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
-  #
-  #      # TODO maybe, should re-publish the site from here (?)
-  #      - run: |
-  #          choco install -y autologon
-  #          autologon %USERNAME% $USERDOMAIN%
-  #          start cmd /c "C:\Program Files (x86)\Windows Application Driver\WinAppDriver.exe"
-  #          cd qa-testing-example
-  #          mvn install ^
-  #            -s %GITHUB_WORKSPACE%\settings.xml ^
-  #            -Pmode-build-fast,mode-build-quiet,environment-default,testing-windows,device-windows
-  #        shell: cmd
 
   generate-automation-project:
     name: Generates new automation project and builds it
