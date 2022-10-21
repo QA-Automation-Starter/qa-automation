@@ -72,7 +72,7 @@ jobs:
         #            -s %GITHUB_WORKSPACE%\settings.xml ^
         #            -Pmode-build-quiet,environment-default,testing-tutorials
         run: |
-          mvnw deploy \
+          chmod +x mvnw && ./mvnw deploy \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-quiet,environment-default,testing-tutorials
         env:
