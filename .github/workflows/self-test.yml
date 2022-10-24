@@ -8,3 +8,7 @@ on:
 
 jobs:
   kuku:
+    steps:
+      - name: foo
+        shell: cmd
+        run: dir
