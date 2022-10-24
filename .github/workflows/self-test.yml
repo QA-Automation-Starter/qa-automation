@@ -11,5 +11,6 @@ jobs:
     environment: development
 
     steps:
-      run: |
-        git clone https://github.com/QA-Automation-Starter/qa-automation.git
+      - name: experiment
+        run: |
+          git clone https://github.com/QA-Automation-Starter/qa-automation.git
