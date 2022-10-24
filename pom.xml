@@ -221,7 +221,6 @@
               [ERROR] fatal: adding files failed
               -->
             <scmBranch>gh-pages</scmBranch>
-            <serverId>github</serverId>
           </configuration>
         </plugin>
         <plugin>

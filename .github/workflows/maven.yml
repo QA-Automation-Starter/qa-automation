@@ -96,10 +96,9 @@ jobs:
       #              }
       #            ]
       - name: Setup SSH
-        uses: MrSquaare/ssh-setup-action@v2
+      - uses: webfactory/ssh-agent@v0.6.0
         with:
-          host: github.com
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: mvn deploy
         shell: cmd
