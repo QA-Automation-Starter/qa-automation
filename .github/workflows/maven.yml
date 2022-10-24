@@ -96,7 +96,7 @@ jobs:
       #              }
       #            ]
       - name: Setup SSH
-      - uses: webfactory/ssh-agent@v0.6.0
+        uses: webfactory/ssh-agent@v0.6.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
