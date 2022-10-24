@@ -53,6 +53,7 @@ public class SelfTests {
         return new Object[][] { { 1 }, { 2 }, { 3 }, { 4 } };
     }
 
+    @Ignore("does not work - fails sporadically on slow machines")
     @SneakyThrows
     @Test(expectedExceptions = ExecutionException.class)
     public void shouldRepeatedlyTimeout() {
