@@ -8,6 +8,9 @@ on:
 
 jobs:
   job-0:
+    name: self test 0
+    runs-on: windows-latest
+    environment: development
     steps:
       - name: hello
         shell: cmd
