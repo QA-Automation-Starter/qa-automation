@@ -12,7 +12,10 @@ jobs:
     runs-on: windows-latest
     environment: development
     steps:
-      - name: hello
+      - uses: webfactory/ssh-agent@v0.6.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: execution
         shell: cmd
         run: |
           set
