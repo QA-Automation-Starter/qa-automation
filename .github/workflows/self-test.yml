@@ -1,7 +1,6 @@
 name: self test
 
-on:
-  workflow_dispatch
+on: [ workflow_dispatch ]
 
 jobs:
   run-self-test:
@@ -14,4 +13,4 @@ jobs:
       - name: experiment
         shell: cmd
         run: |
-          git clone https://github.com/QA-Automation-Starter/qa-automation.git
+          dir
