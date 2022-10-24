@@ -12,10 +12,10 @@ jobs:
     runs-on: windows-latest
     environment: development
     steps:
-      #      - uses: webfactory/ssh-agent@v0.6.0
-      #        with:
-      #          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: execution
+        uses: webfactory/ssh-agent@v0.6.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
         shell: cmd
         run: |
           git clone git@github.com:QA-Automation-Starter/qa-automation.git
