@@ -18,5 +18,4 @@ jobs:
       - name: execution
         shell: cmd
         run: |
-          set
-          dir %HOMEDRIVE%%HOMEPATH%
+          git clone git@github.com:QA-Automation-Starter/qa-automation.git
