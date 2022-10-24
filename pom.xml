@@ -208,7 +208,20 @@
           <artifactId>maven-scm-publish-plugin</artifactId>
           <version>3.1.0</version>
           <configuration>
+            <!-- ISSUE fails publishing due to long file names in Windows:
+              [ERROR] Failed to execute goal
+              org.apache.maven.plugins:maven-scm-publish-plugin:3.1.0:publish-scm (default-cli)
+              on project qa-automation:
+              Failed to add new files to SCM:
+              The git-add command failed. error:
+              open("qa-testing-parent/qa-testing-example/jgiven-reports/functional-default/adrian@local-20221022163903/h
+              tml/data/attachments/dev/aherscu/qa/testing/example/scenarios/tutorial/_9_TestingGoogleWithJGiven/attachment.plain"): Filename too long
+              [ERROR] error:********@local-20221022163903/html/data/attachments/dev/aherscu/qa/testing/example/scenarios/tutorial/_9_TestingGoogleWithJGiven/attachment.pl
+              ain'
+              [ERROR] fatal: adding files failed
+              -->
             <scmBranch>gh-pages</scmBranch>
+            <serverId>github</serverId>
           </configuration>
         </plugin>
         <plugin>

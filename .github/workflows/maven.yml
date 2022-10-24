@@ -69,6 +69,33 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
+      # FIXME scm-publish:publish-scm fails with
+      # Error:  Failed to execute goal
+      # org.apache.maven.plugins:maven-scm-publish-plugin:3.1.0:publish-scm (default-cli)
+      # on project qa-automation: Failed to check out from SCM:
+      # The git-clone command failed. Cloning into 'scmpublish-checkout'...
+      # Error:  Host key verification failed.
+      # Error:  fatal: Could not read from remote repository.
+      # Error:
+      # Error:  Please make sure you have the correct access rights
+      # Error:  and the repository exists.
+
+      # TODO make the ssh private available via maven settings.xml
+      # as documented on
+      # https://maven.apache.org/plugins/maven-scm-publish-plugin/publish-scm-mojo.html#serverId
+      # https://github.com/marketplace/actions/generate-settings-xml-for-maven-builds#servers
+      # https://maven.apache.org/settings.html#servers
+      - uses: whelk-io/maven-settings-xml-action@v20
+        with:
+          servers: >
+            [
+              {
+                "id": "github",
+                "username": "git",
+                "privateKey": "%HOME%\.ssh\id_rsa"
+              }
+            ]
+
       - name: mvn deploy
         shell: cmd
         run: |
