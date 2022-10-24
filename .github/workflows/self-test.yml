@@ -10,7 +10,4 @@ jobs:
     environment: development
 
     steps:
-      - name: experiment
-        shell: cmd
-        run: |
-          dir
+      - uses: actions/checkout@v2
