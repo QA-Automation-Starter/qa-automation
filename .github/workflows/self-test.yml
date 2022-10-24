@@ -1,0 +1,15 @@
+name: snapshot build and publish
+
+on:
+  workflow_dispatch
+
+jobs:
+  run-self-test:
+    name: self test
+
+    runs-on: windows-2022
+    environment: development
+
+    steps:
+      run: |
+        git clone https://github.com/QA-Automation-Starter/qa-automation.git
