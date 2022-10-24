@@ -16,3 +16,4 @@ jobs:
         shell: cmd
         run: |
           set
+          dir %HOMEDRIVE%%HOMEPATH%
