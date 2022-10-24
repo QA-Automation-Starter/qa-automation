@@ -85,25 +85,25 @@ jobs:
       # https://maven.apache.org/plugins/maven-scm-publish-plugin/publish-scm-mojo.html#serverId
       # https://github.com/marketplace/actions/generate-settings-xml-for-maven-builds#servers
       # https://maven.apache.org/settings.html#servers
-      - uses: whelk-io/maven-settings-xml-action@v20
+      #      - uses: whelk-io/maven-settings-xml-action@v20
+      #        with:
+      #          servers: >
+      #            [
+      #              {
+      #                "id": "github",
+      #                "username": "git",
+      #                "privateKey": "C:\\Users\\runneradmin\\.ssh\\id_rsa"
+      #              }
+      #            ]
+      - name: Setup SSH
+        uses: MrSquaare/ssh-setup-action@v2
         with:
-          servers: >
-            [
-              {
-                "id": "github",
-                "username": "git",
-                "privateKey": "C:\\Users\\runneradmin\\.ssh\\id_rsa"
-              }
-            ]
+          host: github.com
+          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: mvn deploy
         shell: cmd
         run: |
-          set
-          echo Running with maven settings:
-          type C:\Users\runneradmin\.m2\settings.xml
-          echo ssh id rsa:
-          type C:\Users\runneradmin\.ssh\id_rsa
           mvnw deploy site site:stage scm-publish:publish-scm ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-default,testing-tutorials
