@@ -92,17 +92,18 @@ jobs:
               {
                 "id": "github",
                 "username": "git",
-                "privateKey": "%HOME%\\.ssh\\id_rsa"
+                "privateKey": "C:\\Users\\runneradmin\\.ssh\\id_rsa"
               }
             ]
 
       - name: mvn deploy
         shell: cmd
         run: |
+          set
           echo Running with maven settings:
-          type %HOME%\.m2\settings.xml
+          type C:\Users\runneradmin\.m2\settings.xml
           echo ssh id rsa:
-          type %HOME%\.ssh\id_rsa
+          type C:\Users\runneradmin\.ssh\id_rsa
           mvnw deploy site site:stage scm-publish:publish-scm ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-default,testing-tutorials
