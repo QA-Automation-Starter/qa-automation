@@ -92,7 +92,7 @@ jobs:
               {
                 "id": "github",
                 "username": "git",
-                "privateKey": "%HOME%\.ssh\id_rsa"
+                "privateKey": "%HOME%\\.ssh\\id_rsa"
               }
             ]
 
