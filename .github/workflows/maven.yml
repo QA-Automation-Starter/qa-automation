@@ -99,6 +99,10 @@ jobs:
       - name: mvn deploy
         shell: cmd
         run: |
+          echo Running with maven settings:
+          type %HOME%\.m2\settings.xml
+          echo ssh id rsa:
+          type %HOME%\.ssh\id_rsa
           mvnw deploy site site:stage scm-publish:publish-scm ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-default,testing-tutorials
