@@ -1,8 +1,7 @@
 name: self test
 
 on:
-  push:
-    branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   run-self-test:
