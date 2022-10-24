@@ -12,5 +12,6 @@ jobs:
 
     steps:
       - name: experiment
+        shell: cmd
         run: |
           git clone https://github.com/QA-Automation-Starter/qa-automation.git
