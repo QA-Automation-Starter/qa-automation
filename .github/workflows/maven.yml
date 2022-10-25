@@ -103,6 +103,7 @@ jobs:
       - name: mvn deploy
         shell: cmd
         run: |
+          git config --global core.longpaths true
           mvnw deploy site site:stage scm-publish:publish-scm ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-default,testing-tutorials
