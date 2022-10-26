@@ -69,10 +69,19 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.6.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: mvn deploy
         shell: cmd
         run: |
-          mvnw deploy ^
+          reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 0x1
+          git config --global core.longpaths true
+          git config --global user.name "Adrian Herscu"
+          git config --global user.email "adrian.herscu@gmail.com"
+          mvnw deploy site site:stage scm-publish:publish-scm ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-default,testing-tutorials
         env:
