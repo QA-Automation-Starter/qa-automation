@@ -16,17 +16,17 @@
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 2095980400
+          "durationInNanos": 1841184400
         },
         {
           "caseNr": 2,
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 753127299
+          "durationInNanos": 796536300
         }
       ],
-      "durationInNanos": 2849107699
+      "durationInNanos": 2637720700
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial._3_TestingWebApplication",
@@ -42,17 +42,17 @@
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 10538700
+          "durationInNanos": 10268400
         },
         {
           "caseNr": 2,
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 8666900
+          "durationInNanos": 12596700
         }
       ],
-      "durationInNanos": 19205600
+      "durationInNanos": 22865100
     }
   ],
   "tagMap": {}
