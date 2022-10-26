@@ -208,17 +208,19 @@
           <artifactId>maven-scm-publish-plugin</artifactId>
           <version>3.1.0</version>
           <configuration>
-            <!-- ISSUE fails publishing due to long file names in Windows:
-              [ERROR] Failed to execute goal
-              org.apache.maven.plugins:maven-scm-publish-plugin:3.1.0:publish-scm (default-cli)
-              on project qa-automation:
-              Failed to add new files to SCM:
-              The git-add command failed. error:
-              open("qa-testing-parent/qa-testing-example/jgiven-reports/functional-default/adrian@local-20221022163903/h
-              tml/data/attachments/dev/aherscu/qa/testing/example/scenarios/tutorial/_9_TestingGoogleWithJGiven/attachment.plain"): Filename too long
-              [ERROR] error:********@local-20221022163903/html/data/attachments/dev/aherscu/qa/testing/example/scenarios/tutorial/_9_TestingGoogleWithJGiven/attachment.pl
-              ain'
-              [ERROR] fatal: adding files failed
+            <!-- ISSUE fails displaying JGiven thumbnails and attachments
+              although these appear on gh-pages branch;
+              see https://github.com/QA-Automation-Starter/qa-automation/tree/gh-pages/qa-testing-parent/qa-testing-example/jgiven-reports/functional-default/runneradmin%40local-20221026081309/html/data/attachments/dev/aherscu/qa/testing/example/scenarios/tutorial/_9_TestingGoogleWithJGiven
+
+              But when opened in a Web Browser, this results in 404:
+              and https://qa-automation-starter.github.io/qa-automation/qa-testing-parent/qa-testing-example/jgiven-reports/functional-default/runneradmin@local-20221026081309/html/data/attachments/dev/aherscu/qa/testing/example/scenarios/tutorial/_9_TestingGoogleWithJGiven/attachment2.png
+
+              Both subpaths appear identical:
+              qa-testing-parent/qa-testing-example/jgiven-reports/functional-default/runneradmin@local-20221026081309/html/data/attachments/dev/aherscu/qa/testing/example/scenarios/tutorial/_9_TestingGoogleWithJGiven
+              qa-testing-parent/qa-testing-example/jgiven-reports/functional-default/runneradmin@local-20221026081309/html/data/attachments/dev/aherscu/qa/testing/example/scenarios/tutorial/_9_TestingGoogleWithJGiven/attachment2.png
+
+              Same thing happens locally under Windows with the _staging_ directory:
+              file:///C:/projects/qa-automation/target/staging/qa-testing-parent/qa-testing-example/jgiven-reports/functional-default/adrian@local-20221026075408/html/index.html#/all?status=success
               -->
             <scmBranch>gh-pages</scmBranch>
           </configuration>
