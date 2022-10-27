@@ -23,9 +23,14 @@ jobs:
           distribution: 'temurin'
           cache: maven
           settings-path: ${{ github.workspace }}
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: GPG_PASSPHRASE
 
       - name: Maven verify
         run: |
           cd qa-testing-example && mvn verify
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-quiet,mode-build-fast,environment-default,testing-tutorials
+
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
