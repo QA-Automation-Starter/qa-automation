@@ -52,7 +52,7 @@ jobs:
     # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3294884059/jobs/5432863668
     # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
     # and https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     environment: development
 
     steps:
