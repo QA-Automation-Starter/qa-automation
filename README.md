@@ -119,17 +119,6 @@ The above have the following effects:
 
 The staging repository needs manual approval to be synced to Maven Central.
 
-## Publishing Maven Site
-
-Publish Maven site using:
-
-```shell
-./mvnw clean site site:stage scm-publish:publish-scm
-```
-
-then, the site will appear at:
-<https://qa-automation-starter.github.io/qa-automation/>
-
 ## GPG Public Key
 
 <https://keys.openpgp.org/search?q=39F1B2495B0260B2D974C634F89B5DBA3AF082E0>
