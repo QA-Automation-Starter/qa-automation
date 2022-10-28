@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.example.scenarios.tutorial;
+package dev.aherscu.qa.testing.example.scenarios.tutorial5;
 
 import static org.hamcrest.Matchers.*;
 
@@ -29,11 +29,11 @@ import lombok.*;
 import lombok.extern.slf4j.*;
 
 @Slf4j
-public class _8_TestingWindowsWithJGiven
+public class TestingWindowsWithJGiven
     extends
     ApplicationPerClassWebSessionTest<TestConfiguration, CalculatorFixtures<?>, CalculatorActions<?>, CalculatorVerifications<?>> {
 
-    protected _8_TestingWindowsWithJGiven() {
+    protected TestingWindowsWithJGiven() {
         super(TestConfiguration.class);
     }
 

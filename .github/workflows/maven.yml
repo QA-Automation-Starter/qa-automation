@@ -52,7 +52,8 @@ jobs:
     # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3294884059/jobs/5432863668
     # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
     # and https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
-    runs-on: windows-2022
+    # ISSUE Google Search behaves differently on MacOS causing tests to fail
+    runs-on: windows-latest
     environment: development
 
     steps:
@@ -74,7 +75,7 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: mvn deploy
+      - name: Maven deploy and publish site
         shell: cmd
         run: |
           reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 0x1

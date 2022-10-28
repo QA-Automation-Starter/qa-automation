@@ -1,5 +1,4 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+# Standalone, manually triggered, GitHub Actions tests
 
 name: self test
 
@@ -7,15 +6,36 @@ on:
   workflow_dispatch:
 
 jobs:
-  job-0:
-    name: self test 0
-    runs-on: windows-latest
+  verify:
+    name: verify
+    # ISSUE ChromeDriver/GeckoDriver fail to initialize on Ubuntu
+    # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3294884059/jobs/5432863668
+    # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
+    # and https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
+    runs-on: ubuntu-latest
     environment: development
+
     steps:
-      - uses: webfactory/ssh-agent@v0.6.0
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v3
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - name: execution
-        shell: cmd
+          java-version: '8'
+          distribution: 'temurin'
+          cache: maven
+          settings-path: ${{ github.workspace }}
+          server-id: ossrh # Value of the distributionManagement/repository/id field of the pom.xml
+          server-username: OSSRH_USERNAME
+          server-password: OSSRH_PASSWORD
+          gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
+          gpg-passphrase: GPG_PASSPHRASE
+
+      - name: Maven verify
         run: |
-          git clone git@github.com:QA-Automation-Starter/qa-automation.git
+          cd qa-testing-example && mvn verify
+            -s $GITHUB_WORKSPACE/settings.xml \
+            -Pmode-build-quiet,mode-build-fast,environment-default,testing-tutorials
+
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}

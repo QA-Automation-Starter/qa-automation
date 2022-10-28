@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.example.scenarios.tutorial;
+package dev.aherscu.qa.testing.example.scenarios.tutorial1;
 
 import static java.lang.Math.*;
 
@@ -25,7 +25,7 @@ import lombok.*;
 import lombok.extern.slf4j.*;
 
 @Slf4j
-public class _1_PlainTestNg {
+public class PlainTestNg {
     @Test
     public void _1_shouldSucceed() {
         assert true; // "assert" requires -ea vm flag

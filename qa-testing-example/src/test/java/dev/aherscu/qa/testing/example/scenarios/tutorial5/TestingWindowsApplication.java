@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.example.scenarios.tutorial;
+package dev.aherscu.qa.testing.example.scenarios.tutorial5;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -28,7 +28,7 @@ import edu.umd.cs.findbugs.annotations.*;
 import io.appium.java_client.windows.*;
 import lombok.*;
 
-public class _7_TestingWindowsApplication {
+public class TestingWindowsApplication {
 
     private WindowsDriver<?> driver;
 

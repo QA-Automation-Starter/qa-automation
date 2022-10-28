@@ -21,16 +21,17 @@
       <package name="dev.aherscu.qa.testing.example.scenarios.tutorial"/>
     </packages-->
     <classes>
+      <!-- ISSUE behaves differently on macos -->
       <class
-        name="dev.aherscu.qa.testing.example.scenarios.tutorial._3_TestingWebApplication"/>
+        name="dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingWebApplication"/>
       <!-- ISSUE still fails on GitHub
         see https://stackoverflow.com/questions/74085088/running-gui-application-on-github-hosted-runner
         and https://github.com/orgs/community/discussions/36704
         -->
       <!--class
-        name="dev.aherscu.qa.testing.example.scenarios.tutorial._7_TestingWindowsApplication"/-->
+        name="dev.aherscu.qa.testing.example.scenarios.tutorial5.TestingWindowsApplication"/-->
       <class
-        name="dev.aherscu.qa.testing.example.scenarios.tutorial._9_TestingGoogleWithJGiven"/>
+        name="dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingWebWithJGiven"/>
     </classes>
   </test>
 </suite>
