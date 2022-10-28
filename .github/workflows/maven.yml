@@ -52,7 +52,8 @@ jobs:
     # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3294884059/jobs/5432863668
     # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
     # and https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
-    runs-on: macos-latest
+    # ISSUE Google Search behaves differently on MacOS causing tests to fail
+    runs-on: windows-latest
     environment: development
 
     steps:
@@ -75,21 +76,15 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Maven deploy and publish site
+        shell: cmd
         run: |
+          reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 0x1
+          git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
-          chmod +x mvnw && ./mvnw deploy site site:stage scm-publish:publish-scm \
-            -s $GITHUB_WORKSPACE/settings.xml \
+          mvnw deploy site site:stage scm-publish:publish-scm ^
+            -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-default,testing-tutorials
-        #        shell: cmd
-        #        run: |
-        #          reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 0x1
-        #          git config --global core.longpaths true
-        #          git config --global user.name "Adrian Herscu"
-        #          git config --global user.email "adrian.herscu@gmail.com"
-        #          mvnw deploy site site:stage scm-publish:publish-scm ^
-        #            -s %GITHUB_WORKSPACE%\settings.xml ^
-        #            -Pmode-build-quiet,environment-default,testing-tutorials
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
