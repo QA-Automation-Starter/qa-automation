@@ -1,0 +1,59 @@
+{
+  "className": "dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingWebApplication",
+  "name": "Testing Web Application",
+  "scenarios": [
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingWebApplication",
+      "testMethodName": "shouldFind",
+      "description": "Should find",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "casesAsTable": true,
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 1693457400
+        },
+        {
+          "caseNr": 2,
+          "steps": [],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 682449200
+        }
+      ],
+      "durationInNanos": 2375906600
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingWebApplication",
+      "testMethodName": "shouldOpenWeb",
+      "description": "Should open web",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "casesAsTable": true,
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 19479400
+        },
+        {
+          "caseNr": 2,
+          "steps": [],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 3079000
+        }
+      ],
+      "durationInNanos": 22558400
+    }
+  ],
+  "tagMap": {}
+}
