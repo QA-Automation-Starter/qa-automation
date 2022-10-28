@@ -14,17 +14,15 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.example.scenarios.tutorial;
+package dev.aherscu.qa.testing.example.scenarios.tutorial4;
 
 import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static io.appium.java_client.remote.MobilePlatform.*;
-import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import java.io.*;
 import java.net.*;
-import java.time.*;
-import java.time.format.*;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
@@ -34,34 +32,31 @@ import edu.umd.cs.findbugs.annotations.*;
 import io.appium.java_client.android.*;
 import lombok.*;
 
-public class _5_TestingMobileApplicationOnSauceLabs {
-
+/**
+ * TODO should run against one of the Android applications, e.g. Calculator
+ */
+public class TestingAndroidApplication {
     private WebDriver webDriver;
 
     @SneakyThrows
-    static AndroidDriver<WebElement> saucelabsApp(
-        final String name) {
-        return new AndroidDriver<>(new URL(
-            "https://TBD:TBD@ondemand.saucelabs.com:443/wd/hub"),
+    static AndroidDriver<WebElement> localApp() {
+        return new AndroidDriver<>(
+            new URL("http://127.0.0.1:4723/wd/hub"),
             new DesiredCapabilities() {
                 {
                     setCapability(PLATFORM_NAME, ANDROID);
-                    setCapability(PLATFORM_VERSION, "8");
-                    setCapability(DEVICE_NAME,
-                        "Samsung Galaxy S9 Plus WQHD GoogleAPI Emulator");
+                    setCapability(DEVICE_NAME, "DONTCARE"); // local
                     setCapability(AUTO_WEBVIEW, true);
-                    setCapability(APP, "sauce-storage:app.apk");
-                    setCapability("name", name);
-                    setCapability("build", "local-"
-                        + DateTimeFormatter.ofPattern("yyyyMMddHHmmss")
-                            .withZone(ZoneOffset.UTC)
-                            .format(Instant.now()));
+                    setCapability(APP,
+                        new File(System.getProperty("user.dir"), "app.apk")
+                            .toString());
                 }
             });
     }
 
     @Test
     public void shouldRequireEmail() {
+        // ThreadUtils.sleep(4000); -- otherwise will test before stabilization
         assertThat(webDriver
             .findElements(By.xpath("//*[text()='Please enter valid email']")),
             not(empty()));
@@ -79,13 +74,10 @@ public class _5_TestingMobileApplicationOnSauceLabs {
         value = "UPM_UNCALLED_PRIVATE_METHOD",
         justification = "called by testng framework")
     @BeforeClass
-    @SneakyThrows
     private void beforeClassOpenWebDriver() {
-        // NOTE: ensure you have TBD.apk uploaded to SauceLabs
-        // curl -u "TBD:TBD" -X POST
-        // https://saucelabs.com/rest/v1/storage/TBD --data-binary
-        // @TBD.apk
-        webDriver = saucelabsApp(getClass().getSimpleName());
-        webDriver.manage().timeouts().implicitlyWait(5, SECONDS);
+        // NOTE: ensure you have local Appium server started and Android
+        // emulator running and available via adb devices
+        // -- see README.md for details
+        webDriver = localApp();
     }
 }
