@@ -21,8 +21,9 @@
       <package name="dev.aherscu.qa.testing.example.scenarios.tutorial"/>
     </packages-->
     <classes>
-      <class
-        name="dev.aherscu.qa.testing.example.scenarios.tutorial._3_TestingWebApplication"/>
+      <!-- ISSUE behaves differently on macos -->
+      <!-- class
+        name="dev.aherscu.qa.testing.example.scenarios.tutorial._3_TestingWebApplication"/-->
       <!-- ISSUE still fails on GitHub
         see https://stackoverflow.com/questions/74085088/running-gui-application-on-github-hosted-runner
         and https://github.com/orgs/community/discussions/36704
