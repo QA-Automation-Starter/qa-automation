@@ -31,9 +31,9 @@
         <ribbonOrientation>right</ribbonOrientation>
         <ribbonColor>black</ribbonColor>
       </gitHub>
-      <!-- NOTE: seems to require a custom domain -->
-      <!-- TODO: publish GitHub Pages under custom domain -->
-      <!--      <googleSearch/>-->
+      <googleSearch>
+        <sitesearch/>
+      </googleSearch>
     </fluidoSkin>
   </custom>
 
