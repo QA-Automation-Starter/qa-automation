@@ -35,9 +35,6 @@
     and many other utilities for handling text, streams, lists, maps, etc.
     In addition, provides an AWS Cognito SRP filter for JAX-RS and a CLI for it.
   </description>
-  <url>
-    https://github.com/QA-Automation-Starter/qa-automation/tree/main/qa-tester-utils
-  </url>
 
   <repositories>
     <repository>

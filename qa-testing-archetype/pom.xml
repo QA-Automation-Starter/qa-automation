@@ -34,9 +34,6 @@
   <description>
     Generates a template Maven project with the QA Automation built-in.
   </description>
-  <url>
-    https://github.com/QA-Automation-Starter/qa-automation/tree/main/qa-testing-archetype
-  </url>
 
   <properties>
     <spotbugs.skip>true</spotbugs.skip>
