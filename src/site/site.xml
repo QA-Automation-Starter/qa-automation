@@ -31,7 +31,9 @@
         <ribbonOrientation>right</ribbonOrientation>
         <ribbonColor>black</ribbonColor>
       </gitHub>
-      <googleSearch/>
+      <googleSearch>
+        <sitesearch>qa-automation-starter.aherscu.dev</sitesearch>
+      </googleSearch>
     </fluidoSkin>
   </custom>
 
