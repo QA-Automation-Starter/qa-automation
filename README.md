@@ -155,3 +155,4 @@ For validating published artifacts, use
 ## Acknowledgments
 
 [![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/community/opensource/#support)
+[<img src="https://jgiven.org/img/logo.png" height="80" alt="JGiven">](https://jgiven.org)
