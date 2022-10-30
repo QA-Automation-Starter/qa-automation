@@ -141,7 +141,7 @@ Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our proces
 ## License
 
 This project is licensed under the Apache License - see
-the [LICENSE.md](LICENSE.md) file for details.
+the [LICENSE](LICENSE) file for details.
 
 ## GPG Public Key
 
