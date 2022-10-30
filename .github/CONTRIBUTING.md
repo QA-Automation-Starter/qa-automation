@@ -28,7 +28,7 @@ section [Contribute Code](#contribute-code).
 
 ## Suggest a feature
 
-To request a new feature you should open an [issue](../../issues/new) and
+To request a new feature you should open an issue and
 summarize the desired functionality and its use case. Set the issue label to "
 feature".
 
@@ -36,7 +36,7 @@ feature".
 
 This is an outline of what the workflow for code contributions looks like
 
-- Check the list of open [issues](../../issues). Either assign an existing issue
+- Check the list of open issues. Either assign an existing issue
   to yourself, or
   create a new one that you would like work on and discuss your ideas and use
   cases.
@@ -60,7 +60,7 @@ contribution is in line with our goals.
 - When you are done, remove the `work in progess` label and ping the maintainers
   for a review
 - Your pull request must receive a :thumbsup: from
-  two [maintainers](MAINTAINERS)
+  the [maintainers](MAINTAINERS)
 
 Thanks for your contributions!
 
