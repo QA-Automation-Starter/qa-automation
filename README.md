@@ -154,5 +154,4 @@ For validating published artifacts, use
 
 ## Acknowledgments
 
-![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)
-<https://www.jetbrains.com/community/opensource/#support>
+[![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)](https://www.jetbrains.com/community/opensource/#support)
