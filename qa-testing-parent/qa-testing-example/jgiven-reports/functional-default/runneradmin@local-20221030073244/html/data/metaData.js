@@ -1,0 +1,1 @@
+jgivenReport.setMetaData({"created":"Oct 30, 2022 7:39:25 AM","version":"1.1.0-365403fc","title":"QA Testing Example  [#runneradmin@local-20221030073244]","data":["data0.js"],"showThumbnails":true} );
