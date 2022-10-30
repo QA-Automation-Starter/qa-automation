@@ -34,9 +34,6 @@
     JSON Report files. Currently, works with internal JMustache templates
     providing no customization means.
   </description>
-  <url>
-    https://github.com/QA-Automation-Starter/qa-automation/tree/main/qa-jgiven-reporter-maven-plugin
-  </url>
 
   <dependencies>
     <dependency>
