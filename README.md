@@ -3,7 +3,7 @@
 [![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/maven.yml/badge.svg)](https://github.com/QA-Automation-Starter/qa-automation/actions)
 [![Open Source Helpers](https://www.codetriage.com/adrian-herscu/qa-automation/badges/users.svg)](https://www.codetriage.com/adrian-herscu/qa-automation)
 
-# Abstract
+# Overview
 
 How about having an automation project running in several minutes?
 
@@ -12,18 +12,19 @@ How about having BDD, Selenium, and database support already baked-in?
 How about having support for different configurations, environments,
 and multiple device types, ready to run on your Jenkins?
 
-Then, assuming JDK 8 and Maven 3.6+ are already installed,
-on Windows it would be:
+# Getting Started
+
+Assuming JDK 8 and Maven 3.6+ are already installed, on Windows it would be:
 
 ```shell
 mvn --batch-mode archetype:generate ^
   -Dmaven.wagon.http.ssl.insecure=true ^
   -DarchetypeGroupId=dev.aherscu.qa ^
   -DarchetypeArtifactId=qa-testing-archetype ^
-  -DarchetypeVersion=0.0.1-SNAPSHOT ^
+  -DarchetypeVersion=LATEST ^
   -DgroupId=com.acme ^
   -DartifactId=testing ^
-  -Dversion=1.0-SNAPSHOT ^
+  -Dversion=0.0.1-SNAPSHOT ^
   -Dpackage=com.acme.testing
 ```
 
@@ -34,26 +35,27 @@ cd testing
 mvn
 ```
 
-and coding a test would look like this:
+then, coding a test would look like this:
 
 ```java
 public class ATest extends CalculatorTest {
-    @Test(dataProvider = INTERNAL_DATA_PROVIDER)
-    public void shouldCalculate(final Calculation calculation) {
-        given().a_calculator(webDriver.get());
+  @Test(dataProvider = INTERNAL_DATA_PROVIDER)
+  public void shouldCalculate(final Calculation calculation) {
+    given().a_calculator(webDriver.get());
 
-        when().typing(calculation.expression + "=");
+    when().typing(calculation.expression + "=");
 
-        then().the_result(is(stringContainsInOrder("Display is", calculation.result)));
-    }
+    then().the_result(is(stringContainsInOrder("Display is", calculation.result)));
+  }
 }
 ```
 
-After running it, above code will be nicely reflected in a BDD report.
+After running it, above code will be nicely reflected in
+a [JGiven](https://jgiven.org/) BDD report.
 
 see [Working Examples](qa-testing-example/README.md)
 
-# More details
+# More Details
 
 [QA Testing Archetype](qa-testing-archetype/README.md) generates an automation
 project, with all required dependencies for TestNG, BDD-reporting, Selenium,
@@ -69,11 +71,10 @@ The generated project contains example tests.
 
 see [QA Testing Example](qa-testing-example/README.md)
 
-# How to use snapshot builds
-
-see [QA Testing Archetype](qa-testing-archetype/README.md)
-
 # Development Instructions
+
+For using a snapshot version
+of [QA Testing Archetype](qa-testing-archetype/README.md)
 
 ## Maven Settings
 
@@ -100,7 +101,21 @@ In Eclipse, this file is supported natively.
 Maven builds, by default, format the code, unless launched with
 'mode-build-fast' profile.
 
-## Releasing
+## Testing
+
+Running `mvn` on the root project will run all tests.
+
+## Deploying
+
+By pushing to a pull request tracked branch, or merging into main branch.
+See the [deploy-for-jdk8](.github/workflows/maven.yml).
+
+## Releasing/Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available,
+see
+the [tags on this repository](https://github.com/QA-Automation-Starter/qa-automation/tags)
+.
 
 Basically, it is just running:
 
@@ -109,20 +124,32 @@ mvn release:clean release:prepare
 mvn release:perform
 ```
 
-The above have the following effects:
+The above has the following effects:
 
 * sources will be tagged according to current version
 * `SNAPSHOT` suffix will be removed
+* the [release](.github/workflows/release.yml) will be invoked
 * artifacts will be deployed to OSSRH releases repository
 * a staging repository will appear
-  at <https://s01.oss.sonatype.org/#stagingRepositories>
+  on [Sonatype's Nexus](https://s01.oss.sonatype.org/#stagingRepositories)
 
 The staging repository needs manual approval to be synced to Maven Central.
 
+## License
+
+This project is licensed under the Apache License - see
+the [LICENSE.md](LICENSE.md) file for details.
+
 ## GPG Public Key
 
+For validating published artifacts, use
 <https://keys.openpgp.org/search?q=39F1B2495B0260B2D974C634F89B5DBA3AF082E0>
 
 ## Sonatype Repo
 
 <https://s01.oss.sonatype.org/>
+
+## Acknowledgments
+
+![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.png)
+<https://www.jetbrains.com/community/opensource/#support>
