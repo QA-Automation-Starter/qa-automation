@@ -135,6 +135,9 @@ The above has the following effects:
 
 The staging repository needs manual approval to be synced to Maven Central.
 
+## Contributing
+
+Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our process for submitting pull requests to us, and please ensure you follow the [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md).
 ## License
 
 This project is licensed under the Apache License - see
