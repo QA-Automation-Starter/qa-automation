@@ -1,0 +1,3 @@
+url: "https://qa-automation-starter.aherscu.dev"
+plugins:
+  - jekyll-sitemap
