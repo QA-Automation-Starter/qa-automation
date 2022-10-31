@@ -41,15 +41,10 @@
     <head>
       <![CDATA[<script src="https://www.google-analytics.com/urchin.js" type="text/javascript"></script>]]>
     </head>
-    <!--    <menu name="Overview">-->
-    <!--      <item name="Custom Content" href="custom-content.html"/>-->
-    <!--    </menu>-->
     <menu name="Overview">
-      <!-- TODO: perhaps should include the docs folder
-        so these documents will appear on the github site as well
-        -->
       <item name="Quick Start" href="index.html"/>
-      <item name="Example Project" href="example-project.html"/>
+      <item name="Architecture" href="index.html"/>
+      <item name="Tutorials &amp; Examples" href="link to example project"/>
     </menu>
     <menu ref="parent" inherit="top"/>
     <menu ref="modules" inherit="bottom"/>

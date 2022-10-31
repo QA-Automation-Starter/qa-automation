@@ -19,9 +19,22 @@
          xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 https://maven.apache.org/xsd/decoration-1.8.0.xsd">
 
   <body>
+    <!-- TODO: old docs folder should be deleted
+      all documents should be under site/markdown
+      -->
     <menu name="Overview">
+      <item name="Prerequisites" href="index.html"/>
+      <item name="Execution" href="index.html"/>
+      <item name="How to" href="index.html"/>
+    </menu>
+
+    <menu name="Tutorials">
+      <!-- TODO should add sections per ticket#50 with linked documents -->
       <!-- TODO link specific classes -->
+      <item name="Prerequisites" href="index.html"/>
+      <item name="Execution" href="index.html"/>
       <item name="JGiven Report" href="${jgiven.reports}/html/index.html"/>
     </menu>
+
   </body>
 </project>
