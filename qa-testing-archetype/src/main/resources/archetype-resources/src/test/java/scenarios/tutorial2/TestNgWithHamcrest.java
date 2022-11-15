@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ${package}.scenarios.tutorial;
+package ${package}.scenarios.tutorial2;
 
 import static com.google.common.collect.Ordering.*;
 import static com.jayway.jsonpath.JsonPath.*;
@@ -38,7 +38,7 @@ import org.testng.annotations.*;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
 
-public class _2_TestNgWithHamcrest {
+public class TestNgWithHamcrest {
 
     @Test
     public void _1_shouldNotSucceed() {

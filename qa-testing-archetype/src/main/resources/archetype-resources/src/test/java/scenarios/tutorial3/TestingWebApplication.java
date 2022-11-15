@@ -14,37 +14,33 @@
  * limitations under the License.
  */
 
-package ${package}.scenarios.tutorial;
+package ${package}.scenarios.tutorial3;
 
 import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
 import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static org.openqa.selenium.remote.CapabilityType.*;
 import static uk.co.probablyfine.matchers.StreamMatchers.*;
 
-import java.net.*;
 import java.util.function.*;
 
 import org.jooq.lambda.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.firefox.*;
-import org.openqa.selenium.remote.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.utils.*;
 import edu.umd.cs.findbugs.annotations.*;
 import io.github.bonigarcia.wdm.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
 @Slf4j
-public class _3_TestingWebApplication {
-    private WebDriver webDriver;
+public class TestingWebApplication {
+    private final WebDriver webDriver;
 
     @Factory(dataProvider = INTERNAL_DATA_PROVIDER)
-    public _3_TestingWebApplication(Supplier<WebDriver> webDriver) {
+    public TestingWebApplication(Supplier<WebDriver> webDriver) {
         this.webDriver = webDriver.get();
         log.trace("testing with {}", webDriver);
     }
@@ -64,13 +60,14 @@ public class _3_TestingWebApplication {
                 WebDriverManager.chromedriver().setup();
                 return new ChromeDriver();
             }) },
-            { Unchecked.supplier(() -> new RemoteWebDriver(
-                new URL("http://localhost:4444"),
-                new DesiredCapabilitiesEx() {
-                    {
-                        setCapability(BROWSER_NAME, "firefox");
-                    }
-                })) }
+            // TODO setup Selenium on GitHub runner or wait for SauceLabs
+            // { Unchecked.supplier(() -> new RemoteWebDriver(
+            // new URL("http://localhost:4444"),
+            // new DesiredCapabilitiesEx() {
+            // {
+            // setCapability(BROWSER_NAME, "firefox");
+            // }
+            // })) }
         };
 
     }

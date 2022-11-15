@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ${package}.scenarios.tutorial;
+package ${package}.scenarios.tutorial3;
 
 import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
 import static org.apache.commons.lang3.RandomStringUtils.*;
@@ -32,12 +32,12 @@ import ${package}.*;
 import ${package}.steps.tutorial.*;
 import lombok.*;
 
-public class _9_TestingGoogleWithJGiven
+public class TestingWebWithJGiven
     extends
     ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>,
             GoogleActions<?>, GoogleVerifications<?>> {
 
-    protected _9_TestingGoogleWithJGiven() {
+    protected TestingWebWithJGiven() {
         super(TestConfiguration.class);
     }
 

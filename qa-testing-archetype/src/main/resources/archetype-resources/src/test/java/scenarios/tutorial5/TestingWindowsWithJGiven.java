@@ -14,30 +14,43 @@
  * limitations under the License.
  */
 
-package ${package}.scenarios.tutorial;
+package ${package}.scenarios.tutorial5;
 
 import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
+import dev.aherscu.qa.jgiven.commons.utils.*;
 import ${package}.*;
 import ${package}.model.tutorial.*;
 import ${package}.steps.tutorial.*;
+import lombok.*;
+import lombok.extern.slf4j.*;
 
-public class _8_TestingWindowsWithJGiven
+@Slf4j
+public class TestingWindowsWithJGiven
     extends
     ApplicationPerClassWebSessionTest<TestConfiguration, CalculatorFixtures<?>, CalculatorActions<?>, CalculatorVerifications<?>> {
 
-    protected _8_TestingWindowsWithJGiven() {
+    protected TestingWindowsWithJGiven() {
         super(TestConfiguration.class);
+    }
+
+    @BeforeClass
+    @SneakyThrows
+    @Override
+    protected void beforeClassOpenWebDriver() {
+        log.debug("before class opening WinAppDriver");
+        webDriver.set(WebDriverEx.from(configuration()
+            .capabilitiesFor("provider.local.windows")));
     }
 
     @DataProvider
     static Object[][] data() {
         return new Object[][] {
             { Calculation.builder().expression("7+8").result("15").build() },
-            { Calculation.builder().expression("2*5").result("11").build() },
+            { Calculation.builder().expression("2*5").result("10").build() },
             { Calculation.builder().expression("333/111").result("3").build() },
             { Calculation.builder().expression("7-8").result("-1").build() },
         };

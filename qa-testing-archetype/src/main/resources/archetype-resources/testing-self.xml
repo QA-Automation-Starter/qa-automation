@@ -28,7 +28,7 @@
   <test name="Self Tests" parallel="classes" thread-count="15">
     <classes>
       <class
-        name="${package}.scenarios.tutorial._9_TestingGoogleWithJGiven"/>
+        name="${package}.scenarios.tutorial3.TestingWebWithJGiven"/>
     </classes>
   </test>
 </suite>

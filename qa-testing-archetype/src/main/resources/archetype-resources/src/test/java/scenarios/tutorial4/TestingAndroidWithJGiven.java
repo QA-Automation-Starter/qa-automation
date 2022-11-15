@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package ${package}.scenarios.tutorial;
+package ${package}.scenarios.tutorial4;
 
-import static ${package}.scenarios.tutorial._5_TestingMobileApplicationOnSauceLabs.*;
+import static ${package}.scenarios.tutorial4.TestingAndroidOnSauceLabs.*;
 import static java.lang.Thread.*;
 import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
@@ -34,10 +34,13 @@ import io.appium.java_client.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
+/**
+ * TODO should run against one of the Android applications, e.g. Calculator
+ */
 @As("Testing with JGiven")
 @Slf4j
-public class _6_TestingWithJGiven extends
-    ScenarioTest<_6_TestingWithJGiven.Fixtures, _6_TestingWithJGiven.Actions, _6_TestingWithJGiven.Verifications> {
+public class TestingAndroidWithJGiven extends
+    ScenarioTest<TestingAndroidWithJGiven.Fixtures, TestingAndroidWithJGiven.Actions, TestingAndroidWithJGiven.Verifications> {
 
     private final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 

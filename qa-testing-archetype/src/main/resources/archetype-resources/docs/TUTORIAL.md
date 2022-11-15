@@ -24,17 +24,17 @@
 
 ## Basic Steps
 
-1. [Plain TestNG](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_1_PlainTestNg.java)
-2. [TestNG with Hamcrest](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_2_TestNgWithHamcrest.java)
-3. [Testing Web Application](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_3_TestingWebApplication.java)
-4. [Testing Mobile Application](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_4_TestingMobileApplication.java)
-5. [Testing Mobile Application on SauceLabs](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_5_TestingMobileApplicationOnSauceLabs.java)
+1. [Plain TestNG](../src/test/java/${package}/scenarios/tutorial/_1_PlainTestNg.java)
+2. [TestNG with Hamcrest](../src/test/java/${package}/scenarios/tutorial/_2_TestNgWithHamcrest.java)
+3. [Testing Web Application](../src/test/java/${package}/scenarios/tutorial/_3_TestingWebApplication.java)
+4. [Testing Mobile Application](../src/test/java/${package}/scenarios/tutorial/_4_TestingMobileApplication.java)
+5. [Testing Mobile Application on SauceLabs](../src/test/java/${package}/scenarios/tutorial/_5_TestingMobileApplicationOnSauceLabs.java)
 
 ## Advanced Steps
 
-1. [Testing and reporting with JGiven in parallel](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_6_TestingWithJGiven.java)
-2. [Testing Windows Application](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_7_TestingWindowsApplication.java)
-3. [Testing Windows with JGiven](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_8_TestingWindowsWithJGiven.java)
+1. [Testing and reporting with JGiven in parallel](../src/test/java/${package}/scenarios/tutorial/_6_TestingWithJGiven.java)
+2. [Testing Windows Application](../src/test/java/${package}/scenarios/tutorial/_7_TestingWindowsApplication.java)
+3. [Testing Windows with JGiven](../src/test/java/${package}/scenarios/tutorial/_8_TestingWindowsWithJGiven.java)
 
 ## Development Workflow
 
