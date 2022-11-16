@@ -39,14 +39,14 @@ then, coding a test would look like this:
 
 ```java
 public class ATest extends CalculatorTest {
-  @Test(dataProvider = INTERNAL_DATA_PROVIDER)
-  public void shouldCalculate(final Calculation calculation) {
-    given().a_calculator(webDriver.get());
+    @Test(dataProvider = INTERNAL_DATA_PROVIDER)
+    public void shouldCalculate(final Calculation calculation) {
+        given().a_calculator(webDriver.get());
 
-    when().typing(calculation.expression + "=");
+        when().typing(calculation.expression + "=");
 
-    then().the_result(is(stringContainsInOrder("Display is", calculation.result)));
-  }
+        then().the_result(is(stringContainsInOrder("Display is", calculation.result)));
+    }
 }
 ```
 
@@ -117,10 +117,11 @@ see
 the [tags on this repository](https://github.com/QA-Automation-Starter/qa-automation/tags)
 .
 
-Basically, it is just running:
+First, must ensure working on updated `main` branch with no local/unpushed
+changes, then, it is just running:
 
 ```shell
-mvn release:clean release:prepare
+mvn clean release:clean install release:prepare
 mvn release:perform
 ```
 
@@ -137,7 +138,10 @@ The staging repository needs manual approval to be synced to Maven Central.
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our process for submitting pull requests to us, and please ensure you follow the [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md).
+Please read [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details on our
+process for submitting pull requests to us, and please ensure you follow
+the [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md).
+
 ## License
 
 This project is licensed under the Apache License - see
