@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ${package}.scenarios.tutorial;
+package ${package}.scenarios.tutorial5;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -28,7 +28,7 @@ import edu.umd.cs.findbugs.annotations.*;
 import io.appium.java_client.windows.*;
 import lombok.*;
 
-public class _7_TestingWindowsApplication {
+public class TestingWindowsApplication {
 
     private WindowsDriver<?> driver;
 
@@ -66,7 +66,7 @@ public class _7_TestingWindowsApplication {
         val capabilities = new DesiredCapabilities();
         capabilities.setCapability("app",
             "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App");
-        driver = new WindowsDriver<>(new URL("http://127.0.0.1:4723/wd/hub"),
+        driver = new WindowsDriver<>(new URL("http://127.0.0.1:4723"),
             capabilities);
 
         // NOTE: should uncomment in order to deal with latencies

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ${package}.scenarios.tutorial;
+package ${package}.scenarios.tutorial4;
 
 import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static io.appium.java_client.remote.MobilePlatform.*;
@@ -34,7 +34,10 @@ import edu.umd.cs.findbugs.annotations.*;
 import io.appium.java_client.android.*;
 import lombok.*;
 
-public class _5_TestingMobileApplicationOnSauceLabs {
+/**
+ * TODO should run against one of the Android applications, e.g. Calculator
+ */
+public class TestingAndroidOnSauceLabs {
 
     private WebDriver webDriver;
 

@@ -28,7 +28,7 @@
   <test name="Windows Tests" parallel="classes" thread-count="15">
     <classes>
       <class
-        name="${package}.scenarios.tutorial._8_TestingWindowsWithJGiven"/>
+        name="${package}.scenarios.tutorial5.TestingWindowsWithJGiven"/>
     </classes>
   </test>
 </suite>
