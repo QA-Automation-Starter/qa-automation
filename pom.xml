@@ -231,6 +231,7 @@
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <useReleaseProfile>false</useReleaseProfile>
             <goals>deploy</goals>
+            <arguments>-Darchetype.test.skip</arguments>
           </configuration>
         </plugin>
 
