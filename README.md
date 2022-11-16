@@ -117,13 +117,13 @@ see
 the [tags on this repository](https://github.com/QA-Automation-Starter/qa-automation/tags)
 .
 
-First, must ensure working on updated `main` branch with no local/unpushed
-changes, then, it is just running:
+First, must ensure the following:
+1. working on updated `main` branch with no local/unpushed changes
+2. `mvn clean install` succeeds
 
-```shell
-mvn clean release:clean install release:prepare
-mvn release:perform
-```
+Then:
+1. `mvn release:clean release:prepare` succeeds
+2. `mvn release:perform` should succeed too
 
 The above has the following effects:
 
