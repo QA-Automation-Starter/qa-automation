@@ -231,7 +231,12 @@
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <useReleaseProfile>false</useReleaseProfile>
             <goals>deploy</goals>
-            <arguments>-Darchetype.test.skip</arguments>
+            <!-- NOTE: during release:prepare the generated project
+              refers to yet not released parent version hence failing
+              to pass integration test.
+              All tests are redundant since the project should
+              install correctly before trying to release it. -->
+            <arguments>-Darchetype.test.skip -DskipTests -DskipITs</arguments>
           </configuration>
         </plugin>
 
