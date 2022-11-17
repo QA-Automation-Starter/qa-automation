@@ -1,8 +1,15 @@
 name: release and push to central
-on:
-  push:
-    tags:
-      - '*'
+
+# Temporarily disabling
+# The source is from https://theoverengineered.blog/posts/publishing-my-first-artifact-to-maven-central-using-github-actions
+# which appears not to use same method as described by Maven/Sonatype
+# He just says that tagging is enough. This entails bumping up the
+# versions of all modules somehow and drop the SNAPSHOT suffix.
+#on:
+#  push:
+#    tags:
+#      - '*'
+
 jobs:
   maven-central-deploy:
     name: Deploy to Maven Central

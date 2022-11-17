@@ -122,19 +122,16 @@ First, must ensure the following:
 2. `mvn clean install` succeeds
 
 Then:
-1. `mvn release:clean release:prepare` succeeds
+1. `mvn release:prepare` succeeds
 2. `mvn release:perform` should succeed too
 
 The above has the following effects:
 
-* sources will be tagged according to current version
 * `SNAPSHOT` suffix will be removed
-* the [release](.github/workflows/release.yml) will be invoked
+* sources will be tagged according to current version
+* versions will be bumped up forming a new SNAPSHOT
 * artifacts will be deployed to OSSRH releases repository
-* a staging repository will appear
-  on [Sonatype's Nexus](https://s01.oss.sonatype.org/#stagingRepositories)
-
-The staging repository needs manual approval to be synced to Maven Central.
+* after few hours it will appear under Maven Central
 
 ## Contributing
 
