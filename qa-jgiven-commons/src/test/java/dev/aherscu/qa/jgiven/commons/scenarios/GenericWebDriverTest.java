@@ -18,10 +18,7 @@ package dev.aherscu.qa.jgiven.commons.scenarios;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static dev.aherscu.qa.tester.utils.MatchersExtensions.*;
 
-import org.openqa.selenium.*;
-import org.openqa.selenium.htmlunit.*;
-import org.testng.annotations.*;
-
+import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
@@ -30,6 +27,9 @@ import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.extern.slf4j.*;
+import org.openqa.selenium.*;
+import org.openqa.selenium.htmlunit.*;
+import org.testng.annotations.*;
 
 /**
  * Contains web driver sample tests just to ensure that the testing
@@ -40,23 +40,17 @@ import lombok.extern.slf4j.*;
  */
 @SelfTest
 @WebDriverTest
-@edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
-    value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
-    justification = "JGiven framework limitation")
+@edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE", justification = "JGiven framework limitation")
 @Slf4j
-public final class GenericWebDriverTest
-    extends
-    AbstractMockedServiceTest<WebDriverScenarioType, WebDriverFixtures<?>, WebDriverActions<?>, WebDriverVerifications<?>> {
+public final class GenericWebDriverTest extends AbstractMockedServiceTest<WebDriverScenarioType, WebDriverFixtures<?>, WebDriverActions<?>, WebDriverVerifications<?>> {
 
     private WebDriverEx driver;
 
-    @Test(dependsOnMethods = "shouldOpenWebDriver",
-        expectedExceptions = InvalidSelectorException.class)
+    @Test(dependsOnMethods = "shouldOpenWebDriver", expectedExceptions = InvalidSelectorException.class)
     public void shouldFailFinding() {
         given().a_web_driver(driver);
         // same browser on same page as set by previous method
-        then().the_title(containsString("hello"))
-            .and().element(By.xpath("bad-xpath["),
+        then().the_title(containsString("hello")).and().element(By.xpath("bad-xpath["),
                 adaptedObject(WebElement::getText, is("kuku")));
     }
 

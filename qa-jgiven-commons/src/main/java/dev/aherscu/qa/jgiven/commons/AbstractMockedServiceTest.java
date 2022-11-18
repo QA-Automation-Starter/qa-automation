@@ -13,20 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.scenarios;
+package dev.aherscu.qa.jgiven.commons;
 
 import static dev.aherscu.qa.tester.utils.WireMockServerUtils.*;
 
-import org.testng.annotations.*;
-
 import com.github.tomakehurst.wiremock.*;
-
 import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.tester.utils.config.*;
+import org.testng.annotations.*;
 
 /**
  * Contains REST sample tests just to ensure that the testing infrastructure
