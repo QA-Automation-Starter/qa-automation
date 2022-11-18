@@ -1,11 +1,6 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name: snapshot build and publish
+name: pull request snapshot build
 
 on:
-  push:
-    branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -46,8 +41,8 @@ jobs:
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-fast,mode-build-quiet
 
-  deploy-for-jdk8:
-    name: jdk-8 snapshot publish
+  verify-for-jdk8:
+    name: jdk-8 verify
     # ISSUE ChromeDriver/GeckoDriver fail to initialize on Ubuntu
     # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3294884059/jobs/5432863668
     # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
@@ -75,14 +70,14 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Maven deploy and publish site
+      - name: Maven install
         shell: cmd
         run: |
           reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 0x1
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
-          mvnw deploy site site:stage scm-publish:publish-scm ^
+          mvnw ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-default,testing-tutorials
         env:
@@ -92,7 +87,7 @@ jobs:
 
   generate-automation-project:
     name: Generates new automation project and builds it
-    needs: deploy-for-jdk8
+    needs: verify-for-jdk8
     runs-on: ubuntu-latest
 
     steps:
