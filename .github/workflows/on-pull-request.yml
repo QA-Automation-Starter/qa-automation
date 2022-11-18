@@ -87,7 +87,7 @@ jobs:
 
   generate-automation-project:
     name: Generates new automation project and builds it
-    needs: deploy-for-jdk8
+    needs: verify-for-jdk8
     runs-on: ubuntu-latest
 
     steps:
