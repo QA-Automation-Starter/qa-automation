@@ -1,13 +1,11 @@
-name: release perform
+name: release
 
 on:
-  push:
-    tags:
-      - '*'
+  workflow_dispatch:
 
 jobs:
-  release-perform:
-    name: release perform
+  release:
+    name: release
     runs-on: ubuntu-latest
     environment: development
 
@@ -25,6 +23,17 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
+      - name: Maven release prepare
+        run: chmod +x mvnw && ./mvnw release:prepare -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: "${{ github.workspace }}/**/target/*.jar"
+
       - name: Maven release perform
         run: chmod +x mvnw && ./mvnw release:perform -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
         env:
@@ -35,10 +44,3 @@ jobs:
         with:
           allowUpdates: true
           artifacts: "${{ github.workspace }}/**/target/*.jar"
-      - name: mvn deploy
-        run: chmod +x mvnw && ./mvnw deploy -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
-        env:
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-      # TODO run site site:stage scm-publish:publish-scm
