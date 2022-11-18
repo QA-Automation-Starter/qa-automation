@@ -107,8 +107,8 @@ Running `mvn` on the root project will run all tests.
 
 ## Deploying
 
-By pushing to a pull request tracked branch, or merging into main branch.
-See the [deploy-for-jdk8](.github/workflows/maven.yml).
+By pushing or merging into main branch.
+See the [deploy-for-jdk8](.github/workflows/on-main-push.yml).
 
 ## Releasing/Versioning
 

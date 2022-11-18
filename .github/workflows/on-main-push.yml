@@ -1,16 +1,15 @@
-# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
-name: snapshot build and publish
+name: main branch deploy and site publishing
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
 
+  # TODO pull into separate workflow file and reuse
+  # same as in on-pull-request.yml
+  # see https://docs.github.com/en/actions/using-workflows/reusing-workflows
+  # and https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
   matrix-build:
     name: ${{ matrix.os }} jdk-${{ matrix.java-version }} build w/o tests
     runs-on: ${{ matrix.os }}
@@ -90,6 +89,8 @@ jobs:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
 
+  # TODO pull into separate workflow file and reuse
+  # same as in on-pull-request.yml
   generate-automation-project:
     name: Generates new automation project and builds it
     needs: deploy-for-jdk8
@@ -128,7 +129,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: generate testing project
-        # IMPORTANT
+        # FIXME should use latest archetype
         run: |
           mvn --batch-mode archetype:generate \
             -DarchetypeGroupId=dev.aherscu.qa \
