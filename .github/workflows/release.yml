@@ -1,18 +1,13 @@
-name: release and push to central
+name: release perform
 
-# Temporarily disabling
-# The source is from https://theoverengineered.blog/posts/publishing-my-first-artifact-to-maven-central-using-github-actions
-# which appears not to use same method as described by Maven/Sonatype
-# He just says that tagging is enough. This entails bumping up the
-# versions of all modules somehow and drop the SNAPSHOT suffix.
-#on:
-#  push:
-#    tags:
-#      - '*'
+on:
+  push:
+    tags:
+      - '*'
 
 jobs:
-  maven-central-deploy:
-    name: Deploy to Maven Central
+  release-perform:
+    name: release perform
     runs-on: ubuntu-latest
     environment: development
 
@@ -30,8 +25,8 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
-      - name: mvn install
-        run: chmod +x mvnw && ./mvnw install -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
+      - name: Maven release perform
+        run: chmod +x mvnw && ./mvnw release:perform -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
