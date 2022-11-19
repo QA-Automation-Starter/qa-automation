@@ -24,7 +24,10 @@ jobs:
           gpg-passphrase: GPG_PASSPHRASE
 
       - name: Maven release prepare
-        run: chmod +x mvnw && ./mvnw release:prepare -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
+        run: |
+          git config --global user.name "Adrian Herscu"
+          git config --global user.email "adrian.herscu@gmail.com"
+          chmod +x mvnw && ./mvnw release:prepare -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
