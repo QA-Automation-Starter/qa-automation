@@ -1,11 +1,13 @@
-name: release
+name: build release for github
 
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - '*'
 
 jobs:
   release:
-    name: release
+    name: release for github
     runs-on: ubuntu-latest
     environment: development
 
@@ -23,24 +25,16 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.6.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Maven release prepare
+      - name: Maven build
         run: |
-          git config --global user.name "Adrian Herscu"
-          git config --global user.email "adrian.herscu@gmail.com"
-          chmod +x mvnw && ./mvnw release:prepare -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
+          chmod +x mvnw && ./mvnw install \
+            -DskipTests=true \
+            -s $GITHUB_WORKSPACE/settings.xml \
+            -Pmode-build-fast,mode-build-quiet
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-
-      - name: Maven release perform
-        run: chmod +x mvnw && ./mvnw release:perform -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
-        env:
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
