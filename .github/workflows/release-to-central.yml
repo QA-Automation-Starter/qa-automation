@@ -1,4 +1,4 @@
-name: release
+name: release to central
 
 on:
   workflow_dispatch:
@@ -32,14 +32,9 @@ jobs:
         run: |
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
-          chmod +x mvnw && ./mvnw release:prepare -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
-        env:
-          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-
-      - name: Maven release perform
-        run: chmod +x mvnw && ./mvnw release:perform -s $GITHUB_WORKSPACE/settings.xml -Pmode-build-quiet
+          chmod +x mvnw && ./mvnw release:prepare release:perform \
+            -s $GITHUB_WORKSPACE/settings.xml \
+            -Pmode-build-quiet,mode-build-fast
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
