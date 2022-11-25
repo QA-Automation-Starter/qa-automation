@@ -16,3 +16,4 @@ java ^
 -jar target/${artifactId}-${version}-SNAPSHOT-test-with-dependencies.jar ^
 -d target/test-output ^
 testing-windows.xml
+@echo Exit Code is %errorlevel%

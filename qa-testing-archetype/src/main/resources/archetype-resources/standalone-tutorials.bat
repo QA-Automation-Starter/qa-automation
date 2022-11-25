@@ -16,3 +16,4 @@ java ^
 -jar target/${artifactId}-${version}-test-with-dependencies.jar ^
 -d target/test-output ^
 testing-tutorials.xml
+@echo Exit Code is %errorlevel%

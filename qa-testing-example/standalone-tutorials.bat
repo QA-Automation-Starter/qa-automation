@@ -16,3 +16,4 @@ java ^
 -jar target/qa-testing-example-0.0.9-SNAPSHOT-test-with-dependencies.jar ^
 -d target/test-output ^
 testing-tutorials.xml
+@echo Exit Code is %errorlevel%
