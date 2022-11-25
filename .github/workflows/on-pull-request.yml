@@ -86,9 +86,9 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
 
   generate-automation-project:
-    name: Generates new automation project and builds it
+    name: Generates automation project, builds it, and runs standalone tutorials
     needs: verify-for-jdk8
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: setup maven for sonatype snapshots
@@ -125,14 +125,12 @@ jobs:
       - name: generate testing project
         # IMPORTANT
         run: |
-          mvn --batch-mode archetype:generate \
-            -DarchetypeGroupId=dev.aherscu.qa \
-            -DarchetypeArtifactId=qa-testing-archetype \
-            -DarchetypeVersion=0.0.2-SNAPSHOT \
-            -DgroupId=com.acme \
-            -DartifactId=testing \
-            -Dversion=1.0-SNAPSHOT \
-            -Dpackage=com.acme.testing
+          generate-example-project.bat
 
       - name: build testing project
-        run: cd testing && chmod +x mvnw && ./mvnw
+        run: |
+          cd testing && mvnw -Pgenerate-standalone
+
+      - nmae: run standalone tests executable
+        run: |
+          standalone-tutorials.bat
