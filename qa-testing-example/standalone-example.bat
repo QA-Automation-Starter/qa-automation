@@ -10,12 +10,9 @@ java ^
 -Dbuild.tags= ^
 -Dapplication.filename=Microsoft.WindowsCalculator_8wekyb3d8bbwe!App ^
 -Dapplication.workingdir= ^
--Denvironment.label=default ^
 -Dtest.properties.file=environments/default/test.properties ^
 -Djgiven.report.dir=target/jgiven-reports ^
 -Ddryrun= ^
--Dscreenshots= ^
--DscreenshotDelayMs=500 ^
 -jar target/qa-testing-example-0.0.9-SNAPSHOT-test-with-dependencies.jar ^
 -d target/test-output ^
 testing-windows.xml
