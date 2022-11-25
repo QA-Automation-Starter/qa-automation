@@ -14,7 +14,7 @@
   ~ limitations under the License.
   -->
 <!-- NOTE: example standalone descriptor to be used with generate-standalone
-  profile; see standalone-example.bat for how to launch -->
+  profile; see standalone-xxxx.bat for how to launch -->
 <assembly
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
