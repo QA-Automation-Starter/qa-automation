@@ -30,7 +30,7 @@ import java.util.concurrent.atomic.*;
 import java.util.function.*;
 import java.util.stream.*;
 
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration2.*;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.chrome.*;
 

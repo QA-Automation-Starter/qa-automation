@@ -19,7 +19,7 @@ import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 
 import javax.annotation.concurrent.*;
 
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration2.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
 import lombok.extern.slf4j.*;
@@ -34,12 +34,12 @@ import lombok.extern.slf4j.*;
 @ThreadSafe
 public final class TestConfiguration extends WebDriverConfiguration {
 
-    static {
-        // IMPORTANT: this makes all property values to be parsed as
-        // as list if commas are found inside
-        org.apache.commons.configuration.AbstractConfiguration
-            .setDefaultListDelimiter(COMMA.charAt(0));
-    }
+//    static {
+//        // IMPORTANT: this makes all property values to be parsed as
+//        // as list if commas are found inside
+//        org.apache.commons.configuration.AbstractConfiguration
+//            .setDefaultListDelimiter(COMMA.charAt(0));
+//    }
 
     /**
      * Loads the specified configurations.

@@ -18,7 +18,7 @@ package dev.aherscu.qa.tester.utils;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration2.*;
 import org.testng.annotations.*;
 
 import com.google.common.collect.*;

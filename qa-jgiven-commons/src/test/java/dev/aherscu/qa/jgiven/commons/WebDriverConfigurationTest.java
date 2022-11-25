@@ -26,7 +26,8 @@ import static org.hamcrest.Matchers.*;
 
 import java.util.*;
 
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration2.*;
+import org.apache.commons.configuration2.ex.*;
 import org.openqa.selenium.chrome.*;
 import org.testng.annotations.*;
 

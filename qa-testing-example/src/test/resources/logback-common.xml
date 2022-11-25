@@ -68,24 +68,24 @@
     </sift>
   </appender>
 
-  <logger name="dev.aherscu.qa.tester.utils.config" level="info"/>
-  <logger name="javax" level="off"/>
-  <logger name="jdk" level="off"/>
-  <logger name="sun" level="off"/>
-  <logger name="org" level="off"/>
-  <logger name="reactor" level="off"/>
-  <logger name="io" level="off"/>
-  <logger name="net" level="off"/>
-  <logger name="ca" level="off"/>
-  <logger name="tracer" level="off"/>
-  <logger name="com.gargoylesoftware" level="off"/>
-  <logger name="com.github" level="off"/>
-  <logger name="com.zaxxer" level="off"/>
-  <logger name="com.jayway" level="off"/>
-  <logger name="com.tngtech" level="off"/>
-  <logger name="com.couchbase" level="off"/>
-  <logger name="com.amazonaws" level="off"/>
-  <logger name="com.saucelabs" level="off"/>
+  <!--  <logger name="dev.aherscu.qa.tester.utils.config" level="info"/>-->
+  <!--  <logger name="javax" level="off"/>-->
+  <!--  <logger name="jdk" level="off"/>-->
+  <!--  <logger name="sun" level="off"/>-->
+  <!--  <logger name="org" level="off"/>-->
+  <!--  <logger name="reactor" level="off"/>-->
+  <!--  <logger name="io" level="off"/>-->
+  <!--  <logger name="net" level="off"/>-->
+  <!--  <logger name="ca" level="off"/>-->
+  <!--  <logger name="tracer" level="off"/>-->
+  <!--  <logger name="com.gargoylesoftware" level="off"/>-->
+  <!--  <logger name="com.github" level="off"/>-->
+  <!--  <logger name="com.zaxxer" level="off"/>-->
+  <!--  <logger name="com.jayway" level="off"/>-->
+  <!--  <logger name="com.tngtech" level="off"/>-->
+  <!--  <logger name="com.couchbase" level="off"/>-->
+  <!--  <logger name="com.amazonaws" level="off"/>-->
+  <!--  <logger name="com.saucelabs" level="off"/>-->
 
   <!-- NOTE: the log root level defaults to trace, but might be overridden via
     a system property, e.g. via a Maven profile defining Surefire/Failsafe system properties  -->

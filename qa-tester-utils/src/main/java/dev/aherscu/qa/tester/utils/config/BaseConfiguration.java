@@ -23,7 +23,7 @@ import static java.util.stream.Collectors.toMap;
 import java.util.*;
 import java.util.stream.*;
 
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration2.*;
 
 import lombok.extern.slf4j.*;
 

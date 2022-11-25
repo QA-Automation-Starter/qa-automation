@@ -35,7 +35,7 @@ import java.util.concurrent.atomic.*;
 import javax.annotation.concurrent.*;
 
 import org.apache.commons.beanutils.*;
-import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration2.Configuration;
 import org.jooq.lambda.*;
 import org.reflections.*;
 import org.testng.*;
