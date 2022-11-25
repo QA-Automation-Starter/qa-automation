@@ -144,4 +144,4 @@ jobs:
       - name: run standalone tests executable
         shell: cmd
         run: |
-          standalone-tutorials.bat
+          cd testing && standalone-tutorials.bat
