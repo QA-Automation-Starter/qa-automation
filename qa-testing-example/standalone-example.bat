@@ -1,4 +1,5 @@
 java ^
+-Dlog.root.level=trace ^
 -Dlogback.configurationFile=logback-test.xml ^
 -Dpoll.timeout=15 ^
 -Dpoll.delay=5 ^
@@ -10,10 +11,11 @@ java ^
 -Dapplication.filename=Microsoft.WindowsCalculator_8wekyb3d8bbwe!App ^
 -Dapplication.workingdir= ^
 -Denvironment.label=default ^
--Djgiven.report.dir=target\jgiven-reports ^
--Ddryrun=true ^
--Dscreenshots=false ^
+-Dtest.properties.file=environments/default/test.properties ^
+-Djgiven.report.dir=target/jgiven-reports ^
+-Ddryrun= ^
+-Dscreenshots= ^
 -DscreenshotDelayMs=500 ^
--jar target\qa-testing-example-0.0.1-SNAPSHOT-test-with-dependencies.jar ^
--d target\test-output ^
-testing-self.xml
+-jar target/qa-testing-example-0.0.9-SNAPSHOT-test-with-dependencies.jar ^
+-d target/test-output ^
+testing-windows.xml
