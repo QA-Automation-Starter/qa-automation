@@ -125,7 +125,16 @@ jobs:
       - name: generate testing project
         shell: cmd
         run: |
-          generate-example-project.bat
+          mvn archetype:generate ^
+            --batch-mode ^
+            -Dmaven.wagon.http.ssl.insecure=true ^
+            -DarchetypeGroupId=dev.aherscu.qa ^
+            -DarchetypeArtifactId=qa-testing-archetype ^
+            -DarchetypeVersion=LATEST ^
+            -DgroupId=com.acme ^
+            -DartifactId=testing ^
+            -Dversion=0.0.1-SNAPSHOT ^
+            -Dpackage=com.acme.testing
 
       - name: build testing project
         shell: cmd
