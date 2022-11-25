@@ -135,13 +135,18 @@ jobs:
             -DartifactId=testing ^
             -Dversion=0.0.1-SNAPSHOT ^
             -Dpackage=com.acme.testing
+          dir
 
       - name: build testing project
         shell: cmd
         run: |
-          cd testing && mvnw -Pgenerate-standalone
+          chdir testing && mvnw -Pgenerate-standalone
+          chdir
+          dir
 
       - name: run standalone tests executable
         shell: cmd
         run: |
-          cd testing && standalone-tutorials.bat
+          chdir
+          dir
+          chdir testing && standalone-tutorials.bat
