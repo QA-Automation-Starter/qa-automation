@@ -28,7 +28,6 @@ import java.util.*;
 import java.util.stream.*;
 
 import org.apache.commons.configuration2.*;
-import org.apache.commons.configuration2.builder.combined.*;
 import org.apache.commons.configuration2.builder.fluent.*;
 import org.apache.commons.configuration2.ex.*;
 import org.apache.commons.configuration2.interpol.*;
@@ -89,10 +88,8 @@ public class AbstractConfiguration<T extends Configuration>
      */
     public static Configuration defaultConfiguration()
         throws ConfigurationException {
-        return new CombinedConfigurationBuilder()
-            .configure(new Parameters()
-                .fileBased()
-                .setFile(new File(CONFIGURATION_SOURCES)))
+        return new Configurations()
+            .combinedBuilder(new File(CONFIGURATION_SOURCES))
             .getConfiguration();
     }
 

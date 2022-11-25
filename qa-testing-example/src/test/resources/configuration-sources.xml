@@ -18,6 +18,14 @@
 <!-- see http://commons.apache.org/proper/commons-configuration/userguide_v1.10/howto_configurationbuilder.html#The_configuration_definition_file -->
 <!--suppress XmlUnboundNsPrefix -->
 <configuration>
+  <header>
+    <result>
+      <listDelimiterHandler
+        config-class="org.apache.commons.configuration2.convert.DefaultListDelimiterHandler">
+        <config-constrarg config-value=","/>
+      </listDelimiterHandler>
+    </result>
+  </header>
 
   <override>
     <!-- NOTE: allow overriding via system properties; these can be passed in
@@ -29,8 +37,14 @@
   <additional>
     <!-- NOTE: the name of property file itself can be provided via a system
     property and referenced using ${whatever.property.name} -->
-    <properties fileName="${test.properties.file}"/>
-    <properties fileName="webdriver.properties"/>
-    <properties fileName="required-capabilities.properties"/>
+    <properties fileName="${test.properties.file}"
+                throwExceptionOnMissing="true"
+                config-name="test"/>
+    <properties fileName="webdriver.properties"
+                throwExceptionOnMissing="true"
+                config-name="webdriver"/>
+    <properties fileName="required-capabilities.properties"
+                throwExceptionOnMissing="true"
+                config-name="required-capabilities"/>
   </additional>
 </configuration>
