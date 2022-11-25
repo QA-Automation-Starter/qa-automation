@@ -123,13 +123,16 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: generate testing project
+        shell: cmd
         run: |
           generate-example-project.bat
 
       - name: build testing project
+        shell: cmd
         run: |
           cd testing && mvnw -Pgenerate-standalone
 
       - name: run standalone tests executable
+        shell: cmd
         run: |
           standalone-tutorials.bat
