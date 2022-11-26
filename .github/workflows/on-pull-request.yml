@@ -77,7 +77,7 @@ jobs:
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
-          mvnw ^
+          mvnw install ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-default,testing-tutorials
         env:
