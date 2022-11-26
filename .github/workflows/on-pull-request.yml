@@ -150,4 +150,6 @@ jobs:
         run: |
           chdir
           dir
-          chdir testing && standalone-tutorials.bat
+          chdir testing
+          dir
+          standalone-tutorials.bat
