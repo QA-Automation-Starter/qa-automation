@@ -124,13 +124,14 @@ jobs:
 
       - name: generate testing project
         shell: cmd
+        # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
         run: |
           mvn archetype:generate ^
             --batch-mode ^
             -Dmaven.wagon.http.ssl.insecure=true ^
             -DarchetypeGroupId=dev.aherscu.qa ^
             -DarchetypeArtifactId=qa-testing-archetype ^
-            -DarchetypeVersion=LATEST ^
+            -DarchetypeVersion=0.0.9-SNAPSHOT ^
             -DgroupId=com.acme ^
             -DartifactId=testing ^
             -Dversion=0.0.1-SNAPSHOT ^
