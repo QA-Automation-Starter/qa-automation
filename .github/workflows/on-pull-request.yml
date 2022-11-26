@@ -136,22 +136,13 @@ jobs:
             -DartifactId=testing ^
             -Dversion=0.0.1-SNAPSHOT ^
             -Dpackage=com.acme.testing
-          dir
-          chdir testing
-          type pom.xml
 
       - name: build testing project
         shell: cmd
         run: |
           chdir testing && mvnw -Pgenerate-standalone
-          chdir
-          dir
 
       - name: run standalone tests executable
         shell: cmd
         run: |
-          chdir
-          dir
-          chdir testing
-          dir
-          standalone-tutorials.bat
+          chdir testing && standalone-tutorials.bat
