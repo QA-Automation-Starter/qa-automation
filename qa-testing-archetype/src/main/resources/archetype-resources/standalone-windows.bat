@@ -1,5 +1,5 @@
 java ^
--Dlog.root.level=info ^
+-Dlog.root.level=debug ^
 -Dlogback.configurationFile=logback-test.xml ^
 -Dpoll.timeout=15 ^
 -Dpoll.delay=5 ^
