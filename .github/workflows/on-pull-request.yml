@@ -120,9 +120,9 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.m2/repository
-          key: setup-java-${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          key: setup-java-${{ platform }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
-            setup-java-${{ runner.os }}-maven-
+            setup-java-${{ platform }}-maven-
 
       - name: generate testing project
         shell: cmd
