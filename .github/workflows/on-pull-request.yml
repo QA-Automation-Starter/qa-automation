@@ -142,7 +142,7 @@ jobs:
       - name: build testing project
         shell: cmd
         run: |
-          chdir testing && mvnw -Pgenerate-standalone
+          chdir testing && mvnw -Pmode-build-quiet,generate-standalone
 
       - name: run standalone tests executable
         shell: cmd
