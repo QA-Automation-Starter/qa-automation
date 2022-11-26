@@ -86,7 +86,7 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
 
   generate-automation-project:
-    name: Generates automation project, builds it, and runs standalone tutorials
+    name: generate-build-run-standalone
     needs: verify-for-jdk8
     runs-on: windows-latest
 
