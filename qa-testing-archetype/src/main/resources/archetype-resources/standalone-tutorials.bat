@@ -8,7 +8,7 @@ java ^
 -Ddevice.type= ^
 -Dbuild.label=STANDALONE ^
 -Dbuild.tags= ^
--Dapplication.filename=Microsoft.WindowsCalculator_8wekyb3d8bbwe!App ^
+-Dapplication.filename= ^
 -Dapplication.workingdir= ^
 -Dtest.properties.file=environments/default/test.properties ^
 -Djgiven.report.dir=target/jgiven-reports ^
