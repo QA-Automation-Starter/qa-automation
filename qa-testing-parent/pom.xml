@@ -71,12 +71,16 @@
     <poll.timeout>15</poll.timeout>
     <poll.delay>5</poll.delay>
 
-    <dryrun />
+    <dryrun/>
     <screenshots>true</screenshots>
 
     <maven.test.skip>false</maven.test.skip>
 
     <title>${project.name} ${device.type} [#${build.label}]</title>
+
+    <alm.href>
+      https://github.com/QA-Automation-Starter/qa-automation/issues/{0}
+    </alm.href>
   </properties>
 
   <dependencies>
@@ -229,9 +233,9 @@
               <logs.verification.skip>${logs.verification.skip}
               </logs.verification.skip>
               <reference.href>
-                <![CDATA[@{StringUtilsExtensions.format('${orcanos.href}', '(\\d+)_(\\d+)', value)}]]></reference.href>
+                <![CDATA[@{StringUtilsExtensions.format('${alm.href}', '(\\d+)', value)}]]></reference.href>
               <reference.templatelink>
-                <![CDATA[@{StringUtilsExtensions.format('<a target="_blank" href="${orcanos.href}">Click here to open Orcanos {0}</a>', '(\\d+)_(\\d+)', value)}]]></reference.templatelink>
+                <![CDATA[@{StringUtilsExtensions.format('<a target="_blank" href="${alm.href}">Click here to open ALM {0}</a>', '(\\d+)', value)}]]></reference.templatelink>
               <java.awt.headless>true</java.awt.headless>
             </systemPropertyVariables>
           </configuration>
