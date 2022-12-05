@@ -86,6 +86,14 @@
         <groupId>com.tngtech.jgiven</groupId>
         <artifactId>jgiven-maven-plugin</artifactId>
       </plugin>
+
+      <plugin>
+        <groupId>dev.aherscu.qa</groupId>
+        <artifactId>qa-jgiven-reporter-maven-plugin</artifactId>
+        <configuration>
+          <pdf>false</pdf>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
