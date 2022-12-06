@@ -27,7 +27,7 @@ jobs:
       - name: unix mvn install
         if: ${{ !contains(matrix.os, 'windows') }}
         run: |
-          chmod +x mvnw && ./mvnw install \
+          chmod +x mvnw && ./mvnw package \
             -DskipTests=true \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-fast,mode-build-quiet
@@ -36,7 +36,7 @@ jobs:
         if: ${{ contains(matrix.os, 'windows') }}
         shell: cmd
         run: |
-          mvnw install ^
+          mvnw package ^
             -DskipTests=true ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-fast,mode-build-quiet
@@ -70,6 +70,8 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      # NOTE: must run install at least in order to have artifacts in .m2
+      # .m2 artifacts are cached and reused in following generate-automation-project
       - name: Maven install
         shell: cmd
         run: |
@@ -77,7 +79,7 @@ jobs:
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
-          mvnw ^
+          mvnw install ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-default,testing-tutorials
         env:
@@ -86,9 +88,9 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
 
   generate-automation-project:
-    name: Generates new automation project and builds it
+    name: generate-build-run-standalone
     needs: verify-for-jdk8
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: setup maven for sonatype snapshots
@@ -115,24 +117,34 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
       - name: setup maven cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          key: setup-java-${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
-            ${{ runner.os }}-maven-
+            setup-java-${{ runner.os }}-maven-
 
       - name: generate testing project
-        # IMPORTANT
+        shell: cmd
+        # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
         run: |
-          mvn --batch-mode archetype:generate \
-            -DarchetypeGroupId=dev.aherscu.qa \
-            -DarchetypeArtifactId=qa-testing-archetype \
-            -DarchetypeVersion=0.0.2-SNAPSHOT \
-            -DgroupId=com.acme \
-            -DartifactId=testing \
-            -Dversion=1.0-SNAPSHOT \
+          mvn archetype:generate ^
+            --batch-mode ^
+            -Dmaven.wagon.http.ssl.insecure=true ^
+            -DarchetypeGroupId=dev.aherscu.qa ^
+            -DarchetypeArtifactId=qa-testing-archetype ^
+            -DarchetypeVersion=0.0.9-SNAPSHOT ^
+            -DgroupId=com.acme ^
+            -DartifactId=testing ^
+            -Dversion=0.0.1-SNAPSHOT ^
             -Dpackage=com.acme.testing
 
       - name: build testing project
-        run: cd testing && chmod +x mvnw && ./mvnw
+        shell: cmd
+        run: |
+          chdir testing && mvnw -Pmode-build-quiet,generate-standalone
+
+      - name: run standalone tests executable
+        shell: cmd
+        run: |
+          chdir testing && standalone-tutorials.bat

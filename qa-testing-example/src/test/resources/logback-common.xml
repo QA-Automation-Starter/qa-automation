@@ -68,6 +68,8 @@
     </sift>
   </appender>
 
+  <!-- NOTE: turn dev.aherscu.qa.tester.utils.config to trace level
+    in order to see interpolated properties -->
   <logger name="dev.aherscu.qa.tester.utils.config" level="info"/>
   <logger name="javax" level="off"/>
   <logger name="jdk" level="off"/>
