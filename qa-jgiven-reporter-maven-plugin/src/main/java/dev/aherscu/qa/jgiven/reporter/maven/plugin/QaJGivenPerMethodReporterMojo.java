@@ -16,31 +16,13 @@
 
 package dev.aherscu.qa.jgiven.reporter.maven.plugin;
 
-import static com.google.common.collect.Maps.*;
-import static com.google.common.collect.Multimaps.*;
-import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static java.util.Objects.*;
-import static java.util.stream.Collectors.*;
-import static java.util.stream.Collectors.toMap;
 
-import java.io.*;
-import java.text.*;
-import java.util.*;
-
-import org.apache.commons.io.filefilter.*;
 import org.apache.maven.plugin.*;
 import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.plugins.annotations.Mojo;
-import org.jooq.lambda.*;
 
-import com.google.common.collect.*;
-import com.samskivert.mustache.*;
-import com.tngtech.jgiven.report.json.*;
-import com.tngtech.jgiven.report.model.*;
-
-import dev.aherscu.qa.tester.utils.*;
-import lombok.*;
+import dev.aherscu.qa.jgiven.reporter.*;
 
 /**
  * Generates JGiven report in QA format per method with associated attributes.
@@ -82,47 +64,15 @@ public class QaJGivenPerMethodReporterMojo
             throw new MojoExecutionException("reference tag not defined");
 
         try {
-            forceMkdir(outputDirectory);
-
-            val template = TemplateUtils
-                .using(Mustache.compiler())
-                .loadFrom("/qa-jgiven-permethod-reporter.html");
-
-            listFiles(sourceDirectory,
-                new SuffixFileFilter(".json"), null)
-                    .parallelStream()
-                    .peek(reportModelFile -> getLog()
-                        .debug("reading " + reportModelFile.getName()))
-                    .flatMap(reportModelFile -> new ReportModelFileReader()
-                        .apply(reportModelFile).model
-                            .getScenarios()
-                            .stream()
-                            .filter(scenarioModel -> scenarioModel
-                                .getTagIds()
-                                .stream()
-                                .anyMatch(
-                                    tagId -> tagId.contains(referenceTag))))
-                    // DELETEME following two lines seeem redundant
-                    .collect(toCollection(LinkedList::new))
-                    .parallelStream()
-                    .peek(scenarioModel -> getLog()
-                        .debug("processing " + targetNameFor(scenarioModel)))
-                    .forEach(Unchecked.consumer(
-                        scenarioModel -> {
-                            val reportFile = new File(outputDirectory,
-                                targetNameFor(scenarioModel) + ".html");
-                            try (val reportWriter = fileWriter(reportFile)) {
-                                template.execute(
-                                    QaJGivenReportModel.builder()
-                                        .log(getLog())
-                                        .jgivenReport(scenarioModel)
-                                        .screenshotScale(screenshotScale)
-                                        .datePattern(datePattern)
-                                        .build(),
-                                    reportWriter);
-                                applyAttributesFor(scenarioModel, reportFile);
-                            }
-                        }));
+            QaJGivenPerMethodReporter.builder()
+                .outputDirectory(sourceDirectory)
+                .sourceDirectory(sourceDirectory)
+                .screenshotScale(screenshotScale)
+                .pdf(pdf)
+                .datePattern(datePattern)
+                .referenceTag(referenceTag)
+                .build()
+                .generate();
         } catch (final Exception e) {
             getLog().error(e.getMessage());
             throw new MojoExecutionException(
@@ -130,41 +80,4 @@ public class QaJGivenPerMethodReporterMojo
         }
     }
 
-    @SneakyThrows
-    private void applyAttributesFor(
-        final ScenarioModel scenarioModel,
-        final File reportFile) {
-        getLog().info("setting attributes for " + reportFile.getName());
-
-        try (val attributesWriter = fileWriter(
-            new File(reportFile.getAbsolutePath() + ".attributes"))) {
-            val p = new Properties();
-            p.putAll(scenarioModel.getTagIds()
-                .stream()
-                // TODO apply the mapping here
-                .map(tag -> immutableEntry(
-                    substringBefore(tag, DASH),
-                    substringAfter(tag, DASH)))
-                // NOTE there might be multiple
-                // DeviceName/PlatformName/PlatformVersion tags
-                .collect(toMultimap(Map.Entry::getKey, Map.Entry::getValue,
-                    MultimapBuilder.hashKeys().arrayListValues()::build))
-                .asMap()
-                .entrySet()
-                .stream()
-                // NOTE here we merge them all under one key
-                .map(e -> immutableEntry(e.getKey(),
-                    String.join(COMMA, e.getValue())))
-                .collect(toMap(Map.Entry::getKey, Map.Entry::getValue)));
-            p.store(attributesWriter,
-                "generated by qa-jgiven-reporter-maven-plugin");
-        }
-    }
-
-    private String targetNameFor(final ScenarioModel scenarioModel) {
-        return MessageFormat.format("{0}-{1}-{2}",
-            scenarioModel.getExecutionStatus(),
-            scenarioModel.getClassName(),
-            scenarioModel.getTestMethodName());
-    }
 }

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.reporter.maven.plugin;
+package dev.aherscu.qa.jgiven.reporter;
 
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static java.lang.Long.*;
@@ -29,20 +29,21 @@ import java.util.Base64;
 
 import org.apache.commons.codec.binary.*;
 import org.apache.commons.io.output.*;
-import org.apache.maven.plugin.logging.*;
 
 import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.model.*;
 
 import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
+import lombok.extern.slf4j.*;
 
 @Builder()
+@Slf4j
 @SuppressWarnings("ClassWithTooManyFields")
 @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
     value = "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD",
     justification = "referenced from JMustache template at runtime")
-class QaJGivenReportModel<T> {
+public class QaJGivenReportModel<T> {
     public final double                    screenshotScale;
     public final String                    testDocumentId;
     public final String                    testDocumentRev;
@@ -57,7 +58,6 @@ class QaJGivenReportModel<T> {
     public final T                         jgivenReport;
 
     public final String                    datePattern;
-    public final transient Log             log;
 
     public final transient Mustache.Lambda nanoToMillis       =
         (frag, out) -> out.write(Long
