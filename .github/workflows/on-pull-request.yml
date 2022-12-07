@@ -5,11 +5,11 @@ on:
     branches: [ main ]
     # ISSUE does not work
     # see https://stackoverflow.com/questions/71070064/github-workflow-excluding-paths-does-not-work
-    #    paths:
-    #      - '**'
-    #      - '!**/*.md'
-    #      - '!.idea'
-    #      - '!**/.*'
+    paths:
+      - '**'
+#      - '!**/*.md'
+#      - '!.idea'
+#      - '!**/.*'
 
 jobs:
 
