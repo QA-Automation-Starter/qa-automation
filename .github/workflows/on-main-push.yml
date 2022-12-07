@@ -3,10 +3,11 @@ name: main branch deploy and site publishing
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-      - '**/*.md'
-      - '.idea'
-      - '**/.*'
+    paths:
+      - '**'
+      - '!**/*.md'
+      - '!.idea'
+      - '!**/.*'
 
 jobs:
 

@@ -3,10 +3,11 @@ name: pull request snapshot build
 on:
   pull_request:
     branches: [ main ]
-    paths-ignore:
-      - '**/*.md'
-      - '.idea'
-      - '**/.*'
+    paths:
+      - '**'
+      - '!**/*.md'
+      - '!.idea'
+      - '!**/.*'
 
 jobs:
 
