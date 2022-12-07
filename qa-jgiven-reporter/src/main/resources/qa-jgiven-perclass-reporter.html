@@ -20,87 +20,87 @@
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
   <title>Design Verification Procedure</title>
   <style type="text/css">
-      @page {
-          @top-left {
-              content: "{{jgivenReport.model.name}}";
-          }
-
-          @bottom-right {
-              content: "Page " counter(page) " of " counter(pages);
-          }
-
-          margin: 25mm 25mm 25mm 25mm;
+    @page {
+      @top-left {
+        content: "{{jgivenReport.model.name}}";
       }
 
-      table, th, td {
-          border: 1px solid black;
+      @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
       }
 
-      table {
-          table-layout: fixed;
-          width: 100%;
-          page-break-inside: auto;
-          -fs-table-paginate: paginate;
-      }
+      margin: 25mm 25mm 25mm 25mm;
+    }
 
-      tr {
-          page-break-inside: avoid;
-          page-break-after: auto
-      }
+    table, th, td {
+      border: 1px solid black;
+    }
 
-      caption {
-          font-size: large;
-          font-weight: bold;
-          margin: 25px;
-      }
+    table {
+      table-layout: fixed;
+      width: 100%;
+      page-break-inside: auto;
+      -fs-table-paginate: paginate;
+    }
 
-      .header {
-          border: 1px solid black;
-          text-align: center;
-      }
+    tr {
+      page-break-inside: avoid;
+      page-break-after: auto
+    }
 
-      body {
-          counter-reset: h1counter;
-      }
+    caption {
+      font-size: large;
+      font-weight: bold;
+      margin: 25px;
+    }
 
-      h1:before {
-          content: counter(h1counter) ". ";
-          counter-increment: h1counter;
-      }
+    .header {
+      border: 1px solid black;
+      text-align: center;
+    }
 
-      h1 {
-          counter-reset: h2counter;
-      }
+    body {
+      counter-reset: h1counter;
+    }
 
-      h2:before {
-          content: counter(h1counter) "." counter(h2counter) ". ";
-          counter-increment: h2counter;
-      }
+    h1:before {
+      content: counter(h1counter) ". ";
+      counter-increment: h1counter;
+    }
 
-      h2 {
-          counter-reset: h3counter;
-      }
+    h1 {
+      counter-reset: h2counter;
+    }
 
-      h3:before {
-          content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) ". ";
-          counter-increment: h3counter;
-      }
+    h2:before {
+      content: counter(h1counter) "." counter(h2counter) ". ";
+      counter-increment: h2counter;
+    }
 
-      img {
-          width: 100%;
-      }
+    h2 {
+      counter-reset: h3counter;
+    }
 
-      .centered {
-          text-align: center;
-      }
+    h3:before {
+      content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) ". ";
+      counter-increment: h3counter;
+    }
 
-      .right-aligned {
-          text-align: right;
-      }
+    img {
+      width: 100%;
+    }
 
-      .word-wrapped {
-          word-wrap: break-word;
-      }
+    .centered {
+      text-align: center;
+    }
+
+    .right-aligned {
+      text-align: right;
+    }
+
+    .word-wrapped {
+      word-wrap: break-word;
+    }
 
 
   </style>
