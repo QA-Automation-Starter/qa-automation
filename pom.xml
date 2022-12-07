@@ -63,6 +63,7 @@
 
   <modules>
     <module>qa-tester-utils</module>
+    <module>qa-jgiven-reporter</module>
     <module>qa-jgiven-reporter-maven-plugin</module>
     <module>qa-orcanos-publisher-maven-plugin</module>
     <module>qa-s3-uploader-maven-plugin</module>

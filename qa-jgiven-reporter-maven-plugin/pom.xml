@@ -42,12 +42,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.xhtmlrenderer</groupId>
-      <artifactId>flying-saucer-pdf-itext5</artifactId>
-      <version>9.1.20</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
       <version>${maven.version}</version>
@@ -81,21 +75,8 @@
     <!--</dependency>-->
 
     <dependency>
-      <groupId>com.tngtech.jgiven</groupId>
-      <artifactId>jgiven-core</artifactId>
-      <version>${jgiven.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <!-- NOTE: this version makes jgiven-core and maven-* both happy -->
-      <version>29.0-jre</version>
-    </dependency>
-
-    <dependency>
       <groupId>dev.aherscu.qa</groupId>
-      <artifactId>qa-tester-utils</artifactId>
+      <artifactId>qa-jgiven-reporter</artifactId>
       <version>0.0.9-SNAPSHOT</version>
     </dependency>
 

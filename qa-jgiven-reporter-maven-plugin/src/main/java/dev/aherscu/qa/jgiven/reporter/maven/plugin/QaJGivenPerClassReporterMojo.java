@@ -16,22 +16,15 @@
 
 package dev.aherscu.qa.jgiven.reporter.maven.plugin;
 
-import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
-import static org.xhtmlrenderer.simple.PDFRenderer.*;
-
 import java.io.*;
 
-import org.apache.commons.io.filefilter.*;
 import org.apache.maven.plugin.*;
 import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.plugins.annotations.Mojo;
 
 import com.itextpdf.text.*;
-import com.samskivert.mustache.*;
-import com.tngtech.jgiven.report.json.*;
 
-import dev.aherscu.qa.tester.utils.*;
-import lombok.*;
+import dev.aherscu.qa.jgiven.reporter.*;
 
 /**
  * Generates JGiven report in QA format per class (segregated).
@@ -52,35 +45,14 @@ public class QaJGivenPerClassReporterMojo extends AbstractQaJgivenReporterMojo {
             "JGiven HTML report output directory: " + outputDirectory);
 
         try {
-            forceMkdir(outputDirectory);
-
-            val template = TemplateUtils
-                .using(Mustache.compiler())
-                .loadFrom("/qa-jgiven-perclass-reporter.html");
-
-            for (val reportModelFile : listFiles(
-                sourceDirectory, new SuffixFileFilter(".json"), null)) {
-
-                getLog().debug("reading " + reportModelFile);
-                try (val reportWriter = fileWriter(
-                    reportFile(reportModelFile, ".html"))) {
-                    template.execute(QaJGivenReportModel.builder()
-                        .log(getLog())
-                        .jgivenReport(new ReportModelFileReader()
-                            .apply(reportModelFile))
-                        .screenshotScale(screenshotScale)
-                        .datePattern(datePattern)
-                        .build(),
-                        reportWriter);
-                }
-
-                if (pdf) {
-                    renderToPDF(
-                        reportFile(reportModelFile, ".html"),
-                        reportFile(reportModelFile, ".pdf")
-                            .getAbsolutePath());
-                }
-            }
+            QaJGivenPerClassReporter.builder()
+                .outputDirectory(outputDirectory)
+                .sourceDirectory(sourceDirectory)
+                .screenshotScale(screenshotScale)
+                .pdf(pdf)
+                .datePattern(datePattern)
+                .build()
+                .generate();
         } catch (final IOException | DocumentException e) {
             getLog().error(e.getMessage());
             throw new MojoExecutionException(
@@ -88,10 +60,4 @@ public class QaJGivenPerClassReporterMojo extends AbstractQaJgivenReporterMojo {
         }
     }
 
-    private File reportFile(
-        final File reportModelFile,
-        final String extension) {
-        return new File(outputDirectory,
-            reportModelFile.getName() + extension);
-    }
 }

@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-jgiven-reporter-maven-plugin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-jgiven-reporter-maven-plugin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qa-jgiven-reporter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qa-jgiven-reporter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-orcanos-publisher-maven-plugin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-orcanos-publisher-maven-plugin/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-orcanos-publisher-maven-plugin/target/generated-sources/jaxb" charset="UTF-8" />
