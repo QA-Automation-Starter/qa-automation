@@ -104,7 +104,7 @@ public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
 
         try {
             QaJGivenReporter.builder()
-                .outputDirectory(sourceDirectory)
+                .outputDirectory(outputDirectory)
                 .sourceDirectory(sourceDirectory)
                 .screenshotScale(screenshotScale)
                 .pdf(pdf)

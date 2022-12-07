@@ -20,62 +20,60 @@
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
   <title>Design Verification Procedure</title>
   <style type="text/css">
-    @page {
-      @top-left {
-        content: "{{jgivenReport.model.name}}";
+      @page {
+          @top-left {
+              content: "{{jgivenReport.model.name}}";
+          }
+
+          @bottom-right {
+              content: "Page " counter(page) " of " counter(pages);
+          }
+
+          margin: 25mm 25mm 25mm 25mm;
       }
 
-      @bottom-right {
-        content: "Page " counter(page) " of " counter(pages);
+      table, th, td {
+          border: 1px solid black;
       }
 
-      margin: 25mm 25mm 25mm 25mm;
-    }
+      table {
+          table-layout: fixed;
+          width: 100%;
+          page-break-inside: auto;
+          -fs-table-paginate: paginate;
+      }
 
-    table, th, td {
-      border: 1px solid black;
-    }
+      tr {
+          page-break-inside: avoid;
+          page-break-after: auto
+      }
 
-    table {
-      table-layout: fixed;
-      width: 100%;
-      page-break-inside: auto;
-      -fs-table-paginate: paginate;
-    }
+      caption {
+          font-size: large;
+          font-weight: bold;
+          margin: 25px;
+      }
 
-    tr {
-      page-break-inside: avoid;
-      page-break-after: auto
-    }
+      .header {
+          border: 1px solid black;
+          text-align: center;
+      }
 
-    caption {
-      font-size: large;
-      font-weight: bold;
-      margin: 25px;
-    }
+      img {
+          width: 50%;
+      }
 
-    .header {
-      border: 1px solid black;
-      text-align: center;
-    }
+      .centered {
+          text-align: center;
+      }
 
-    img {
-      width: 50%;
-    }
+      .right-aligned {
+          text-align: right;
+      }
 
-    .centered {
-      text-align: center;
-    }
-
-    .right-aligned {
-      text-align: right;
-    }
-
-    .word-wrapped {
-      word-wrap: break-word;
-    }
-
-
+      .word-wrapped {
+          word-wrap: break-word;
+      }
 
 
   </style>

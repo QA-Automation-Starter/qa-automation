@@ -19,68 +19,66 @@
   <meta charset="utf-8">
   <title>Design Verification Procedure</title>
   <style>
-    table, th, td {
-      border: 1px solid black;
-      word-wrap: break-word;
-    }
+      table, th, td {
+          border: 1px solid black;
+          word-wrap: break-word;
+      }
 
-    table {
-      table-layout: fixed;
-      width: 100%;
-    }
+      table {
+          table-layout: fixed;
+          width: 100%;
+      }
 
-    caption {
-      font-size: large;
-      font-weight: bold;
-      margin: 25px;
-    }
+      caption {
+          font-size: large;
+          font-weight: bold;
+          margin: 25px;
+      }
 
-    .header {
-      border: 1px solid black;
-      text-align: center;
-    }
+      .header {
+          border: 1px solid black;
+          text-align: center;
+      }
 
-    body {
-      counter-reset: h1counter;
-    }
+      body {
+          counter-reset: h1counter;
+      }
 
-    h1:before {
-      content: counter(h1counter) ". ";
-      counter-increment: h1counter;
-    }
+      h1:before {
+          content: counter(h1counter) ". ";
+          counter-increment: h1counter;
+      }
 
-    h1 {
-      counter-reset: h2counter;
-    }
+      h1 {
+          counter-reset: h2counter;
+      }
 
-    h2:before {
-      content: counter(h1counter) "." counter(h2counter) ". ";
-      counter-increment: h2counter;
-    }
+      h2:before {
+          content: counter(h1counter) "." counter(h2counter) ". ";
+          counter-increment: h2counter;
+      }
 
-    h2 {
-      counter-reset: h3counter;
-    }
+      h2 {
+          counter-reset: h3counter;
+      }
 
-    h3:before {
-      content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) ". ";
-      counter-increment: h3counter;
-    }
+      h3:before {
+          content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) ". ";
+          counter-increment: h3counter;
+      }
 
-    img {
-      width: 100%;
-    }
+      img {
+          width: 100%;
+      }
 
-    @page {
-      margin: 25mm 25mm 25mm 25mm;
-    }
+      @page {
+          margin: 25mm 25mm 25mm 25mm;
+      }
 
-    .centered {
-      text-align: center;
-      vertical-align: middle;
-    }
-
-
+      .centered {
+          text-align: center;
+          vertical-align: middle;
+      }
 
 
   </style>

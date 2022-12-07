@@ -65,7 +65,7 @@ public class QaJGivenPerMethodReporterMojo
 
         try {
             QaJGivenPerMethodReporter.builder()
-                .outputDirectory(sourceDirectory)
+                .outputDirectory(outputDirectory)
                 .sourceDirectory(sourceDirectory)
                 .screenshotScale(screenshotScale)
                 .pdf(pdf)
