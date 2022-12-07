@@ -15,10 +15,12 @@
  */
 package dev.aherscu.qa.tester.utils;
 
-import java.io.*;
-import java.nio.charset.*;
+import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
+import static java.nio.charset.StandardCharsets.*;
+import static java.util.Objects.*;
+import static org.apache.commons.lang3.StringUtils.*;
 
-import org.apache.commons.lang3.*;
+import java.io.*;
 
 import com.samskivert.mustache.*;
 
@@ -74,8 +76,7 @@ public final class TemplateUtils {
          */
         public Template loadFrom(final File file) throws IOException {
             log.debug("loading template from {}", file.toString()); //$NON-NLS-1$
-            try (final Reader fileReader =
-                FileUtilsExtensions.fileReader(file)) {
+            try (final Reader fileReader = fileReader(file)) {
                 return loadFrom(fileReader);
             }
         }
@@ -88,7 +89,7 @@ public final class TemplateUtils {
          * @return the template
          */
         public Template loadFrom(final Reader reader) {
-            return compiler.defaultValue(StringUtils.EMPTY)
+            return compiler.defaultValue(EMPTY)
                 .compile(reader);
         }
 
@@ -102,8 +103,9 @@ public final class TemplateUtils {
         public Template loadFrom(final String name) {
             log.debug("loading template resource from {}", name); //$NON-NLS-1$
             return loadFrom(new InputStreamReader(
-                TemplateUtils.class.getResourceAsStream(name),
-                StandardCharsets.UTF_8));
+                requireNonNull(TemplateUtils.class.getResourceAsStream(name),
+                    name + " resource missing"),
+                UTF_8));
         }
     }
 }
