@@ -16,6 +16,8 @@
 package dev.aherscu.qa.tester.utils;
 
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static java.nio.charset.StandardCharsets.*;
+import static java.util.Objects.*;
 
 import java.io.*;
 import java.nio.charset.*;
@@ -55,8 +57,7 @@ public final class FileUtilsExtensions extends FileUtils {
         // http://stackoverflow.com/questions/6889697/close-resource-quietly-using-try-with-resources
         // for a generic utility to solve this kind of limitation
         @SuppressWarnings("resource")
-        val it = lineIterator(sourceFile,
-            StandardCharsets.UTF_8.toString());
+        val it = lineIterator(sourceFile, UTF_8.toString());
         // noinspection TryFinallyCanBeTryWithResources
         try {
             writeLines(targetFile, IteratorUtils.toList(it), true);
@@ -75,7 +76,9 @@ public final class FileUtilsExtensions extends FileUtils {
      * @return the file refered by specified name relative to specified class
      */
     public static File file(final Class<?> clazz, final String name) {
-        return new File(clazz.getResource(name).getPath());
+        return new File(requireNonNull(clazz.getResource(name),
+            name + "resource missing")
+                .getPath());
     }
 
     /**
@@ -88,9 +91,7 @@ public final class FileUtilsExtensions extends FileUtils {
      *             in case of I/O failure
      */
     public static Reader fileReader(final File from) throws IOException {
-        return new InputStreamReader(
-            new FileInputStream(from),
-            StandardCharsets.UTF_8);
+        return new InputStreamReader(new FileInputStream(from), UTF_8);
     }
 
     /**
@@ -103,9 +104,7 @@ public final class FileUtilsExtensions extends FileUtils {
      *             in case of I/O failure
      */
     public static Writer fileWriter(final File to) throws IOException {
-        return new OutputStreamWriter(
-            new FileOutputStream(to),
-            StandardCharsets.UTF_8);
+        return new OutputStreamWriter(new FileOutputStream(to), UTF_8);
     }
 
     /**
