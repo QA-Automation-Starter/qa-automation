@@ -29,9 +29,12 @@ import java.util.*;
 
 import org.apache.commons.io.filefilter.*;
 import org.jooq.lambda.*;
+import org.testng.*;
+import org.testng.xml.*;
 
 import com.google.common.collect.*;
 import com.samskivert.mustache.*;
+import com.tngtech.jgiven.impl.*;
 import com.tngtech.jgiven.report.json.*;
 import com.tngtech.jgiven.report.model.*;
 
@@ -40,8 +43,9 @@ import lombok.*;
 import lombok.extern.slf4j.*;
 
 @Slf4j
-public class QaJGivenPerMethodReporter extends AbstractQaJgivenReporter {
-    public final String referenceTag;
+public class QaJGivenPerMethodReporter extends AbstractQaJgivenReporter
+    implements IReporter {
+    public String referenceTag;
 
     @Builder
     public QaJGivenPerMethodReporter(
@@ -54,6 +58,33 @@ public class QaJGivenPerMethodReporter extends AbstractQaJgivenReporter {
         super(outputDirectory, sourceDirectory, debug, screenshotScale,
             datePattern, pdf);
         this.referenceTag = referenceTag;
+    }
+
+    public QaJGivenPerMethodReporter() {
+        // just to make testng happy
+    }
+
+    @SneakyThrows
+    @Override
+    public void generateReport(
+        final List<XmlSuite> xmlSuites,
+        final List<ISuite> suites,
+        final String outputDirectory) {
+        log.debug("testng output directory {}", outputDirectory);
+        xmlSuites.forEach(xmlSuite -> log.debug("xml suite {}", xmlSuite));
+        suites.forEach(suite -> log.debug("suite {}", suite.getName()));
+        log.debug("jgiven report dir {}", Config.config().getReportDir());
+
+        // FIXME quick and dirty solution
+        // the long-run solution should read these from testng descriptor
+        this.referenceTag = "Reference";
+        this.sourceDirectory = Config.config().getReportDir().get();
+        this.outputDirectory = new File(Config.config().getReportDir().get(),
+            "qa-html");
+        this.screenshotScale = 0.2;
+        this.datePattern = "yyyy-MMM-dd HH:mm O";
+
+        this.generate();
     }
 
     public void generate() throws IOException {

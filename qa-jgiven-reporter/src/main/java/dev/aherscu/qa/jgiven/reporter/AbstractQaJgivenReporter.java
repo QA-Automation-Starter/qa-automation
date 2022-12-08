@@ -22,10 +22,13 @@ import lombok.*;
 
 @AllArgsConstructor
 public abstract class AbstractQaJgivenReporter {
-    public final File    outputDirectory;
-    public final File    sourceDirectory;
-    public final boolean debug;
-    public final double  screenshotScale;
-    public final String  datePattern;
-    public final boolean pdf;
+    public File    outputDirectory;
+    public File    sourceDirectory;
+    public boolean debug;
+    public double  screenshotScale;
+    public String  datePattern;
+    public boolean pdf;
+
+    protected AbstractQaJgivenReporter() {
+    }
 }
