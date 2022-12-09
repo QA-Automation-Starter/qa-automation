@@ -16,20 +16,13 @@
 
 package dev.aherscu.qa.jgiven.reporter.maven.plugin;
 
-import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
-
 import java.io.*;
 
 import org.apache.maven.plugin.*;
 import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.plugins.annotations.Mojo;
 
-import com.google.gson.*;
-import com.samskivert.mustache.*;
-import com.tngtech.jgiven.report.json.*;
-
-import dev.aherscu.qa.tester.utils.*;
-import lombok.*;
+import dev.aherscu.qa.jgiven.reporter.*;
 
 /**
  * Generates JGiven report in QA format.
@@ -110,17 +103,14 @@ public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
             "JGiven HTML report output directory: " + outputDirectory);
 
         try {
-            val aggregatedReportModel = QaJGivenReportModel.builder()
-                .log(getLog())
-                .jgivenReport(
-                    new ReportModelReader(
-                        QaJGivenReportConfig.builder()
-                            .sourceDir(sourceDirectory)
-                            .targetDir(outputDirectory)
-                            .build())
-                                .readDirectory())
+            QaJGivenReporter.builder()
+                .outputDirectory(outputDirectory)
+                .sourceDirectory(sourceDirectory)
                 .screenshotScale(screenshotScale)
+                .pdf(pdf)
                 .datePattern(datePattern)
+                .productName(productName)
+                .productVersion(productVersion)
                 .testDocumentId(testDocumentId)
                 .testDocumentRev(testDocumentRev)
                 .specDocumentId(specDocumentId)
@@ -129,34 +119,12 @@ public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
                 .planDocumentRev(planDocumentRev)
                 .traceabilityDocumentId(traceabilityDocumentId)
                 .traceabilityDocumentRev(traceabilityDocumentRev)
-                .productName(productName)
-                .productVersion(productVersion)
-                .build();
-
-            forceMkdir(outputDirectory);
-
-            if (debug) {
-                try (val debugReportWriter = fileWriter(
-                    new File(outputDirectory, "debug-report.json"))) {
-                    new GsonBuilder()
-                        .setPrettyPrinting()
-                        .create()
-                        .toJson(aggregatedReportModel, debugReportWriter);
-                }
-            }
-
-            try (val reportWriter = fileWriter(
-                new File(outputDirectory, "qa-report.html"))) {
-                TemplateUtils
-                    .using(Mustache.compiler())
-                    .loadFrom("/qa-jgiven-reporter.html")
-                    .execute(
-                        aggregatedReportModel,
-                        reportWriter);
-            }
+                .build()
+                .generate();
         } catch (final IOException e) {
             throw new MojoExecutionException(
                 "Error while trying to generate HTML reports", e);
         }
     }
+
 }

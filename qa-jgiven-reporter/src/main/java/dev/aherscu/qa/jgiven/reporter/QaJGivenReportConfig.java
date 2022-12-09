@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.reporter.maven.plugin;
+package dev.aherscu.qa.jgiven.reporter;
 
 import java.io.*;
 import java.util.*;
@@ -24,7 +24,7 @@ import com.tngtech.jgiven.report.config.*;
 
 import lombok.*;
 
-class QaJGivenReportConfig extends AbstractReportConfig {
+public class QaJGivenReportConfig extends AbstractReportConfig {
 
     @Builder
     public QaJGivenReportConfig(
