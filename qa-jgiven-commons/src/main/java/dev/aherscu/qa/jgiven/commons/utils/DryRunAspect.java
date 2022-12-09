@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.commons.utils;
 
-import static org.apache.commons.lang3.StringUtils.*;
+import static java.lang.Boolean.*;
 
 import java.lang.SuppressWarnings;
 
@@ -44,8 +44,7 @@ import lombok.extern.slf4j.*;
 @Aspect
 @Slf4j
 public class DryRunAspect {
-    public static final boolean dryRun =
-        isNotBlank(System.getProperty("dryrun"));
+    public static final boolean dryRun = getBoolean("dryrun");
 
     /**
      * Matches the execution of methods annotated with
