@@ -16,7 +16,6 @@
 package dev.aherscu.qa.jgiven.commons.utils;
 
 import static java.lang.Integer.*;
-import static java.lang.System.*;
 
 /**
  * Defines connection defaults.
@@ -32,7 +31,7 @@ public class ConnectionDefaults {
      * not specified.
      */
     public static final int DEFAULT_CONNECTION_TIMEOUT =
-        parseInt(getProperty("jgiven.commons.connection.timeout", "10000"));
+        getInteger("jgiven.commons.connection.timeout", 10000);
 
     /**
      * The default execution timeout in milliseconds. Initialized from
@@ -40,7 +39,7 @@ public class ConnectionDefaults {
      * specified.
      */
     public static final int DEFAULT_EXECUTION_TIMEOUT  =
-        parseInt(getProperty("jgiven.commons.execution.timeout", "0"));
+        getInteger("jgiven.commons.execution.timeout", 0);
 
     /**
      * The default read timeout in milliseconds. Initialized from
@@ -48,5 +47,5 @@ public class ConnectionDefaults {
      * specified.
      */
     public static final int DEFAULT_READ_TIMEOUT       =
-        parseInt(getProperty("jgiven.commons.read.timeout", "30000"));
+        getInteger("jgiven.commons.read.timeout", 30000);
 }
