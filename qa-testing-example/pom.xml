@@ -15,7 +15,9 @@
   ~ limitations under the License.
   -->
 <!--suppress ALL -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -102,6 +104,28 @@
         <configuration>
           <pdf>false</pdf>
         </configuration>
+        <executions>
+          <execution>
+            <id>report</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <productName>App/Product Name</productName>
+              <productVersion>ProductVersion</productVersion>
+              <testDocumentId>TestDocIdD</testDocumentId>
+              <testDocumentRev>TestDocRev</testDocumentRev>
+              <specDocumentId>SpecDocId</specDocumentId>
+              <specDocumentRev>SpecDocRev</specDocumentRev>
+              <planDocumentId>PlanDocId</planDocumentId>
+              <planDocumentRev>PlanDocRev</planDocumentRev>
+              <traceabilityDocumentId>TraceabilityDocId</traceabilityDocumentId>
+              <traceabilityDocumentRev>TraceabilityDocRev
+              </traceabilityDocumentRev>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

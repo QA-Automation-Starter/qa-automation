@@ -14,13 +14,14 @@
   ~ limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/DECORATION/1.8.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/DECORATION/1.8.0"
          xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 https://maven.apache.org/xsd/decoration-1.8.0.xsd">
 
   <body>
     <menu name="Overview">
       <item name="JGiven Report" href="${jgiven.reports}/html/index.html"/>
+      <item name="QA Report" href="${jgiven.reports}/qa-html/index.html"/>
     </menu>
   </body>
 </project>
