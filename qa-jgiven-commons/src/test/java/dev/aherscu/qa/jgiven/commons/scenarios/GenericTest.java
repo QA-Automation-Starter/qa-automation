@@ -64,7 +64,7 @@ public final class GenericTest extends
     /**
      * Initializes with {@link BaseConfiguration}.
      */
-    protected GenericTest() {
+    private GenericTest() {
         super(BaseConfiguration.class);
     }
 

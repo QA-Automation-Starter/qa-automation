@@ -286,7 +286,7 @@ public class RestActions<SELF extends RestActions<SELF>>
                     log.trace(">>> stored content into {}:{}",
                         responseContent, this);
                 }
-                return (SELF) self();
+                return self();
             });
     }
 }

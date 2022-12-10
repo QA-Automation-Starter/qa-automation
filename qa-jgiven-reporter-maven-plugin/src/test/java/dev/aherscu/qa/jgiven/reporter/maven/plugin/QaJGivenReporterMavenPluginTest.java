@@ -22,6 +22,7 @@ import static java.util.Arrays.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.io.*;
+import java.util.*;
 
 import org.apache.maven.plugin.testing.*;
 import org.assertj.core.api.*;
@@ -131,7 +132,7 @@ public class QaJGivenReporterMavenPluginTest extends AbstractMojoTestCase {
         mojo.execute();
 
         val softly = new SoftAssertions();
-        for (val fileName : asList(
+        for (val fileName : Collections.singletonList(
             "dev.aherscu.qa.testing.scenarios.experimental.JGivenSelfTests.json.html")) {
             softly.assertThat(actualReports(fileName))
                 .usingCharset(UTF_8)
