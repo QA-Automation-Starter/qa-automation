@@ -35,8 +35,7 @@ import lombok.*;
 
 public class TestingWebWithJGiven
     extends
-    ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>,
-            GoogleActions<?>, GoogleVerifications<?>> {
+    ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
 
     protected TestingWebWithJGiven() {
         super(TestConfiguration.class);
