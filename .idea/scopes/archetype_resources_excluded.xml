@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="archetype-resources-excluded" pattern="!src[qa-testing-archetype]:archetype-resources..*" />
-</component>
