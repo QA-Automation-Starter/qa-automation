@@ -21,6 +21,8 @@ import static org.hamcrest.Matchers.equalTo;
 
 import javax.ws.rs.client.*;
 
+import org.testng.annotations.*;
+
 import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.fixtures.*;
@@ -29,7 +31,6 @@ import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.tester.utils.assertions.*;
 import dev.aherscu.qa.tester.utils.rest.*;
-import org.testng.annotations.*;
 
 /**
  * Contains REST sample tests just to ensure that the testing infrastructure
@@ -40,9 +41,12 @@ import org.testng.annotations.*;
  */
 @SelfTest
 @RestTest
-@edu.umd.cs.findbugs.annotations.SuppressFBWarnings(value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE", justification = "JGiven framework limitation")
-@SuppressWarnings({"boxing"})
-public final class GenericRestTest extends AbstractMockedServiceTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+@edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+    value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
+    justification = "JGiven framework limitation")
+@SuppressWarnings({ "boxing" })
+public final class GenericRestTest extends
+    AbstractMockedServiceTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 

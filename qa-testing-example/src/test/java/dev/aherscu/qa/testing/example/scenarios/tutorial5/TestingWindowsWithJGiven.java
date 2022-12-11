@@ -37,15 +37,6 @@ public class TestingWindowsWithJGiven
         super(TestConfiguration.class);
     }
 
-    @BeforeClass
-    @SneakyThrows
-    @Override
-    protected void beforeClassOpenWebDriver() {
-        log.debug("before class opening WinAppDriver");
-        webDriver.set(WebDriverEx.from(configuration()
-            .capabilitiesFor("provider.local.windows")));
-    }
-
     @DataProvider
     static Object[][] data() {
         return new Object[][] {
@@ -54,6 +45,15 @@ public class TestingWindowsWithJGiven
             { Calculation.builder().expression("333/111").result("3").build() },
             { Calculation.builder().expression("7-8").result("-1").build() },
         };
+    }
+
+    @BeforeClass
+    @SneakyThrows
+    @Override
+    protected void beforeClassOpenWebDriver() {
+        log.debug("before class opening WinAppDriver");
+        webDriver.set(WebDriverEx.from(configuration()
+            .capabilitiesFor("provider.local.windows")));
     }
 
     @Test

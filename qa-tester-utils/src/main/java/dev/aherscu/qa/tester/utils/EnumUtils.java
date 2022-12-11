@@ -34,6 +34,17 @@ import lombok.experimental.*;
 public final class EnumUtils {
 
     /**
+     * Default prefix to use for mapping members to their textual representation
+     * and vice-versa. This prefix is required in order to allow mapping member
+     * names beginning with a digit.
+     */
+    public static final Separator DEFAULT_ENUM_PREFIX    = Separator.UNDERSCORE;
+    /**
+     * Default word separator to use for prettifying.
+     */
+    public static final Separator DEFAULT_ENUM_SEPARATOR = Separator.UNDERSCORE;
+
+    /**
      * Maps a name to an enumeration member; uses {@link #DEFAULT_ENUM_PREFIX}
      * as a prefix.
      *
@@ -50,17 +61,6 @@ public final class EnumUtils {
         final Class<E> enumType, final String name) {
         return fromString(enumType, name, DEFAULT_ENUM_PREFIX);
     }
-
-    /**
-     * Default prefix to use for mapping members to their textual representation
-     * and vice-versa. This prefix is required in order to allow mapping member
-     * names beginning with a digit.
-     */
-    public static final Separator DEFAULT_ENUM_PREFIX    = Separator.UNDERSCORE;
-    /**
-     * Default word separator to use for prettifying.
-     */
-    public static final Separator DEFAULT_ENUM_SEPARATOR = Separator.UNDERSCORE;
 
     /**
      * Maps a name to an enumeration member.
@@ -83,16 +83,6 @@ public final class EnumUtils {
                 .getEnum(enumType, prefix.value + name);
         else
             throw new NoSuchMemberException(format("enum {0} not found", name));
-    }
-
-    /**
-     * If no matching enum member found.
-     */
-    public static final class NoSuchMemberException extends RuntimeException {
-
-        public NoSuchMemberException(final String message) {
-            super(message);
-        }
     }
 
     /**
@@ -181,6 +171,16 @@ public final class EnumUtils {
 
         Separator(final char separatorChar) {
             value = separatorChar;
+        }
+    }
+
+    /**
+     * If no matching enum member found.
+     */
+    public static final class NoSuchMemberException extends RuntimeException {
+
+        public NoSuchMemberException(final String message) {
+            super(message);
         }
     }
 }

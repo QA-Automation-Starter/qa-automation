@@ -48,27 +48,15 @@ import lombok.extern.slf4j.*;
 @Slf4j
 public class WebDriverConfiguration extends BaseConfiguration {
 
-    private static final AtomicReference<DeviceType> theDeviceType                 =
+    private static final AtomicReference<DeviceType>    theDeviceType                 =
         new AtomicReference<>();
 
     // NOTE must be static otherwise all tests will run with same capabilities.
     // This also means that if two instances are created with different
     // devices, hence different sets of capabilities, this mechanism will break.
-    private static final AtomicInteger               nextRequiredCapabilitiesIndex =
+    private static final AtomicInteger                  nextRequiredCapabilitiesIndex =
         new AtomicInteger(0);
-
-    /**
-     * @param deviceType
-     *            a specific device type
-     * @return matching capabilities for configured {@link #provider()} and
-     *         specified device type
-     */
-    @SneakyThrows
-    public DesiredCapabilitiesEx capabilities(final DeviceType deviceType) {
-        return capabilitiesFor(provider() + deviceType.toString());
-    }
-
-    private final Supplier<List<DesiredCapabilitiesEx>> requiredCapabilities =
+    private final Supplier<List<DesiredCapabilitiesEx>> requiredCapabilities          =
         memoize(() -> unmodifiableList(loadRequiredCapabilities()
             .peek(capabilities -> log.trace("loaded {}", capabilities))
             .collect(toList())));
@@ -124,6 +112,17 @@ public class WebDriverConfiguration extends BaseConfiguration {
      */
     static int resetNextRequiredCapabilitiesIndex() {
         return resetNextRequiredCapabilitiesIndex(0);
+    }
+
+    /**
+     * @param deviceType
+     *            a specific device type
+     * @return matching capabilities for configured {@link #provider()} and
+     *         specified device type
+     */
+    @SneakyThrows
+    public DesiredCapabilitiesEx capabilities(final DeviceType deviceType) {
+        return capabilitiesFor(provider() + deviceType.toString());
     }
 
     /**

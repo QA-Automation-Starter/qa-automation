@@ -286,6 +286,8 @@ public class RestActions<SELF extends RestActions<SELF>>
                     log.trace(">>> stored content into {}:{}",
                         responseContent, this);
                 }
+                // ISSUE on jdk11+ fails to compile via maven due to missing
+                // (SELF) cast
                 return (SELF) self();
             });
     }

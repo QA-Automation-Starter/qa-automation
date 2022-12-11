@@ -118,10 +118,12 @@ the [tags on this repository](https://github.com/QA-Automation-Starter/qa-automa
 .
 
 First, must ensure the following:
+
 1. working on updated `main` branch with no local/unpushed changes
 2. `mvn clean install` succeeds
 
 Then:
+
 1. `mvn release:prepare` succeeds
 2. `mvn release:perform` should succeed too
 
