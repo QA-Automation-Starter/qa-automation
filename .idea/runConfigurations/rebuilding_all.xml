@@ -17,7 +17,9 @@
           <option name="pomFileName" value="pom.xml" />
           <option name="profilesMap">
             <map>
-              <entry key="mode-build-quiet" value="true" />
+              <entry key="mode-build-quiet," value="true" />
+              <entry key="environment-default," value="true" />
+              <entry key="testing-tutorials" value="true" />
             </map>
           </option>
           <option name="resolveToWorkspace" value="false" />
