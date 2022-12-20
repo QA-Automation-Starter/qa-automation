@@ -34,7 +34,7 @@ jobs:
           git config --global user.email "adrian.herscu@gmail.com"
           chmod +x mvnw && ./mvnw release:prepare release:perform \
             -s $GITHUB_WORKSPACE/settings.xml \
-            -Pmode-build-quiet,mode-build-fast
+            -Pmode-build-quiet
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
