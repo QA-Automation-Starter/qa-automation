@@ -14,7 +14,9 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <!-- see
@@ -79,7 +81,8 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <delombok.directory>${project.build.directory}/delombok</delombok.directory>
     <!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=552687 -->
-    <aspectj.version>1.9.6</aspectj.version>
+    <!-- see https://github.com/eclipse/org.aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md -->
+    <aspectj.version>1.9.7</aspectj.version>
     <aspectj.showWeaveInfo>true</aspectj.showWeaveInfo>
     <aspectj.verbose>true</aspectj.verbose>
     <!-- NOTE: currently supported 1.8 and 11+; specified via profiles -->
@@ -323,9 +326,10 @@
           <!-- required to support jdk 11+ -->
           <!-- see https://github.com/mojohaus/aspectj-maven-plugin/pull/45 -->
           <!-- see also https://github.com/mojohaus/aspectj-maven-plugin/issues/52 -->
-          <groupId>com.nickwongdev</groupId>
+          <!-- see https://github.com/dev-aspectj/aspectj-maven-plugin#history -->
+          <groupId>dev.aspectj</groupId>
           <artifactId>aspectj-maven-plugin</artifactId>
-          <version>1.12.6</version>
+          <version>1.13.1</version>
           <dependencies>
             <dependency>
               <groupId>org.aspectj</groupId>
@@ -524,7 +528,9 @@
               </goals>
               <configuration>
                 <target>
-                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}" />
+                  <jar
+                      destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
+                      basedir="${delombok.directory}" />
                 </target>
               </configuration>
             </execution>
@@ -709,6 +715,7 @@
       </activation>
       <properties>
         <java.version>11</java.version>
+        <aspectj.version>1.9.9.1</aspectj.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <!-- ISSUE not all Java libraries are module aware,
           hence the Javadoc tool fails
@@ -845,7 +852,7 @@
                     </pluginExecution>
                     <pluginExecution>
                       <pluginExecutionFilter>
-                        <groupId>com.nickwongdev</groupId>
+                        <groupId>dev.aspectj</groupId>
                         <artifactId>aspectj-maven-plugin</artifactId>
                         <versionRange>[1.0,)</versionRange>
                         <goals>
