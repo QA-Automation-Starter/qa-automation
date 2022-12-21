@@ -1,11 +1,13 @@
-name: Release to Maven Central
+name: Release to GitHub
 
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - '*'
 
 jobs:
   release:
-    name: Release to Maven Central
+    name: Release to GitHub
     runs-on: ubuntu-latest
     environment: development
 
@@ -23,22 +25,17 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.6.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      # IMPORTANT: releasing to Maven Central requires sources, javadoc,
-      # in addition to binary artifacts, and everything must be GPG signed.
-      # Hence, we cannot run this with mode-build-fast profile.
-      - name: Maven release prepare and perform
+      - name: Maven build fast
         run: |
-          git config --global user.name "Adrian Herscu"
-          git config --global user.email "adrian.herscu@gmail.com"
-          chmod +x mvnw && ./mvnw release:prepare release:perform \
+          chmod +x mvnw && ./mvnw install \
+            -DskipTests=true \
             -s $GITHUB_WORKSPACE/settings.xml \
-            -Pmode-build-quiet
+            -Pmode-build-fast,mode-build-quiet
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: "${{ github.workspace }}/**/target/*.jar"

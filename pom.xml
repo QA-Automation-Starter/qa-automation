@@ -14,7 +14,9 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <!-- see
@@ -233,10 +235,8 @@
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <useReleaseProfile>false</useReleaseProfile>
             <goals>deploy</goals>
-            <!-- NOTE: during release:prepare, the main branch is committed
-              with the bumped-up project version; in order to prevent
-              a CI build from being triggered we add [skip ci] here -->
-            <scmCommentPrefix>[skip ci][maven-release-plugin]</scmCommentPrefix>
+            <!-- IMPORTANT: this prevents an unnecessary CI build -->
+            <suppressCommitBeforeTag>true</suppressCommitBeforeTag>
             <!-- NOTE: during release:prepare the generated project
               refers to yet not released parent version hence failing
               to pass integration test.
@@ -530,7 +530,9 @@
               </goals>
               <configuration>
                 <target>
-                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}" />
+                  <jar
+                      destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
+                      basedir="${delombok.directory}" />
                 </target>
               </configuration>
             </execution>
