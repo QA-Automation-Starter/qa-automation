@@ -27,7 +27,7 @@
 
   <groupId>dev.aherscu.qa</groupId>
   <artifactId>qa-automation</artifactId>
-  <version>0.0.14-SNAPSHOT</version>
+  <version>0.0.13</version>
   <packaging>pom</packaging>
 
   <name>QA Automation</name>
@@ -60,7 +60,7 @@
       scm:git:ssh://git@github.com/QA-Automation-Starter/qa-automation.git
     </developerConnection>
     <url>https://github.com/QA-Automation-Starter/qa-automation</url>
-    <tag>HEAD</tag>
+    <tag>qa-automation-0.0.13</tag>
   </scm>
 
   <modules>
