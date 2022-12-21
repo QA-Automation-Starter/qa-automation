@@ -125,9 +125,6 @@ The above has the following effects:
 * artifacts will be deployed to [OSSRH](https://s01.oss.sonatype.org)
 * versions will be bumped up forming a new SNAPSHOT
 * a new commit will be made on main branch
-* the
-  [Releases Page](https://github.com/QA-Automation-Starter/qa-automation/releases)
-  will be updated
 * after few hours released artifacts will appear on Maven Central
   at https://search.maven.org/search?q=dev.aherscu
 

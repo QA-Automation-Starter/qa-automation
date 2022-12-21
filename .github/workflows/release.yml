@@ -1,11 +1,11 @@
-name: Release to Maven Central
+name: Release
 
 on:
   workflow_dispatch:
 
 jobs:
   release:
-    name: Release to Maven Central
+    name: release
     runs-on: ubuntu-latest
     environment: development
 
@@ -42,3 +42,12 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+
+      # ISSUE: this requires running from a tag, and the tag created
+      # by maven-release-plugin is committed with [skip ci], hence
+      # will not trigger a CI event...
+      # Disabling meanwhile since releases are pushed to Maven Central anyway.
+      #      - uses: ncipollo/release-action@v1
+      #        with:
+      #          allowUpdates: true
+      #          artifacts: "${{ github.workspace }}/**/target/*.jar"
