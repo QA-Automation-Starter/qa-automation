@@ -1,4 +1,4 @@
-name: release to central
+name: Release
 
 on:
   workflow_dispatch:
@@ -28,7 +28,10 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Maven release prepare
+      # IMPORTANT: releasing to Maven Central requires sources, javadoc,
+      # in addition to binary artifacts, and everything must be GPG signed.
+      # Hence, we cannot run this with mode-build-fast profile.
+      - name: Maven release prepare and perform
         run: |
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
@@ -39,3 +42,10 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+
+      # NOTE: this one releases to GitHub repository
+      # making artifacts available via Releases page
+      - uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true
+          artifacts: "${{ github.workspace }}/**/target/*.jar"
