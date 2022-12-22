@@ -51,7 +51,7 @@ public final class GenericRestClientTest
 
     private Client client;
 
-    protected GenericRestClientTest() {
+    private GenericRestClientTest() {
         super(BaseConfiguration.class);
     }
 
@@ -85,12 +85,12 @@ public final class GenericRestClientTest
     }
 
     @AfterClass
-    protected void afterClassCloseRestClient() {
+    private void afterClassCloseRestClient() {
         client.close();
     }
 
     @BeforeClass
-    protected void beforeClassOpenRestClient() {
+    private void beforeClassOpenRestClient() {
         client = LoggingClientBuilder.newClient();
     }
 }

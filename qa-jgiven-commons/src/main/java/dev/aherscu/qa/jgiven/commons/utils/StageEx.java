@@ -242,6 +242,8 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
                     .findFirst()
                     .orElseThrow(() -> new NoSuchContextException(
                         "within " + join(contexts, COMMA))));
+            // ISSUE on jdk11+ fails to compile via maven due to missing
+            // (SELF) cast
             return (SELF) self();
         });
     }

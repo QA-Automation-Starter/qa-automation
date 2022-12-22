@@ -21,7 +21,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.9-SNAPSHOT</version>
+    <version>0.0.15-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-testing-parent</artifactId>
@@ -71,7 +71,7 @@
     <poll.timeout>15</poll.timeout>
     <poll.delay>5</poll.delay>
 
-    <dryrun/>
+    <dryrun />
     <screenshots>true</screenshots>
 
     <maven.test.skip>false</maven.test.skip>
@@ -104,7 +104,12 @@
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-commons</artifactId>
-      <version>0.0.9-SNAPSHOT</version>
+      <version>0.0.15-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>dev.aherscu.qa</groupId>
+      <artifactId>qa-jgiven-reporter</artifactId>
+      <version>0.0.15-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.javalite</groupId>
@@ -176,7 +181,7 @@
         </plugin>
 
         <plugin>
-          <groupId>com.nickwongdev</groupId>
+          <groupId>dev.aspectj</groupId>
           <artifactId>aspectj-maven-plugin</artifactId>
           <configuration>
             <aspectLibraries>

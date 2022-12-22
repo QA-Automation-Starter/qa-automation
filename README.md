@@ -45,7 +45,8 @@ public class ATest extends CalculatorTest {
 
         when().typing(calculation.expression + "=");
 
-        then().the_result(is(stringContainsInOrder("Display is", calculation.result)));
+        then().the_result(
+            is(stringContainsInOrder("Display is", calculation.result)));
     }
 }
 ```
@@ -103,7 +104,7 @@ Maven builds, by default, format the code, unless launched with
 
 ## Testing
 
-Running `mvn` on the root project will run all tests.
+`mvn` on the root project will run all tests.
 
 ## Deploying
 
@@ -112,26 +113,20 @@ See the [deploy-for-jdk8](.github/workflows/on-main-push.yml).
 
 ## Releasing/Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available,
-see
-the [tags on this repository](https://github.com/QA-Automation-Starter/qa-automation/tags)
-.
+We use [SemVer](http://semver.org/) for versioning.
 
-First, must ensure the following:
-1. working on updated `main` branch with no local/unpushed changes
-2. `mvn clean install` succeeds
-
-Then:
-1. `mvn release:prepare` succeeds
-2. `mvn release:perform` should succeed too
+To initiate a release, run the
+[Release](.github/workflows/release.yml) action.
 
 The above has the following effects:
 
 * `SNAPSHOT` suffix will be removed
-* sources will be tagged according to current version
+* sources will be committed and tagged according to current version
+* artifacts will be deployed to [OSSRH](https://s01.oss.sonatype.org)
 * versions will be bumped up forming a new SNAPSHOT
-* artifacts will be deployed to OSSRH releases repository
-* after few hours it will appear under Maven Central
+* a new commit will be made on main branch
+* after few hours released artifacts will appear on Maven Central
+  at https://search.maven.org/search?q=dev.aherscu
 
 ## Contributing
 
@@ -148,10 +143,6 @@ the [LICENSE](LICENSE) file for details.
 
 For validating published artifacts, use
 <https://keys.openpgp.org/search?q=39F1B2495B0260B2D974C634F89B5DBA3AF082E0>
-
-## Sonatype Repo
-
-<https://s01.oss.sonatype.org/>
 
 ## Acknowledgments
 

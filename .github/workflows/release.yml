@@ -1,4 +1,4 @@
-name: release to central
+name: Release
 
 on:
   workflow_dispatch:
@@ -28,14 +28,26 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Maven release prepare
+      # IMPORTANT: releasing to Maven Central requires sources, javadoc,
+      # in addition to binary artifacts, and everything must be GPG signed.
+      # Hence, we cannot run this with mode-build-fast profile.
+      - name: Maven release prepare and perform
         run: |
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
           chmod +x mvnw && ./mvnw release:prepare release:perform \
             -s $GITHUB_WORKSPACE/settings.xml \
-            -Pmode-build-quiet,mode-build-fast
+            -Pmode-build-quiet
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+
+      # ISSUE: this requires running from a tag, and the tag created
+      # by maven-release-plugin is committed with [skip ci], hence
+      # will not trigger a CI event...
+      # Disabling meanwhile since releases are pushed to Maven Central anyway.
+      #      - uses: ncipollo/release-action@v1
+      #        with:
+      #          allowUpdates: true
+      #          artifacts: "${{ github.workspace }}/**/target/*.jar"

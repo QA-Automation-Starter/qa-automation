@@ -21,7 +21,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-testing-parent</artifactId>
-    <version>0.0.9-SNAPSHOT</version>
+    <version>0.0.15-SNAPSHOT</version>
     <relativePath>../qa-testing-parent</relativePath>
   </parent>
 
@@ -38,15 +38,6 @@
     <application.filename>Microsoft.WindowsCalculator_8wekyb3d8bbwe!App
     </application.filename>
   </properties>
-
-  <dependencies>
-    <dependency>
-      <groupId>dev.aherscu.qa</groupId>
-      <artifactId>qa-jgiven-reporter</artifactId>
-      <version>0.0.9-SNAPSHOT</version>
-      <scope>runtime</scope>
-    </dependency>
-  </dependencies>
 
   <build>
     <defaultGoal>verify</defaultGoal>
@@ -73,7 +64,7 @@
       </plugin>
 
       <plugin>
-        <groupId>com.nickwongdev</groupId>
+        <groupId>dev.aspectj</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
       </plugin>
 
@@ -102,6 +93,28 @@
         <configuration>
           <pdf>false</pdf>
         </configuration>
+        <executions>
+          <execution>
+            <id>report</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+            <configuration>
+              <productName>App/Product Name</productName>
+              <productVersion>ProductVersion</productVersion>
+              <testDocumentId>TestDocIdD</testDocumentId>
+              <testDocumentRev>TestDocRev</testDocumentRev>
+              <specDocumentId>SpecDocId</specDocumentId>
+              <specDocumentRev>SpecDocRev</specDocumentRev>
+              <planDocumentId>PlanDocId</planDocumentId>
+              <planDocumentRev>PlanDocRev</planDocumentRev>
+              <traceabilityDocumentId>TraceabilityDocId</traceabilityDocumentId>
+              <traceabilityDocumentRev>TraceabilityDocRev
+              </traceabilityDocumentRev>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

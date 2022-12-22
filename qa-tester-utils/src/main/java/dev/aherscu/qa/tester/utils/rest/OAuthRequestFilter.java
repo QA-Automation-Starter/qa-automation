@@ -15,83 +15,101 @@
  */
 package dev.aherscu.qa.tester.utils.rest;
 
-import static com.jayway.jsonpath.JsonPath.*;
-import static java.lang.String.*;
+import static java.util.Objects.*;
 import static javax.ws.rs.core.HttpHeaders.*;
+import static org.apache.commons.lang3.StringUtils.*;
 
-import java.io.*;
-import java.net.*;
-import java.nio.charset.*;
+import java.time.*;
 
-import javax.annotation.concurrent.*;
 import javax.ws.rs.client.*;
 
-import org.apache.commons.io.*;
+import com.fasterxml.jackson.annotation.*;
+import com.google.common.cache.*;
 
 import lombok.*;
-import lombok.extern.slf4j.*;
+import lombok.experimental.*;
+import lombok.extern.jackson.*;
 
 /**
- * Adds an OAuth token to each request.
- *
+ * Generic implementation for OAuth 2.0 JAX-RS authentication filters.
  * <p>
- * NOTE: this is a naive implementation; the token is not saved for subsequent
- * requests. May have performance implications.
+ * Your concrete implementation may look like this:
+ * 
+ * <pre>
+ * protected TokenBlock retrieveTokenBlockFor(
+ *     final ClientRequestContext context) {
+ *     log.debug("retrieving token block for {}", this);
+ *     try (val response = context
+ *         .getClient()
+ *         .target(refreshTokenUri)
+ *         .register(basic(userName, password))
+ *         .request()
+ *         .buildPost(form(new Form()
+ *             .param("scope", scope)
+ *             .param("grant_type", "client_credentials")))
+ *         .invoke()) {
+ *         return response.readEntity(TokenBlock.class);
+ *     }
+ * }
+ * </pre>
  * </p>
- *
- * @see <a href="https://tools.ietf.org/html/rfc6749">RFC6749</a>
- * @author aherscu
- *
  */
-@ThreadSafe
-@Slf4j
-@SuppressWarnings({ "static-method", })
-public class OAuthRequestFilter implements ClientRequestFilter {
+@SuperBuilder
+public abstract class OAuthRequestFilter
+    implements ClientRequestFilter {
+    protected final String                          refreshTokenUri;
+    protected Cache<OAuthRequestFilter, TokenBlock> customTokenBlockCache;
 
-    private final URI refreshTokenUri;
-
-    public OAuthRequestFilter(final URI refreshTokenUri) {
-        this.refreshTokenUri = refreshTokenUri.normalize();
+    // for testing purposes only
+    OAuthRequestFilter customTokenBlockCache(
+        final Cache<OAuthRequestFilter, TokenBlock> customTokenBlockCache) {
+        this.customTokenBlockCache = customTokenBlockCache;
+        return this;
     }
 
     @Override
-    public final void filter(final ClientRequestContext requestContext)
-        throws IOException {
-        val retrievedTokenBlock = retrieveTokenBlockFrom(refreshTokenUri);
-        log.trace("retrieved token block {}", retrievedTokenBlock);
-        val parsedAccessToken = parseAccessTokenFrom(retrievedTokenBlock);
-        log.trace("parsed access token {}", parsedAccessToken);
-        requestContext.getHeaders().add(AUTHORIZATION,
-            format("Bearer %s", parsedAccessToken));
+    @SneakyThrows
+    public final void filter(final ClientRequestContext requestContext) {
+        val tokenBlock = tokenBlockCache()
+            .get(this, () -> retrieveTokenBlockFor(requestContext));
+        requestContext
+            .getHeaders()
+            .add(AUTHORIZATION,
+                tokenBlock.tokenType + SPACE + tokenBlock.accessToken);
     }
 
-    /**
-     * The default OAuth2 token parsing implementation. Assumes JSON token
-     * block, and extracts from the {@code access_token} field. Override with
-     * your own.
-     *
-     * @param token
-     *            the token block
-     *
-     * @return the token string
-     */
-    protected String parseAccessTokenFrom(final String token) {
-        return parse(token).read("$.access_token"); //$NON-NLS-1$
+    protected final Cache<OAuthRequestFilter, TokenBlock> tokenBlockCache() {
+        return nonNull(customTokenBlockCache)
+            ? customTokenBlockCache
+            : CacheSingleton.INSTANCE.tokenBlockCache;
     }
 
-    /**
-     * Default OAuth2 token retrieval implementation. Uses GET method to
-     * retrieve token block from specified URL. Override with your own.
-     *
-     * @param url
-     *            token URL
-     * @return token block
-     * @throws IOException
-     *             as thrown by server
-     */
-    protected String retrieveTokenBlockFrom(final URI url)
-        throws IOException {
-        return IOUtils.toString(url, StandardCharsets.UTF_8);
+    protected abstract TokenBlock retrieveTokenBlockFor(
+        final ClientRequestContext context);
+
+    @RequiredArgsConstructor
+    protected enum CacheSingleton {
+        // ISSUE Guava does not support per entry expiration
+        // see https://github.com/google/guava/issues/1203
+        // Hence, we use here a fixed time of 50 minutes which might break
+        // sometime; see other cache implementations:
+        // https://stackoverflow.com/questions/13979376/designing-a-guava-loadingcache-with-variable-entry-expiry
+        INSTANCE(CacheBuilder.newBuilder()
+            .expireAfterWrite(Duration.ofMinutes(50))
+            .build());
+
+        final Cache<OAuthRequestFilter, TokenBlock> tokenBlockCache;
     }
 
+    @Jacksonized
+    @Builder
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    protected final static class TokenBlock {
+        @JsonAlias("token_type")
+        public final String tokenType;
+        @JsonAlias("access_token")
+        public final String accessToken;
+        @JsonAlias("expires_in")
+        public final long   expiresInSeconds;
+    }
 }

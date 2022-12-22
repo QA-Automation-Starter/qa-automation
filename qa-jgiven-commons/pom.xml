@@ -20,7 +20,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.9-SNAPSHOT</version>
+    <version>0.0.15-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-jgiven-commons</artifactId>
@@ -70,7 +70,7 @@
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-tester-utils</artifactId>
-      <version>0.0.9-SNAPSHOT</version>
+      <version>0.0.15-SNAPSHOT</version>
     </dependency>
 
     <dependency>
@@ -88,7 +88,7 @@
     <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
-      <version>5.1.1</version>
+      <version>5.3.1</version>
     </dependency>
 
     <dependency>
@@ -321,7 +321,7 @@
       </plugin>
 
       <plugin>
-        <groupId>com.nickwongdev</groupId>
+        <groupId>dev.aspectj</groupId>
         <artifactId>aspectj-maven-plugin</artifactId>
         <configuration>
           <weaveDependencies>
