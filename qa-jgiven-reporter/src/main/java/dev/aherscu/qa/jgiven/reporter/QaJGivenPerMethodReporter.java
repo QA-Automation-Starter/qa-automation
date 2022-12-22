@@ -61,35 +61,18 @@ public class QaJGivenPerMethodReporter extends AbstractQaJgivenReporter
     }
 
     public QaJGivenPerMethodReporter() {
-        // just to make testng happy
-    }
-
-    @SneakyThrows
-    @Override
-    public void generateReport(
-        final List<XmlSuite> xmlSuites,
-        final List<ISuite> suites,
-        final String outputDirectory) {
-        log.debug("testng output directory {}", outputDirectory);
-        xmlSuites.forEach(xmlSuite -> log.debug("xml suite {}", xmlSuite));
-        suites.forEach(suite -> log.debug("suite {}", suite.getName()));
-        log.debug("jgiven report dir {}", Config.config().getReportDir());
-
-        // FIXME quick and dirty solution
-        // the long-run solution should read these from testng descriptor
         this.referenceTag = "Reference";
         this.sourceDirectory = Config.config().getReportDir().get();
         this.outputDirectory = new File(Config.config().getReportDir().get(),
             "qa-html");
         this.screenshotScale = 0.2;
         this.datePattern = "yyyy-MMM-dd HH:mm O";
-
-        this.generate();
     }
 
     public void generate() throws IOException {
         forceMkdir(outputDirectory);
 
+        // TODO read the template specified by testng.xml parameter if available
         val template = TemplateUtils
             .using(Mustache.compiler())
             .loadFrom("/qa-jgiven-permethod-reporter.html");
@@ -128,6 +111,24 @@ public class QaJGivenPerMethodReporter extends AbstractQaJgivenReporter
                             applyAttributesFor(scenarioModel, reportFile);
                         }
                     }));
+    }
+
+    @SneakyThrows
+    @Override
+    public void generateReport(
+        final List<XmlSuite> xmlSuites,
+        final List<ISuite> suites,
+        final String outputDirectory) {
+        log.debug("testng output directory {}", outputDirectory);
+        xmlSuites.forEach(xmlSuite -> log.debug("xml suite {}", xmlSuite));
+        suites.forEach(suite -> log.debug("suite {}", suite.getName()));
+        log.debug("jgiven report dir {}", Config.config().getReportDir());
+
+        // TODO read all relevant param tags for each xmlSuite
+        // and apply the generator
+        // TODO add another parameter for reading custom template
+
+        this.generate();
     }
 
     @SneakyThrows

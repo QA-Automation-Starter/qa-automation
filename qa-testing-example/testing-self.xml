@@ -23,7 +23,12 @@
     <!--      class-name="dev.aherscu.qa.jgiven.commons.utils.SauceLabsReporter"/>-->
     <!--    <listener-->
     <!--        class-name="dev.aherscu.qa.jgiven.commons.utils.TestRetryAnalyzer" />-->
+    <listener
+      class-name="dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter"/>
   </listeners>
+
+  <parameter name="screenshotScale" value="1"/>
+  <parameter name="template" value="/custom-permethod-reporter.html"/>
 
   <test name="Self Tests" parallel="classes" thread-count="15">
     <classes>
