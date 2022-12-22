@@ -28,7 +28,7 @@
   </listeners>
 
   <parameter name="screenshotScale" value="1"/>
-  <parameter name="template" value="/custom-permethod-reporter.html"/>
+  <parameter name="templateResource" value="/custom-permethod-reporter.html"/>
 
   <test name="Self Tests" parallel="classes" thread-count="15">
     <classes>

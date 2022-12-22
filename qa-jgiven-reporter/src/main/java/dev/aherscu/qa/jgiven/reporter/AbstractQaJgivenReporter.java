@@ -16,19 +16,45 @@
 
 package dev.aherscu.qa.jgiven.reporter;
 
+import static org.apache.commons.lang3.StringUtils.*;
+
 import java.io.*;
 
-import lombok.*;
+import org.testng.xml.*;
 
-@AllArgsConstructor
-public abstract class AbstractQaJgivenReporter {
-    public File    outputDirectory;
-    public File    sourceDirectory;
-    public boolean debug;
-    public double  screenshotScale;
-    public String  datePattern;
-    public boolean pdf;
+import lombok.experimental.*;
+
+@SuperBuilder
+public abstract class AbstractQaJgivenReporter<T extends AbstractQaJgivenReporter<?>> {
+    public static final String DEFAULT_REFERENCE_TAG    = "Reference";
+    public static final String DEFAULT_SCREENSHOT_SCALE = "0.2";
+    public static final String DEFAULT_DATE_PATTERN     = "yyyy-MMM-dd HH:mm O";
+
+    protected File             outputDirectory;
+    protected File             sourceDirectory;
+    protected boolean          debug;
+    protected String           screenshotScale;
+    protected String           datePattern;
+    protected boolean          pdf;
+    protected String           referenceTag;
+    protected String           templateResource;
 
     protected AbstractQaJgivenReporter() {
+    }
+
+    protected T from(XmlSuite xmlSuite) {
+        referenceTag =
+            defaultIfBlank(xmlSuite.getParameter("referenceTag"),
+                referenceTag);
+        screenshotScale =
+            defaultIfBlank(xmlSuite.getParameter("screenshotScale"),
+                screenshotScale);
+        datePattern =
+            defaultIfBlank(xmlSuite.getParameter("datePattern"),
+                datePattern);
+        templateResource =
+            defaultIfBlank(xmlSuite.getParameter("templateResource"),
+                templateResource);
+        return (T) this;
     }
 }

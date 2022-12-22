@@ -17,6 +17,7 @@
 package dev.aherscu.qa.jgiven.reporter;
 
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static java.lang.Double.*;
 import static java.lang.Long.*;
 import static java.text.MessageFormat.format;
 import static java.time.format.DateTimeFormatter.*;
@@ -44,7 +45,7 @@ import lombok.extern.slf4j.*;
     value = "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD",
     justification = "referenced from JMustache template at runtime")
 public class QaJGivenReportModel<T> {
-    public final double                    screenshotScale;
+    public final String                    screenshotScale;
     public final String                    testDocumentId;
     public final String                    testDocumentRev;
     public final String                    specDocumentId;
@@ -104,7 +105,7 @@ public class QaJGivenReportModel<T> {
             .from(new ByteArrayInputStream(Base64
                 .getMimeDecoder()
                 .decode(frag.execute().getBytes(StandardCharsets.UTF_8))))
-            .scale(screenshotScale, screenshotScale)
+            .scale(parseDouble(screenshotScale), parseDouble(screenshotScale))
             // NOTE JMustache requires the output stream to be left open
             .into(new Base64OutputStream(
                 new WriterOutputStream(out, StandardCharsets.UTF_8),

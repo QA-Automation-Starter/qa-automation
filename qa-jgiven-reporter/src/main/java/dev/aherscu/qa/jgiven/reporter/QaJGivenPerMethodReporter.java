@@ -20,6 +20,7 @@ import static com.google.common.collect.Maps.*;
 import static com.google.common.collect.Multimaps.*;
 import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.tester.utils.TemplateUtils.*;
 import static java.util.stream.Collectors.*;
 import static java.util.stream.Collectors.toMap;
 
@@ -38,97 +39,80 @@ import com.tngtech.jgiven.impl.*;
 import com.tngtech.jgiven.report.json.*;
 import com.tngtech.jgiven.report.model.*;
 
-import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
+import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
+@SuperBuilder
 @Slf4j
-public class QaJGivenPerMethodReporter extends AbstractQaJgivenReporter
+public class QaJGivenPerMethodReporter
+    extends AbstractQaJgivenReporter<QaJGivenPerMethodReporter>
     implements IReporter {
-    public String referenceTag;
 
-    @Builder
-    public QaJGivenPerMethodReporter(
-        File outputDirectory,
-        File sourceDirectory,
-        boolean debug,
-        double screenshotScale,
-        String datePattern,
-        boolean pdf, String referenceTag) {
-        super(outputDirectory, sourceDirectory, debug, screenshotScale,
-            datePattern, pdf);
-        this.referenceTag = referenceTag;
-    }
+    public static final String DEFAULT_TEMPLATE =
+        "/qa-jgiven-permethod-reporter.html";
 
+    /**
+     * Meant to called by TestNG during listener construction. Presets default
+     * configuration values which might be overridden via TestNG parameters.
+     *
+     * @see #generateReport(List, List, String)
+     */
     public QaJGivenPerMethodReporter() {
-        this.referenceTag = "Reference";
-        this.sourceDirectory = Config.config().getReportDir().get();
-        this.outputDirectory = new File(Config.config().getReportDir().get(),
-            "qa-html");
-        this.screenshotScale = 0.2;
-        this.datePattern = "yyyy-MMM-dd HH:mm O";
-    }
-
-    public void generate() throws IOException {
-        forceMkdir(outputDirectory);
-
-        // TODO read the template specified by testng.xml parameter if available
-        val template = TemplateUtils
-            .using(Mustache.compiler())
-            .loadFrom("/qa-jgiven-permethod-reporter.html");
-
-        listFiles(sourceDirectory,
-            new SuffixFileFilter(".json"), null)
-                .parallelStream()
-                .peek(reportModelFile -> log
-                    .debug("reading " + reportModelFile.getName()))
-                .flatMap(reportModelFile -> new ReportModelFileReader()
-                    .apply(reportModelFile).model
-                        .getScenarios()
-                        .stream()
-                        .filter(scenarioModel -> scenarioModel
-                            .getTagIds()
-                            .stream()
-                            .anyMatch(
-                                tagId -> tagId.contains(referenceTag))))
-                // DELETEME following two lines seeem redundant
-                .collect(toCollection(LinkedList::new))
-                .parallelStream()
-                .peek(scenarioModel -> log
-                    .debug("processing " + targetNameFor(scenarioModel)))
-                .forEach(Unchecked.consumer(
-                    scenarioModel -> {
-                        val reportFile = new File(outputDirectory,
-                            targetNameFor(scenarioModel) + ".html");
-                        try (val reportWriter = fileWriter(reportFile)) {
-                            template.execute(
-                                QaJGivenReportModel.builder()
-                                    .jgivenReport(scenarioModel)
-                                    .screenshotScale(screenshotScale)
-                                    .datePattern(datePattern)
-                                    .build(),
-                                reportWriter);
-                            applyAttributesFor(scenarioModel, reportFile);
-                        }
-                    }));
+        super();
+        referenceTag = DEFAULT_REFERENCE_TAG;
+        sourceDirectory = Config.config().getReportDir().get();
+        outputDirectory = new File(sourceDirectory, "qa-html");
+        screenshotScale = DEFAULT_SCREENSHOT_SCALE;
+        datePattern = DEFAULT_DATE_PATTERN;
+        templateResource = DEFAULT_TEMPLATE;
     }
 
     @SneakyThrows
+    public void generate() {
+        log.info("source directory {}", sourceDirectory);
+        log.info("output directory {}", outputDirectory);
+        log.info("screenshot scale {}", screenshotScale);
+
+        forceMkdir(outputDirectory);
+
+        val template = using(Mustache.compiler()).loadFrom(templateResource);
+
+        listFiles(sourceDirectory, new SuffixFileFilter(".json"), null)
+            .parallelStream()
+            .peek(reportModelFile -> log
+                .debug("reading " + reportModelFile.getName()))
+            .flatMap(reportModelFile -> new ReportModelFileReader()
+                .apply(reportModelFile).model
+                    .getScenarios().stream()
+                    .filter(scenarioModel -> scenarioModel.getTagIds().stream()
+                        .anyMatch(tagId -> tagId.contains(referenceTag))))
+            // DELETEME following two lines seeem redundant
+            .collect(toCollection(LinkedList::new)).parallelStream()
+            .peek(scenarioModel -> log
+                .debug("processing " + targetNameFor(scenarioModel)))
+            .forEach(Unchecked.consumer(scenarioModel -> {
+                val reportFile = new File(outputDirectory,
+                    targetNameFor(scenarioModel) + ".html");
+                try (val reportWriter = fileWriter(reportFile)) {
+                    template.execute(QaJGivenReportModel.builder()
+                        .jgivenReport(scenarioModel)
+                        .screenshotScale(screenshotScale)
+                        .datePattern(datePattern).build(), reportWriter);
+                    applyAttributesFor(scenarioModel, reportFile);
+                }
+            }));
+    }
+
     @Override
-    public void generateReport(
-        final List<XmlSuite> xmlSuites,
-        final List<ISuite> suites,
-        final String outputDirectory) {
-        log.debug("testng output directory {}", outputDirectory);
-        xmlSuites.forEach(xmlSuite -> log.debug("xml suite {}", xmlSuite));
-        suites.forEach(suite -> log.debug("suite {}", suite.getName()));
-        log.debug("jgiven report dir {}", Config.config().getReportDir());
+    public void generateReport(final List<XmlSuite> xmlSuites,
+        final List<ISuite> suites, final String outputDirectory) {
+        xmlSuites.forEach(xmlSuite -> log.info("xml suite {}", xmlSuite));
+        // ISSUE: should be empty for xml driven invocations (?)
+        // if yes, then should throw an unsupported exception
+        suites.forEach(suite -> log.info("suite {}", suite.getName()));
 
-        // TODO read all relevant param tags for each xmlSuite
-        // and apply the generator
-        // TODO add another parameter for reading custom template
-
-        this.generate();
+        xmlSuites.forEach(xmlSuite -> from(xmlSuite).generate());
     }
 
     @SneakyThrows
@@ -140,19 +124,15 @@ public class QaJGivenPerMethodReporter extends AbstractQaJgivenReporter
         try (val attributesWriter = fileWriter(
             new File(reportFile.getAbsolutePath() + ".attributes"))) {
             val p = new Properties();
-            p.putAll(scenarioModel.getTagIds()
-                .stream()
+            p.putAll(scenarioModel.getTagIds().stream()
                 // TODO apply the mapping here
-                .map(tag -> immutableEntry(
-                    substringBefore(tag, DASH),
+                .map(tag -> immutableEntry(substringBefore(tag, DASH),
                     substringAfter(tag, DASH)))
                 // NOTE there might be multiple
                 // DeviceName/PlatformName/PlatformVersion tags
                 .collect(toMultimap(Map.Entry::getKey, Map.Entry::getValue,
                     MultimapBuilder.hashKeys().arrayListValues()::build))
-                .asMap()
-                .entrySet()
-                .stream()
+                .asMap().entrySet().stream()
                 // NOTE here we merge them all under one key
                 .map(e -> immutableEntry(e.getKey(),
                     String.join(COMMA, e.getValue())))
@@ -164,8 +144,7 @@ public class QaJGivenPerMethodReporter extends AbstractQaJgivenReporter
 
     private String targetNameFor(final ScenarioModel scenarioModel) {
         return MessageFormat.format("{0}-{1}-{2}",
-            scenarioModel.getExecutionStatus(),
-            scenarioModel.getClassName(),
+            scenarioModel.getExecutionStatus(), scenarioModel.getClassName(),
             scenarioModel.getTestMethodName());
     }
 }
