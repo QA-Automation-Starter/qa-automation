@@ -16,6 +16,7 @@
 
 package dev.aherscu.qa.jgiven.reporter.maven.plugin;
 
+import static dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter.*;
 import static java.util.Objects.*;
 
 import org.apache.maven.plugin.*;
@@ -71,6 +72,7 @@ public class QaJGivenPerMethodReporterMojo
                 .pdf(pdf)
                 .datePattern(datePattern)
                 .referenceTag(referenceTag)
+                .templateResource(DEFAULT_TEMPLATE)
                 .build()
                 .generate();
         } catch (final Exception e) {

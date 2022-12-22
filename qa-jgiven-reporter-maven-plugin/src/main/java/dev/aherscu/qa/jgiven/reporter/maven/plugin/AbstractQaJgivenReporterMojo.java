@@ -16,6 +16,8 @@
 
 package dev.aherscu.qa.jgiven.reporter.maven.plugin;
 
+import static dev.aherscu.qa.jgiven.reporter.AbstractQaJgivenReporter.*;
+
 import java.io.*;
 
 import org.apache.maven.plugin.*;
@@ -47,10 +49,10 @@ public abstract class AbstractQaJgivenReporterMojo extends AbstractMojo {
     @Parameter(defaultValue = "false")
     protected boolean debug;
 
-    @Parameter(defaultValue = "0.25")
-    protected double  screenshotScale;
+    @Parameter(defaultValue = DEFAULT_SCREENSHOT_SCALE)
+    protected String  screenshotScale;
 
-    @Parameter(defaultValue = "yyyy-MMM-dd HH:mm O")
+    @Parameter(defaultValue = DEFAULT_DATE_PATTERN)
     protected String  datePattern;
 
     /**

@@ -26,8 +26,11 @@ import com.tngtech.jgiven.report.json.*;
 
 import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
+import lombok.experimental.*;
 
-public class QaJGivenReporter extends AbstractQaJgivenReporter {
+@SuperBuilder
+public class QaJGivenReporter
+    extends AbstractQaJgivenReporter<QaJGivenReporter> {
 
     public final String productName;
     public final String productVersion;
@@ -39,27 +42,6 @@ public class QaJGivenReporter extends AbstractQaJgivenReporter {
     public final String planDocumentRev;
     public final String traceabilityDocumentId;
     public final String traceabilityDocumentRev;
-
-    @Builder
-    public QaJGivenReporter(File outputDirectory, File sourceDirectory,
-        boolean debug, double screenshotScale, String datePattern, boolean pdf,
-        String productName, String productVersion, String testDocumentId,
-        String testDocumentRev, String specDocumentId, String specDocumentRev,
-        String planDocumentId, String planDocumentRev,
-        String traceabilityDocumentId, String traceabilityDocumentRev) {
-        super(outputDirectory, sourceDirectory, debug, screenshotScale,
-            datePattern, pdf);
-        this.productName = productName;
-        this.productVersion = productVersion;
-        this.testDocumentId = testDocumentId;
-        this.testDocumentRev = testDocumentRev;
-        this.specDocumentId = specDocumentId;
-        this.specDocumentRev = specDocumentRev;
-        this.planDocumentId = planDocumentId;
-        this.planDocumentRev = planDocumentRev;
-        this.traceabilityDocumentId = traceabilityDocumentId;
-        this.traceabilityDocumentRev = traceabilityDocumentRev;
-    }
 
     public void generate() throws IOException {
         val aggregatedReportModel = QaJGivenReportModel.builder()

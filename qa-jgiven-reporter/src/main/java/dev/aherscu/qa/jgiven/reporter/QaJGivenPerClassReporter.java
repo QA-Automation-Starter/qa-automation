@@ -29,21 +29,13 @@ import com.tngtech.jgiven.report.json.*;
 
 import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
+import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
+@SuperBuilder
 @Slf4j
-public class QaJGivenPerClassReporter extends AbstractQaJgivenReporter {
-    @Builder
-    public QaJGivenPerClassReporter(
-        File outputDirectory,
-        File sourceDirectory,
-        boolean debug,
-        double screenshotScale,
-        String datePattern,
-        boolean pdf) {
-        super(outputDirectory, sourceDirectory, debug, screenshotScale,
-            datePattern, pdf);
-    }
+public class QaJGivenPerClassReporter
+    extends AbstractQaJgivenReporter<QaJGivenPerClassReporter> {
 
     public void generate() throws IOException, DocumentException {
         forceMkdir(outputDirectory);
