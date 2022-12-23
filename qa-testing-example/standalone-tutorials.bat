@@ -10,7 +10,7 @@ java ^
 -Dbuild.tags= ^
 -Dapplication.filename= ^
 -Dapplication.workingdir= ^
--Dtest.properties.file=environments/default/test.properties ^
+-Dtest.properties.file=environments/dev/test.properties ^
 -Djgiven.report.dir=target/jgiven-reports ^
 -Ddryrun=false ^
 -Dscreenshots=true ^
