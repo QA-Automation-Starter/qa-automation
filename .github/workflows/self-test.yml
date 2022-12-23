@@ -33,7 +33,7 @@ jobs:
         run: |
           cd qa-testing-example && mvn verify
             -s $GITHUB_WORKSPACE/settings.xml \
-            -Pmode-build-quiet,mode-build-fast,environment-default,testing-tutorials
+            -Pmode-build-quiet,mode-build-fast,environment-dev,testing-tutorials
 
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
