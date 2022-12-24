@@ -61,7 +61,7 @@ public abstract class OAuthRequestFilter
     protected Cache<OAuthRequestFilter, TokenBlock> customTokenBlockCache;
 
     // for testing purposes only
-    OAuthRequestFilter customTokenBlockCache(
+    public OAuthRequestFilter customTokenBlockCache(
         final Cache<OAuthRequestFilter, TokenBlock> customTokenBlockCache) {
         this.customTokenBlockCache = customTokenBlockCache;
         return this;
