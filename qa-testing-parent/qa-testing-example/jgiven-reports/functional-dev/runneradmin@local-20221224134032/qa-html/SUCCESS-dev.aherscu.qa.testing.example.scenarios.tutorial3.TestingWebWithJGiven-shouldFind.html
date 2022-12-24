@@ -1,0 +1,301 @@
+<!--
+  ~ Copyright 2022 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+                      "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+  <title>Design Verification Procedure</title>
+  <style type="text/css">
+    @page {
+      @top-left {
+        content: "";
+      }
+
+      @bottom-right {
+        content: "Page " counter(page) " of " counter(pages);
+      }
+
+      margin: 25mm 25mm 25mm 25mm;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+
+    table {
+      table-layout: fixed;
+      width: 100%;
+      page-break-inside: auto;
+      -fs-table-paginate: paginate;
+    }
+
+    tr {
+      page-break-inside: avoid;
+      page-break-after: auto
+    }
+
+    caption {
+      font-size: large;
+      font-weight: bold;
+      margin: 25px;
+    }
+
+    .header {
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    img {
+      width: 50%;
+    }
+
+    .centered {
+      text-align: center;
+    }
+
+    .right-aligned {
+      text-align: right;
+    }
+
+    .word-wrapped {
+      word-wrap: break-word;
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+<!-- TODO this is a common subtemplate; should refactor -->
+<h2><b>Should find</b></h2>
+<p>2022-Dec-24 13:47 GMT</p>
+<p>
+  [UITest,Reference-68,,,]</p>
+
+<h3>Test case:1</h3>
+<table>
+  <thead>
+  <tr>
+    <th><!-- column for kind of step or empty if its a section --></th>
+    <th class="centered" style="width: 30%">Step &amp; Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Status</th>
+    <th class="centered">Duration [ms]</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <!-- kind of step -->
+    <td class="right-aligned">
+      <b>Given</b>
+    </td>
+    <!-- Step & Expected Result -->
+    <td class="word-wrapped">
+      <span>google</span>
+      <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {class: org.openqa.selenium.chrome...., goog:chromeOptions: {w3c: false}, name: TestingWebWithJGiven:should..., type: web}, driver&#x3D;ChromeDriver: chrome on WINDOWS (43ac91d596b87eb1a0bedf4e8c5bdafd))</span>
+    </td>
+    <!-- Actual Observed Result -->
+    <td class="centered word-wrapped">
+      <p>
+        <!-- duplicated from previous column -->
+        <span>google</span>
+        <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {class: org.openqa.selenium.chrome...., goog:chromeOptions: {w3c: false}, name: TestingWebWithJGiven:should..., type: web}, driver&#x3D;ChromeDriver: chrome on WINDOWS (43ac91d596b87eb1a0bedf4e8c5bdafd))</span>
+      </p>
+      {class&#x3D;org.openqa.selenium.chrome.ChromeDriver, goog:chromeOptions&#x3D;{w3c&#x3D;false}, name&#x3D;TestingWebWithJGiven:shouldFind:d899e6a0:1:1671889633049, type&#x3D;web}
+    </td>
+    <!-- Status -->
+    <td class="centered">
+      PASSED
+    </td>
+    <!-- Duration [ms] -->
+    <td class="centered">
+      1315
+    </td>
+  </tr>
+  <tr>
+    <!-- kind of step -->
+    <td class="right-aligned">
+      <b>When</b>
+    </td>
+    <!-- Step & Expected Result -->
+    <td class="word-wrapped">
+      <span>searching for</span>
+      <span>QYk7ulYUSwToY4PBPrPaRdkEMS9kEGeK7pWumjYh</span>
+    </td>
+    <!-- Actual Observed Result -->
+    <td class="centered word-wrapped">
+      <p>
+        <!-- duplicated from previous column -->
+        <span>searching for</span>
+        <span>QYk7ulYUSwToY4PBPrPaRdkEMS9kEGeK7pWumjYh</span>
+      </p>
+      <p>[Nothing to attach]</p>
+    </td>
+    <!-- Status -->
+    <td class="centered">
+      PASSED
+    </td>
+    <!-- Duration [ms] -->
+    <td class="centered">
+      1646
+    </td>
+  </tr>
+  <tr>
+    <!-- kind of step -->
+    <td class="right-aligned">
+      <b>Then</b>
+    </td>
+    <!-- Step & Expected Result -->
+    <td class="word-wrapped">
+      <span>the results</span>
+      <span>contains &lt;0L&gt; items</span>
+    </td>
+    <!-- Actual Observed Result -->
+    <td class="centered word-wrapped">
+      <p>
+        <!-- duplicated from previous column -->
+        <span>the results</span>
+        <span>contains &lt;0L&gt; items</span>
+      </p>
+      <!-- ISSUE: some servers may block data images -->
+      <!-- see https://content-security-policy.com/ -->
+      <!-- and https://www.w3.org/TR/CSP2/ -->
+      <!-- Some Jenkins servers, for example, may send -->
+      <!-- content-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline'; -->
+      <!-- NOTE: assuming binary attachments are always images -->
+      <img alt="Actual screenshot might be blocked by server"
+           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM0AAAB6CAAAAAA5GIh4AAAEfklEQVR42u3cW2/iRhQA4Pz5KqrUh1bap0q7qVQldBulSbpNF7YJtxDAYBvfxxiDzTVALsRgIGCbKbY3aJNml6BQJNA5vIyIM8w3M55z/OItvCkxNgxja3M0N/ImadrlTdIIgv4SzWQl8WpNNCrM1ziW4/z/FsexnRVobGtVW8Wxl6S5jx6rFcdhR1g0cZ3pYf1h4SejZQ/63h347bPjWWx17NFXNL8X+7Xu8eFlJFBP/VLcI96VH66x3Am7FEoKynfObCwrSKno9Aj3Yy3MFsbpJE3RiOlW+OqkINRMyskq6XGGEXP5RkHqcCK2SzTiJiV3dtD042u0773Oi+GdVM/tPx23F565/O7+udfoUNHIlxp7F6eO1Dc/jbhIf/ddIPB2m5zNpDsMGlOh2nYnKdJsqJbg86HkXzSVjeTj/NlhKvgpRoWidPrHk3giHPjzRD2NBC8Swf03YZE3Mm+PfmgK1U9hZtrNVaDtayby9p3beapxYIpu/0POReHhIpoP2d+CXbdhcpn0o7XZvbVC+zt7R4wU/zW7t/Pdaevhf4bu6lfDYcU51WR0XlQcltRyfPwyj0izUotwOJlBWC2N6+HEXToeo+MSH8nlOJZKnvOXNEGo+YR4c1J3pzGN0p81ySNvurT236bgboAc6a4aHiykyR0HDbfRFyjykebuw0FK+XknmUXa2WEgFg7kZ7txuIRbZdTz+5p+/J1m5fyfrZJE37/EnT5rod/S3wdor9EViPR/z7RGFQ86zh8HzKODpucs+RT4+hnZW+xQc6z5J7QzfFrMjVdzQNvG/Qqyp9XtGCuIO+OVucDTzK8oJvZ4BWG/trR5oWZdqs4X7TTQgGaJmvq05uhaXpKzSLL+NCvLBXx7O5kVjV5w0/xtmuP72Y03oRhsm8aXjxLd7vzbslNZtKaZpxlWSxhnRC+3Ns8xj2M00hlaQX7OZrUERhe5cpEixUJGZL0hkhyPZZojeBFJDW9YHDU0LoIlRuK8EtnQR+EzRWao7rfzDEJ5mUbLXJsW3bUKsuI1zz5yOFOupqMxRk56f83qVaxmGsV8NM6WqsSFVx4QKoOrdSFLSHxB8i7LZLEpKMl/WFT2NWNBkoVGvP/tlK5xiC8Qy71vZjvIKRbu/AVrzKav/VB7DKbLMmh67Vqh8aS/vt/HYPZsBKfAEjQd5IW29hrLjRblhWStcQwhe66DxvDSpY17n5PfYPrgdNPA193r2dVDbKyJZnIiyFqpHjOLxSZPy0qbJdk2d928URVD4nlNl2iNJjVrPTRXHRJpOsMbFb3dFso5sY7YvsxfsarSF6ZQXWoWREGarPF948z9Ak4B0IAGNKABDWhAAxrQgAY0oAENaEADGtCABjSgAQ1oQAMa0IAGNKABDWhAAxrQgAY0oAENaEADGtCABjSgAQ1oQAMa0IAGNKABDWhAAxrQgAY0oAENaECzWs1mvR8aNKBZjab0fqPWpm1sjTcleq1Wa8u4NMToWoX23MtLS0ZLVdUtg9gIzUfkawxDF9YqGs+/WtbV/AsMfg4YeZKsbQAAAABJRU5ErkJg"/>
+    </td>
+    <!-- Status -->
+    <td class="centered">
+      PASSED
+    </td>
+    <!-- Duration [ms] -->
+    <td class="centered">
+      785
+    </td>
+  </tr>
+  </tbody>
+</table>
+<h3>Test case:2</h3>
+<table>
+  <thead>
+  <tr>
+    <th><!-- column for kind of step or empty if its a section --></th>
+    <th class="centered" style="width: 30%">Step &amp; Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Status</th>
+    <th class="centered">Duration [ms]</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <!-- kind of step -->
+    <td class="right-aligned">
+      <b>Given</b>
+    </td>
+    <!-- Step & Expected Result -->
+    <td class="word-wrapped">
+      <span>google</span>
+      <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {class: org.openqa.selenium.firefox..., goog:chromeOptions: {w3c: false}, name: TestingWebWithJGiven:should..., type: web}, driver&#x3D;FirefoxDriver: firefox on WINDOWS (d08a5b6b-b456-487c-9f67-3f35553cc49b))</span>
+    </td>
+    <!-- Actual Observed Result -->
+    <td class="centered word-wrapped">
+      <p>
+        <!-- duplicated from previous column -->
+        <span>google</span>
+        <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {class: org.openqa.selenium.firefox..., goog:chromeOptions: {w3c: false}, name: TestingWebWithJGiven:should..., type: web}, driver&#x3D;FirefoxDriver: firefox on WINDOWS (d08a5b6b-b456-487c-9f67-3f35553cc49b))</span>
+      </p>
+      {class&#x3D;org.openqa.selenium.firefox.FirefoxDriver, goog:chromeOptions&#x3D;{w3c&#x3D;false}, name&#x3D;TestingWebWithJGiven:shouldFind:2444a9f0:1:1671889650527, type&#x3D;web}
+    </td>
+    <!-- Status -->
+    <td class="centered">
+      PASSED
+    </td>
+    <!-- Duration [ms] -->
+    <td class="centered">
+      1550
+    </td>
+  </tr>
+  <tr>
+    <!-- kind of step -->
+    <td class="right-aligned">
+      <b>When</b>
+    </td>
+    <!-- Step & Expected Result -->
+    <td class="word-wrapped">
+      <span>searching for</span>
+      <span>testng</span>
+    </td>
+    <!-- Actual Observed Result -->
+    <td class="centered word-wrapped">
+      <p>
+        <!-- duplicated from previous column -->
+        <span>searching for</span>
+        <span>testng</span>
+      </p>
+      <p>[Nothing to attach]</p>
+    </td>
+    <!-- Status -->
+    <td class="centered">
+      PASSED
+    </td>
+    <!-- Duration [ms] -->
+    <td class="centered">
+      243
+    </td>
+  </tr>
+  <tr>
+    <!-- kind of step -->
+    <td class="right-aligned">
+      <b>Then</b>
+    </td>
+    <!-- Step & Expected Result -->
+    <td class="word-wrapped">
+      <span>the results</span>
+      <span>All to match &lt;a string containing &quot;testng&quot; ignoring case&gt;</span>
+    </td>
+    <!-- Actual Observed Result -->
+    <td class="centered word-wrapped">
+      <p>
+        <!-- duplicated from previous column -->
+        <span>the results</span>
+        <span>All to match &lt;a string containing &quot;testng&quot; ignoring case&gt;</span>
+      </p>
+      <!-- ISSUE: some servers may block data images -->
+      <!-- see https://content-security-policy.com/ -->
+      <!-- and https://www.w3.org/TR/CSP2/ -->
+      <!-- Some Jenkins servers, for example, may send -->
+      <!-- content-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline'; -->
+      <!-- NOTE: assuming binary attachments are always images -->
+      <img alt="Actual screenshot might be blocked by server"
+           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM0AAACBCAAAAABGTWGiAAAB7UlEQVR42u3XbUvCUBTAcT990SdICCKNdEUaEVj2QFlZlmGRPVlaVlRERbWlzs3dtSmrqBe+8HaJ+B/YuNuFe/bbuZyxkPufIoQGzZ/RCEdBCKFE49gtFRovjQJNq6Vqmzi2JI2VS1/dCVGy3bLpPh7X3Zug7sL6rYdv/rhjO3I0yRO98jyVvF6IVVejJW0tchbMW35pqt5x7UhzVNxyR3O5GN6qecP7TMZPI5pSNLYm8rPV8KB9lGloQ5Pj0f79YL7hn+Kxsb5oPJYelaO5S950NJtP87VDb5g3i3o7mZBSm5hhLU0Mj6b2DrJjOS0yMHMbzNf9BBsru7mRdD47LkdTKOx0NBf3ydqBNzRz65WPZL1rHhKJ5cNIfLVwdp5KaIupeDGYN79Uv3QqR2O2K+4t/Hi5nX3t3LvyG05dVk/z3kql5OoPzvRcvn0VtDRD/FIX+NnB3mxZms8kxrcXqTuukhBGzxut+/dGNF/1NwVhvDR63wWh7ks4lqkgmjK+0iHh/qPgjwANGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBg0ZtvAM5qcDRHjRCfQAAAABJRU5ErkJg"/>
+    </td>
+    <!-- Status -->
+    <td class="centered">
+      PASSED
+    </td>
+    <!-- Duration [ms] -->
+    <td class="centered">
+      584
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

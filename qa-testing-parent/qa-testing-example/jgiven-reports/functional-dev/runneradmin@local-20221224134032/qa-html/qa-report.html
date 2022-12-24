@@ -1,0 +1,509 @@
+<!--
+  ~ Copyright 2022 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Design Verification Procedure</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      word-wrap: break-word;
+    }
+
+    table {
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    caption {
+      font-size: large;
+      font-weight: bold;
+      margin: 25px;
+    }
+
+    .header {
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    body {
+      counter-reset: h1counter;
+    }
+
+    h1:before {
+      content: counter(h1counter) ". ";
+      counter-increment: h1counter;
+    }
+
+    h1 {
+      counter-reset: h2counter;
+    }
+
+    h2:before {
+      content: counter(h1counter) "." counter(h2counter) ". ";
+      counter-increment: h2counter;
+    }
+
+    h2 {
+      counter-reset: h3counter;
+    }
+
+    h3:before {
+      content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) ". ";
+      counter-increment: h3counter;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    @page {
+      margin: 25mm 25mm 25mm 25mm;
+    }
+
+    .centered {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+<div class="header">
+  <div>
+    <strong>Design Verification Procedure</strong>
+  </div>
+  <div>
+    <span>Product Name:</span>
+    <span>App/Product Name</span>
+  </div>
+  <div>
+    <span>Product Revision:</span>
+    <span>SpecDocRev</span>
+  </div>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Function</th>
+    <th>Signature</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th>Author</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>2022-Dec-24 13:47 GMT</td>
+  </tr>
+  <tr>
+    <th>Reviewer</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th>Approver</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th>Tester</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Introduction</h1>
+
+<h2>Purpose</h2>
+<p>This document's (TestDocIdD) purpose is to test the App/Product Name,
+  according to the detailed specifications defined in
+  the 'App/Product Name' Design Requirements Specification (SpecDocId
+  -Rev SpecDocRev). It contains test procedures and related test
+  cases, and test results.</p>
+
+<h2>Scope</h2>
+<p>This Design Verification Procedure contains the System Testing activity as
+  specified in the 'App/Product Name' Design Verification Plan
+  PlanDocId
+  -Rev PlanDocRev.</p>
+
+<h1>References</h1>
+<p>The following table references related program documents:</p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Document Name</th>
+    <th>Document Id</th>
+    <th>Revision</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Design Requirements Specification</td>
+    <td>SpecDocId</td>
+    <td>SpecDocRev</td>
+  </tr>
+  <tr>
+    <td>Design Verification Plan</td>
+    <td>PlanDocId</td>
+    <td>PlanDocRev</td>
+  </tr>
+  <tr>
+    <td>Traceability Matrix</td>
+    <td>TraceabilityDocId</td>
+    <td>TraceabilityDocRev</td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Definitions, Acronyms, Abbreviations</h1>
+<p>The following are the acronyms and abbreviations used in this document:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Term</th>
+    <th>Definition</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>--</td>
+    <td>--</td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Traceability</h1>
+<p>Traceability between the requirements and test procedures is provided in
+  the 'App/Product Name' Traceability Matrix TraceabilityDocId
+  -Rev TraceabilityDocRev.</p>
+
+<h1>Configurations and Environments</h1>
+<p>The following configurations, along with specific environment details
+  required, are required for the test procedures:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Configuration</th>
+    <th>Environment Details</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>TBD</td>
+    <td>TBD</td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>Setup and Initial Conditions</h2>
+<p>The following setup steps must be performed prior to executing the test
+  procedure:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Sequence</th>
+    <th>Setup Instructions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>TBD</td>
+    <td>TBD</td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Test Equipment, Tools, and Data</h1>
+<p>The following tools are used during testing:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Version</th>
+    <th>Intended Use</th>
+    <th>Validation Evidence</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>App/Product Name</td>
+    <td>ProductVersion</td>
+    <td>Verification (Test Automation, BDD testing)</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Design Output Under Test</h1>
+<p>App/Product Name-Rev SpecDocId</p>
+
+
+<h1>Test Procedures</h1>
+
+<h2>Testing Web With J Given</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Tag</th>
+    <th>Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>UI Test</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Reference</td>
+    <td>68</td>
+  </tr>
+  <tr>
+    <td>DeviceName</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>PlatformName</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>PlatformVersion</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>[T-454A0FE6] Should find</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>google</span>
+      <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {class: org.openqa.selenium.chrome...., goog:chromeOptions: {w3c: false}, name: TestingWebWithJGiven:should..., type: web}, driver&#x3D;ChromeDriver: chrome on WINDOWS (43ac91d596b87eb1a0bedf4e8c5bdafd))</span>
+    </td>
+
+    <td>
+      {class&#x3D;org.openqa.selenium.chrome.ChromeDriver, goog:chromeOptions&#x3D;{w3c&#x3D;false}, name&#x3D;TestingWebWithJGiven:shouldFind:d899e6a0:1:1671889633049, type&#x3D;web}
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>searching for</span>
+      <span>QYk7ulYUSwToY4PBPrPaRdkEMS9kEGeK7pWumjYh</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the results</span>
+      <span>contains &lt;0L&gt; items</span>
+    </td>
+
+    <td>
+      <!-- ISSUE: current Jenkins configuration blocks data images -->
+      <!-- see https://content-security-policy.com/ -->
+      <!-- and https://www.w3.org/TR/CSP2/ -->
+      <!-- Jenkins sends content-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline'; -->
+      <!-- NOTE: assuming binary attachements are always images -->
+      <img alt="Actual screenshot might be blocked by server"
+           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM0AAAB6CAAAAAA5GIh4AAAEfklEQVR42u3cW2/iRhQA4Pz5KqrUh1bap0q7qVQldBulSbpNF7YJtxDAYBvfxxiDzTVALsRgIGCbKbY3aJNml6BQJNA5vIyIM8w3M55z/OItvCkxNgxja3M0N/ImadrlTdIIgv4SzWQl8WpNNCrM1ziW4/z/FsexnRVobGtVW8Wxl6S5jx6rFcdhR1g0cZ3pYf1h4SejZQ/63h347bPjWWx17NFXNL8X+7Xu8eFlJFBP/VLcI96VH66x3Am7FEoKynfObCwrSKno9Aj3Yy3MFsbpJE3RiOlW+OqkINRMyskq6XGGEXP5RkHqcCK2SzTiJiV3dtD042u0773Oi+GdVM/tPx23F565/O7+udfoUNHIlxp7F6eO1Dc/jbhIf/ddIPB2m5zNpDsMGlOh2nYnKdJsqJbg86HkXzSVjeTj/NlhKvgpRoWidPrHk3giHPjzRD2NBC8Swf03YZE3Mm+PfmgK1U9hZtrNVaDtayby9p3beapxYIpu/0POReHhIpoP2d+CXbdhcpn0o7XZvbVC+zt7R4wU/zW7t/Pdaevhf4bu6lfDYcU51WR0XlQcltRyfPwyj0izUotwOJlBWC2N6+HEXToeo+MSH8nlOJZKnvOXNEGo+YR4c1J3pzGN0p81ySNvurT236bgboAc6a4aHiykyR0HDbfRFyjykebuw0FK+XknmUXa2WEgFg7kZ7txuIRbZdTz+5p+/J1m5fyfrZJE37/EnT5rod/S3wdor9EViPR/z7RGFQ86zh8HzKODpucs+RT4+hnZW+xQc6z5J7QzfFrMjVdzQNvG/Qqyp9XtGCuIO+OVucDTzK8oJvZ4BWG/trR5oWZdqs4X7TTQgGaJmvq05uhaXpKzSLL+NCvLBXx7O5kVjV5w0/xtmuP72Y03oRhsm8aXjxLd7vzbslNZtKaZpxlWSxhnRC+3Ns8xj2M00hlaQX7OZrUERhe5cpEixUJGZL0hkhyPZZojeBFJDW9YHDU0LoIlRuK8EtnQR+EzRWao7rfzDEJ5mUbLXJsW3bUKsuI1zz5yOFOupqMxRk56f83qVaxmGsV8NM6WqsSFVx4QKoOrdSFLSHxB8i7LZLEpKMl/WFT2NWNBkoVGvP/tlK5xiC8Qy71vZjvIKRbu/AVrzKav/VB7DKbLMmh67Vqh8aS/vt/HYPZsBKfAEjQd5IW29hrLjRblhWStcQwhe66DxvDSpY17n5PfYPrgdNPA193r2dVDbKyJZnIiyFqpHjOLxSZPy0qbJdk2d928URVD4nlNl2iNJjVrPTRXHRJpOsMbFb3dFso5sY7YvsxfsarSF6ZQXWoWREGarPF948z9Ak4B0IAGNKABDWhAAxrQgAY0oAENaEADGtCABjSgAQ1oQAMa0IAGNKABDWhAAxrQgAY0oAENaEADGtCABjSgAQ1oQAMa0IAGNKABDWhAAxrQgAY0oAENaECzWs1mvR8aNKBZjab0fqPWpm1sjTcleq1Wa8u4NMToWoX23MtLS0ZLVdUtg9gIzUfkawxDF9YqGs+/WtbV/AsMfg4YeZKsbQAAAABJRU5ErkJg">
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+<p>Test scenario:2</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>google</span>
+      <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {class: org.openqa.selenium.firefox..., goog:chromeOptions: {w3c: false}, name: TestingWebWithJGiven:should..., type: web}, driver&#x3D;FirefoxDriver: firefox on WINDOWS (d08a5b6b-b456-487c-9f67-3f35553cc49b))</span>
+    </td>
+
+    <td>
+      {class&#x3D;org.openqa.selenium.firefox.FirefoxDriver, goog:chromeOptions&#x3D;{w3c&#x3D;false}, name&#x3D;TestingWebWithJGiven:shouldFind:2444a9f0:1:1671889650527, type&#x3D;web}
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>searching for</span>
+      <span>testng</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the results</span>
+      <span>All to match &lt;a string containing &quot;testng&quot; ignoring case&gt;</span>
+    </td>
+
+    <td>
+      <!-- ISSUE: current Jenkins configuration blocks data images -->
+      <!-- see https://content-security-policy.com/ -->
+      <!-- and https://www.w3.org/TR/CSP2/ -->
+      <!-- Jenkins sends content-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline'; -->
+      <!-- NOTE: assuming binary attachements are always images -->
+      <img alt="Actual screenshot might be blocked by server"
+           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM0AAACBCAAAAABGTWGiAAAB7UlEQVR42u3XbUvCUBTAcT990SdICCKNdEUaEVj2QFlZlmGRPVlaVlRERbWlzs3dtSmrqBe+8HaJ+B/YuNuFe/bbuZyxkPufIoQGzZ/RCEdBCKFE49gtFRovjQJNq6Vqmzi2JI2VS1/dCVGy3bLpPh7X3Zug7sL6rYdv/rhjO3I0yRO98jyVvF6IVVejJW0tchbMW35pqt5x7UhzVNxyR3O5GN6qecP7TMZPI5pSNLYm8rPV8KB9lGloQ5Pj0f79YL7hn+Kxsb5oPJYelaO5S950NJtP87VDb5g3i3o7mZBSm5hhLU0Mj6b2DrJjOS0yMHMbzNf9BBsru7mRdD47LkdTKOx0NBf3ydqBNzRz65WPZL1rHhKJ5cNIfLVwdp5KaIupeDGYN79Uv3QqR2O2K+4t/Hi5nX3t3LvyG05dVk/z3kql5OoPzvRcvn0VtDRD/FIX+NnB3mxZms8kxrcXqTuukhBGzxut+/dGNF/1NwVhvDR63wWh7ks4lqkgmjK+0iHh/qPgjwANGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBgwYNGjRo0KBBg0ZtvAM5qcDRHjRCfQAAAABJRU5ErkJg">
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+
+
+<h1>Test Summary</h1>
+<p>The following summarizes the results for all test procedures:</p>
+
+<table>
+  <tbody>
+  <tr>
+    <td>Total scenarios</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Total duration [nanoseconds]</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Successful scenarios</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Failed scenarios</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Manual scenarios</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<h1>Revision History</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Revision</th>
+    <th>Date</th>
+    <th>Reason for change</th>
+    <th>Author</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td colspan="4">
+      no revision data
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
