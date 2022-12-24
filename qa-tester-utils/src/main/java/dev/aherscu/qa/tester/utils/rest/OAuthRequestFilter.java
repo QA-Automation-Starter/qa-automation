@@ -104,7 +104,7 @@ public abstract class OAuthRequestFilter
     @Jacksonized
     @Builder
     @JsonIgnoreProperties(ignoreUnknown = true)
-    protected final static class TokenBlock {
+    public final static class TokenBlock {
         @JsonAlias("token_type")
         public final String tokenType;
         @JsonAlias("access_token")
