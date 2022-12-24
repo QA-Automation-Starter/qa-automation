@@ -201,6 +201,10 @@ public class WebDriverEx {
 
         if (driverClass.isAssignableFrom(ChromeDriver.class))
             WebDriverManager.chromedriver().setup();
+        // ISSUE sometimes this fails with
+        // WebDriverManagerException: Error HTTP 403 executing
+        // https://api.github.com/repos/mozilla/geckodriver/releases
+        // TODO should find a method to retry these driver downloads
         if (driverClass.isAssignableFrom(FirefoxDriver.class))
             WebDriverManager.firefoxdriver().setup();
 
