@@ -127,9 +127,12 @@ public class RestVerifications<SELF extends RestVerifications<SELF>>
         // fails with NPE on closedResponse
         log.trace(">>> retrieving closed response from {}:{}", closedResponse,
             this);
-        return eventually_assert_that(
-            () -> closedResponse.get().getStatusInfo().getFamily(),
+
+        MatcherAssert.assertThat(
+            closedResponse.get().getStatusInfo().getFamily(),
             familyMatcher);
+
+        return self();
 
     }
 
