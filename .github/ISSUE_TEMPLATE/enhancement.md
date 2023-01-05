@@ -2,7 +2,7 @@
 name: Enhancement template
 about: Describe an enhancement
 title: ''
-labels: ''
+labels: enhancement
 assignees: adrian-herscu
 
 ---
