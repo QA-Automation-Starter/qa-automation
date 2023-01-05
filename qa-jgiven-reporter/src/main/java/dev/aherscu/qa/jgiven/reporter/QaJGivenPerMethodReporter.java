@@ -95,6 +95,7 @@ public class QaJGivenPerMethodReporter
             .forEach(Unchecked.consumer(scenarioModel -> {
                 val reportFile = new File(outputDirectory,
                     targetNameFor(scenarioModel)
+                        + EXTENSION_SEPARATOR_STR
                         + getExtension(templateResource));
                 try (val reportWriter = fileWriter(reportFile)) {
                     template.execute(QaJGivenReportModel.builder()
