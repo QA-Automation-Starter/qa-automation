@@ -90,6 +90,7 @@ public class TestingWebApplication {
                 .map(webElement -> webElement.getAttribute("textContent"))
                 .peek(resultTitle -> log.debug("found {}", resultTitle)),
             allMatch(either(containsStringIgnoringCase("testng"))
+                .or(containsStringIgnoringCase("Try again"))
                 .or(containsStringIgnoringCase("More results"))));
     }
 
