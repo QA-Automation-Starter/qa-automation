@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static dev.aherscu.qa.tester.utils.TemplateUtils.*;
 import static java.util.stream.Collectors.*;
 import static java.util.stream.Collectors.toMap;
+import static org.apache.commons.io.FilenameUtils.*;
 
 import java.io.*;
 import java.text.*;
@@ -93,7 +94,9 @@ public class QaJGivenPerMethodReporter
                 .debug("processing " + targetNameFor(scenarioModel)))
             .forEach(Unchecked.consumer(scenarioModel -> {
                 val reportFile = new File(outputDirectory,
-                    targetNameFor(scenarioModel) + ".html");
+                    targetNameFor(scenarioModel)
+                        + EXTENSION_SEPARATOR_STR
+                        + getExtension(templateResource));
                 try (val reportWriter = fileWriter(reportFile)) {
                     template.execute(QaJGivenReportModel.builder()
                         .jgivenReport(scenarioModel)
