@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,12 @@
  */
 package dev.aherscu.qa.jgiven.commons.model;
 
+import java.io.*;
+
+import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.annotation.*;
+
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
 
@@ -27,7 +33,8 @@ import lombok.*;
  * @author aherscu
  *
  */
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode
+@JsonSerialize(using = Percentage.Serializer.class)
 @SuppressFBWarnings(value = "USBR_UNNECESSARY_STORE_BEFORE_RETURN",
     justification = "hashcode implemented by lombok")
 public abstract class Percentage<T extends Number> extends Number {
@@ -69,5 +76,17 @@ public abstract class Percentage<T extends Number> extends Number {
     @Override
     public double doubleValue() {
         return value.doubleValue();
+    }
+
+    public static class Serializer<T extends Percentage>
+        extends JsonSerializer<T> {
+        @Override
+        public void serialize(
+            final T percentage,
+            final JsonGenerator gen,
+            final SerializerProvider provider)
+            throws IOException {
+            gen.writeNumber(percentage.value.toString());
+        }
     }
 }
