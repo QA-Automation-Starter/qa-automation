@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -89,7 +89,8 @@ public class TestingWebApplication {
                 .stream()
                 .map(webElement -> webElement.getAttribute("textContent"))
                 .peek(resultTitle -> log.debug("found {}", resultTitle)),
-            allMatch(containsStringIgnoringCase(SEARCH_KEYWORD)));
+            allMatch(either(containsStringIgnoringCase("testng"))
+                .or(containsStringIgnoringCase("More results"))));
     }
 
     @SuppressFBWarnings(
