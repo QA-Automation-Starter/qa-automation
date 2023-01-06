@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package $
+package ${package}.scenarios.tutorial3;
 
 import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
 import static org.apache.commons.lang3.RandomStringUtils.*;
@@ -28,6 +28,8 @@ import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
+import ${package}.*;
+import ${package}.steps.tutorial.*;
 import lombok.*;
 
 public class TestingWebWithJGiven
