@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,10 @@ package dev.aherscu.qa.jgiven.commons.verifications;
 
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 
+import java.util.function.*;
+
 import javax.annotation.concurrent.*;
+import javax.ws.rs.client.*;
 import javax.ws.rs.core.*;
 
 import org.hamcrest.*;
@@ -134,6 +137,19 @@ public class RestVerifications<SELF extends RestVerifications<SELF>>
 
         return self();
 
+    }
+
+    protected final <T> Supplier<T> invoke(
+        final Invocation invocation,
+        final Function<String, T> converter) {
+        return () -> {
+            try (val response = invocation.invoke()) {
+                log.trace("invoking {}", invocation);
+                closedResponse.set(response);
+                responseContent.set(response.readEntity(String.class));
+                return converter.apply(responseContent.get());
+            }
+        };
     }
 
     /**

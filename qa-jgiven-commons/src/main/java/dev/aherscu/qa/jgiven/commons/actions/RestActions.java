@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package dev.aherscu.qa.jgiven.commons.actions;
 
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static java.util.Objects.*;
+import static java.util.function.Function.*;
 
 import java.net.*;
 import java.util.function.*;
@@ -27,6 +28,8 @@ import javax.ws.rs.client.*;
 import javax.ws.rs.core.*;
 
 import com.tngtech.jgiven.annotation.*;
+import com.tngtech.jgiven.attachment.*;
+import com.tngtech.jgiven.attachment.MediaType;
 
 import dev.aherscu.qa.jgiven.commons.formatters.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
@@ -290,5 +293,37 @@ public class RestActions<SELF extends RestActions<SELF>>
                 // (SELF) cast
                 return (SELF) self();
             });
+    }
+
+    protected final Function<SELF, SELF> invoke(
+        final Invocation invocation,
+        final Consumer<String> consumer) {
+        return self -> {
+            try (val response = invocation.invoke()) {
+                log.trace("invoking {}", invocation);
+                closedResponse.set(response);
+                responseContent.set(response.readEntity(String.class));
+                consumer.accept(responseContent.get());
+                return self;
+            }
+        };
+    }
+
+    protected final Function<SELF, SELF> invoke(
+        final Invocation invocation) {
+        return invoke(invocation, identity()::apply);
+    }
+
+    /**
+     * Attaches the actual response content.
+     */
+    @AfterStage
+    protected void attachActualResponse() {
+        currentStep.addAttachment(Attachment
+            .fromText(
+                prettified(
+                    null != responseContent ? responseContent.get() : null),
+                MediaType.PLAIN_TEXT_UTF_8)
+            .withTitle("actual response")); //$NON-NLS-1$
     }
 }
