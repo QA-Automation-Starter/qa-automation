@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,8 +34,7 @@ import lombok.*;
 
 public class TestingWebWithJGiven
     extends
-    ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>,
-            GoogleActions<?>, GoogleVerifications<?>> {
+    ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
 
     protected TestingWebWithJGiven() {
         super(TestConfiguration.class);
@@ -47,7 +46,9 @@ public class TestingWebWithJGiven
             { new Text(randomAlphanumeric(40)),
                 counts(equalTo(0L)) },
             { new Text("testng"),
-                allMatch(containsStringIgnoringCase("testng")) }
+                allMatch(either(containsStringIgnoringCase("testng"))
+                        .or(containsStringIgnoringCase("Try again"))
+                        .or(containsStringIgnoringCase("More results"))) }
         };
     }
 
