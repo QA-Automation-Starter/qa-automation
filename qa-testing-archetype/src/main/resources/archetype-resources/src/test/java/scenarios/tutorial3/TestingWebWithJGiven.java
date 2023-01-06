@@ -45,7 +45,8 @@ public class TestingWebWithJGiven
                 counts(equalTo(0L)) },
             { new Text("testng"),
                 allMatch(either(containsStringIgnoringCase("testng"))
-                    .or(containsStringIgnoringCase("More results"))) }
+                        .or(containsStringIgnoringCase("Try again"))
+                        .or(containsStringIgnoringCase("More results"))) }
         };
     }
 
