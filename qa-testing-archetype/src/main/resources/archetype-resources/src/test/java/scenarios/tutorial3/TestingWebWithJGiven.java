@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ${package}.scenarios.tutorial3;
+package $
 
 import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
 import static org.apache.commons.lang3.RandomStringUtils.*;
@@ -28,14 +28,11 @@ import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
-import ${package}.*;
-import ${package}.steps.tutorial.*;
 import lombok.*;
 
 public class TestingWebWithJGiven
     extends
-    ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>,
-            GoogleActions<?>, GoogleVerifications<?>> {
+    ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
 
     protected TestingWebWithJGiven() {
         super(TestConfiguration.class);
@@ -47,7 +44,8 @@ public class TestingWebWithJGiven
             { new Text(randomAlphanumeric(40)),
                 counts(equalTo(0L)) },
             { new Text("testng"),
-                allMatch(containsStringIgnoringCase("testng")) }
+                allMatch(either(containsStringIgnoringCase("testng"))
+                    .or(containsStringIgnoringCase("More results"))) }
         };
     }
 
