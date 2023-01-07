@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,11 @@
 package dev.aherscu.qa.jgiven.reporter;
 
 import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
+import static org.apache.commons.lang3.StringUtils.*;
 
 import java.io.*;
+
+import org.apache.commons.io.*;
 
 import com.google.gson.*;
 import com.samskivert.mustache.*;
@@ -31,17 +34,38 @@ import lombok.experimental.*;
 @SuperBuilder
 public class QaJGivenReporter
     extends AbstractQaJgivenReporter<QaJGivenReporter> {
+    // TODO implements IReporter
 
-    public final String productName;
-    public final String productVersion;
-    public final String testDocumentId;
-    public final String testDocumentRev;
-    public final String specDocumentId;
-    public final String specDocumentRev;
-    public final String planDocumentId;
-    public final String planDocumentRev;
-    public final String traceabilityDocumentId;
-    public final String traceabilityDocumentRev;
+    public static final String DEFAULT_TEMPLATE = "/qa-jgiven-reporter.html";
+
+    public final String        productName;
+    public final String        productVersion;
+    public final String        testDocumentId;
+    public final String        testDocumentRev;
+    public final String        specDocumentId;
+    public final String        specDocumentRev;
+    public final String        planDocumentId;
+    public final String        planDocumentRev;
+    public final String        traceabilityDocumentId;
+    public final String        traceabilityDocumentRev;
+
+    public QaJGivenReporter() {
+        productName = EMPTY;
+        productVersion = EMPTY;
+        testDocumentId = EMPTY;
+        testDocumentRev = EMPTY;
+        specDocumentId = EMPTY;
+        specDocumentRev = EMPTY;
+        planDocumentId = EMPTY;
+        planDocumentRev = EMPTY;
+        traceabilityDocumentId = EMPTY;
+        traceabilityDocumentRev = EMPTY;
+        templateResource = DEFAULT_TEMPLATE;
+    }
+
+    // TODO read the templateResource from testng.xml parameter
+    // and ensure it does not collide with the one for
+    // QaJGivenPerMethodReporter
 
     public void generate() throws IOException {
         val aggregatedReportModel = QaJGivenReportModel.builder()
@@ -79,10 +103,11 @@ public class QaJGivenReporter
         }
 
         try (val reportWriter = fileWriter(
-            new File(outputDirectory, "qa-report.html"))) {
+            new File(outputDirectory,
+                FilenameUtils.getName(templateResource)))) {
             TemplateUtils
                 .using(Mustache.compiler())
-                .loadFrom("/qa-jgiven-reporter.html")
+                .loadFrom(templateResource)
                 .execute(
                     aggregatedReportModel,
                     reportWriter);

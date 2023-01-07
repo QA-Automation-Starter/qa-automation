@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  */
 
 package dev.aherscu.qa.jgiven.reporter.maven.plugin;
+
+import static dev.aherscu.qa.jgiven.reporter.QaJGivenReporter.*;
 
 import java.io.*;
 
@@ -104,6 +106,7 @@ public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
 
         try {
             QaJGivenReporter.builder()
+                .templateResource(DEFAULT_TEMPLATE)
                 .outputDirectory(outputDirectory)
                 .sourceDirectory(sourceDirectory)
                 .screenshotScale(screenshotScale)

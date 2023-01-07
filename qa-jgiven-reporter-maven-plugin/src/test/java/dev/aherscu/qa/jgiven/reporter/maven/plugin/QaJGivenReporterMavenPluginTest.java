@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -83,9 +83,9 @@ public class QaJGivenReporterMavenPluginTest extends AbstractMojoTestCase {
 
         mojo.execute();
 
-        assertThat(actualReports("qa-report.html"))
+        assertThat(actualReports("qa-jgiven-reporter.html"))
             .usingCharset(UTF_8)
-            .hasSameContentAs(expectedReports("qa-report.html"),
+            .hasSameContentAs(expectedReports("qa-jgiven-reporter.html"),
                 UTF_8);
     }
 
