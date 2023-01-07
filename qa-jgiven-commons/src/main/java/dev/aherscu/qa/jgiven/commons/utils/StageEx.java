@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -151,6 +151,21 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
                     .into(new ByteArrayOutputStream(4096), "png")
                     .toByteArray()),
                 MediaType.PNG));
+    }
+
+    /**
+     * Attaches specified text. Useful for attaching JSON, XML, or just plain
+     * text. Override to customize, e.g. to shorten or format the text.
+     * 
+     * @param text
+     *            the text to attach
+     * @return the attached text
+     */
+    protected String attach(final String text) {
+        currentStep.addAttachment(Attachment
+            .fromText(prettified(text), MediaType.PLAIN_TEXT_UTF_8)
+            .withTitle("actual response"));
+        return text;
     }
 
     /**

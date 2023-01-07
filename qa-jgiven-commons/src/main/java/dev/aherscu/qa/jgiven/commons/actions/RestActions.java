@@ -28,8 +28,6 @@ import javax.ws.rs.client.*;
 import javax.ws.rs.core.*;
 
 import com.tngtech.jgiven.annotation.*;
-import com.tngtech.jgiven.attachment.*;
-import com.tngtech.jgiven.attachment.MediaType;
 
 import dev.aherscu.qa.jgiven.commons.formatters.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
@@ -295,6 +293,19 @@ public class RestActions<SELF extends RestActions<SELF>>
             });
     }
 
+    /**
+     * Creates a step function which when called, executes specified invocation,
+     * stores the closed response and response content, and calls the specified
+     * consumer on response content.
+     * <p>
+     * Attaches the response.
+     *
+     * @param invocation
+     *            a JAX-RS invocation
+     * @param consumer
+     *            something to execute on response content
+     * @return step function that executes the specified invocation
+     */
     protected final Function<SELF, SELF> invoke(
         final Invocation invocation,
         final Consumer<String> consumer) {
@@ -302,28 +313,25 @@ public class RestActions<SELF extends RestActions<SELF>>
             try (val response = invocation.invoke()) {
                 log.trace("invoking {}", invocation);
                 closedResponse.set(response);
-                responseContent.set(response.readEntity(String.class));
+                responseContent.set(attach(response.readEntity(String.class)));
                 consumer.accept(responseContent.get());
                 return self;
             }
         };
     }
 
+    /**
+     * Creates a step function which when called, executes specified invocation,
+     * stores the closed response and response content.
+     * <p>
+     * Attaches the response.
+     *
+     * @param invocation
+     *            a JAX-RS invocation
+     * @return step function that executes the specified invocation
+     */
     protected final Function<SELF, SELF> invoke(
         final Invocation invocation) {
         return invoke(invocation, identity()::apply);
-    }
-
-    /**
-     * Attaches the actual response content.
-     */
-    @AfterStage
-    protected void attachActualResponse() {
-        currentStep.addAttachment(Attachment
-            .fromText(
-                prettified(
-                    null != responseContent ? responseContent.get() : null),
-                MediaType.PLAIN_TEXT_UTF_8)
-            .withTitle("actual response")); //$NON-NLS-1$
     }
 }
