@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,6 +68,14 @@ public class QaJGivenPerMethodReporter
         templateResource = DEFAULT_TEMPLATE;
     }
 
+    protected Mustache.Compiler compiler() {
+        return Mustache.compiler();
+    }
+
+    protected QaJGivenReportModel<ScenarioModel> reportModel() {
+        return QaJGivenReportModel.<ScenarioModel> builder().build();
+    }
+
     @SneakyThrows
     public void generate() {
         log.info("source directory {}", sourceDirectory);
@@ -76,7 +84,7 @@ public class QaJGivenPerMethodReporter
 
         forceMkdir(outputDirectory);
 
-        val template = using(Mustache.compiler()).loadFrom(templateResource);
+        val template = using(compiler()).loadFrom(templateResource);
 
         listFiles(sourceDirectory, new SuffixFileFilter(".json"), null)
             .parallelStream()
@@ -95,10 +103,11 @@ public class QaJGivenPerMethodReporter
                 val reportFile = new File(outputDirectory,
                     targetNameFor(scenarioModel) + ".html");
                 try (val reportWriter = fileWriter(reportFile)) {
-                    template.execute(QaJGivenReportModel.builder()
-                        .jgivenReport(scenarioModel)
-                        .screenshotScale(screenshotScale)
-                        .datePattern(datePattern).build(), reportWriter);
+                    template.execute(reportModel()
+                        .withJgivenReport(scenarioModel)
+                        .withScreenshotScale(screenshotScale)
+                        .withDatePattern(datePattern),
+                        reportWriter);
                     applyAttributesFor(scenarioModel, reportFile);
                 }
             }));
