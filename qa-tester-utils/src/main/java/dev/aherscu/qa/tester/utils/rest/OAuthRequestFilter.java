@@ -61,7 +61,7 @@ public abstract class OAuthRequestFilter
     protected Cache<OAuthRequestFilter, TokenBlock> customTokenBlockCache;
 
     // for testing purposes only
-    OAuthRequestFilter customTokenBlockCache(
+    public OAuthRequestFilter customTokenBlockCache(
         final Cache<OAuthRequestFilter, TokenBlock> customTokenBlockCache) {
         this.customTokenBlockCache = customTokenBlockCache;
         return this;
@@ -104,7 +104,7 @@ public abstract class OAuthRequestFilter
     @Jacksonized
     @Builder
     @JsonIgnoreProperties(ignoreUnknown = true)
-    protected final static class TokenBlock {
+    public final static class TokenBlock {
         @JsonAlias("token_type")
         public final String tokenType;
         @JsonAlias("access_token")

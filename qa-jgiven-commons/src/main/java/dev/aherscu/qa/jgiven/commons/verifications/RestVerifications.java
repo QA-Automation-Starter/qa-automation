@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,10 @@
  */
 package dev.aherscu.qa.jgiven.commons.verifications;
 
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import java.util.function.*;
 
 import javax.annotation.concurrent.*;
+import javax.ws.rs.client.*;
 import javax.ws.rs.core.*;
 
 import org.hamcrest.*;
@@ -25,8 +26,6 @@ import org.json.*;
 import org.skyscreamer.jsonassert.*;
 
 import com.tngtech.jgiven.annotation.*;
-import com.tngtech.jgiven.attachment.*;
-import com.tngtech.jgiven.attachment.MediaType;
 
 import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.formatters.*;
@@ -127,22 +126,54 @@ public class RestVerifications<SELF extends RestVerifications<SELF>>
         // fails with NPE on closedResponse
         log.trace(">>> retrieving closed response from {}:{}", closedResponse,
             this);
-        return eventually_assert_that(
-            () -> closedResponse.get().getStatusInfo().getFamily(),
+
+        MatcherAssert.assertThat(
+            closedResponse.get().getStatusInfo().getFamily(),
             familyMatcher);
+
+        return self();
 
     }
 
     /**
-     * Attaches the actual response content.
+     * Creates a supplier which when called, executes specified invocation,
+     * stores the closed response and response content, and calls the specified
+     * converter on response content.
+     * <p>
+     * Attaches the response.
+     *
+     * @param invocation
+     *            a JAX-RS invocation
+     * @param converter
+     *            something to execute on response content
+     * @return supplier that executes the specified invocation
+     * @param <T>
+     *            the type expected from the converter
+     */
+    protected final <T> Supplier<T> invoke(
+        final Invocation invocation,
+        final Function<String, T> converter) {
+        return () -> {
+            try (val response = invocation.invoke()) {
+                log.trace("invoking {}", invocation);
+                closedResponse.set(response);
+                responseContent.set(attach(response.readEntity(String.class)));
+                return converter.apply(responseContent.get());
+            }
+        };
+    }
+
+    /**
+     * Attaches the actual response content, after first verification completed.
+     * <p>
+     * This is suitable when a synchronous verification is performed, i.e. when
+     * assuming that actions are always stable and the response might be
+     * verified multiple times.
+     * <p>
+     * Override with empty implementation to disable.
      */
     @AfterStage
     protected void attachActualResponse() {
-        currentStep.addAttachment(Attachment
-            .fromText(
-                prettified(
-                    null != responseContent ? responseContent.get() : null),
-                MediaType.PLAIN_TEXT_UTF_8)
-            .withTitle("actual response")); //$NON-NLS-1$
+        attach(null != responseContent ? responseContent.get() : null);
     }
 }

@@ -88,7 +88,7 @@ jobs:
           git config --global user.email "adrian.herscu@gmail.com"
           mvnw install ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
-            -Pmode-build-quiet,environment-default,testing-tutorials
+            -Pmode-build-quiet,environment-dev,testing-tutorials
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}

@@ -21,7 +21,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.15-SNAPSHOT</version>
+    <version>0.0.20-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-testing-parent</artifactId>
@@ -104,12 +104,12 @@
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-commons</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.20-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-reporter</artifactId>
-      <version>0.0.15-SNAPSHOT</version>
+      <version>0.0.20-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.javalite</groupId>
@@ -396,9 +396,9 @@
     </profile>
 
     <profile>
-      <id>environment-default</id>
+      <id>environment-dev</id>
       <properties>
-        <environment>default</environment>
+        <environment>dev</environment>
       </properties>
     </profile>
 

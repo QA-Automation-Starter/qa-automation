@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package dev.aherscu.qa.jgiven.commons.actions;
 
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static java.util.Objects.*;
+import static java.util.function.Function.*;
 
 import java.net.*;
 import java.util.function.*;
@@ -290,5 +291,47 @@ public class RestActions<SELF extends RestActions<SELF>>
                 // (SELF) cast
                 return (SELF) self();
             });
+    }
+
+    /**
+     * Creates a step function which when called, executes specified invocation,
+     * stores the closed response and response content, and calls the specified
+     * consumer on response content.
+     * <p>
+     * Attaches the response.
+     *
+     * @param invocation
+     *            a JAX-RS invocation
+     * @param consumer
+     *            something to execute on response content
+     * @return step function that executes the specified invocation
+     */
+    protected final Function<SELF, SELF> invoke(
+        final Invocation invocation,
+        final Consumer<String> consumer) {
+        return self -> {
+            try (val response = invocation.invoke()) {
+                log.trace("invoking {}", invocation);
+                closedResponse.set(response);
+                responseContent.set(attach(response.readEntity(String.class)));
+                consumer.accept(responseContent.get());
+                return self;
+            }
+        };
+    }
+
+    /**
+     * Creates a step function which when called, executes specified invocation,
+     * stores the closed response and response content.
+     * <p>
+     * Attaches the response.
+     *
+     * @param invocation
+     *            a JAX-RS invocation
+     * @return step function that executes the specified invocation
+     */
+    protected final Function<SELF, SELF> invoke(
+        final Invocation invocation) {
+        return invoke(invocation, identity()::apply);
     }
 }
