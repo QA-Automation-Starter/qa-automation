@@ -69,6 +69,14 @@ public class QaJGivenPerMethodReporter
         templateResource = DEFAULT_TEMPLATE;
     }
 
+    protected Mustache.Compiler compiler() {
+        return Mustache.compiler();
+    }
+
+    protected QaJGivenReportModel<ScenarioModel> reportModel() {
+        return QaJGivenReportModel.<ScenarioModel> builder().build();
+    }
+
     @SneakyThrows
     public void generate() {
         log.info("source directory {}", sourceDirectory);
@@ -77,7 +85,7 @@ public class QaJGivenPerMethodReporter
 
         forceMkdir(outputDirectory);
 
-        val template = using(Mustache.compiler()).loadFrom(templateResource);
+        val template = using(compiler()).loadFrom(templateResource);
 
         listFiles(sourceDirectory, new SuffixFileFilter(".json"), null)
             .parallelStream()
@@ -98,10 +106,11 @@ public class QaJGivenPerMethodReporter
                         + EXTENSION_SEPARATOR_STR
                         + getExtension(templateResource));
                 try (val reportWriter = fileWriter(reportFile)) {
-                    template.execute(QaJGivenReportModel.builder()
-                        .jgivenReport(scenarioModel)
-                        .screenshotScale(screenshotScale)
-                        .datePattern(datePattern).build(), reportWriter);
+                    template.execute(reportModel()
+                        .withJgivenReport(scenarioModel)
+                        .withScreenshotScale(screenshotScale)
+                        .withDatePattern(datePattern),
+                        reportWriter);
                     applyAttributesFor(scenarioModel, reportFile);
                 }
             }));
