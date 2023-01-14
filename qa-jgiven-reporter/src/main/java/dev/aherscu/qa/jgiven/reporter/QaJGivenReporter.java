@@ -34,6 +34,7 @@ import lombok.extern.slf4j.*;
 
 @SuperBuilder
 @Slf4j
+@ToString(callSuper = true)
 public class QaJGivenReporter
     extends AbstractQaJgivenReporter<CompleteReportModel, QaJGivenReporter>
     implements IReporter {

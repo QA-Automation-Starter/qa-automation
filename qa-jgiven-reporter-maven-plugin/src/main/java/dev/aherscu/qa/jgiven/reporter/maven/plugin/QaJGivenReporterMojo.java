@@ -16,21 +16,22 @@
 
 package dev.aherscu.qa.jgiven.reporter.maven.plugin;
 
-import static dev.aherscu.qa.jgiven.reporter.QaJGivenReporter.*;
-
 import org.apache.maven.plugin.*;
 import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.plugins.annotations.Mojo;
 
 import dev.aherscu.qa.jgiven.reporter.*;
+import lombok.*;
+import lombok.extern.slf4j.*;
 
 /**
  * Generates JGiven report in QA format.
  */
 @Mojo(name = "report", defaultPhase = LifecyclePhase.VERIFY)
+@Slf4j
 public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
 
-    @Parameter(defaultValue = DEFAULT_TEMPLATE_RESOURCE)
+    @Parameter(defaultValue = QaJGivenReporter.DEFAULT_TEMPLATE_RESOURCE)
     protected String templateResource;
     /**
      * The product name.
@@ -99,35 +100,30 @@ public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
             return;
         }
 
-        getLog().info(
-            "JGiven JSON report source directory: " + sourceDirectory);
-        getLog().info(
-            "JGiven HTML report output directory: " + outputDirectory);
+        val reporter = QaJGivenReporter.builder()
+            .templateResource(templateResource)
+            .outputDirectory(outputDirectory)
+            .sourceDirectory(sourceDirectory)
+            .screenshotScale(screenshotScale)
+            .pdf(pdf)
+            .datePattern(datePattern)
+            .productName(productName)
+            .productVersion(productVersion)
+            .testDocumentId(testDocumentId)
+            .testDocumentRev(testDocumentRev)
+            .specDocumentId(specDocumentId)
+            .specDocumentRev(specDocumentRev)
+            .planDocumentId(planDocumentId)
+            .planDocumentRev(planDocumentRev)
+            .traceabilityDocumentId(traceabilityDocumentId)
+            .traceabilityDocumentRev(traceabilityDocumentRev)
+            .build();
 
         try {
-            QaJGivenReporter.builder()
-                .templateResource(templateResource)
-                .outputDirectory(outputDirectory)
-                .sourceDirectory(sourceDirectory)
-                .screenshotScale(screenshotScale)
-                .pdf(pdf)
-                .datePattern(datePattern)
-                .productName(productName)
-                .productVersion(productVersion)
-                .testDocumentId(testDocumentId)
-                .testDocumentRev(testDocumentRev)
-                .specDocumentId(specDocumentId)
-                .specDocumentRev(specDocumentRev)
-                .planDocumentId(planDocumentId)
-                .planDocumentRev(planDocumentRev)
-                .traceabilityDocumentId(traceabilityDocumentId)
-                .traceabilityDocumentRev(traceabilityDocumentRev)
-                .build()
-                .generate();
+            reporter.prepare().generate();
         } catch (final Exception e) {
             throw new MojoExecutionException(
                 "Error while trying to generate HTML reports", e);
         }
     }
-
 }

@@ -15,6 +15,12 @@
   ~ limitations under the License.
   -->
 <project>
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>testing</groupId>
+  <artifactId>testing</artifactId>
+  <version>1.0.0</version>
+
   <build>
     <plugins>
       <!--
@@ -38,6 +44,10 @@
           <datePattern>--</datePattern>
         </configuration>
 
+        <!-- ISSUE execution configurations are not interpolated
+          see https://stackoverflow.com/questions/31528763/how-to-populate-parameter-defaultvalue-in-maven-abstractmojotestcase/36064396
+          and https://stackoverflow.com/questions/9496534/test-default-values-and-expressions-of-mojos-using-maven-plugin-testing-harness -->
+
         <executions>
           <execution>
             <id>segregated-permethod-report</id>
@@ -45,10 +55,6 @@
             <goals>
               <goal>segregated-permethod-report</goal>
             </goals>
-            <configuration>
-              <skip>false</skip>
-              <referenceTag>Reference</referenceTag>
-            </configuration>
           </execution>
 
           <execution>
@@ -57,9 +63,6 @@
             <goals>
               <goal>segregated-report</goal>
             </goals>
-            <configuration>
-              <skip>false</skip>
-            </configuration>
           </execution>
 
           <execution>
@@ -68,20 +71,6 @@
             <goals>
               <goal>report</goal>
             </goals>
-            <configuration>
-              <skip>false</skip>
-              <productName>App/Product Name</productName>
-              <productVersion>ProductVersion</productVersion>
-              <testDocumentId>TestDocIdD</testDocumentId>
-              <testDocumentRev>TestDocRev</testDocumentRev>
-              <specDocumentId>SpecDocId</specDocumentId>
-              <specDocumentRev>SpecDocRev</specDocumentRev>
-              <planDocumentId>PlanDocId</planDocumentId>
-              <planDocumentRev>PlanDocRev</planDocumentRev>
-              <traceabilityDocumentId>TraceabilityDocId</traceabilityDocumentId>
-              <traceabilityDocumentRev>TraceabilityDocRev
-              </traceabilityDocumentRev>
-            </configuration>
           </execution>
         </executions>
       </plugin>

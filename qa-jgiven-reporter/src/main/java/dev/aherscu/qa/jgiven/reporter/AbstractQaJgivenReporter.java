@@ -37,6 +37,7 @@ import lombok.extern.slf4j.*;
 
 @SuperBuilder
 @Slf4j
+@ToString
 public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenReporter<?, ?>>
     implements IReporter {
     public static final String DEFAULT_REFERENCE_TAG    = "Reference";
@@ -85,8 +86,10 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
         return QaJGivenReportModel.<M> builder().build();
     }
 
-    public final void generateReport(final List<XmlSuite> xmlSuites,
-        final List<ISuite> suites, final String outputDirectory) {
+    public final void generateReport(
+        final List<XmlSuite> xmlSuites,
+        final List<ISuite> suites,
+        final String outputDirectory) {
         xmlSuites.forEach(
             xmlSuite -> log.info("xml suite {}", xmlSuite));
         // ISSUE: should be empty for xml driven invocations (?)
@@ -98,17 +101,15 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
     }
 
     @SneakyThrows
-    protected T prepare() {
-        log.info("source directory {}", sourceDirectory);
-        log.info("output directory {}", outputDirectory);
-        log.info("screenshot scale {}", screenshotScale);
+    public T prepare() {
+        log.info("configuration {}", this);
 
         forceMkdir(outputDirectory);
 
         return (T) this;
     }
 
-    abstract protected void generate();
+    abstract public void generate();
 
     protected Template template() {
         return isNull(template)

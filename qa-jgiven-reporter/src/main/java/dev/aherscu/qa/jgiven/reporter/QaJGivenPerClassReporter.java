@@ -29,6 +29,7 @@ import lombok.extern.slf4j.*;
 
 @SuperBuilder
 @Slf4j
+@ToString(callSuper = true)
 public class QaJGivenPerClassReporter
     extends
     AbstractQaJgivenReporter<ReportModelFile, QaJGivenPerClassReporter> {

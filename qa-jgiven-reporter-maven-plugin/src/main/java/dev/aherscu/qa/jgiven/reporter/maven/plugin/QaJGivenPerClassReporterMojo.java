@@ -54,6 +54,7 @@ public class QaJGivenPerClassReporterMojo extends AbstractQaJgivenReporterMojo {
                 .pdf(pdf)
                 .datePattern(datePattern)
                 .build()
+                .prepare()
                 .generate();
         } catch (final Exception e) {
             getLog().error(e.getMessage());

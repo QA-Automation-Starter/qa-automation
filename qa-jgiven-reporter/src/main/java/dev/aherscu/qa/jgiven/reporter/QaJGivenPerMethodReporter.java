@@ -40,6 +40,7 @@ import lombok.extern.slf4j.*;
 
 @SuperBuilder
 @Slf4j
+@ToString(callSuper = true)
 public class QaJGivenPerMethodReporter
     extends AbstractQaJgivenReporter<ScenarioModel, QaJGivenPerMethodReporter> {
     public static final String DEFAULT_TEMPLATE_RESOURCE =

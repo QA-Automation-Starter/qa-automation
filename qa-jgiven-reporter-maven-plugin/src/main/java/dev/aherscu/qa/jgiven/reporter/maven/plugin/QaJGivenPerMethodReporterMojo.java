@@ -76,6 +76,7 @@ public class QaJGivenPerMethodReporterMojo
                 .referenceTag(referenceTag)
                 .templateResource(templateResource)
                 .build()
+                .prepare()
                 .generate();
         } catch (final Exception e) {
             getLog().error(e.getMessage());

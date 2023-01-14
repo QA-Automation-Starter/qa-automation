@@ -19,12 +19,11 @@ package dev.aherscu.qa.jgiven.reporter.maven.plugin;
 import static dev.aherscu.qa.tester.utils.IOUtilsExtensions.*;
 import static java.nio.charset.StandardCharsets.*;
 import static java.util.Arrays.*;
+import static java.util.Collections.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.io.*;
-import java.util.*;
 
-import org.apache.maven.plugin.testing.*;
 import org.assertj.core.api.*;
 
 import lombok.*;
@@ -41,14 +40,12 @@ import lombok.*;
  * @author Adrian Herscu
  *
  */
-public class QaJGivenReporterMavenPluginTest extends AbstractMojoTestCase {
-
-    private static final File   OUT_DIR       =
-        new File(getBasedir(), "target/test-classes");
-    private static final String PLUGIN_CONFIG = "plugin-config.xml";
+public class QaJGivenReporterMavenPluginTest
+    extends BetterAbstractMojoTestCase {
 
     private static File actualReports(final String relativePath) {
-        return new File(outdir("jgiven-reports/qa-html"), relativePath);
+        return new File(outdir("target/test-classes/jgiven-reports/qa-html"),
+            relativePath);
     }
 
     private static String attributesOf(final String fileName) {
@@ -57,10 +54,6 @@ public class QaJGivenReporterMavenPluginTest extends AbstractMojoTestCase {
 
     private static File expectedReports(final String relativePath) {
         return new File(outdir("expected-output"), relativePath);
-    }
-
-    private static File outdir(final String relativePath) {
-        return new File(OUT_DIR, relativePath);
     }
 
     /**
@@ -76,12 +69,8 @@ public class QaJGivenReporterMavenPluginTest extends AbstractMojoTestCase {
      */
     @SneakyThrows
     public void testReportGoal() {
-        @SuppressWarnings("CastToConcreteClass")
-        val mojo = (QaJGivenReporterMojo) lookupMojo(
-            "report",
-            outdir(PLUGIN_CONFIG));
-
-        mojo.execute();
+        lookupConfiguredMojo("report")
+            .execute();
 
         assertThat(actualReports("qa-jgiven-reporter.html"))
             .usingCharset(UTF_8)
@@ -94,13 +83,8 @@ public class QaJGivenReporterMavenPluginTest extends AbstractMojoTestCase {
      */
     @SneakyThrows
     public void testSegregatedPerMethodReportGoal() {
-        @SuppressWarnings("CastToConcreteClass")
-        val mojo =
-            (QaJGivenPerMethodReporterMojo) lookupMojo(
-                "segregated-permethod-report",
-                outdir(PLUGIN_CONFIG));
-
-        mojo.execute();
+        lookupConfiguredMojo("segregated-permethod-report")
+            .execute();
 
         val softly = new SoftAssertions();
         for (val fileName : asList(
@@ -123,16 +107,11 @@ public class QaJGivenReporterMavenPluginTest extends AbstractMojoTestCase {
      */
     @SneakyThrows
     public void testSegregatedReportGoal() {
-        @SuppressWarnings("CastToConcreteClass")
-        val mojo =
-            (QaJGivenPerClassReporterMojo) lookupMojo(
-                "segregated-report",
-                outdir(PLUGIN_CONFIG));
-
-        mojo.execute();
+        lookupConfiguredMojo("segregated-report")
+            .execute();
 
         val softly = new SoftAssertions();
-        for (val fileName : Collections.singletonList(
+        for (val fileName : singletonList(
             "dev.aherscu.qa.testing.scenarios.experimental.JGivenSelfTests.json.html")) {
             softly.assertThat(actualReports(fileName))
                 .usingCharset(UTF_8)
