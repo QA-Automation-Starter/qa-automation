@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2022 Adrian Herscu
+  ~ Copyright 2023 Adrian Herscu
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
     <plugins>
       <!--
         NOTE: due to some Maven test plugin bug plugin parameters are not
-        initialized to their defauls an need to be specified here
+        initialized to their defauls and need to be specified here
       -->
       <plugin>
         <groupId>dev.aherscu.qa</groupId>
