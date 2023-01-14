@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,32 @@
 
 package dev.aherscu.qa.jgiven.reporter;
 
+import static java.util.Objects.*;
+import static org.apache.commons.io.FileUtils.*;
 import static org.apache.commons.lang3.StringUtils.*;
 
 import java.io.*;
+import java.util.*;
 
+import org.apache.commons.io.filefilter.*;
+import org.testng.*;
 import org.testng.xml.*;
 
+import com.samskivert.mustache.*;
+import com.tngtech.jgiven.impl.*;
+
+import dev.aherscu.qa.tester.utils.*;
+import lombok.*;
 import lombok.experimental.*;
+import lombok.extern.slf4j.*;
 
 @SuperBuilder
-public abstract class AbstractQaJgivenReporter<T extends AbstractQaJgivenReporter<?>> {
+@Slf4j
+public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenReporter<?, ?>>
+    implements IReporter {
     public static final String DEFAULT_REFERENCE_TAG    = "Reference";
     public static final String DEFAULT_SCREENSHOT_SCALE = "0.2";
     public static final String DEFAULT_DATE_PATTERN     = "yyyy-MMM-dd HH:mm O";
-
     protected File             outputDirectory;
     protected File             sourceDirectory;
     protected boolean          debug;
@@ -38,8 +50,14 @@ public abstract class AbstractQaJgivenReporter<T extends AbstractQaJgivenReporte
     protected boolean          pdf;
     protected String           referenceTag;
     protected String           templateResource;
+    private Template           template;
 
     protected AbstractQaJgivenReporter() {
+        screenshotScale = DEFAULT_SCREENSHOT_SCALE;
+        datePattern = DEFAULT_DATE_PATTERN;
+        referenceTag = DEFAULT_REFERENCE_TAG;
+        sourceDirectory = Config.config().getReportDir().get();
+        outputDirectory = new File(sourceDirectory, "qa-html");
     }
 
     protected T from(XmlSuite xmlSuite) {
@@ -53,8 +71,61 @@ public abstract class AbstractQaJgivenReporter<T extends AbstractQaJgivenReporte
             defaultIfBlank(xmlSuite.getParameter("datePattern"),
                 datePattern);
         templateResource =
-            defaultIfBlank(xmlSuite.getParameter("templateResource"),
+            defaultIfBlank(xmlSuite.getParameter(
+                "templateResource" + this.getClass().getSimpleName()),
                 templateResource);
         return (T) this;
+    }
+
+    protected Mustache.Compiler compiler() {
+        return Mustache.compiler();
+    }
+
+    protected QaJGivenReportModel<M> reportModel() {
+        return QaJGivenReportModel.<M> builder().build();
+    }
+
+    public final void generateReport(final List<XmlSuite> xmlSuites,
+        final List<ISuite> suites, final String outputDirectory) {
+        xmlSuites.forEach(
+            xmlSuite -> log.info("xml suite {}", xmlSuite));
+        // ISSUE: should be empty for xml driven invocations (?)
+        // if yes, then should throw an unsupported exception
+        suites.forEach(
+            suite -> log.info("suite {}", suite.getName()));
+
+        xmlSuites.forEach(xmlSuite -> from(xmlSuite).prepare().generate());
+    }
+
+    @SneakyThrows
+    protected T prepare() {
+        log.info("source directory {}", sourceDirectory);
+        log.info("output directory {}", outputDirectory);
+        log.info("screenshot scale {}", screenshotScale);
+
+        forceMkdir(outputDirectory);
+
+        return (T) this;
+    }
+
+    abstract protected void generate();
+
+    protected Template template() {
+        return isNull(template)
+            ? template = TemplateUtils
+                .using(compiler())
+                .loadFrom(templateResource)
+            : template;
+    }
+
+    protected File reportFile(
+        final File reportModelFile,
+        final String extension) {
+        return new File(outputDirectory,
+            reportModelFile.getName() + extension);
+    }
+
+    protected Collection<File> listJGivenReports() {
+        return listFiles(sourceDirectory, new SuffixFileFilter(".json"), null);
     }
 }

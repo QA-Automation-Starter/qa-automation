@@ -18,8 +18,6 @@ package dev.aherscu.qa.jgiven.reporter.maven.plugin;
 
 import static dev.aherscu.qa.jgiven.reporter.QaJGivenReporter.*;
 
-import java.io.*;
-
 import org.apache.maven.plugin.*;
 import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.plugins.annotations.Mojo;
@@ -32,6 +30,8 @@ import dev.aherscu.qa.jgiven.reporter.*;
 @Mojo(name = "report", defaultPhase = LifecyclePhase.VERIFY)
 public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
 
+    @Parameter(defaultValue = DEFAULT_TEMPLATE_RESOURCE)
+    protected String templateResource;
     /**
      * The product name.
      */
@@ -106,7 +106,7 @@ public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
 
         try {
             QaJGivenReporter.builder()
-                .templateResource(DEFAULT_TEMPLATE)
+                .templateResource(templateResource)
                 .outputDirectory(outputDirectory)
                 .sourceDirectory(sourceDirectory)
                 .screenshotScale(screenshotScale)
@@ -124,7 +124,7 @@ public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
                 .traceabilityDocumentRev(traceabilityDocumentRev)
                 .build()
                 .generate();
-        } catch (final IOException e) {
+        } catch (final Exception e) {
             throw new MojoExecutionException(
                 "Error while trying to generate HTML reports", e);
         }

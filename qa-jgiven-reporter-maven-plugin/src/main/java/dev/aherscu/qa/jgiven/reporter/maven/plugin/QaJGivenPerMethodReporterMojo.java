@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,6 +38,8 @@ import dev.aherscu.qa.jgiven.reporter.*;
 public class QaJGivenPerMethodReporterMojo
     extends AbstractQaJgivenReporterMojo {
 
+    @Parameter(defaultValue = DEFAULT_TEMPLATE_RESOURCE)
+    protected String templateResource;
     // TODO allow mapping current Execution Set IDs to other ID
 
     /**
@@ -72,7 +74,7 @@ public class QaJGivenPerMethodReporterMojo
                 .pdf(pdf)
                 .datePattern(datePattern)
                 .referenceTag(referenceTag)
-                .templateResource(DEFAULT_TEMPLATE)
+                .templateResource(templateResource)
                 .build()
                 .generate();
         } catch (final Exception e) {
@@ -81,5 +83,4 @@ public class QaJGivenPerMethodReporterMojo
                 "Error while trying to generate HTML and/or PDF reports", e);
         }
     }
-
 }

@@ -20,7 +20,6 @@ import static com.google.common.collect.Maps.*;
 import static com.google.common.collect.Multimaps.*;
 import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
-import static dev.aherscu.qa.tester.utils.TemplateUtils.*;
 import static java.util.stream.Collectors.*;
 import static java.util.stream.Collectors.toMap;
 import static org.apache.commons.io.FilenameUtils.*;
@@ -29,14 +28,9 @@ import java.io.*;
 import java.text.*;
 import java.util.*;
 
-import org.apache.commons.io.filefilter.*;
 import org.jooq.lambda.*;
-import org.testng.*;
-import org.testng.xml.*;
 
 import com.google.common.collect.*;
-import com.samskivert.mustache.*;
-import com.tngtech.jgiven.impl.*;
 import com.tngtech.jgiven.report.json.*;
 import com.tngtech.jgiven.report.model.*;
 
@@ -47,10 +41,8 @@ import lombok.extern.slf4j.*;
 @SuperBuilder
 @Slf4j
 public class QaJGivenPerMethodReporter
-    extends AbstractQaJgivenReporter<QaJGivenPerMethodReporter>
-    implements IReporter {
-
-    public static final String DEFAULT_TEMPLATE =
+    extends AbstractQaJgivenReporter<ScenarioModel, QaJGivenPerMethodReporter> {
+    public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/qa-jgiven-permethod-reporter.html";
 
     /**
@@ -61,43 +53,27 @@ public class QaJGivenPerMethodReporter
      */
     public QaJGivenPerMethodReporter() {
         super();
-        referenceTag = DEFAULT_REFERENCE_TAG;
-        sourceDirectory = Config.config().getReportDir().get();
-        outputDirectory = new File(sourceDirectory, "qa-html");
-        screenshotScale = DEFAULT_SCREENSHOT_SCALE;
-        datePattern = DEFAULT_DATE_PATTERN;
-        templateResource = DEFAULT_TEMPLATE;
+        templateResource = DEFAULT_TEMPLATE_RESOURCE;
     }
 
-    protected Mustache.Compiler compiler() {
-        return Mustache.compiler();
-    }
-
-    protected QaJGivenReportModel<ScenarioModel> reportModel() {
-        return QaJGivenReportModel.<ScenarioModel> builder().build();
-    }
-
+    @Override
     @SneakyThrows
     public void generate() {
-        log.info("source directory {}", sourceDirectory);
-        log.info("output directory {}", outputDirectory);
-        log.info("screenshot scale {}", screenshotScale);
-
-        forceMkdir(outputDirectory);
-
-        val template = using(compiler()).loadFrom(templateResource);
-
-        listFiles(sourceDirectory, new SuffixFileFilter(".json"), null)
+        listJGivenReports()
             .parallelStream()
             .peek(reportModelFile -> log
                 .debug("reading " + reportModelFile.getName()))
             .flatMap(reportModelFile -> new ReportModelFileReader()
                 .apply(reportModelFile).model
-                    .getScenarios().stream()
-                    .filter(scenarioModel -> scenarioModel.getTagIds().stream()
+                    .getScenarios()
+                    .stream()
+                    .filter(scenarioModel -> scenarioModel
+                        .getTagIds()
+                        .stream()
                         .anyMatch(tagId -> tagId.contains(referenceTag))))
             // DELETEME following two lines seeem redundant
-            .collect(toCollection(LinkedList::new)).parallelStream()
+            .collect(toCollection(LinkedList::new))
+            .parallelStream()
             .peek(scenarioModel -> log
                 .debug("processing " + targetNameFor(scenarioModel)))
             .forEach(Unchecked.consumer(scenarioModel -> {
@@ -106,25 +82,24 @@ public class QaJGivenPerMethodReporter
                         + EXTENSION_SEPARATOR_STR
                         + getExtension(templateResource));
                 try (val reportWriter = fileWriter(reportFile)) {
-                    template.execute(reportModel()
-                        .withJgivenReport(scenarioModel)
-                        .withScreenshotScale(screenshotScale)
-                        .withDatePattern(datePattern),
-                        reportWriter);
+                    template()
+                        .execute(reportModel()
+                            .withJgivenReport(scenarioModel)
+                            .withScreenshotScale(screenshotScale)
+                            .withDatePattern(datePattern),
+                            reportWriter);
                     applyAttributesFor(scenarioModel, reportFile);
                 }
+
+                // FIXME should work only with html reports
+                // if (pdf) {
+                // renderToPDF(
+                // reportFile(reportModelFile, ".html"),
+                // reportFile(reportModelFile, ".pdf")
+                // .getAbsolutePath());
+                // }
+
             }));
-    }
-
-    @Override
-    public void generateReport(final List<XmlSuite> xmlSuites,
-        final List<ISuite> suites, final String outputDirectory) {
-        xmlSuites.forEach(xmlSuite -> log.info("xml suite {}", xmlSuite));
-        // ISSUE: should be empty for xml driven invocations (?)
-        // if yes, then should throw an unsupported exception
-        suites.forEach(suite -> log.info("suite {}", suite.getName()));
-
-        xmlSuites.forEach(xmlSuite -> from(xmlSuite).generate());
     }
 
     @SneakyThrows

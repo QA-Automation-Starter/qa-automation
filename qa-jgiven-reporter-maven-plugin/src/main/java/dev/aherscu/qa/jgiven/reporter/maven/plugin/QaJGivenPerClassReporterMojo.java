@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,11 @@
 
 package dev.aherscu.qa.jgiven.reporter.maven.plugin;
 
-import java.io.*;
+import static dev.aherscu.qa.jgiven.reporter.QaJGivenPerClassReporter.*;
 
 import org.apache.maven.plugin.*;
 import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.plugins.annotations.Mojo;
-
-import com.itextpdf.text.*;
 
 import dev.aherscu.qa.jgiven.reporter.*;
 
@@ -31,6 +29,9 @@ import dev.aherscu.qa.jgiven.reporter.*;
  */
 @Mojo(name = "segregated-report", defaultPhase = LifecyclePhase.VERIFY)
 public class QaJGivenPerClassReporterMojo extends AbstractQaJgivenReporterMojo {
+
+    @Parameter(defaultValue = DEFAULT_TEMPLATE_RESOURCE)
+    protected String templateResource;
 
     @Override
     public void execute() throws MojoExecutionException {
@@ -49,11 +50,12 @@ public class QaJGivenPerClassReporterMojo extends AbstractQaJgivenReporterMojo {
                 .outputDirectory(outputDirectory)
                 .sourceDirectory(sourceDirectory)
                 .screenshotScale(screenshotScale)
+                .templateResource(templateResource)
                 .pdf(pdf)
                 .datePattern(datePattern)
                 .build()
                 .generate();
-        } catch (final IOException | DocumentException e) {
+        } catch (final Exception e) {
             getLog().error(e.getMessage());
             throw new MojoExecutionException(
                 "Error while trying to generate HTML and/or PDF reports", e);
