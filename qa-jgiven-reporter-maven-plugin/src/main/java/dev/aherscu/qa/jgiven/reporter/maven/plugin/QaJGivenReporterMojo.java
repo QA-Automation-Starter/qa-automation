@@ -21,7 +21,6 @@ import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.plugins.annotations.Mojo;
 
 import dev.aherscu.qa.jgiven.reporter.*;
-import lombok.*;
 import lombok.extern.slf4j.*;
 
 /**
@@ -100,27 +99,27 @@ public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
             return;
         }
 
-        val reporter = QaJGivenReporter.builder()
-            .templateResource(templateResource)
-            .outputDirectory(outputDirectory)
-            .sourceDirectory(sourceDirectory)
-            .screenshotScale(screenshotScale)
-            .pdf(pdf)
-            .datePattern(datePattern)
-            .productName(productName)
-            .productVersion(productVersion)
-            .testDocumentId(testDocumentId)
-            .testDocumentRev(testDocumentRev)
-            .specDocumentId(specDocumentId)
-            .specDocumentRev(specDocumentRev)
-            .planDocumentId(planDocumentId)
-            .planDocumentRev(planDocumentRev)
-            .traceabilityDocumentId(traceabilityDocumentId)
-            .traceabilityDocumentRev(traceabilityDocumentRev)
-            .build();
-
         try {
-            reporter.prepare().generate();
+            QaJGivenReporter.builder()
+                .templateResource(templateResource)
+                .outputDirectory(outputDirectory)
+                .sourceDirectory(sourceDirectory)
+                .screenshotScale(screenshotScale)
+                .pdf(pdf)
+                .datePattern(datePattern)
+                .productName(productName)
+                .productVersion(productVersion)
+                .testDocumentId(testDocumentId)
+                .testDocumentRev(testDocumentRev)
+                .specDocumentId(specDocumentId)
+                .specDocumentRev(specDocumentRev)
+                .planDocumentId(planDocumentId)
+                .planDocumentRev(planDocumentRev)
+                .traceabilityDocumentId(traceabilityDocumentId)
+                .traceabilityDocumentRev(traceabilityDocumentRev)
+                .build()
+                .prepare()
+                .generate();
         } catch (final Exception e) {
             throw new MojoExecutionException(
                 "Error while trying to generate HTML reports", e);
