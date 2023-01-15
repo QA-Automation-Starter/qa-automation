@@ -79,7 +79,7 @@ jobs:
 
       # NOTE: must run install at least in order to have artifacts in .m2
       # .m2 artifacts are cached and reused in following generate-automation-project
-      - name: Maven install
+      - name: Maven deploy snapshots
         shell: cmd
         run: |
           reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 0x1
