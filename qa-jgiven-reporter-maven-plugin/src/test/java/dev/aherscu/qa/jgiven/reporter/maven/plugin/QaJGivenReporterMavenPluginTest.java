@@ -43,6 +43,13 @@ import lombok.*;
 public class QaJGivenReporterMavenPluginTest
     extends BetterAbstractMojoTestCase {
 
+    // ISSUE these tests are sensible to formatting changes
+    // One way to deal with this is to tidy these HTML files before comparing
+    // them.
+    // Tidying can be achieved with JSOUP library.
+    // However, AssertJ does not support line-by-line comparison, yet;
+    // see https://github.com/assertj/assertj/issues/2922
+
     private static File actualReports(final String relativePath) {
         return new File(outdir("target/test-classes/jgiven-reports/qa-html"),
             relativePath);
