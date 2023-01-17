@@ -79,14 +79,14 @@ jobs:
 
       # NOTE: must run install at least in order to have artifacts in .m2
       # .m2 artifacts are cached and reused in following generate-automation-project
-      - name: Maven install
+      - name: Maven deploy snapshots
         shell: cmd
         run: |
           reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 0x1
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
-          mvnw install ^
+          mvnw deploy ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-quiet,environment-dev,testing-tutorials
         env:

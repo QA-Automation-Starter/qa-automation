@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,61 +36,72 @@ import com.tngtech.jgiven.report.model.*;
 
 import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
+import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
-@Builder()
+@SuperBuilder
+@With
+@AllArgsConstructor
 @Slf4j
 @SuppressWarnings("ClassWithTooManyFields")
 @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
     value = "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD",
     justification = "referenced from JMustache template at runtime")
 public class QaJGivenReportModel<T> {
-    public final String                    screenshotScale;
-    public final String                    testDocumentId;
-    public final String                    testDocumentRev;
-    public final String                    specDocumentId;
-    public final String                    specDocumentRev;
-    public final String                    planDocumentId;
-    public final String                    planDocumentRev;
-    public final String                    traceabilityDocumentId;
-    public final String                    traceabilityDocumentRev;
-    public final String                    productName;
-    public final String                    productVersion;
-    public final T                         jgivenReport;
+    public final String          screenshotScale;
+    public final String          testDocumentId;
+    public final String          testDocumentRev;
+    public final String          specDocumentId;
+    public final String          specDocumentRev;
+    public final String          planDocumentId;
+    public final String          planDocumentRev;
+    public final String          traceabilityDocumentId;
+    public final String          traceabilityDocumentRev;
+    public final String          productName;
+    public final String          productVersion;
+    public final T               jgivenReport;
 
-    public final String                    datePattern;
+    public final String          datePattern;
 
-    public final transient Mustache.Lambda nanoToMillis       =
+    public final Mustache.Lambda shorten            =
+        (frag, out) -> out.write(abbreviateMiddle(prettified(frag.execute()),
+            ELLIPSIS, 1024));
+
+    public final Mustache.Lambda deleteEOL          =
+        (frag, out) -> out.write(normalizeSpace(frag.execute()
+            .replaceAll("[\\r\\n]", SPACE)));
+
+    public final Mustache.Lambda nanoToMillis       =
         (frag, out) -> out.write(Long
             .toString(parseLong(frag.execute()) / 1_000_000));
 
-    public final transient Mustache.Lambda asId               =
+    public final Mustache.Lambda asId               =
         (frag, out) -> out.write(Integer
             .toHexString(frag.execute().hashCode())
             .toUpperCase(Locale.ENGLISH));
 
-    public final transient Mustache.Lambda simpleName         =
+    public final Mustache.Lambda simpleName         =
         (frag, out) -> out.write(substringAfterLast(frag.execute(), DOT));
 
-    public final transient Mustache.Lambda translateIntroWord =
+    public final Mustache.Lambda translateIntroWord =
         this::translateIntroWord;
 
-    public final transient Mustache.Lambda scaleImage         =
+    public final Mustache.Lambda scaleImage         =
         this::scaleImage;
 
-    public final transient Mustache.Lambda isStepFailed       =
+    public final Mustache.Lambda isStepFailed       =
         (frag, out) -> out.write(
             StepStatus.FAILED.equals(((StepModel) frag.context()).getStatus())
                 ? frag.execute()
                 : EMPTY);
 
-    public final transient Mustache.Lambda isStepPassed       =
+    public final Mustache.Lambda isStepPassed       =
         (frag, out) -> out.write(
             StepStatus.PASSED.equals(((StepModel) frag.context()).getStatus())
                 ? frag.execute()
                 : EMPTY);
 
-    private final transient ZonedDateTime  date               =
+    private final ZonedDateTime  date               =
         ZonedDateTime.now();
 
     public final String date() {

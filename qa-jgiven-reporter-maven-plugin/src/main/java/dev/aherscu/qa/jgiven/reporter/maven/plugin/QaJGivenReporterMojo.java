@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,20 +16,22 @@
 
 package dev.aherscu.qa.jgiven.reporter.maven.plugin;
 
-import java.io.*;
-
 import org.apache.maven.plugin.*;
 import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.plugins.annotations.Mojo;
 
 import dev.aherscu.qa.jgiven.reporter.*;
+import lombok.extern.slf4j.*;
 
 /**
  * Generates JGiven report in QA format.
  */
 @Mojo(name = "report", defaultPhase = LifecyclePhase.VERIFY)
+@Slf4j
 public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
 
+    @Parameter(defaultValue = QaJGivenReporter.DEFAULT_TEMPLATE_RESOURCE)
+    protected String templateResource;
     /**
      * The product name.
      */
@@ -97,13 +99,9 @@ public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
             return;
         }
 
-        getLog().info(
-            "JGiven JSON report source directory: " + sourceDirectory);
-        getLog().info(
-            "JGiven HTML report output directory: " + outputDirectory);
-
         try {
             QaJGivenReporter.builder()
+                .templateResource(templateResource)
                 .outputDirectory(outputDirectory)
                 .sourceDirectory(sourceDirectory)
                 .screenshotScale(screenshotScale)
@@ -120,11 +118,11 @@ public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
                 .traceabilityDocumentId(traceabilityDocumentId)
                 .traceabilityDocumentRev(traceabilityDocumentRev)
                 .build()
+                .prepare()
                 .generate();
-        } catch (final IOException e) {
+        } catch (final Exception e) {
             throw new MojoExecutionException(
                 "Error while trying to generate HTML reports", e);
         }
     }
-
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,48 +17,50 @@
 package dev.aherscu.qa.jgiven.reporter;
 
 import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
+import static org.apache.commons.io.FilenameUtils.*;
 import static org.xhtmlrenderer.simple.PDFRenderer.*;
 
-import java.io.*;
-
-import org.apache.commons.io.filefilter.*;
-
-import com.itextpdf.text.*;
-import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.json.*;
+import com.tngtech.jgiven.report.model.*;
 
-import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
 @SuperBuilder
 @Slf4j
+@ToString(callSuper = true)
 public class QaJGivenPerClassReporter
-    extends AbstractQaJgivenReporter<QaJGivenPerClassReporter> {
+    extends
+    AbstractQaJgivenReporter<ReportModelFile, QaJGivenPerClassReporter> {
 
-    public void generate() throws IOException, DocumentException {
-        forceMkdir(outputDirectory);
+    public static final String DEFAULT_TEMPLATE_RESOURCE =
+        "/qa-jgiven-perclass-reporter.html";
 
-        val template = TemplateUtils
-            .using(Mustache.compiler())
-            .loadFrom("/qa-jgiven-perclass-reporter.html");
+    public QaJGivenPerClassReporter() {
+        super();
+        templateResource = DEFAULT_TEMPLATE_RESOURCE;
+    }
 
-        for (val reportModelFile : listFiles(
-            sourceDirectory, new SuffixFileFilter(".json"), null)) {
+    @Override
+    @SneakyThrows
+    public void generate() {
+        for (val reportModelFile : listJGivenReports()) {
 
             log.debug("reading " + reportModelFile);
             try (val reportWriter = fileWriter(
-                reportFile(reportModelFile, ".html"))) {
-                template.execute(QaJGivenReportModel.builder()
-                    .jgivenReport(new ReportModelFileReader()
-                        .apply(reportModelFile))
-                    .screenshotScale(screenshotScale)
-                    .datePattern(datePattern)
-                    .build(),
-                    reportWriter);
+                reportFile(reportModelFile, EXTENSION_SEPARATOR_STR
+                    + getExtension(templateResource)))) {
+                template()
+                    .execute(reportModel()
+                        .withJgivenReport(new ReportModelFileReader()
+                            .apply(reportModelFile))
+                        .withScreenshotScale(screenshotScale)
+                        .withDatePattern(datePattern),
+                        reportWriter);
             }
 
+            // FIXME should work only with html reports
             if (pdf) {
                 renderToPDF(
                     reportFile(reportModelFile, ".html"),
@@ -66,12 +68,5 @@ public class QaJGivenPerClassReporter
                         .getAbsolutePath());
             }
         }
-    }
-
-    private File reportFile(
-        final File reportModelFile,
-        final String extension) {
-        return new File(outputDirectory,
-            reportModelFile.getName() + extension);
     }
 }

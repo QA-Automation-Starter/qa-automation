@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,56 +17,81 @@
 package dev.aherscu.qa.jgiven.reporter;
 
 import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
+import static org.apache.commons.lang3.StringUtils.*;
 
 import java.io.*;
 
-import com.google.gson.*;
-import com.samskivert.mustache.*;
-import com.tngtech.jgiven.report.json.*;
+import org.apache.commons.io.*;
+import org.testng.*;
 
-import dev.aherscu.qa.tester.utils.*;
+import com.google.gson.*;
+import com.tngtech.jgiven.report.json.*;
+import com.tngtech.jgiven.report.model.*;
+
 import lombok.*;
 import lombok.experimental.*;
+import lombok.extern.slf4j.*;
 
 @SuperBuilder
+@Slf4j
+@ToString(callSuper = true)
 public class QaJGivenReporter
-    extends AbstractQaJgivenReporter<QaJGivenReporter> {
+    extends AbstractQaJgivenReporter<CompleteReportModel, QaJGivenReporter>
+    implements IReporter {
+    public static final String DEFAULT_TEMPLATE_RESOURCE =
+        "/qa-jgiven-reporter.html";
+    public final String        productName;
+    public final String        productVersion;
+    public final String        testDocumentId;
+    public final String        testDocumentRev;
+    public final String        specDocumentId;
+    public final String        specDocumentRev;
+    public final String        planDocumentId;
+    public final String        planDocumentRev;
+    public final String        traceabilityDocumentId;
+    public final String        traceabilityDocumentRev;
 
-    public final String productName;
-    public final String productVersion;
-    public final String testDocumentId;
-    public final String testDocumentRev;
-    public final String specDocumentId;
-    public final String specDocumentRev;
-    public final String planDocumentId;
-    public final String planDocumentRev;
-    public final String traceabilityDocumentId;
-    public final String traceabilityDocumentRev;
+    public QaJGivenReporter() {
+        productName = EMPTY;
+        productVersion = EMPTY;
+        testDocumentId = EMPTY;
+        testDocumentRev = EMPTY;
+        specDocumentId = EMPTY;
+        specDocumentRev = EMPTY;
+        planDocumentId = EMPTY;
+        planDocumentRev = EMPTY;
+        traceabilityDocumentId = EMPTY;
+        traceabilityDocumentRev = EMPTY;
+        templateResource = DEFAULT_TEMPLATE_RESOURCE;
+    }
 
-    public void generate() throws IOException {
-        val aggregatedReportModel = QaJGivenReportModel.builder()
-            .jgivenReport(
+    // TODO read the templateResource from testng.xml parameter
+    // and ensure it does not collide with the one for
+    // QaJGivenPerMethodReporter
+
+    @Override
+    @SneakyThrows
+    public void generate() {
+        val aggregatedReportModel = reportModel()
+            .withJgivenReport(
                 new ReportModelReader(
                     QaJGivenReportConfig.builder()
                         .sourceDir(sourceDirectory)
                         .targetDir(outputDirectory)
                         .build())
                             .readDirectory())
-            .screenshotScale(screenshotScale)
-            .datePattern(datePattern)
-            .testDocumentId(testDocumentId)
-            .testDocumentRev(testDocumentRev)
-            .specDocumentId(specDocumentId)
-            .specDocumentRev(specDocumentRev)
-            .planDocumentId(planDocumentId)
-            .planDocumentRev(planDocumentRev)
-            .traceabilityDocumentId(traceabilityDocumentId)
-            .traceabilityDocumentRev(traceabilityDocumentRev)
-            .productName(productName)
-            .productVersion(productVersion)
-            .build();
-
-        forceMkdir(outputDirectory);
+            .withScreenshotScale(screenshotScale)
+            .withDatePattern(datePattern)
+            .withTestDocumentId(testDocumentId)
+            .withTestDocumentRev(testDocumentRev)
+            .withSpecDocumentId(specDocumentId)
+            .withSpecDocumentRev(specDocumentRev)
+            .withPlanDocumentId(planDocumentId)
+            .withPlanDocumentRev(planDocumentRev)
+            .withTraceabilityDocumentId(traceabilityDocumentId)
+            .withTraceabilityDocumentRev(traceabilityDocumentRev)
+            .withProductName(productName)
+            .withProductVersion(productVersion);
 
         if (debug) {
             try (val debugReportWriter = fileWriter(
@@ -79,13 +104,17 @@ public class QaJGivenReporter
         }
 
         try (val reportWriter = fileWriter(
-            new File(outputDirectory, "qa-report.html"))) {
-            TemplateUtils
-                .using(Mustache.compiler())
-                .loadFrom("/qa-jgiven-reporter.html")
-                .execute(
-                    aggregatedReportModel,
-                    reportWriter);
+            new File(outputDirectory,
+                FilenameUtils.getName(templateResource)))) {
+            template().execute(aggregatedReportModel, reportWriter);
         }
+
+        // FIXME should work only with html reports
+        // if (pdf) {
+        // renderToPDF(
+        // reportFile(reportModelFile, ".html"),
+        // reportFile(reportModelFile, ".pdf")
+        // .getAbsolutePath());
+        // }
     }
 }
