@@ -332,6 +332,8 @@
           <!-- see https://github.com/mojohaus/aspectj-maven-plugin/pull/45 -->
           <!-- see also https://github.com/mojohaus/aspectj-maven-plugin/issues/52 -->
           <!-- see https://github.com/dev-aspectj/aspectj-maven-plugin#history -->
+          <!-- ISSUE (re-)importing a maven project into intellij turns off aspectj post compile mode
+            see https://stackoverflow.com/questions/75142147/re-importing-a-maven-project-into-intellij-turns-off-aspectj-post-compile-mode -->
           <groupId>dev.aspectj</groupId>
           <artifactId>aspectj-maven-plugin</artifactId>
           <version>1.13.1</version>
