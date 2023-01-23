@@ -50,6 +50,7 @@ public class WebDriverConfigurationTest {
         final List<String> deviceNames;
         final int          matchingRequiredCapabilities;
     }
+
     private final WebDriverConfiguration configuration;
     private final ExpectedCapabilities   expected;
 
@@ -132,6 +133,13 @@ public class WebDriverConfigurationTest {
     public void shouldHaveRequiredNumberOfCapabilities() {
         assertThat(configuration.requiredCapabilities(),
             hasSize(expected.matchingRequiredCapabilities));
+    }
+
+    // ISSUE
+    // https://stackoverflow.com/questions/75212311/using-json-files-for-properties-with-apache-commons-configuration2
+    @Test
+    public void shouldLoadPropertiesFromJson() {
+        assertThat(configuration.getString("foo"), is("bar"));
     }
 
     // NOTE: configuration instances share a global capabilities index

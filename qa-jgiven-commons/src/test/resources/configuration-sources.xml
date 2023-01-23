@@ -24,5 +24,6 @@
   <additional>
     <properties fileName="webdriver.properties" />
     <properties fileName="required-capabilities.properties" />
+    <properties fileName="test.json" />
   </additional>
 </configuration>
