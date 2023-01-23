@@ -17,6 +17,7 @@ package dev.aherscu.qa.tester.utils.config;
 
 import static com.google.common.collect.Maps.*;
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static java.nio.charset.StandardCharsets.*;
 import static java.util.Map.*;
 import static java.util.stream.Collectors.*;
 import static java.util.stream.Collectors.toMap;
@@ -25,6 +26,9 @@ import java.util.*;
 import java.util.stream.*;
 
 import org.apache.commons.configuration2.*;
+import org.apache.commons.configuration2.builder.combined.*;
+import org.apache.commons.configuration2.builder.fluent.*;
+import org.apache.commons.configuration2.ex.*;
 
 import lombok.extern.slf4j.*;
 
@@ -35,8 +39,13 @@ import lombok.extern.slf4j.*;
  *
  */
 @Slf4j
-public class BaseConfiguration
-    extends AbstractConfiguration<CompositeConfiguration> {
+public class DefaultTestConfiguration extends CompositeConfiguration {
+
+    /**
+     * The configuration sources.
+     */
+    public static final String CONFIGURATION_SOURCES =
+        "configuration-sources.xml"; //$NON-NLS-1$
 
     /**
      * Loads the specified configurations.
@@ -44,9 +53,28 @@ public class BaseConfiguration
      * @param configurations
      *            the additional configurations; might be null or empty
      */
-    public BaseConfiguration(final Configuration... configurations) {
-        super(new CompositeConfiguration(Arrays.asList(configurations)));
+    public DefaultTestConfiguration(final Configuration... configurations) {
+        super(Arrays.asList(configurations));
         log.trace("configuration loaded {}", toString(CR + LF));
+    }
+
+    /**
+     * @return configuration per {@link #CONFIGURATION_SOURCES}
+     * @throws ConfigurationException
+     *             if an error occurs
+     */
+    public static Configuration defaultConfiguration()
+        throws ConfigurationException {
+        return new CombinedConfigurationBuilder()
+            .configure(new Parameters()
+                .fileBased()
+                .setFileName(CONFIGURATION_SOURCES)
+                .setEncoding(UTF_8.toString()))
+            .getConfiguration();
+    }
+
+    public Set<Entry<Object, Object>> entrySet() {
+        return ConfigurationConverter.getMap(this).entrySet();
     }
 
     /**

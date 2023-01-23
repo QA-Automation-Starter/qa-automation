@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ import lombok.*;
 @SuppressWarnings({ "static-method" })
 @SelfTest
 public final class GenericTest extends
-    UnitilsScenarioTest<BaseConfiguration, AnyScenarioType, GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
+    UnitilsScenarioTest<DefaultTestConfiguration, AnyScenarioType, GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
 
     @FileContent
     private String sql;
@@ -62,10 +62,10 @@ public final class GenericTest extends
     // private File tempFile;
 
     /**
-     * Initializes with {@link BaseConfiguration}.
+     * Initializes with {@link DefaultTestConfiguration}.
      */
     private GenericTest() {
-        super(BaseConfiguration.class);
+        super(DefaultTestConfiguration.class);
     }
 
     /**

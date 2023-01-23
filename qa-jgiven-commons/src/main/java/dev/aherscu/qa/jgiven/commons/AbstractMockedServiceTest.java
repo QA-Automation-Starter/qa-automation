@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,15 +41,15 @@ import dev.aherscu.qa.tester.utils.config.*;
 @SuppressWarnings({ "boxing" })
 abstract public class AbstractMockedServiceTest<T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
     extends
-    UnitilsScenarioTest<BaseConfiguration, T, GIVEN, WHEN, THEN> {
+    UnitilsScenarioTest<DefaultTestConfiguration, T, GIVEN, WHEN, THEN> {
 
     protected final WireMockServer wireMockServer;
 
     /**
-     * Initializes with {@link BaseConfiguration}.
+     * Initializes with {@link DefaultTestConfiguration}.
      */
     protected AbstractMockedServiceTest() {
-        super(BaseConfiguration.class);
+        super(DefaultTestConfiguration.class);
         wireMockServer = wireMockServerOnDynamicPort();
     }
 

@@ -23,13 +23,13 @@ import org.testng.annotations.*;
 
 import com.google.common.collect.*;
 
-import dev.aherscu.qa.tester.utils.config.BaseConfiguration;
+import dev.aherscu.qa.tester.utils.config.*;
 
 @Test
-public class BaseConfigurationTest {
+public class DefaultTestConfigurationTest {
     @Test
     public void shouldGroupProperties() {
-        assertThat(new BaseConfiguration(
+        assertThat(new DefaultTestConfiguration(
             new MapConfiguration(ImmutableMap.<String, String> builder()
                 .put("my.group1.foo", "group-1-foo")
                 .put("my.group2.foo", "group-2-foo")

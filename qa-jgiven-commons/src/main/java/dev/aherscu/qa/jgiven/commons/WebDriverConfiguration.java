@@ -38,7 +38,7 @@ import com.google.common.collect.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.tester.utils.*;
-import dev.aherscu.qa.tester.utils.config.BaseConfiguration;
+import dev.aherscu.qa.tester.utils.config.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
@@ -46,7 +46,7 @@ import lombok.extern.slf4j.*;
  * Provides WebDriver-related configuration items.
  */
 @Slf4j
-public class WebDriverConfiguration extends BaseConfiguration {
+public class WebDriverConfiguration extends DefaultTestConfiguration {
 
     enum DeviceType {
         _WINDOWS, _IOS, _ANDROID, _WEB;
@@ -63,6 +63,7 @@ public class WebDriverConfiguration extends BaseConfiguration {
             return EnumUtils.toString(this).toLowerCase(ROOT);
         }
     }
+
     // NOTE must be static otherwise all tests will run with same capabilities.
     // This also means that if two instances are created with different
     // devices, hence different sets of capabilities, this mechanism will break.

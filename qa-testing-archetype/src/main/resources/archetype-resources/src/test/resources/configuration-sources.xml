@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!--
-  ~ Copyright 2022 Adrian Herscu
+  ~ Copyright 2023 Adrian Herscu
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -23,14 +23,15 @@
     <!-- NOTE: allow overriding via system properties; these can be passed in
       withText external processes, such as Maven/Jenkins.
       See http://commons.apache.org/proper/commons-configuration/userguide_v1.10/howto_configurationbuilder.html#Configuration_definition_file_reference -->
-    <system/>
+    <system />
   </override>
 
   <additional>
+    <properties fileName="webdriver.properties" />
+    <properties fileName="required-capabilities.properties" />
+
     <!-- NOTE: the userName of property file itself can be provided via a system
     property and referenced using ${whatever.property.userName} -->
-    <properties fileName="${test.properties.file}"/>
-    <properties fileName="webdriver.properties"/>
-    <properties fileName="required-capabilities.properties"/>
+    <properties fileName="${test.properties.file}" />
   </additional>
 </configuration>

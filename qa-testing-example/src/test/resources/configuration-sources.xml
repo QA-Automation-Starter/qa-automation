@@ -27,10 +27,11 @@
   </override>
 
   <additional>
-    <!-- NOTE: the name of property file itself can be provided via a system
-    property and referenced using ${whatever.property.name} -->
     <properties fileName="webdriver.properties" />
     <properties fileName="required-capabilities.properties" />
+
+    <!-- NOTE: the name of property file itself can be provided via a system
+    property and referenced using ${whatever.property.name} -->
     <properties fileName="${test.properties.file}" />
   </additional>
 </configuration>

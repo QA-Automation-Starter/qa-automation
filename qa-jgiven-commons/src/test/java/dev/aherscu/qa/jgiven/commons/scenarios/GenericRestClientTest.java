@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,12 +47,12 @@ import lombok.*;
 @SuppressWarnings({ "boxing" })
 public final class GenericRestClientTest
     extends
-    UnitilsScenarioTest<BaseConfiguration, RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+    UnitilsScenarioTest<DefaultTestConfiguration, RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 
     private GenericRestClientTest() {
-        super(BaseConfiguration.class);
+        super(DefaultTestConfiguration.class);
     }
 
     @Test(expectedExceptions = RuntimeException.class,

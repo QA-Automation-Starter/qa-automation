@@ -16,7 +16,7 @@
 package dev.aherscu.qa.jgiven.commons.utils;
 
 import static dev.aherscu.qa.tester.utils.Base64Utils.*;
-import static dev.aherscu.qa.tester.utils.config.AbstractConfiguration.*;
+import static dev.aherscu.qa.tester.utils.config.DefaultTestConfiguration.*;
 import static java.lang.Integer.*;
 import static java.lang.Thread.*;
 import static java.lang.ThreadLocal.*;
@@ -51,7 +51,7 @@ import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
-import dev.aherscu.qa.tester.utils.config.AbstractConfiguration;
+import dev.aherscu.qa.tester.utils.config.*;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
@@ -78,14 +78,15 @@ import lombok.extern.slf4j.*;
  */
 @ThreadSafe
 @Slf4j
-public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? extends Configuration>, T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
+public abstract class UnitilsScenarioTest<C extends DefaultTestConfiguration, T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
     extends TypedScenarioTest<T, GIVEN, WHEN, THEN> implements IHookable {
     @SuppressWarnings("serial")
     @SuppressFBWarnings("SE_NO_SERIALVERSIONID")
     private static class Configurations extends
-        ConcurrentHashMap<Class<? extends AbstractConfiguration<?>>, AbstractConfiguration<?>> {
+        ConcurrentHashMap<Class<? extends DefaultTestConfiguration>, DefaultTestConfiguration> {
         // NOTE: just to make further declaration shorter...
     }
+
     /**
      * The internal data provider name.
      */
@@ -170,7 +171,7 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
 
     /**
      * Initializes the configuration type of this scenario by
-     * {@value AbstractConfiguration#CONFIGURATION_SOURCES}.
+     * {@value DefaultTestConfiguration#CONFIGURATION_SOURCES}.
      *
      * @param configurationType
      *            type of configuration
@@ -278,8 +279,8 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
      *
      * @throws RuntimeException
      *             if the configuration type cannot be instantiated or the
-     *             {@value AbstractConfiguration#CONFIGURATION_SOURCES} refer to
-     *             a non-existing resource.
+     *             {@value DefaultTestConfiguration#CONFIGURATION_SOURCES} refer
+     *             to a non-existing resource.
      */
     @SuppressWarnings("unchecked")
     protected C configuration() {
