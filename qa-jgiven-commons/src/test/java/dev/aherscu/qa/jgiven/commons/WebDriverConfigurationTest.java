@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,8 @@ import static org.hamcrest.Matchers.*;
 
 import java.util.*;
 
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration2.*;
+import org.apache.commons.configuration2.ex.*;
 import org.openqa.selenium.chrome.*;
 import org.testng.annotations.*;
 
@@ -41,6 +42,14 @@ import lombok.extern.slf4j.*;
 
 @Slf4j
 public class WebDriverConfigurationTest {
+    @Builder
+    @ToString
+    private static class ExpectedCapabilities {
+        final DeviceType   deviceType;
+        final String       provider;
+        final List<String> deviceNames;
+        final int          matchingRequiredCapabilities;
+    }
     private final WebDriverConfiguration configuration;
     private final ExpectedCapabilities   expected;
 
@@ -101,40 +110,20 @@ public class WebDriverConfigurationTest {
         };
     }
 
-    // NOTE: the TestNG Factory mechanism creates all instances at once,
-    // hence we still need to reset the next capabilities index just before
-    // tests methods begin to execute in each instance
-    @BeforeClass
-    protected void beforeClassResetNextCapabilitiesIndex() {
-        log.debug("resetting next capabilities index from {}",
-            resetNextRequiredCapabilitiesIndex());
-    }
-
-    @DataProvider
-    private Iterator<Object[]> expectedDevices() {
-        return expected.deviceNames
-            .stream()
-            .map(deviceName -> new Object[] {
-                expected.deviceType,
-                deviceName })
-            .peek(o -> log.debug("expecting device name {}", o[0]))
-            .iterator();
-    }
-
     @Test
     public void shouldHaveDeviceType() {
         assertThat(configuration.deviceType(),
             is(expected.deviceType));
     }
 
-    // TODO must test how next required capabilities index behaves across
-    // instances
-
     @Test
     public void shouldHaveProvider() {
         assertThat(configuration.provider(),
             is(expected.provider));
     }
+
+    // TODO must test how next required capabilities index behaves across
+    // instances
 
     /**
      * Required capabilities as defined in required-capabilities.properties
@@ -175,6 +164,15 @@ public class WebDriverConfigurationTest {
             is(clazz.getName()));
     }
 
+    // NOTE: the TestNG Factory mechanism creates all instances at once,
+    // hence we still need to reset the next capabilities index just before
+    // tests methods begin to execute in each instance
+    @BeforeClass
+    protected void beforeClassResetNextCapabilitiesIndex() {
+        log.debug("resetting next capabilities index from {}",
+            resetNextRequiredCapabilitiesIndex());
+    }
+
     @DataProvider
     private Object[][] capabilitiesPerPlatform() {
         return new Object[][] {
@@ -185,12 +183,14 @@ public class WebDriverConfigurationTest {
         };
     }
 
-    @Builder
-    @ToString
-    private static class ExpectedCapabilities {
-        final DeviceType   deviceType;
-        final String       provider;
-        final List<String> deviceNames;
-        final int          matchingRequiredCapabilities;
+    @DataProvider
+    private Iterator<Object[]> expectedDevices() {
+        return expected.deviceNames
+            .stream()
+            .map(deviceName -> new Object[] {
+                expected.deviceType,
+                deviceName })
+            .peek(o -> log.debug("expecting device name {}", o[0]))
+            .iterator();
     }
 }

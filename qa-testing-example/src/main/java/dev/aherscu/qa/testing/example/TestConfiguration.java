@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,9 @@
  */
 package dev.aherscu.qa.testing.example;
 
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
-
 import javax.annotation.concurrent.*;
 
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration2.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
 import lombok.extern.slf4j.*;
@@ -37,8 +35,8 @@ public final class TestConfiguration extends WebDriverConfiguration {
     static {
         // IMPORTANT: this makes all property values to be parsed as
         // as list if commas are found inside
-        org.apache.commons.configuration.AbstractConfiguration
-            .setDefaultListDelimiter(COMMA.charAt(0));
+        // org.apache.commons.configuration2.AbstractConfiguration
+        // .setDefaultListDelimiter(COMMA.charAt(0));
     }
 
     /**

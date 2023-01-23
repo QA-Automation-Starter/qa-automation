@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,13 +17,14 @@ package dev.aherscu.qa.tester.utils.config;
 
 import static com.google.common.collect.Maps.*;
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static java.util.Map.*;
 import static java.util.stream.Collectors.*;
 import static java.util.stream.Collectors.toMap;
 
 import java.util.*;
 import java.util.stream.*;
 
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration2.*;
 
 import lombok.extern.slf4j.*;
 
@@ -96,7 +97,8 @@ public class BaseConfiguration
                 entry -> substringBetween(entry.getKey(), prefix, DOT)))
             .values()
             .stream()
-            .map(groupedEntries -> groupedEntries.stream()
+            .map(groupedEntries -> groupedEntries
+                .stream()
                 .collect(toMap(
                     groupedEntry -> substringAfter(
                         substringAfter(groupedEntry.getKey(), prefix), DOT),
@@ -112,7 +114,7 @@ public class BaseConfiguration
     public String toString(final CharSequence delimiter) {
         return entrySet()
             .stream()
-            .map(Object::toString)
+            .map(e -> e.getKey() + "=" + e.getValue())
             .map(s -> abbreviate(s, 127))
             .sorted()
             .collect(joining(delimiter));

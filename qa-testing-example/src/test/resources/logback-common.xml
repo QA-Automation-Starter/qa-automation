@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2022 Adrian Herscu
+  ~ Copyright 2023 Adrian Herscu
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -18,12 +18,12 @@
 <!--suppress XmlUnboundNsPrefix -->
 <included>
   <conversionRule conversionWord="threadId"
-                  converterClass="dev.aherscu.qa.tester.utils.ThreadIdConverter"/>
+                  converterClass="dev.aherscu.qa.tester.utils.ThreadIdConverter" />
 
   <property name="log.pattern"
-            value="%date{HH:mm:ss.SSS} [%-5level] [%-5thread] [%threadId]: %logger{0} - %msg%n"/>
+            value="%date{HH:mm:ss.SSS} [%-5level] [%-5thread] [%threadId]: %logger{0} - %msg%n" />
   <property name="log.pattern.nothread"
-            value="%date{HH:mm:ss.SSS} [%-5level] [%threadId]: %logger{0} - %msg%n"/>
+            value="%date{HH:mm:ss.SSS} [%-5level] [%threadId]: %logger{0} - %msg%n" />
 
   <!-- For configuring non-SLF4J loggers see http://www.slf4j.org/legacy.html -->
   <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
@@ -55,7 +55,7 @@
   <appender name="per-thread-logs"
             class="ch.qos.logback.classic.sift.SiftingAppender">
     <discriminator
-      class="dev.aherscu.qa.tester.utils.logging.ThreadIdBasedDiscriminator"/>
+        class="dev.aherscu.qa.tester.utils.logging.ThreadIdBasedDiscriminator" />
     <sift>
       <appender class="ch.qos.logback.core.FileAppender">
         <file>target/per-thread-logs/test-${threadId}.log</file>
@@ -70,30 +70,31 @@
 
   <!-- NOTE: turn dev.aherscu.qa.tester.utils.config to trace level
     in order to see interpolated properties -->
-  <logger name="dev.aherscu.qa.tester.utils.config" level="info"/>
-  <logger name="javax" level="off"/>
-  <logger name="jdk" level="off"/>
-  <logger name="sun" level="off"/>
-  <logger name="org" level="off"/>
-  <logger name="reactor" level="off"/>
-  <logger name="io" level="off"/>
-  <logger name="net" level="off"/>
-  <logger name="ca" level="off"/>
-  <logger name="tracer" level="off"/>
-  <logger name="com.gargoylesoftware" level="off"/>
-  <logger name="com.github" level="off"/>
-  <logger name="com.zaxxer" level="off"/>
-  <logger name="com.jayway" level="off"/>
-  <logger name="com.tngtech" level="off"/>
-  <logger name="com.couchbase" level="off"/>
-  <logger name="com.amazonaws" level="off"/>
-  <logger name="com.saucelabs" level="off"/>
+  <logger name="dev.aherscu.qa.tester.utils.config" level="trace" />
+  <logger name="com.apache.commons.configuration" level="trace" />
+  <logger name="javax" level="off" />
+  <logger name="jdk" level="off" />
+  <logger name="sun" level="off" />
+  <logger name="org" level="off" />
+  <logger name="reactor" level="off" />
+  <logger name="io" level="off" />
+  <logger name="net" level="off" />
+  <logger name="ca" level="off" />
+  <logger name="tracer" level="off" />
+  <logger name="com.gargoylesoftware" level="off" />
+  <logger name="com.github" level="off" />
+  <logger name="com.zaxxer" level="off" />
+  <logger name="com.jayway" level="off" />
+  <logger name="com.tngtech" level="off" />
+  <logger name="com.couchbase" level="off" />
+  <logger name="com.amazonaws" level="off" />
+  <logger name="com.saucelabs" level="off" />
 
   <!-- NOTE: the log root level defaults to trace, but might be overridden via
     a system property, e.g. via a Maven profile defining Surefire/Failsafe system properties  -->
   <root level="${log.root.level:-trace}">
-    <appender-ref ref="one-file-log"/>
-    <appender-ref ref="console"/>
-    <appender-ref ref="per-thread-logs"/>
+    <appender-ref ref="one-file-log" />
+    <appender-ref ref="console" />
+    <appender-ref ref="per-thread-logs" />
   </root>
 </included>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ import java.util.concurrent.atomic.*;
 import javax.annotation.concurrent.*;
 
 import org.apache.commons.beanutils.*;
-import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration2.Configuration;
 import org.jooq.lambda.*;
 import org.reflections.*;
 import org.testng.*;
@@ -80,6 +80,12 @@ import lombok.extern.slf4j.*;
 @Slf4j
 public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? extends Configuration>, T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
     extends TypedScenarioTest<T, GIVEN, WHEN, THEN> implements IHookable {
+    @SuppressWarnings("serial")
+    @SuppressFBWarnings("SE_NO_SERIALVERSIONID")
+    private static class Configurations extends
+        ConcurrentHashMap<Class<? extends AbstractConfiguration<?>>, AbstractConfiguration<?>> {
+        // NOTE: just to make further declaration shorter...
+    }
     /**
      * The internal data provider name.
      */
@@ -450,12 +456,5 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
         // } catch (final Exception e) {
         // log.warn("before test got {}", e.getMessage()); //$NON-NLS-1$
         // }
-    }
-
-    @SuppressWarnings("serial")
-    @SuppressFBWarnings("SE_NO_SERIALVERSIONID")
-    private static class Configurations extends
-        ConcurrentHashMap<Class<? extends AbstractConfiguration<?>>, AbstractConfiguration<?>> {
-        // NOTE: just to make further declaration shorter...
     }
 }

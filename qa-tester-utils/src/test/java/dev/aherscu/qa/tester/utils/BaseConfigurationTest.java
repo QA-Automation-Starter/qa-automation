@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ package dev.aherscu.qa.tester.utils;
 
 import static org.assertj.core.api.Assertions.*;
 
-import org.apache.commons.configuration.*;
+import org.apache.commons.configuration2.*;
 import org.testng.annotations.*;
 
 import com.google.common.collect.*;

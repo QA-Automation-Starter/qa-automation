@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!--
-  ~ Copyright 2022 Adrian Herscu
+  ~ Copyright 2023 Adrian Herscu
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -15,14 +15,14 @@
   ~ limitations under the License.
   -->
 
-<!-- see http://commons.apache.org/proper/commons-configuration/userguide_v1.10/howto_configurationbuilder.html#The_configuration_definition_file -->
+<!-- see https://commons.apache.org/proper/commons-configuration/userguide/howto_combinedbuilder.html#The_configuration_definition_file -->
 <configuration>
 
   <!-- NOTE: allow access to system properties -->
-  <system/>
+  <system />
 
   <additional>
-    <properties fileName="webdriver.properties"/>
-    <properties fileName="required-capabilities.properties"/>
+    <properties fileName="webdriver.properties" />
+    <properties fileName="required-capabilities.properties" />
   </additional>
 </configuration>
