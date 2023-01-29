@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ public class GoogleVerifications<SELF extends GoogleVerifications<SELF>>
         return eventually_assert_that(
             () -> elements(By.xpath("//a/h3"))
                 .stream()
+                .filter(WebElement::isDisplayed)
                 .map(resultElement -> GoogleResult.builder()
                     .title(new Text(resultElement
                         .getAttribute("textContent")))

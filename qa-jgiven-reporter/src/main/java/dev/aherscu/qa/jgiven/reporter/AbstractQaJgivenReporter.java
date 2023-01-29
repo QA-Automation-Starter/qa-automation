@@ -86,7 +86,7 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
         return QaJGivenReportModel.<M> builder().build();
     }
 
-    public final void generateReport(
+    public void generateReport(
         final List<XmlSuite> xmlSuites,
         final List<ISuite> suites,
         final String outputDirectory) {

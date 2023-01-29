@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,9 @@ final class ReportHandle {
     static final String               PASS             = "PASS";
     static final String               PLATFORM_NAME    = "PlatformName";
     static final String               PLATFORM_VERSION = "PlatformVersion";
+
+    // NOTE: this is the defined in qa-jgiven-commons as an annotation;
+    // we do not include that dependency here in order to make the build faster.
     static final String               REFERENCE        =
         "dev.aherscu.qa.jgiven.commons.tags.Reference";
     static final String               TAG_SEPARATOR    = COLON;

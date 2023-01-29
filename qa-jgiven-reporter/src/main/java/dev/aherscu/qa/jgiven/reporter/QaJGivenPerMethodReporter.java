@@ -20,7 +20,6 @@ import static com.google.common.collect.Maps.*;
 import static com.google.common.collect.Multimaps.*;
 import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
-import static java.util.stream.Collectors.*;
 import static java.util.stream.Collectors.toMap;
 import static org.apache.commons.io.FilenameUtils.*;
 
@@ -57,54 +56,18 @@ public class QaJGivenPerMethodReporter
         templateResource = DEFAULT_TEMPLATE_RESOURCE;
     }
 
-    @Override
     @SneakyThrows
-    public void generate() {
-        listJGivenReports()
-            .parallelStream()
-            .peek(reportModelFile -> log
-                .debug("reading " + reportModelFile.getName()))
-            .flatMap(reportModelFile -> new ReportModelFileReader()
-                .apply(reportModelFile).model
-                    .getScenarios()
-                    .stream()
-                    .filter(scenarioModel -> scenarioModel
-                        .getTagIds()
-                        .stream()
-                        .anyMatch(tagId -> tagId.contains(referenceTag))))
-            // DELETEME following two lines seeem redundant
-            .collect(toCollection(LinkedList::new))
-            .parallelStream()
-            .peek(scenarioModel -> log
-                .debug("processing " + targetNameFor(scenarioModel)))
-            .forEach(Unchecked.consumer(scenarioModel -> {
-                val reportFile = new File(outputDirectory,
-                    targetNameFor(scenarioModel)
-                        + EXTENSION_SEPARATOR_STR
-                        + getExtension(templateResource));
-                try (val reportWriter = fileWriter(reportFile)) {
-                    template()
-                        .execute(reportModel()
-                            .withJgivenReport(scenarioModel)
-                            .withScreenshotScale(screenshotScale)
-                            .withDatePattern(datePattern),
-                            reportWriter);
-                    applyAttributesFor(scenarioModel, reportFile);
-                }
-
-                // FIXME should work only with html reports
-                // if (pdf) {
-                // renderToPDF(
-                // reportFile(reportModelFile, ".html"),
-                // reportFile(reportModelFile, ".pdf")
-                // .getAbsolutePath());
-                // }
-
-            }));
+    public static Map<String, String> readAttributesOf(final File reportFile) {
+        try (val attributesReader = fileReader(
+            new File(reportFile.getAbsolutePath() + ".attributes"))) {
+            val p = new Properties();
+            p.load(attributesReader);
+            return fromProperties(p);
+        }
     }
 
     @SneakyThrows
-    private void applyAttributesFor(
+    protected void applyAttributesFor(
         final ScenarioModel scenarioModel,
         final File reportFile) {
         log.info("setting attributes for " + reportFile.getName());
@@ -130,7 +93,58 @@ public class QaJGivenPerMethodReporter
         }
     }
 
-    private String targetNameFor(final ScenarioModel scenarioModel) {
+    @Override
+    @SneakyThrows
+    public void generate() {
+        listJGivenReports()
+            .parallelStream()
+            .peek(reportModelFile -> log
+                .debug("reading " + reportModelFile.getName()))
+            .flatMap(reportModelFile -> new ReportModelFileReader()
+                .apply(reportModelFile).model
+                    .getScenarios()
+                    .stream()
+                    .filter(scenarioModel -> scenarioModel
+                        .getTagIds()
+                        .stream()
+                        .anyMatch(tagId -> tagId.contains(referenceTag))))
+            .peek(scenarioModel -> log
+                .debug("processing " + targetNameFor(scenarioModel)))
+            .forEach(Unchecked.consumer(scenarioModel -> {
+                val reportFile = new File(outputDirectory,
+                    targetNameFor(scenarioModel)
+                        + EXTENSION_SEPARATOR_STR
+                        + getExtension(templateResource));
+                try (val reportWriter = fileWriter(reportFile)) {
+                    template()
+                        .execute(reportModel()
+                            .withJgivenReport(scenarioModel)
+                            .withScreenshotScale(screenshotScale)
+                            .withDatePattern(datePattern),
+                            reportWriter);
+                    applyAttributesFor(scenarioModel, reportFile);
+                }
+
+                // FIXME should work only with html reports
+                // if (pdf) {
+                // renderToPDF(
+                // reportFile(reportModelFile, ".html"),
+                // reportFile(reportModelFile, ".pdf")
+                // .getAbsolutePath());
+                // }
+
+                reportGenerated(scenarioModel, reportFile);
+            }));
+    }
+
+    protected void reportGenerated(
+        final ScenarioModel scenarioModel,
+        final File reportFile) {
+        log.debug("report generated for {} into {}",
+            scenarioModel.getClassName(), reportFile.getName());
+    }
+
+    protected String targetNameFor(final ScenarioModel scenarioModel) {
         return MessageFormat.format("{0}-{1}-{2}",
             scenarioModel.getExecutionStatus(), scenarioModel.getClassName(),
             scenarioModel.getTestMethodName());
