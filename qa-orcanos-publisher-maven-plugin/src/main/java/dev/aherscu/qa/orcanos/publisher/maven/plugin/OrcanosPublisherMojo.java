@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.orcanos.publisher.maven.plugin;
 
-import static com.google.common.collect.Maps.*;
+import static dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter.*;
 import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
 import static dev.aherscu.qa.tester.utils.UriUtils.*;
 import static java.text.MessageFormat.*;
@@ -144,7 +144,7 @@ public class OrcanosPublisherMojo extends AbstractMojo {
                 .map(Unchecked.function(matcher -> ReportHandle.builder()
                     .sourceFile(new File(matcher.group(0)))
                     .status(matcher.group(2))
-                    .attributes(readAttributes(new File(matcher.group(0))))
+                    .attributes(readAttributesOf(new File(matcher.group(0))))
                     .tag(tag)
                     .build()))
                 .peek(reportHandle -> getLog()
@@ -182,16 +182,6 @@ public class OrcanosPublisherMojo extends AbstractMojo {
                 .build())
             .property(CONNECT_TIMEOUT, connectTimeoutMs)
             .property(READ_TIMEOUT, readTimeoutMs));
-    }
-
-    @SneakyThrows
-    private Map<String, String> readAttributes(final File reportFile) {
-        try (val attributesReader = fileReader(
-            new File(reportFile.getAbsolutePath() + ".attributes"))) {
-            val p = new Properties();
-            p.load(attributesReader);
-            return fromProperties(p);
-        }
     }
 
     private GenericResponse recordExecutionResults(
