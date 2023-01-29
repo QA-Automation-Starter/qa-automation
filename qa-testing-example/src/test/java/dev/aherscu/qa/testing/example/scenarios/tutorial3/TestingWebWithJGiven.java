@@ -47,6 +47,7 @@ public class TestingWebWithJGiven
             { new Text(randomAlphanumeric(40)),
                 counts(equalTo(0L)) },
             { new Text("testng"),
+                // ISSUE sometimes the Google opens in a non-English language
                 allMatch(either(containsStringIgnoringCase("testng"))
                     .or(containsStringIgnoringCase("Try again"))
                     .or(containsStringIgnoringCase("More results"))) }
