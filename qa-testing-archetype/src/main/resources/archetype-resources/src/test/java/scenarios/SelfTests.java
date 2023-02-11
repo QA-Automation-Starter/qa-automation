@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,16 @@ import lombok.extern.slf4j.*;
 @Slf4j
 public class SelfTests extends AbstractSelfTests {
     // try here your hamcrest assertions
+
+    @Test
+    public void shouldMatchEitherString() {
+        assertThat(
+            Stream.of("adf testng", "testng fadf", "Try again", "More results",
+                "gwrr testngrggr"),
+            allMatch(either(containsStringIgnoringCase("testng"))
+                .or(containsStringIgnoringCase("More results"))
+                .or(containsStringIgnoringCase("Try again"))));
+    }
 
     @Test(dataProvider = INTERNAL_DATA_PROVIDER)
     public void shouldRun(final int id) {
