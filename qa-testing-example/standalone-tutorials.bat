@@ -1,3 +1,12 @@
+@echo off
+setlocal
+pushd target
+for %%F in (*-test-with-dependencies.jar) do (set "TEST_JAR=%%F")
+if [%TEST_JAR%]==[] (
+    echo ERROR: No test jar found in target directory
+    echo INFO: run "mvn package -Pgenerate-standalone" to generate the test jar
+    exit /b 1
+)
 java ^
 -Dlog.root.level=info ^
 -Dlogback.configurationFile=logback-test.xml ^
@@ -11,12 +20,14 @@ java ^
 -Dapplication.filename= ^
 -Dapplication.workingdir= ^
 -Dtest.properties.file=environments/dev/test.properties ^
--Djgiven.report.dir=target/jgiven-reports ^
+-Djgiven.report.dir=jgiven-reports ^
 -Ddryrun=false ^
 -Dscreenshots=true ^
 -DscreenshotDelayMs=500 ^
--jar target/qa-testing-example-0.0.9-SNAPSHOT-test-with-dependencies.jar ^
+-jar %TEST_JAR% ^
 -listener dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter ^
--d target/test-output ^
-testing-tutorials.xml
-@echo Exit Code is %errorlevel%
+-d test-output ^
+-testjar %TEST_JAR% ^
+-xmlpathinjar testing-tutorials.xml
+endlocal
+popd
