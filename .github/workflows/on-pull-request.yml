@@ -140,7 +140,7 @@ jobs:
             -Dmaven.wagon.http.ssl.insecure=true ^
             -DarchetypeGroupId=dev.aherscu.qa ^
             -DarchetypeArtifactId=qa-testing-archetype ^
-            -DarchetypeVersion=0.0.9-SNAPSHOT ^
+            -DarchetypeVersion=0.0.22-SNAPSHOT ^
             -DgroupId=com.acme ^
             -DartifactId=testing ^
             -Dversion=0.0.1-SNAPSHOT ^
