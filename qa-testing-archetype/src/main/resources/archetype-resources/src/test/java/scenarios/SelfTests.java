@@ -17,6 +17,11 @@
 package ${package}.scenarios;
 
 import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
+import static uk.co.probablyfine.matchers.StreamMatchers.*;
+
+import java.util.stream.*;
 
 import org.testng.annotations.*;
 
