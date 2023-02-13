@@ -3,6 +3,11 @@
 # Auto detect text files and perform LF normalization
 *               text=auto
 
+# Shell scripts
+mvnw            eol=lf
+*.bat           text eol=crlf
+*.cmd           text eol=crlf
+
 #
 # The above will handle all files NOT found below
 #

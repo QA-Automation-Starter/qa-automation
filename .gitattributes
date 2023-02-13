@@ -4,7 +4,7 @@
 *               text=auto
 
 # Shell scripts
-**/mvnw         text eol=lf
+mvnw            eol=lf
 *.bat           text eol=crlf
 *.cmd           text eol=crlf
 
