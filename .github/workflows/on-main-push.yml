@@ -139,7 +139,7 @@ jobs:
           mvn --batch-mode archetype:generate \
             -DarchetypeGroupId=dev.aherscu.qa \
             -DarchetypeArtifactId=qa-testing-archetype \
-            -DarchetypeVersion=0.0.22-SNAPSHOT \
+            -DarchetypeVersion=0.0.23-SNAPSHOT \
             -DgroupId=com.acme \
             -DartifactId=testing \
             -Dversion=1.0-SNAPSHOT \
