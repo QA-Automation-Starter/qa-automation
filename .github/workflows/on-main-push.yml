@@ -147,4 +147,6 @@ jobs:
           ls -la testing
 
       - name: build testing project
-        run: cd testing && chmod +x mvnw && ./mvnw
+        run: |
+          ls -la testing
+          cd testing && chmod +x mvnw && ./mvnw
