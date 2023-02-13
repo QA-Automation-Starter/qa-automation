@@ -144,6 +144,7 @@ jobs:
             -DartifactId=testing \
             -Dversion=1.0-SNAPSHOT \
             -Dpackage=com.acme.testing
+          ls -la testing
 
       - name: build testing project
         run: cd testing && chmod +x mvnw && ./mvnw
