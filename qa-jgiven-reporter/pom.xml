@@ -21,7 +21,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.23</version>
+    <version>0.0.24-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-jgiven-reporter</artifactId>
@@ -61,7 +61,7 @@
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-tester-utils</artifactId>
-      <version>0.0.23</version>
+      <version>0.0.24-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
