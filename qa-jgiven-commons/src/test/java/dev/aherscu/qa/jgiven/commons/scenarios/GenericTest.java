@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package dev.aherscu.qa.jgiven.commons.scenarios;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.hamcrest.Matchers.*;
 
 import java.lang.SuppressWarnings;
 import java.math.*;
@@ -84,7 +85,7 @@ public final class GenericTest extends
     public void shouldFail() {
         given().nothing();
         when().doing_nothing();
-        then().should_$_succeed(false);
+        then().should_succeed(is(false));
     }
 
     /**
@@ -100,7 +101,7 @@ public final class GenericTest extends
         when().failing_on_purpose_with(
             new RuntimeException("just to see it failing"));
         section("should be skipped");
-        then().should_$_succeed(false);
+        then().should_succeed(is(false));
     }
 
     /**
@@ -163,7 +164,7 @@ public final class GenericTest extends
         when().retrying(step -> step.failing_on_purpose_with(
             new InternalError("just to see it retry")));
         section("should be skipped");
-        then().should_$_succeed(false);
+        then().should_succeed(is(false));
     }
 
     // /**
@@ -187,7 +188,7 @@ public final class GenericTest extends
     public void shouldSucceed() {
         given().nothing();
         when().doing_nothing();
-        then().should_$_succeed(true);
+        then().should_succeed(is(true));
     }
 
     /**

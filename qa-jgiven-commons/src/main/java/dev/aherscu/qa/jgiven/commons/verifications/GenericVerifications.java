@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,8 @@ package dev.aherscu.qa.jgiven.commons.verifications;
 
 import static com.danhaywood.java.assertjext.Conditions.*;
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.testng.Assert.*;
 
@@ -163,7 +164,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
             log.trace("asserting value {} against {}",
                 prettified(value.toString()),
                 matcher);
-            MatcherAssert.assertThat(value, matcher);
+            assertThat(value, matcher);
             return self;
         }, additionalRetryPolicies);
     }
@@ -261,14 +262,12 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
     /**
      * Verifies that the expected is true.
      *
-     * @param expected
-     *            the expected
+     * @param matcher
+     *            the matching rule
      * @return {@link #self()}
      */
-    @SuppressWarnings("BooleanParameter")
-    public SELF should_$_succeed(
-        @Format(NotOrBlankFormatter.class) final boolean expected) {
-        assertThat(expected).isTrue();
+    public SELF should_succeed(final Matcher<Boolean> matcher) {
+        assertThat(true, matcher);
         return self();
     }
 
