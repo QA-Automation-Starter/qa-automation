@@ -16,16 +16,14 @@
 
 package dev.aherscu.qa.s3.uploader.maven.plugin;
 
-import java.io.*;
-import java.util.*;
-
-import org.apache.maven.plugin.*;
-
 import com.amazonaws.auth.*;
 import com.amazonaws.services.s3.*;
-
 import dev.aherscu.qa.s3.uploader.maven.plugin.config.*;
 import dev.aherscu.qa.s3.uploader.maven.plugin.util.*;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import java.io.*;
+import java.util.*;
+import org.apache.maven.plugin.*;
 
 /**
  * @prefix s3-static-uploader
@@ -114,7 +112,7 @@ public class S3StaticUploaderMojo extends AbstractMojo {
      */
     private boolean            refreshExpiredObjects;
 
-    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+    @SuppressFBWarnings(
         value = "UWF_FIELD_NOT_INITIALIZED_IN_CONSTRUCTOR",
         justification = "limitation of Maven container")
     private S3Uploader         uploader;

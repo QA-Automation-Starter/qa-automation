@@ -28,7 +28,8 @@ import lombok.*;
 @SuppressFBWarnings(
     value = "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD",
     justification = "read by jax-rs framework")
-@Builder
+Returns {@code this}.
+ExecutionSet.@Builder
 public final class ExecutionSet {
     public static final String EXECUTION_SET_ID = "Execution_Set_ID";
     public static final String TEST_ID          = "Test_ID";
