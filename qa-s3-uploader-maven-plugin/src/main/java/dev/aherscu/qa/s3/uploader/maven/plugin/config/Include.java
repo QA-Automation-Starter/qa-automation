@@ -16,9 +16,10 @@
 
 package dev.aherscu.qa.s3.uploader.maven.plugin.config;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.*;
 
-@edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+@SuppressFBWarnings(
     value = "UWF_UNWRITTEN_FIELD",
     justification = "fields are filled in by the Maven plugin framework")
 public class Include {

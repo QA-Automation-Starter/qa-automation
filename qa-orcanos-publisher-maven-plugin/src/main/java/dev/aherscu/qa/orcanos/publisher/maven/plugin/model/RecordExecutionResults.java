@@ -16,20 +16,19 @@
 
 package dev.aherscu.qa.orcanos.publisher.maven.plugin.model;
 
-import java.nio.charset.*;
-
-import javax.xml.bind.*;
-
 import com.fasterxml.jackson.annotation.*;
-
 import edu.umd.cs.findbugs.annotations.*;
+import java.nio.charset.*;
+import javax.xml.bind.*;
 import lombok.*;
+import org.apache.commons.io.output.ByteArrayOutputStream;
 
 /**
  * Models a request to Orcanos Record_Execution_Results_New REST API.
  */
 @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "value object")
-@Builder
+Returns {@code this}.
+RecordExecutionResults.@Builder
 public final class RecordExecutionResults {
     private final ExecutionSetRunResults executionSetRunResults;
 
@@ -40,8 +39,8 @@ public final class RecordExecutionResults {
             .newInstance(ExecutionSetRunResults.class)
             .createMarshaller();
         // marshaller.setProperty(JAXB_FORMATTED_OUTPUT, false);
-        try (val buffer =
-            new org.apache.commons.io.output.ByteArrayOutputStream()) {
+        try (ByteArrayOutputStream buffer =
+            new ByteArrayOutputStream()) {
             marshaller.marshal(executionSetRunResults, buffer);
             return buffer.toString(StandardCharsets.UTF_8);
         }

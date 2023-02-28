@@ -19,20 +19,20 @@ package dev.aherscu.qa.orcanos.publisher.maven.plugin;
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static org.apache.commons.lang3.ObjectUtils.*;
 
+import com.google.common.base.Splitter;
+import edu.umd.cs.findbugs.annotations.*;
 import java.io.*;
 import java.util.*;
-
-import org.apache.commons.lang3.tuple.*;
-
-import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
+import org.apache.commons.lang3.tuple.*;
 
 /**
  * Encapsulates a report file with its status and attributes to be reported to
  * Orcanos.
  */
 @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "value object")
-@Builder
+Returns {@code this}.
+ReportHandle.@Builder
 @ToString
 final class ReportHandle {
 
@@ -53,51 +53,56 @@ final class ReportHandle {
     private final Map<String, String> attributes;
 
     /**
-     * @return the device name from <tt>DeviceName</tt> attribute.
+     *Returns the device name from <tt>DeviceName</tt> attribute.
+ 
      */
     public String deviceName() {
         return attributes.get(DEVICE_NAME);
     }
 
     /**
-     * @return the execution set identifier from <tt>Reference</tt> attribute.
+     *Returns the execution set identifier from <tt>Reference</tt> attribute.
+ 
      */
     public String executionSetId() {
         return substringAfter(reference(), UNDERSCORE);
     }
 
     /**
-     * @return supported <tt>Reference</tt> has an execution set id and a test
-     *         case id.
+     *Returns supported <tt>Reference</tt> has an execution set id and a test
+         case id.
+ 
      */
     public boolean hasSupportedReference() {
         return reference().matches("\\d+_\\d+");
     }
 
     /**
-     * @return supported status can be <tt>SUCCESS</tt> or <tt>FAIL</tt>.
+     *Returns supported status can be <tt>SUCCESS</tt> or <tt>FAIL</tt>.
+ 
      */
     public boolean hasSupportedStatus() {
         return !Status.UNSUPPORTED.equals(status());
     }
 
     /**
-     * @return the platform name from <tt>PlatformName</tt> attribute.
+     *Returns the platform name from <tt>PlatformName</tt> attribute.
+ 
      */
     public String platformName() {
         return attributes.get(PLATFORM_NAME);
     }
 
     /**
-     * @return the platform version from <tt>PlatformVersion</tt> attribute.
+     *Returns the platform version from <tt>PlatformVersion</tt> attribute.
+ 
      */
     public String platformVersion() {
         return attributes.get(PLATFORM_VERSION);
     }
 
     public String reference() {
-        val references = defaultIfNull(attributes.get(REFERENCE), EMPTY)
-            .split(COMMA);
+        Iterable<String> references = Splitter.onPattern(COMMA).split(defaultIfNull(attributes.get(REFERENCE), EMPTY));
 
         var defaultReference = EMPTY;
         for (val r : references) {
@@ -116,21 +121,24 @@ final class ReportHandle {
     }
 
     /**
-     * @return the report source file to upload
+     *Returns the report source file to upload.
+ 
      */
     public File sourceFile() {
         return sourceFile;
     }
 
     /**
-     * @return the execution status
+     *Returns the execution status.
+ 
      */
     public Status status() {
         return Status.from(status);
     }
 
     /**
-     * @return the test case identifier from <tt>Reference</tt> attribute.
+     *Returns the test case identifier from <tt>Reference</tt> attribute.
+ 
      */
     public String testId() {
         return substringBefore(reference(), UNDERSCORE);

@@ -26,7 +26,8 @@ import lombok.*;
 /**
  * Models a response from various Orcanos REST API methods.
  */
-@Builder
+Returns {@code this}.
+GenericResponse.@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
