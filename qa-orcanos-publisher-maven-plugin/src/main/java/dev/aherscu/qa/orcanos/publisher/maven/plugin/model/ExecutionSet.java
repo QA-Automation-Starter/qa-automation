@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,8 +28,7 @@ import lombok.*;
 @SuppressFBWarnings(
     value = "URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD",
     justification = "read by jax-rs framework")
-Returns {@code this}.
-ExecutionSet.@Builder
+@Builder
 public final class ExecutionSet {
     public static final String EXECUTION_SET_ID = "Execution_Set_ID";
     public static final String TEST_ID          = "Test_ID";

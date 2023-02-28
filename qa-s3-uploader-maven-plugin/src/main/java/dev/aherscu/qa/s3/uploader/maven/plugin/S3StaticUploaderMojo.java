@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +16,18 @@
 
 package dev.aherscu.qa.s3.uploader.maven.plugin;
 
+import java.io.*;
+import java.lang.SuppressWarnings;
+import java.util.*;
+
+import org.apache.maven.plugin.*;
+
 import com.amazonaws.auth.*;
 import com.amazonaws.services.s3.*;
+
 import dev.aherscu.qa.s3.uploader.maven.plugin.config.*;
 import dev.aherscu.qa.s3.uploader.maven.plugin.util.*;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import java.io.*;
-import java.util.*;
-import org.apache.maven.plugin.*;
+import edu.umd.cs.findbugs.annotations.*;
 
 /**
  * @prefix s3-static-uploader

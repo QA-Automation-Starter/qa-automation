@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,22 @@
 
 package dev.aherscu.qa.orcanos.publisher.maven.plugin.model;
 
-import com.fasterxml.jackson.annotation.*;
-import edu.umd.cs.findbugs.annotations.*;
 import java.nio.charset.*;
+
 import javax.xml.bind.*;
+
+import org.apache.commons.io.output.*;
+
+import com.fasterxml.jackson.annotation.*;
+
+import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
-import org.apache.commons.io.output.ByteArrayOutputStream;
 
 /**
  * Models a request to Orcanos Record_Execution_Results_New REST API.
  */
 @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "value object")
-Returns {@code this}.
-RecordExecutionResults.@Builder
+@Builder
 public final class RecordExecutionResults {
     private final ExecutionSetRunResults executionSetRunResults;
 

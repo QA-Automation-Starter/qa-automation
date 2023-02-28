@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,8 +66,7 @@ public class S3Uploader {
             remoteFileMetadata.getETag().equals(calculateETag(localFile));
     }
 
-    private static boolean isMetadataExpired(
-        ) {
+    private static boolean isMetadataExpired() {
         // NOTE: quick and dirty fix
         return true;
     }

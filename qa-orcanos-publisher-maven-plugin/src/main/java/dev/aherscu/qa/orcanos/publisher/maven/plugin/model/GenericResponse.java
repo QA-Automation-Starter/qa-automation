@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,7 @@ import lombok.*;
 /**
  * Models a response from various Orcanos REST API methods.
  */
-Returns {@code this}.
-GenericResponse.@Builder
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString

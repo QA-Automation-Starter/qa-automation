@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,9 @@
 
 package dev.aherscu.qa.s3.uploader.maven.plugin.config;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.*;
+
+import edu.umd.cs.findbugs.annotations.*;
 
 @SuppressFBWarnings(
     value = "UWF_UNWRITTEN_FIELD",
