@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ package dev.aherscu.qa.orcanos.publisher.maven.plugin.model;
 import java.nio.charset.*;
 
 import javax.xml.bind.*;
+
+import org.apache.commons.io.output.*;
 
 import com.fasterxml.jackson.annotation.*;
 
@@ -40,8 +42,8 @@ public final class RecordExecutionResults {
             .newInstance(ExecutionSetRunResults.class)
             .createMarshaller();
         // marshaller.setProperty(JAXB_FORMATTED_OUTPUT, false);
-        try (val buffer =
-            new org.apache.commons.io.output.ByteArrayOutputStream()) {
+        try (ByteArrayOutputStream buffer =
+            new ByteArrayOutputStream()) {
             marshaller.marshal(executionSetRunResults, buffer);
             return buffer.toString(StandardCharsets.UTF_8);
         }

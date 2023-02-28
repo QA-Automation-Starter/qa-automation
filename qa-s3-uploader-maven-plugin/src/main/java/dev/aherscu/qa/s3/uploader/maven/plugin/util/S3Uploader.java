@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,8 +66,7 @@ public class S3Uploader {
             remoteFileMetadata.getETag().equals(calculateETag(localFile));
     }
 
-    private static boolean isMetadataExpired(
-        final ObjectMetadata objectMetadata) {
+    private static boolean isMetadataExpired() {
         // NOTE: quick and dirty fix
         return true;
     }
@@ -94,7 +93,7 @@ public class S3Uploader {
                 new FileInputStream(encodedFile), objectMetadata);
             setObjectAcl(managedFile, remoteFileName);
         } else {
-            if (refreshExpiredObjects && isMetadataExpired(remoteMetadata)) {
+            if (refreshExpiredObjects && isMetadataExpired()) {
                 log.debug("refreshing metadata for file "
                     + managedFile.getFilename());
                 client.copyObject(
@@ -133,8 +132,7 @@ public class S3Uploader {
         return transformFileNameSlashesToS3(removeBasePath(file));
     }
 
-    private void logObjectMetadata(final String remoteFileName,
-        final ObjectMetadata objectMetadata) {
+    private void logObjectMetadata(final ObjectMetadata objectMetadata) {
         log.debug("  ETag: " + objectMetadata.getETag());
         log.debug("  ContentType: " + objectMetadata.getContentType());
         log.debug("  CacheControl: " + objectMetadata.getCacheControl());
@@ -156,7 +154,7 @@ public class S3Uploader {
         try {
             objectMetadata =
                 client.getObjectMetadata(bucketName, remoteFileName);
-            logObjectMetadata(remoteFileName, objectMetadata);
+            logObjectMetadata(objectMetadata);
         } catch (final AmazonServiceException e) {
             log.debug(e);
         }

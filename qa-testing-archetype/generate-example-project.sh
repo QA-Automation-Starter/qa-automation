@@ -1,4 +1,4 @@
-cd target
+cd target || exit
 mvn archetype:generate \
   --batch-mode \
   --settings ../development-maven-settings.xml \
