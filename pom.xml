@@ -96,7 +96,7 @@
     <test.properties.file>test.properties</test.properties.file>
     <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
     <surefire.version>3.0.0-M3</surefire.version>
-    <maven.version>3.6.1</maven.version>
+    <maven.version>3.9.0</maven.version>
     <!-- NOTE: may cause the console logs to blow out -->
     <jgiven.report.text>true</jgiven.report.text>
     <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
@@ -350,8 +350,8 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
             <showWeaveInfo>${aspectj.showWeaveInfo}</showWeaveInfo>
-            <sources />
-            <testSources />
+            <sources/>
+            <testSources/>
             <verbose>${aspectj.verbose}</verbose>
             <Xlint>ignore</Xlint>
             <!-- NOTE: Lombok requires compilation via javac,
@@ -536,7 +536,7 @@
               </goals>
               <configuration>
                 <target>
-                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}" />
+                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}"/>
                 </target>
               </configuration>
             </execution>
@@ -824,7 +824,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -837,7 +837,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -853,7 +853,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -867,7 +867,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                   </pluginExecutions>
