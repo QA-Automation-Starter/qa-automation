@@ -135,12 +135,12 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: generate testing project
-        # FIXME should use latest archetype
+        # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
+        # NOTE will use last released archetype
         run: |
           mvn --batch-mode archetype:generate \
             -DarchetypeGroupId=dev.aherscu.qa \
             -DarchetypeArtifactId=qa-testing-archetype \
-            -DarchetypeVersion=0.0.23-SNAPSHOT \
             -DgroupId=com.acme \
             -DartifactId=testing \
             -Dversion=1.0-SNAPSHOT \
