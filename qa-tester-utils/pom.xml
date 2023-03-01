@@ -95,7 +95,7 @@
     <dependency>
       <groupId>com.amazonaws</groupId>
       <artifactId>aws-java-sdk-cognitoidp</artifactId>
-      <version>1.12.12</version>
+      <version>1.12.417</version>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
@@ -290,7 +290,7 @@
     <dependency>
       <groupId>com.jayway.jsonpath</groupId>
       <artifactId>json-path-assert</artifactId>
-      <version>2.5.0</version>
+      <version>2.6.0</version>
     </dependency>
 
     <!-- TODO should be removed, it does not work well with Hamcrest -->
