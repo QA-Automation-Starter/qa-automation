@@ -175,7 +175,7 @@
       <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
-        <version>1.18.20</version>
+        <version>1.18.26</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
@@ -539,9 +539,7 @@
               </goals>
               <configuration>
                 <target>
-                  <jar
-                    destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
-                    basedir="${delombok.directory}"/>
+                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}"/>
                 </target>
               </configuration>
             </execution>
