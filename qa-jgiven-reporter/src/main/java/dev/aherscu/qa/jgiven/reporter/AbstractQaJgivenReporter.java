@@ -83,6 +83,10 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
     }
 
     protected QaJGivenReportModel<M> reportModel() {
+        // ISSUE Mustache.Lambda's defined in subtypes of QaJGivenReportModel
+        // are not seen by the template engine.
+        // Perhaps it works via introspecting the specific type declared here...
+        // Further investigation required.
         return QaJGivenReportModel.<M> builder().build();
     }
 
