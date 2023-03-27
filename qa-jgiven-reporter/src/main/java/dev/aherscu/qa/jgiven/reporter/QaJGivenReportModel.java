@@ -18,12 +18,13 @@ package dev.aherscu.qa.jgiven.reporter;
 
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static java.lang.Double.*;
+import static java.lang.Integer.toHexString;
 import static java.lang.Long.*;
+import static java.nio.charset.StandardCharsets.*;
 import static java.text.MessageFormat.format;
 import static java.time.format.DateTimeFormatter.*;
 
 import java.io.*;
-import java.nio.charset.*;
 import java.time.*;
 import java.util.*;
 import java.util.Base64;
@@ -76,8 +77,7 @@ public class QaJGivenReportModel<T> {
             .toString(parseLong(frag.execute()) / 1_000_000));
 
     public final Mustache.Lambda asId               =
-        (frag, out) -> out.write(Integer
-            .toHexString(frag.execute().hashCode())
+        (frag, out) -> out.write(toHexString(frag.execute().hashCode())
             .toUpperCase(Locale.ENGLISH));
 
     public final Mustache.Lambda simpleName         =
@@ -101,8 +101,24 @@ public class QaJGivenReportModel<T> {
                 ? frag.execute()
                 : EMPTY);
 
+    public final Mustache.Lambda saveImage          =
+        this::saveImage;
+
     private final ZonedDateTime  date               =
         ZonedDateTime.now();
+
+    @SneakyThrows
+    public void saveImage(Template.Fragment frag, Writer out) {
+        val imageHash = toHexString(frag.execute().hashCode());
+        out.write(imageHash);
+        try (val pngOutputStream = new FileOutputStream(imageHash + ".png")) {
+            ImageUtils.Pipeline
+                .from(new ByteArrayInputStream(Base64
+                    .getMimeDecoder()
+                    .decode(frag.execute().getBytes(UTF_8))))
+                .into(pngOutputStream, "png");
+        }
+    }
 
     public final String date() {
         return date.format(ofPattern(datePattern));
@@ -115,11 +131,11 @@ public class QaJGivenReportModel<T> {
         ImageUtils.Pipeline
             .from(new ByteArrayInputStream(Base64
                 .getMimeDecoder()
-                .decode(frag.execute().getBytes(StandardCharsets.UTF_8))))
+                .decode(frag.execute().getBytes(UTF_8))))
             .scale(parseDouble(screenshotScale), parseDouble(screenshotScale))
             // NOTE JMustache requires the output stream to be left open
             .into(new Base64OutputStream(
-                new WriterOutputStream(out, StandardCharsets.UTF_8),
+                new WriterOutputStream(out, UTF_8),
                 true, -1, null),
                 "png");
     }
