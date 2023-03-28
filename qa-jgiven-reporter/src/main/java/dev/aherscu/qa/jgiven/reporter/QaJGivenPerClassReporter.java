@@ -54,9 +54,7 @@ public class QaJGivenPerClassReporter
                 template()
                     .execute(reportModel()
                         .withJgivenReport(new ReportModelFileReader()
-                            .apply(reportModelFile))
-                        .withScreenshotScale(screenshotScale)
-                        .withDatePattern(datePattern),
+                            .apply(reportModelFile)),
                         reportWriter);
             }
 

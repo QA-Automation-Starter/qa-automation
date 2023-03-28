@@ -64,6 +64,9 @@ public class QaJGivenReportModel<T> {
 
     public final String          datePattern;
 
+    public final File            outputDirectory;
+    public final File            sourceDirectory;
+
     public final Mustache.Lambda shorten            =
         (frag, out) -> out.write(abbreviateMiddle(prettified(frag.execute()),
             ELLIPSIS, 1024));
@@ -111,7 +114,9 @@ public class QaJGivenReportModel<T> {
     public void saveImage(Template.Fragment frag, Writer out) {
         val imageHash = toHexString(frag.execute().hashCode());
         out.write(imageHash);
-        try (val pngOutputStream = new FileOutputStream(imageHash + ".png")) {
+        try (val pngOutputStream =
+            new FileOutputStream(new File(outputDirectory,
+                imageHash + ".png"))) {
             ImageUtils.Pipeline
                 .from(new ByteArrayInputStream(Base64
                     .getMimeDecoder()

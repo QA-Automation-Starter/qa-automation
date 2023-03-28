@@ -80,8 +80,6 @@ public class QaJGivenReporter
                         .targetDir(outputDirectory)
                         .build())
                             .readDirectory())
-            .withScreenshotScale(screenshotScale)
-            .withDatePattern(datePattern)
             .withTestDocumentId(testDocumentId)
             .withTestDocumentRev(testDocumentRev)
             .withSpecDocumentId(specDocumentId)

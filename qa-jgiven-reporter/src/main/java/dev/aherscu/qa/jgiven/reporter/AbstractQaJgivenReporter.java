@@ -83,7 +83,12 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
     }
 
     protected QaJGivenReportModel<M> reportModel() {
-        return QaJGivenReportModel.<M> builder().build();
+        return QaJGivenReportModel.<M> builder()
+            .screenshotScale(screenshotScale)
+            .datePattern(datePattern)
+            .sourceDirectory(sourceDirectory)
+            .outputDirectory(outputDirectory)
+            .build();
     }
 
     public void generateReport(
