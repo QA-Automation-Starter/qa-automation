@@ -35,7 +35,7 @@ import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @Slf4j
 @ToString
 public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenReporter<?, ?>>

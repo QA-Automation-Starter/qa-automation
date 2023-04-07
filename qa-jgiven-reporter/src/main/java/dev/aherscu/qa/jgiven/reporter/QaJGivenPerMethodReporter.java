@@ -37,7 +37,7 @@ import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @Slf4j
 @ToString(callSuper = true)
 public class QaJGivenPerMethodReporter
