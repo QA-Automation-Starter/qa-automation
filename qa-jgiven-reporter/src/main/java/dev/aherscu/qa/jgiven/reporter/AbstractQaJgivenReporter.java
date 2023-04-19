@@ -29,6 +29,7 @@ import org.testng.xml.*;
 import com.samskivert.mustache.*;
 import com.tngtech.jgiven.impl.*;
 
+import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
@@ -60,8 +61,7 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
     protected final boolean    pdf                      = false;
     @Builder.Default
     protected final String     referenceTag             = DEFAULT_REFERENCE_TAG;
-    @Builder.Default
-    protected final String     templateResource         = null;
+    protected final String     templateResource;
 
     // see
     // https://stackoverflow.com/questions/61633821/using-lombok-superbuilder-annotation-with-tobuilder-on-an-abstract-class
@@ -86,10 +86,10 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
         suites.forEach(
             suite -> log.info("suite {}", suite.getName()));
 
-        xmlSuites.forEach(xmlSuite -> from(xmlSuite).prepare().generate());
+        xmlSuites.forEach(xmlSuite -> with(xmlSuite).prepare().generate());
     }
 
-    protected AbstractQaJgivenReporter<M, T> from(XmlSuite xmlSuite) {
+    protected AbstractQaJgivenReporter<M, T> with(final XmlSuite xmlSuite) {
         return this
             // NOTE see
             // https://stackoverflow.com/questions/56761054/lombok-wither-with-inheritance-super-sub-classes
@@ -126,5 +126,9 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
 
     protected Collection<File> listJGivenReports() {
         return listFiles(sourceDirectory, new SuffixFileFilter(".json"), null);
+    }
+
+    protected Template template() {
+        return TemplateUtils.using(compiler()).loadFrom(templateResource);
     }
 }

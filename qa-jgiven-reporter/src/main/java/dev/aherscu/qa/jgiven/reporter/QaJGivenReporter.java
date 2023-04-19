@@ -24,11 +24,9 @@ import org.apache.commons.io.*;
 import org.testng.*;
 
 import com.google.gson.*;
-import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.json.*;
 import com.tngtech.jgiven.report.model.*;
 
-import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
@@ -94,7 +92,8 @@ public class QaJGivenReporter
         try (val reportWriter = fileWriter(
             new File(outputDirectory,
                 FilenameUtils.getName(templateResource)))) {
-            template().execute(aggregatedReportModel, reportWriter);
+            template()
+                .execute(aggregatedReportModel, reportWriter);
         }
 
         // FIXME should work only with html reports
@@ -106,9 +105,4 @@ public class QaJGivenReporter
         // }
     }
 
-    private Template template() {
-        return TemplateUtils
-            .using(compiler())
-            .loadFrom(DEFAULT_TEMPLATE_RESOURCE);
-    }
 }

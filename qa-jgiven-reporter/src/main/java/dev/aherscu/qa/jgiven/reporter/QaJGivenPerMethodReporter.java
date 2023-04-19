@@ -30,11 +30,9 @@ import java.util.*;
 import org.jooq.lambda.*;
 
 import com.google.common.collect.*;
-import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.json.*;
 import com.tngtech.jgiven.report.model.*;
 
-import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
@@ -139,11 +137,5 @@ public class QaJGivenPerMethodReporter
         return MessageFormat.format("{0}-{1}-{2}",
             scenarioModel.getExecutionStatus(), scenarioModel.getClassName(),
             scenarioModel.getTestMethodName());
-    }
-
-    private Template template() {
-        return TemplateUtils
-            .using(compiler())
-            .loadFrom(DEFAULT_TEMPLATE_RESOURCE);
     }
 }

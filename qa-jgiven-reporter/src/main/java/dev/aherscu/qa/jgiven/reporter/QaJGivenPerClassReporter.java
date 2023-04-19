@@ -20,11 +20,9 @@ import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
 import static org.apache.commons.io.FilenameUtils.*;
 import static org.xhtmlrenderer.simple.PDFRenderer.*;
 
-import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.json.*;
 import com.tngtech.jgiven.report.model.*;
 
-import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
@@ -65,11 +63,5 @@ public class QaJGivenPerClassReporter
                         .getAbsolutePath());
             }
         }
-    }
-
-    private Template template() {
-        return TemplateUtils
-            .using(compiler())
-            .loadFrom(DEFAULT_TEMPLATE_RESOURCE);
     }
 }

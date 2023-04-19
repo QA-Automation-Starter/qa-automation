@@ -41,10 +41,8 @@ import lombok.extern.slf4j.*;
 @ToString(callSuper = true)
 public class TestRailReporter extends QaJGivenPerMethodReporter {
 
-    @Builder.Default
-    private final URI    testRailUrl   = null;
-    @Builder.Default
-    private final String testRailRunId = null;
+    private final URI    testRailUrl;
+    private final String testRailRunId;
 
     private static TestRailClient testRailClient(final URI testRailUrl) {
         val testRailClient = new TestRailClient(testRailUrl.toString());
@@ -54,9 +52,8 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
     }
 
     @Override
-    protected TestRailReporter from(final XmlSuite xmlSuite) {
-        super.from(xmlSuite);
-        return this
+    protected TestRailReporter with(final XmlSuite xmlSuite) {
+        return ((TestRailReporter) super.with(xmlSuite))
             .toBuilder()
             .testRailRunId(
                 requireNonNull(xmlSuite.getParameter("testRailRunId"),
