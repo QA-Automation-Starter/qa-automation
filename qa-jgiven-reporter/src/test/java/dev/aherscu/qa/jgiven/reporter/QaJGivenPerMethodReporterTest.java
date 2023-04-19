@@ -34,9 +34,7 @@ public class QaJGivenPerMethodReporterTest {
 
     @Test
     public void shouldGenerateReport() {
-        new QaJGivenPerMethodReporter()
-            // NOTE must call the default no-args ctor in order to get defaults
-            .toBuilder()
+        QaJGivenPerMethodReporter.builder()
             .sourceDirectory(REPORTING_INPUT)
             .outputDirectory(REPORTING_OUTPUT)
             .build()

@@ -20,14 +20,16 @@ import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
 import static org.apache.commons.io.FilenameUtils.*;
 import static org.xhtmlrenderer.simple.PDFRenderer.*;
 
+import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.json.*;
 import com.tngtech.jgiven.report.model.*;
 
+import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @Slf4j
 @ToString(callSuper = true)
 public class QaJGivenPerClassReporter
@@ -36,11 +38,6 @@ public class QaJGivenPerClassReporter
 
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/qa-jgiven-perclass-reporter.html";
-
-    public QaJGivenPerClassReporter() {
-        super();
-        templateResource = DEFAULT_TEMPLATE_RESOURCE;
-    }
 
     @Override
     @SneakyThrows
@@ -68,5 +65,11 @@ public class QaJGivenPerClassReporter
                         .getAbsolutePath());
             }
         }
+    }
+
+    private Template template() {
+        return TemplateUtils
+            .using(compiler())
+            .loadFrom(DEFAULT_TEMPLATE_RESOURCE);
     }
 }

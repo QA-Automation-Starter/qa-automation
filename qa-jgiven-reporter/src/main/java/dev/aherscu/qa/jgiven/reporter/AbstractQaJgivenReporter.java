@@ -16,7 +16,6 @@
 
 package dev.aherscu.qa.jgiven.reporter;
 
-import static java.util.Objects.*;
 import static org.apache.commons.io.FileUtils.*;
 import static org.apache.commons.lang3.StringUtils.*;
 
@@ -30,7 +29,6 @@ import org.testng.xml.*;
 import com.samskivert.mustache.*;
 import com.tngtech.jgiven.impl.*;
 
-import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
@@ -40,43 +38,34 @@ import lombok.extern.slf4j.*;
 @ToString
 public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenReporter<?, ?>>
     implements IReporter {
+
     public static final String DEFAULT_REFERENCE_TAG    = "Reference";
     public static final String DEFAULT_SCREENSHOT_SCALE = "0.2";
     public static final String DEFAULT_DATE_PATTERN     = "yyyy-MMM-dd HH:mm O";
-    protected File             outputDirectory;
-    protected File             sourceDirectory;
-    protected boolean          debug;
-    protected String           screenshotScale;
-    protected String           datePattern;
-    protected boolean          pdf;
-    protected String           referenceTag;
-    protected String           templateResource;
-    private Template           template;
 
-    protected AbstractQaJgivenReporter() {
-        screenshotScale = DEFAULT_SCREENSHOT_SCALE;
-        datePattern = DEFAULT_DATE_PATTERN;
-        referenceTag = DEFAULT_REFERENCE_TAG;
-        sourceDirectory = Config.config().getReportDir().get();
-        outputDirectory = new File(sourceDirectory, "qa-html");
-    }
+    @Builder.Default
+    protected final File       sourceDirectory          =
+        Config.config().getReportDir().get();
+    @Builder.Default
+    protected final File       outputDirectory          =
+        new File(Config.config().getReportDir().get(), "qa-html");
+    @Builder.Default
+    protected final boolean    debug                    = false;
+    @Builder.Default
+    protected final String     screenshotScale          =
+        DEFAULT_SCREENSHOT_SCALE;
+    @Builder.Default
+    protected final String     datePattern              = DEFAULT_DATE_PATTERN;
+    @Builder.Default
+    protected final boolean    pdf                      = false;
+    @Builder.Default
+    protected final String     referenceTag             = DEFAULT_REFERENCE_TAG;
+    @Builder.Default
+    protected final String     templateResource         = null;
 
-    protected T from(XmlSuite xmlSuite) {
-        referenceTag =
-            defaultIfBlank(xmlSuite.getParameter("referenceTag"),
-                referenceTag);
-        screenshotScale =
-            defaultIfBlank(xmlSuite.getParameter("screenshotScale"),
-                screenshotScale);
-        datePattern =
-            defaultIfBlank(xmlSuite.getParameter("datePattern"),
-                datePattern);
-        templateResource =
-            defaultIfBlank(xmlSuite.getParameter(
-                "templateResource" + this.getClass().getSimpleName()),
-                templateResource);
-        return (T) this;
-    }
+    // see
+    // https://stackoverflow.com/questions/61633821/using-lombok-superbuilder-annotation-with-tobuilder-on-an-abstract-class
+    public abstract AbstractQaJgivenReporterBuilder<M, T, ?, ?> toBuilder();
 
     protected Mustache.Compiler compiler() {
         return Mustache.compiler();
@@ -100,24 +89,33 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
         xmlSuites.forEach(xmlSuite -> from(xmlSuite).prepare().generate());
     }
 
+    protected AbstractQaJgivenReporter<M, T> from(XmlSuite xmlSuite) {
+        return this
+            // NOTE see
+            // https://stackoverflow.com/questions/56761054/lombok-wither-with-inheritance-super-sub-classes
+            .toBuilder()
+            .referenceTag(defaultIfBlank(xmlSuite.getParameter("referenceTag"),
+                referenceTag))
+            .screenshotScale(defaultIfBlank(
+                xmlSuite.getParameter("screenshotScale"), screenshotScale))
+            .datePattern(defaultIfBlank(xmlSuite.getParameter("datePattern"),
+                datePattern))
+            .templateResource(defaultIfBlank(xmlSuite.getParameter(
+                "templateResource" + this.getClass().getSimpleName()),
+                templateResource))
+            .build();
+    }
+
     @SneakyThrows
-    public T prepare() {
+    public AbstractQaJgivenReporter<M, T> prepare() {
         log.info("configuration {}", this);
 
         forceMkdir(outputDirectory);
 
-        return (T) this;
+        return this;
     }
 
     abstract public void generate();
-
-    protected Template template() {
-        return isNull(template)
-            ? template = TemplateUtils
-                .using(compiler())
-                .loadFrom(templateResource)
-            : template;
-    }
 
     protected File reportFile(
         final File reportModelFile,

@@ -50,8 +50,12 @@ public class TestRailReporterTest {
         // -- see AbstractMockedServiceTest
         // then, should depend on qa-jgiven-commons, making the build slower
         wireMockServer.start();
-        wireMockServer.stubFor(get(urlEqualTo("/self-test"))
-            .willReturn(ok()));
+        wireMockServer.stubFor(
+            get(urlEqualTo("/self-test"))
+                .willReturn(ok()));
+        wireMockServer.stubFor(
+            post(urlEqualTo("/index.php?/api/v2/add_result_for_case/123/68"))
+                .willReturn(okJson("{\"id\":321,\"test_id\":321}")));
     }
 
     @AfterClass(alwaysRun = true)
@@ -77,8 +81,10 @@ public class TestRailReporterTest {
     public void shouldGenerateReport() {
         val xmlSuite = new XmlSuite();
         xmlSuite.setParameters(ImmutableMap.<String, String> builder()
-            .put("testRailUrl", "tbd")
-            .put("testRailRunId", "tbd")
+            .put("templateResourceTestRailReporter",
+                "/permethod-reporter.testrail")
+            .put("testRailUrl", wireMockServer.baseUrl())
+            .put("testRailRunId", "123")
             .build());
         TestRailReporter.builder()
             .sourceDirectory(REPORTING_INPUT)

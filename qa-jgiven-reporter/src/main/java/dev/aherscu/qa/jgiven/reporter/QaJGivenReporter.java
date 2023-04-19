@@ -17,7 +17,6 @@
 package dev.aherscu.qa.jgiven.reporter;
 
 import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
-import static org.apache.commons.lang3.StringUtils.*;
 
 import java.io.*;
 
@@ -25,14 +24,16 @@ import org.apache.commons.io.*;
 import org.testng.*;
 
 import com.google.gson.*;
+import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.json.*;
 import com.tngtech.jgiven.report.model.*;
 
+import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @Slf4j
 @ToString(callSuper = true)
 public class QaJGivenReporter
@@ -40,6 +41,7 @@ public class QaJGivenReporter
     implements IReporter {
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/qa-jgiven-reporter.html";
+
     public final String        productName;
     public final String        productVersion;
     public final String        testDocumentId;
@@ -50,20 +52,6 @@ public class QaJGivenReporter
     public final String        planDocumentRev;
     public final String        traceabilityDocumentId;
     public final String        traceabilityDocumentRev;
-
-    public QaJGivenReporter() {
-        productName = EMPTY;
-        productVersion = EMPTY;
-        testDocumentId = EMPTY;
-        testDocumentRev = EMPTY;
-        specDocumentId = EMPTY;
-        specDocumentRev = EMPTY;
-        planDocumentId = EMPTY;
-        planDocumentRev = EMPTY;
-        traceabilityDocumentId = EMPTY;
-        traceabilityDocumentRev = EMPTY;
-        templateResource = DEFAULT_TEMPLATE_RESOURCE;
-    }
 
     // TODO read the templateResource from testng.xml parameter
     // and ensure it does not collide with the one for
@@ -79,7 +67,7 @@ public class QaJGivenReporter
                         .sourceDir(sourceDirectory)
                         .targetDir(outputDirectory)
                         .build())
-                            .readDirectory())
+                    .readDirectory())
             .withScreenshotScale(screenshotScale)
             .withDatePattern(datePattern)
             .withTestDocumentId(testDocumentId)
@@ -116,5 +104,11 @@ public class QaJGivenReporter
         // reportFile(reportModelFile, ".pdf")
         // .getAbsolutePath());
         // }
+    }
+
+    private Template template() {
+        return TemplateUtils
+            .using(compiler())
+            .loadFrom(DEFAULT_TEMPLATE_RESOURCE);
     }
 }

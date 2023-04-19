@@ -30,9 +30,11 @@ import java.util.*;
 import org.jooq.lambda.*;
 
 import com.google.common.collect.*;
+import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.json.*;
 import com.tngtech.jgiven.report.model.*;
 
+import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
@@ -44,17 +46,6 @@ public class QaJGivenPerMethodReporter
     extends AbstractQaJgivenReporter<ScenarioModel, QaJGivenPerMethodReporter> {
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/qa-jgiven-permethod-reporter.html";
-
-    /**
-     * Meant to called by TestNG during listener construction. Presets default
-     * configuration values which might be overridden via TestNG parameters.
-     *
-     * @see #generateReport(List, List, String)
-     */
-    public QaJGivenPerMethodReporter() {
-        super();
-        templateResource = DEFAULT_TEMPLATE_RESOURCE;
-    }
 
     @SneakyThrows
     public static Map<String, String> readAttributesOf(final File reportFile) {
@@ -102,12 +93,12 @@ public class QaJGivenPerMethodReporter
                 .debug("reading " + reportModelFile.getName()))
             .flatMap(reportModelFile -> new ReportModelFileReader()
                 .apply(reportModelFile).model
-                    .getScenarios()
+                .getScenarios()
+                .stream()
+                .filter(scenarioModel -> scenarioModel
+                    .getTagIds()
                     .stream()
-                    .filter(scenarioModel -> scenarioModel
-                        .getTagIds()
-                        .stream()
-                        .anyMatch(tagId -> tagId.contains(referenceTag))))
+                    .anyMatch(tagId -> tagId.contains(referenceTag))))
             .peek(scenarioModel -> log
                 .debug("processing " + targetNameFor(scenarioModel)))
             .forEach(Unchecked.consumer(scenarioModel -> {
@@ -148,5 +139,11 @@ public class QaJGivenPerMethodReporter
         return MessageFormat.format("{0}-{1}-{2}",
             scenarioModel.getExecutionStatus(), scenarioModel.getClassName(),
             scenarioModel.getTestMethodName());
+    }
+
+    private Template template() {
+        return TemplateUtils
+            .using(compiler())
+            .loadFrom(DEFAULT_TEMPLATE_RESOURCE);
     }
 }
