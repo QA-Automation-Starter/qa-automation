@@ -781,6 +781,13 @@
     </profile>
 
     <profile>
+      <id>mode-build-nosign</id>
+      <properties>
+        <gpg.skip>true</gpg.skip>
+      </properties>
+    </profile>
+
+    <profile>
       <!-- NOTE for having lighter Maven logs -->
       <id>mode-build-quiet</id>
       <properties>
