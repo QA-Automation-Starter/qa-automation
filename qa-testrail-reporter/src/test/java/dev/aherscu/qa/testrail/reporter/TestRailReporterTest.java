@@ -56,6 +56,9 @@ public class TestRailReporterTest {
         wireMockServer.stubFor(
             post(urlEqualTo("/index.php?/api/v2/add_result_for_case/123/68"))
                 .willReturn(okJson("{\"id\":321,\"test_id\":321}")));
+        wireMockServer.stubFor(
+            post(urlEqualTo("/index.php?/api/v2/add_attachment_to_result/321"))
+                .willReturn(okJson("{\"attachment_id\":444}")));
     }
 
     @AfterClass(alwaysRun = true)
@@ -74,6 +77,7 @@ public class TestRailReporterTest {
             assertThat(request.getStatusInfo().getFamily(),
                 is(Response.Status.Family.SUCCESSFUL));
         }
+        wireMockServer.verify(getRequestedFor(urlEqualTo("/self-test")));
     }
 
     @Test
@@ -97,5 +101,13 @@ public class TestRailReporterTest {
 
         assertThat(REPORTING_OUTPUT, anExistingDirectory());
         // TODO verify that an HTML file was generated at least
+
+        wireMockServer
+            .verify(postRequestedFor(
+                urlEqualTo("/index.php?/api/v2/add_result_for_case/123/68")));
+        wireMockServer
+            .verify(2, postRequestedFor(
+                urlEqualTo(
+                    "/index.php?/api/v2/add_attachment_to_result/321")));
     }
 }

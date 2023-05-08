@@ -16,8 +16,10 @@
 
 package dev.aherscu.qa.testrail.reporter;
 
+import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
 import static java.lang.Long.*;
 import static java.nio.charset.StandardCharsets.*;
+import static org.apache.commons.io.FilenameUtils.*;
 
 import java.io.*;
 import java.util.*;
@@ -31,6 +33,11 @@ import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
+/**
+ * Adds screenshot manipulation functionality.
+ *
+ * @see #saveScreenshot
+ */
 @SuperBuilder(toBuilder = true)
 @Slf4j
 public class TestRailReportModel extends QaJGivenReportModel<ScenarioModel> {
@@ -44,22 +51,45 @@ public class TestRailReportModel extends QaJGivenReportModel<ScenarioModel> {
     // Another unfortunate limitation... Cannot add links to these attachments
     // inside the report, since an attachment_id is made available only after
     // calling add_attachment_to_result, which implies the report is generated.
-    public final Mustache.Lambda saveImage = this::saveImage;
+    public final Mustache.Lambda saveScreenshot = this::saveScreenshot;
 
+    /**
+     * To be called from Mustache template for saving screenshots as separate
+     * PNG files, in a directory matching the name of the test report file.
+     * 
+     * <p>
+     * These are later picked up by the {@link TestRailReporter} and attached to
+     * the test result in TestRail.
+     * </p>
+     * 
+     * @param frag
+     *            Mustache fragment to process, assumed to be a screenshot in
+     *            Base64 PNG format
+     * @param out
+     *            Mustache output stream; will be written the screenshot file
+     *            name (currently, a hex representation of its contents hash)
+     */
     @SneakyThrows
-    public void saveImage(final Template.Fragment frag, final Writer out) {
-        // FIXME hashcode is not enough for associating with current report
-        // should prepend with the Test Case Id
-        val imageHash = toHexString(frag.execute().hashCode());
-        out.write(imageHash);
-        val pngFile = new File(outputDirectory, imageHash + ".png");
-        log.trace("writing PNG file to {}", pngFile);
-        try (val pngOutputStream = new FileOutputStream(pngFile)) {
+    public void saveScreenshot(final Template.Fragment frag, final Writer out) {
+        val screenshotsDirectory = new File(outputDirectory,
+            removeExtension(targetReportFile.getName()));
+        if (!screenshotsDirectory.exists()) {
+            log.trace("creating screenshots directory {}",
+                screenshotsDirectory);
+            forceMkdir(screenshotsDirectory);
+        }
+        val screenshotHash = toHexString(frag.execute().hashCode());
+        out.write(screenshotHash);
+        val screenshotFile =
+            new File(screenshotsDirectory, screenshotHash + ".png");
+        log.trace("saving screenshot to {}", screenshotFile);
+        try (
+            val screenshotOutputStream = new FileOutputStream(screenshotFile)) {
             ImageUtils.Pipeline
                 .from(new ByteArrayInputStream(Base64
                     .getMimeDecoder()
                     .decode(frag.execute().getBytes(UTF_8))))
-                .into(pngOutputStream, "png");
+                .into(screenshotOutputStream, "png");
         }
     }
 }

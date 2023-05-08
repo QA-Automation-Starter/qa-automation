@@ -40,6 +40,12 @@ import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
+/**
+ * Per method test reporter uploading results with screenshot attachments to
+ * TestRail.
+ *
+ * @see #with(XmlSuite) support for TestNG Listener configuration
+ */
 @SuperBuilder(toBuilder = true)
 @Slf4j
 @ToString(callSuper = true)
@@ -55,6 +61,25 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
         return testRailClient;
     }
 
+    private static Collection<File> listScreenshots(final File directory) {
+        return listFiles(directory, new SuffixFileFilter(".png"), null);
+    }
+
+    /**
+     * Builds a new reporter configured with additional TestNG XML suite
+     * parameters:
+     * <dl>
+     * <dt>testRailRunId</dt>
+     * <dd>the TestRail Run to report to</dd>
+     * <dt>testRailUrl</dt>
+     * <dd>the TestRail location</dd>
+     * </dl>
+     * 
+     * @see QaJGivenPerMethodReporter#with(XmlSuite)
+     * @param xmlSuite
+     *            TestNG XML suite
+     * @return reporter configured
+     */
     @Override
     protected TestRailReporter with(final XmlSuite xmlSuite) {
         return ((TestRailReporter) super.with(xmlSuite))
@@ -101,10 +126,6 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
             ResultForCaseResponse.class);
     }
 
-    private Collection<File> listScreenshots() {
-        return listFiles(outputDirectory, new SuffixFileFilter(".png"), null);
-    }
-
     @Override
     protected void reportGenerated(
         final ScenarioModel scenarioModel,
@@ -126,7 +147,8 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
 
             // FIXME for each report only its screenshots must be attached
             // TODO the screenshots must be somehow associated with their report
-            listScreenshots()
+            listScreenshots(
+                new File(outputDirectory, targetNameFor(scenarioModel)))
                 .forEach(file -> {
                     log.trace("attaching {}", file);
                     val attachScreenshotsResponse =
@@ -142,9 +164,10 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
     }
 
     @Override
-    protected TestRailReportModel reportModel() {
+    protected TestRailReportModel reportModel(File targetReportFile) {
         return TestRailReportModel.builder()
             .outputDirectory(outputDirectory)
+            .targetReportFile(targetReportFile)
             .build();
     }
 
