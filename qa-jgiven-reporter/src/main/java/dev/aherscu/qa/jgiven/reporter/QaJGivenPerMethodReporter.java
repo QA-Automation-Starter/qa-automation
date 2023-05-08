@@ -37,6 +37,9 @@ import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
+/**
+ * Per test method reporter.
+ */
 @SuperBuilder(toBuilder = true)
 @Slf4j
 @ToString(callSuper = true)
@@ -82,6 +85,9 @@ public class QaJGivenPerMethodReporter
         }
     }
 
+    /**
+     * Generates a report for each test method (scenario in JGiven terms).
+     */
     @Override
     @SneakyThrows
     public void generate() {
@@ -100,20 +106,20 @@ public class QaJGivenPerMethodReporter
             .peek(scenarioModel -> log
                 .debug("processing " + targetNameFor(scenarioModel)))
             .forEach(Unchecked.consumer(scenarioModel -> {
-                val reportFile = new File(outputDirectory,
+                val targetReportFile = new File(outputDirectory,
                     targetNameFor(scenarioModel)
                         + EXTENSION_SEPARATOR_STR
                         + getExtension(templateResource));
-                try (val reportWriter = fileWriter(reportFile)) {
+                try (val reportWriter = fileWriter(targetReportFile)) {
                     template()
-                        .execute(reportModel()
+                        .execute(reportModel(targetReportFile)
                             .toBuilder()
                             .jgivenReport(scenarioModel)
                             .screenshotScale(screenshotScale)
                             .datePattern(datePattern)
                             .build(),
                             reportWriter);
-                    applyAttributesFor(scenarioModel, reportFile);
+                    applyAttributesFor(scenarioModel, targetReportFile);
                 }
 
                 // FIXME should work only with html reports
@@ -124,7 +130,7 @@ public class QaJGivenPerMethodReporter
                 // .getAbsolutePath());
                 // }
 
-                reportGenerated(scenarioModel, reportFile);
+                reportGenerated(scenarioModel, targetReportFile);
             }));
     }
 

@@ -31,6 +31,9 @@ import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
+/**
+ * All in one report.
+ */
 @SuperBuilder(toBuilder = true)
 @Slf4j
 @ToString(callSuper = true)
@@ -55,10 +58,17 @@ public class QaJGivenReporter
     // and ensure it does not collide with the one for
     // QaJGivenPerMethodReporter
 
+    /**
+     * Generates a report including all test classes by aggregating all JGiven
+     * generated JSON files.
+     */
     @Override
     @SneakyThrows
     public void generate() {
-        val aggregatedReportModel = reportModel()
+        val targetReportFile = new File(outputDirectory,
+            FilenameUtils.getName(templateResource));
+        // FIXME should supply a reportModelFile (a .json file)
+        val aggregatedReportModel = reportModel(targetReportFile)
             .toBuilder()
             .jgivenReport(
                 new ReportModelReader(
@@ -66,7 +76,7 @@ public class QaJGivenReporter
                         .sourceDir(sourceDirectory)
                         .targetDir(outputDirectory)
                         .build())
-                            .readDirectory())
+                    .readDirectory())
             .screenshotScale(screenshotScale)
             .datePattern(datePattern)
             .testDocumentId(testDocumentId)
@@ -91,9 +101,7 @@ public class QaJGivenReporter
             }
         }
 
-        try (val reportWriter = fileWriter(
-            new File(outputDirectory,
-                FilenameUtils.getName(templateResource)))) {
+        try (val reportWriter = fileWriter(targetReportFile)) {
             template()
                 .execute(aggregatedReportModel, reportWriter);
         }

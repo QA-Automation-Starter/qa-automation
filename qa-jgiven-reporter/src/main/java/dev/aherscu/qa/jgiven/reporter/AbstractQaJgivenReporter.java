@@ -28,12 +28,31 @@ import org.testng.xml.*;
 
 import com.samskivert.mustache.*;
 import com.tngtech.jgiven.impl.*;
+import com.tngtech.jgiven.report.model.*;
 
 import dev.aherscu.qa.tester.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
+/**
+ * Base functionality and defaults for all kinds of reporters.
+ * <p>
+ * Can be invoked as a TestNG Reporter, hence supports {@link IReporter} by
+ * implementing its {@link #generateReport(List, List, String)}, or from a Maven
+ * plugin, which just calls {@link #generate()} -- see the qa-testrail-reporter
+ * and qa-jgiven-reporter-maven-plugin sibling modules.
+ * </p>
+ * <p>
+ * Implementors are required to specify the {@link #generate()} method.
+ * </p>
+ *
+ * @param <M>
+ *            one of JGiven's report models: {@link CompleteReportModel}, *
+ *            {@link ScenarioModel}, or {@link ReportModelFile}
+ * @param <T>
+ *            specific type of reporter
+ */
 @SuperBuilder(toBuilder = true)
 @Slf4j
 @ToString
@@ -71,24 +90,54 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
         return Mustache.compiler();
     }
 
-    protected QaJGivenReportModel<M> reportModel() {
-        return QaJGivenReportModel.<M> builder().build();
+    protected QaJGivenReportModel<M> reportModel(final File targetReportFile) {
+        return QaJGivenReportModel.<M> builder()
+            .targetReportFile(targetReportFile)
+            .build();
     }
 
+    /**
+     * @param xmlSuites
+     *            The list of <code>XmlSuite</code>
+     * @param suites
+     *            The list of <code>ISuite</code>
+     * @param outputDirectory
+     *            The output directory is ignored, since it is specified by
+     *            JGiven reporter infrastructure
+     */
     public void generateReport(
         final List<XmlSuite> xmlSuites,
         final List<ISuite> suites,
         final String outputDirectory) {
-        xmlSuites.forEach(
-            xmlSuite -> log.info("xml suite {}", xmlSuite));
+        xmlSuites.forEach(xmlSuite -> log.info("xml suite {}", xmlSuite));
         // ISSUE: should be empty for xml driven invocations (?)
         // if yes, then should throw an unsupported exception
-        suites.forEach(
-            suite -> log.info("suite {}", suite.getName()));
+        suites.forEach(suite -> log.info("suite {}", suite.getName()));
 
         xmlSuites.forEach(xmlSuite -> with(xmlSuite).prepare().generate());
     }
 
+    /**
+     * Builds a new reporter configured per following TestNG XML suite
+     * parameters:
+     * <dl>
+     * <dt>referenceTag</dt>
+     * <dd>the reference tag identifier, or {@link #DEFAULT_REFERENCE_TAG}</dd>
+     * <dt>screenshotScale</dt>
+     * <dd>the screenshot scale to apply when embedding files into reports, or
+     * {@link #DEFAULT_SCREENSHOT_SCALE}</dd>
+     * <dt>datePattern</dt>
+     * <dd>the date pattern to use for presenting dates, or
+     * {@link #DEFAULT_DATE_PATTERN}</dd>
+     * <dt>templateResourceXXX</dt>
+     * <dd>the template resource file name to apply; the <code>XXX</code> is the
+     * concrete reporter implementation name (class)</dd>
+     * </dl>
+     * 
+     * @param xmlSuite
+     *            TestNG XML suite
+     * @return reporter configured
+     */
     protected AbstractQaJgivenReporter<M, T> with(final XmlSuite xmlSuite) {
         return this
             // NOTE see
@@ -100,8 +149,9 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
                 xmlSuite.getParameter("screenshotScale"), screenshotScale))
             .datePattern(defaultIfBlank(xmlSuite.getParameter("datePattern"),
                 datePattern))
-            .templateResource(defaultIfBlank(xmlSuite.getParameter(
-                "templateResource" + this.getClass().getSimpleName()),
+            .templateResource(defaultIfBlank(
+                xmlSuite.getParameter(
+                    "templateResource" + this.getClass().getSimpleName()),
                 templateResource))
             .build();
     }
@@ -117,11 +167,9 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
 
     abstract public void generate();
 
-    protected File reportFile(
-        final File reportModelFile,
+    protected File reportFile(final File reportModelFile,
         final String extension) {
-        return new File(outputDirectory,
-            reportModelFile.getName() + extension);
+        return new File(outputDirectory, reportModelFile.getName() + extension);
     }
 
     protected Collection<File> listJGivenReports() {

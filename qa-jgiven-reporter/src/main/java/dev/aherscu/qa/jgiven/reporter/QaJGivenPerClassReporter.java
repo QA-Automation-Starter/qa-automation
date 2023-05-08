@@ -27,6 +27,9 @@ import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
+/**
+ * Per test class reporter.
+ */
 @SuperBuilder(toBuilder = true)
 @Slf4j
 @ToString(callSuper = true)
@@ -37,17 +40,21 @@ public class QaJGivenPerClassReporter
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/qa-jgiven-perclass-reporter.html";
 
+    /**
+     * Generates a report for each test class. It is assumed that JGiven
+     * generates a JSON file for each test class.
+     */
     @Override
     @SneakyThrows
     public void generate() {
         for (val reportModelFile : listJGivenReports()) {
 
             log.debug("reading " + reportModelFile);
-            try (val reportWriter = fileWriter(
-                reportFile(reportModelFile, EXTENSION_SEPARATOR_STR
-                    + getExtension(templateResource)))) {
+            val targetReportFile = reportFile(reportModelFile,
+                EXTENSION_SEPARATOR_STR + getExtension(templateResource));
+            try (val reportWriter = fileWriter(targetReportFile)) {
                 template()
-                    .execute(reportModel()
+                    .execute(reportModel(targetReportFile)
                         .toBuilder()
                         .jgivenReport(new ReportModelFileReader()
                             .apply(reportModelFile))
