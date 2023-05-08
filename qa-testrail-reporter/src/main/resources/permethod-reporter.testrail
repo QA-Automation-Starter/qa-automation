@@ -16,7 +16,7 @@ Test case:{{-index}}
 {{/isSectionTitle}}
 {{^isSectionTitle}}
 {{^isIntroWord}}
-|| {{#words}}{{#-first}}{{value}}{{/-first}}{{/words}} | {{#words}}{{^-first}}{{#argumentInfo}} {{value}} {{/argumentInfo}}{{^argumentInfo}} {{value}} {{/argumentInfo}}{{/-first}}{{/words}} | {{^attachments}}[Nothing to attach]{{/attachments}}{{#attachments}}{{#-last}}{{^binary}}{{#shorten}}{{#deleteEOL}}` {{value}}`{{/deleteEOL}}{{/shorten}}{{/binary}}{{/-last}}{{/attachments}} | {{status}} | {{#nanoToMillis}}{{durationInNanos}}{{/nanoToMillis}}
+|| {{#words}}{{#-first}}{{value}}{{/-first}}{{/words}} | {{#words}}{{^-first}}{{#argumentInfo}} {{value}} {{/argumentInfo}}{{^argumentInfo}} {{value}} {{/argumentInfo}}{{/-first}}{{/words}} | {{^attachments}}[Nothing to attach]{{/attachments}}{{#attachments}}{{#-last}}{{^binary}}{{#shorten}}{{#deleteEOL}}` {{value}}`{{/deleteEOL}}{{/shorten}}{{/binary}}{{#binary}}>{{#saveImage}}{{value}}{{/saveImage}}<{{/binary}}{{/-last}}{{/attachments}} | {{status}} | {{#nanoToMillis}}{{durationInNanos}}{{/nanoToMillis}}
 {{/isIntroWord}}
 {{/isSectionTitle}}
 {{/steps}}

@@ -107,9 +107,11 @@ public class QaJGivenPerMethodReporter
                 try (val reportWriter = fileWriter(reportFile)) {
                     template()
                         .execute(reportModel()
-                            .withJgivenReport(scenarioModel)
-                            .withScreenshotScale(screenshotScale)
-                            .withDatePattern(datePattern),
+                            .toBuilder()
+                            .jgivenReport(scenarioModel)
+                            .screenshotScale(screenshotScale)
+                            .datePattern(datePattern)
+                            .build(),
                             reportWriter);
                     applyAttributesFor(scenarioModel, reportFile);
                 }

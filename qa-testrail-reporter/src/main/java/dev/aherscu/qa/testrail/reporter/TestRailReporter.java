@@ -16,17 +16,21 @@
 
 package dev.aherscu.qa.testrail.reporter;
 
-import static com.jayway.jsonpath.JsonPath.*;
+import static dev.aherscu.qa.tester.utils.ObjectMapperUtils.*;
 import static dev.aherscu.qa.tester.utils.UriUtils.*;
 import static java.text.MessageFormat.*;
 import static java.util.Objects.*;
+import static org.apache.commons.io.FileUtils.*;
 
 import java.io.*;
 import java.net.*;
+import java.util.*;
 
 import org.apache.commons.io.*;
+import org.apache.commons.io.filefilter.*;
 import org.testng.xml.*;
 
+import com.fasterxml.jackson.annotation.*;
 import com.google.common.collect.*;
 import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.model.*;
@@ -69,6 +73,38 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
         return Mustache.compiler().withEscaper(Escapers.NONE);
     }
 
+    private AttachScreenshotsResponse addAttachmentToResult(
+        final String resultId,
+        final File screenshot) {
+        return fromJson(testRailClient(testRailUrl)
+            .sendPost(format("add_attachment_to_result/{0}",
+                resultId),
+                screenshot.toString())
+            .toString(),
+            AttachScreenshotsResponse.class);
+    }
+
+    private ResultForCaseResponse addResultForCase(
+        final ScenarioModel scenarioModel,
+        final File reportFile, final String testCaseId) throws IOException {
+        return fromJson(testRailClient(testRailUrl)
+            .sendPost(format("add_result_for_case/{0}/{1}",
+                testRailRunId,
+                testCaseId),
+                ImmutableMap.builder()
+                    .put("status_id",
+                        Status.from(scenarioModel.getExecutionStatus()).id)
+                    .put("comment",
+                        IOUtils.toString(new FileReader(reportFile)))
+                    .build())
+            .toString(),
+            ResultForCaseResponse.class);
+    }
+
+    private Collection<File> listScreenshots() {
+        return listFiles(outputDirectory, new SuffixFileFilter(".png"), null);
+    }
+
     @Override
     protected void reportGenerated(
         final ScenarioModel scenarioModel,
@@ -80,35 +116,36 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
             .get("dev.aherscu.qa.jgiven.commons.tags.Reference");
 
         try {
-            val response = testRailClient(testRailUrl)
-                .sendPost(format("add_result_for_case/{0}/{1}",
-                    testRailRunId,
-                    testCaseId),
-                    ImmutableMap.builder()
-                        .put("status_id",
-                            Status.from(scenarioModel.getExecutionStatus()).id)
-                        .put("comment",
-                            IOUtils.toString(new FileReader(reportFile)))
-                        .build());
-
-            val parsedResponse = parse(response);
+            val addResultForCaseResponse =
+                addResultForCase(scenarioModel, reportFile, testCaseId);
             log.debug(
                 "reported result id {} for case {} on run {} to {}/index.php?/tests/view/{}",
-                parsedResponse.read("$.id").toString(),
+                addResultForCaseResponse.id,
                 testCaseId, testRailRunId, testRailUrl,
-                parsedResponse.read("$.test_id").toString());
+                addResultForCaseResponse.testId);
+
+            // FIXME for each report only its screenshots must be attached
+            // TODO the screenshots must be somehow associated with their report
+            listScreenshots()
+                .forEach(file -> {
+                    log.trace("attaching {}", file);
+                    val attachScreenshotsResponse =
+                        addAttachmentToResult(addResultForCaseResponse.id,
+                            file);
+                    log.debug("attached {}", attachScreenshotsResponse.id);
+                });
 
         } catch (final Exception e) {
-            log.error(
-                "failed to report case {} on run {} -> {}",
+            log.error("failed to report case {} on run {} -> {}",
                 testCaseId, testRailRunId, e.getMessage());
         }
     }
 
     @Override
     protected TestRailReportModel reportModel() {
-        log.trace("using the TestRail report model");
-        return TestRailReportModel.builder().build();
+        return TestRailReportModel.builder()
+            .outputDirectory(outputDirectory)
+            .build();
     }
 
     @Getter
@@ -121,5 +158,19 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
         static Status from(final ExecutionStatus status) {
             return status == ExecutionStatus.SUCCESS ? SUCCESS : FAILED;
         }
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    static class ResultForCaseResponse {
+        @JsonProperty("id")
+        String id;
+        @JsonProperty("test_id")
+        String testId;
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    static class AttachScreenshotsResponse {
+        @JsonProperty("attachment_id")
+        String id;
     }
 }

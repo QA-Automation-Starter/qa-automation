@@ -16,6 +16,7 @@
 
 package dev.aherscu.qa.jgiven.reporter;
 
+import static dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter.*;
 import static java.util.Collections.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.io.FileMatchers.*;
@@ -37,6 +38,7 @@ public class QaJGivenPerMethodReporterTest {
         QaJGivenPerMethodReporter.builder()
             .sourceDirectory(REPORTING_INPUT)
             .outputDirectory(REPORTING_OUTPUT)
+            .templateResource(DEFAULT_TEMPLATE_RESOURCE)
             .build()
             .generateReport(
                 singletonList(new XmlSuite()),

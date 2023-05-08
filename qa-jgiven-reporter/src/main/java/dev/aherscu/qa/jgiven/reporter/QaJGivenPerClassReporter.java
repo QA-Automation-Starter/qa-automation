@@ -48,10 +48,12 @@ public class QaJGivenPerClassReporter
                     + getExtension(templateResource)))) {
                 template()
                     .execute(reportModel()
-                        .withJgivenReport(new ReportModelFileReader()
+                        .toBuilder()
+                        .jgivenReport(new ReportModelFileReader()
                             .apply(reportModelFile))
-                        .withScreenshotScale(screenshotScale)
-                        .withDatePattern(datePattern),
+                        .screenshotScale(screenshotScale)
+                        .datePattern(datePattern)
+                        .build(),
                         reportWriter);
             }
 

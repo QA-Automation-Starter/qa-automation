@@ -16,26 +16,50 @@
 
 package dev.aherscu.qa.testrail.reporter;
 
+import static java.lang.Long.*;
+import static java.nio.charset.StandardCharsets.*;
+
+import java.io.*;
+import java.util.*;
+
 import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.model.*;
 
 import dev.aherscu.qa.jgiven.reporter.*;
+import dev.aherscu.qa.tester.utils.*;
+import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 @Slf4j
 public class TestRailReportModel extends QaJGivenReportModel<ScenarioModel> {
+    public final File            outputDirectory;
 
-    // ISSUE not called by Mustache template engine
-    public final Mustache.Lambda save = (frag, out) -> {
-        log.trace(">>>>>>>>>>>>>>");
-        out.write(frag.execute().hashCode());
-    };
+    // NOTE: unfortunately cannot attach the screenshot during report generation
+    // That would prevent polluting the disk with screenshot files.
+    // The TestRail add_attachment_to_result API requires an id to make
+    // the attachment. That id is returned by add_result_for_case API, which
+    // implies that the report is fully generated...
+    // Another unfortunate limitation... Cannot add links to these attachments
+    // inside the report, since an attachment_id is made available only after
+    // calling add_attachment_to_result, which implies the report is generated.
+    public final Mustache.Lambda saveImage = this::saveImage;
 
-    // ISSUE tried to debug, but @SuperBuilder already generates a constructor
-    // public TestRailReportModel(final TestRailReportModelBuilder b) {
-    // super(b);
-    // log.trace("using TestRail report model");
-    // }
+    @SneakyThrows
+    public void saveImage(final Template.Fragment frag, final Writer out) {
+        // FIXME hashcode is not enough for associating with current report
+        // should prepend with the Test Case Id
+        val imageHash = toHexString(frag.execute().hashCode());
+        out.write(imageHash);
+        val pngFile = new File(outputDirectory, imageHash + ".png");
+        log.trace("writing PNG file to {}", pngFile);
+        try (val pngOutputStream = new FileOutputStream(pngFile)) {
+            ImageUtils.Pipeline
+                .from(new ByteArrayInputStream(Base64
+                    .getMimeDecoder()
+                    .decode(frag.execute().getBytes(UTF_8))))
+                .into(pngOutputStream, "png");
+        }
+    }
 }

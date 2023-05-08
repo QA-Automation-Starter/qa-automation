@@ -59,25 +59,27 @@ public class QaJGivenReporter
     @SneakyThrows
     public void generate() {
         val aggregatedReportModel = reportModel()
-            .withJgivenReport(
+            .toBuilder()
+            .jgivenReport(
                 new ReportModelReader(
                     QaJGivenReportConfig.builder()
                         .sourceDir(sourceDirectory)
                         .targetDir(outputDirectory)
                         .build())
-                    .readDirectory())
-            .withScreenshotScale(screenshotScale)
-            .withDatePattern(datePattern)
-            .withTestDocumentId(testDocumentId)
-            .withTestDocumentRev(testDocumentRev)
-            .withSpecDocumentId(specDocumentId)
-            .withSpecDocumentRev(specDocumentRev)
-            .withPlanDocumentId(planDocumentId)
-            .withPlanDocumentRev(planDocumentRev)
-            .withTraceabilityDocumentId(traceabilityDocumentId)
-            .withTraceabilityDocumentRev(traceabilityDocumentRev)
-            .withProductName(productName)
-            .withProductVersion(productVersion);
+                            .readDirectory())
+            .screenshotScale(screenshotScale)
+            .datePattern(datePattern)
+            .testDocumentId(testDocumentId)
+            .testDocumentRev(testDocumentRev)
+            .specDocumentId(specDocumentId)
+            .specDocumentRev(specDocumentRev)
+            .planDocumentId(planDocumentId)
+            .planDocumentRev(planDocumentRev)
+            .traceabilityDocumentId(traceabilityDocumentId)
+            .traceabilityDocumentRev(traceabilityDocumentRev)
+            .productName(productName)
+            .productVersion(productVersion)
+            .build();
 
         if (debug) {
             try (val debugReportWriter = fileWriter(

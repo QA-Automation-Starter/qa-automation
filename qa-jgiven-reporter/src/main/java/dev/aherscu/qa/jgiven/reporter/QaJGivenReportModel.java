@@ -39,9 +39,7 @@ import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
-@SuperBuilder
-@With
-@AllArgsConstructor
+@SuperBuilder(toBuilder = true)
 @Slf4j
 @SuppressWarnings("ClassWithTooManyFields")
 @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
@@ -60,7 +58,6 @@ public class QaJGivenReportModel<T> {
     public final String          productName;
     public final String          productVersion;
     public final T               jgivenReport;
-
     public final String          datePattern;
 
     public final Mustache.Lambda shorten            =
