@@ -66,6 +66,7 @@
   <modules>
     <module>qa-tester-utils</module>
     <module>qa-jgiven-reporter</module>
+    <module>qa-testrail-reporter</module>
     <module>qa-jgiven-reporter-maven-plugin</module>
     <module>qa-orcanos-publisher-maven-plugin</module>
     <module>qa-s3-uploader-maven-plugin</module>
@@ -539,7 +540,9 @@
               </goals>
               <configuration>
                 <target>
-                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}"/>
+                  <jar
+                    destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
+                    basedir="${delombok.directory}"/>
                 </target>
               </configuration>
             </execution>
@@ -773,6 +776,13 @@
         <spotbugs.skip>true</spotbugs.skip>
         <archetype.test.skip>true</archetype.test.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
+        <gpg.skip>true</gpg.skip>
+      </properties>
+    </profile>
+
+    <profile>
+      <id>mode-build-nosign</id>
+      <properties>
         <gpg.skip>true</gpg.skip>
       </properties>
     </profile>

@@ -5,6 +5,7 @@
       <item index="0" class="java.lang.String" itemvalue="org.aspectj.lang.annotation.DeclareWarning" />
     </list>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FindBugsConfigurable">
     <option name="make" value="true" />
     <option name="effort" value="default" />

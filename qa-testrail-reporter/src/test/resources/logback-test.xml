@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright 2023 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!--suppress XmlUnboundNsPrefix -->
+<configuration>
+  <conversionRule conversionWord="threadId"
+                  converterClass="dev.aherscu.qa.tester.utils.ThreadIdConverter"/>
+
+  <property name="log.pattern"
+            value="%date{HH:mm:ss.SSS} [%-5level] [%-5thread] [%threadId]: %logger{0} - %msg%n"/>
+  <property name="log.pattern.nothread"
+            value="%date{HH:mm:ss.SSS} [%-5level] [%threadId]: %logger{0} - %msg%n"/>
+
+  <!-- For configuring non-SLF4J loggers see http://www.slf4j.org/legacy.html -->
+  <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+    <resetJUL>true</resetJUL>
+  </contextListener>
+
+  <appender name="console"
+            class="ch.qos.logback.core.ConsoleAppender">
+    <!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder
+      by default -->
+    <encoder>
+      <pattern>${log.pattern}</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <appender name="one-file-log"
+            class="ch.qos.logback.core.FileAppender">
+    <!-- NOTE: uses log.file system property if defined, otherwise stderr.log -->
+    <file>target/${log.file:-stderr.log}</file>
+    <append>false</append>
+    <!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder
+      by default -->
+    <encoder>
+      <pattern>${log.pattern}</pattern>
+      <charset>UTF-8</charset>
+    </encoder>
+  </appender>
+
+  <appender name="per-thread-logs"
+            class="ch.qos.logback.classic.sift.SiftingAppender">
+    <discriminator
+      class="dev.aherscu.qa.tester.utils.logging.ThreadIdBasedDiscriminator"/>
+    <sift>
+      <appender class="ch.qos.logback.core.FileAppender">
+        <file>target/per-thread-logs/test-${threadId}.log</file>
+        <append>false</append>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+          <pattern>${log.pattern.nothread}</pattern>
+          <charset>UTF-8</charset>
+        </layout>
+      </appender>
+    </sift>
+  </appender>
+
+  <logger name="dev.aherscu.qa.tester.utils.config" level="info"/>
+  <logger name="jdk" level="info"/>
+  <logger name="sun" level="info"/>
+  <logger name="org" level="info"/>
+  <logger name="com.gargoylesoftware" level="info"/>
+  <logger name="com.github" level="info"/>
+  <logger name="com.zaxxer" level="info"/>
+  <logger name="com.jayway" level="info"/>
+  <logger name="com.tngtech" level="info"/>
+
+  <!-- NOTE: the log root level defaults to trace, but might be overridden via
+    a system property, e.g. via a Maven profile defining Surefire/Failsafe system properties  -->
+  <root level="${log.root.level:-trace}">
+    <appender-ref ref="one-file-log"/>
+    <appender-ref ref="console"/>
+    <appender-ref ref="per-thread-logs"/>
+  </root>
+</configuration>

@@ -20,6 +20,8 @@ import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
 import static org.apache.commons.io.FilenameUtils.*;
 import static org.xhtmlrenderer.simple.PDFRenderer.*;
 
+import org.testng.xml.*;
+
 import com.tngtech.jgiven.report.json.*;
 import com.tngtech.jgiven.report.model.*;
 
@@ -27,7 +29,11 @@ import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
-@SuperBuilder
+/**
+ * Per test class reporter.
+ */
+@SuperBuilder(toBuilder = true)
+@NoArgsConstructor(force = true)
 @Slf4j
 @ToString(callSuper = true)
 public class QaJGivenPerClassReporter
@@ -37,26 +43,45 @@ public class QaJGivenPerClassReporter
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/qa-jgiven-perclass-reporter.html";
 
-    public QaJGivenPerClassReporter() {
-        super();
-        templateResource = DEFAULT_TEMPLATE_RESOURCE;
+    /**
+     * Builds a new reporter configured with additional TestNG XML suite
+     * parameters. Currently, only <code>templateResource</code> is recognized.
+     *
+     * @see AbstractQaJgivenReporter#with(XmlSuite)
+     * @param xmlSuite
+     *            TestNG XML suite
+     * @return reporter configured
+     */
+    @Override
+    protected QaJGivenPerClassReporter with(final XmlSuite xmlSuite) {
+        return ((QaJGivenPerClassReporter) super.with(xmlSuite))
+            .toBuilder()
+            .templateResource(templateResourceParamFrom(xmlSuite,
+                DEFAULT_TEMPLATE_RESOURCE))
+            .build();
     }
 
+    /**
+     * Generates a report for each test class. It is assumed that JGiven
+     * generates a JSON file for each test class.
+     */
     @Override
     @SneakyThrows
     public void generate() {
         for (val reportModelFile : listJGivenReports()) {
 
             log.debug("reading " + reportModelFile);
-            try (val reportWriter = fileWriter(
-                reportFile(reportModelFile, EXTENSION_SEPARATOR_STR
-                    + getExtension(templateResource)))) {
+            val targetReportFile = reportFile(reportModelFile,
+                EXTENSION_SEPARATOR_STR + getExtension(templateResource));
+            try (val reportWriter = fileWriter(targetReportFile)) {
                 template()
-                    .execute(reportModel()
-                        .withJgivenReport(new ReportModelFileReader()
+                    .execute(reportModel(targetReportFile)
+                        .toBuilder()
+                        .jgivenReport(new ReportModelFileReader()
                             .apply(reportModelFile))
-                        .withScreenshotScale(screenshotScale)
-                        .withDatePattern(datePattern),
+                        .screenshotScale(screenshotScale)
+                        .datePattern(datePattern)
+                        .build(),
                         reportWriter);
             }
 

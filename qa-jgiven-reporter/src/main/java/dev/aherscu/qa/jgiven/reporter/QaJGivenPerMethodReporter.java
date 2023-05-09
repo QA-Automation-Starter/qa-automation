@@ -28,6 +28,7 @@ import java.text.*;
 import java.util.*;
 
 import org.jooq.lambda.*;
+import org.testng.xml.*;
 
 import com.google.common.collect.*;
 import com.tngtech.jgiven.report.json.*;
@@ -37,24 +38,17 @@ import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
-@SuperBuilder
+/**
+ * Per test method reporter.
+ */
+@SuperBuilder(toBuilder = true)
+@NoArgsConstructor(force = true)
 @Slf4j
 @ToString(callSuper = true)
 public class QaJGivenPerMethodReporter
     extends AbstractQaJgivenReporter<ScenarioModel, QaJGivenPerMethodReporter> {
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/qa-jgiven-permethod-reporter.html";
-
-    /**
-     * Meant to called by TestNG during listener construction. Presets default
-     * configuration values which might be overridden via TestNG parameters.
-     *
-     * @see #generateReport(List, List, String)
-     */
-    public QaJGivenPerMethodReporter() {
-        super();
-        templateResource = DEFAULT_TEMPLATE_RESOURCE;
-    }
 
     @SneakyThrows
     public static Map<String, String> readAttributesOf(final File reportFile) {
@@ -64,6 +58,24 @@ public class QaJGivenPerMethodReporter
             p.load(attributesReader);
             return fromProperties(p);
         }
+    }
+
+    /**
+     * Builds a new reporter configured with additional TestNG XML suite
+     * parameters. Currently, only <code>templateResource</code> is recognized.
+     *
+     * @see AbstractQaJgivenReporter#with(XmlSuite)
+     * @param xmlSuite
+     *            TestNG XML suite
+     * @return reporter configured
+     */
+    @Override
+    protected QaJGivenPerMethodReporter with(final XmlSuite xmlSuite) {
+        return ((QaJGivenPerMethodReporter) super.with(xmlSuite))
+            .toBuilder()
+            .templateResource(templateResourceParamFrom(xmlSuite,
+                DEFAULT_TEMPLATE_RESOURCE))
+            .build();
     }
 
     @SneakyThrows
@@ -93,6 +105,9 @@ public class QaJGivenPerMethodReporter
         }
     }
 
+    /**
+     * Generates a report for each test method (scenario in JGiven terms).
+     */
     @Override
     @SneakyThrows
     public void generate() {
@@ -102,27 +117,29 @@ public class QaJGivenPerMethodReporter
                 .debug("reading " + reportModelFile.getName()))
             .flatMap(reportModelFile -> new ReportModelFileReader()
                 .apply(reportModelFile).model
-                    .getScenarios()
+                .getScenarios()
+                .stream()
+                .filter(scenarioModel -> scenarioModel
+                    .getTagIds()
                     .stream()
-                    .filter(scenarioModel -> scenarioModel
-                        .getTagIds()
-                        .stream()
-                        .anyMatch(tagId -> tagId.contains(referenceTag))))
+                    .anyMatch(tagId -> tagId.contains(referenceTag))))
             .peek(scenarioModel -> log
                 .debug("processing " + targetNameFor(scenarioModel)))
             .forEach(Unchecked.consumer(scenarioModel -> {
-                val reportFile = new File(outputDirectory,
+                val targetReportFile = new File(outputDirectory,
                     targetNameFor(scenarioModel)
                         + EXTENSION_SEPARATOR_STR
                         + getExtension(templateResource));
-                try (val reportWriter = fileWriter(reportFile)) {
+                try (val reportWriter = fileWriter(targetReportFile)) {
                     template()
-                        .execute(reportModel()
-                            .withJgivenReport(scenarioModel)
-                            .withScreenshotScale(screenshotScale)
-                            .withDatePattern(datePattern),
+                        .execute(reportModel(targetReportFile)
+                            .toBuilder()
+                            .jgivenReport(scenarioModel)
+                            .screenshotScale(screenshotScale)
+                            .datePattern(datePattern)
+                            .build(),
                             reportWriter);
-                    applyAttributesFor(scenarioModel, reportFile);
+                    applyAttributesFor(scenarioModel, targetReportFile);
                 }
 
                 // FIXME should work only with html reports
@@ -133,7 +150,7 @@ public class QaJGivenPerMethodReporter
                 // .getAbsolutePath());
                 // }
 
-                reportGenerated(scenarioModel, reportFile);
+                reportGenerated(scenarioModel, targetReportFile);
             }));
     }
 

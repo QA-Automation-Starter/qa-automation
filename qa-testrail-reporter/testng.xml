@@ -18,10 +18,10 @@
   reporting mechanism causing all tests to be reported as failing -->
 <!-- ISSUE: with testng-6.14.3, using group dependencies in XML, with or without
   parallel methods, do not order tests as expected. -->
-<suite name="QA JGiven Reporter" verbose="1">
+<suite name="QA TestRail Reporter" verbose="1">
   <test name="reporter" parallel="methods">
     <packages>
-      <package name="dev.aherscu.qa.jgiven.reporter.*"/>
+      <package name="dev.aherscu.qa.testrail.reporter.*"/>
     </packages>
   </test>
 </suite>

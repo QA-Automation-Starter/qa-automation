@@ -17,12 +17,12 @@
 package dev.aherscu.qa.jgiven.reporter;
 
 import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
-import static org.apache.commons.lang3.StringUtils.*;
 
 import java.io.*;
 
 import org.apache.commons.io.*;
 import org.testng.*;
+import org.testng.xml.*;
 
 import com.google.gson.*;
 import com.tngtech.jgiven.report.json.*;
@@ -32,7 +32,11 @@ import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
-@SuperBuilder
+/**
+ * All in one report.
+ */
+@SuperBuilder(toBuilder = true)
+@NoArgsConstructor(force = true)
 @Slf4j
 @ToString(callSuper = true)
 public class QaJGivenReporter
@@ -40,6 +44,7 @@ public class QaJGivenReporter
     implements IReporter {
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/qa-jgiven-reporter.html";
+
     public final String        productName;
     public final String        productVersion;
     public final String        testDocumentId;
@@ -51,47 +56,56 @@ public class QaJGivenReporter
     public final String        traceabilityDocumentId;
     public final String        traceabilityDocumentRev;
 
-    public QaJGivenReporter() {
-        productName = EMPTY;
-        productVersion = EMPTY;
-        testDocumentId = EMPTY;
-        testDocumentRev = EMPTY;
-        specDocumentId = EMPTY;
-        specDocumentRev = EMPTY;
-        planDocumentId = EMPTY;
-        planDocumentRev = EMPTY;
-        traceabilityDocumentId = EMPTY;
-        traceabilityDocumentRev = EMPTY;
-        templateResource = DEFAULT_TEMPLATE_RESOURCE;
+    /**
+     * Builds a new reporter configured with additional TestNG XML suite
+     * parameters. Currently, only <code>templateResource</code> is recognized.
+     *
+     * @see AbstractQaJgivenReporter#with(XmlSuite)
+     * @param xmlSuite
+     *            TestNG XML suite
+     * @return reporter configured
+     */
+    @Override
+    protected QaJGivenReporter with(final XmlSuite xmlSuite) {
+        return ((QaJGivenReporter) super.with(xmlSuite))
+            .toBuilder()
+            .templateResource(templateResourceParamFrom(xmlSuite,
+                DEFAULT_TEMPLATE_RESOURCE))
+            .build();
     }
 
-    // TODO read the templateResource from testng.xml parameter
-    // and ensure it does not collide with the one for
-    // QaJGivenPerMethodReporter
-
+    /**
+     * Generates a report including all test classes by aggregating all JGiven
+     * generated JSON files.
+     */
     @Override
     @SneakyThrows
     public void generate() {
-        val aggregatedReportModel = reportModel()
-            .withJgivenReport(
+        val targetReportFile = new File(outputDirectory,
+            FilenameUtils.getName(templateResource));
+        // FIXME should supply a reportModelFile (a .json file)
+        val aggregatedReportModel = reportModel(targetReportFile)
+            .toBuilder()
+            .jgivenReport(
                 new ReportModelReader(
                     QaJGivenReportConfig.builder()
                         .sourceDir(sourceDirectory)
                         .targetDir(outputDirectory)
                         .build())
-                            .readDirectory())
-            .withScreenshotScale(screenshotScale)
-            .withDatePattern(datePattern)
-            .withTestDocumentId(testDocumentId)
-            .withTestDocumentRev(testDocumentRev)
-            .withSpecDocumentId(specDocumentId)
-            .withSpecDocumentRev(specDocumentRev)
-            .withPlanDocumentId(planDocumentId)
-            .withPlanDocumentRev(planDocumentRev)
-            .withTraceabilityDocumentId(traceabilityDocumentId)
-            .withTraceabilityDocumentRev(traceabilityDocumentRev)
-            .withProductName(productName)
-            .withProductVersion(productVersion);
+                    .readDirectory())
+            .screenshotScale(screenshotScale)
+            .datePattern(datePattern)
+            .testDocumentId(testDocumentId)
+            .testDocumentRev(testDocumentRev)
+            .specDocumentId(specDocumentId)
+            .specDocumentRev(specDocumentRev)
+            .planDocumentId(planDocumentId)
+            .planDocumentRev(planDocumentRev)
+            .traceabilityDocumentId(traceabilityDocumentId)
+            .traceabilityDocumentRev(traceabilityDocumentRev)
+            .productName(productName)
+            .productVersion(productVersion)
+            .build();
 
         if (debug) {
             try (val debugReportWriter = fileWriter(
@@ -103,10 +117,9 @@ public class QaJGivenReporter
             }
         }
 
-        try (val reportWriter = fileWriter(
-            new File(outputDirectory,
-                FilenameUtils.getName(templateResource)))) {
-            template().execute(aggregatedReportModel, reportWriter);
+        try (val reportWriter = fileWriter(targetReportFile)) {
+            template()
+                .execute(aggregatedReportModel, reportWriter);
         }
 
         // FIXME should work only with html reports
@@ -117,4 +130,5 @@ public class QaJGivenReporter
         // .getAbsolutePath());
         // }
     }
+
 }
