@@ -22,6 +22,7 @@ import java.io.*;
 
 import org.apache.commons.io.*;
 import org.testng.*;
+import org.testng.xml.*;
 
 import com.google.gson.*;
 import com.tngtech.jgiven.report.json.*;
@@ -55,9 +56,23 @@ public class QaJGivenReporter
     public final String        traceabilityDocumentId;
     public final String        traceabilityDocumentRev;
 
-    // TODO read the templateResource from testng.xml parameter
-    // and ensure it does not collide with the one for
-    // QaJGivenPerMethodReporter
+    /**
+     * Builds a new reporter configured with additional TestNG XML suite
+     * parameters. Currently, only <code>templateResource</code> is recognized.
+     *
+     * @see AbstractQaJgivenReporter#with(XmlSuite)
+     * @param xmlSuite
+     *            TestNG XML suite
+     * @return reporter configured
+     */
+    @Override
+    protected QaJGivenReporter with(final XmlSuite xmlSuite) {
+        return ((QaJGivenReporter) super.with(xmlSuite))
+            .toBuilder()
+            .templateResource(templateResourceParamFrom(xmlSuite,
+                DEFAULT_TEMPLATE_RESOURCE))
+            .build();
+    }
 
     /**
      * Generates a report including all test classes by aggregating all JGiven

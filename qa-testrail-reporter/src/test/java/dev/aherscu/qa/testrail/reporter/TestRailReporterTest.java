@@ -85,8 +85,9 @@ public class TestRailReporterTest {
     public void shouldGenerateReport() {
         val xmlSuite = new XmlSuite();
         xmlSuite.setParameters(ImmutableMap.<String, String> builder()
-            .put("templateResourceTestRailReporter",
-                "/permethod-reporter.testrail")
+            // default is used if not specified
+            // .put("templateResourceTestRailReporter",
+            // "/permethod-reporter.testrail")
             .put("testRailUrl", wireMockServer.baseUrl())
             .put("testRailRunId", "123")
             .build());
@@ -101,8 +102,11 @@ public class TestRailReporterTest {
                 emptyList(),
                 null);
 
-        assertThat(REPORTING_OUTPUT, anExistingDirectory());
-        // TODO verify that an HTML file was generated at least
+        // ISSUE Hamcrest failure description does not include the verified file
+        assertThat(REPORTING_OUTPUT, is(anExistingDirectory()));
+        assertThat(new File(REPORTING_OUTPUT,
+            "SUCCESS-dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingWebWithJGiven-shouldFind.testrail"),
+            is(anExistingFile()));
 
         wireMockServer
             .verify(postRequestedFor(

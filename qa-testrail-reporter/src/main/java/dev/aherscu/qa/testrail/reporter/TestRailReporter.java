@@ -51,9 +51,11 @@ import lombok.extern.slf4j.*;
 @Slf4j
 @ToString(callSuper = true)
 public class TestRailReporter extends QaJGivenPerMethodReporter {
+    public static final String DEFAULT_TEMPLATE_RESOURCE =
+        "/permethod-reporter.testrail";
 
-    private final URI    testRailUrl;
-    private final String testRailRunId;
+    private final URI          testRailUrl;
+    private final String       testRailRunId;
 
     private static TestRailClient testRailClient(final URI testRailUrl) {
         val testRailClient = new TestRailClient(testRailUrl.toString());
@@ -85,6 +87,8 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
     protected TestRailReporter with(final XmlSuite xmlSuite) {
         return ((TestRailReporter) super.with(xmlSuite))
             .toBuilder()
+            .templateResource(templateResourceParamFrom(xmlSuite,
+                DEFAULT_TEMPLATE_RESOURCE))
             .testRailRunId(
                 requireNonNull(xmlSuite.getParameter("testRailRunId"),
                     "testRailRunId parameter not found in current TestNG XML"))

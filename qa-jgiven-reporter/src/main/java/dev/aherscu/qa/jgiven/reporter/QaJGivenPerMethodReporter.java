@@ -28,6 +28,7 @@ import java.text.*;
 import java.util.*;
 
 import org.jooq.lambda.*;
+import org.testng.xml.*;
 
 import com.google.common.collect.*;
 import com.tngtech.jgiven.report.json.*;
@@ -57,6 +58,24 @@ public class QaJGivenPerMethodReporter
             p.load(attributesReader);
             return fromProperties(p);
         }
+    }
+
+    /**
+     * Builds a new reporter configured with additional TestNG XML suite
+     * parameters. Currently, only <code>templateResource</code> is recognized.
+     *
+     * @see AbstractQaJgivenReporter#with(XmlSuite)
+     * @param xmlSuite
+     *            TestNG XML suite
+     * @return reporter configured
+     */
+    @Override
+    protected QaJGivenPerMethodReporter with(final XmlSuite xmlSuite) {
+        return ((QaJGivenPerMethodReporter) super.with(xmlSuite))
+            .toBuilder()
+            .templateResource(templateResourceParamFrom(xmlSuite,
+                DEFAULT_TEMPLATE_RESOURCE))
+            .build();
     }
 
     @SneakyThrows

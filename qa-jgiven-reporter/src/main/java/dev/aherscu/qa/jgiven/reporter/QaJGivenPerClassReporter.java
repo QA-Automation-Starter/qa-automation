@@ -20,6 +20,8 @@ import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
 import static org.apache.commons.io.FilenameUtils.*;
 import static org.xhtmlrenderer.simple.PDFRenderer.*;
 
+import org.testng.xml.*;
+
 import com.tngtech.jgiven.report.json.*;
 import com.tngtech.jgiven.report.model.*;
 
@@ -40,6 +42,24 @@ public class QaJGivenPerClassReporter
 
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/qa-jgiven-perclass-reporter.html";
+
+    /**
+     * Builds a new reporter configured with additional TestNG XML suite
+     * parameters. Currently, only <code>templateResource</code> is recognized.
+     *
+     * @see AbstractQaJgivenReporter#with(XmlSuite)
+     * @param xmlSuite
+     *            TestNG XML suite
+     * @return reporter configured
+     */
+    @Override
+    protected QaJGivenPerClassReporter with(final XmlSuite xmlSuite) {
+        return ((QaJGivenPerClassReporter) super.with(xmlSuite))
+            .toBuilder()
+            .templateResource(templateResourceParamFrom(xmlSuite,
+                DEFAULT_TEMPLATE_RESOURCE))
+            .build();
+    }
 
     /**
      * Generates a report for each test class. It is assumed that JGiven

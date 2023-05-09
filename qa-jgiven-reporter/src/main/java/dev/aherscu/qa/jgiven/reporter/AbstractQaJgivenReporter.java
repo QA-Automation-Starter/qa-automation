@@ -137,7 +137,7 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
      * <dd>the template resource file name to apply; the <code>XXX</code> is the
      * concrete reporter implementation name (class)</dd>
      * </dl>
-     * 
+     *
      * @param xmlSuite
      *            TestNG XML suite
      * @return reporter configured
@@ -153,9 +153,7 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
                 xmlSuite.getParameter("screenshotScale"), screenshotScale))
             .datePattern(defaultIfBlank(xmlSuite.getParameter("datePattern"),
                 datePattern))
-            .templateResource(defaultIfBlank(
-                xmlSuite.getParameter(
-                    "templateResource" + this.getClass().getSimpleName()),
+            .templateResource(templateResourceParamFrom(xmlSuite,
                 templateResource))
             .build();
     }
@@ -167,6 +165,15 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
         forceMkdir(outputDirectory);
 
         return this;
+    }
+
+    protected String templateResourceParamFrom(
+        final XmlSuite xmlSuite,
+        final String defaultTemplateResource) {
+        return defaultIfBlank(
+            xmlSuite.getParameter(
+                "templateResource" + this.getClass().getSimpleName()),
+            defaultTemplateResource);
     }
 
     abstract public void generate();
