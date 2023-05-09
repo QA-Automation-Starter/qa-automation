@@ -20,7 +20,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.25</version>
+    <version>0.0.26-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-s3-uploader-maven-plugin</artifactId>
