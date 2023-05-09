@@ -90,10 +90,12 @@ public class TestRailReporterTest {
             .put("testRailUrl", wireMockServer.baseUrl())
             .put("testRailRunId", "123")
             .build());
-        TestRailReporter.builder()
+        new TestRailReporter()
+            .toBuilder()
             .sourceDirectory(REPORTING_INPUT)
             .outputDirectory(REPORTING_OUTPUT)
             .build()
+            // .with(xmlSuite) this is already called by generateReport
             .generateReport(
                 singletonList(xmlSuite),
                 emptyList(),
