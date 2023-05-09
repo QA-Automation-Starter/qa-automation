@@ -35,6 +35,7 @@ import lombok.extern.slf4j.*;
  * All in one report.
  */
 @SuperBuilder(toBuilder = true)
+@NoArgsConstructor(force = true)
 @Slf4j
 @ToString(callSuper = true)
 public class QaJGivenReporter

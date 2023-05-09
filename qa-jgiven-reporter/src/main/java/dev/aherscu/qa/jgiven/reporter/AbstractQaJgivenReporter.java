@@ -39,13 +39,16 @@ import lombok.extern.slf4j.*;
  * Base functionality and defaults for all kinds of reporters.
  * <p>
  * Can be invoked as a TestNG Reporter, hence supports {@link IReporter} by
- * implementing its {@link #generateReport(List, List, String)}, or from a Maven
- * plugin, which just calls {@link #generate()} -- see the qa-testrail-reporter
- * and qa-jgiven-reporter-maven-plugin sibling modules.
+ * implementing its {@link #generateReport(List, List, String)} and provides a
+ * no-args constructor. It also can be invoked from other workflow engine, such
+ * as from a Maven plugin, which should just call {@link #generate()} -- see the
+ * qa-testrail-reporter and qa-jgiven-reporter-maven-plugin sibling modules.
  * </p>
  * <p>
  * Implementors are required to specify the {@link #generate()} method.
  * </p>
+ *
+ * @see #with(XmlSuite) TestNG Reporter configuration
  *
  * @param <M>
  *            one of JGiven's report models: {@link CompleteReportModel}, *
@@ -54,6 +57,7 @@ import lombok.extern.slf4j.*;
  *            specific type of reporter
  */
 @SuperBuilder(toBuilder = true)
+@NoArgsConstructor(force = true)
 @Slf4j
 @ToString
 public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenReporter<?, ?>>

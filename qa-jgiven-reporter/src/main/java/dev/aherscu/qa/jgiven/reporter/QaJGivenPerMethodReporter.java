@@ -41,6 +41,7 @@ import lombok.extern.slf4j.*;
  * Per test method reporter.
  */
 @SuperBuilder(toBuilder = true)
+@NoArgsConstructor(force = true)
 @Slf4j
 @ToString(callSuper = true)
 public class QaJGivenPerMethodReporter

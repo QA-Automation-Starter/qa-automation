@@ -47,6 +47,7 @@ import lombok.extern.slf4j.*;
  * @see #with(XmlSuite) support for TestNG Listener configuration
  */
 @SuperBuilder(toBuilder = true)
+@NoArgsConstructor(force = true)
 @Slf4j
 @ToString(callSuper = true)
 public class TestRailReporter extends QaJGivenPerMethodReporter {
