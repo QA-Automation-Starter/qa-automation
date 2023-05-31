@@ -72,6 +72,7 @@
     <module>qa-testing-parent</module>
     <module>qa-testing-example</module>
     <module>qa-testing-archetype</module>
+    <module>qa-testing-rabbitmq</module>
   </modules>
 
   <properties>
