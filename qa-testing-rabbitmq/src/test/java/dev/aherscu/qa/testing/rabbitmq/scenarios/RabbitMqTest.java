@@ -16,15 +16,31 @@
 
 package dev.aherscu.qa.testing.rabbitmq.scenarios;
 
+import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
+import static dev.aherscu.qa.testing.rabbitmq.utils.AbstractQueueHandlerTest.*;
+import static java.nio.charset.StandardCharsets.*;
+
+import java.util.stream.*;
+
+import org.testng.annotations.*;
+
+import com.rabbitmq.client.*;
+
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.tester.utils.config.*;
+import dev.aherscu.qa.testing.rabbitmq.*;
 import dev.aherscu.qa.testing.rabbitmq.actions.*;
 import dev.aherscu.qa.testing.rabbitmq.fixtures.*;
 import dev.aherscu.qa.testing.rabbitmq.model.*;
+import dev.aherscu.qa.testing.rabbitmq.utils.*;
 import dev.aherscu.qa.testing.rabbitmq.verifications.*;
+import lombok.*;
 
 public class RabbitMqTest extends
-    UnitilsScenarioTest<BaseConfiguration, RabbitMqScenarioType, RabbitMqFixtures<?>, RabbitMqActions<?>, RabbitMqVerifications<?>> {
+    UnitilsScenarioTest<TestConfiguration, RabbitMqScenarioType, RabbitMqFixtures<Integer, String, ?>, RabbitMqActions<Integer, String, ?>, RabbitMqVerifications<Integer, String, ?>> {
+    private Connection                    connection;
+    private QueueHandler<Integer, String> messagesRetriever;
+
     /**
      * Initializes the configuration type of this scenario by
      * {@value AbstractConfiguration#CONFIGURATION_SOURCES}.
@@ -32,7 +48,49 @@ public class RabbitMqTest extends
      * @param configurationType
      *            type of configuration
      */
-    protected RabbitMqTest(Class<BaseConfiguration> configurationType) {
-        super(configurationType);
+    protected RabbitMqTest() {
+        super(TestConfiguration.class);
+    }
+
+    @BeforeClass
+    @SneakyThrows
+    protected void beforeClassOpenChannel() {
+        connection = LOCAL_RABBITMQ.newConnection();
+        val testingChannel = connection.createChannel();
+        messagesRetriever = QueueHandler.<Integer, String> builder()
+            .channel(testingChannel)
+            .queue(testingChannel.queueDeclare().getQueue())
+            .indexingBy(String::hashCode)
+            .consumingBy(bytes -> new String(bytes, UTF_8))
+            .publishingBy(String::getBytes)
+            .build();
+    }
+
+    @AfterClass(alwaysRun = true)
+    @SneakyThrows
+    protected void afterClassCloseChannel() {
+        connection.close();
+    }
+
+    @Test
+    @SneakyThrows
+    public void shouldRetrieveMessageFromRabbitMq() {
+        given()
+            .a_queue(messagesRetriever);
+
+        when()
+            .publishing(Stream.of(
+                Message.<String> builder()
+                    .content("hello")
+                    .build(),
+                Message.<String> builder()
+                    .content("world")
+                    .build()))
+            .and().consuming();
+
+        then()
+            .the_retrieved_messages(adaptedStream(message -> message.content,
+                // ISSUE world does not arrive...
+                hasSpecificItems("hello", "world")));
     }
 }

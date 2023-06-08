@@ -14,22 +14,15 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.rabbitmq.fixtures;
+package dev.aherscu.qa.testing.rabbitmq.model;
 
-import com.tngtech.jgiven.annotation.*;
+import com.rabbitmq.client.*;
 
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.testing.rabbitmq.model.*;
-import dev.aherscu.qa.testing.rabbitmq.utils.*;
+import lombok.*;
 
-public class RabbitMqFixtures<K, V, SELF extends RabbitMqFixtures<K, V, SELF>>
-    extends GenericFixtures<RabbitMqScenarioType, SELF> {
-
-    @ProvidedScenarioState
-    protected QueueHandler<K, V> queueHandler;
-
-    public SELF a_queue(final QueueHandler<K, V> messagesRetriever) {
-        this.queueHandler = messagesRetriever;
-        return self();
-    }
+@Builder
+@ToString
+public class Message<T> {
+    public final AMQP.BasicProperties properties;
+    public final T                    content;
 }

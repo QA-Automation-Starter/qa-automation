@@ -16,9 +16,29 @@
 
 package dev.aherscu.qa.testing.rabbitmq.actions;
 
+import java.util.function.*;
+import java.util.stream.*;
+
+import com.tngtech.jgiven.annotation.*;
+
 import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.testing.rabbitmq.model.*;
+import dev.aherscu.qa.testing.rabbitmq.utils.*;
 
-public class RabbitMqActions<SELF extends RabbitMqActions<SELF>>
+public class RabbitMqActions<K, V, SELF extends RabbitMqActions<K, V, SELF>>
     extends GenericActions<RabbitMqScenarioType, SELF> {
+    @ExpectedScenarioState
+    protected QueueHandler<K, V>  queueHandler;
+    @ProvidedScenarioState
+    protected Function<V, byte[]> toBytes;
+
+    public SELF publishing(final Stream<Message<V>> messages) {
+        queueHandler.publish(messages);
+        return self();
+    }
+
+    public SELF consuming() {
+        queueHandler.consume();
+        return self();
+    }
 }

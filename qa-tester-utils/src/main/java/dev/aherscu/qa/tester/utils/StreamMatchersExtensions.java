@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -217,6 +217,11 @@ public class StreamMatchersExtensions extends StreamMatchers {
         };
     }
 
+    public static <T> Matcher<Stream<T>> hasItemsMatching(
+        final Stream<Matcher<T>> matchers) {
+        return hasItemsMatching(matchers.collect(toList()));
+    }
+
     /**
      * A matcher for Stream of objects, must produce objects that match the
      * given Matchers in given order. Gaps between matched objects are
@@ -353,8 +358,13 @@ public class StreamMatchersExtensions extends StreamMatchers {
      */
     public static <T> Matcher<Stream<T>> hasSpecificItems(
         final List<T> values) {
+        return hasItemsMatching(values.stream().map(CoreMatchers::is));
+    }
+
+    public static <T> Matcher<Stream<T>> hasSpecificItems(
+        final Stream<T> values) {
         return hasItemsMatching(
-            values.stream()
+            values
                 .map(CoreMatchers::is)
                 .collect(Collectors.toList()));
     }

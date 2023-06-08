@@ -16,9 +16,25 @@
 
 package dev.aherscu.qa.testing.rabbitmq.verifications;
 
+import java.util.stream.*;
+
+import org.hamcrest.*;
+
+import com.tngtech.jgiven.annotation.*;
+
 import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.testing.rabbitmq.model.*;
+import dev.aherscu.qa.testing.rabbitmq.utils.*;
 
-public class RabbitMqVerifications<SELF extends RabbitMqVerifications<SELF>>
+public class RabbitMqVerifications<K, V, SELF extends RabbitMqVerifications<K, V, SELF>>
     extends GenericVerifications<RabbitMqScenarioType, SELF> {
+    @ExpectedScenarioState
+    protected QueueHandler<K, V> queueHandler;
+
+    public SELF the_retrieved_messages(
+        final Matcher<Stream<Message<V>>> matcher) {
+        return eventually_assert_that(
+            () -> queueHandler.get().values().stream(),
+            matcher);
+    }
 }
