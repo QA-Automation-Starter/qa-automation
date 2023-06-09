@@ -3,6 +3,8 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qa-jgiven-rabbitmq/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qa-jgiven-rabbitmq/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-jgiven-reporter-maven-plugin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-jgiven-reporter-maven-plugin/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-jgiven-reporter/src/main/java" charset="UTF-8" />
@@ -21,8 +23,6 @@
     <file url="file://$PROJECT_DIR$/qa-testing-example/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-testing-parent/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-testing-parent/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/qa-testing-rabbitmq/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/qa-testing-rabbitmq/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-testrail-reporter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-testrail-reporter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
