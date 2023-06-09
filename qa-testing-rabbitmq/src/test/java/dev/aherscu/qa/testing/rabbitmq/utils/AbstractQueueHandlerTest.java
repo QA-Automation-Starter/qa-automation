@@ -20,6 +20,7 @@ import static dev.aherscu.qa.testing.rabbitmq.utils.QueueHandler.*;
 import static java.nio.charset.StandardCharsets.*;
 import static java.util.Objects.*;
 
+import java.time.*;
 import java.util.stream.*;
 
 import com.fasterxml.jackson.annotation.*;
@@ -28,10 +29,25 @@ import com.rabbitmq.client.*;
 
 import lombok.*;
 import lombok.extern.jackson.*;
+import lombok.extern.slf4j.*;
+import net.jodah.failsafe.*;
 
+@Slf4j
 public class AbstractQueueHandlerTest {
     public static final ConnectionFactory LOCAL_RABBITMQ =
         connectionFactoryFrom("amqp://guest:guest@localhost");
+
+    protected final static RetryPolicy<?> retryPolicy    =
+        new RetryPolicy<>()
+            .withMaxRetries(-1)
+            .withDelay(Duration.ofSeconds(2))
+            .withMaxDuration(Duration.ofSeconds(20))
+            .onRetry(
+                e -> log.trace("retrying due to {}", e.toString()))
+            .onRetriesExceeded(
+                e -> log.trace("retries exceeded for {}", e.toString()))
+            .handleIf(e -> e instanceof AssertionError
+                || e instanceof NullPointerException);
 
     static abstract class Base {
         final static ObjectMapper objectMapper = new ObjectMapper();
@@ -51,9 +67,12 @@ public class AbstractQueueHandlerTest {
     @Builder
     @Jacksonized
     @EqualsAndHashCode(callSuper = false)
+    @ToString
     static final class AnObject extends Base {
         final static AnObject DUMMY       =
-            AbstractQueueHandlerTest.AnObject.builder().id("dummy").build();
+            AnObject.builder()
+                .id("dummy")
+                .build();
         final static String   DUMMY_JSON  = DUMMY.toJson();
         final static byte[]   DUMMY_BYTES = DUMMY_JSON.getBytes(UTF_8);
 
@@ -89,10 +108,12 @@ public class AbstractQueueHandlerTest {
     @Builder
     @Jacksonized
     @EqualsAndHashCode(callSuper = false)
+    @ToString
     static final class AnotherObject extends Base {
         final static AnotherObject DUMMY       =
-            AbstractQueueHandlerTest.AnotherObject.builder()
-                .anObject(AnObject.DUMMY).build();
+            AnotherObject.builder()
+                .anObject(AnObject.DUMMY)
+                .build();
         final static String        DUMMY_JSON  = DUMMY.toJson();
         final static byte[]        DUMMY_BYTES = DUMMY_JSON.getBytes(UTF_8);
 

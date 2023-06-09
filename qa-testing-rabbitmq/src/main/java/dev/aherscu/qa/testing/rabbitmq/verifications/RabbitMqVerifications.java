@@ -25,7 +25,9 @@ import com.tngtech.jgiven.annotation.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.testing.rabbitmq.model.*;
 import dev.aherscu.qa.testing.rabbitmq.utils.*;
+import lombok.extern.slf4j.*;
 
+@Slf4j
 public class RabbitMqVerifications<K, V, SELF extends RabbitMqVerifications<K, V, SELF>>
     extends GenericVerifications<RabbitMqScenarioType, SELF> {
     @ExpectedScenarioState
@@ -34,7 +36,7 @@ public class RabbitMqVerifications<K, V, SELF extends RabbitMqVerifications<K, V
     public SELF the_retrieved_messages(
         final Matcher<Stream<Message<V>>> matcher) {
         return eventually_assert_that(
-            () -> queueHandler.get().values().stream(),
+            () -> queueHandler.recievedMessages().values().stream(),
             matcher);
     }
 }

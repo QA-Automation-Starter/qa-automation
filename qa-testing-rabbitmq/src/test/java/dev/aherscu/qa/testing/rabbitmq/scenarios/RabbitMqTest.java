@@ -39,14 +39,11 @@ import lombok.*;
 public class RabbitMqTest extends
     UnitilsScenarioTest<TestConfiguration, RabbitMqScenarioType, RabbitMqFixtures<Integer, String, ?>, RabbitMqActions<Integer, String, ?>, RabbitMqVerifications<Integer, String, ?>> {
     private Connection                    connection;
-    private QueueHandler<Integer, String> messagesRetriever;
+    private QueueHandler<Integer, String> queueHandler;
 
     /**
      * Initializes the configuration type of this scenario by
      * {@value AbstractConfiguration#CONFIGURATION_SOURCES}.
-     *
-     * @param configurationType
-     *            type of configuration
      */
     protected RabbitMqTest() {
         super(TestConfiguration.class);
@@ -57,7 +54,7 @@ public class RabbitMqTest extends
     protected void beforeClassOpenChannel() {
         connection = LOCAL_RABBITMQ.newConnection();
         val testingChannel = connection.createChannel();
-        messagesRetriever = QueueHandler.<Integer, String> builder()
+        queueHandler = QueueHandler.<Integer, String> builder()
             .channel(testingChannel)
             .queue(testingChannel.queueDeclare().getQueue())
             .indexingBy(String::hashCode)
@@ -76,7 +73,7 @@ public class RabbitMqTest extends
     @SneakyThrows
     public void shouldRetrieveMessageFromRabbitMq() {
         given()
-            .a_queue(messagesRetriever);
+            .a_queue(queueHandler);
 
         when()
             .publishing(Stream.of(
@@ -90,7 +87,6 @@ public class RabbitMqTest extends
 
         then()
             .the_retrieved_messages(adaptedStream(message -> message.content,
-                // ISSUE world does not arrive...
-                hasSpecificItems("hello", "world")));
+                hasSpecificItems("world", "hello")));
     }
 }

@@ -16,18 +16,20 @@
 
 package dev.aherscu.qa.testing.rabbitmq.utils;
 
-import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
 import static java.nio.charset.StandardCharsets.*;
 import static java.util.concurrent.CompletableFuture.*;
+import static java.util.concurrent.CompletableFuture.allOf;
 import static java.util.stream.IntStream.*;
 import static org.apache.commons.lang3.StringUtils.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import org.apache.commons.lang3.*;
 import org.testng.annotations.*;
 
 import lombok.*;
 import lombok.extern.slf4j.*;
+import net.jodah.failsafe.*;
 
 // IMPORTANT: you should have RabbitMQ installed on your machine in order to run this test.
 // On CICD machines (e.g. Jenkins) you may ensure this by running cinst rabbitmq or similar during prebuild phase
@@ -48,13 +50,20 @@ public class QueueHandlerLoadTest extends AbstractQueueHandlerTest {
                 .consumingBy(AnObject::fromBytes)
                 .publishingBy(AnObject::asBytes)
                 .build()) {
+
+            queueHandler.consume();
+
             queueHandler.publishValues(AnObject
                 .generate(range(0, messageQuantity)));
 
-            assertThat(queueHandler.get().values().stream(),
-                adaptedStream(message -> message.content,
-                    hasSpecificItems(AnObject
-                        .generate(range(0, messageQuantity)))));
+            AnObject
+                .generate(range(0, messageQuantity))
+                .parallel()
+                .forEach(anObject -> Failsafe.with(retryPolicy)
+                    .run(() -> assertThat(
+                        queueHandler.recievedMessages()
+                            .get(anObject.id).content,
+                        is(anObject))));
         }
     }
 
@@ -74,19 +83,24 @@ public class QueueHandlerLoadTest extends AbstractQueueHandlerTest {
                 .publishingBy(AnObject::asBytes)
                 .build()) {
 
+            queueHandler.consume();
+
             queueHandler.channel.basicPublish(EMPTY,
                 queueHandler.queue, null,
                 noise.getBytes(UTF_8));
 
             allOf(
-                runAsync(
-                    () -> queueHandler.publishValues(AnObject
+                runAsync(() -> queueHandler
+                    .publishValues(AnObject
                         .generate(range(0, messageQuantity)))),
-                runAsync(
-                    () -> assertThat(queueHandler.get().values().stream(),
-                        adaptedStream(message -> message.content,
-                            hasSpecificItems(AnObject
-                                .generate(range(0, messageQuantity)))))))
+                runAsync(() -> AnObject
+                    .generate(range(0, messageQuantity))
+                    .parallel()
+                    .forEach(anObject -> Failsafe.with(retryPolicy)
+                        .run(() -> assertThat(
+                            queueHandler.recievedMessages()
+                                .get(anObject.id).content,
+                            is(anObject))))))
                 .get();
         }
     }

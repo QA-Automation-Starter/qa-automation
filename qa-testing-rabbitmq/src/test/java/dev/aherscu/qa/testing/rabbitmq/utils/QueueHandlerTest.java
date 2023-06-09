@@ -16,7 +16,6 @@
 
 package dev.aherscu.qa.testing.rabbitmq.utils;
 
-import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
 import static java.nio.charset.StandardCharsets.*;
 import static org.apache.commons.lang3.StringUtils.*;
 import static org.hamcrest.MatcherAssert.*;
@@ -29,9 +28,9 @@ import org.testng.annotations.*;
 
 import com.fasterxml.jackson.databind.*;
 
-import dev.aherscu.qa.tester.utils.ThreadUtils;
 import lombok.*;
 import lombok.extern.slf4j.*;
+import net.jodah.failsafe.*;
 
 // IMPORTANT: should have RabbitMQ installed on local machine in order to run 
 // On GitHub actions must ensure this by installing rabbitmq during prebuild phase
@@ -88,12 +87,11 @@ public class QueueHandlerTest extends AbstractQueueHandlerTest {
 
             queueHandler.consume();
 
-            // TODO get rid of the sleep
-            ThreadUtils.sleep(5000);
-
-            assertThat(queueHandler.get().values().stream(),
-                adaptedStream(message -> message.content,
-                    hasSpecificItems(AnObject.DUMMY)));
+            Failsafe.with(retryPolicy)
+                .run(() -> assertThat(queueHandler
+                    .recievedMessages()
+                    .get(AnObject.DUMMY.id).content,
+                    is(AnObject.DUMMY)));
         }
     }
 }

@@ -153,7 +153,7 @@ public class QueueHandler<K, V> implements AutoCloseable {
      *
      * @return the messages
      */
-    public Map<K, Message<V>> get() {
+    public Map<K, Message<V>> recievedMessages() {
         return unmodifiableMap(recievedMessages);
     }
 
