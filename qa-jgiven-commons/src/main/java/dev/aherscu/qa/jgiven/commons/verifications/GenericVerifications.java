@@ -160,7 +160,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
                 throw t;
             }
             log.trace("asserting value {} against {}",
-                prettified(value.toString()),
+                prettified(value),
                 matcher);
             assertThat(value, matcher);
             return self;
@@ -187,7 +187,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
         val resultSet = resultSetOf(sql);
         assertThat(resultSet.toArray(
             new Object[resultSet.size()][]))
-                .isEqualTo(expectedResults);
+            .isEqualTo(expectedResults);
         return self();
     }
 
