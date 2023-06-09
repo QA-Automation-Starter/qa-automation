@@ -16,10 +16,13 @@
 package dev.aherscu.qa.testing.rabbitmq;
 
 import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.rabbitmq.utils.QueueHandler.*;
 
 import javax.annotation.concurrent.*;
 
 import org.apache.commons.configuration.*;
+
+import com.rabbitmq.client.*;
 
 import dev.aherscu.qa.tester.utils.config.BaseConfiguration;
 import lombok.extern.slf4j.*;
@@ -51,4 +54,7 @@ public final class TestConfiguration extends BaseConfiguration {
         super(configurations);
     }
 
+    public ConnectionFactory connectionFactory() {
+        return connectionFactoryFrom(getString("rabbitmq.url"));
+    }
 }

@@ -17,56 +17,27 @@
 package dev.aherscu.qa.testing.rabbitmq.scenarios;
 
 import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
-import static dev.aherscu.qa.testing.rabbitmq.utils.AbstractQueueHandlerTest.*;
 import static java.nio.charset.StandardCharsets.*;
 
 import java.util.stream.*;
 
 import org.testng.annotations.*;
 
-import com.rabbitmq.client.*;
-
-import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.tester.utils.config.*;
 import dev.aherscu.qa.testing.rabbitmq.*;
-import dev.aherscu.qa.testing.rabbitmq.actions.*;
-import dev.aherscu.qa.testing.rabbitmq.fixtures.*;
 import dev.aherscu.qa.testing.rabbitmq.model.*;
 import dev.aherscu.qa.testing.rabbitmq.utils.*;
-import dev.aherscu.qa.testing.rabbitmq.verifications.*;
 import lombok.*;
 
-public class RabbitMqTest extends
-    UnitilsScenarioTest<TestConfiguration, RabbitMqScenarioType, RabbitMqFixtures<Integer, String, ?>, RabbitMqActions<Integer, String, ?>, RabbitMqVerifications<Integer, String, ?>> {
-    private Connection                    connection;
-    private QueueHandler<Integer, String> queueHandler;
+public class NotIndexedRabbitMqTest
+    extends AbstractRabbitMqTest<Integer, String> {
 
     /**
      * Initializes the configuration type of this scenario by
      * {@value AbstractConfiguration#CONFIGURATION_SOURCES}.
      */
-    protected RabbitMqTest() {
+    protected NotIndexedRabbitMqTest() {
         super(TestConfiguration.class);
-    }
-
-    @BeforeClass
-    @SneakyThrows
-    protected void beforeClassOpenChannel() {
-        connection = LOCAL_RABBITMQ.newConnection();
-        val testingChannel = connection.createChannel();
-        queueHandler = QueueHandler.<Integer, String> builder()
-            .channel(testingChannel)
-            .queue(testingChannel.queueDeclare().getQueue())
-            .indexingBy(String::hashCode)
-            .consumingBy(bytes -> new String(bytes, UTF_8))
-            .publishingBy(String::getBytes)
-            .build();
-    }
-
-    @AfterClass(alwaysRun = true)
-    @SneakyThrows
-    protected void afterClassCloseChannel() {
-        connection.close();
     }
 
     @Test
@@ -88,5 +59,19 @@ public class RabbitMqTest extends
         then()
             .the_retrieved_messages(adaptedStream(message -> message.content,
                 hasSpecificItems("world", "hello")));
+    }
+
+    @BeforeMethod
+    @Override
+    @SneakyThrows
+    protected void beforeMethodInitiateQueueHandler() {
+        val testingChannel = connection.createChannel();
+        queueHandler = QueueHandler.<Integer, String> builder()
+            .channel(testingChannel)
+            .queue(testingChannel.queueDeclare().getQueue())
+            .indexingBy(String::hashCode)
+            .consumingBy(bytes -> new String(bytes, UTF_8))
+            .publishingBy(String::getBytes)
+            .build();
     }
 }

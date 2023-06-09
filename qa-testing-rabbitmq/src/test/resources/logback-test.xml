@@ -89,7 +89,7 @@
 
   <!-- NOTE: the log root level defaults to trace, but might be overridden via
     a system property, e.g. via a Maven profile defining Surefire/Failsafe system properties  -->
-  <root level="${log.root.level:-trace}">
+  <root level="debug">
     <appender-ref ref="one-file-log"/>
     <appender-ref ref="console"/>
     <appender-ref ref="per-thread-logs"/>
