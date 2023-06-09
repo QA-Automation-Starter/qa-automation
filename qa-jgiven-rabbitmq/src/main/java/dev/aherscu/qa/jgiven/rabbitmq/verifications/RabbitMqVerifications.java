@@ -40,7 +40,9 @@ public class RabbitMqVerifications<K, V, SELF extends RabbitMqVerifications<K, V
             matcher);
     }
 
-    public SELF the_$_message(final K key, final Matcher<Message<V>> matcher) {
+    public SELF the_message_with_$_key(
+        final K key,
+        final Matcher<Message<V>> matcher) {
         return eventually_assert_that(
             () -> queueHandler.recievedMessages().get(key),
             matcher);

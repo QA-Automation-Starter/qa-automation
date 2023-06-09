@@ -53,7 +53,7 @@ public class IndexedRabbitMqTest
             .and().consuming();
 
         then()
-            .the_$_message("0",
+            .the_message_with_$_key("0",
                 is(Message.<AnObject> builder()
                     .content(AnObject.builder()
                         .id("0")

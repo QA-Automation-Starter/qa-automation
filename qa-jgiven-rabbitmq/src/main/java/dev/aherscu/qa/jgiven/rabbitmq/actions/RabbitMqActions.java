@@ -32,6 +32,7 @@ public class RabbitMqActions<K, V, SELF extends RabbitMqActions<K, V, SELF>>
     @ProvidedScenarioState
     protected Function<V, byte[]> toBytes;
 
+    // TODO report at least part of the messages -- maybe StreamFormatter
     public SELF publishing(final Stream<Message<V>> messages) {
         queueHandler.publish(messages);
         return self();
