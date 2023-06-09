@@ -20,7 +20,7 @@
 
   <test name="Acceptance" parallel="classes">
     <packages>
-      <package name="dev.aherscu.qa.testing.rabbitmq.scenarios"/>
+      <package name="dev.aherscu.qa.jgiven.rabbitmq.scenarios"/>
     </packages>
   </test>
 
