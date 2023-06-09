@@ -67,7 +67,6 @@ import lombok.extern.slf4j.*;
 public class QueueHandler<K, V> implements AutoCloseable {
     public final Channel                       channel;
     public final String                        queue;
-    // TODO move to message
     public final Function<Message<V>, K>       indexingBy;
     public final Function<byte[], V>           consumingBy;
     public final Function<V, byte[]>           publishingBy;
