@@ -22,7 +22,9 @@ import lombok.*;
 
 @Builder
 @ToString
+@EqualsAndHashCode
 public class Message<T> {
-    public final AMQP.BasicProperties properties;
+    @Builder.Default
+    public final AMQP.BasicProperties properties = new AMQP.BasicProperties();
     public final T                    content;
 }

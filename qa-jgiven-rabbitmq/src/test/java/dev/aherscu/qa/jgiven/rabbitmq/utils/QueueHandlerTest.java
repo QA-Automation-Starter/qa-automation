@@ -26,8 +26,7 @@ import java.util.stream.*;
 import org.apache.commons.lang3.*;
 import org.testng.annotations.*;
 
-import com.fasterxml.jackson.databind.*;
-
+import dev.aherscu.qa.jgiven.rabbitmq.model.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
@@ -36,17 +35,6 @@ import net.jodah.failsafe.*;
 // On GitHub actions must ensure this by installing rabbitmq during prebuild phase
 @Slf4j
 public class QueueHandlerTest extends AbstractQueueHandlerTest {
-
-    @Test
-    @SneakyThrows
-    public void selfTest() {
-        log.debug(">>>{}", AnObject.DUMMY_JSON);
-        log.debug(">>>{}", AnotherObject.DUMMY_JSON);
-        log.debug(">>>{}", new ObjectMapper().readTree(AnObject.DUMMY_JSON)
-            .findValue("id").asText());
-        log.debug(">>>{}", new ObjectMapper().readTree(AnotherObject.DUMMY_JSON)
-            .findValue("id").asText());
-    }
 
     @Test
     @SneakyThrows
@@ -78,7 +66,7 @@ public class QueueHandlerTest extends AbstractQueueHandlerTest {
             val queueHandler = QueueHandler.<String, AnObject> builder()
                 .channel(channel)
                 .queue(channel.queueDeclare().getQueue())
-                .indexingBy(AnObject::id)
+                .indexingBy(message -> message.content.id)
                 .consumingBy(AnObject::fromBytes)
                 .publishingBy(AnObject::asBytes)
                 .build()) {

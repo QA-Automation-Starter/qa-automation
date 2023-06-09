@@ -67,7 +67,8 @@ import lombok.extern.slf4j.*;
 public class QueueHandler<K, V> implements AutoCloseable {
     public final Channel                       channel;
     public final String                        queue;
-    public final Function<V, K>                indexingBy;
+    // TODO move to message
+    public final Function<Message<V>, K>       indexingBy;
     public final Function<byte[], V>           consumingBy;
     public final Function<V, byte[]>           publishingBy;
 
@@ -111,21 +112,20 @@ public class QueueHandler<K, V> implements AutoCloseable {
                     final AMQP.BasicProperties properties, final byte[] body)
                     throws IOException {
                     final K key;
-                    final V value;
+                    final Message<V> message;
                     try {
-                        value = consumingBy.apply(body);
-                        key = indexingBy.apply(value);
+                        message = Message.<V> builder()
+                            .content(consumingBy.apply(body))
+                            .properties(properties)
+                            .build();
+                        key = indexingBy.apply(message);
                         log.trace("received {}", key);
                     } catch (final Exception e) {
                         log.warn("skipping unknown type {}", e.getMessage());
                         channel.basicReject(envelope.getDeliveryTag(), true);
                         return;
                     }
-                    recievedMessages.put(key,
-                        Message.<V> builder()
-                            .content(value)
-                            .properties(properties)
-                            .build());
+                    recievedMessages.put(key, message);
                     channel.basicAck(envelope.getDeliveryTag(), false);
                 }
             });

@@ -27,6 +27,7 @@ import static org.hamcrest.Matchers.*;
 import org.apache.commons.lang3.*;
 import org.testng.annotations.*;
 
+import dev.aherscu.qa.jgiven.rabbitmq.model.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
@@ -46,7 +47,7 @@ public class QueueHandlerLoadTest extends AbstractQueueHandlerTest {
             val queueHandler = QueueHandler.<String, AnObject> builder()
                 .channel(channel)
                 .queue(channel.queueDeclare().getQueue())
-                .indexingBy(AnObject::id)
+                .indexingBy(message -> message.content.id)
                 .consumingBy(AnObject::fromBytes)
                 .publishingBy(AnObject::asBytes)
                 .build()) {
@@ -78,7 +79,7 @@ public class QueueHandlerLoadTest extends AbstractQueueHandlerTest {
             val queueHandler = QueueHandler.<String, AnObject> builder()
                 .channel(connection.createChannel())
                 .queue(channel.queueDeclare().getQueue())
-                .indexingBy(AnObject::id)
+                .indexingBy(message -> message.content.id)
                 .consumingBy(AnObject::fromBytes)
                 .publishingBy(AnObject::asBytes)
                 .build()) {

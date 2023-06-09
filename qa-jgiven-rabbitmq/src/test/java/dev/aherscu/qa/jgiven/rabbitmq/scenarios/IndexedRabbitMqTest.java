@@ -16,8 +16,7 @@
 
 package dev.aherscu.qa.jgiven.rabbitmq.scenarios;
 
-import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
-import static java.nio.charset.StandardCharsets.*;
+import static org.hamcrest.Matchers.*;
 
 import java.util.stream.*;
 
@@ -29,14 +28,14 @@ import dev.aherscu.qa.jgiven.rabbitmq.utils.*;
 import dev.aherscu.qa.tester.utils.config.*;
 import lombok.*;
 
-public class NotIndexedRabbitMqTest
-    extends AbstractRabbitMqTest<Integer, String> {
+public class IndexedRabbitMqTest
+    extends AbstractRabbitMqTest<String, AnObject> {
 
     /**
      * Initializes the configuration type of this scenario by
      * {@value AbstractConfiguration#CONFIGURATION_SOURCES}.
      */
-    protected NotIndexedRabbitMqTest() {
+    protected IndexedRabbitMqTest() {
         super(TestConfiguration.class);
     }
 
@@ -47,18 +46,19 @@ public class NotIndexedRabbitMqTest
             .a_queue(queueHandler);
 
         when()
-            .publishing(Stream.of(
-                Message.<String> builder()
-                    .content("hello")
-                    .build(),
-                Message.<String> builder()
-                    .content("world")
+            .publishing(AnObject.generate(IntStream.range(0, 10))
+                .map(anObject -> Message.<AnObject> builder()
+                    .content(anObject)
                     .build()))
             .and().consuming();
 
         then()
-            .the_retrieved_messages(adaptedStream(message -> message.content,
-                hasSpecificItems("world", "hello")));
+            .the_$_message("0",
+                is(Message.<AnObject> builder()
+                    .content(AnObject.builder()
+                        .id("0")
+                        .build())
+                    .build()));
     }
 
     @BeforeMethod
@@ -66,12 +66,12 @@ public class NotIndexedRabbitMqTest
     @SneakyThrows
     protected void beforeMethodInitiateQueueHandler() {
         val testingChannel = connection.createChannel();
-        queueHandler = QueueHandler.<Integer, String> builder()
+        queueHandler = QueueHandler.<String, AnObject> builder()
             .channel(testingChannel)
             .queue(testingChannel.queueDeclare().getQueue())
-            .indexingBy(message -> message.content.hashCode())
-            .consumingBy(bytes -> new String(bytes, UTF_8))
-            .publishingBy(String::getBytes)
+            .indexingBy(message -> message.content.id)
+            .consumingBy(AnObject::fromBytes)
+            .publishingBy(AnObject::asBytes)
             .build();
     }
 }
