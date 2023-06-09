@@ -77,10 +77,8 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
     private static List<Object[]> resultSetOf(final String sql) {
         log.debug("querying {}", sql); //$NON-NLS-1$
         final List<Object[]> resultSet =
-            new QueryRunner(
-                DatabaseUnitils.getDataSource())
-                    .query(sql,
-                        new ArrayListHandler());
+            new QueryRunner(DatabaseUnitils.getDataSource())
+                .query(sql, new ArrayListHandler());
         log.trace("result set contains {} rows", //$NON-NLS-1$
             resultSet.size());
         return resultSet;
