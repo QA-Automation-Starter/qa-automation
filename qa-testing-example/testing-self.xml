@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright 2022 Adrian Herscu
+  ~ Copyright 2023 Adrian Herscu
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@
   <test name="Self Tests" parallel="classes" thread-count="15">
     <classes>
       <class
-        name="dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingWebWithJGiven"/>
+        name="dev.aherscu.qa.testing.example.scenarios.tutorial7.RabbitMqTest"/>
     </classes>
   </test>
 </suite>

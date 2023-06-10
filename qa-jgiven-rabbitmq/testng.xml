@@ -18,6 +18,9 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Self Tests" parallel="tests">
 
+  <!-- TODO to make these tests run under Github Actions
+        see https://github.com/marketplace/actions/rabbitmq-in-github-actions
+  -->
   <test name="Acceptance" parallel="classes">
     <packages>
       <package name="dev.aherscu.qa.jgiven.rabbitmq.scenarios"/>
