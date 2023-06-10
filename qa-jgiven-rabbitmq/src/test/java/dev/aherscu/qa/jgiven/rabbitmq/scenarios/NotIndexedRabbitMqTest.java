@@ -18,8 +18,7 @@ package dev.aherscu.qa.jgiven.rabbitmq.scenarios;
 
 import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
 import static java.nio.charset.StandardCharsets.*;
-
-import java.util.stream.*;
+import static java.util.Arrays.*;
 
 import org.testng.annotations.*;
 
@@ -42,12 +41,12 @@ public class NotIndexedRabbitMqTest
 
     @Test
     @SneakyThrows
-    public void shouldRetrieveMessageFromRabbitMq() {
+    public void shouldRetrieve() {
         given()
             .a_queue(queueHandler);
 
         when()
-            .publishing(Stream.of(
+            .publishing(asList(
                 Message.<String> builder()
                     .content("hello")
                     .build(),

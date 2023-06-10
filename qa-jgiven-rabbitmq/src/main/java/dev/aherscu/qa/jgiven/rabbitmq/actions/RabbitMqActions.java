@@ -16,6 +16,7 @@
 
 package dev.aherscu.qa.jgiven.rabbitmq.actions;
 
+import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
@@ -32,10 +33,14 @@ public class RabbitMqActions<K, V, SELF extends RabbitMqActions<K, V, SELF>>
     @ProvidedScenarioState
     protected Function<V, byte[]> toBytes;
 
-    // TODO report at least part of the messages -- maybe StreamFormatter
-    public SELF publishing(final Stream<Message<V>> messages) {
+    // ISSUE cannot report stream contents because that will just consume it
+    public SELF publishing(@Hidden final Stream<Message<V>> messages) {
         queueHandler.publish(messages);
         return self();
+    }
+
+    public SELF publishing(final List<Message<V>> messages) {
+        return publishing(messages.stream());
     }
 
     public SELF consuming() {

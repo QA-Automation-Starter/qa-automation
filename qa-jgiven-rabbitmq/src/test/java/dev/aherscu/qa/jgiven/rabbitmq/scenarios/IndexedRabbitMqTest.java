@@ -16,6 +16,7 @@
 
 package dev.aherscu.qa.jgiven.rabbitmq.scenarios;
 
+import static java.util.stream.Collectors.*;
 import static org.hamcrest.Matchers.*;
 
 import java.util.stream.*;
@@ -41,7 +42,7 @@ public class IndexedRabbitMqTest
 
     @Test
     @SneakyThrows
-    public void shouldRetrieveMessageFromRabbitMq() {
+    public void shouldRetrieve() {
         given()
             .a_queue(queueHandler);
 
@@ -49,14 +50,15 @@ public class IndexedRabbitMqTest
             .publishing(AnObject.generate(IntStream.range(0, 10))
                 .map(anObject -> Message.<AnObject> builder()
                     .content(anObject)
-                    .build()))
+                    .build())
+                .collect(toList()))
             .and().consuming();
 
         then()
-            .the_message_with_$_key("0",
+            .the_message_with_$_key("7",
                 is(Message.<AnObject> builder()
                     .content(AnObject.builder()
-                        .id("0")
+                        .id("7")
                         .build())
                     .build()));
     }

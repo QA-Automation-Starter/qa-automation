@@ -30,8 +30,8 @@ public class RabbitMqFixtures<K, V, SELF extends RabbitMqFixtures<K, V, SELF>>
 
     public SELF a_queue(@POJOFormat(
         includeFields = { "queue",
-            "channel" }) final QueueHandler<K, V> messagesRetriever) {
-        this.queueHandler = messagesRetriever;
+            "channel" }) final QueueHandler<K, V> queueHandler) {
+        this.queueHandler = queueHandler;
         return self();
     }
 }
