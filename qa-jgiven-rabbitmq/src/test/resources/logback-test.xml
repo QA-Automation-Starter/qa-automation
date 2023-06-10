@@ -87,9 +87,7 @@
   <logger name="com.jayway" level="info"/>
   <logger name="com.tngtech" level="info"/>
 
-  <!-- NOTE: the log root level defaults to trace, but might be overridden via
-    a system property, e.g. via a Maven profile defining Surefire/Failsafe system properties  -->
-  <root level="debug">
+  <root level="off">
     <appender-ref ref="one-file-log"/>
     <appender-ref ref="console"/>
     <appender-ref ref="per-thread-logs"/>
