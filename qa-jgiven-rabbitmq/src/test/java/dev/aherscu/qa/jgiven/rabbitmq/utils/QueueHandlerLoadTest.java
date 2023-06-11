@@ -36,8 +36,6 @@ import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
 
-// IMPORTANT: you should have RabbitMQ installed on your machine in order to run this test.
-// On CICD machines (e.g. Jenkins) you may ensure this by running cinst rabbitmq or similar during prebuild phase
 @Slf4j
 public class QueueHandlerLoadTest extends AbstractQueueHandlerTest {
 

@@ -32,8 +32,6 @@ import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
 
-// IMPORTANT: should have RabbitMQ installed on local machine in order to run 
-// On GitHub actions must ensure this by installing rabbitmq during prebuild phase
 @Slf4j
 public class QueueHandlerTest extends AbstractQueueHandlerTest {
 
