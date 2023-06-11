@@ -16,16 +16,20 @@
 
 package dev.aherscu.qa.jgiven.rabbitmq.utils;
 
+import static java.lang.Integer.*;
 import static java.nio.charset.StandardCharsets.*;
 import static java.util.concurrent.CompletableFuture.*;
 import static java.util.concurrent.CompletableFuture.allOf;
 import static java.util.stream.IntStream.*;
-import static org.apache.commons.lang3.StringUtils.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import java.util.stream.*;
+
 import org.apache.commons.lang3.*;
 import org.testng.annotations.*;
+
+import com.rabbitmq.client.*;
 
 import dev.aherscu.qa.jgiven.rabbitmq.model.*;
 import lombok.*;
@@ -44,27 +48,32 @@ public class QueueHandlerLoadTest extends AbstractQueueHandlerTest {
         @Optional("1000") final int messageQuantity) {
         try (val connection = LOCAL_RABBITMQ.newConnection();
             val channel = connection.createChannel();
-            val queueHandler = QueueHandler.<String, AnObject> builder()
+            val queueHandler = QueueHandler.<String, String> builder()
                 .channel(channel)
                 .queue(channel.queueDeclare().getQueue())
-                .indexingBy(message -> message.content.id)
-                .consumingBy(AnObject::fromBytes)
-                .publishingBy(AnObject::asBytes)
+                .indexingBy(message -> message.properties.getMessageId())
+                .consumingBy(bytes -> new String(bytes, UTF_8))
+                .publishingBy(String::getBytes)
                 .build()) {
 
             queueHandler.consume();
 
-            queueHandler.publishValues(AnObject
-                .generate(range(0, messageQuantity)));
+            queueHandler.publish(range(0, messageQuantity)
+                .mapToObj(String::valueOf)
+                .map(id -> Message.<String> builder()
+                    .content("any-content-" + id)
+                    .properties(new AMQP.BasicProperties().builder()
+                        .messageId(id)
+                        .build())
+                    .build()));
 
-            AnObject
-                .generate(range(0, messageQuantity))
+            range(0, messageQuantity)
                 .parallel()
-                .forEach(anObject -> Failsafe.with(retryPolicy)
-                    .run(() -> assertThat(
-                        queueHandler.recievedMessages()
-                            .get(anObject.id).content,
-                        is(anObject))));
+                .mapToObj(String::valueOf)
+                .forEach(id -> Failsafe.with(retryPolicy)
+                    .run(() -> assertThat(queueHandler.recievedMessages()
+                        .get(id).content,
+                        is("any-content-" + id))));
         }
     }
 
@@ -76,32 +85,31 @@ public class QueueHandlerLoadTest extends AbstractQueueHandlerTest {
         val noise = "noise-" + RandomStringUtils.random(10);
         try (val connection = LOCAL_RABBITMQ.newConnection();
             val channel = connection.createChannel();
-            val queueHandler = QueueHandler.<String, AnObject> builder()
+            val queueHandler = QueueHandler.<Integer, String> builder()
                 .channel(connection.createChannel())
                 .queue(channel.queueDeclare().getQueue())
-                .indexingBy(message -> message.content.id)
-                .consumingBy(AnObject::fromBytes)
-                .publishingBy(AnObject::asBytes)
+                // NOTE should fail parsing noise
+                .indexingBy(message -> parseInt(message.content))
+                .consumingBy(bytes -> new String(bytes, UTF_8))
+                .publishingBy(String::getBytes)
                 .build()) {
 
             queueHandler.consume();
 
-            queueHandler.channel.basicPublish(EMPTY,
-                queueHandler.queue, null,
-                noise.getBytes(UTF_8));
+            queueHandler.publishValues(Stream.of(noise));
 
             allOf(
                 runAsync(() -> queueHandler
-                    .publishValues(AnObject
-                        .generate(range(0, messageQuantity)))),
-                runAsync(() -> AnObject
-                    .generate(range(0, messageQuantity))
+                    .publishValues(range(0, messageQuantity)
+                        .mapToObj(String::valueOf))),
+                runAsync(() -> range(0, messageQuantity)
+                    .mapToObj(String::valueOf)
                     .parallel()
-                    .forEach(anObject -> Failsafe.with(retryPolicy)
+                    .forEach(id -> Failsafe.with(retryPolicy)
                         .run(() -> assertThat(
                             queueHandler.recievedMessages()
-                                .get(anObject.id).content,
-                            is(anObject))))))
+                                .get(parseInt(id)).content,
+                            is(id))))))
                 .get();
         }
     }

@@ -16,12 +16,13 @@
 
 package dev.aherscu.qa.jgiven.rabbitmq.scenarios;
 
-import static java.util.stream.Collectors.*;
+import static java.nio.charset.StandardCharsets.*;
+import static java.util.Arrays.*;
 import static org.hamcrest.Matchers.*;
 
-import java.util.stream.*;
-
 import org.testng.annotations.*;
+
+import com.rabbitmq.client.*;
 
 import dev.aherscu.qa.jgiven.rabbitmq.*;
 import dev.aherscu.qa.jgiven.rabbitmq.model.*;
@@ -30,7 +31,7 @@ import dev.aherscu.qa.tester.utils.config.*;
 import lombok.*;
 
 public class IndexedRabbitMqTest
-    extends AbstractRabbitMqTest<String, AnObject> {
+    extends AbstractRabbitMqTest<String, String> {
 
     /**
      * Initializes the configuration type of this scenario by
@@ -47,19 +48,25 @@ public class IndexedRabbitMqTest
             .a_queue(queueHandler);
 
         when()
-            .publishing(AnObject.generate(IntStream.range(0, 10))
-                .map(anObject -> Message.<AnObject> builder()
-                    .content(anObject)
-                    .build())
-                .collect(toList()))
+            .publishing(asList(
+                Message.<String> builder()
+                    .properties(new AMQP.BasicProperties().builder()
+                        .messageId("1").build())
+                    .content("hello")
+                    .build(),
+                Message.<String> builder()
+                    .properties(new AMQP.BasicProperties().builder()
+                        .messageId("2").build())
+                    .content("world")
+                    .build()))
             .and().consuming();
 
         then()
-            .the_message_with_$_key("7",
-                is(Message.<AnObject> builder()
-                    .content(AnObject.builder()
-                        .id("7")
-                        .build())
+            .the_message_with_$_key("2",
+                is(Message.<String> builder()
+                    .properties(new AMQP.BasicProperties().builder()
+                        .messageId("2").build())
+                    .content("world")
                     .build()));
     }
 
@@ -68,12 +75,12 @@ public class IndexedRabbitMqTest
     @SneakyThrows
     protected void beforeMethodInitiateQueueHandler() {
         val testingChannel = connection.createChannel();
-        queueHandler = QueueHandler.<String, AnObject> builder()
+        queueHandler = QueueHandler.<String, String> builder()
             .channel(testingChannel)
             .queue(testingChannel.queueDeclare().getQueue())
-            .indexingBy(message -> message.content.id)
-            .consumingBy(AnObject::fromBytes)
-            .publishingBy(AnObject::asBytes)
+            .indexingBy(message -> message.properties.getMessageId())
+            .consumingBy(bytes -> new String(bytes, UTF_8))
+            .publishingBy(String::getBytes)
             .build();
     }
 }

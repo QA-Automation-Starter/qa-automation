@@ -21,12 +21,13 @@ import static org.apache.commons.lang3.StringUtils.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import java.util.*;
+import java.util.function.*;
 import java.util.stream.*;
 
 import org.apache.commons.lang3.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.rabbitmq.model.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
@@ -35,13 +36,6 @@ import net.jodah.failsafe.*;
 // On GitHub actions must ensure this by installing rabbitmq during prebuild phase
 @Slf4j
 public class QueueHandlerTest extends AbstractQueueHandlerTest {
-
-    @Test
-    @SneakyThrows
-    public void objectShouldBeEqualById() {
-        assertThat(AnObject.DUMMY,
-            is(AnObject.builder().id("dummy").build()));
-    }
 
     @Test
     @SneakyThrows
@@ -60,26 +54,26 @@ public class QueueHandlerTest extends AbstractQueueHandlerTest {
 
     @Test
     @SneakyThrows
-    public void shouldRetrieveObjectFromRabbitMq() {
+    public void shouldRetrieveOneMessage() {
         try (val connection = LOCAL_RABBITMQ.newConnection();
             val channel = connection.createChannel();
-            val queueHandler = QueueHandler.<String, AnObject> builder()
+            val queueHandler = QueueHandler.<Integer, byte[]> builder()
                 .channel(channel)
                 .queue(channel.queueDeclare().getQueue())
-                .indexingBy(message -> message.content.id)
-                .consumingBy(AnObject::fromBytes)
-                .publishingBy(AnObject::asBytes)
+                .indexingBy(message -> Arrays.hashCode(message.content))
+                .consumingBy(Function.identity())
+                .publishingBy(Function.identity())
                 .build()) {
 
-            queueHandler.publishValues(Stream.of(AnObject.DUMMY));
+            queueHandler.publishValues(Stream.of(new byte[] { 1, 2, 3, 4 }));
 
             queueHandler.consume();
 
             Failsafe.with(retryPolicy)
                 .run(() -> assertThat(queueHandler
                     .recievedMessages()
-                    .get(AnObject.DUMMY.id).content,
-                    is(AnObject.DUMMY)));
+                    .values(),
+                    hasSize(1)));
         }
     }
 }
