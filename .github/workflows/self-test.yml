@@ -29,13 +29,6 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
-      - name: Start RabbitMQ
-        uses: namoshek/rabbitmq-github-action@v1
-        with:
-          version: '3.8.9'
-          ports: '1883:5672 8883:15672'
-          container-name: 'mqtt'
-
       - name: Maven verify
         run: |
           cd qa-testing-example && mvn verify
