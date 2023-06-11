@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -183,23 +183,23 @@ public class StringUtilsExtensions extends StringUtils {
     }
 
     /**
-     * Returns the prettified version of a string.
+     * Returns the prettified version of an object.
      *
-     * @param string
-     *            the string
-     * @return {@code <<null>>} for {@code null}, {@code <<empty>>} for string
-     *         with length {@code 0}, and {@code <<blank>>} for string
+     * @param object
+     *            the object
+     * @return {@code <<null>>} for {@code null}, {@code <<empty>>} for object
+     *         with length {@code 0}, and {@code <<blank>>} for object
      *         containing only whitespace characters according to
      *         {@link StringUtils#isBlank(CharSequence)}
      */
-    public static String prettified(final String string) {
-        return null == string
+    public static String prettified(final Object object) {
+        return null == object
             ? "<<null>>"
-            : isEmpty(string)
+            : isEmpty(String.valueOf(object))
                 ? "<<empty>>"
-                : isBlank(string)
+                : isBlank(String.valueOf(object))
                     ? "<<blank>>"
-                    : string;
+                    : String.valueOf(object);
     }
 
     /**

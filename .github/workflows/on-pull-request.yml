@@ -77,6 +77,14 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      # ISSUE causes Error: Container action is only supported on Linux
+      #      - name: Start RabbitMQ
+      #        uses: namoshek/rabbitmq-github-action@v1
+      #        with:
+      #          version: '3.8.9'
+      #          ports: '1883:5672 8883:15672'
+      #          container-name: 'mqtt'
+
       # NOTE: must run install at least in order to have artifacts in .m2
       # .m2 artifacts are cached and reused in following generate-automation-project
       - name: Maven deploy snapshots
