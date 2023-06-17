@@ -63,6 +63,16 @@
     <tag>HEAD</tag>
   </scm>
 
+  <issueManagement>
+    <system>Github Issues</system>
+    <url>https://github.com/QA-Automation-Starter/qa-automation/issues</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>Github Actions</system>
+    <url>https://github.com/QA-Automation-Starter/qa-automation/actions</url>
+  </ciManagement>
+
   <modules>
     <module>qa-tester-utils</module>
     <module>qa-jgiven-reporter</module>
