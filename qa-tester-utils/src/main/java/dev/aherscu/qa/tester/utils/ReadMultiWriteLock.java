@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,9 +43,6 @@ public class ReadMultiWriteLock {
      *
      * @param criticalSection
      *            the critical section
-     * @throws Throwable
-     *             if this thread was interrupted or any other exception thrown
-     *             from critical section
      * @return value returned by critical section
      */
     @SneakyThrows
@@ -63,9 +60,6 @@ public class ReadMultiWriteLock {
      *
      * @param criticalSection
      *            the critical section
-     * @throws Throwable
-     *             if this thread was interrupted or any other exception thrown
-     *             from critical section
      */
     public static void readLocking(final Runnable criticalSection) {
         readLocking(callable(criticalSection));
@@ -76,9 +70,6 @@ public class ReadMultiWriteLock {
      *
      * @param criticalSection
      *            the critical section
-     * @throws Throwable
-     *             if this thread was interrupted or any other exception thrown
-     *             from critical section
      * @return value returned by critical section
      */
     @SneakyThrows
@@ -96,9 +87,6 @@ public class ReadMultiWriteLock {
      *
      * @param criticalSection
      *            the critical section
-     * @throws Throwable
-     *             if this thread was interrupted or any other exception thrown
-     *             from critical section
      */
     public static void writeLocking(final Runnable criticalSection) {
         writeLocking(callable(criticalSection));
@@ -145,7 +133,7 @@ public class ReadMultiWriteLock {
     /**
      * Accounts for one less writer lock.
      */
-    public synchronized void writingRelease() throws InterruptedException {
+    public synchronized void writingRelease() {
         writers--;
         notifyAll();
     }

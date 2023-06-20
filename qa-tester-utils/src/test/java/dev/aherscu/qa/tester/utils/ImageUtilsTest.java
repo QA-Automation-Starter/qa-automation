@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,16 +39,18 @@ import lombok.*;
 @SuppressWarnings({ "javadoc", "static-method" })
 public class ImageUtilsTest {
 
+    @SuppressWarnings("resource")
     @Test
     @SneakyThrows
     public void shouldReduceTo4Colors() {
-        Pipeline.from(
-            ImageUtilsTest.class
-                .getResourceAsStream("colored-image.png"))
-            .reduce(FOUR_BIT_COLOR_MODEL)
-            .into(Unchecked.supplier(
-                () -> new FileOutputStream("four-colors-image.png")),
-                "png");
+        try (val inputStream = ImageUtilsTest.class
+            .getResourceAsStream("colored-image.png")) {
+            Pipeline.from(inputStream)
+                .reduce(FOUR_BIT_COLOR_MODEL)
+                .into(Unchecked.supplier(
+                    () -> new FileOutputStream("four-colors-image.png")),
+                    "png");
+        }
     }
 
     @Test

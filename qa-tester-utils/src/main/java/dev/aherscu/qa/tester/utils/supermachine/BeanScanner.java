@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import dev.aherscu.qa.tester.utils.supermachine.traverser.*;
  * @param <T>
  *            the type of the traversed items.
  */
-public class BeanScanner<T> extends Scanner<T> {
+public final class BeanScanner<T> extends Scanner<T> {
 
     private BeanScanner(Stream<T> stream) {
         super(stream);

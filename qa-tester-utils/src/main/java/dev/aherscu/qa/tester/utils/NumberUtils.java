@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@ public final class NumberUtils {
      * NOTE: There is no generic method for parsing text into any given
      * {@link Number} subtype; this method will work for part of these subtypes,
      * for others will just throw an {@link UnsupportedOperationException}:
+     * </p>
      * <ul>
      * <li>{@link Byte#valueOf(String)}</li>
      * <li>{@link Short#valueOf(String)}</li>
@@ -48,7 +49,6 @@ public final class NumberUtils {
      * <li>{@link Float#valueOf(String)}</li>
      * <li>{@link Double#valueOf(String)}</li>
      * </ul>
-     * </p>
      *
      * @param text
      *            the text containing numeric value
@@ -84,7 +84,7 @@ public final class NumberUtils {
     public static int parseIntOrZero(final String value) {
         try {
             return parseInt(value);
-        } catch (final NumberFormatException e) {
+        } catch (@SuppressWarnings("unused") final NumberFormatException e) {
             return 0;
         }
     }
@@ -99,7 +99,7 @@ public final class NumberUtils {
     public static long parseLongOrZero(final String value) {
         try {
             return parseLong(value);
-        } catch (final NumberFormatException e) {
+        } catch (@SuppressWarnings("unused") final NumberFormatException e) {
             return 0;
         }
     }

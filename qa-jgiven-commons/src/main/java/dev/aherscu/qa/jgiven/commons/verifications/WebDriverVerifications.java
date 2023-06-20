@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -144,7 +144,7 @@ public class WebDriverVerifications<SELF extends WebDriverVerifications<SELF>>
      * locator is matching multiple elements then the first one is returned.
      *
      * <p>
-     * <tt>locateTimer</tt> metric will be updated not including the scrolling
+     * {@code locateTimer} metric will be updated not including the scrolling
      * into view.
      * </p>
      *
@@ -164,7 +164,7 @@ public class WebDriverVerifications<SELF extends WebDriverVerifications<SELF>>
      * Finds all elements matching specified locator.
      *
      * <p>
-     * <tt>locateTimer</tt> metric will be updated not including the scrolling
+     * {@code locateTimer} metric will be updated not including the scrolling
      * into view.
      * </p>
      *
@@ -181,7 +181,7 @@ public class WebDriverVerifications<SELF extends WebDriverVerifications<SELF>>
      * Scrolls specified element into view.
      *
      * <p>
-     * <tt>scrollIntoView</tt> metric will be updated.
+     * {@code scrollIntoView} metric will be updated.
      * </p>
      *
      * @param element

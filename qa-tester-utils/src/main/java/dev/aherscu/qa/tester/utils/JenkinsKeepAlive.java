@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 package dev.aherscu.qa.tester.utils;
 
-import java.lang.SuppressWarnings;
 import java.time.*;
 import java.util.*;
 
@@ -48,7 +47,6 @@ public class JenkinsKeepAlive implements ISuiteListener {
 
     @Override
     @SneakyThrows
-    @SuppressWarnings("boxing")
     public void onFinish(final ISuite suite) {
         timer.cancel();
     }

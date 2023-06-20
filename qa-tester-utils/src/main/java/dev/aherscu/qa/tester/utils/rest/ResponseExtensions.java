@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,10 +33,10 @@ public final class ResponseExtensions {
      * 
      * <p>
      * Assuming that you have the Lombok library in your classpath, then
-     * applying <code>@ExtensionMethod({ ResponseExtensions.class })</code> on
-     * your class will allow you to use
-     * <code>target.request().get().closeThis().getCookies()...</code>, where
-     * <code>target</code> is a {@link WebTarget}.
+     * applying {@code @ExtensionMethod({ ResponseExtensions.class })} on your
+     * class will allow you to use
+     * {@code target.request().get().closeThis().getCookies()...}, where
+     * {@code target} is a {@link WebTarget}.
      * 
      * @param thisResponse
      *            this response

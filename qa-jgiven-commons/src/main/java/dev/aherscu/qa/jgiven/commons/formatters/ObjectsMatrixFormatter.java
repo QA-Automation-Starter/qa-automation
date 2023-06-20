@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ public class ObjectsMatrixFormatter implements
      *
      * <p>
      * The length of each cell can be controlled by adding it as an argument,
-     * like: <code>@ObjectsMatrixFormatter.Annotation(args={"30"})</code>; the
+     * like: {@code @ObjectsMatrixFormatter.Annotation(args={"30"})}; the
      * default is 20.
      * </p>
      *

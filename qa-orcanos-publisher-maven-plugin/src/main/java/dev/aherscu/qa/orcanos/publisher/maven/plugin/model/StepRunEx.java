@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,13 +20,14 @@ package dev.aherscu.qa.orcanos.publisher.maven.plugin.model;
  * Extends {@link ExecutionSetRunResults.Run.TestInExecLine.Steps.Step.StepRun}
  * to provide specialized accessors.
  * {@link ExecutionSetRunResults.Run.TestInExecLine.Steps.Step.StepRun} is
- * generated from <tt>xsd/Execution_Set_Run_Results.xsd</tt> by the JAXB2 xjc
+ * generated from {@code xsd/Execution_Set_Run_Results.xsd} by the JAXB2 xjc
  * Maven plugin.
  */
 public class StepRunEx
     extends ExecutionSetRunResults.Run.TestInExecLine.Steps.Step.StepRun {
 
-    public StepRunEx withStatus(final String value) {
+    public StepRunEx withStatus(
+        @SuppressWarnings("hiding") final String value) {
         setStatus(value);
         return this;
     }

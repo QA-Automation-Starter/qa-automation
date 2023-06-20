@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,8 +43,8 @@ public abstract class AbstractConfigurableDataSourceFactory
     }
 
     /**
-     * Initialises itself using the properties in the given
-     * <code>Properties</code> object.
+     * Initialises itself using the properties in the given {@code Properties}
+     * object.
      *
      * @param configuration
      *            the configuration, not null
@@ -57,13 +57,13 @@ public abstract class AbstractConfigurableDataSourceFactory
         config = new CustomDatabaseConfiguration(
             new DatabaseConfigurationsFactory(
                 new Configuration(configuration))
-                    .create()
-                    .getDatabaseConfiguration(databaseName));
+                .create()
+                .getDatabaseConfiguration(databaseName));
     }
 
     /**
-     * Initialises itself using the properties in the given
-     * <code>Properties</code> object.
+     * Initialises itself using the properties in the given {@code Properties}
+     * object.
      *
      * @param configuration
      *            the configuration, not null
@@ -73,13 +73,13 @@ public abstract class AbstractConfigurableDataSourceFactory
         config = new CustomDatabaseConfiguration(
             new DatabaseConfigurationsFactory(
                 new Configuration(configuration))
-                    .create()
-                    .getDatabaseConfiguration());
+                .create()
+                .getDatabaseConfiguration());
     }
 
     /**
      * Allows overriding the database configuration loaded from the
-     * <code>unitils.properties</code> file via system properties.
+     * {@code unitils.properties} file via system properties.
      *
      * @author aherscu
      *

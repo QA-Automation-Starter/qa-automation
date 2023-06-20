@@ -300,6 +300,7 @@
     </dependency>
 
     <!-- TODO should be removed, it does not work well with Hamcrest -->
+    <!-- ISSUE: https://github.com/assertj/assertj/issues/3089 -->
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>

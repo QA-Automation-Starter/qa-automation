@@ -25,9 +25,7 @@ import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.testing.example.model.tutorial.*;
-import lombok.extern.slf4j.*;
 
-@Slf4j
 public class GoogleVerifications<SELF extends GoogleVerifications<SELF>>
     extends WebDriverVerifications<SELF> {
 

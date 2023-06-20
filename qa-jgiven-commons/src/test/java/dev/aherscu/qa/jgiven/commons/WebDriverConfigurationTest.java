@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import static org.apache.commons.lang3.StringUtils.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
+import java.lang.SuppressWarnings;
 import java.util.*;
 
 import org.apache.commons.configuration.*;
@@ -149,7 +150,7 @@ public class WebDriverConfigurationTest {
     // hence this test must run first, otherwise this index is unexpected
     @Test(priority = -1, dataProvider = "expectedDevices")
     public void shouldLoopOverCapabilities(
-        final DeviceType deviceType,
+        @SuppressWarnings("unused") final DeviceType deviceType,
         final String deviceName) {
         assertThat(configuration
             .capabilities()

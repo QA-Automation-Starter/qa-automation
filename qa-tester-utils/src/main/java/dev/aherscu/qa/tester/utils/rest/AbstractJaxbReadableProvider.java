@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,7 +36,6 @@ import lombok.extern.slf4j.*;
 public abstract class AbstractJaxbReadableProvider<T>
     extends AbstractReadableProvider<T> {
 
-    @SuppressWarnings("resource")
     @Override
     public T readFrom(final Class<T> type, final Type genericType,
         final Annotation[] annotations, final MediaType mediaType,

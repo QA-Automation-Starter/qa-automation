@@ -64,6 +64,8 @@ public class NotIndexedRabbitMqTest
     @Override
     @SneakyThrows
     protected void beforeMethodInitiateQueueHandler() {
+        @SuppressWarnings("resource")
+        // according to docs channels are closed when connection is closed
         val testingChannel = connection.createChannel();
         queueHandler = QueueHandler.<Integer, String> builder()
             .channel(testingChannel)

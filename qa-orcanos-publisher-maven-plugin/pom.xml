@@ -295,4 +295,16 @@
       </dependencies>
     </profile>
   </profiles>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <sourcepath>${delombok.directory};${jaxb.output}</sourcepath>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 </project>

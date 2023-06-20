@@ -33,7 +33,7 @@ import lombok.*;
  * @author aherscu
  *
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @JsonSerialize(using = Percentage.Serializer.class)
 @SuppressFBWarnings(value = "USBR_UNNECESSARY_STORE_BEFORE_RETURN",
     justification = "hashcode implemented by lombok")
@@ -78,7 +78,7 @@ public abstract class Percentage<T extends Number> extends Number {
         return value.doubleValue();
     }
 
-    public static class Serializer<T extends Percentage>
+    public static class Serializer<T extends Percentage<?>>
         extends JsonSerializer<T> {
         @Override
         public void serialize(

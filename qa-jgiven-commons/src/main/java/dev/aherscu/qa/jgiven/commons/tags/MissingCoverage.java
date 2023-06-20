@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import com.tngtech.jgiven.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MissingCoverage {
     /**
-     * @return list of missing coverage items
+     * @return array of missing coverage items
      */
     String[] value();
 }

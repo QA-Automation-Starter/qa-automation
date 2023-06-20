@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright 2022 Adrian Herscu
+  ~ Copyright 2023 Adrian Herscu
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -40,6 +40,7 @@
       table-layout: fixed;
       width: 100%;
       page-break-inside: auto;
+      /*noinspection CssUnknownProperty*/
       -fs-table-paginate: paginate;
     }
 
@@ -132,53 +133,74 @@
     {{#isSectionTitle}}
     <!-- section name -->
     <td class="centered" colspan="4"><b>{{name}}</b></td>
-    {{/isSectionTitle}}
-    {{^isSectionTitle}}
-    {{^isIntroWord}}
+    {{/
+  isSectionTitle}}
+    {{^
+  isSectionTitle}}
+    {{^
+  isIntroWord}}
     {{#words}}
     {{#-first}}
     <!-- kind of step -->
     <td class="right-aligned">
       <b>{{value}}</b>
     </td>
-    {{/-first}}
-    {{/words}}
+    {{/
+  -first}}
+    {{/
+  words}}
     <!-- Step & Expected Result -->
     <td class="word-wrapped">
       {{#words}}
-      {{^-first}}
+      {{^
+    -first}}
       {{#argumentInfo}}
       <span>{{formattedValue}}</span>
-      {{/argumentInfo}}
-      {{^argumentInfo}}
+      {{/
+    argumentInfo}}
+      {{^
+    argumentInfo}}
       <span>{{value}}</span>
-      {{/argumentInfo}}
-      {{/-first}}
-      {{/words}}
+      {{/
+    argumentInfo}}
+      {{/
+    -first}}
+      {{/
+    words}}
     </td>
     <!-- Actual Observed Result -->
     <td class="centered word-wrapped">
       {{#isStepFailed}}
       <p>{{errorMessage}}</p>
-      {{/isStepFailed}}
+      {{/
+    isStepFailed}}
       {{#isStepPassed}}
       <p>
         <!-- duplicated from previous column -->
         {{#words}}
-        {{^-first}}
+        {{^
+      -first}}
         {{#argumentInfo}}
         <span>{{formattedValue}}</span>
-        {{/argumentInfo}}
-        {{^argumentInfo}}
+        {{/
+      argumentInfo}}
+        {{^
+      argumentInfo}}
         <span>{{value}}</span>
-        {{/argumentInfo}}
-        {{/-first}}
-        {{/words}}
+        {{/
+      argumentInfo}}
+        {{/
+      -first}}
+        {{/
+      words}}
       </p>
-      {{/isStepPassed}}
-      {{^attachments}}
+      {{/
+    isStepPassed}}
+      {{^
+    attachments}}
       <p>[Nothing to attach]</p>
-      {{/attachments}}
+      {{/
+    attachments}}
       {{#attachments}}
       {{#-first}}
       {{#binary}}
@@ -190,12 +212,17 @@
       <!-- NOTE: assuming binary attachments are always images -->
       <img alt="Actual screenshot might be blocked by server"
            src="data:{{mediaType}};base64,{{#scaleImage}}{{value}}{{/scaleImage}}"/>
-      {{/binary}}
-      {{^binary}}
+      {{/
+    binary}}
+      {{^
+    binary}}
       {{value}}
-      {{/binary}}
-      {{/-first}}
-      {{/attachments}}
+      {{/
+    binary}}
+      {{/
+    -first}}
+      {{/
+    attachments}}
     </td>
     <!-- Status -->
     <td class="centered">
@@ -203,16 +230,23 @@
     </td>
     <!-- Duration [ms] -->
     <td class="centered">
-      {{#nanoToMillis}}{{durationInNanos}}{{/nanoToMillis}}
+      {{#nanoToMillis}}{{durationInNanos}}{{/
+    nanoToMillis}}
     </td>
-    {{/isIntroWord}}
-    {{/isSectionTitle}}
+    {{/
+  isIntroWord}}
+    {{/
+  isSectionTitle}}
   </tr>
-  {{/steps}}
+  {{/
+  steps}}
   </tbody>
 </table>
-{{/scenarioCases}}
-{{/scenarios}}
-{{/jgivenReport.model}}
+{{/
+scenarioCases}}
+{{/
+scenarios}}
+{{/
+jgivenReport.model}}
 </body>
 </html>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import com.google.common.collect.*;
 /**
  * Extends {@link ExecutionSetRunResults} to provide specialized accessors.
  * {@link ExecutionSetRunResults} is generated from
- * <tt>xsd/Execution_Set_Run_Results.xsd</tt> by the JAXB2 xjc Maven plugin.
+ * {@code xsd/Execution_Set_Run_Results.xsd} by the JAXB2 xjc Maven plugin.
  */
 @XmlRootElement(name = "Execution_Set_Run_Results")
 public class ExecutionSetRunResultsEx extends ExecutionSetRunResults {

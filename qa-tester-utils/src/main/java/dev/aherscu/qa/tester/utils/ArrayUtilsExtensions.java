@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,6 +35,8 @@ public class ArrayUtilsExtensions extends ArrayUtils {
      *            an array
      * @param defaultValue
      *            a default value
+     * @param <T>
+     *            type of array
      * @return the default value if the array is empty or null, otherwise the
      *         value at index 0
      */
@@ -51,6 +53,8 @@ public class ArrayUtilsExtensions extends ArrayUtils {
      *            array list
      * @param defaultValue
      *            a default value
+     * @param <T>
+     *            type of array
      * @return the default value if the list is empty or null, otherwise the
      *         value at index 0
      */

@@ -21,13 +21,11 @@ import org.apache.maven.plugins.annotations.*;
 import org.apache.maven.plugins.annotations.Mojo;
 
 import dev.aherscu.qa.jgiven.reporter.*;
-import lombok.extern.slf4j.*;
 
 /**
  * Generates JGiven report in QA format.
  */
 @Mojo(name = "report", defaultPhase = LifecyclePhase.VERIFY)
-@Slf4j
 public class QaJGivenReporterMojo extends AbstractQaJgivenReporterMojo {
 
     @Parameter(defaultValue = QaJGivenReporter.DEFAULT_TEMPLATE_RESOURCE)

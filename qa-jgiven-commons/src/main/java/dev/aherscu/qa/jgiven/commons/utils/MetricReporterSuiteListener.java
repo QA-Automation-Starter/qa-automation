@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,17 +40,17 @@ import lombok.extern.slf4j.*;
 
 /**
  * On finish, writes all accumulated metrics to console and to CSV files. The
- * CSV files are written to directory as specified via <tt>target-directory</tt>
- * parameter. If this parameter is not specified, then <tt>target</tt> is
+ * CSV files are written to directory as specified via {@code target-directory}
+ * parameter. If this parameter is not specified, then {@code target} is
  * assumed.
  * 
  * <p>
- * If <tt>metric-report-interval-ms</tt> parameter is specified, then plots the
+ * If {@code metric-report-interval-ms} parameter is specified, then plots the
  * accumulated metrics to console every so milliseconds.
  * </p>
  * 
  * <p>
- * To be used via <tt>testng.xml</tt>; see <a href=
+ * To be used via {@code testng.xml}; see <a href=
  * "https://testng.org/doc/documentation-main.html#parameters-testng-xml">
  * TestNG Documentation - Parameters from testng.xml</a> and <a href=
  * "https://testng.org/doc/documentation-main.html#listeners-testng-xml">TestNG
@@ -137,9 +137,10 @@ public class MetricReporterSuiteListener implements ISuiteListener {
             public void run() {
                 log.info("temporary metrics for {}", suite.getName());
 
-                ConsoleReporter.forRegistry(METRIC_REGISTRY)
-                    .build()
-                    .report();
+                try (val reporter = ConsoleReporter.forRegistry(METRIC_REGISTRY)
+                    .build()) {
+                    reporter.report();
+                }
             }
         }, intervalMs, intervalMs);
     }
@@ -150,13 +151,15 @@ public class MetricReporterSuiteListener implements ISuiteListener {
 
         log.info("metrics after executing {}", suite.getName());
 
-        ConsoleReporter.forRegistry(METRIC_REGISTRY)
-            .build()
-            .report();
+        try (val reporter = ConsoleReporter.forRegistry(METRIC_REGISTRY)
+            .build()) {
+            reporter.report();
+        }
 
-        CsvReporter.forRegistry(METRIC_REGISTRY)
-            .build(pathFor(suite).toFile())
-            .report();
+        try (val reporter = CsvReporter.forRegistry(METRIC_REGISTRY)
+            .build(pathFor(suite).toFile())) {
+            reporter.report();
+        }
 
         mergeCsvFilesOf(suite);
     }

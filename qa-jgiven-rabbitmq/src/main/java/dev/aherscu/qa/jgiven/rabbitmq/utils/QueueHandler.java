@@ -49,12 +49,13 @@ import lombok.extern.slf4j.*;
  *
  * <p>
  * Typical workflow:
+ * </p>
  * <ol>
  * <li>build it</li>
  * <li>start consumption -- this will run in background until closing</li>
  * <li>retrieve messages</li>
  * </ol>
- * </p>
+ *
  *
  * @param <K>
  *            type of message-key; it should have a proper hash function in
@@ -106,7 +107,8 @@ public class QueueHandler<K, V> implements AutoCloseable {
         return consumerTag =
             channel.basicConsume(queue, new DefaultConsumer(channel) {
                 @Override
-                public void handleDelivery(final String consumerTag,
+                public void handleDelivery(
+                    @SuppressWarnings("hiding") final String consumerTag,
                     final Envelope envelope,
                     final AMQP.BasicProperties properties, final byte[] body)
                     throws IOException {

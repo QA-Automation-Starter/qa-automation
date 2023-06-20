@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ package dev.aherscu.qa.tester.utils.rest;
 import java.io.*;
 import java.util.function.*;
 
-import javax.ws.rs.*;
 import javax.ws.rs.ext.*;
 
 import dev.aherscu.qa.tester.utils.logging.*;
@@ -42,11 +41,10 @@ public class LoggingReaderInterceptor
         super(logger);
     }
 
-    @SuppressWarnings("resource")
     @Override
     // NOTE: should not close the intercepted stream
     public Object aroundReadFrom(final ReaderInterceptorContext context)
-        throws IOException, WebApplicationException {
+        throws IOException {
         context.setInputStream(
             new LoggingInputStream(context.getInputStream(), logger));
         return context.proceed();

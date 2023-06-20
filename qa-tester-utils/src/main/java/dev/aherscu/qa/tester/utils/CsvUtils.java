@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +26,7 @@ import org.apache.commons.io.input.*;
 
 import com.opencsv.*;
 
+import lombok.*;
 import lombok.experimental.*;
 
 @UtilityClass
@@ -38,15 +39,16 @@ public final class CsvUtils {
      *            input stream for CSV data
      * @return non parallel stream of CSV lines parsed as String array
      */
+    @SneakyThrows
     public static Stream<String[]> stream(final InputStream inputStream) {
-        return StreamSupport.stream(
-            new CSVReaderBuilder(
-                new InputStreamReader(
-                    // NOTE: M$-Excel encodes CSV files as UTF-8-BOM !!!
-                    new BOMInputStream(requireNonNull(inputStream)),
-                    StandardCharsets.UTF_8))
-                        .build()
-                        .spliterator(),
-            false); // non parallel stream
+        // NOTE: M$-Excel encodes CSV files as UTF-8-BOM !!!
+        try (
+            val bomInputStream =
+                new BOMInputStream(requireNonNull(inputStream));
+            val streamReader =
+                new InputStreamReader(bomInputStream, StandardCharsets.UTF_8);
+            val csvReader = new CSVReaderBuilder(streamReader).build()) {
+            return StreamSupport.stream(csvReader.spliterator(), false);
+        }
     }
 }

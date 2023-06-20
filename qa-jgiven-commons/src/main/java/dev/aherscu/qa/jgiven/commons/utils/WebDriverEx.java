@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -121,7 +121,7 @@ public class WebDriverEx {
      *
      * @param capabilities
      *            the capabilities; might be null; the capabilities may include
-     *            <tt>name</tt> for registering this web driver for some sort of
+     *            {@code name} for registering this web driver for some sort of
      *            status reporting mechanism -- see
      *            {@link AbstractSauceLabsReporter}
      * @return the initialized driver, or null if {@link DryRunAspect#dryRun}
@@ -180,7 +180,7 @@ public class WebDriverEx {
 
     /**
      * @return the registered Web Driver session informations for current test
-     *         method, including those registered during <tt>@BeforeClass</tt>
+     *         method, including those registered during {@code @BeforeClass}
      */
     public static Iterable<WebDriverSessionInfo> sessionInfos() {
         return Iterables.concat(
@@ -196,7 +196,7 @@ public class WebDriverEx {
         final Capabilities capabilities) {
         val driverClass = Class.forName(requireNonNull(capabilities
             .getCapability("class"), "must have a class capability")
-                .toString())
+            .toString())
             .asSubclass(WebDriver.class);
 
         if (driverClass.isAssignableFrom(ChromeDriver.class))

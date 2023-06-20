@@ -45,9 +45,8 @@ public class QaJGivenPerClassReporter
 
     /**
      * Builds a new reporter configured with additional TestNG XML suite
-     * parameters. Currently, only <code>templateResource</code> is recognized.
+     * parameters. Currently, only {@code templateResource} is recognized.
      *
-     * @see AbstractQaJgivenReporter#with(XmlSuite)
      * @param xmlSuite
      *            TestNG XML suite
      * @return reporter configured

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +34,7 @@ import lombok.extern.jackson.*;
  * Generic implementation for OAuth 2.0 JAX-RS authentication filters.
  * <p>
  * Your concrete implementation may look like this:
+ * </p>
  * 
  * <pre>
  * protected TokenBlock retrieveTokenBlockFor(
@@ -52,7 +53,6 @@ import lombok.extern.jackson.*;
  *     }
  * }
  * </pre>
- * </p>
  */
 @SuperBuilder
 public abstract class OAuthRequestFilter
@@ -62,7 +62,7 @@ public abstract class OAuthRequestFilter
 
     // for testing purposes only
     public OAuthRequestFilter customTokenBlockCache(
-        final Cache<OAuthRequestFilter, TokenBlock> customTokenBlockCache) {
+        @SuppressWarnings("hiding") final Cache<OAuthRequestFilter, TokenBlock> customTokenBlockCache) {
         this.customTokenBlockCache = customTokenBlockCache;
         return this;
     }

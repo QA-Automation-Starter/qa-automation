@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ public class DiagnosticsAspect {
     }
 
     @Around("selfTestExecution()")
-    @SuppressWarnings({ "static-method", "unused" })
+    @SuppressWarnings({ "static-method", })
     public Object aroundSelfTest(
         final ProceedingJoinPoint thisJoinPoint)
         throws Throwable {
@@ -57,7 +57,7 @@ public class DiagnosticsAspect {
     // https://stackoverflow.com/questions/58626598/aspectj-exceptions-handling-on-multiple-matching-advices
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=552687
     @Around("selfTestExecution2()")
-    @SuppressWarnings({ "static-method", "unused" })
+    @SuppressWarnings({ "static-method", })
     public Object aroundSelfTest2(
         final ProceedingJoinPoint thisJoinPoint)
         throws Throwable {
@@ -72,13 +72,11 @@ public class DiagnosticsAspect {
     }
 
     @Pointcut("execution(void DiagnosticsAspect.selfTest())")
-    @SuppressWarnings({ "unused" })
     public void selfTestExecution() {
         // nothing to do here -- just defines a pointcut matcher
     }
 
     @Pointcut("execution(void DiagnosticsAspect.selfTest())")
-    @SuppressWarnings({ "unused" })
     public void selfTestExecution2() {
         // nothing to do here -- just defines a pointcut matcher
     }

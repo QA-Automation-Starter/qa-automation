@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -135,9 +135,9 @@ public class SshActions<SELF extends SshActions<SELF>>
     public SELF downloading(final URI url, final File file) {
         val fixedFilePath = FilenameUtils.separatorsToUnix(file.toString());
         log.debug("downloading {} from {}", fixedFilePath, url); //$NON-NLS-1$
-        try (val client = createClient()) {
+        try (val client = connect(createClient(), url)) {
             FileUtils.forceMkdir(new File(TARGET_DOWNLOADS));
-            connect(client, url)
+            client
                 .newSCPFileTransfer()
                 .download(fixedFilePath, TARGET_DOWNLOADS);
         }
@@ -174,7 +174,7 @@ public class SshActions<SELF extends SshActions<SELF>>
      *            0 to wait indefinitely
      * @param timeUnit
      *            timeout units
-     * @param out
+     * @param outputStream
      *            output stream to receive what the remote SSH process generate;
      *            be warned that this can be very big
      * @return {@link #self()}
@@ -185,18 +185,17 @@ public class SshActions<SELF extends SshActions<SELF>>
         final String command,
         final long timeout,
         final TimeUnit timeUnit,
-        final OutputStream out) {
+        final OutputStream outputStream) {
         log.debug("executing {} on {} with timeout {} {} and output stream {}", //$NON-NLS-1$
-            command, url, timeout, timeUnit.toString(), out);
-        try (val client = createClient()) {
-            try (val session = connect(client, url).startSession()) {
-                try (val execution = session.exec(toUnix(command))) {
-                    copy(execution.getInputStream(), out);
-                    execution.join(timeout, timeUnit);
-                    exitStatus.set(execution.getExitStatus());
-                    log.debug("remote SSH process ended"); //$NON-NLS-1$
-                }
-            }
+            command, url, timeout, timeUnit.toString(), outputStream);
+        try (val client = connect(createClient(), url);
+            val session = client.startSession();
+            val execution = session.exec(toUnix(command));
+            val inputStream = execution.getInputStream()) {
+            copy(inputStream, outputStream);
+            execution.join(timeout, timeUnit);
+            exitStatus.set(execution.getExitStatus());
+            log.debug("remote SSH process ended"); //$NON-NLS-1$
         }
 
         return self();

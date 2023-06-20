@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -76,6 +76,7 @@ public final class SshInfo {
      *
      * <p>
      * where:
+     * </p>
      * <ul>
      * <li>{@code <user-name>} -- required, the user name</li>
      * <li>auth={@code <method>} -- required, the authentication method; one of:
@@ -90,7 +91,7 @@ public final class SshInfo {
      * </li>
      * <li>{@code <password>} -- required, the password; can be empty
      * </ul>
-     * </p>
+     * 
      *
      * @param client
      *            the SSH client

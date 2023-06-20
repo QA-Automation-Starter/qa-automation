@@ -52,8 +52,8 @@ import dev.aherscu.qa.tester.utils.rest.*;
 import lombok.*;
 
 /**
- * Orcanos <tt>publish</tt> goal should be configured as in
- * <tt>plugin-config.xml</tt> file used for testing.
+ * Orcanos {@code publish} goal should be configured as in
+ * {@code plugin-config.xml} file used for testing.
  */
 @SuppressWarnings("ClassWithTooManyFields")
 @Mojo(name = "publish",
@@ -193,7 +193,7 @@ public class OrcanosPublisherMojo extends AbstractMojo {
             + "on execution set {2} with status {3}",
             requireNonNull(results.getRun(),
                 "couldn't get execution run result, check orcanos credentials")
-                    .getName(),
+                .getName(),
             reportHandle.testId(),
             reportHandle.executionSetId(),
             reportHandle.status()));
@@ -223,12 +223,15 @@ public class OrcanosPublisherMojo extends AbstractMojo {
         final ReportHandle reportHandle) {
 
         val attachmentId = randomUUID();
-        try (val reportToUpload = new FormDataMultiPart()
-            .bodyPart(new StreamDataBodyPart(
-                attachmentId.toString(),
-                buffer(openInputStream(reportHandle.sourceFile())),
-                attachmentId + reportFileExtension,
-                TEXT_HTML_TYPE))) {
+        try (val formDataMultiPart = new FormDataMultiPart();
+            val inputStream = openInputStream(reportHandle.sourceFile());
+            val bufferedInputStream = buffer(inputStream);
+            val reportToUpload =
+                formDataMultiPart.bodyPart(new StreamDataBodyPart(
+                    attachmentId.toString(),
+                    bufferedInputStream,
+                    attachmentId + reportFileExtension,
+                    TEXT_HTML_TYPE))) {
 
             getLog().info(
                 recordExecutionResults(
@@ -237,7 +240,7 @@ public class OrcanosPublisherMojo extends AbstractMojo {
                     retrieveExecutionSetRunResults(orcanosEndpointTarget,
                         reportHandle),
                     uploadReport(orcanosEndpointTarget, reportToUpload))
-                        .toString());
+                    .toString());
         } catch (final Throwable t) {
             getLog().error(reportHandle.toString(), t);
         }

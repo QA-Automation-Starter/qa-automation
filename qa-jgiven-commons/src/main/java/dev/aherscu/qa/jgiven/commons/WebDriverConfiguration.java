@@ -68,7 +68,7 @@ public class WebDriverConfiguration extends BaseConfiguration {
      *            {@link #requiredCapabilities()} and of {@link #capabilities()}
      *            methods, hence these methods will work correctly only if all
      *            instances are created with same `device.type`, or otherwise
-     *            {@link #resetNextRequiredCapabilitiesIndex()} is called in
+     *            {@code resetNextRequiredCapabilitiesIndex()} is called in
      *            between
      */
     public WebDriverConfiguration(final Configuration... configurations) {
@@ -154,6 +154,8 @@ public class WebDriverConfiguration extends BaseConfiguration {
     }
 
     /**
+     * @param prefix
+     *            prefix
      * @return capabilities for specified prefix; also adds
      *         {@code <thread-name>:<current-time-millis>} to retrieved
      *         capabilities
@@ -197,7 +199,7 @@ public class WebDriverConfiguration extends BaseConfiguration {
                 .from(requireNonNull(capabilities
                     .getCapability("type"),
                     "internal error, no type capability")
-                        .toString())
+                    .toString())
                 .equals(deviceType))
             .peek(capabilities -> log.trace("found required capabilities {}",
                 capabilities))
@@ -215,7 +217,7 @@ public class WebDriverConfiguration extends BaseConfiguration {
      * @param deviceType
      *            device type to filter by
      * @return next matching device capabilities as listed in
-     *         <tt>required-capabilities.properties</tt>
+     *         {@code required-capabilities.properties}
      */
     private Optional<DesiredCapabilitiesEx> nextRequiredCapabilities(
         final DeviceType deviceType) {
@@ -251,12 +253,12 @@ public class WebDriverConfiguration extends BaseConfiguration {
             .map(requiredCapabilitiesGroup -> new DesiredCapabilitiesEx(
                 capabilitiesFor(
                     provider() + requiredCapabilitiesGroup.get("type")))
-                        .with(requiredCapabilitiesGroup
-                            .entrySet()
-                            .stream()
-                            .map(e -> Maps.immutableEntry(
-                                e.getKey(),
-                                e.getValue()))));
+                .with(requiredCapabilitiesGroup
+                    .entrySet()
+                    .stream()
+                    .map(e -> Maps.immutableEntry(
+                        e.getKey(),
+                        e.getValue()))));
     }
 
     enum DeviceType {

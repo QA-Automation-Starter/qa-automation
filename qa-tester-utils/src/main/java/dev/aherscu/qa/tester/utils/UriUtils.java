@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,8 @@ import lombok.*;
 public class UriUtils {
     /**
      * Extracts the last segment of the path of specified URL. For example, for
-     * <code>http://somewhere.com/path/to/resource</code>, <code>resource</code>
-     * would be returned.
+     * {@code http://somewhere.com/path/to/resource}, {@code resource} would be
+     * returned.
      * 
      * @param url
      *            the URL
@@ -55,8 +55,8 @@ public class UriUtils {
 
     /**
      * Extracts the password from specified URL. For example, for
-     * <code>http://jdoe:s3cr3t@somewhere.com/path/to/resource</code>,
-     * <code>s3cr3t</code> would be returned.
+     * {@code http://jdoe:s3cr3t@somewhere.com/path/to/resource}, {@code s3cr3t}
+     * would be returned.
      * 
      * @param url
      *            the URL
@@ -105,8 +105,8 @@ public class UriUtils {
 
     /**
      * Extracts the user-name from specified URL. For example, for
-     * <code>http://jdoe:s3cr3t@somewhere.com/path/to/resource</code>,
-     * <code>jdoe</code> would be returned.
+     * {@code http://jdoe:s3cr3t@somewhere.com/path/to/resource}, {@code jdoe}
+     * would be returned.
      * 
      * @param url
      *            the URL

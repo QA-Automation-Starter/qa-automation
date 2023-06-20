@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,15 +22,12 @@ import javax.annotation.concurrent.*;
 import org.apache.commons.configuration.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
-import lombok.extern.slf4j.*;
 
 /**
  * Represents the configuration parameters for tests.
  *
  * @author aherscu
  */
-@SuppressWarnings("boxing")
-@Slf4j
 @ThreadSafe
 public final class TestConfiguration extends WebDriverConfiguration {
 

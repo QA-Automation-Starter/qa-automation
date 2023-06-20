@@ -29,7 +29,7 @@ public abstract class AbstractQaJgivenReporterMojo extends AbstractMojo {
 
     /**
      * Directory where the reports are generated to. Defaults to
-     * <tt>${project.build.directory}/jgiven-reports/qa-html</tt>.
+     * {@code ${project.build.directory}/jgiven-reports/qa-html}.
      */
     @Parameter(
         defaultValue = "${project.build.directory}/jgiven-reports/qa-html")
@@ -37,14 +37,14 @@ public abstract class AbstractQaJgivenReporterMojo extends AbstractMojo {
 
     /**
      * Directory to read the JSON report files from. Defaults to
-     * <tt>${project.build.directory}/jgiven-reports/json</tt>.
+     * {@code ${project.build.directory}/jgiven-reports/json}.
      */
     @Parameter(defaultValue = "${project.build.directory}/jgiven-reports/json")
     protected File    sourceDirectory;
 
     /**
      * Whether to generate an aggregated JSON report model for debugging
-     * purposes. Defaults to <tt>false</tt>.
+     * purposes. Defaults to {@code false}.
      */
     @Parameter(defaultValue = "false")
     protected boolean debug;
@@ -56,7 +56,7 @@ public abstract class AbstractQaJgivenReporterMojo extends AbstractMojo {
     protected String  datePattern;
 
     /**
-     * Whether to generate PDF reports. Defaults to <tt>true</tt>.
+     * Whether to generate PDF reports. Defaults to {@code true}.
      */
     @Parameter(defaultValue = "true")
     protected boolean pdf;

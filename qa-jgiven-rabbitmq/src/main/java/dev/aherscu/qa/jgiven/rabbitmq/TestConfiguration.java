@@ -25,15 +25,12 @@ import com.rabbitmq.client.*;
 
 import dev.aherscu.qa.jgiven.rabbitmq.utils.*;
 import dev.aherscu.qa.tester.utils.config.BaseConfiguration;
-import lombok.extern.slf4j.*;
 
 /**
  * Represents the configuration parameters for tests.
  *
  * @author aherscu
  */
-@SuppressWarnings("boxing")
-@Slf4j
 @ThreadSafe
 public final class TestConfiguration extends BaseConfiguration {
 

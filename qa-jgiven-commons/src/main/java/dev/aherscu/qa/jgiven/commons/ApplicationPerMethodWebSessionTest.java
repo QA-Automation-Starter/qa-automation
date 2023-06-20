@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,6 +40,14 @@ import lombok.extern.slf4j.*;
  * override above behaviors as needed.
  * </p>
  *
+ * @param <C>
+ *            type of WebDriverConfiguration
+ * @param <GIVEN>
+ *            type of fixtures
+ * @param <WHEN>
+ *            type of actions
+ * @param <THEN>
+ *            type of verification
  * @author aherscu
  */
 @UITest
@@ -65,7 +73,7 @@ public abstract class ApplicationPerMethodWebSessionTest<C extends WebDriverConf
         log.debug("after method quitting web driver");
         requireNonNull(webDriver.get(),
             "web driver not initialized nothing to quit")
-                .safelyQuit();
+            .safelyQuit();
     }
 
     /**

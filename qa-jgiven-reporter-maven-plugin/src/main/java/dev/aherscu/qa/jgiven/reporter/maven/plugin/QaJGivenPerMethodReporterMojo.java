@@ -27,7 +27,7 @@ import dev.aherscu.qa.jgiven.reporter.*;
 
 /**
  * Generates JGiven report in QA format per method with associated attributes.
- * Scans all JGiven report <tt>.json</tt> files for specified
+ * Scans all JGiven report {@code .json} files for specified
  * {@link #referenceTag}. Only reports having such tag are processed. For every
  * scenario method, all its tags are written in an associated "attributes" file.
  * The association is done by file name. These "attributes" can later be used as
@@ -43,9 +43,9 @@ public class QaJGivenPerMethodReporterMojo
     // TODO allow mapping current Execution Set IDs to other ID
 
     /**
-     * JGiven <tt>Reference</tt>> tag. Not linked in this module in order to
+     * JGiven {@code Reference}> tag. Not linked in this module in order to
      * allow faster builds (otherwise the build of this module would depend on
-     * <tt>qa-jgiven-commons</tt> module).
+     * {@code qa-jgiven-commons} module).
      */
     @Parameter(defaultValue = "Reference")
     protected String referenceTag = "Reference";

@@ -58,6 +58,8 @@ public abstract class Numeric<T extends Number> {
      * JSON serialization logic for {@link Numeric}s.
      *
      * @author aherscu
+     * @param <T>
+     *            type of numeric
      *
      */
     public static class Serializer<T extends Numeric<?>>

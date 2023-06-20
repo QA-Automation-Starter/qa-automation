@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,12 +33,19 @@ import dev.aherscu.qa.tester.utils.config.*;
  * works as required.
  *
  * @author aherscu
+ * @param <T>
+ *            type of scenario
+ * @param <GIVEN>
+ *            type of fixtures
+ * @param <WHEN>
+ *            type of actions
+ * @param <THEN>
+ *            type of verifications
  *
  */
 @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
     value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
     justification = "JGiven framework limitation")
-@SuppressWarnings({ "boxing" })
 abstract public class AbstractMockedServiceTest<T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
     extends
     UnitilsScenarioTest<BaseConfiguration, T, GIVEN, WHEN, THEN> {
