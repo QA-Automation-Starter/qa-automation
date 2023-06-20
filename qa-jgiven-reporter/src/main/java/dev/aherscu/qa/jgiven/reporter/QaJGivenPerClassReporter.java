@@ -70,6 +70,7 @@ public class QaJGivenPerClassReporter
         for (val reportModelFile : listJGivenReports()) {
 
             log.debug("reading " + reportModelFile);
+            // TODO make it read .mustache files and drop the extension here
             val targetReportFile = reportFile(reportModelFile,
                 EXTENSION_SEPARATOR_STR + getExtension(templateResource));
             try (val reportWriter = fileWriter(targetReportFile)) {

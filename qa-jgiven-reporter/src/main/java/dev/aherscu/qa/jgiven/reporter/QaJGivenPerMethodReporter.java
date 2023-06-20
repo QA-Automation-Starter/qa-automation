@@ -128,6 +128,7 @@ public class QaJGivenPerMethodReporter
                 val targetReportFile = new File(outputDirectory,
                     targetNameFor(scenarioModel)
                         + EXTENSION_SEPARATOR_STR
+                // TODO make it read .mustache files and drop the extension here
                         + getExtension(templateResource));
                 try (val reportWriter = fileWriter(targetReportFile)) {
                     template()

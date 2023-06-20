@@ -51,6 +51,7 @@ import lombok.extern.slf4j.*;
 @Slf4j
 @ToString(callSuper = true)
 public class TestRailReporter extends QaJGivenPerMethodReporter {
+    // FIXME use .mustache extension
     @SuppressWarnings("hiding")
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/permethod-reporter.testrail";
