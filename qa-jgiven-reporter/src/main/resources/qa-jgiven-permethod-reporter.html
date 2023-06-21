@@ -87,7 +87,8 @@
 <!-- TODO this is a common subtemplate; should refactor -->
 <h2><b>{{description}}</b></h2>
 <p>{{date}}</p>
-<p>[{{#tagIds}}{{#simpleName}}{{this}}{{/simpleName}}{{^-last}},{{/-last}}{{/tagIds}}]</p>
+<p>
+  [{{#tagIds}}{{#simpleName}}{{this}}{{/simpleName}}{{^-last}},{{/-last}}{{/tagIds}}]</p>
 
 {{#scenarioCases}}
 <h3>Test case:{{-index}}</h3>
