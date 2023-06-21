@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,18 +24,18 @@ import dev.aherscu.qa.jgiven.commons.utils.*;
 /**
  * SPR information.
  *
- * @author sgershman
+ * @author aherscu
  *
  */
 @IsTag(prependType = true,
-    name = "SPR",
+    name = "defect",
     style = "background-color: darkgreen; color: white; font-weight: bold",
     descriptionGenerator = ReferenceTagDescriptionGenerator.class,
     hrefGenerator = ReferenceHrefGenerator.class)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface SPR {
+public @interface Defect {
     /**
-     * @return list of SPR identifiers (numeric part only)
+     * @return array of defect identifiers (numeric part only)
      */
     String[] value();
 }

@@ -21,7 +21,6 @@ import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
 import java.io.*;
 
 import org.apache.commons.io.*;
-import org.testng.*;
 import org.testng.xml.*;
 
 import com.google.gson.*;
@@ -30,18 +29,15 @@ import com.tngtech.jgiven.report.model.*;
 
 import lombok.*;
 import lombok.experimental.*;
-import lombok.extern.slf4j.*;
 
 /**
  * All in one report.
  */
 @SuperBuilder(toBuilder = true)
 @NoArgsConstructor(force = true)
-@Slf4j
 @ToString(callSuper = true)
 public class QaJGivenReporter
-    extends AbstractQaJgivenReporter<CompleteReportModel, QaJGivenReporter>
-    implements IReporter {
+    extends AbstractQaJgivenReporter<CompleteReportModel, QaJGivenReporter> {
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/qa-jgiven-reporter.html";
 
@@ -58,9 +54,8 @@ public class QaJGivenReporter
 
     /**
      * Builds a new reporter configured with additional TestNG XML suite
-     * parameters. Currently, only <code>templateResource</code> is recognized.
+     * parameters. Currently, only {@code templateResource} is recognized.
      *
-     * @see AbstractQaJgivenReporter#with(XmlSuite)
      * @param xmlSuite
      *            TestNG XML suite
      * @return reporter configured
@@ -82,6 +77,8 @@ public class QaJGivenReporter
     @SneakyThrows
     public void generate() {
         val targetReportFile = new File(outputDirectory,
+            // FIXME Warning:(80, 13) Argument
+            // 'FilenameUtils.getName(templateResource)' might be null
             FilenameUtils.getName(templateResource));
         // FIXME should supply a reportModelFile (a .json file)
         val aggregatedReportModel = reportModel(targetReportFile)

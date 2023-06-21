@@ -51,7 +51,7 @@ public class StreamMatchersExtensions extends StreamMatchers {
      * combinable matchers.
      *
      * @param supplier
-     *            the specific collection; e.g. <tt>ArrayList::new</tt>
+     *            the specific collection; e.g. ArrayList::new
      * @param matcher
      *            against which to compare objects from the Stream
      * @param <T>
@@ -150,8 +150,8 @@ public class StreamMatchersExtensions extends StreamMatchers {
     /**
      * @param expectedNumberOfItems
      *            the expected number of items
-     * @param <T>type
-     *            of stream item
+     * @param <T>
+     *            type of stream item
      * @return the counting matcher
      */
     public static <T> Matcher<Stream<T>> counts(
@@ -246,6 +246,8 @@ public class StreamMatchersExtensions extends StreamMatchers {
                 }
 
                 accumulator = new LinkedList<>();
+                // FIXME Warning:(249, 52) Stream might have already been linked
+                // or consumed
                 final Iterator<T> actualIterator = actual.iterator();
                 int index = 0;
                 while (actualIterator.hasNext()) {

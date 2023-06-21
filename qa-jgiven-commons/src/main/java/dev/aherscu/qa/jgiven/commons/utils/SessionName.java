@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,8 +65,8 @@ public class SessionName {
      *            following this format:
      *            {@code class:method:paramsHash:threadId:timestamp} wherein
      *            each part is optional
-     * @return the parsed {@link SessionName}, or {@link #INVALID} if the name
-     *         cannot be split into five parts
+     * @return the parsed , or {@link #INVALID} if the name cannot be split into
+     *         five parts
      * @throws NullPointerException
      *             if the name is null
      */

@@ -51,6 +51,8 @@ import lombok.extern.slf4j.*;
 @Slf4j
 @ToString(callSuper = true)
 public class TestRailReporter extends QaJGivenPerMethodReporter {
+    // FIXME use .mustache extension
+    @SuppressWarnings("hiding")
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/permethod-reporter.testrail";
 
@@ -78,7 +80,6 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
      * <dd>the TestRail location</dd>
      * </dl>
      * 
-     * @see QaJGivenPerMethodReporter#with(XmlSuite)
      * @param xmlSuite
      *            TestNG XML suite
      * @return reporter configured
@@ -117,18 +118,20 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
     private ResultForCaseResponse addResultForCase(
         final ScenarioModel scenarioModel,
         final File reportFile, final String testCaseId) throws IOException {
-        return fromJson(testRailClient(testRailUrl)
-            .sendPost(format("add_result_for_case/{0}/{1}",
-                testRailRunId,
-                testCaseId),
-                ImmutableMap.builder()
-                    .put("status_id",
-                        Status.from(scenarioModel.getExecutionStatus()).id)
-                    .put("comment",
-                        IOUtils.toString(new FileReader(reportFile)))
-                    .build())
-            .toString(),
-            ResultForCaseResponse.class);
+        try (val fileReader = new FileReader(reportFile)) {
+            return fromJson(testRailClient(testRailUrl)
+                .sendPost(format("add_result_for_case/{0}/{1}",
+                    testRailRunId,
+                    testCaseId),
+                    ImmutableMap.builder()
+                        .put("status_id",
+                            Status.from(scenarioModel.getExecutionStatus()).id)
+                        .put("comment",
+                            IOUtils.toString(fileReader))
+                        .build())
+                .toString(),
+                ResultForCaseResponse.class);
+        }
     }
 
     @Override

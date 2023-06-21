@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,16 +24,22 @@ import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
 import edu.umd.cs.findbugs.annotations.*;
-import lombok.extern.slf4j.*;
 
 /**
  * Provides basic application testing scenario sections.
  *
+ * @param <C>
+ *            type of WebDriverConfiguration
+ * @param <GIVEN>
+ *            type of fixtures
+ * @param <WHEN>
+ *            type of actions
+ * @param <THEN>
+ *            type of verification
  * @author Adrian Herscu
  *
  */
 @SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE")
-@Slf4j
 // BUG see UnitilsScenarioTest#unitilsBeforeMethod call to
 // UnitilsScenarioTest#setFormattedThreadName
 // <C extends AbstractConfiguration<? extends Configuration>, T extends

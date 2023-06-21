@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -82,11 +82,11 @@ public abstract class AbstractConfiguration<T extends Configuration>
     }
 
     /**
-     * Resolves {@link AbstractConfiguration} references in a string.
+     * Resolves references in a string.
      *
      * @param value
      *            the value to process after {@link Object#toString()} is called
-     * @return the supplied value with all its <code>${...}</code> references
+     * @return the supplied value with all its {@code ${...}} references
      *         resolved
      */
     public String resolve(final Object value) {

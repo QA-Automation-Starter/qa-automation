@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,6 +48,7 @@ public class StreamMatchersExtensionsTest {
                 .peek(i -> log.debug("scanning {}", i)),
                 m);
         } catch (final AssertionError ae) {
+            log.debug(">>> {}", ae.getMessage());
             assertThat(Stream
                 .of(1, 4, 5, 6, 7, 9)
                 .peek(i -> log.debug("scanning {}", i)),

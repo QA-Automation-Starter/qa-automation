@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import java.io.*;
 
 import com.samskivert.mustache.*;
 
+import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 
@@ -100,12 +101,15 @@ public final class TemplateUtils {
          *            the name of the resource
          * @return the template
          */
+        @SneakyThrows
         public Template loadFrom(final String name) {
             log.debug("loading template resource from {}", name); //$NON-NLS-1$
-            return loadFrom(new InputStreamReader(
+            try (val r = new InputStreamReader(
                 requireNonNull(TemplateUtils.class.getResourceAsStream(name),
                     name + " resource missing"),
-                UTF_8));
+                UTF_8)) {
+                return loadFrom(r);
+            }
         }
     }
 }

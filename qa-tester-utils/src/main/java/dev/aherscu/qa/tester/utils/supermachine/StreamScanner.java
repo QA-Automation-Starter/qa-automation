@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,12 +21,12 @@ import java.util.stream.*;
 /**
  * A scanner iterating over items of a stream. Nothing really fancy.
  * 
- * @param <X>
+ * @param <T>
  *            the types of the stream items.
  */
-public class StreamScanner<X> extends Scanner<X> {
+public final class StreamScanner<T> extends Scanner<T> {
 
-    private StreamScanner(Stream<X> stream) {
+    private StreamScanner(Stream<T> stream) {
         super(stream);
     }
 
@@ -37,7 +37,7 @@ public class StreamScanner<X> extends Scanner<X> {
      *            the stream to scan.
      * @param <X>
      *            the type of stream items.
-     * @return
+     * @return the scanner
      */
     public static <X> Scanner<X> scan(Stream<X> stream) {
         return new StreamScanner<>(stream);
@@ -45,6 +45,6 @@ public class StreamScanner<X> extends Scanner<X> {
 
     @Override
     protected <X> Scanner<X> create(Stream<X> source) {
-        return new StreamScanner<X>(source);
+        return new StreamScanner<>(source);
     }
 }

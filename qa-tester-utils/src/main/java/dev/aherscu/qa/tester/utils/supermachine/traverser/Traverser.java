@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,6 +30,8 @@ public class Traverser {
      *            Any Java Object
      * @param skip
      *            String[] of class names to not include in the tally
+     * @param stopClass
+     *            stopClass
      * @param visitor
      *            Visitor is called for every object encountered during the Java
      *            object graph traverser.
@@ -156,7 +158,7 @@ public class Traverser {
                     continue;
                 }
                 stack.add(value);
-            } catch (IllegalAccessException ignored) {
+            } catch (@SuppressWarnings("unused") IllegalAccessException ignored) {
             }
         }
     }

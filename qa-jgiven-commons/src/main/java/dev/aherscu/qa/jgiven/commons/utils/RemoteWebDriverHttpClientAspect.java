@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ package dev.aherscu.qa.jgiven.commons.utils;
 import static dev.aherscu.qa.tester.utils.ExecutorUtils.*;
 import static org.apache.commons.lang3.StringUtils.*;
 
-import java.lang.SuppressWarnings;
 import java.util.concurrent.*;
 import java.util.concurrent.TimeoutException;
 
@@ -53,7 +52,8 @@ public class RemoteWebDriverHttpClientAspect implements ISuiteListener {
      *            the execution
      * 
      * @return the {@link HttpResponse}
-     * 
+     * @throws Throwable
+     *             any of below
      * @throws TimeoutException
      *             if the time limit is reached
      * @throws InterruptedException
@@ -66,7 +66,6 @@ public class RemoteWebDriverHttpClientAspect implements ISuiteListener {
      *             if an {@code Error} was thrown
      */
     @Around("executeHttpRequestMethod()")
-    @SuppressWarnings("static-method")
     public Object aroundExecuteHttpRequestMethod(
         final ProceedingJoinPoint thisJoinPoint)
         throws Throwable {

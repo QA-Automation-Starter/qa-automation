@@ -29,10 +29,8 @@ import org.apache.commons.lang3.*;
 import org.testng.annotations.*;
 
 import lombok.*;
-import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
 
-@Slf4j
 public class QueueHandlerTest extends AbstractQueueHandlerTest {
 
     @Test
@@ -55,13 +53,15 @@ public class QueueHandlerTest extends AbstractQueueHandlerTest {
     public void shouldRetrieveOneMessage() {
         try (val connection = LOCAL_RABBITMQ.newConnection();
             val channel = connection.createChannel();
-            val queueHandler = QueueHandler.<Integer, byte[]> builder()
-                .channel(channel)
-                .queue(channel.queueDeclare().getQueue())
-                .indexingBy(message -> Arrays.hashCode(message.content))
-                .consumingBy(Function.identity())
-                .publishingBy(Function.identity())
-                .build()) {
+            // NOTE lombok.val with Eclipse Java Compiler does not work here
+            final QueueHandler<Integer, byte[]> queueHandler =
+                QueueHandler.<Integer, byte[]> builder()
+                    .channel(channel)
+                    .queue(channel.queueDeclare().getQueue())
+                    .indexingBy(message -> Arrays.hashCode(message.content))
+                    .consumingBy(Function.identity())
+                    .publishingBy(Function.identity())
+                    .build()) {
 
             queueHandler.publishValues(Stream.of(new byte[] { 1, 2, 3, 4 }));
 

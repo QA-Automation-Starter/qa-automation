@@ -61,7 +61,7 @@ import net.jodah.failsafe.*;
  */
 @ThreadSafe
 @Slf4j
-@SuppressWarnings({ "static-method", "boxing" })
+@SuppressWarnings({ "boxing" })
 public class GenericVerifications<T extends AnyScenarioType, SELF extends GenericVerifications<T, SELF>>
     extends StageEx<SELF>
     implements ScenarioType<T> {
@@ -90,6 +90,8 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      *
      * @param step
      *            the block to execute
+     * @param additionalRetryPolicies
+     *            additional retry policies
      * @return {@link #self()}
      * @throws AssertionError
      *             if the supplied object does not match
@@ -109,6 +111,8 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      *
      * @param step
      *            the block to execute
+     * @param additionalRetryPolicies
+     *            additional retry policies
      * @return {@link #self()}
      * @throws AssertionError
      *             if the supplied object does not match
@@ -140,6 +144,8 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      *            the matcher
      * @param <V>
      *            the type of object to assert upon
+     * @param additionalRetryPolicies
+     *            additional retry policies
      * @return {@link #self()}
      * @throws AssertionError
      *             if the supplied object does not match
@@ -230,6 +236,8 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
         @StringFormatter.Annotation(maxWidth = 400) final String sql,
         @ObjectsMatrixFormatter.Annotation(
             args = { "30" }) final Object[][] expectedResults) {
+        // FIXME Warning:(240, 14) 'isEqualTo()' between objects of
+        // inconvertible types 'Condition<Object[][]>' and 'List<Object[]>'
         assertThat(resultSetOf(sql))
             .isEqualTo(matchedBy(equalTo(expectedResults)));
         return self();

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,11 +27,10 @@ import dev.aherscu.qa.jgiven.commons.utils.*;
 /**
  * Demonstrates that the TestNG retry mechanism is interfered by JGiven's
  * instrumentation; see https://github.com/TNG/JGiven/issues/312
- *
+ * <p>
  * Appears to be fixed in 0.18.1 according to
  * https://github.com/TNG/JGiven/pull/422
  */
-@SuppressWarnings({ "static-method", "boxing" })
 @Listeners({ ScenarioTestListenerEx.class })
 public class JGivenSelfTests extends
     ScenarioTest<JGivenSelfTests.SomeGiven<?>, JGivenSelfTests.SomeWhen<?>, JGivenSelfTests.SomeThen<?>> {

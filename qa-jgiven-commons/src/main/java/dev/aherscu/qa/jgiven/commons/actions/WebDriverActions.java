@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ import net.jodah.failsafe.*;
  */
 @ThreadSafe
 @Slf4j
-@SuppressWarnings({ "boxing", "serial", "ClassWithTooManyMethods" })
+@SuppressWarnings({ "boxing", "ClassWithTooManyMethods" })
 public class WebDriverActions<SELF extends WebDriverActions<SELF>>
     extends GenericActions<WebDriverScenarioType, SELF>
     implements MayAttachScreenshots<SELF> {
@@ -87,7 +87,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
      * is retrieved via specified supplier before each retry.
      *
      * <p>
-     * <tt>click</tt> metric will be updated and includes locating the element
+     * {@code click} metric will be updated and includes locating the element
      * and scrolling into view.
      * </p>
      *
@@ -116,7 +116,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
      * Finds all elements matching specified locator.
      *
      * <p>
-     * <tt>locateTimer</tt> metric will be updated not including the scrolling
+     * {@code locateTimer} metric will be updated not including the scrolling
      * into view.
      * </p>
      *
@@ -136,7 +136,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
      * before each retry.
      *
      * <p>
-     * <tt>click</tt> metric will be updated and includes locating the element.
+     * {@code click} metric will be updated and includes locating the element.
      * </p>
      *
      * @param elementSupplier
@@ -372,7 +372,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
      * locator is matching multiple elements then the first one is returned.
      *
      * <p>
-     * <tt>locateTimer</tt> metric will be updated not including the scrolling
+     * {@code locateTimer} metric will be updated not including the scrolling
      * into view.
      * </p>
      *
@@ -393,7 +393,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
      * several time if the count of elements is zero.
      *
      * <p>
-     * <tt>locateTimer</tt> metric will be updated.
+     * {@code locateTimer} metric will be updated.
      * </p>
      *
      * @param locator
@@ -411,7 +411,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
      * several time if the count of elements is zero.
      *
      * <p>
-     * <tt>locateTimer</tt> metric will be updated.
+     * {@code locateTimer} metric will be updated.
      * </p>
      *
      * @param locator
@@ -445,7 +445,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
      * Scrolls specified element into view.
      *
      * <p>
-     * <tt>scrollIntoView</tt> metric will be updated.
+     * {@code scrollIntoView} metric will be updated.
      * </p>
      *
      * @param element

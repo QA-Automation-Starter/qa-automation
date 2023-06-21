@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,8 +56,6 @@ public class AuthenticationRequestFilter
 
     /**
      * @return Basic Authentication string based on user name and password
-     *
-     * @see #AuthenticationRequestFilter(String, String)
      */
     protected String basicAuthentication() {
         return "Basic " //$NON-NLS-1$

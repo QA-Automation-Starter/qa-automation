@@ -25,9 +25,7 @@ import com.tngtech.jgiven.annotation.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.jgiven.rabbitmq.model.*;
 import dev.aherscu.qa.jgiven.rabbitmq.utils.*;
-import lombok.extern.slf4j.*;
 
-@Slf4j
 public class RabbitMqVerifications<K, V, SELF extends RabbitMqVerifications<K, V, SELF>>
     extends GenericVerifications<RabbitMqScenarioType, SELF> {
     @ExpectedScenarioState

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,6 +43,8 @@ public final class ReflectionUtils {
      *            fields). This makes field traverser on a class faster as it
      *            does not need to continually process known fields like
      *            primitives.
+     * @param fields
+     *            fields
      */
     @SuppressFBWarnings(
         value = { "DE_MIGHT_IGNORE", "DP_DO_INSIDE_DO_PRIVILEGED" },
@@ -55,7 +57,7 @@ public final class ReflectionUtils {
                 if (!field.isAccessible()) {
                     try {
                         field.setAccessible(true);
-                    } catch (Exception ignored) {
+                    } catch (@SuppressWarnings("unused") Exception ignored) {
                     }
                 }
 
@@ -71,7 +73,7 @@ public final class ReflectionUtils {
                     fields.add(field);
                 }
             }
-        } catch (Throwable ignored) {
+        } catch (@SuppressWarnings("unused") Throwable ignored) {
             // ignored
         }
     }
@@ -105,11 +107,10 @@ public final class ReflectionUtils {
     }
 
     @SuppressFBWarnings("REC_CATCH_EXCEPTION")
-    @SuppressWarnings("unchecked")
     public static Method getMethod(Class c, String method, Class... types) {
         try {
             return c.getMethod(method, types);
-        } catch (Exception nse) {
+        } catch (@SuppressWarnings("unused") Exception nse) {
             return null;
         }
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,12 +74,12 @@ public class OrcanosPublisherMojoTest extends AbstractMojoTestCase {
     }
 
     public void testSelfResponseOk() {
-        assertEquals(wireMockedTarget
+        try (val response = wireMockedTarget
             .path("/self-test")
             .request()
-            .get()
-            .readEntity(String.class),
-            "ok");
+            .get()) {
+            assertEquals(response.readEntity(String.class), "ok");
+        }
     }
 
     @SneakyThrows
@@ -89,7 +89,7 @@ public class OrcanosPublisherMojoTest extends AbstractMojoTestCase {
             DEFAULT_EXECUTION_SET_ID));
         wireMockServer.verify(postRequestedFor(
             urlPathEqualTo(SLASH + UPLOAD_ATTACHMENT))
-                .withQueryParam(PROJECT_ID, equalTo(EXPECTED_PROJECT_ID)));
+            .withQueryParam(PROJECT_ID, equalTo(EXPECTED_PROJECT_ID)));
         wireMockServer.verify(postRequestedFor(
             urlEqualTo(SLASH + RECORD_EXECUTION_RESULT)));
 

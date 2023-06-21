@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,13 +40,14 @@ import lombok.extern.slf4j.*;
  *
  * <p>
  * Currently, following tags are added:
+ * </p>
  * <ul>
  * <li>device name</li>
  * <li>platform name</li>
  * <li>platform version</li>
  * </ul>
  * in addition, number of test retries, if any, is added too.
- * </p>
+ *
  */
 @NoArgsConstructor // required by TestNG framework
 @AllArgsConstructor(access = MODULE) // for unit testing
@@ -70,14 +71,14 @@ public final class ScenarioTestListenerEx extends ScenarioTestListener {
         final ITestContext context) {
         return ((Map<String, ReportModel>) context
             .getAttribute(REPORT_MODELS_ATTRIBUTE))
-                .entrySet()
+            .entrySet()
+            .stream()
+            .filter(reportModelEntry -> ((TestRunner) context)
+                .getTestClasses()
                 .stream()
-                .filter(reportModelEntry -> ((TestRunner) context)
-                    .getTestClasses()
-                    .stream()
-                    .map(IClass::getName)
-                    .anyMatch(testClassName -> testClassName.equals(
-                        reportModelEntry.getKey())));
+                .map(IClass::getName)
+                .anyMatch(testClassName -> testClassName.equals(
+                    reportModelEntry.getKey())));
     }
 
     private static void reportRetries(
@@ -94,7 +95,7 @@ public final class ScenarioTestListenerEx extends ScenarioTestListener {
                 TestRetryAnalyzer.retryCounters
                     .get(qualifiedMethodName)
                     .toString())
-                        .setPrependType(true);
+                .setPrependType(true);
 
             reportModel.addTag(retriesTag);
             scenario.addTag(retriesTag);

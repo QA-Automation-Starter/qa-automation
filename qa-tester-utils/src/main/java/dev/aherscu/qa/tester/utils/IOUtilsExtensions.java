@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,9 +36,11 @@ public class IOUtilsExtensions extends IOUtils {
 
     @SneakyThrows(IOException.class)
     public static Properties propertiesFrom(final File file) {
-        val properties = new Properties();
-        properties.load(newReader(file, UTF_8));
-        return properties;
+        try (val reader = newReader(file, UTF_8)) {
+            val properties = new Properties();
+            properties.load(reader);
+            return properties;
+        }
     }
 
     @SneakyThrows(IOException.class)

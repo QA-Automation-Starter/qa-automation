@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,9 +72,8 @@ public abstract class Scanner<T> {
 
     /**
      * Scans the elements of the source and returns a scanner emitting relevant
-     * items of the given type. Unlike {@link}, this method can return fewer
-     * items according to subclass logic. Subclasses implement the actual
-     * scanning algorithm.
+     * items of the given type. This method can return fewer items according to
+     * subclass logic. Subclasses implement the actual scanning algorithm.
      * 
      * @param clazz
      *            the type selector.

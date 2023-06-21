@@ -69,6 +69,7 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
 
     @Builder.Default
     protected final File       sourceDirectory          =
+        // FIXME Warning:(72, 40) 'Optional.get()' without 'isPresent()' check
         Config.config().getReportDir().get();
     @Builder.Default
     protected final File       outputDirectory          =
@@ -102,17 +103,18 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
 
     /**
      * @param xmlSuites
-     *            The list of <code>XmlSuite</code>
+     *            The list of {@code XmlSuite}
      * @param suites
-     *            The list of <code>ISuite</code>
+     *            The list of {@code ISuite}
      * @param outputDirectory
      *            The output directory is ignored, since it is specified by
      *            JGiven reporter infrastructure
      */
+    @Override
     public void generateReport(
         final List<XmlSuite> xmlSuites,
         final List<ISuite> suites,
-        final String outputDirectory) {
+        @SuppressWarnings("hiding") final String outputDirectory) {
         xmlSuites.forEach(xmlSuite -> log.info("xml suite {}", xmlSuite));
         // ISSUE: should be empty for xml driven invocations (?)
         // if yes, then should throw an unsupported exception
@@ -134,7 +136,7 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
      * <dd>the date pattern to use for presenting dates, or
      * {@link #DEFAULT_DATE_PATTERN}</dd>
      * <dt>templateResourceXXX</dt>
-     * <dd>the template resource file name to apply; the <code>XXX</code> is the
+     * <dd>the template resource file name to apply; the {@code XXX} is the
      * concrete reporter implementation name (class)</dd>
      * </dl>
      *
