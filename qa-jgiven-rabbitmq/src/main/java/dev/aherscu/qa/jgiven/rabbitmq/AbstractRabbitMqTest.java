@@ -21,11 +21,9 @@ import org.testng.annotations.*;
 import com.rabbitmq.client.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.rabbitmq.actions.*;
-import dev.aherscu.qa.jgiven.rabbitmq.fixtures.*;
 import dev.aherscu.qa.jgiven.rabbitmq.model.*;
+import dev.aherscu.qa.jgiven.rabbitmq.steps.*;
 import dev.aherscu.qa.jgiven.rabbitmq.utils.*;
-import dev.aherscu.qa.jgiven.rabbitmq.verifications.*;
 import lombok.*;
 
 public abstract class AbstractRabbitMqTest<K, V> extends
