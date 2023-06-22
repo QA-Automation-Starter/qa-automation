@@ -82,6 +82,7 @@
     <module>qa-s3-uploader-maven-plugin</module>
     <module>qa-jgiven-commons</module>
     <module>qa-jgiven-rabbitmq</module>
+    <module>qa-jgiven-elasticsearch</module>
     <module>qa-testing-parent</module>
     <module>qa-testing-example</module>
     <module>qa-testing-archetype</module>
