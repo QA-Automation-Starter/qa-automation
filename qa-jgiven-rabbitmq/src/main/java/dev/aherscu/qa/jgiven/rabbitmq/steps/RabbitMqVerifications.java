@@ -14,24 +14,35 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.rabbitmq.fixtures;
+package dev.aherscu.qa.jgiven.rabbitmq.steps;
+
+import java.util.stream.*;
+
+import org.hamcrest.*;
 
 import com.tngtech.jgiven.annotation.*;
 
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
+import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.jgiven.rabbitmq.model.*;
 import dev.aherscu.qa.jgiven.rabbitmq.utils.*;
 
-public class RabbitMqFixtures<K, V, SELF extends RabbitMqFixtures<K, V, SELF>>
-    extends GenericFixtures<RabbitMqScenarioType, SELF> {
-
-    @ProvidedScenarioState
+public class RabbitMqVerifications<K, V, SELF extends RabbitMqVerifications<K, V, SELF>>
+    extends GenericVerifications<RabbitMqScenarioType, SELF> {
+    @ExpectedScenarioState
     protected QueueHandler<K, V> queueHandler;
 
-    public SELF a_queue(@SuppressWarnings("hiding") @POJOFormat(
-        includeFields = { "queue",
-            "channel" }) final QueueHandler<K, V> queueHandler) {
-        this.queueHandler = queueHandler;
-        return self();
+    public SELF the_retrieved_messages(
+        final Matcher<Stream<Message<V>>> matcher) {
+        return eventually_assert_that(
+            () -> queueHandler.recievedMessages().values().stream(),
+            matcher);
+    }
+
+    public SELF the_message_with_$_key(
+        final K key,
+        final Matcher<Message<V>> matcher) {
+        return eventually_assert_that(
+            () -> queueHandler.recievedMessages().get(key),
+            matcher);
     }
 }
