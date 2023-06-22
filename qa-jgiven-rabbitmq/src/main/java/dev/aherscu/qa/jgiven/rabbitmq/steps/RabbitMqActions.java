@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.rabbitmq.actions;
+package dev.aherscu.qa.jgiven.rabbitmq.steps;
 
 import java.util.*;
 import java.util.function.*;

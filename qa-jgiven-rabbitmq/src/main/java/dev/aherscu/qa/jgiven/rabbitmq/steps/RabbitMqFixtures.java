@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.rabbitmq.fixtures;
+package dev.aherscu.qa.jgiven.rabbitmq.steps;
 
 import com.tngtech.jgiven.annotation.*;
 
