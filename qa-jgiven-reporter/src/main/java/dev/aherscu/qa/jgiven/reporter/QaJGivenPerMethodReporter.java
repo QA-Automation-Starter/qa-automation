@@ -62,9 +62,8 @@ public class QaJGivenPerMethodReporter
 
     /**
      * Builds a new reporter configured with additional TestNG XML suite
-     * parameters. Currently, only <code>templateResource</code> is recognized.
+     * parameters. Currently, only {@code templateResource} is recognized.
      *
-     * @see AbstractQaJgivenReporter#with(XmlSuite)
      * @param xmlSuite
      *            TestNG XML suite
      * @return reporter configured
@@ -129,6 +128,7 @@ public class QaJGivenPerMethodReporter
                 val targetReportFile = new File(outputDirectory,
                     targetNameFor(scenarioModel)
                         + EXTENSION_SEPARATOR_STR
+                // TODO make it read .mustache files and drop the extension here
                         + getExtension(templateResource));
                 try (val reportWriter = fileWriter(targetReportFile)) {
                     template()

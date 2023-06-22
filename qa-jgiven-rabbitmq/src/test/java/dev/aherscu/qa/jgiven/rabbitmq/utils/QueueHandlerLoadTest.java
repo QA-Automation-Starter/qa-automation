@@ -33,10 +33,8 @@ import com.rabbitmq.client.*;
 
 import dev.aherscu.qa.jgiven.rabbitmq.model.*;
 import lombok.*;
-import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
 
-@Slf4j
 public class QueueHandlerLoadTest extends AbstractQueueHandlerTest {
 
     @Test
@@ -46,13 +44,15 @@ public class QueueHandlerLoadTest extends AbstractQueueHandlerTest {
         @Optional("1000") final int messageQuantity) {
         try (val connection = LOCAL_RABBITMQ.newConnection();
             val channel = connection.createChannel();
-            val queueHandler = QueueHandler.<String, String> builder()
-                .channel(channel)
-                .queue(channel.queueDeclare().getQueue())
-                .indexingBy(message -> message.properties.getMessageId())
-                .consumingBy(bytes -> new String(bytes, UTF_8))
-                .publishingBy(String::getBytes)
-                .build()) {
+            // NOTE lombok.val with Eclipse Java Compiler does not work here
+            final QueueHandler<String, String> queueHandler =
+                QueueHandler.<String, String> builder()
+                    .channel(channel)
+                    .queue(channel.queueDeclare().getQueue())
+                    .indexingBy(message -> message.properties.getMessageId())
+                    .consumingBy(bytes -> new String(bytes, UTF_8))
+                    .publishingBy(String::getBytes)
+                    .build()) {
 
             queueHandler.consume();
 
@@ -83,14 +83,16 @@ public class QueueHandlerLoadTest extends AbstractQueueHandlerTest {
         val noise = "noise-" + RandomStringUtils.random(10);
         try (val connection = LOCAL_RABBITMQ.newConnection();
             val channel = connection.createChannel();
-            val queueHandler = QueueHandler.<Integer, String> builder()
-                .channel(connection.createChannel())
-                .queue(channel.queueDeclare().getQueue())
-                // NOTE should fail parsing noise
-                .indexingBy(message -> parseInt(message.content))
-                .consumingBy(bytes -> new String(bytes, UTF_8))
-                .publishingBy(String::getBytes)
-                .build()) {
+            // NOTE lombok.val with Eclipse Java Compiler does not work here
+            final QueueHandler<Integer, String> queueHandler =
+                QueueHandler.<Integer, String> builder()
+                    .channel(channel)
+                    .queue(channel.queueDeclare().getQueue())
+                    // NOTE should fail parsing noise
+                    .indexingBy(message -> new Integer(message.content))
+                    .consumingBy(bytes -> new String(bytes, UTF_8))
+                    .publishingBy(String::getBytes)
+                    .build()) {
 
             queueHandler.consume();
 

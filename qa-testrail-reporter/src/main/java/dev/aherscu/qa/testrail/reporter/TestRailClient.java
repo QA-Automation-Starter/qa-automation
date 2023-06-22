@@ -42,20 +42,16 @@ public class TestRailClient {
     }
 
     private static String getAuthorization(String user, String password) {
-        try {
-            return new String(
-                Base64.getEncoder().encode((user + ":" + password).getBytes()));
-        } catch (IllegalArgumentException e) {
-            // Not thrown
-        }
-
-        return "";
+        return new String(
+            Base64.getEncoder().encode((user + ":" + password).getBytes()));
     }
 
     /**
      * Get/Set Password
      * <p>
      * Returns/sets the password used for authenticating the API requests.
+     * 
+     * @return the password
      */
     public String getPassword() {
         return this.m_password;
@@ -69,6 +65,8 @@ public class TestRailClient {
      * Get/Set User
      * <p>
      * Returns/sets the user used for authenticating the API requests.
+     * 
+     * @return the user
      */
     public String getUser() {
         return this.m_user;
@@ -94,6 +92,12 @@ public class TestRailClient {
      * same as java.util.Map.
      * <p>
      * If 'get_attachment/:attachment_id', returns a String
+     * 
+     * @param uri
+     *            uri
+     * @param data
+     *            data
+     * @return the response
      */
     public Object sendGet(String uri, String data) {
         return this.sendRequest("GET", uri, data);
@@ -119,6 +123,12 @@ public class TestRailClient {
      * an instance of JSONObject or JSONArray (depending on the API method). In
      * most cases, this returns a JSONObject instance which is basically the
      * same as java.util.Map.
+     * 
+     * @param uri
+     *            uri
+     * @param data
+     *            data
+     * @return the response
      */
     public Object sendPost(String uri, Object data) {
         return this.sendRequest("POST", uri, data);

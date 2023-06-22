@@ -22,7 +22,7 @@ import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
 
 /**
- * Models a request to Orcanos <tt>Get_Execution_Run_Details_XML</tt> REST API
+ * Models a request to Orcanos {@code Get_Execution_Run_Details_XML} REST API
  * method.
  */
 @SuppressFBWarnings(

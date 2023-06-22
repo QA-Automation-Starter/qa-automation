@@ -34,7 +34,7 @@ import lombok.*;
  * 
  * <p>
  * This is a JUnit test, not a TestNG, hence cannot be configured via the *
- * <tt>testng.xml</tt> file.
+ * {@code testng.xml} file.
  * </p>
  * 
  * @author Adrian Herscu

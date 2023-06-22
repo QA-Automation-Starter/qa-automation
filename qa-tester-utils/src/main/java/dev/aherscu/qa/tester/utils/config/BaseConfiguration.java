@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ public class BaseConfiguration
      * capability2.appium.version  =1.13.0
      * </pre>
      *
-     * calling <tt>groupsOf("capability")</tt> will yield two groups as
+     * calling {@code groupsOf("capability")} will yield two groups as
      * following:
      *
      * <pre>

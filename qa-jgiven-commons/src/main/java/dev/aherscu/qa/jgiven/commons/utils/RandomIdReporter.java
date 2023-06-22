@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ import lombok.extern.slf4j.*;
  * On finish, writes all identifiers used by this test suite into a file as
  * specified by the {@code identifiers-file} parameter of defining TestNG
  * descriptor. If no such parameter is defined, or is otherwise blank, then
- * <tt>identifiers.txt</tt> is assumed.
+ * {@code identifiers.txt} is assumed.
  */
 @Slf4j
 public class RandomIdReporter implements ISuiteListener {

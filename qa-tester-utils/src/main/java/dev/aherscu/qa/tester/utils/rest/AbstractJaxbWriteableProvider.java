@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ public abstract class AbstractJaxbWriteableProvider<T>
     }
 
     @Override
-    @SuppressWarnings({ "unchecked", "resource", })
+    @SuppressWarnings({ "unchecked" })
     public void writeTo(final T t, final Class<?> type, final Type genericType,
         final Annotation[] annotations, final MediaType mediaType,
         final MultivaluedMap<String, Object> httpHeaders,

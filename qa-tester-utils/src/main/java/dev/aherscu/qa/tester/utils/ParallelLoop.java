@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,8 +35,8 @@ import lombok.extern.slf4j.*;
 @AllArgsConstructor
 public final class ParallelLoop {
     /**
-     * The default parallel loop; chain with {@link #threadPool} and
-     * {@link #repetitions} to configure.
+     * The default parallel loop; chain with threadPool and repetitions to
+     * configure.
      *
      * @see #ParallelLoop()
      */

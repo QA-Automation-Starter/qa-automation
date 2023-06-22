@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,11 +40,8 @@ public class TrustAllX509TrustManager implements X509TrustManager {
      * Disables SSL certificate and host validation.
      *
      * <p>
-     * Use as follows: <code>
-     * static {
-     *   TrustAllX509TrustManager.disableSslCertificateValidation();
-     * }
-     * </code>
+     * Use as follows: {@code static {
+     * TrustAllX509TrustManager.disableSslCertificateValidation(); } }
      * </p>
      */
     public static void disableSslCertificateValidation() {

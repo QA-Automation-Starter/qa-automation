@@ -20,6 +20,7 @@ import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
 import static org.apache.commons.lang3.ObjectUtils.*;
 
 import java.io.*;
+import java.lang.SuppressWarnings;
 import java.util.*;
 
 import org.apache.commons.lang3.tuple.*;
@@ -55,7 +56,9 @@ final class ReportHandle {
     private final Map<String, String> attributes;
 
     /**
-     * Returns the device name from <tt>DeviceName</tt> attribute.
+     * Returns the device name from {@code DeviceName} attribute.
+     * 
+     * @return the device name
      * 
      */
     public String deviceName() {
@@ -63,7 +66,9 @@ final class ReportHandle {
     }
 
     /**
-     * Returns the execution set identifier from <tt>Reference</tt> attribute.
+     * Returns the execution set identifier from {@code Reference} attribute.
+     * 
+     * @return the id
      * 
      */
     public String executionSetId() {
@@ -71,8 +76,10 @@ final class ReportHandle {
     }
 
     /**
-     * Returns supported <tt>Reference</tt> has an execution set id and a test
+     * Returns supported {@code Reference} has an execution set id and a test
      * case id.
+     * 
+     * @return true if has a execution set id
      * 
      */
     public boolean hasSupportedReference() {
@@ -80,7 +87,9 @@ final class ReportHandle {
     }
 
     /**
-     * Returns supported status can be <tt>SUCCESS</tt> or <tt>FAIL</tt>.
+     * Returns supported status can be {@code SUCCESS</tt> or <tt>FAIL}.
+     * 
+     * @return true if supported
      * 
      */
     public boolean hasSupportedStatus() {
@@ -88,7 +97,9 @@ final class ReportHandle {
     }
 
     /**
-     * Returns the platform name from <tt>PlatformName</tt> attribute.
+     * Returns the platform name from {@code PlatformName} attribute.
+     * 
+     * @return platform name
      * 
      */
     public String platformName() {
@@ -96,7 +107,9 @@ final class ReportHandle {
     }
 
     /**
-     * Returns the platform version from <tt>PlatformVersion</tt> attribute.
+     * Returns the platform version from {@code PlatformVersion} attribute.
+     * 
+     * @return platform version
      * 
      */
     public String platformVersion() {
@@ -126,6 +139,8 @@ final class ReportHandle {
     /**
      * Returns the report source file to upload.
      * 
+     * @return the source file
+     * 
      */
     public File sourceFile() {
         return sourceFile;
@@ -134,19 +149,23 @@ final class ReportHandle {
     /**
      * Returns the execution status.
      * 
+     * @return the status
+     * 
      */
     public Status status() {
         return Status.from(status);
     }
 
     /**
-     * Returns the test case identifier from <tt>Reference</tt> attribute.
+     * Returns the test case identifier from {@code Reference} attribute.
      * 
+     * @return the test id
      */
     public String testId() {
         return substringBefore(reference(), UNDERSCORE);
     }
 
+    @SuppressWarnings("hiding")
     enum Status {
         PASS, FAIL, UNSUPPORTED;
 

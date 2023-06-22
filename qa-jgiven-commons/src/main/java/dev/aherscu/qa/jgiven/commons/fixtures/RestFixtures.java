@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,6 @@ import lombok.extern.slf4j.*;
  */
 @ThreadSafe
 @Slf4j
-@SuppressWarnings("boxing")
 public class RestFixtures<SELF extends RestFixtures<SELF>>
     extends GenericFixtures<RestScenarioType, SELF> {
 
@@ -46,7 +45,10 @@ public class RestFixtures<SELF extends RestFixtures<SELF>>
     protected final ThreadLocal<Client> client = new ThreadLocal<>();
 
     /**
-     * Creates a {@link Client}.
+     * Keeps a {@link Client} for later operations.
+     * 
+     * @param aClient
+     *            a REST client
      *
      * @return {@link #self()}
      */

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,9 @@ import lombok.extern.slf4j.*;
 /**
  * Creates {@link AutoReturnable}s. To be used with
  * {@link AutoReturnableObjectPool}.
+ * 
+ * @param <T>
+ *            type of object to pool
  */
 @Slf4j
 @ThreadSafe

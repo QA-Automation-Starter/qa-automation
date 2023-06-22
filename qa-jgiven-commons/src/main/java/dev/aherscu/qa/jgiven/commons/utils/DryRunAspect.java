@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,10 +31,10 @@ import lombok.extern.slf4j.*;
 /**
  * Monitors execution of JGiven step methods. If {@code dryrun} system property
  * is not blank then it shortcuts the actual method execution.
- * 
+ *
  * <p>
  * Other approach for dry running is available via JGiven 0.18.2 library see
- * https://github.com/TNG/JGiven/issues/418
+ * <a href="https://github.com/TNG/JGiven/issues/418">#418</a>
  * </p>
  * <p>
  * Update: planned for 1.0.0; see https://github.com/TNG/JGiven/pull/435

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -126,8 +126,7 @@ public class MatchersExtensions extends Matchers {
      * </pre>
      *
      * <p>
-     * should fail because there are two items containing
-     * <code>[[test]]-3</code>
+     * should fail because there are two items containing {@code [[test]]-3}
      * </p>
      *
      * @param regex
@@ -298,7 +297,6 @@ public class MatchersExtensions extends Matchers {
      * In this case, {@link Matchers #hasSize(Matcher)} expects an
      * {@link Integer}, while {@link Matchers#greaterThanOrEqualTo(Comparable)}
      * provides a double because of the {@code 0.9} multiplication.
-     * </p>
      * </p>
      *
      * <p>

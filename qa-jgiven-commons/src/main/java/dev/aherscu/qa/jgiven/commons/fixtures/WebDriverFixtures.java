@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import static dev.aherscu.qa.jgiven.commons.utils.WebDriverEx.*;
 import static dev.aherscu.qa.tester.utils.UrlUtils.*;
 import static java.util.Objects.*;
 
+import java.lang.SuppressWarnings;
 import java.util.function.*;
 
 import javax.annotation.concurrent.*;
@@ -75,7 +76,7 @@ public class WebDriverFixtures<SELF extends WebDriverFixtures<SELF>>
      */
     @NestedSteps
     public SELF a_web_driver(
-        @WebDriverFormatter.Annotation final WebDriverEx webDriver) {
+        @SuppressWarnings("hiding") @WebDriverFormatter.Annotation final WebDriverEx webDriver) {
         log.debug("setting web driver {}", webDriver);
         // TODO pretty print
         currentStep
@@ -143,7 +144,7 @@ public class WebDriverFixtures<SELF extends WebDriverFixtures<SELF>>
      * Scrolls specified element into view.
      *
      * <p>
-     * <tt>scrollIntoView</tt> metric will be updated.
+     * {@code scrollIntoView} metric will be updated.
      * </p>
      *
      * @param element

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -118,8 +118,8 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
             try {
                 val typesAnnotatedWithBeanUtilsConverter = new Reflections(
                     "dev.aherscu.qa.jgiven.commons.scenarios") //$NON-NLS-1$
-                        .getTypesAnnotatedWith(
-                            BeanUtilsConverter.class);
+                    .getTypesAnnotatedWith(
+                        BeanUtilsConverter.class);
                 for (val clazz : typesAnnotatedWithBeanUtilsConverter) {
                     val annotation = clazz
                         .getAnnotation(BeanUtilsConverter.class);
@@ -349,7 +349,7 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
      * thread named such this.
      * </p>
      * <p>
-     * Finally, notifies <tt>Unitils</tt> about being before class via
+     * Finally, notifies {@code Unitils} about being before class via
      * {@link TestListener#beforeTestClass(Class)} and
      * {@link TestListener#afterCreateTestObject(Object)}.
      * </p>
@@ -375,7 +375,7 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
      * {@link TestListener#beforeTestSetUp} is called.
      *
      * <p>
-     * If the {@link #randomId} for <tt>current thread</tt> was not already set,
+     * If the {@link #randomId} for {@code current thread} was not already set,
      * then generates one and sets it. The generated random id is URL-friendly.
      * Thread starting time is stored in {@link #startTime}.
      * </p>
@@ -400,7 +400,7 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
      * thread named such this.
      * </p>
      * <p>
-     * Finally, notifies <tt>Unitils</tt> about being before method via
+     * Finally, notifies {@code Unitils} about being before method via
      * {@link TestListener#beforeTestSetUp(Object, Method)}
      * </p>
      *
@@ -452,7 +452,6 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
         // }
     }
 
-    @SuppressWarnings("serial")
     @SuppressFBWarnings("SE_NO_SERIALVERSIONID")
     private static class Configurations extends
         ConcurrentHashMap<Class<? extends AbstractConfiguration<?>>, AbstractConfiguration<?>> {

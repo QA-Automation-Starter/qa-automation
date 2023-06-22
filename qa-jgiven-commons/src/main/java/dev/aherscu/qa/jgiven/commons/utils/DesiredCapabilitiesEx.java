@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@ package dev.aherscu.qa.jgiven.commons.utils;
 
 import static java.util.Objects.*;
 
-import java.lang.SuppressWarnings;
 import java.util.*;
 import java.util.stream.*;
 
@@ -31,7 +30,6 @@ import lombok.*;
 /**
  * Allows definition of {@link DesiredCapabilities} to be chained.
  */
-@SuppressWarnings("serial")
 @SuppressFBWarnings("SE_NO_SERIALVERSIONID")
 public class DesiredCapabilitiesEx extends DesiredCapabilities {
 
@@ -68,7 +66,7 @@ public class DesiredCapabilitiesEx extends DesiredCapabilities {
     }
 
     /**
-     * Chains a <tt>true</tt> capability.
+     * Chains a {@code true} capability.
      * 
      * @param key
      *            the capability to chain
@@ -115,7 +113,7 @@ public class DesiredCapabilitiesEx extends DesiredCapabilities {
         return with(key,
             requireNonNull(getCapability(key),
                 "capability does not exist")
-                    .toString()
+                .toString()
                 + value);
     }
 }

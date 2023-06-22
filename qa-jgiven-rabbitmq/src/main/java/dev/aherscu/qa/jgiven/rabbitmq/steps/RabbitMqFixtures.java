@@ -28,7 +28,7 @@ public class RabbitMqFixtures<K, V, SELF extends RabbitMqFixtures<K, V, SELF>>
     @ProvidedScenarioState
     protected QueueHandler<K, V> queueHandler;
 
-    public SELF a_queue(@POJOFormat(
+    public SELF a_queue(@SuppressWarnings("hiding") @POJOFormat(
         includeFields = { "queue",
             "channel" }) final QueueHandler<K, V> queueHandler) {
         this.queueHandler = queueHandler;

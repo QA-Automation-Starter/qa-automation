@@ -84,12 +84,14 @@ public class TestRailReportModel extends QaJGivenReportModel<ScenarioModel> {
             new File(screenshotsDirectory, screenshotHash + ".png");
         log.trace("saving screenshot to {}", screenshotFile);
         try (
-            val screenshotOutputStream = new FileOutputStream(screenshotFile)) {
-            ImageUtils.Pipeline
-                .from(new ByteArrayInputStream(Base64
-                    .getMimeDecoder()
-                    .decode(frag.execute().getBytes(UTF_8))))
-                .into(screenshotOutputStream, "png");
+            val screenshotOutputStream = new FileOutputStream(screenshotFile);
+            val byteArrayInputStream = new ByteArrayInputStream(Base64
+                .getMimeDecoder()
+                .decode(frag.execute().getBytes(UTF_8)));
+            val fileOutputStream = ImageUtils.Pipeline
+                .from(byteArrayInputStream)
+                .into(screenshotOutputStream, "png")) {
+            // nothing to do here
         }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,10 +25,11 @@ import com.saucelabs.saucerest.*;
 import lombok.extern.slf4j.*;
 
 /**
- * Reports <tt>pass</tt> or <tt>fail</tt> to SauceLabs per Web Driver session.
+ * Reports {@code pass} or {@code fail} to SauceLabs per Web Driver session.
  *
  * <p>
  * See also:
+ * </p>
  * <ul>
  * <li><a href=
  * "https://wiki.saucelabs.com/display/DOCS/Setting+Test+Status+to+Pass+or+Fail">Setting
@@ -37,9 +38,9 @@ import lombok.extern.slf4j.*;
  * <li><a href="https://github.com/saucelabs/saucerest-java">Sauce REST API
  * client for Java</a></li>
  * </ul>
- * </p>
+ *
  * <p>
- * Add to your <tt>testng.xml</tt> file in order to report test statuses to
+ * Add to your {@code testng.xml} file in order to report test statuses to
  * SauceLabs.
  * </p>
  *

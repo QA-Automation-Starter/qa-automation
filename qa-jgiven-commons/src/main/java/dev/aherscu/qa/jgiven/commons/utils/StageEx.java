@@ -107,11 +107,6 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
         return super.$(description, function);
     }
 
-    /**
-     * TBD
-     *
-     * @return {@link #self()}
-     */
     protected final SELF alert(
         final Consumer<Alert> action,
         final WebDriver driver) {
@@ -269,7 +264,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
      * the first one is returned.
      *
      * <p>
-     * <tt>locateTimer</tt> metric will be updated including the scrolling into
+     * {@code locateTimer} metric will be updated including the scrolling into
      * view, if needed.
      * </p>
      *
@@ -295,7 +290,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
      * is matching multiple elements then the first one is returned.
      *
      * <p>
-     * <tt>locateTimer</tt> metric will be updated.
+     * {@code locateTimer} metric will be updated.
      * </p>
      *
      * @param locator
@@ -317,7 +312,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
      * several time if the count of elements is zero.
      *
      * <p>
-     * <tt>locateTimer</tt> metric will be updated.
+     * {@code locateTimer} metric will be updated.
      * </p>
      *
      * @param locator
@@ -326,7 +321,6 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
      *            the context
      * @return list of DOM elements
      */
-    @SuppressWarnings("static-method")
     protected final List<WebElement> ensureElements(
         final By locator,
         final SearchContext context) {

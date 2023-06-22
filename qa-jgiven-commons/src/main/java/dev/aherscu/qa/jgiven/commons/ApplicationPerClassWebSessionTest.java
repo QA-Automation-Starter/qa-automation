@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,6 +39,14 @@ import lombok.extern.slf4j.*;
  * </p>
  *
  * @author Adrian Herscu
+ * @param <C>
+ *            type of WebDriverConfiguration
+ * @param <GIVEN>
+ *            type of fixtures
+ * @param <WHEN>
+ *            type of actions
+ * @param <THEN>
+ *            type of verification
  */
 @Listeners({ ExceptionPerThreadListener.class })
 @Slf4j
@@ -64,7 +72,7 @@ public abstract class ApplicationPerClassWebSessionTest<C extends WebDriverConfi
         log.debug("after class quitting web driver");
         requireNonNull(webDriver.get(),
             "web driver not initialized nothing to quit")
-                .safelyQuit();
+            .safelyQuit();
     }
 
     /**
@@ -103,10 +111,9 @@ public abstract class ApplicationPerClassWebSessionTest<C extends WebDriverConfi
      * @see #continuing_section(Runnable)
      */
     protected void continuing_section() {
-        continuing_section(() -> {
-            log.error( // NOTE: cannot throw here because it breaks dryrun-mode
-                "web driver session dropped and no recovery procedure defined");
-        });
+        continuing_section(() -> log.error( // NOTE: cannot throw here because
+                                            // it breaks dryrun-mode
+            "web driver session dropped and no recovery procedure defined"));
     }
 
     /**

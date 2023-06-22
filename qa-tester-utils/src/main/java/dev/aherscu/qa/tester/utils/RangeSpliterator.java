@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -121,7 +121,7 @@ public abstract class RangeSpliterator<C extends Spliterator<T>, T>
      *            the index of new requested item
      * @return the item
      */
-    protected abstract T item(long index);
+    protected abstract T item(@SuppressWarnings("hiding") long index);
 
     /**
      * Override to create a new sub-spliterator per specified range.
@@ -130,7 +130,8 @@ public abstract class RangeSpliterator<C extends Spliterator<T>, T>
      *            the sub-range
      * @return the concrete sub-spliterator
      */
-    protected abstract C subSpliterator(Range<Long> range);
+    protected abstract C subSpliterator(
+        @SuppressWarnings("hiding") Range<Long> range);
 
     private boolean hasNext() {
         return index < range.getMaximum();

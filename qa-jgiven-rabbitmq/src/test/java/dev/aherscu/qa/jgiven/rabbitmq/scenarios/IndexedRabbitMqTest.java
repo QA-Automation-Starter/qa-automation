@@ -74,6 +74,7 @@ public class IndexedRabbitMqTest
     @Override
     @SneakyThrows
     protected void beforeMethodInitiateQueueHandler() {
+        // according to docs channels are closed when connection is closed
         val testingChannel = connection.createChannel();
         queueHandler = QueueHandler.<String, String> builder()
             .channel(testingChannel)

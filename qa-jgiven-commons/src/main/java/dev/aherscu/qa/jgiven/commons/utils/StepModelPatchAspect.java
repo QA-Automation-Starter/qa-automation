@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,6 @@ import org.aspectj.lang.annotation.*;
 import com.tngtech.jgiven.report.model.*;
 
 import edu.umd.cs.findbugs.annotations.*;
-import lombok.extern.slf4j.*;
 
 /**
  * Patches {@link com.tngtech.jgiven.report.model.StepModel} in order to allow
@@ -35,23 +34,27 @@ import lombok.extern.slf4j.*;
  *
  * <p>
  * <strong>IMPORTANT:</strong> requires having
- * <code>com.tngtech.jgiven:jgiven-core</code> as a weave dependency.
+ * {@code com.tngtech.jgiven:jgiven-core} as a weave dependency.
  * </p>
  */
 @SuppressFBWarnings("MS_SHOULD_BE_FINAL")
 @Aspect
-@Slf4j
 public class StepModelPatchAspect {
 
     /**
      * Monitors attempts to set step method's duration. If the duration is
      * already set, then overrides to do nothing.
-     *
+     * 
+     * @param thisJoinPoint
+     *            this join-point
      * @param stepModel
      *            instance of {@link StepModel}
+     * @throws Throwable
+     *             any...
      *
      * @see #setDurationInNanos(StepModel)
      */
+    // FIXME Join point return value will be lost
     @Around(value = "setDurationInNanos(stepModel)",
         argNames = "thisJoinPoint,stepModel") // for debugging info
     @SuppressWarnings("static-method")
@@ -71,7 +74,8 @@ public class StepModelPatchAspect {
     @Pointcut("execution("
         + "void com.tngtech.jgiven.report.model.StepModel.setDurationInNanos(long))"
         + "&& target(stepModel)")
-    public void setDurationInNanos(final StepModel stepModel) {
+    public void setDurationInNanos(
+        @SuppressWarnings("unused") final StepModel stepModel) {
         // nothing to do here -- just defines a pointcut matcher
     }
 }

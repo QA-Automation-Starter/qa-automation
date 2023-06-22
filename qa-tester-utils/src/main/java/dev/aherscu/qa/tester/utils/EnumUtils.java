@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,8 +81,8 @@ public final class EnumUtils {
             .isValidEnum(enumType, prefix.value + name))
             return org.apache.commons.lang3.EnumUtils
                 .getEnum(enumType, prefix.value + name);
-        else
-            throw new NoSuchMemberException(format("enum {0} not found", name));
+
+        throw new NoSuchMemberException(format("enum {0} not found", name));
     }
 
     /**
