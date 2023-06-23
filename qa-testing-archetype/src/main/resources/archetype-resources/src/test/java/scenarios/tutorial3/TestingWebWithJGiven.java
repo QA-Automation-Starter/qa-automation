@@ -17,6 +17,7 @@
 package ${package}.scenarios.tutorial3;
 
 import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static org.apache.commons.lang3.RandomStringUtils.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
@@ -43,7 +44,7 @@ public class TestingWebWithJGiven
     @DataProvider
     private Object[][] data() {
         return new Object[][] {
-            { new Text(randomAlphanumeric(40)),
+            { new Text(wrap(randomAlphanumeric(40), DOUBLE_QUOTE)),
                 counts(equalTo(0L)) },
             { new Text("testng"),
                 allMatch(either(containsStringIgnoringCase("testng"))
