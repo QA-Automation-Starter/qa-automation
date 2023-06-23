@@ -28,7 +28,7 @@
   <artifactId>qa-s3-publisher-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
 
-  <name>QA S3 Uploader Maven Plugin</name>
+  <name>QA S3 Publisher Maven Plugin</name>
   <description>
     Binds to Maven's prepare-package phase to publish test reports on
     an AWS S3 bucket.
