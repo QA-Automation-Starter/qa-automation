@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.commons.utils;
 
-import static dev.aherscu.qa.tester.utils.UriUtils.*;
+import static dev.aherscu.qa.testing.utils.UriUtils.*;
 import static java.util.Objects.*;
 
 import com.saucelabs.saucerest.*;

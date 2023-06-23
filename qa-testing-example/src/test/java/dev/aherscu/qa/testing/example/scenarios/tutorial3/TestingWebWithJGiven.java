@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.testing.example.scenarios.tutorial3;
 
-import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
+import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
 import static org.apache.commons.lang3.RandomStringUtils.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;

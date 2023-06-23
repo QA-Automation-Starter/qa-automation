@@ -16,7 +16,7 @@
 package dev.aherscu.qa.jgiven.commons.verifications;
 
 import static com.danhaywood.java.assertjext.Conditions.*;
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -43,7 +43,7 @@ import com.tngtech.jgiven.annotation.*;
 import dev.aherscu.qa.jgiven.commons.formatters.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.tester.utils.assertions.*;
+import dev.aherscu.qa.testing.utils.assertions.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;

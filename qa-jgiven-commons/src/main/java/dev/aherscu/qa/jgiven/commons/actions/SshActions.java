@@ -15,8 +15,8 @@
  */
 package dev.aherscu.qa.jgiven.commons.actions;
 
-import static dev.aherscu.qa.tester.utils.ObjectUtilsExtensions.*;
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.ObjectUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static org.apache.commons.io.IOUtils.*;
 
 import java.io.*;

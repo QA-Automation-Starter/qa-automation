@@ -18,8 +18,8 @@ package dev.aherscu.qa.jgiven.commons;
 
 import static com.google.common.base.Suppliers.*;
 import static dev.aherscu.qa.jgiven.commons.utils.SessionName.*;
-import static dev.aherscu.qa.tester.utils.EnumUtils.*;
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.EnumUtils.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static java.util.Collections.*;
 import static java.util.Locale.*;
 import static java.util.Objects.*;
@@ -37,8 +37,8 @@ import org.openqa.selenium.chrome.*;
 import com.google.common.collect.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.tester.utils.*;
-import dev.aherscu.qa.tester.utils.config.BaseConfiguration;
+import dev.aherscu.qa.testing.utils.*;
+import dev.aherscu.qa.testing.utils.config.BaseConfiguration;
 import lombok.*;
 import lombok.extern.slf4j.*;
 

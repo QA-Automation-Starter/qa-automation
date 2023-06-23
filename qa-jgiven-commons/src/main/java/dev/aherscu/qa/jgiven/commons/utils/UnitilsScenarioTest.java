@@ -15,8 +15,8 @@
  */
 package dev.aherscu.qa.jgiven.commons.utils;
 
-import static dev.aherscu.qa.tester.utils.Base64Utils.*;
-import static dev.aherscu.qa.tester.utils.config.AbstractConfiguration.*;
+import static dev.aherscu.qa.testing.utils.Base64Utils.*;
+import static dev.aherscu.qa.testing.utils.config.AbstractConfiguration.*;
 import static java.lang.Integer.*;
 import static java.lang.Thread.*;
 import static java.lang.ThreadLocal.*;
@@ -51,7 +51,7 @@ import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
-import dev.aherscu.qa.tester.utils.config.AbstractConfiguration;
+import dev.aherscu.qa.testing.utils.config.AbstractConfiguration;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
 import lombok.extern.slf4j.*;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,13 +18,13 @@ package ${package}.scenarios.tutorial2;
 
 import static com.google.common.collect.Ordering.*;
 import static com.jayway.jsonpath.JsonPath.*;
-import static dev.aherscu.qa.tester.utils.MatchersExtensions.*;
-import static dev.aherscu.qa.tester.utils.MatchersExtensions.both;
-import static dev.aherscu.qa.tester.utils.MatchersExtensions.closeTo;
-import static dev.aherscu.qa.tester.utils.MatchersExtensions.containsString;
-import static dev.aherscu.qa.tester.utils.MatchersExtensions.hasItem;
-import static dev.aherscu.qa.tester.utils.MatchersExtensions.is;
-import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
+import static dev.aherscu.qa.testing.utils.MatchersExtensions.*;
+import static dev.aherscu.qa.testing.utils.MatchersExtensions.both;
+import static dev.aherscu.qa.testing.utils.MatchersExtensions.closeTo;
+import static dev.aherscu.qa.testing.utils.MatchersExtensions.containsString;
+import static dev.aherscu.qa.testing.utils.MatchersExtensions.hasItem;
+import static dev.aherscu.qa.testing.utils.MatchersExtensions.is;
+import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
 import static java.lang.Math.*;
 import static java.util.Arrays.*;
 import static org.hamcrest.MatcherAssert.*;

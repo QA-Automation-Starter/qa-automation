@@ -16,7 +16,7 @@
 package dev.aherscu.qa.jgiven.commons.fixtures;
 
 import static dev.aherscu.qa.jgiven.commons.utils.WebDriverEx.*;
-import static dev.aherscu.qa.tester.utils.UrlUtils.*;
+import static dev.aherscu.qa.testing.utils.UrlUtils.*;
 import static java.util.Objects.*;
 
 import java.lang.SuppressWarnings;

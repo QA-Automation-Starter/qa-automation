@@ -15,7 +15,7 @@
  */
 package dev.aherscu.qa.testing.example;
 
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 
 import javax.annotation.concurrent.*;
 

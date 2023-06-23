@@ -69,7 +69,7 @@
 
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
-      <artifactId>qa-tester-utils</artifactId>
+      <artifactId>qa-testing-utils</artifactId>
       <version>0.0.26-SNAPSHOT</version>
     </dependency>
 

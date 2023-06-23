@@ -17,8 +17,8 @@
 package dev.aherscu.qa.orcanos.publisher.maven.plugin;
 
 import static dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter.*;
-import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
-import static dev.aherscu.qa.tester.utils.UriUtils.*;
+import static dev.aherscu.qa.testing.utils.FileUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.UriUtils.*;
 import static java.text.MessageFormat.*;
 import static java.util.Objects.*;
 import static java.util.UUID.*;
@@ -47,8 +47,8 @@ import org.glassfish.jersey.media.multipart.file.*;
 import org.jooq.lambda.*;
 
 import dev.aherscu.qa.orcanos.publisher.maven.plugin.model.*;
-import dev.aherscu.qa.tester.utils.*;
-import dev.aherscu.qa.tester.utils.rest.*;
+import dev.aherscu.qa.testing.utils.*;
+import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;
 
 /**

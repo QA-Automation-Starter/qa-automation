@@ -15,7 +15,7 @@
  */
 package dev.aherscu.qa.jgiven.rabbitmq;
 
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 
 import javax.annotation.concurrent.*;
 
@@ -24,7 +24,7 @@ import org.apache.commons.configuration.*;
 import com.rabbitmq.client.*;
 
 import dev.aherscu.qa.jgiven.rabbitmq.utils.*;
-import dev.aherscu.qa.tester.utils.config.BaseConfiguration;
+import dev.aherscu.qa.testing.utils.config.BaseConfiguration;
 
 /**
  * Represents the configuration parameters for tests.

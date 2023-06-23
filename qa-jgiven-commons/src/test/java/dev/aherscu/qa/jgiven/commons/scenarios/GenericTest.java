@@ -34,8 +34,8 @@ import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
-import dev.aherscu.qa.tester.utils.*;
-import dev.aherscu.qa.tester.utils.config.*;
+import dev.aherscu.qa.testing.utils.*;
+import dev.aherscu.qa.testing.utils.config.*;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,8 +32,8 @@ import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
-import dev.aherscu.qa.tester.utils.assertions.*;
-import dev.aherscu.qa.tester.utils.rest.*;
+import dev.aherscu.qa.testing.utils.assertions.*;
+import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;
 
 /**

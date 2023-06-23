@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.commons.utils;
 
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.mvel2.templates.TemplateCompiler.*;
@@ -27,7 +27,7 @@ import org.testng.annotations.*;
 
 import com.google.common.collect.*;
 
-import dev.aherscu.qa.tester.utils.*;
+import dev.aherscu.qa.testing.utils.*;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
 
@@ -90,7 +90,7 @@ public class MvelReferenceGeneratorTest {
                 ImmutableMap.builder()
                     .put("reference", reference)
                     .build())
-                        .toString(),
+                .toString(),
             is(format("{0}->{1}", "(\\d+)_(\\d+)",
                 reference)));
     }

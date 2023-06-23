@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.testing.example.scenarios.tutorial7;
 
-import static dev.aherscu.qa.tester.utils.StreamMatchersExtensions.*;
+import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
 import static java.nio.charset.StandardCharsets.*;
 import static java.util.Arrays.*;
 
@@ -25,7 +25,7 @@ import org.testng.annotations.*;
 import dev.aherscu.qa.jgiven.rabbitmq.*;
 import dev.aherscu.qa.jgiven.rabbitmq.model.*;
 import dev.aherscu.qa.jgiven.rabbitmq.utils.*;
-import dev.aherscu.qa.tester.utils.config.*;
+import dev.aherscu.qa.testing.utils.config.*;
 import lombok.*;
 
 // TODO to make this test run under Github Actions
