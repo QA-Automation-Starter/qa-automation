@@ -17,7 +17,7 @@
 package dev.aherscu.qa.jgiven.commons.utils;
 
 import static dev.aherscu.qa.jgiven.commons.utils.WebDriverEx.*;
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static java.util.Objects.*;
 import static lombok.AccessLevel.*;

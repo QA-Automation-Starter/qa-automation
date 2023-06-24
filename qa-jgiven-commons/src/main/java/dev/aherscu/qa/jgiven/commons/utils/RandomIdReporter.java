@@ -17,7 +17,7 @@
 package dev.aherscu.qa.jgiven.commons.utils;
 
 import static dev.aherscu.qa.jgiven.commons.utils.DryRunAspect.*;
-import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.FileUtilsExtensions.*;
 import static org.apache.commons.lang3.StringUtils.*;
 
 import java.io.*;

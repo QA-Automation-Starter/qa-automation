@@ -19,9 +19,9 @@ package dev.aherscu.qa.orcanos.publisher.maven.plugin;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static dev.aherscu.qa.orcanos.publisher.maven.plugin.OrcanosPublisherMojo.*;
 import static dev.aherscu.qa.orcanos.publisher.maven.plugin.model.ExecutionSet.*;
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
-import static dev.aherscu.qa.tester.utils.WireMockServerUtils.*;
-import static dev.aherscu.qa.tester.utils.rest.LoggingClientBuilder.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.WireMockServerUtils.*;
+import static dev.aherscu.qa.testing.utils.rest.LoggingClientBuilder.*;
 
 import java.io.*;
 import java.net.*;

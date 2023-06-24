@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2022 Adrian Herscu
+  ~ Copyright 2023 Adrian Herscu
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 <!--suppress XmlUnboundNsPrefix -->
 <configuration>
   <conversionRule conversionWord="threadId"
-                  converterClass="dev.aherscu.qa.tester.utils.ThreadIdConverter"/>
+                  converterClass="dev.aherscu.qa.testing.utils.ThreadIdConverter"/>
 
   <property name="log.pattern"
             value="%date{HH:mm:ss.SSS} [%-5level] [%-5thread] [%threadId]: %logger{0} - %msg%n"/>
@@ -56,7 +56,7 @@
   <appender name="per-thread-logs"
             class="ch.qos.logback.classic.sift.SiftingAppender">
     <discriminator
-      class="dev.aherscu.qa.tester.utils.logging.ThreadIdBasedDiscriminator"/>
+      class="dev.aherscu.qa.testing.utils.logging.ThreadIdBasedDiscriminator"/>
     <sift>
       <appender class="ch.qos.logback.core.FileAppender">
         <file>target/per-thread-logs/test-${threadId}.log</file>
@@ -69,7 +69,7 @@
     </sift>
   </appender>
 
-  <logger name="dev.aherscu.qa.tester.utils.config" level="info"/>
+  <logger name="dev.aherscu.qa.testing.utils.config" level="info"/>
   <logger name="jdk" level="info"/>
   <logger name="sun" level="info"/>
   <logger name="org" level="info"/>

@@ -16,8 +16,8 @@
 
 package dev.aherscu.qa.orcanos.publisher.maven.plugin.model;
 
-import static dev.aherscu.qa.tester.utils.ClassUtilsExtensions.*;
-import static dev.aherscu.qa.tester.utils.IOUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.ClassUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.IOUtilsExtensions.*;
 import static java.nio.charset.StandardCharsets.*;
 import static javax.xml.bind.JAXB.*;
 import static org.hamcrest.MatcherAssert.*;

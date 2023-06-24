@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ import org.openqa.selenium.*;
 import com.tngtech.jgiven.annotation.*;
 import com.tngtech.jgiven.format.*;
 
-import dev.aherscu.qa.tester.utils.assertions.*;
+import dev.aherscu.qa.testing.utils.assertions.*;
 
 /**
  * Annotation formatter for JSON paths.

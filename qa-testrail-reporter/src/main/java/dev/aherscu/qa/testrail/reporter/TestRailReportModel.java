@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.testrail.reporter;
 
-import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.FileUtilsExtensions.*;
 import static java.lang.Long.*;
 import static java.nio.charset.StandardCharsets.*;
 import static org.apache.commons.io.FilenameUtils.*;
@@ -28,7 +28,7 @@ import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.model.*;
 
 import dev.aherscu.qa.jgiven.reporter.*;
-import dev.aherscu.qa.tester.utils.*;
+import dev.aherscu.qa.testing.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;

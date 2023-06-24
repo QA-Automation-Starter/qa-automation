@@ -30,7 +30,7 @@ import com.tngtech.jgiven.annotation.*;
 import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.formatters.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
-import dev.aherscu.qa.tester.utils.assertions.*;
+import dev.aherscu.qa.testing.utils.assertions.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 

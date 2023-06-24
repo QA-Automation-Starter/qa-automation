@@ -15,7 +15,7 @@
  */
 package dev.aherscu.qa.jgiven.commons.actions;
 
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static java.util.Objects.*;
 import static java.util.function.Function.*;
 
@@ -32,7 +32,7 @@ import com.tngtech.jgiven.annotation.*;
 import dev.aherscu.qa.jgiven.commons.formatters.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
-import dev.aherscu.qa.tester.utils.rest.*;
+import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;

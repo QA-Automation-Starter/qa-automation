@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.reporter.maven.plugin;
 
-import static dev.aherscu.qa.tester.utils.IOUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.IOUtilsExtensions.*;
 import static java.nio.charset.StandardCharsets.*;
 import static java.util.Arrays.*;
 import static java.util.Collections.*;

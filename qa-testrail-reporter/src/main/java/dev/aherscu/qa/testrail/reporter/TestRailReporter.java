@@ -16,8 +16,8 @@
 
 package dev.aherscu.qa.testrail.reporter;
 
-import static dev.aherscu.qa.tester.utils.ObjectMapperUtils.*;
-import static dev.aherscu.qa.tester.utils.UriUtils.*;
+import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.*;
+import static dev.aherscu.qa.testing.utils.UriUtils.*;
 import static java.text.MessageFormat.*;
 import static java.util.Objects.*;
 import static org.apache.commons.io.FileUtils.*;

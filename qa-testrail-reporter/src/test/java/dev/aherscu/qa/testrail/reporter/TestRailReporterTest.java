@@ -17,7 +17,7 @@
 package dev.aherscu.qa.testrail.reporter;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static dev.aherscu.qa.tester.utils.WireMockServerUtils.*;
+import static dev.aherscu.qa.testing.utils.WireMockServerUtils.*;
 import static java.util.Collections.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -33,7 +33,7 @@ import org.testng.xml.*;
 import com.github.tomakehurst.wiremock.*;
 import com.google.common.collect.*;
 
-import dev.aherscu.qa.tester.utils.rest.*;
+import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;
 
 public class TestRailReporterTest {

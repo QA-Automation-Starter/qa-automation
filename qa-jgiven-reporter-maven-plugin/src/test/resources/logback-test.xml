@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2022 Adrian Herscu
+  ~ Copyright 2023 Adrian Herscu
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@
   <appender name="per-thread-logs"
             class="ch.qos.logback.classic.sift.SiftingAppender">
     <discriminator
-      class="dev.aherscu.qa.tester.utils.logging.ThreadIdBasedDiscriminator"/>
+      class="dev.aherscu.qa.testing.utils.logging.ThreadIdBasedDiscriminator"/>
     <sift>
       <appender class="ch.qos.logback.core.FileAppender">
         <file>target/per-thread-logs/test-${threadId}.log</file>

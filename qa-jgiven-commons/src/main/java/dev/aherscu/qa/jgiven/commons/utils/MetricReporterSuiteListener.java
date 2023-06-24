@@ -16,9 +16,9 @@
 
 package dev.aherscu.qa.jgiven.commons.utils;
 
-import static dev.aherscu.qa.tester.utils.FilenameUtilsExtensions.*;
-import static dev.aherscu.qa.tester.utils.NumberUtils.*;
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.FilenameUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.NumberUtils.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static java.nio.file.Files.*;
 import static java.util.stream.StreamSupport.*;
 import static org.jooq.lambda.Sneaky.*;

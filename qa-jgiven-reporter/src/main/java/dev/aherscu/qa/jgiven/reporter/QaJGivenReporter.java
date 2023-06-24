@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.reporter;
 
-import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.FileUtilsExtensions.*;
 
 import java.io.*;
 

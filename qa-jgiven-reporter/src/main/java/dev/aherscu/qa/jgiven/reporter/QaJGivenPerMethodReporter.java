@@ -18,8 +18,8 @@ package dev.aherscu.qa.jgiven.reporter;
 
 import static com.google.common.collect.Maps.*;
 import static com.google.common.collect.Multimaps.*;
-import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.FileUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static java.util.stream.Collectors.toMap;
 import static org.apache.commons.io.FilenameUtils.*;
 
