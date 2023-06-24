@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.orcanos.publisher.maven.plugin;
 
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static org.apache.commons.lang3.ObjectUtils.*;
 
 import java.io.*;

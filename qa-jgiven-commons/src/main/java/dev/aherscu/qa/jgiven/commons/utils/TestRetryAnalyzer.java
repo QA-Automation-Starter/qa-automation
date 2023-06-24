@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.commons.utils;
 
-import static dev.aherscu.qa.tester.utils.ThreadUtils.*;
+import static dev.aherscu.qa.testing.utils.ThreadUtils.*;
 import static java.util.Objects.*;
 
 import java.lang.annotation.*;

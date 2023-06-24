@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.commons.utils;
 
-import static dev.aherscu.qa.tester.utils.ExecutorUtils.*;
+import static dev.aherscu.qa.testing.utils.ExecutorUtils.*;
 import static org.apache.commons.lang3.StringUtils.*;
 
 import java.util.concurrent.*;
@@ -31,7 +31,7 @@ import org.testng.*;
 
 import com.google.common.util.concurrent.*;
 
-import dev.aherscu.qa.tester.utils.*;
+import dev.aherscu.qa.testing.utils.*;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
 import lombok.extern.slf4j.*;

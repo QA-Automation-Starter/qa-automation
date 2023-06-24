@@ -15,7 +15,7 @@
  */
 package dev.aherscu.qa.jgiven.commons;
 
-import static dev.aherscu.qa.tester.utils.WireMockServerUtils.*;
+import static dev.aherscu.qa.testing.utils.WireMockServerUtils.*;
 
 import org.testng.annotations.*;
 
@@ -26,7 +26,7 @@ import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
-import dev.aherscu.qa.tester.utils.config.*;
+import dev.aherscu.qa.testing.utils.config.*;
 
 /**
  * Contains REST sample tests just to ensure that the testing infrastructure

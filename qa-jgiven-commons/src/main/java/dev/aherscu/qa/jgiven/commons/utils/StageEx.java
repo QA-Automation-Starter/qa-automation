@@ -17,8 +17,8 @@ package dev.aherscu.qa.jgiven.commons.utils;
 
 import static com.codahale.metrics.MetricRegistry.*;
 import static dev.aherscu.qa.jgiven.commons.utils.MetricReporterSuiteListener.*;
-import static dev.aherscu.qa.tester.utils.ImageUtils.*;
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.ImageUtils.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static java.lang.Long.*;
 import static java.lang.System.*;
 import static java.time.Duration.*;
@@ -39,7 +39,7 @@ import com.tngtech.jgiven.annotation.*;
 import com.tngtech.jgiven.attachment.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
-import dev.aherscu.qa.tester.utils.*;
+import dev.aherscu.qa.testing.utils.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;

@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.commons.model;
 
-import static dev.aherscu.qa.tester.utils.ObjectMapperUtils.*;
+import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 

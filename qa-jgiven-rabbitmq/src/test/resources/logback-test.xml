@@ -54,7 +54,7 @@
   <appender name="per-thread-logs"
             class="ch.qos.logback.classic.sift.SiftingAppender">
     <discriminator
-      class="dev.aherscu.qa.tester.utils.logging.ThreadIdBasedDiscriminator"/>
+      class="dev.aherscu.qa.testing.utils.logging.ThreadIdBasedDiscriminator"/>
     <sift>
       <appender class="ch.qos.logback.core.FileAppender">
         <file>target/per-thread-logs/test-${threadId}.log</file>
@@ -71,13 +71,13 @@
     otherwise the log will be flooded during tests -->
   <!-- DELETEME log level is now controlled via profiles defined in parent -->
   <!--  <logger-->
-  <!--      name="dev.aherscu.qa.tester.utils.pooling.AutoReturnable"-->
+  <!--      name="dev.aherscu.qa.testing.utils.pooling.AutoReturnable"-->
   <!--      level="debug" />-->
   <!--  <logger-->
-  <!--      name="dev.aherscu.qa.tester.utils.pooling.AutoReturnableObjectPool"-->
+  <!--      name="dev.aherscu.qa.testing.utils.pooling.AutoReturnableObjectPool"-->
   <!--      level="debug" />-->
 
-  <logger name="dev.aherscu.qa.tester.utils.config" level="info"/>
+  <logger name="dev.aherscu.qa.testing.utils.config" level="info"/>
   <logger name="jdk" level="info"/>
   <logger name="sun" level="info"/>
   <logger name="org" level="info"/>

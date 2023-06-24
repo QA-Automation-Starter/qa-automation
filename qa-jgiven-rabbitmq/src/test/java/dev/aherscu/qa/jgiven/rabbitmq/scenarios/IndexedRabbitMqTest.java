@@ -27,7 +27,7 @@ import com.rabbitmq.client.*;
 import dev.aherscu.qa.jgiven.rabbitmq.*;
 import dev.aherscu.qa.jgiven.rabbitmq.model.*;
 import dev.aherscu.qa.jgiven.rabbitmq.utils.*;
-import dev.aherscu.qa.tester.utils.config.*;
+import dev.aherscu.qa.testing.utils.config.*;
 import lombok.*;
 
 public class IndexedRabbitMqTest

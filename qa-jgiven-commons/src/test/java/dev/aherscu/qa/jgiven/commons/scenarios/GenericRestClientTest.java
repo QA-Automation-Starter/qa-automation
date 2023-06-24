@@ -28,8 +28,8 @@ import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
-import dev.aherscu.qa.tester.utils.config.*;
-import dev.aherscu.qa.tester.utils.rest.*;
+import dev.aherscu.qa.testing.utils.config.*;
+import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;
 
 /**

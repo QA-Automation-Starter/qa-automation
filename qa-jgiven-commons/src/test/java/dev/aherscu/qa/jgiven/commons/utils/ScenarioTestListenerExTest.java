@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 package dev.aherscu.qa.jgiven.commons.utils;
 
 import static dev.aherscu.qa.jgiven.commons.utils.ScenarioTestListenerEx.*;
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
@@ -171,7 +171,7 @@ public class ScenarioTestListenerExTest {
                             .with(PLATFORM_VERSION, T_VERSION_1))
                         .build())
                 .build())
-                    .onFinish(mockedTestContext);
+            .onFinish(mockedTestContext);
 
         reportModels = reportModelsFrom(mockedTestContext);
 
@@ -223,26 +223,26 @@ public class ScenarioTestListenerExTest {
         assertThat(reportModels.get(CLASS_INCLUDED).getTagMap(),
             both(hasEntry(is(tagMapKeyOf(DEVICE_NAME_TAG, T_DEVICE_1)),
                 hasProperty("fullType", is(DEVICE_NAME_TAG))))
-                    .and(hasEntry(
-                        is(tagMapKeyOf(PLATFORM_NAME_TAG, T_PLATFORM_1)),
-                        hasProperty("fullType",
-                            is(PLATFORM_NAME_TAG))))
-                    .and(hasEntry(
-                        is(tagMapKeyOf(PLATFORM_VERSION_TAG, T_VERSION_1)),
-                        hasProperty("fullType",
-                            is(PLATFORM_VERSION_TAG))))
-                    .and(hasEntry(
-                        is(tagMapKeyOf(DEVICE_NAME_TAG, T_DEVICE_2)),
-                        hasProperty("fullType",
-                            is(DEVICE_NAME_TAG))))
-                    .and(hasEntry(
-                        is(tagMapKeyOf(PLATFORM_NAME_TAG, T_PLATFORM_2)),
-                        hasProperty("fullType",
-                            is(PLATFORM_NAME_TAG))))
-                    .and(hasEntry(
-                        is(tagMapKeyOf(PLATFORM_VERSION_TAG, T_VERSION_2)),
-                        hasProperty("fullType",
-                            is(PLATFORM_VERSION_TAG)))));
+                .and(hasEntry(
+                    is(tagMapKeyOf(PLATFORM_NAME_TAG, T_PLATFORM_1)),
+                    hasProperty("fullType",
+                        is(PLATFORM_NAME_TAG))))
+                .and(hasEntry(
+                    is(tagMapKeyOf(PLATFORM_VERSION_TAG, T_VERSION_1)),
+                    hasProperty("fullType",
+                        is(PLATFORM_VERSION_TAG))))
+                .and(hasEntry(
+                    is(tagMapKeyOf(DEVICE_NAME_TAG, T_DEVICE_2)),
+                    hasProperty("fullType",
+                        is(DEVICE_NAME_TAG))))
+                .and(hasEntry(
+                    is(tagMapKeyOf(PLATFORM_NAME_TAG, T_PLATFORM_2)),
+                    hasProperty("fullType",
+                        is(PLATFORM_NAME_TAG))))
+                .and(hasEntry(
+                    is(tagMapKeyOf(PLATFORM_VERSION_TAG, T_VERSION_2)),
+                    hasProperty("fullType",
+                        is(PLATFORM_VERSION_TAG)))));
     }
 
     @Test

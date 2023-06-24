@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.commons.utils;
 
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static java.util.Arrays.*;
 import static java.util.Objects.*;
 import static java.util.stream.Collectors.*;
@@ -59,8 +59,8 @@ public class LoggingAspect {
             stream(isNull(thisJoinPoint.getArgs())
                 ? new Object[] {}
                 : thisJoinPoint.getArgs())
-                    .map(arg -> Objects.toString(arg, "null"))
-                    .collect(joining(COMMA, "[", "]")));
+                .map(arg -> Objects.toString(arg, "null"))
+                .collect(joining(COMMA, "[", "]")));
 
         val retval = thisJoinPoint.proceed(thisJoinPoint.getArgs());
 

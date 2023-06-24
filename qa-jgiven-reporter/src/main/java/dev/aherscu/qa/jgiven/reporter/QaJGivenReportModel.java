@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.reporter;
 
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static java.lang.Double.*;
 import static java.lang.Long.*;
 import static java.text.MessageFormat.format;
@@ -34,7 +34,7 @@ import org.apache.commons.io.output.*;
 import com.samskivert.mustache.*;
 import com.tngtech.jgiven.report.model.*;
 
-import dev.aherscu.qa.tester.utils.*;
+import dev.aherscu.qa.testing.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;

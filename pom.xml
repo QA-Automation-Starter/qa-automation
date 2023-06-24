@@ -74,18 +74,18 @@
   </ciManagement>
 
   <modules>
-    <module>qa-tester-utils</module>
+    <module>qa-jgiven-commons</module>
+    <module>qa-jgiven-rabbitmq</module>
+    <module>qa-jgiven-elasticsearch</module>
     <module>qa-jgiven-reporter</module>
     <module>qa-testrail-reporter</module>
     <module>qa-jgiven-reporter-maven-plugin</module>
     <module>qa-orcanos-publisher-maven-plugin</module>
-    <module>qa-s3-uploader-maven-plugin</module>
-    <module>qa-jgiven-commons</module>
-    <module>qa-jgiven-rabbitmq</module>
-    <module>qa-jgiven-elasticsearch</module>
+    <module>qa-s3-publisher-maven-plugin</module>
+    <module>qa-testing-utils</module>
     <module>qa-testing-parent</module>
-    <module>qa-testing-example</module>
     <module>qa-testing-archetype</module>
+    <module>qa-testing-example</module>
   </modules>
 
   <properties>

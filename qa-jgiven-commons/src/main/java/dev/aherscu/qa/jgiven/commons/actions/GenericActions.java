@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,8 @@
  */
 package dev.aherscu.qa.jgiven.commons.actions;
 
-import static dev.aherscu.qa.tester.utils.FileUtilsExtensions.*;
-import static dev.aherscu.qa.tester.utils.ThreadUtils.*;
+import static dev.aherscu.qa.testing.utils.FileUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.ThreadUtils.*;
 import static org.apache.commons.lang3.StringUtils.*;
 
 import java.io.*;

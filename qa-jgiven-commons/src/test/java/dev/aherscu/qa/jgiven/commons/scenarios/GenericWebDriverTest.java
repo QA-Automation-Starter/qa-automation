@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 package dev.aherscu.qa.jgiven.commons.scenarios;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static dev.aherscu.qa.tester.utils.MatchersExtensions.*;
+import static dev.aherscu.qa.testing.utils.MatchersExtensions.*;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.*;

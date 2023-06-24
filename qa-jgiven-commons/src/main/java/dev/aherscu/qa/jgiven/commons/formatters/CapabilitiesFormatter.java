@@ -15,7 +15,7 @@
  */
 package dev.aherscu.qa.jgiven.commons.formatters;
 
-import static dev.aherscu.qa.tester.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static java.util.Arrays.*;
 import static java.util.stream.Collectors.*;
 

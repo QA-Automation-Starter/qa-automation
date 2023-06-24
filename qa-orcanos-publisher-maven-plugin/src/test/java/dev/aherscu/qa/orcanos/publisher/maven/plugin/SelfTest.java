@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 package dev.aherscu.qa.orcanos.publisher.maven.plugin;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static dev.aherscu.qa.tester.utils.WireMockServerUtils.*;
+import static dev.aherscu.qa.testing.utils.WireMockServerUtils.*;
 import static javax.ws.rs.client.Entity.*;
 import static javax.ws.rs.core.HttpHeaders.*;
 import static javax.ws.rs.core.MediaType.*;
@@ -31,7 +31,7 @@ import org.testng.annotations.*;
 import com.fasterxml.jackson.databind.node.*;
 import com.github.tomakehurst.wiremock.*;
 
-import dev.aherscu.qa.tester.utils.rest.*;
+import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
