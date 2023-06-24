@@ -199,7 +199,7 @@ public class WebDriverConfiguration extends BaseConfiguration {
                 .from(requireNonNull(capabilities
                     .getCapability("type"),
                     "internal error, no type capability")
-                    .toString())
+                        .toString())
                 .equals(deviceType))
             .peek(capabilities -> log.trace("found required capabilities {}",
                 capabilities))
@@ -253,12 +253,12 @@ public class WebDriverConfiguration extends BaseConfiguration {
             .map(requiredCapabilitiesGroup -> new DesiredCapabilitiesEx(
                 capabilitiesFor(
                     provider() + requiredCapabilitiesGroup.get("type")))
-                .with(requiredCapabilitiesGroup
-                    .entrySet()
-                    .stream()
-                    .map(e -> Maps.immutableEntry(
-                        e.getKey(),
-                        e.getValue()))));
+                        .with(requiredCapabilitiesGroup
+                            .entrySet()
+                            .stream()
+                            .map(e -> Maps.immutableEntry(
+                                e.getKey(),
+                                e.getValue()))));
     }
 
     enum DeviceType {

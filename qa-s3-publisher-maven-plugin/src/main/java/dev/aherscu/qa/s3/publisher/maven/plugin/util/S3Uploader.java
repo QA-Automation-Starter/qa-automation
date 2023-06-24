@@ -111,7 +111,7 @@ public class S3Uploader {
         final ObjectMetadata objectMetadata) {
         return new CopyObjectRequest(bucketName, remoteFileName, bucketName,
             remoteFileName)
-            .withNewObjectMetadata(objectMetadata);
+                .withNewObjectMetadata(objectMetadata);
     }
 
     private File encodeManagedFile(final ManagedFile managedFile)

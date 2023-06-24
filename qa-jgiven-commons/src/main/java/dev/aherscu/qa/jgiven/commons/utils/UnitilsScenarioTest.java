@@ -118,8 +118,8 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
             try {
                 val typesAnnotatedWithBeanUtilsConverter = new Reflections(
                     "dev.aherscu.qa.jgiven.commons.scenarios") //$NON-NLS-1$
-                    .getTypesAnnotatedWith(
-                        BeanUtilsConverter.class);
+                        .getTypesAnnotatedWith(
+                            BeanUtilsConverter.class);
                 for (val clazz : typesAnnotatedWithBeanUtilsConverter) {
                     val annotation = clazz
                         .getAnnotation(BeanUtilsConverter.class);
