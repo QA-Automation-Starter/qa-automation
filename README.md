@@ -57,18 +57,23 @@ see [Working Examples](qa-testing-example/README.md)
 # More Details
 
 [QA Testing Archetype](qa-testing-archetype/README.md) generates an automation
-project, with all required dependencies for TestNG, BDD-reporting, Selenium,
-Appium, SouceLabs integration, Unitils, DbUnit, and many other utility libraries
-which I found useful across a dozen of projects.
+project inheriting from [QA Testing Parent](qa-testing-parent/README.md).
+
+The generated project contains few exemplary tests, with all required
+dependencies for TestNG, BDD-reporting, Selenium, Appium, SouceLabs integration,
+Unitils, DbUnit, and many other utility libraries which I found useful across a
+dozen of projects.
 
 All above pieces are already integrated, all you have to do is:
 
 1. derive your automation classes from specific base class
 2. define your own configuration and environments
+3. optionally, add support modules; currently one of:
+    * [QA JGiven RabbitMQ](qa-jgiven-rabbitmq)
+    * [QA JGiven ElasticSearch](qa-jgiven-elasticsearch)
+    * or prepare one of yours :)
 
-The generated project contains example tests.
-
-see [QA Testing Example](qa-testing-example/README.md)
+See [QA Testing Example](qa-testing-example/README.md), for more examples.
 
 # Development Instructions
 
