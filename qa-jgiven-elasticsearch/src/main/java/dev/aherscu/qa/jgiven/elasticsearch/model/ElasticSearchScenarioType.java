@@ -23,6 +23,6 @@ import dev.aherscu.qa.jgiven.commons.model.*;
  * @author aherscu
  *
  */
-public interface ElasticSearchScenarioType extends AnyScenarioType {
+public interface ElasticSearchScenarioType<TDocument> extends AnyScenarioType {
     // marker interface
 }

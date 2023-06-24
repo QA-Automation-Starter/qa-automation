@@ -16,9 +16,60 @@
 
 package dev.aherscu.qa.jgiven.elasticsearch.steps;
 
+import java.util.function.*;
+import java.util.stream.*;
+
+import org.hamcrest.*;
+import org.jooq.lambda.*;
+
+import com.tngtech.jgiven.annotation.*;
+
+import co.elastic.clients.elasticsearch.*;
+import co.elastic.clients.elasticsearch._types.query_dsl.*;
+import co.elastic.clients.elasticsearch.core.*;
+import co.elastic.clients.elasticsearch.core.search.*;
+import co.elastic.clients.util.*;
 import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.jgiven.elasticsearch.model.*;
 
-public class ElasticSearchVerifications<K, V, SELF extends ElasticSearchVerifications<K, V, SELF>>
-    extends GenericVerifications<ElasticSearchScenarioType, SELF> {
+public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVerifications<TDocument, SELF>>
+    extends GenericVerifications<ElasticSearchScenarioType<TDocument>, SELF> {
+    @ExpectedScenarioState
+    protected ThreadLocal<IndexResponse>    response;
+    @ExpectedScenarioState
+    protected ThreadLocal<String>           index;
+    @ExpectedScenarioState
+    protected ThreadLocal<Class<TDocument>> documentType;
+
+    // see
+    // https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/object-lifecycles.html
+    @ExpectedScenarioState
+    protected ElasticsearchClient           elasticsearchClient;
+
+    public SELF the_document(
+        final String id,
+        final Matcher<TDocument> matcher) {
+        return eventually_assert_that(
+            Unchecked.supplier(() -> elasticsearchClient.get(g -> g
+                .index(index.get())
+                .id(id),
+                documentType.get())
+                .source()),
+            matcher);
+    }
+
+    public SELF the_index(
+        final Function<Query.Builder, ObjectBuilder<Query>> queryBuilder,
+        final Matcher<Stream<TDocument>> matcher) {
+        return eventually_assert_that(
+            Unchecked.supplier(() -> elasticsearchClient.search(s -> s
+                .index(index.get())
+                .query(queryBuilder),
+                documentType.get())
+                .hits()
+                .hits()
+                .stream()
+                .map(Hit::source)),
+            matcher);
+    }
 }

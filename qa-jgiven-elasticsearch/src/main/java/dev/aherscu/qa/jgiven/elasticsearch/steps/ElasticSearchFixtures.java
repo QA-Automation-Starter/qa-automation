@@ -16,10 +16,39 @@
 
 package dev.aherscu.qa.jgiven.elasticsearch.steps;
 
+import com.tngtech.jgiven.annotation.*;
+
+import co.elastic.clients.elasticsearch.*;
 import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.elasticsearch.model.*;
 
-public class ElasticSearchFixtures<K, V, SELF extends ElasticSearchFixtures<K, V, SELF>>
-    extends GenericFixtures<ElasticSearchScenarioType, SELF> {
+public class ElasticSearchFixtures<TDocument, SELF extends ElasticSearchFixtures<TDocument, SELF>>
+    extends GenericFixtures<ElasticSearchScenarioType<TDocument>, SELF> {
 
+    @ProvidedScenarioState
+    protected final ThreadLocal<String>           index        =
+        new ThreadLocal<>();
+    @ProvidedScenarioState
+    protected final ThreadLocal<Class<TDocument>> documentType =
+        new ThreadLocal<>();
+    // see
+    // https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/object-lifecycles.html
+    @ProvidedScenarioState
+    protected ElasticsearchClient                 elasticsearchClient;
+
+    public SELF with(final Class<TDocument> documentType) {
+        this.documentType.set(documentType);
+        return self();
+    }
+
+    public SELF an_index(final String index) {
+        this.index.set(index);
+        return self();
+    }
+
+    public SELF an_elasticsearch_instance(
+        final ElasticsearchClient elasticsearchClient) {
+        this.elasticsearchClient = elasticsearchClient;
+        return self();
+    }
 }

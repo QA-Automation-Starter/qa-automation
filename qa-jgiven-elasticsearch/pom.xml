@@ -27,7 +27,7 @@
 
   <artifactId>qa-jgiven-elasticsearch</artifactId>
   <name>QA JGiven Elastic Search</name>
-  <description>Provides Elastic Search steps</description>
+  <description>Provides ElasticSearch steps</description>
 
   <properties>
     <skipTests>true</skipTests>

@@ -16,12 +16,23 @@
 package dev.aherscu.qa.jgiven.elasticsearch;
 
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.UriUtils.*;
+
+import java.net.*;
 
 import javax.annotation.concurrent.*;
 
 import org.apache.commons.configuration.*;
+import org.apache.http.*;
+import org.apache.http.auth.*;
+import org.apache.http.impl.client.*;
+import org.elasticsearch.client.*;
 
+import co.elastic.clients.elasticsearch.*;
+import co.elastic.clients.json.jackson.*;
+import co.elastic.clients.transport.rest_client.*;
 import dev.aherscu.qa.testing.utils.config.BaseConfiguration;
+import lombok.*;
 
 /**
  * Represents the configuration parameters for tests.
@@ -48,4 +59,28 @@ public final class TestConfiguration extends BaseConfiguration {
         super(configurations);
     }
 
+    public ElasticsearchClient elasticSearchClient() {
+        val credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(
+            AuthScope.ANY,
+            new UsernamePasswordCredentials(
+                usernameFrom(elasticSearchUrl()),
+                passwordFrom(elasticSearchUrl())));
+
+        return new ElasticsearchClient(
+            new RestClientTransport(
+                RestClient.builder(
+                    new HttpHost(
+                        elasticSearchUrl().getHost(),
+                        elasticSearchUrl().getPort()))
+                    .setHttpClientConfigCallback(hc -> hc
+                        .setDefaultCredentialsProvider(credentialsProvider))
+                    .build(),
+                new JacksonJsonpMapper()));
+    }
+
+    @SneakyThrows
+    public URI elasticSearchUrl() {
+        return new URI(getString("elasticsearch.url"));
+    }
 }

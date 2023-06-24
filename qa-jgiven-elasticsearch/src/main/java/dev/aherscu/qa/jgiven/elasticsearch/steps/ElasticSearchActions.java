@@ -16,9 +16,38 @@
 
 package dev.aherscu.qa.jgiven.elasticsearch.steps;
 
+import java.util.function.*;
+
+import com.tngtech.jgiven.annotation.*;
+
+import co.elastic.clients.elasticsearch.*;
+import co.elastic.clients.elasticsearch.core.*;
 import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.elasticsearch.model.*;
+import lombok.*;
 
-public class ElasticSearchActions<K, V, SELF extends ElasticSearchActions<K, V, SELF>>
-    extends GenericActions<ElasticSearchScenarioType, SELF> {
+public class ElasticSearchActions<TDocument, SELF extends ElasticSearchActions<TDocument, SELF>>
+    extends GenericActions<ElasticSearchScenarioType<TDocument>, SELF> {
+    @ProvidedScenarioState
+    protected final ThreadLocal<IndexResponse> response = new ThreadLocal<>();
+    @ExpectedScenarioState
+    protected ThreadLocal<String>              index;
+    @ExpectedScenarioState
+    protected ThreadLocal<Class<TDocument>>    documentType;
+    // see
+    // https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/object-lifecycles.html
+    @ExpectedScenarioState
+    protected ElasticsearchClient              elasticsearchClient;
+
+    @SneakyThrows
+    public SELF adding_single_document(
+        final TDocument document,
+        final Function<TDocument, String> indexedBy) {
+        response.set(elasticsearchClient.index(i -> i
+            .index(index.get())
+            .id(indexedBy.apply(document))
+            .document(document)));
+
+        return self();
+    }
 }
