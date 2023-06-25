@@ -28,7 +28,7 @@
   <artifactId>qa-testing-utils</artifactId>
   <packaging>jar</packaging>
 
-  <name>QA Tester Utilities</name>
+  <name>QA Testing Utilities</name>
   <description>
     JAX-RS generic providers, authenticators and logging filters, an
     auto-returning pool implementation based on Apache Commons Pooling, a

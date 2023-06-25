@@ -14,7 +14,7 @@
   ~ limitations under the License.
   -->
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="QA Tester Utils" verbose="1">
+<suite name="QA Testing Utils" verbose="1">
   <test name="utils-slow">
     <groups>
       <run>

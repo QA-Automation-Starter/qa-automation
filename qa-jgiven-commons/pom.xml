@@ -204,7 +204,7 @@
       <artifactId>jgiven-testng</artifactId>
       <version>${jgiven.version}</version>
     </dependency>
-    <!-- ISSUE: when relying on the dependency brought by tester-utils,
+    <!-- ISSUE: when relying on the dependency brought by testing-utils,
     the tests are failing with method not found exceptions... -->
     <dependency>
       <groupId>com.jayway.jsonpath</groupId>

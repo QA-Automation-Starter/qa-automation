@@ -1,4 +1,4 @@
-QA Tester Utilities
+QA Testing Utilities
 ===================
 
 JAX-RS generic providers, authenticators and logging filters, an
