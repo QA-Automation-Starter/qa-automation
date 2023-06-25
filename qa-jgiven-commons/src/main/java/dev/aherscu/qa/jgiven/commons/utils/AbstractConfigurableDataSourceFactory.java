@@ -57,8 +57,8 @@ public abstract class AbstractConfigurableDataSourceFactory
         config = new CustomDatabaseConfiguration(
             new DatabaseConfigurationsFactory(
                 new Configuration(configuration))
-                .create()
-                .getDatabaseConfiguration(databaseName));
+                    .create()
+                    .getDatabaseConfiguration(databaseName));
     }
 
     /**
@@ -73,8 +73,8 @@ public abstract class AbstractConfigurableDataSourceFactory
         config = new CustomDatabaseConfiguration(
             new DatabaseConfigurationsFactory(
                 new Configuration(configuration))
-                .create()
-                .getDatabaseConfiguration());
+                    .create()
+                    .getDatabaseConfiguration());
     }
 
     /**

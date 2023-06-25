@@ -71,14 +71,14 @@ public final class ScenarioTestListenerEx extends ScenarioTestListener {
         final ITestContext context) {
         return ((Map<String, ReportModel>) context
             .getAttribute(REPORT_MODELS_ATTRIBUTE))
-            .entrySet()
-            .stream()
-            .filter(reportModelEntry -> ((TestRunner) context)
-                .getTestClasses()
+                .entrySet()
                 .stream()
-                .map(IClass::getName)
-                .anyMatch(testClassName -> testClassName.equals(
-                    reportModelEntry.getKey())));
+                .filter(reportModelEntry -> ((TestRunner) context)
+                    .getTestClasses()
+                    .stream()
+                    .map(IClass::getName)
+                    .anyMatch(testClassName -> testClassName.equals(
+                        reportModelEntry.getKey())));
     }
 
     private static void reportRetries(
@@ -95,7 +95,7 @@ public final class ScenarioTestListenerEx extends ScenarioTestListener {
                 TestRetryAnalyzer.retryCounters
                     .get(qualifiedMethodName)
                     .toString())
-                .setPrependType(true);
+                        .setPrependType(true);
 
             reportModel.addTag(retriesTag);
             scenario.addTag(retriesTag);

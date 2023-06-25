@@ -73,7 +73,7 @@ public abstract class ApplicationPerMethodWebSessionTest<C extends WebDriverConf
         log.debug("after method quitting web driver");
         requireNonNull(webDriver.get(),
             "web driver not initialized nothing to quit")
-            .safelyQuit();
+                .safelyQuit();
     }
 
     /**

@@ -59,8 +59,8 @@ public class LoggingAspect {
             stream(isNull(thisJoinPoint.getArgs())
                 ? new Object[] {}
                 : thisJoinPoint.getArgs())
-                .map(arg -> Objects.toString(arg, "null"))
-                .collect(joining(COMMA, "[", "]")));
+                    .map(arg -> Objects.toString(arg, "null"))
+                    .collect(joining(COMMA, "[", "]")));
 
         val retval = thisJoinPoint.proceed(thisJoinPoint.getArgs());
 

@@ -113,7 +113,7 @@ public class DesiredCapabilitiesEx extends DesiredCapabilities {
         return with(key,
             requireNonNull(getCapability(key),
                 "capability does not exist")
-                .toString()
+                    .toString()
                 + value);
     }
 }

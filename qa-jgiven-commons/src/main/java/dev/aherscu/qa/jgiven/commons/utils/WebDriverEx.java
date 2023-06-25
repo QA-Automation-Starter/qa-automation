@@ -196,7 +196,7 @@ public class WebDriverEx {
         final Capabilities capabilities) {
         val driverClass = Class.forName(requireNonNull(capabilities
             .getCapability("class"), "must have a class capability")
-            .toString())
+                .toString())
             .asSubclass(WebDriver.class);
 
         if (driverClass.isAssignableFrom(ChromeDriver.class))

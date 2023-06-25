@@ -78,7 +78,7 @@ public final class FileUtilsExtensions extends FileUtils {
     public static File file(final Class<?> clazz, final String name) {
         return new File(requireNonNull(clazz.getResource(name),
             name + "resource missing")
-            .getPath());
+                .getPath());
     }
 
     /**

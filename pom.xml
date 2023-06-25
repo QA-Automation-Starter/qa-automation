@@ -76,6 +76,7 @@
   <modules>
     <module>qa-jgiven-commons</module>
     <module>qa-jgiven-rabbitmq</module>
+    <module>qa-jgiven-elasticsearch</module>
     <module>qa-jgiven-reporter</module>
     <module>qa-testrail-reporter</module>
     <module>qa-jgiven-reporter-maven-plugin</module>
