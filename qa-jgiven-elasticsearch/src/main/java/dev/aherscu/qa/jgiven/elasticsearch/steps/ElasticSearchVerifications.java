@@ -59,12 +59,12 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
     }
 
     public SELF the_index(
-        final Function<Query.Builder, ObjectBuilder<Query>> queryBuilder,
+        final Query query,
         final Matcher<Stream<TDocument>> matcher) {
         return eventually_assert_that(
             Unchecked.supplier(() -> elasticsearchClient.search(s -> s
                 .index(index.get())
-                .query(queryBuilder),
+                .query(query),
                 documentType.get())
                 .hits()
                 .hits()
