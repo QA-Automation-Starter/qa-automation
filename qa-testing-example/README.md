@@ -58,7 +58,7 @@ There might be better job schedulers out there.
 
 ## Selenium
 
-For a quick standalone Selenium Grid with several Nods, refer
+For a quick standalone Selenium Grid with several Nodes, refer
 to [Selenium Hub Docker](selenium-hub-docker.yml). The Grid UI will be
 at <http://localhost:4444/ui>.
 
@@ -120,7 +120,7 @@ TBD
     3. run it
    > Open the Selenium Grid Console to ensure proper registration.
 
-## Support for Mobile Testing
+## Mobile Testing
 
 ### Android Emulator
 
@@ -137,16 +137,17 @@ TBD
 > `.\platform-tools\adb.exe devices` -- should list your devices either real or
 > emulated
 
-### iOS
-
-    - install XCode to get the iOS Simulator
-
 Check Android setup by running `adb devices` -- it should list your device
 either real or emulated.
 
-Check DOM Inspector connects to application via <chrome://inspect/#devices>
+### iOS Simulator
 
-## Support for Windows Applications Testing
+> Install XCode to get the iOS Simulator.
+
+For hybrid applications, check DOM Inspector connects to application
+via <chrome://inspect/#devices>
+
+## Windows Applications Testing
 
 1. Enable Windows Developer Mode
 2. `choco install -y winappdriver`
