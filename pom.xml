@@ -75,6 +75,9 @@
 
   <modules>
     <module>qa-jgiven-commons</module>
+    <module>qa-jgiven-ssh</module>
+    <module>qa-jgiven-webdriver</module>
+    <module>qa-jgiven-rest</module>
     <module>qa-jgiven-rabbitmq</module>
     <module>qa-jgiven-elasticsearch</module>
     <module>qa-jgiven-reporter</module>
