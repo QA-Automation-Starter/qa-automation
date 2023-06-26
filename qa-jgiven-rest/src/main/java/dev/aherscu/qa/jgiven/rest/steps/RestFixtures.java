@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.fixtures;
+package dev.aherscu.qa.jgiven.rest.steps;
 
 import static java.util.Objects.*;
 
@@ -22,7 +22,8 @@ import javax.ws.rs.client.*;
 
 import com.tngtech.jgiven.annotation.*;
 
-import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.fixtures.*;
+import dev.aherscu.qa.jgiven.rest.model.*;
 import lombok.extern.slf4j.*;
 
 /**

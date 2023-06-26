@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.actions;
+package dev.aherscu.qa.jgiven.rest.steps;
 
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static java.util.Objects.*;
@@ -29,9 +29,9 @@ import javax.ws.rs.core.*;
 
 import com.tngtech.jgiven.annotation.*;
 
+import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.formatters.*;
-import dev.aherscu.qa.jgiven.commons.model.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
+import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;
 import lombok.extern.slf4j.*;

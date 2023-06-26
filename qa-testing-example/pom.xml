@@ -44,6 +44,12 @@
   <dependencies>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
+      <artifactId>qa-jgiven-rest</artifactId>
+      <version>0.0.26-SNAPSHOT</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-rabbitmq</artifactId>
       <version>0.0.26-SNAPSHOT</version>
       <scope>test</scope>

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.verifications;
+package dev.aherscu.qa.jgiven.rest.steps;
 
 import java.util.function.*;
 
@@ -27,9 +27,9 @@ import org.skyscreamer.jsonassert.*;
 
 import com.tngtech.jgiven.annotation.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.formatters.*;
-import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.verifications.*;
+import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
@@ -46,8 +46,7 @@ import lombok.extern.slf4j.*;
 @ThreadSafe
 @Slf4j
 public class RestVerifications<SELF extends RestVerifications<SELF>>
-    extends
-    GenericVerifications<RestScenarioType, SELF> {
+    extends GenericVerifications<RestScenarioType, SELF> {
 
     /**
      * The retrieved response contents.

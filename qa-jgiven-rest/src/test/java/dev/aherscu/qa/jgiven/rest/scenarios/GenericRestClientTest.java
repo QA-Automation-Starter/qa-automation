@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.scenarios;
+package dev.aherscu.qa.jgiven.rest.scenarios;
 
 import java.net.*;
 
@@ -22,12 +22,11 @@ import javax.ws.rs.client.*;
 
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
+import dev.aherscu.qa.jgiven.rest.model.*;
+import dev.aherscu.qa.jgiven.rest.steps.*;
+import dev.aherscu.qa.jgiven.rest.tags.*;
 import dev.aherscu.qa.testing.utils.config.*;
 import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;

@@ -27,11 +27,10 @@ import javax.ws.rs.core.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
+import dev.aherscu.qa.jgiven.rest.model.*;
+import dev.aherscu.qa.jgiven.rest.steps.*;
+import dev.aherscu.qa.jgiven.rest.tags.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;

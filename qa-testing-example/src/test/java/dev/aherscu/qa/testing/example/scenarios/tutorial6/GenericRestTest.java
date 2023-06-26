@@ -22,14 +22,13 @@ import static org.hamcrest.Matchers.equalTo;
 
 import javax.ws.rs.client.*;
 
+import dev.aherscu.qa.jgiven.rest.tags.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
+import dev.aherscu.qa.jgiven.rest.model.*;
+import dev.aherscu.qa.jgiven.rest.steps.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import dev.aherscu.qa.testing.utils.rest.*;
 
