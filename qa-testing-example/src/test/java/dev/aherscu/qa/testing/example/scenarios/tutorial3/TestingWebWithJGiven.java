@@ -17,8 +17,9 @@
 package dev.aherscu.qa.testing.example.scenarios.tutorial3;
 
 import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
-import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.DOUBLE_QUOTE;
 import static org.apache.commons.lang3.RandomStringUtils.*;
+import static org.apache.commons.lang3.StringUtils.wrap;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -45,13 +46,10 @@ public class TestingWebWithJGiven
     @DataProvider
     private Object[][] data() {
         return new Object[][] {
-            { new Text(wrap(randomAlphanumeric(40), DOUBLE_QUOTE)),
+            { new QuotedText(randomAlphanumeric(40)),
                 counts(equalTo(0L)) },
-            { new Text("testng"),
-                // ISSUE sometimes the Google opens in a non-English language
-                allMatch(either(containsStringIgnoringCase("testng"))
-                    .or(containsStringIgnoringCase("Try again"))
-                    .or(containsStringIgnoringCase("More results"))) }
+            { new QuotedText("testng"),
+                anyMatch(containsStringIgnoringCase("testng")) }
         };
     }
 
@@ -78,5 +76,11 @@ public class TestingWebWithJGiven
     public void beforeMethodOpenWebDriver() {
         super.beforeMethodOpenWebDriver();
         webDriver.get().asRemote().manage().window().maximize();
+    }
+
+    private static class QuotedText extends Text {
+        public QuotedText(final String value) {
+            super(wrap(value, DOUBLE_QUOTE));
+        }
     }
 }
