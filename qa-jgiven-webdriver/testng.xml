@@ -20,7 +20,7 @@
 
   <test name="Acceptance" parallel="classes">
     <packages>
-      <package name="dev.aherscu.qa.jgiven.elasticsearch.scenarios"/>
+      <package name="dev.aherscu.qa.jgiven.webdriver.scenarios"/>
     </packages>
   </test>
 
