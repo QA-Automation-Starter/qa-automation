@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.actions;
+package dev.aherscu.qa.jgiven.ssh.steps;
 
 import static dev.aherscu.qa.testing.utils.ObjectUtilsExtensions.*;
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
@@ -29,9 +29,8 @@ import org.apache.commons.io.*;
 
 import com.tngtech.jgiven.annotation.*;
 
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.jgiven.commons.model.*;
-import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.commons.actions.*;
+import dev.aherscu.qa.jgiven.ssh.model.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.schmizz.sshj.*;

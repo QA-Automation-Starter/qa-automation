@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.verifications;
+package dev.aherscu.qa.jgiven.ssh.steps;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -21,7 +21,8 @@ import javax.annotation.concurrent.*;
 
 import com.tngtech.jgiven.annotation.*;
 
-import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.verifications.*;
+import dev.aherscu.qa.jgiven.ssh.model.*;
 
 /**
  * Generic SSH configuration verifications. Verifications on the response
