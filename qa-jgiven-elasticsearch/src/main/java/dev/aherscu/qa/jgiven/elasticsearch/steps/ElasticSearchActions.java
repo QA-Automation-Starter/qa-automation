@@ -22,7 +22,7 @@ import com.tngtech.jgiven.annotation.*;
 
 import co.elastic.clients.elasticsearch.*;
 import co.elastic.clients.elasticsearch.core.*;
-import dev.aherscu.qa.jgiven.commons.actions.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.elasticsearch.model.*;
 import lombok.*;
 

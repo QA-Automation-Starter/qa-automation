@@ -28,7 +28,7 @@ import org.skyscreamer.jsonassert.*;
 import com.tngtech.jgiven.annotation.*;
 
 import dev.aherscu.qa.jgiven.commons.formatters.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import lombok.*;

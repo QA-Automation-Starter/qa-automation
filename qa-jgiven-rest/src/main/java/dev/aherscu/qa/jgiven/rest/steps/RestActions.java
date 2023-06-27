@@ -29,8 +29,8 @@ import javax.ws.rs.core.*;
 
 import com.tngtech.jgiven.annotation.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import dev.aherscu.qa.jgiven.commons.formatters.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
+import dev.aherscu.qa.jgiven.rest.formatters.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;

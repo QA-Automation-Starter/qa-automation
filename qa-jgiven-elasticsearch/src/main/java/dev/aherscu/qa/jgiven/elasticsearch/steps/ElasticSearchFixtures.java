@@ -19,7 +19,7 @@ package dev.aherscu.qa.jgiven.elasticsearch.steps;
 import com.tngtech.jgiven.annotation.*;
 
 import co.elastic.clients.elasticsearch.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.elasticsearch.model.*;
 
 public class ElasticSearchFixtures<TDocument, SELF extends ElasticSearchFixtures<TDocument, SELF>>

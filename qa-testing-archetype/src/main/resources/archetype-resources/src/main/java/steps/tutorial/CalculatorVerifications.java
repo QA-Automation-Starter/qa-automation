@@ -18,10 +18,10 @@ package ${package}.steps.tutorial;
 
 import static io.appium.java_client.MobileBy.*;
 
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import org.hamcrest.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
 
 public class CalculatorVerifications<SELF extends CalculatorVerifications<SELF>>
     extends WebDriverVerifications<SELF> {

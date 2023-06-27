@@ -19,10 +19,8 @@ import java.time.*;
 
 import javax.annotation.concurrent.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.testing.utils.*;
 
 /**

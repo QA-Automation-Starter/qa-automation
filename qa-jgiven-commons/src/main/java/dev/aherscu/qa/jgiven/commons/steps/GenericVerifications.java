@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.verifications;
+package dev.aherscu.qa.jgiven.commons.steps;
 
 import static com.danhaywood.java.assertjext.Conditions.*;
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;

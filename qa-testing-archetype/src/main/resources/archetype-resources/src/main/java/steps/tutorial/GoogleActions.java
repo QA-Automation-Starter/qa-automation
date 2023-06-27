@@ -16,9 +16,9 @@
 
 package ${package}.steps.tutorial;
 
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import org.openqa.selenium.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 
 public class GoogleActions<SELF extends GoogleActions<SELF>>

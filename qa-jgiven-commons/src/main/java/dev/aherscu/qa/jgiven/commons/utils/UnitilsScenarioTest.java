@@ -47,10 +47,8 @@ import com.github.rodionmoiseev.c10n.annotations.*;
 import com.tngtech.jgiven.annotation.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.testing.utils.config.AbstractConfiguration;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;

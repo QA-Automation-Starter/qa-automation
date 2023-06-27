@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.actions;
+package dev.aherscu.qa.jgiven.commons.steps;
 
 import static dev.aherscu.qa.jgiven.commons.utils.WebDriverEx.*;
 import static java.lang.Boolean.*;

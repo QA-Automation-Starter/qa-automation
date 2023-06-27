@@ -21,7 +21,7 @@ import javax.annotation.concurrent.*;
 
 import com.tngtech.jgiven.annotation.*;
 
-import dev.aherscu.qa.jgiven.commons.verifications.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.ssh.model.*;
 
 /**

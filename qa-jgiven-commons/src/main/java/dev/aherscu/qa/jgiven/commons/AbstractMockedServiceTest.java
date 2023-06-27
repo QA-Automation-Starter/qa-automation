@@ -21,11 +21,9 @@ import org.testng.annotations.*;
 
 import com.github.tomakehurst.wiremock.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.testing.utils.config.*;
 
 /**

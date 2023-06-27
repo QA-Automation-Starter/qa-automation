@@ -20,10 +20,8 @@ import static java.util.Objects.*;
 
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 

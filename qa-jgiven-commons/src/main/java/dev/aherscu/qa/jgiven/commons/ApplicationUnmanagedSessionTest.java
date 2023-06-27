@@ -18,11 +18,9 @@ package dev.aherscu.qa.jgiven.commons;
 
 import org.openqa.selenium.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
 import edu.umd.cs.findbugs.annotations.*;
 
 /**

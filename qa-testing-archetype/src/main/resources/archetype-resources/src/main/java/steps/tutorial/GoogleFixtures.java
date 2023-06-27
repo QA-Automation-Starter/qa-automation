@@ -16,7 +16,7 @@
 
 package ${package}.steps.tutorial;
 
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 
 public class GoogleFixtures<SELF extends GoogleFixtures<SELF>>
