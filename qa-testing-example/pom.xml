@@ -44,6 +44,11 @@
   <dependencies>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
+      <artifactId>qa-jgiven-webdriver</artifactId>
+      <version>0.0.26-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-rest</artifactId>
       <version>0.0.26-SNAPSHOT</version>
       <scope>test</scope>

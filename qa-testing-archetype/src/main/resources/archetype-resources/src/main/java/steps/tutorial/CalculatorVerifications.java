@@ -18,7 +18,7 @@ package ${package}.steps.tutorial;
 
 import static io.appium.java_client.MobileBy.*;
 
-import dev.aherscu.qa.jgiven.commons.steps.*;
+import dev.aherscu.qa.jgiven.webdriver.steps.*;
 import org.hamcrest.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;

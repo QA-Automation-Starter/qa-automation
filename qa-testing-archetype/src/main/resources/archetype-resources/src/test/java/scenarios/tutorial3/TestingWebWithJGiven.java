@@ -27,7 +27,8 @@ import java.util.stream.*;
 import org.hamcrest.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.*;
+import dev.aherscu.qa.jgiven.webdriver.*;
+import dev.aherscu.qa.jgiven.webdriver.model.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import ${package}.*;
 import ${package}.steps.tutorial.*;

@@ -25,10 +25,10 @@ import static org.hamcrest.Matchers.equalTo;
 
 import java.util.stream.*;
 
+import dev.aherscu.qa.jgiven.webdriver.*;
 import org.hamcrest.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.testing.example.*;
@@ -36,8 +36,7 @@ import dev.aherscu.qa.testing.example.steps.tutorial.*;
 import lombok.*;
 
 public class TestingWebWithJGiven
-    extends
-    ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
+    extends ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
 
     protected TestingWebWithJGiven() {
         super(TestConfiguration.class);

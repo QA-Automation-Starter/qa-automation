@@ -74,6 +74,14 @@
     </pluginRepository>
   </pluginRepositories>
 
+  <dependencies>
+    <dependency>
+      <groupId>dev.aherscu.qa</groupId>
+      <artifactId>qa-jgiven-webdriver</artifactId>
+      <version>${projectVersion}</version>
+    </dependency>
+  </dependencies>
+
   <build>
     <defaultGoal>verify</defaultGoal>
 

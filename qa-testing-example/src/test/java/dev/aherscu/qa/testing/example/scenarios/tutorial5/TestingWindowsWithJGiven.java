@@ -18,9 +18,9 @@ package dev.aherscu.qa.testing.example.scenarios.tutorial5;
 
 import static org.hamcrest.Matchers.*;
 
+import dev.aherscu.qa.jgiven.webdriver.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.testing.example.*;
 import dev.aherscu.qa.testing.example.model.tutorial.*;
@@ -30,8 +30,7 @@ import lombok.extern.slf4j.*;
 
 @Slf4j
 public class TestingWindowsWithJGiven
-    extends
-    ApplicationPerClassWebSessionTest<TestConfiguration, CalculatorFixtures<?>, CalculatorActions<?>, CalculatorVerifications<?>> {
+    extends ApplicationPerClassWebSessionTest<TestConfiguration, CalculatorFixtures<?>, CalculatorActions<?>, CalculatorVerifications<?>> {
 
     protected TestingWindowsWithJGiven() {
         super(TestConfiguration.class);

@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,14 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.model;
+package dev.aherscu.qa.jgiven.webdriver.tags;
+
+import java.lang.annotation.*;
+
+import com.tngtech.jgiven.annotation.*;
 
 /**
- * Web Driver type of scenario.
+ * User interface testing annotation.
  * 
  * @author aherscu
  *
  */
-public interface WebDriverScenarioType extends AnyScenarioType {
-    // marker interface
+@IsTag(
+    name = "UI Test",
+    description = "Tests interacting with user interface")
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
+// DELETEME -- replace with WebDriverTest
+public @interface UITest {
+    // no parameter to declare
 }

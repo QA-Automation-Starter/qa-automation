@@ -13,18 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.scenarios;
+package dev.aherscu.qa.jgiven.webdriver.scenarios;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static dev.aherscu.qa.testing.utils.MatchersExtensions.*;
 
-import dev.aherscu.qa.jgiven.commons.steps.*;
+import dev.aherscu.qa.jgiven.webdriver.model.*;
+import dev.aherscu.qa.jgiven.webdriver.steps.*;
+import dev.aherscu.qa.jgiven.webdriver.tags.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
-import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import edu.umd.cs.findbugs.annotations.*;

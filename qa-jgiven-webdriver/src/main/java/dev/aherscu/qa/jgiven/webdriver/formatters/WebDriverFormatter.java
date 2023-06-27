@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,8 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package dev.aherscu.qa.jgiven.commons.formatters;
+package dev.aherscu.qa.jgiven.webdriver.formatters;
 
 import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static java.util.Objects.*;
@@ -29,35 +28,39 @@ import com.tngtech.jgiven.annotation.*;
 import com.tngtech.jgiven.format.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import lombok.*;
 
 /**
- * Annotation formatter for WinAppDriver.
- *
+ * Annotation formatter for WebDriver.
+ * 
  * @author aherscu
+ *
  */
 @ThreadSafe
-public class WinAppDriverFormatter
-    implements
-    AnnotationArgumentFormatter<WinAppDriverFormatter.Annotation> {
+public class WebDriverFormatter implements
+    AnnotationArgumentFormatter<WebDriverFormatter.Annotation> {
+
     @Override
     public String format(final Object argumentToFormat,
-        final WinAppDriverFormatter.Annotation annotation) {
+        final WebDriverFormatter.Annotation annotation) {
         if (isNull(argumentToFormat))
             return EMPTY;
-        final org.openqa.selenium.Capabilities capabilities =
+
+        val capabilities =
             ((WebDriverEx) argumentToFormat).originalCapabilities;
         return MessageFormat.format("{0} {1} {2}",
+            capabilities.getCapability(DEVICE_NAME),
             capabilities.getCapability(PLATFORM_NAME),
-            capabilities.getCapability(PLATFORM_VERSION),
-            capabilities.getCapability("app"));
+            capabilities.getCapability(PLATFORM_VERSION));
     }
 
     /**
      * Formatter annotation for WebDriver.
      *
      * @author aherscu
+     *
      */
-    @AnnotationFormat(WinAppDriverFormatter.class)
+    @AnnotationFormat(WebDriverFormatter.class)
     @Retention(RetentionPolicy.RUNTIME)
     @Target({ ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })
     public @interface Annotation {

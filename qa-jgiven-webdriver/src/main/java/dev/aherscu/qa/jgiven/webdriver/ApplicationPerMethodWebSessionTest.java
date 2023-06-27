@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons;
+package dev.aherscu.qa.jgiven.webdriver;
 
 import static java.util.Objects.*;
 
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.steps.*;
-import dev.aherscu.qa.jgiven.commons.tags.*;
+import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.webdriver.steps.*;
+import dev.aherscu.qa.jgiven.webdriver.tags.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
