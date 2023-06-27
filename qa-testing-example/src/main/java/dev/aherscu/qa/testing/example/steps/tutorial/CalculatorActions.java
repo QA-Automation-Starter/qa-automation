@@ -18,7 +18,7 @@ package dev.aherscu.qa.testing.example.steps.tutorial;
 
 import static io.appium.java_client.MobileBy.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 
 public class CalculatorActions<SELF extends CalculatorActions<SELF>>
     extends WebDriverActions<SELF> {

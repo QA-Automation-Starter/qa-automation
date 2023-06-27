@@ -18,17 +18,15 @@ package dev.aherscu.qa.jgiven.commons.scenarios;
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static dev.aherscu.qa.testing.utils.MatchersExtensions.*;
 
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.extern.slf4j.*;
 

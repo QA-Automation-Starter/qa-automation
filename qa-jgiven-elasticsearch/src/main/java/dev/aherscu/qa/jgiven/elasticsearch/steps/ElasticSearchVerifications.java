@@ -16,7 +16,6 @@
 
 package dev.aherscu.qa.jgiven.elasticsearch.steps;
 
-import java.util.function.*;
 import java.util.stream.*;
 
 import org.hamcrest.*;
@@ -28,8 +27,7 @@ import co.elastic.clients.elasticsearch.*;
 import co.elastic.clients.elasticsearch._types.query_dsl.*;
 import co.elastic.clients.elasticsearch.core.*;
 import co.elastic.clients.elasticsearch.core.search.*;
-import co.elastic.clients.util.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.elasticsearch.model.*;
 
 public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVerifications<TDocument, SELF>>

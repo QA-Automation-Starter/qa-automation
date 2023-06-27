@@ -30,6 +30,7 @@ import com.tngtech.jgiven.annotation.*;
     description = "Tests interacting with user interface")
 @Retention(RetentionPolicy.RUNTIME)
 @Inherited
+// DELETEME -- replace with WebDriverTest
 public @interface UITest {
     // no parameter to declare
 }

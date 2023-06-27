@@ -18,12 +18,12 @@ package ${package}.steps.tutorial;
 
 import java.util.stream.*;
 
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import org.hamcrest.*;
 import org.openqa.selenium.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
 import ${package}.model.tutorial.*;
 import lombok.extern.slf4j.*;
 
