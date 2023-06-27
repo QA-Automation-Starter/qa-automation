@@ -4,4 +4,4 @@ DeviceName=Samsung Galaxy S9 Plus WQHD GoogleAPI Emulator
 PlatformName=Android
 PlatformVersion=8.0
 dev.aherscu.qa.jgiven.commons.tags.Reference=12345
-dev.aherscu.qa.jgiven.commons.tags.UITest=
+dev.aherscu.qa.jgiven.webdriver.tags.UITest=

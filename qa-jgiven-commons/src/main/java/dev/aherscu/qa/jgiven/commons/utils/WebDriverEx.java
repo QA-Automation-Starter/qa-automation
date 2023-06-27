@@ -122,8 +122,7 @@ public class WebDriverEx {
      * @param capabilities
      *            the capabilities; might be null; the capabilities may include
      *            {@code name} for registering this web driver for some sort of
-     *            status reporting mechanism -- see
-     *            {@link AbstractSauceLabsReporter}
+     *            status reporting mechanism
      * @return the initialized driver, or null if {@link DryRunAspect#dryRun}
      *
      * @throws RuntimeException

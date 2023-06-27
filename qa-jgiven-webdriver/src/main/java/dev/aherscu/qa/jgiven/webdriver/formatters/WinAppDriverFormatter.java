@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.formatters;
+
+package dev.aherscu.qa.jgiven.webdriver.formatters;
 
 import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static java.util.Objects.*;
@@ -28,39 +29,35 @@ import com.tngtech.jgiven.annotation.*;
 import com.tngtech.jgiven.format.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import lombok.*;
 
 /**
- * Annotation formatter for WebDriver.
- * 
- * @author aherscu
+ * Annotation formatter for WinAppDriver.
  *
+ * @author aherscu
  */
 @ThreadSafe
-public class WebDriverFormatter implements
-    AnnotationArgumentFormatter<WebDriverFormatter.Annotation> {
-
+public class WinAppDriverFormatter
+    implements
+    AnnotationArgumentFormatter<WinAppDriverFormatter.Annotation> {
     @Override
     public String format(final Object argumentToFormat,
-        final WebDriverFormatter.Annotation annotation) {
+        final WinAppDriverFormatter.Annotation annotation) {
         if (isNull(argumentToFormat))
             return EMPTY;
-
-        val capabilities =
+        final org.openqa.selenium.Capabilities capabilities =
             ((WebDriverEx) argumentToFormat).originalCapabilities;
         return MessageFormat.format("{0} {1} {2}",
-            capabilities.getCapability(DEVICE_NAME),
             capabilities.getCapability(PLATFORM_NAME),
-            capabilities.getCapability(PLATFORM_VERSION));
+            capabilities.getCapability(PLATFORM_VERSION),
+            capabilities.getCapability("app"));
     }
 
     /**
      * Formatter annotation for WebDriver.
      *
      * @author aherscu
-     *
      */
-    @AnnotationFormat(WebDriverFormatter.class)
+    @AnnotationFormat(WinAppDriverFormatter.class)
     @Retention(RetentionPolicy.RUNTIME)
     @Target({ ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })
     public @interface Annotation {

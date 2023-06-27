@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.commons;
+package dev.aherscu.qa.jgiven.webdriver;
 
 import static com.google.common.base.Suppliers.*;
 import static dev.aherscu.qa.jgiven.commons.utils.SessionName.*;

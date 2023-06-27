@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.commons;
+package dev.aherscu.qa.jgiven.webdriver;
 
-import static dev.aherscu.qa.jgiven.commons.WebDriverConfiguration.*;
-import static dev.aherscu.qa.jgiven.commons.WebDriverConfiguration.DeviceType.*;
+import static dev.aherscu.qa.jgiven.webdriver.WebDriverConfiguration.*;
+import static dev.aherscu.qa.jgiven.webdriver.WebDriverConfiguration.DeviceType.*;
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
 import static org.apache.commons.lang3.StringUtils.*;

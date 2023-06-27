@@ -18,7 +18,7 @@ package ${package}.steps.tutorial;
 
 import java.util.stream.*;
 
-import dev.aherscu.qa.jgiven.commons.steps.*;
+import dev.aherscu.qa.jgiven.webdriver.steps.*;
 import org.hamcrest.*;
 import org.openqa.selenium.*;
 

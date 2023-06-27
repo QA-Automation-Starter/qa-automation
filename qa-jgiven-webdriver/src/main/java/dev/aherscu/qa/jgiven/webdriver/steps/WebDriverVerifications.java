@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.steps;
+package dev.aherscu.qa.jgiven.webdriver.steps;
 
 import static dev.aherscu.qa.jgiven.commons.utils.WebDriverEx.*;
 import static java.util.Objects.*;
@@ -28,8 +28,9 @@ import org.openqa.selenium.NoSuchElementException;
 
 import com.tngtech.jgiven.annotation.*;
 
-import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.webdriver.model.*;
 import io.appium.java_client.appmanagement.*;
 import lombok.*;
 import lombok.extern.slf4j.*;

@@ -20,7 +20,7 @@ import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.*;
+import dev.aherscu.qa.jgiven.webdriver.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import ${package}.*;
 import ${package}.model.tutorial.*;

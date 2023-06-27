@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.commons.utils;
+package dev.aherscu.qa.jgiven.webdriver.utils;
 
 import static java.util.Objects.*;
 
@@ -22,6 +22,7 @@ import org.testng.*;
 
 import com.saucelabs.saucerest.*;
 
+import dev.aherscu.qa.jgiven.commons.utils.*;
 import lombok.extern.slf4j.*;
 
 /**

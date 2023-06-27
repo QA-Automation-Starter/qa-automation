@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.steps;
+package dev.aherscu.qa.jgiven.webdriver.steps;
 
 import static dev.aherscu.qa.jgiven.commons.utils.WebDriverEx.*;
 import static dev.aherscu.qa.testing.utils.UrlUtils.*;
@@ -29,9 +29,10 @@ import org.openqa.selenium.*;
 import com.tngtech.jgiven.annotation.*;
 import com.tngtech.jgiven.attachment.*;
 
-import dev.aherscu.qa.jgiven.commons.formatters.*;
-import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.webdriver.formatters.*;
+import dev.aherscu.qa.jgiven.webdriver.model.*;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
 import lombok.extern.slf4j.*;

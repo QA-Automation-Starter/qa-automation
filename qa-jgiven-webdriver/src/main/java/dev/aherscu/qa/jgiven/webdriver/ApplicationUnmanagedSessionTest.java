@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.commons;
+package dev.aherscu.qa.jgiven.webdriver;
 
 import org.openqa.selenium.*;
 
-import dev.aherscu.qa.jgiven.commons.model.*;
-import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.webdriver.model.*;
+import dev.aherscu.qa.jgiven.webdriver.steps.*;
 import edu.umd.cs.findbugs.annotations.*;
 
 /**
