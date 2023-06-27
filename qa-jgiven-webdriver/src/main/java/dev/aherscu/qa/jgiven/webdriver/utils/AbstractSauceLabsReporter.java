@@ -18,11 +18,11 @@ package dev.aherscu.qa.jgiven.webdriver.utils;
 
 import static java.util.Objects.*;
 
-import dev.aherscu.qa.jgiven.commons.utils.*;
 import org.testng.*;
 
 import com.saucelabs.saucerest.*;
 
+import dev.aherscu.qa.jgiven.commons.utils.*;
 import lombok.extern.slf4j.*;
 
 /**

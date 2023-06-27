@@ -18,7 +18,6 @@ package dev.aherscu.qa.jgiven.webdriver;
 
 import org.openqa.selenium.*;
 
-import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.webdriver.model.*;
 import dev.aherscu.qa.jgiven.webdriver.steps.*;
