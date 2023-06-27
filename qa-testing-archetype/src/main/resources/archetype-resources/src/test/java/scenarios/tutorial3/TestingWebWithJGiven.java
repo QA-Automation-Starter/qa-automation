@@ -27,9 +27,8 @@ import java.util.stream.*;
 import org.hamcrest.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
-import ${package}.*;
+{package}.*;
 import ${package}.steps.tutorial.*;
 import lombok.*;
 

@@ -20,11 +20,9 @@ import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.*;
-import dev.aherscu.qa.jgiven.commons.utils.*;
-import ${package}.*;
+{package}.*;
 import ${package}.model.tutorial.*;
-import ${package}.steps.tutorial.*;
+{package}.steps.tutorial.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 

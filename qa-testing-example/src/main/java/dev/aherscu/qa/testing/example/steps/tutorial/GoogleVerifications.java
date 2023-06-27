@@ -18,12 +18,12 @@ package dev.aherscu.qa.testing.example.steps.tutorial;
 
 import java.util.stream.*;
 
+import dev.aherscu.qa.jgiven.webdriver.steps.*;
+import dev.aherscu.qa.jgiven.webdriver.utils.*;
 import org.hamcrest.*;
 import org.openqa.selenium.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
-import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.testing.example.model.tutorial.*;
 
 public class GoogleVerifications<SELF extends GoogleVerifications<SELF>>

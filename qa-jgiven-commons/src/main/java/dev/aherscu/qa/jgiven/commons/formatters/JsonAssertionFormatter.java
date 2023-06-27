@@ -19,8 +19,6 @@ import java.lang.annotation.*;
 
 import javax.annotation.concurrent.*;
 
-import org.openqa.selenium.*;
-
 import com.tngtech.jgiven.annotation.*;
 import com.tngtech.jgiven.format.*;
 
@@ -43,12 +41,6 @@ public class JsonAssertionFormatter implements
         return argumentToFormat.toString();
     }
 
-    /**
-     * Formatter annotation for {@link By} objects.
-     *
-     * @author aherscu
-     *
-     */
     @Format(value = JsonAssertionFormatter.class)
     @Retention(RetentionPolicy.RUNTIME)
     @Target({ ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })

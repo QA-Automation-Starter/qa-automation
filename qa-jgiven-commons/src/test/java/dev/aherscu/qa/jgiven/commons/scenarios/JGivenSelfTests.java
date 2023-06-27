@@ -31,7 +31,8 @@ import dev.aherscu.qa.jgiven.commons.utils.*;
  * Appears to be fixed in 0.18.1 according to
  * https://github.com/TNG/JGiven/pull/422
  */
-@Listeners({ ScenarioTestListenerEx.class })
+// TODO somehow get around this
+//@Listeners({ ScenarioTestListenerEx.class })
 public class JGivenSelfTests extends
     ScenarioTest<JGivenSelfTests.SomeGiven<?>, JGivenSelfTests.SomeWhen<?>, JGivenSelfTests.SomeThen<?>> {
 

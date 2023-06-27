@@ -16,9 +16,9 @@
 
 package dev.aherscu.qa.testing.example.steps.tutorial;
 
+import dev.aherscu.qa.jgiven.webdriver.steps.*;
 import org.openqa.selenium.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 
 public class GoogleActions<SELF extends GoogleActions<SELF>>

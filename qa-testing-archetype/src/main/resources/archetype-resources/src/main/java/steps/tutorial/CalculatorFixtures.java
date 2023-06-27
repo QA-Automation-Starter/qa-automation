@@ -16,9 +16,6 @@
 
 package ${package}.steps.tutorial;
 
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.jgiven.commons.utils.*;
-
 public class CalculatorFixtures<SELF extends CalculatorFixtures<SELF>>
     extends WebDriverFixtures<SELF> {
     public SELF a_calculator(final WebDriverEx driver) {

@@ -15,12 +15,6 @@
  */
 package dev.aherscu.qa.jgiven.commons;
 
-import java.net.*;
-
-import javax.ws.rs.*;
-
-import org.openqa.selenium.*;
-
 import lombok.extern.slf4j.*;
 
 /**
@@ -70,9 +64,6 @@ public class TestRuntimeException extends RuntimeException {
     public static boolean isRecoverableException(final Throwable t) {
         log.trace("testing if can recover from {}", t.toString());
         return t instanceof AssertionError
-            || t.getCause() instanceof AssertionError
-            || t instanceof WebDriverException
-            || t instanceof ProcessingException
-                && t.getCause() instanceof ConnectException;
+            || t.getCause() instanceof AssertionError;
     }
 }

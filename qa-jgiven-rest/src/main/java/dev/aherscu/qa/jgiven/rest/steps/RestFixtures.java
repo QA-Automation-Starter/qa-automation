@@ -22,7 +22,7 @@ import javax.ws.rs.client.*;
 
 import com.tngtech.jgiven.annotation.*;
 
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import lombok.extern.slf4j.*;
 

@@ -16,9 +16,6 @@
 
 package ${package}.steps.tutorial;
 
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.jgiven.commons.utils.*;
-
 public class GoogleFixtures<SELF extends GoogleFixtures<SELF>>
     extends WebDriverFixtures<SELF> {
     public SELF google(final WebDriverEx driver) {

@@ -24,9 +24,9 @@ import static org.hamcrest.Matchers.equalTo;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.*;
 
+import dev.aherscu.qa.jgiven.rest.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.jgiven.rest.steps.*;
@@ -49,8 +49,7 @@ import lombok.*;
     justification = "JGiven framework limitation")
 @SuppressWarnings({ "boxing" })
 public final class StatefulRestTest
-    extends
-    AbstractMockedServiceTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+    extends AbstractMockedServiceTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 

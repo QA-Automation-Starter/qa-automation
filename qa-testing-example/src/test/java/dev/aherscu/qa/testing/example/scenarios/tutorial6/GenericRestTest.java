@@ -22,10 +22,10 @@ import static org.hamcrest.Matchers.equalTo;
 
 import javax.ws.rs.client.*;
 
+import dev.aherscu.qa.jgiven.rest.*;
 import dev.aherscu.qa.jgiven.rest.tags.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.jgiven.rest.steps.*;
@@ -46,8 +46,7 @@ import dev.aherscu.qa.testing.utils.rest.*;
     justification = "JGiven framework limitation")
 @SuppressWarnings({ "boxing" })
 public final class GenericRestTest
-    extends
-    AbstractMockedServiceTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+    extends AbstractMockedServiceTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 

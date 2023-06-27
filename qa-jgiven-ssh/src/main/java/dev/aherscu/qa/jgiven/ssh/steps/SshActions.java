@@ -29,7 +29,7 @@ import org.apache.commons.io.*;
 
 import com.tngtech.jgiven.annotation.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.ssh.model.*;
 import lombok.*;
 import lombok.extern.slf4j.*;

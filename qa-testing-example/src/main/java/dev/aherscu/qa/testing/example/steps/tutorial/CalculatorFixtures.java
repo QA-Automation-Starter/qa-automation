@@ -16,8 +16,8 @@
 
 package dev.aherscu.qa.testing.example.steps.tutorial;
 
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.webdriver.steps.*;
+import dev.aherscu.qa.jgiven.webdriver.utils.*;
 
 public class CalculatorFixtures<SELF extends CalculatorFixtures<SELF>>
     extends WebDriverFixtures<SELF> {

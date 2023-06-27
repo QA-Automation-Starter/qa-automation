@@ -18,8 +18,6 @@ package ${package}.steps.tutorial;
 
 import static io.appium.java_client.MobileBy.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
-
 public class CalculatorActions<SELF extends CalculatorActions<SELF>>
     extends WebDriverActions<SELF> {
     public SELF typing(final String expression) {

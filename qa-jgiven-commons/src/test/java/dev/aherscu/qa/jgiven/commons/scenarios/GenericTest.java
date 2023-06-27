@@ -21,19 +21,17 @@ import static org.hamcrest.Matchers.*;
 import java.lang.SuppressWarnings;
 import java.math.*;
 
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import org.testng.annotations.*;
 import org.unitils.io.annotation.*;
 
 import com.tngtech.jgiven.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
-import dev.aherscu.qa.jgiven.commons.actions.*;
 import dev.aherscu.qa.jgiven.commons.data.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
 import dev.aherscu.qa.testing.utils.*;
 import dev.aherscu.qa.testing.utils.config.*;
 import edu.umd.cs.findbugs.annotations.*;

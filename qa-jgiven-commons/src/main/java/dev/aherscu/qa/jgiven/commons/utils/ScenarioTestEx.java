@@ -17,7 +17,6 @@
 package dev.aherscu.qa.jgiven.commons.utils;
 
 import org.slf4j.bridge.*;
-import org.testng.annotations.*;
 
 import com.tngtech.jgiven.base.*;
 import com.tngtech.jgiven.impl.*;
@@ -27,8 +26,7 @@ import lombok.extern.slf4j.*;
 
 /**
  * This is a complete replacement of
- * {@link com.tngtech.jgiven.testng.ScenarioTest} in order to use
- * {@link ScenarioTestListenerEx}.
+ * {@link com.tngtech.jgiven.testng.ScenarioTest}.
  * 
  * @param <GIVEN>
  *            type of given stage
@@ -37,7 +35,8 @@ import lombok.extern.slf4j.*;
  * @param <THEN>
  *            type of then stage
  */
-@Listeners(ScenarioTestListenerEx.class)
+// TODO somehow get around this...
+// @Listeners(ScenarioTestListenerEx.class)
 @Slf4j
 public class ScenarioTestEx<GIVEN, WHEN, THEN> extends
     ScenarioTestBase<GIVEN, WHEN, THEN> {

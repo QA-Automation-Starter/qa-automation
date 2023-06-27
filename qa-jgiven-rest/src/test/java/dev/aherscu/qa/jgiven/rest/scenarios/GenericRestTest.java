@@ -21,9 +21,9 @@ import static org.hamcrest.Matchers.equalTo;
 
 import javax.ws.rs.client.*;
 
+import dev.aherscu.qa.jgiven.rest.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.jgiven.rest.steps.*;
@@ -44,8 +44,7 @@ import dev.aherscu.qa.testing.utils.rest.*;
     value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
     justification = "JGiven framework limitation")
 @SuppressWarnings({ "boxing" })
-public final class GenericRestTest extends
-    AbstractMockedServiceTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+public final class GenericRestTest extends AbstractMockedServiceTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 

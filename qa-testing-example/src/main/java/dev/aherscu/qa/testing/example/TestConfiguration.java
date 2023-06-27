@@ -19,9 +19,8 @@ import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 
 import javax.annotation.concurrent.*;
 
+import dev.aherscu.qa.jgiven.webdriver.*;
 import org.apache.commons.configuration.*;
-
-import dev.aherscu.qa.jgiven.commons.*;
 
 /**
  * Represents the configuration parameters for tests.
