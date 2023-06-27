@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.commons.utils;
+package dev.aherscu.qa.jgiven.webdriver.utils;
 
 import static dev.aherscu.qa.testing.utils.UriUtils.*;
 import static java.util.Objects.*;
