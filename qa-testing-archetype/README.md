@@ -1,3 +1,5 @@
+> [**For users**: introduction, instructions, and tutorials](https://qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example)
+
 # Development Instructions
 
 Working with archetype snapshots require following sections to be present

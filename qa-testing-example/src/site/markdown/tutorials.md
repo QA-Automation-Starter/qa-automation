@@ -8,7 +8,7 @@
 
 ## Prerequisites
 
-1. Working development environment -- see [README](../README.md)
+1. Working development environment -- see [README](../../../README.md)
 2. Knowledge of testing frameworks and libraries, in this order:
     * [TestNG](https://testng.org/doc/documentation-main.html)
     * [Hamcrest](http://hamcrest.org/JavaHamcrest/tutorial)

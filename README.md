@@ -3,14 +3,11 @@
 [![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/on-main-push.yml/badge.svg)](https://github.com/QA-Automation-Starter/qa-automation/actions)
 [![Open Source Helpers](https://www.codetriage.com/adrian-herscu/qa-automation/badges/users.svg)](https://www.codetriage.com/adrian-herscu/qa-automation)
 
-> **[Usage instructions and Brief introduction](https://qa-automation-starter.aherscu.dev)**
+>> **[Usage instructions and Brief introduction](https://qa-automation-starter.aherscu.dev)**
 > 
 > (this page is for developing and maintaining this project)
 
 # Development Instructions
-
-For using a snapshot version
-of [QA Testing Archetype](qa-testing-archetype/README.md)
 
 ## Maven Settings
 
@@ -62,6 +59,10 @@ The above has the following effects:
 * a new commit will be made on main branch
 * after few hours released artifacts will appear on Maven Central
   at https://search.maven.org/search?q=dev.aherscu
+
+## Known Issues
+
+see [docs/KNOWN-ISSUES.md](docs/KNOWN-ISSUES.md)
 
 ## Contributing
 

@@ -28,4 +28,26 @@
       <password>...your password here...</password>
     </server>
   </servers>
+
+  <profiles>
+    <profile>
+      <id>ossrh</id>
+      <repositories>
+        <repository>
+          <!-- NOTE required to allow working with SNAPSHOT archetypes -->
+          <!-- id expected by maven-archetype-plugin to avoid fetching from everywhere -->
+          <id>archetype</id>
+          <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+          <snapshots>
+            <enabled>true</enabled>
+            <checksumPolicy>warn</checksumPolicy>
+          </snapshots>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>ossrh</activeProfile>
+  </activeProfiles>
 </settings>

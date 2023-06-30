@@ -1,6 +1,8 @@
-> __How about...__
+> [Development Instructions](https://github.com/QA-Automation-Starter/qa-automation#readme)
+
+> > __How about...__
 >
-> * ___starting an automation project in several minutes___?...
+> * ___[starting](#getting-started) an automation project in several minutes___?...
 >
 > * with __BDD-reporting__, __Selenium__, __REST__, and __database support__
     already baked-in?...
@@ -9,9 +11,9 @@
 >
 > * CI/CD ready, without any additional scripting?...
 >
-> * additional modules for RabbitMQ and Elastic Search?...
+> * additional modules for [RabbitMQ](qa-jgiven-rabbitmq) and [Elastic Search](qa-jgiven-elasticsearch)?...
 >
-> * reporting connector for TestRail?...
+> * reporting connector for [TestRail](qa-testrail-reporter)?...
 
 # Getting Started
 
@@ -54,7 +56,7 @@ After running it, above code will be nicely reflected in
 a [JGiven](https://jgiven.org/) BDD report.
 
 See `TestingWindowsWithJGiven`
-under [Working Examples](qa-testing-example/README.md).
+under [Working Examples](https://qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example).
 
 There is a JGiven Report generated as part of
 [QA Testing Example](qa-testing-parent/qa-testing-example/index.html).
