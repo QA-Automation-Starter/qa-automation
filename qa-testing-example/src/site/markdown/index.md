@@ -179,10 +179,6 @@ emulators.
 
 SauceLabs runs will be visible at <https://app.saucelabs.com/dashboard/builds>.
 
-## On Jenkins
-
-Jobs with different profiles are available at <TBD>.
-
 ## On Local Workstation
 
 Maven `settings.xml` should contain proper proxy configuration; see
