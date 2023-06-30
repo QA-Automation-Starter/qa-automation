@@ -1,11 +1,7 @@
-# QA Testing Archetype
+# Development Instructions
 
-Generates a template Maven project with the QA Automation built-in.
-
-See [generate-example-project.bat](generate-example-project.bat) for an working
-demo.
-
-Snapshots require following sections to present in `.m2/settings.xml`:
+Working with archetype snapshots require following sections to be present
+in your `.m2/settings.xml`:
 
 ```xml
 
