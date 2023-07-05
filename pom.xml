@@ -301,6 +301,11 @@
           <version>3.2.0</version>
         </plugin>
         <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.5.0</version>
+        </plugin>
+        <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>3.0.0-M1</version>
         </plugin>
@@ -308,20 +313,6 @@
           <artifactId>maven-deploy-plugin</artifactId>
           <version>3.0.0-M1</version>
         </plugin>
-
-        <!-- ISSUE: fixing the javadocs is too slow and generates lots of errors;
-          disable javadoc lint -->
-        <!--plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.4.0</version>
-          <configuration>
-            <defaultVersion>${project.version}</defaultVersion>
-            <defaultAuthor>Adrian Herscu</defaultAuthor>
-            <force>true</force>
-          </configuration>
-        </plugin-->
-
         <plugin>
           <groupId>net.revelc.code.formatter</groupId>
           <artifactId>formatter-maven-plugin</artifactId>
@@ -651,7 +642,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.4.0</version>
         <executions>
           <execution>
             <id>attach-javadocs</id>
@@ -966,7 +956,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.5.0</version>
         <configuration>
           <additionalJOption>-Xdoclint:none</additionalJOption>
           <sourcepath>${delombok.directory}</sourcepath>
