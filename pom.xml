@@ -221,6 +221,24 @@
   <build>
     <defaultGoal>install</defaultGoal>
 
+    <extensions>
+      <!-- ISSUE: Maven Build Cache Support
+        see https://maven.apache.org/extensions/maven-build-cache-extension/
+        requires Maven 3.9.3, which requires upgrading of
+        maven-impsort-plugin to version 1.9.0, which further requires running
+        on JDK 11+; this has several implications:
+        1. maven-javadoc-plugin fails on qa-jgiven-commons due to some modules
+        not being found: org.openqa.selenium.core, httpcore, and httpclient
+        2. .github/workflows using JDK8 will no longer work, effectively
+        dropping support for Java 8
+        -->
+      <!--extension>
+        <groupId>org.apache.maven.extensions</groupId>
+        <artifactId>maven-build-cache-extension</artifactId>
+        <version>1.0.1</version>
+      </extension-->
+    </extensions>
+
     <pluginManagement>
       <plugins>
         <plugin>
