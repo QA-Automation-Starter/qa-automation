@@ -561,7 +561,8 @@
 
         <plugin>
           <!-- NOTE have to package de-lomboked code,
-            otherwise the attached sources JAR will not match their bytecode -->
+            otherwise the attached sources JAR will not match their bytecode;
+            this is used instead of maven-source-plugin -->
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>3.0.0</version>
