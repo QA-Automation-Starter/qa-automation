@@ -28,6 +28,7 @@
   <artifactId>qa-testrail-reporter</artifactId>
 
   <name>QA TestRail Reporter</name>
+  <description>JGiven Reporter for TestRail.</description>
 
   <dependencies>
     <dependency>
