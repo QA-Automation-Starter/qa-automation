@@ -3,9 +3,7 @@
 [![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/on-main-push.yml/badge.svg)](https://github.com/QA-Automation-Starter/qa-automation/actions)
 [![Open Source Helpers](https://www.codetriage.com/adrian-herscu/qa-automation/badges/users.svg)](https://www.codetriage.com/adrian-herscu/qa-automation)
 
-> > *
-*[Usage instructions and Brief introduction](https://qa-automation-starter.aherscu.dev)
-**
+> > **[Usage instructions and Brief introduction](https://qa-automation-starter.aherscu.dev)**
 >
 > (this page is for developing and maintaining this project)
 
