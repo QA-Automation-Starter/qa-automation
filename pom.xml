@@ -792,6 +792,7 @@
       <!-- NOTE for having faster Maven builds -->
       <id>mode-build-fast</id>
       <properties>
+        <maven.clean.fast>true</maven.clean.fast>
         <findbugs.skip>true</findbugs.skip>
         <formatter.skip>true</formatter.skip>
         <impsort.skip>true</impsort.skip>
