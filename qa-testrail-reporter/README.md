@@ -1,5 +1,2 @@
-# QA TestRail Reporter
-
-JGiven TestRail integration.
-
-TODO: add configuration examples/links
+For usage instructions
+see https://qa-automation-starter.aherscu.dev/qa-testrail-reporter/index.html

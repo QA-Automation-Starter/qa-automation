@@ -3,8 +3,10 @@
 [![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/on-main-push.yml/badge.svg)](https://github.com/QA-Automation-Starter/qa-automation/actions)
 [![Open Source Helpers](https://www.codetriage.com/adrian-herscu/qa-automation/badges/users.svg)](https://www.codetriage.com/adrian-herscu/qa-automation)
 
->> **[Usage instructions and Brief introduction](https://qa-automation-starter.aherscu.dev)**
-> 
+> > *
+*[Usage instructions and Brief introduction](https://qa-automation-starter.aherscu.dev)
+**
+>
 > (this page is for developing and maintaining this project)
 
 # Development Instructions
@@ -13,30 +15,34 @@
 
 Either copy [development-maven-settings.xml](development-maven-settings.xml) to
 your `~/.m2` as `settings.xml`, or run Maven with
-`mvn -settings development-maven-settings.xml` from this directory.
+`mvnw -settings development-maven-settings.xml` from this directory.
 
-## IntelliJ Configuration
+## IDE Configuration
 
 Project settings are shared via `.idea` folder
 see <https://www.jetbrains.com/help/idea/creating-and-managing-projects.html#share-project-through-vcs>
 and <https://www.jetbrains.com/help/idea/sharing-your-ide-settings.html#settings-repository>
 
-## Java Code Formatting
+### Lombok and TestNG
 
-Formatting rules are stored in
-[code-formatter-rules.xml](code-formatter-rules.xml) file.
+see [IDE Configuration](https://qa-automation-starter.aherscu.dev/ide-configuration.html)
 
-In IntelliJ, this file should be imported via the Eclipse Code Formatter plugin
-(which should be installed as prerequisite).
+### AspectJ
 
-In Eclipse, this file is supported natively.
+Screenshots and tracing logs require AspectJ instrumentation. AspectJ plugin is
+required in order to compile, run and debug in an IDE:
 
-Maven builds, by default, format the code, unless launched with
-'mode-build-fast' profile.
+* Eclipse -- <https://www.eclipse.org/ajdt/>
+* IntelliJ -- bundled (<https://www.jetbrains.com/help/idea/aspectj.html>),
+  requires additional configuration as follows:
+    1. ajc (AspectJ Compiler) must be used
+    2. AspectJ facet must be configured in "post-compile weave mode" for
+       following modules: `qa-testing`, `qa-jgiven-utils` and
+       `qa-jgiven-commons`
 
 ## Testing
 
-`mvn` on the root project will run all tests.
+`mvnw` on the root project will run all tests.
 
 ## Deploying
 

@@ -212,38 +212,6 @@ See the TestNG descriptor documentation at
 
 TBD
 
-## Running & Debugging tests in IDE
-
-### Lombok installation
-
-In order to compile the test code in an IDE it is required to install the Lombok
-plugin:
-
-* Eclipse -- requires running the Lombok JAR
-* IntelliJ -- requires installation of a plugin
-
-Detailed instructions here: <https://projectlombok.org/download.html>
-
-### AspectJ installation
-
-Screenshots and tracing logs require AspectJ instrumentation. AspectJ plugin is
-required in order to compile, run and debug in an IDE:
-
-* Eclipse -- <https://www.eclipse.org/ajdt/>
-* IntelliJ -- bundled (<https://www.jetbrains.com/help/idea/aspectj.html>),
-  requires additional configuration as follows:
-    1. ajc (AspectJ Compiler) must be used
-    2. AspectJ facet must be configured in "post-compile weave mode" for
-       following modules: `qa-testing`
-       , `qa-jgiven-utils` and `qa-jgiven-commons`
-
-### TestNG installation
-
-Full TestNG integration is provided via plugins:
-
-* Eclipse -- <http://testng.org/doc/eclipse.html>
-* IntelliJ -- bundled, according to <http://testng.org/doc/idea.html>
-
 # Architecture
 
 Following the rules below, prevents duplication and keeps configuration simple.

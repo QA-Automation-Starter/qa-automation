@@ -20,7 +20,7 @@
   <skin>
     <groupId>org.apache.maven.skins</groupId>
     <artifactId>maven-fluido-skin</artifactId>
-    <version>1.11.1</version>
+    <version>2.0.0-M6</version>
   </skin>
 
   <custom>
@@ -41,22 +41,27 @@
     <head>
       <![CDATA[<script src="https://www.google-analytics.com/urchin.js" type="text/javascript"></script>]]>
     </head>
-    <!--    <menu name="Overview">-->
-    <!--      <item name="Custom Content" href="custom-content.html"/>-->
-    <!--    </menu>-->
-    <menu ref="parent" inherit="top"/>
-    <menu ref="modules" inherit="bottom"/>
-    <menu ref="reports" inherit="bottom"/>
-    <!--    <links>-->
-    <!--      <item name="link-Foo" href="http://www.apache.org"/>-->
-    <!--      <item name="link-Kuku" href="https://maven.apache.org"/>-->
-    <!--    </links>-->
+    <links>
+      <item name="JGiven" href="https://jgiven.org/userguide/"/>
+      <item name="TestNG" href="https://testng.org/doc/documentation-main.html"/>
+      <item name="Maven" href="https://maven.apache.org"/>
+    </links>
     <!--    <breadcrumbs>-->
     <!--      <item name="breadcrumb-Bar"-->
     <!--            href="https://maven.apache.org/doxia/index.html"/>-->
     <!--      <item name="breadcrumb-Baz"-->
     <!--            href="https://maven.apache.org/doxia/doxia/index.html"/>-->
     <!--    </breadcrumbs>-->
-    <!--    <footer><![CDATA[All rights reserved.]]></footer>-->
+    <menu name="Overview">
+      <item name="Introduction" href="index.html"/>
+      <item name="Getting Started" href="getting-started.html"/>
+      <item name="IDE Configuration" href="ide-configuration.html" />
+      <item name="Execution" href="execution.html" />
+      <item name="Reporting" href="reporting.html" />
+    </menu>
+    <menu ref="parent" inherit="top"/>
+    <menu ref="modules" inherit="bottom"/>
+    <menu ref="reports" inherit="bottom"/>
+    <!--    <footer><![CDATA[Adrian Herscu &#45;&#45; All rights reserved.]]></footer>-->
   </body>
 </project>
