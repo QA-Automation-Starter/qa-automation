@@ -11,4 +11,10 @@ A typical execution looks like this:
 
 see [QA Testing Parent](qa-testing-parent/index.html) for details
 
+The generated QA Automation project will produce two reports:
+* JGiven dashboard -- an interactive site
+* QA Report -- single HTML document
+
+all under `target/site/jgiven-reports`
+
 Next: [Reporting](reporting.html)

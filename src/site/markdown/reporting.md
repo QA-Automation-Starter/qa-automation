@@ -42,3 +42,5 @@ There are two possible approaches:
   reports and upload them after each test
 
 See [QA Orcanos Publisher Maven Plugin](qa-orcanos-publisher-maven-plugin/index.html).
+
+Next: [CI/CD](ci-cd.html)
