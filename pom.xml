@@ -604,6 +604,12 @@
             </execution>
           </executions>
         </plugin>
+
+        <plugin>
+          <groupId>com.github.spotbugs</groupId>
+          <artifactId>spotbugs-maven-plugin</artifactId>
+          <version>4.7.3.5</version>
+        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -702,7 +708,6 @@
       <plugin>
         <groupId>com.github.spotbugs</groupId>
         <artifactId>spotbugs-maven-plugin</artifactId>
-        <version>4.4.2.1</version>
         <configuration>
           <effort>Max</effort>
           <failOnError>false</failOnError>
@@ -846,7 +851,6 @@
       <properties>
         <aspectj.showWeaveInfo>false</aspectj.showWeaveInfo>
         <aspectj.verbose>false</aspectj.verbose>
-        <spotbugs.skip>true</spotbugs.skip>
         <maven.compiler.xlint>none</maven.compiler.xlint>
       </properties>
     </profile>
@@ -951,6 +955,10 @@
       mvnw site site:stage scm-publish:publish-scm
       -->
     <plugins>
+      <plugin>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-maven-plugin</artifactId>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
