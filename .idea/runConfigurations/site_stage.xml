@@ -12,7 +12,6 @@
             <list>
               <option value="site" />
               <option value="site:stage" />
-              <option value="-DskipTests" />
             </list>
           </option>
           <option name="pomFileName" value="pom.xml" />
