@@ -76,6 +76,7 @@
     <dryrun />
     <screenshots>true</screenshots>
 
+    <!-- NOTE for skipping tests just do not supply any testing-* profile -->
     <maven.test.skip>false</maven.test.skip>
 
     <title>${project.name} ${device.type} [#${build.label}]</title>
