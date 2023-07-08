@@ -804,9 +804,12 @@
         <maven.test.skip>true</maven.test.skip>
         <spotbugs.skip>true</spotbugs.skip>
         <archetype.test.skip>true</archetype.test.skip>
-        <!-- TODO: document how javadoc jar is still generated -->
         <maven.javadoc.skip>true</maven.javadoc.skip>
+        <maven.jxr.skip>true</maven.jxr.skip>
         <gpg.skip>true</gpg.skip>
+        <lombok.delombok.skip>true</lombok.delombok.skip>
+        <buildhelper.skipAttach>true</buildhelper.skipAttach>
+        <maven.antrun.skip>true</maven.antrun.skip>
       </properties>
     </profile>
 
@@ -815,11 +818,6 @@
       <id>mode-site-fast</id>
       <properties>
         <skipSurefireReport>true</skipSurefireReport>
-        <lombok.delombok.skip>true</lombok.delombok.skip>
-        <buildhelper.skipAttach>true</buildhelper.skipAttach>
-        <maven.antrun.skip>true</maven.antrun.skip>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
-        <maven.jxr.skip>true</maven.jxr.skip>
       </properties>
       <reporting>
         <plugins>
