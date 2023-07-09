@@ -17,4 +17,29 @@ in [Execution](execution.html) section.
 For Jenkins, you should specify [mode-jenkins](qa-testing-parent/profiles.html)
 profile.
 
-Next: [Selenium Tests](selenium-tests.html)
+## GitHub Actions
+
+See [workflows](https://github.com/QA-Automation-Starter/qa-automation/tree/main/.github/workflows)
+for examples.
+
+## Jenkins
+
+Following instructions apply to Windows machines:
+
+1. `choco install -y jenkins` -- should be available at <http://localhost:8080>
+2. install required plugins, beyond the default installation:
+    * Active Directory Plugin -- allow log-in with AD/SSO credentials
+    * Maven Plugin -- support for building Maven projects
+3. Configure Global Security
+    * Security Realm -- Active Directory
+4. Global Tool Configuration
+    * JDK installations -- something
+      like, `%ProgramFiles%\OpenJDK\jdk-8.0.292.10-hotspot`
+    * Git installations -- usually, `%ProgramFiles%\Git\cmd\git.exe`
+5. Credentials
+    * add Global Credentials Store (Unrestricted)
+    * add SSH private key to this GitHub repo
+
+There should be alternative commands for Mac and various Linux distros.
+
+Next: [Environment Setup](environment-setup.html)

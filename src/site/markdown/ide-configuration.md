@@ -8,10 +8,8 @@ is installed:
 In order to compile the test code in an IDE it is required to install the Lombok
 plugin:
 
-* Eclipse -- requires running the Lombok JAR
-* IntelliJ -- requires installation of a plugin
-
-Detailed instructions here: <https://projectlombok.org/download.html>
+* [for Eclipse](https://projectlombok.org/setup/eclipse)
+* [for IntelliJ](https://projectlombok.org/setup/intellij)
 
 ## TestNG
 

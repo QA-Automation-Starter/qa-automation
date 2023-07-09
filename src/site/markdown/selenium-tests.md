@@ -3,4 +3,6 @@
 Add [qa-jgiven-webdriver](qa-jgiven-webdriver/dependency-info.html) to
 your project.
 
-Next: [REST Tests](rest-tests.html)
+Derive your `TestConfiguration` class from `WebDriverConfiguration`.
+
+Next: [RabbitMQ Tests](rabbitmq-tests.html)

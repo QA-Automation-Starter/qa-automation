@@ -59,8 +59,9 @@
       <item name="Execution" href="execution.html" />
       <item name="Reporting" href="reporting.html" />
       <item name="CI/CD" href="ci-cd.html" />
+      <item name="Environment Setup" href="environment-setup.html" />
+      <item name="Adding Tests" href="adding-tests.html" />
       <item name="Selenium Tests" href="selenium-tests.html" />
-      <item name="REST Tests" href="rest-tests.html" />
       <item name="RabbitMQ Tests" href="rabbitmq-tests.html" />
       <item name="ElasticSearch Tests" href="elasticsearch-tests.html" />
       <item name="Combining Tests" href="combining-tests.html" />
