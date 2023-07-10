@@ -55,7 +55,9 @@
     <device.type />
     <application.uploading.phase>none</application.uploading.phase>
     <!-- NOTE: overriden by jenkins profile below -->
-    <build.label>${user.name}@local-${maven.build.timestamp}</build.label>
+    <!-- ISSUE qa-testing-example module cannot be cached because of volatile property -->
+    <build.label>${user.name}@local</build.label>
+    <!--build.label>${user.name}@local-${maven.build.timestamp}</build.label-->
     <build.tags>functional</build.tags>
     <application.filename>app</application.filename>
 
