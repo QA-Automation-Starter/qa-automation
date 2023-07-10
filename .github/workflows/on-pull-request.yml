@@ -34,7 +34,7 @@ jobs:
       - name: unix mvn install
         if: ${{ !contains(matrix.os, 'windows') }}
         run: |
-          chmod +x mvnw && ./mvnw package \
+          chmod +x mvnw && ./mvnw install \
             -DskipTests=true \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-fast,mode-build-quiet
@@ -43,7 +43,7 @@ jobs:
         if: ${{ contains(matrix.os, 'windows') }}
         shell: cmd
         run: |
-          mvnw package ^
+          mvnw install ^
             -DskipTests=true ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-fast,mode-build-quiet
