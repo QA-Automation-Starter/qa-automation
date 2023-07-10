@@ -222,21 +222,11 @@
     <defaultGoal>install</defaultGoal>
 
     <extensions>
-      <!-- ISSUE: Maven Build Cache Support
-        see https://maven.apache.org/extensions/maven-build-cache-extension/
-        requires Maven 3.9.3, which requires upgrading of
-        maven-impsort-plugin to version 1.9.0, which further requires running
-        on JDK 11+; this has several implications:
-        1. maven-javadoc-plugin fails on qa-jgiven-commons due to some modules
-        not being found: org.openqa.selenium.core, httpcore, and httpclient
-        2. .github/workflows using JDK8 will no longer work, effectively
-        dropping support for Java 8
-        -->
-      <!--extension>
+      <extension>
         <groupId>org.apache.maven.extensions</groupId>
         <artifactId>maven-build-cache-extension</artifactId>
         <version>1.0.1</version>
-      </extension-->
+      </extension>
     </extensions>
 
     <pluginManagement>
@@ -304,6 +294,13 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.5.0</version>
+          <configuration>
+            <additionalJOption>-Xdoclint:none</additionalJOption>
+            <sourcepath>${delombok.directory}</sourcepath>
+            <doclint>none</doclint>
+            <quiet>true</quiet>
+            <detectOfflineLinks>false</detectOfflineLinks>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -338,6 +335,14 @@
           <groupId>net.revelc.code</groupId>
           <artifactId>impsort-maven-plugin</artifactId>
           <version>1.5.0</version>
+          <dependencies>
+            <!-- see https://github.com/revelc/impsort-maven-plugin/issues/64 -->
+            <dependency>
+              <groupId>org.codehaus.plexus</groupId>
+              <artifactId>plexus-utils</artifactId>
+              <version>3.5.1</version>
+            </dependency>
+          </dependencies>
           <configuration>
             <groups>java.,javax.,org.,com.,*</groups>
             <removeUnused>true</removeUnused>
@@ -658,10 +663,6 @@
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <doclint>none</doclint>
-          <quiet>true</quiet>
-        </configuration>
       </plugin>
 
       <plugin>
@@ -965,12 +966,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <additionalJOption>-Xdoclint:none</additionalJOption>
-          <sourcepath>${delombok.directory}</sourcepath>
-          <doclint>none</doclint>
-          <quiet>true</quiet>
-        </configuration>
         <reportSets>
           <reportSet>
             <reports>
