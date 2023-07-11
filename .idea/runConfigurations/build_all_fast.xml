@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="site-stage" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="build-all-fast" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings">
         <MavenGeneralSettings>
@@ -29,8 +29,7 @@
           </option>
           <option name="goals">
             <list>
-              <option value="site" />
-              <option value="site:stage" />
+              <option value="install" />
             </list>
           </option>
           <option name="pomFileName" value="pom.xml" />

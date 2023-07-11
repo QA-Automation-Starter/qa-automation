@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="site-stage" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="rebuild-utilities" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings">
         <MavenGeneralSettings>
@@ -29,20 +29,18 @@
           </option>
           <option name="goals">
             <list>
-              <option value="site" />
-              <option value="site:stage" />
+              <option value="clean" />
+              <option value="install" />
             </list>
           </option>
           <option name="pomFileName" value="pom.xml" />
           <option name="profilesMap">
             <map>
-              <entry key="mode-build-fast" value="true" />
-              <entry key="mode-build-quiet" value="true" />
-              <entry key="mode-build-nosign" value="true" />
+              <entry key="mode-logs-level-debug" value="true" />
             </map>
           </option>
           <option name="resolveToWorkspace" value="false" />
-          <option name="workingDirPath" value="$PROJECT_DIR$" />
+          <option name="workingDirPath" value="$PROJECT_DIR$/qa-testing-utils" />
         </MavenRunnerParameters>
       </option>
     </MavenSettings>
