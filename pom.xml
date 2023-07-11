@@ -123,6 +123,7 @@
     <!-- NOTE: may cause the console logs to blow out -->
     <jgiven.report.text>true</jgiven.report.text>
     <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+    <maven.build.cache.skipCache>true</maven.build.cache.skipCache>
   </properties>
 
   <repositories>
@@ -804,7 +805,6 @@
       <!-- NOTE for having faster Maven builds -->
       <id>mode-build-fast</id>
       <properties>
-        <maven.clean.fast>true</maven.clean.fast>
         <findbugs.skip>true</findbugs.skip>
         <formatter.skip>true</formatter.skip>
         <impsort.skip>true</impsort.skip>
@@ -817,6 +817,7 @@
         <lombok.delombok.skip>true</lombok.delombok.skip>
         <buildhelper.skipAttach>true</buildhelper.skipAttach>
         <maven.antrun.skip>true</maven.antrun.skip>
+        <maven.build.cache.skipCache>false</maven.build.cache.skipCache>
       </properties>
     </profile>
 
