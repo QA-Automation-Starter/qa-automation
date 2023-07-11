@@ -25,6 +25,9 @@
     https://central.sonatype.org/publish/publish-maven/
     -->
 
+  <!-- TODO evaluate
+    https://github.com/basepom
+    -->
   <groupId>dev.aherscu.qa</groupId>
   <artifactId>qa-automation</artifactId>
   <version>0.0.26-SNAPSHOT</version>
