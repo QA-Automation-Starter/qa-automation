@@ -38,7 +38,6 @@ jobs:
         if: ${{ !contains(matrix.os, 'windows') }}
         run: |
           chmod +x mvnw && ./mvnw install \
-            -DskipTests=true \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-fast,mode-build-quiet
 
@@ -47,7 +46,6 @@ jobs:
         shell: cmd
         run: |
           mvnw install ^
-            -DskipTests=true ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-fast,mode-build-quiet
 
