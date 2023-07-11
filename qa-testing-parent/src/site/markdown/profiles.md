@@ -48,13 +48,6 @@ skipped to save time and start the tests faster.
 
 ### Modding Profiles
 
-* `mode-logs-*`: sets the logging level (`debug|error|trace`); if not specified
-  defaults to `info`
-* `mode-aspectj-skip`: for debugging, it is easier to see code without AspectJ
-  weaved code
-* `mode-build-fast`: disables self unit tests, static analysis and source code
-  formatting
-* `mode-build-quiet`: silent output for several build plugins (e.g. aspectj)
 * `mode-jenkins`: sets the logging level to `info` and the build label to match
   job name and build number in Jenkins
 * `mode-noscreenshots`: disables screenshot gathering during GUI tests

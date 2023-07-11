@@ -27,12 +27,14 @@ mvnw -Ptesting-self
 
 You should see some tests running in console and Chrome openning two times.
 
-## View the Reports
+## Browsing the Reports
 
-Upon completion, its JGiven report will be available under
-`target/site/jgiven-reports/functional-UNDEFINED\your-username@local-execution-timestamp\html\index.html`
+By default, two kinds of reportes will be generated
+under `target/site/jgiven-reports`, looking like these:
 
-This JGiven report should look similar to what is published under
-[QA Testing Example](qa-testing-parent/qa-testing-example/index.html).
+* [JGiven Dashboard](qa-testing-parent/qa-testing-example/jgiven-reports/functional-dev/local/html/index.html) --
+  an interactive site
+* [QA Report](qa-testing-parent/qa-testing-example/jgiven-reports/functional-dev/local/qa-html/qa-jgiven-reporter.html) --
+  single HTML document
 
 Next: [IDE Configuration](ide-configuration.html)
