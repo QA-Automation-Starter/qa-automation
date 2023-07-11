@@ -15,15 +15,13 @@
   ~ limitations under the License.
   -->
 <!--suppress ALL -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-testing-parent</artifactId>
-    <version>0.0.26-SNAPSHOT</version>
+    <version>0.0.26</version>
     <relativePath>../qa-testing-parent</relativePath>
   </parent>
 
@@ -45,24 +43,24 @@
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-webdriver</artifactId>
-      <version>0.0.26-SNAPSHOT</version>
+      <version>0.0.26</version>
     </dependency>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-rest</artifactId>
-      <version>0.0.26-SNAPSHOT</version>
+      <version>0.0.26</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-rabbitmq</artifactId>
-      <version>0.0.26-SNAPSHOT</version>
+      <version>0.0.26</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-elasticsearch</artifactId>
-      <version>0.0.26-SNAPSHOT</version>
+      <version>0.0.26</version>
       <scope>test</scope>
     </dependency>
     <dependency>

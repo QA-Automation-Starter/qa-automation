@@ -15,15 +15,13 @@
   ~ limitations under the License.
   -->
 <!--suppress ALL -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.26-SNAPSHOT</version>
+    <version>0.0.26</version>
   </parent>
 
   <artifactId>qa-testing-parent</artifactId>
@@ -109,12 +107,12 @@
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-commons</artifactId>
-      <version>0.0.26-SNAPSHOT</version>
+      <version>0.0.26</version>
     </dependency>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-reporter</artifactId>
-      <version>0.0.26-SNAPSHOT</version>
+      <version>0.0.26</version>
     </dependency>
     <dependency>
       <groupId>org.javalite</groupId>
