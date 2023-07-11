@@ -14,8 +14,8 @@ no test will run.
 
 ### Environment, mutually-exclusive
 
-* `environment-*`: mutually-exclusive, will run with one of properties files
-  found under `src/test/resources/environments`
+* `environment-*`: `dev` by default, mutually-exclusive, will run with one of
+  properties files found under `src/test/resources/environments`
 
 If no environment is specifed, will use the `UNDEFINED` environment.
 

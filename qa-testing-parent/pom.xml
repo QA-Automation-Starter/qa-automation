@@ -47,7 +47,7 @@
     <groups />
     <silent>true</silent>
 
-    <environment>UNDEFINED</environment>
+    <environment>UNDEFINED-ENVIRONMENT</environment>
 
     <!-- NOTE: these properties are referenced by the failsafe plugin below -->
     <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
@@ -402,6 +402,9 @@
 
     <profile>
       <id>environment-dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <properties>
         <environment>dev</environment>
       </properties>

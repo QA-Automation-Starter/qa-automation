@@ -4,7 +4,7 @@ Description of properties used by QA Automation projects:
 
 * `surefire.suiteXmlFiles` -- defaults to `testng.xml` (which should be left
   empty)
-* `environment` -- defaults to `UNDEFINED` name of environment; should match one
+* `environment` -- defaults to `dev` name of environment; should match one
   of the subdirectories of `/src/test/resources/environments`;
 * `provider` -- defaults to `provider.local.`
 * `device.type` -- defaults to empty,
