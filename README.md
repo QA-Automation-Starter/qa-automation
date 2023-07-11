@@ -16,10 +16,9 @@ Following instructions apply to Windows machines:
 1. Run PowerShell as Administrator -- required by Chocolatey
 2. Install Chocolatey -- <https://chocolatey.org/install#individual>
 3. `choco install -y jdk8`
-4. `choco install -y maven`
-5. `choco install -y git`
-6. `choco install -y tortoisegit`
-7. `choco install -y intellijidea-community`
+4. `choco install -y git`
+5. `choco install -y tortoisegit`
+6. `choco install -y intellijidea-community`
    or `choco install eclipse-java-oxygen`
 
 There should be alternative commands for Mac and various Linux distros.
