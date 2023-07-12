@@ -1,5 +1,5 @@
 > [Development Instructions](https://github.com/QA-Automation-Starter/qa-automation#readme)
-> 
+>
 > (GitHub project README.md)
 
 # How about...
@@ -10,7 +10,11 @@
   already baked-in?...
 * and support for ___multiple device types___ in different environments?...
 * CI/CD ready, without any additional scripting?...
-* additional modules for [RabbitMQ](qa-jgiven-rabbitmq/index.html)
+* additional modules for
+  [REST](qa-jgiven-rest/index.html),
+  [WebDriver](qa-jgiven-webdriver/index.html),
+  [SSH](qa-jgiven-ssh/index.html),
+  [RabbitMQ](qa-jgiven-rabbitmq/index.html)
   and [Elastic Search](qa-jgiven-elasticsearch/index.html)?...
 * reporting connector for [TestRail](qa-testrail-reporter/index.html)?...
 
