@@ -36,6 +36,9 @@ All above pieces are already integrated, all you have to do is:
 1. derive your automation classes from specific base class
 2. define your own configuration and environments
 3. optionally, add support modules; currently one of:
+    * [QA JGiven REST](../../qa-jgiven-rest/index.html)
+    * [QA JGiven SSH](../../qa-jgiven-ssh/index.html)
+    * [QA JGiven ElasticSearch](../../qa-jgiven-elasticsearch/index.html)
     * [QA JGiven RabbitMQ](../../qa-jgiven-rabbitmq/index.html)
     * [QA JGiven ElasticSearch](../../qa-jgiven-elasticsearch/index.html)
     * or prepare one of yours :)
