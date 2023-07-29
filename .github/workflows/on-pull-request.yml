@@ -99,6 +99,8 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
+          SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
 
   generate-automation-project:
     name: generate-build-run-standalone
