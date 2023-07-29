@@ -46,6 +46,8 @@ public class TestingAndroidOnSauceLabs {
     static AndroidDriver<WebElement> saucelabsApp(
         final String name) {
         return new AndroidDriver<>(new URL(
+            // FIXME should get these credentials from system enviroment
+            //  SAUCELABS_USERNAME and SAUCELABS_PASSWORD
             "https://TBD:TBD@ondemand.saucelabs.com:443/wd/hub"),
             new DesiredCapabilities() {
                 {
