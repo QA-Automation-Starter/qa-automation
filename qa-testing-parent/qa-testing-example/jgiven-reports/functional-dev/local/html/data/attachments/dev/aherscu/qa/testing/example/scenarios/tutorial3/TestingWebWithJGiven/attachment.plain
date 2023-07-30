@@ -1,1 +1,1 @@
-{class=org.openqa.selenium.chrome.ChromeDriver, goog:chromeOptions={w3c=false}, name=TestingWebWithJGiven:shouldFind:5e988073:1:1689189479289, type=web}
+{browserName=Chrome, build=local, class=org.openqa.selenium.remote.RemoteWebDriver, goog:chromeOptions={w3c=false}, idleTimeout=1000, maxDuration=6000, name=TestingWebWithJGiven:shouldFind:c21f2772:1:1690701065623, platform=WINDOWS, tags=functional,dev, target=${web.url}, type=web, url=https://oauth-adrian.herscu-d81b6:524dbdcd-6577-4f9b-bec3-9fc4f193d487@ondemand.saucelabs.com:443/wd/hub, version=}
