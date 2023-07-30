@@ -14,10 +14,9 @@ no test will run.
 
 ### Environment, mutually-exclusive
 
-* `environment-*`: `dev` by default, mutually-exclusive, will run with one of
+* `environment-*`: sets the `environment` property which be default is dev`;
+  mutually-exclusive, will run with one of
   properties files found under `src/test/resources/environments`
-
-If no environment is specifed, will use the `UNDEFINED` environment.
 
 ### Device, mutually-exclusive
 
