@@ -15,6 +15,15 @@
   -->
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Tutorials" verbose="1">
+  <listeners>
+    <listener
+      class-name="dev.aherscu.qa.jgiven.webdriver.utils.SauceLabsReporter"/>
+    <!--    <listener-->
+    <!--        class-name="dev.aherscu.qa.jgiven.commons.utils.TestRetryAnalyzer" />-->
+    <listener
+      class-name="dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter"/>
+  </listeners>
+
   <test name="JGiven Tutorial">
     <!-- NOTE: contains tests that fail on purpose -->
     <!--packages>

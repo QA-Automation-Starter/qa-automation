@@ -45,7 +45,7 @@
     <groups />
     <silent>true</silent>
 
-    <environment>UNDEFINED-ENVIRONMENT</environment>
+    <environment>dev</environment>
 
     <!-- NOTE: these properties are referenced by the failsafe plugin below -->
     <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
@@ -399,16 +399,6 @@
     </profile>
 
     <profile>
-      <id>environment-dev</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <properties>
-        <environment>dev</environment>
-      </properties>
-    </profile>
-
-    <profile>
       <id>device-windows</id>
       <properties>
         <device.type>windows</device.type>
@@ -441,7 +431,7 @@
       <properties>
         <provider>provider.saucelabs.</provider>
         <saucelabs.reporter.url>
-          https://TBD:TBD@ondemand.saucelabs.com:443/wd/hub
+          https://${env.SAUCELABS_USER}:${env.SAUCELABS_PASSWORD}@ondemand.saucelabs.com:443/wd/hub
         </saucelabs.reporter.url>
       </properties>
     </profile>
@@ -451,7 +441,7 @@
       <properties>
         <provider>provider.saucelabs.</provider>
         <saucelabs.reporter.url>
-          https://TBD:TBD@ondemand.saucelabs.com:443/wd/hub
+          https://${env.SAUCELABS_USER}:${env.SAUCELABS_PASSWORD}@ondemand.saucelabs.com:443/wd/hub
         </saucelabs.reporter.url>
       </properties>
       <build>
