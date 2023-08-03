@@ -15,6 +15,10 @@
  */
 package dev.aherscu.qa.testing.example;
 
+import java.net.*;
+
+import javax.ws.rs.core.*;
+
 import org.mockserver.integration.*;
 import org.testng.annotations.*;
 
@@ -59,5 +63,10 @@ abstract public class AbstractMockServerTest<T extends AnyScenarioType, GIVEN ex
     @AfterClass(alwaysRun = true)
     protected void stopMockRestServer() {
         mockServer.stop();
+    }
+
+    protected URI mockServerUri() {
+        return UriBuilder.fromUri("http://{host}:{port}")
+            .build("localhost", mockServer.getPort());
     }
 }
