@@ -19,12 +19,10 @@ import static java.util.Arrays.*;
 import static org.hamcrest.Matchers.*;
 import static org.mockserver.model.HttpRequest.*;
 import static org.mockserver.model.HttpResponse.*;
-
-import java.net.*;
+import static org.mockserver.model.MediaType.*;
 
 import javax.ws.rs.client.*;
 
-import org.mockserver.model.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.tags.*;
@@ -34,6 +32,7 @@ import dev.aherscu.qa.jgiven.rest.tags.*;
 import dev.aherscu.qa.testing.example.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import dev.aherscu.qa.testing.utils.rest.*;
+import lombok.*;
 
 /**
  * Contains REST sample tests just to ensure that the testing infrastructure
@@ -58,13 +57,13 @@ public final class GenericMockServerRestTest extends
      */
     @Test
     @Reference("159")
+    @SneakyThrows
     public void shouldRetrieveJsonFieldFromFakeRestService() {
         given()
             .a_REST_client(client);
 
         when()
-            .connecting_to(
-                URI.create("http://localhost:" + mockServer.getPort()))
+            .connecting_to(mockServerUri())
             .and().appending_path("some-id")
             .and().getting_the_response();
 
@@ -82,11 +81,10 @@ public final class GenericMockServerRestTest extends
     @BeforeClass
     private void beforeClassOpenRestClient() {
         mockServer
-            .when(request()
-                .withMethod("GET").withPath("/some-id"))
+            .when(request() // GET is implied
+                .withPath("/some-id"))
             .respond(response()
-                .withBody("[{id:1},{id:2},{id:3}]",
-                    MediaType.JSON_UTF_8));
+                .withBody("[{\"id\":1},{\"id\":2},{\"id\":3}]", JSON_UTF_8));
 
         client = LoggingClientBuilder.newClient();
     }
