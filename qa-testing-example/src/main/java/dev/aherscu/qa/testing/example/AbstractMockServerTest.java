@@ -56,8 +56,8 @@ abstract public class AbstractMockServerTest<T extends AnyScenarioType, GIVEN ex
      */
     protected AbstractMockServerTest() {
         super(BaseConfiguration.class);
-        // ISSUE no support for dynamically allocated port
-        mockServer = ClientAndServer.startClientAndServer(1080);
+        // NOTE port 0 means any free port
+        mockServer = ClientAndServer.startClientAndServer(0);
     }
 
     @AfterClass(alwaysRun = true)
