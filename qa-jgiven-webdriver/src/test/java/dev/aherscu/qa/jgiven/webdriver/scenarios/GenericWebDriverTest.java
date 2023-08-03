@@ -44,8 +44,7 @@ import lombok.extern.slf4j.*;
     value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
     justification = "JGiven framework limitation")
 @Slf4j
-public final class GenericWebDriverTest extends
-    AbstractMockedServiceTest<WebDriverScenarioType, WebDriverFixtures<?>, WebDriverActions<?>, WebDriverVerifications<?>> {
+public final class GenericWebDriverTest extends AbstractWireMockTest<WebDriverScenarioType, WebDriverFixtures<?>, WebDriverActions<?>, WebDriverVerifications<?>> {
 
     private WebDriverEx driver;
 

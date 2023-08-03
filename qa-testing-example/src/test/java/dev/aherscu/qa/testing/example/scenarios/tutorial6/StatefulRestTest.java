@@ -49,8 +49,7 @@ import lombok.*;
     justification = "JGiven framework limitation")
 @SuppressWarnings({ "boxing" })
 public final class StatefulRestTest
-    extends
-    AbstractMockedServiceTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+    extends AbstractWireMockTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 

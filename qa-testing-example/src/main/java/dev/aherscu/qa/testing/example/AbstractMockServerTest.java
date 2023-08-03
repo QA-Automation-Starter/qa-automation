@@ -13,13 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons;
+package dev.aherscu.qa.testing.example;
 
-import static dev.aherscu.qa.testing.utils.WireMockServerUtils.*;
-
+import org.mockserver.integration.*;
 import org.testng.annotations.*;
-
-import com.github.tomakehurst.wiremock.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
@@ -44,27 +41,23 @@ import dev.aherscu.qa.testing.utils.config.*;
 @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
     value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
     justification = "JGiven framework limitation")
-abstract public class AbstractMockedServiceTest<T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
+abstract public class AbstractMockServerTest<T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
     extends
     UnitilsScenarioTest<BaseConfiguration, T, GIVEN, WHEN, THEN> {
 
-    protected final WireMockServer wireMockServer;
+    protected final ClientAndServer mockServer;
 
     /**
      * Initializes with {@link BaseConfiguration}.
      */
-    protected AbstractMockedServiceTest() {
+    protected AbstractMockServerTest() {
         super(BaseConfiguration.class);
-        wireMockServer = wireMockServerOnDynamicPort();
-    }
-
-    @BeforeClass
-    protected void startMockRestServer() {
-        wireMockServer.start();
+        // ISSUE no support for dynamically allocated port
+        mockServer = ClientAndServer.startClientAndServer(1080);
     }
 
     @AfterClass(alwaysRun = true)
     protected void stopMockRestServer() {
-        wireMockServer.stop();
+        mockServer.stop();
     }
 }

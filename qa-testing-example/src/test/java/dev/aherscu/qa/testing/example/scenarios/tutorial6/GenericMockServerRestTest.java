@@ -15,20 +15,23 @@
  */
 package dev.aherscu.qa.testing.example.scenarios.tutorial6;
 
-import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static java.util.Arrays.*;
 import static org.hamcrest.Matchers.*;
-import static org.hamcrest.Matchers.equalTo;
+import static org.mockserver.model.HttpRequest.*;
+import static org.mockserver.model.HttpResponse.*;
+
+import java.net.*;
 
 import javax.ws.rs.client.*;
 
-import dev.aherscu.qa.jgiven.rest.tags.*;
+import org.mockserver.model.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.jgiven.rest.steps.*;
+import dev.aherscu.qa.jgiven.rest.tags.*;
+import dev.aherscu.qa.testing.example.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import dev.aherscu.qa.testing.utils.rest.*;
 
@@ -45,8 +48,8 @@ import dev.aherscu.qa.testing.utils.rest.*;
     value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
     justification = "JGiven framework limitation")
 @SuppressWarnings({ "boxing" })
-public final class GenericRestTest
-    extends AbstractWireMockTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+public final class GenericMockServerRestTest extends
+    AbstractMockServerTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 
@@ -54,13 +57,14 @@ public final class GenericRestTest
      * Should retrieve a JSON field from a REST service
      */
     @Test
-    @Reference("70")
+    @Reference("159")
     public void shouldRetrieveJsonFieldFromFakeRestService() {
         given()
             .a_REST_client(client);
 
         when()
-            .connecting_to(wireMockServer.baseUrl())
+            .connecting_to(
+                URI.create("http://localhost:" + mockServer.getPort()))
             .and().appending_path("some-id")
             .and().getting_the_response();
 
@@ -77,8 +81,12 @@ public final class GenericRestTest
 
     @BeforeClass
     private void beforeClassOpenRestClient() {
-        wireMockServer.stubFor(get(urlEqualTo("/some-id"))
-            .willReturn(ok("[{id:1},{id:2},{id:3}]")));
+        mockServer
+            .when(request()
+                .withMethod("GET").withPath("/some-id"))
+            .respond(response()
+                .withBody("[{id:1},{id:2},{id:3}]",
+                    MediaType.JSON_UTF_8));
 
         client = LoggingClientBuilder.newClient();
     }

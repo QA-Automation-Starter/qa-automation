@@ -71,6 +71,9 @@
   <!-- NOTE: turn dev.aherscu.qa.testing.utils.config to trace level
     in order to see interpolated properties -->
   <logger name="dev.aherscu.qa.testing.utils.config" level="info"/>
+  <logger name="com.networknt" level="off"/>
+<!--  <logger name="java.nio" level="off"/>-->
+<!--  <logger name="io.netty" level="off"/>-->
   <logger name="javax" level="off"/>
   <logger name="jdk" level="off"/>
   <logger name="sun" level="off"/>
