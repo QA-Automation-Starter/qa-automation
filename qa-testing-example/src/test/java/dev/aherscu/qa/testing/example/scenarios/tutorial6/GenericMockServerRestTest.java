@@ -17,6 +17,7 @@ package dev.aherscu.qa.testing.example.scenarios.tutorial6;
 
 import static java.util.Arrays.*;
 import static org.hamcrest.Matchers.*;
+import static org.mockserver.model.HttpError.*;
 import static org.mockserver.model.HttpRequest.*;
 import static org.mockserver.model.HttpResponse.*;
 import static org.mockserver.model.MediaType.*;
@@ -71,6 +72,20 @@ public final class GenericMockServerRestTest extends
             .the_response_contents(asList(
                 new JsonAssertion<>("$[0].id", greaterThan(0)),
                 new JsonAssertion<>("$[1].id", equalTo(2))));
+
+        when()
+            .connecting_to(mockServerUri())
+            .and().appending_path("drop-connection")
+            .and().$("trying to access",
+                self -> self.safely(__ -> self.getting_the_response()));
+
+        then()
+            .$("the requests were sent to mock server",
+                __ -> mockServer.verify(
+                    request()
+                        .withPath("/some-id"),
+                    request()
+                        .withPath("/drop-connection")));
     }
 
     @AfterClass
@@ -85,6 +100,11 @@ public final class GenericMockServerRestTest extends
                 .withPath("/some-id"))
             .respond(response()
                 .withBody("[{\"id\":1},{\"id\":2},{\"id\":3}]", JSON_UTF_8));
+
+        mockServer
+            .when(request() // GET is implied
+                .withPath("/drop-connection"))
+            .error(error().withDropConnection(true));
 
         client = LoggingClientBuilder.newClient();
     }
