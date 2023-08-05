@@ -94,18 +94,21 @@ public final class GenericMockServerRestTest extends
     }
 
     @BeforeClass
-    private void beforeClassOpenRestClient() {
+    private void beforeClassAddExpectations() {
         mockServer
-                .when(request() // GET is implied
-                        .withPath("/drop-connection"))
-                .error(error().withDropConnection(true));
+            .when(request() // GET is implied
+                .withPath("/drop-connection"))
+            .error(error().withDropConnection(true));
 
         mockServer
             .when(request() // GET is implied
                 .withPath("/some-id"))
             .respond(response()
                 .withBody("[{\"id\":1},{\"id\":2},{\"id\":3}]", JSON_UTF_8));
+    }
 
+    @BeforeClass
+    private void beforeClassOpenRestClient() {
         client = LoggingClientBuilder.newClient();
     }
 }

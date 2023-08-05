@@ -107,7 +107,7 @@ public final class StatefulRestTest
     }
 
     @BeforeClass
-    private void beforeClassOpenRestClient() {
+    private void beforeClassAddStubs() {
         val AUTHENTICATED = "AUTHENTICATED";
         wireMockServer.stubFor(post(urlEqualTo("/authenticate"))
             .inScenario(StatefulRestTest.class.getName())
@@ -125,7 +125,10 @@ public final class StatefulRestTest
             .whenScenarioStateIs(STARTED)
             .willReturn(unauthorized())
             .willSetStateTo(STARTED));
+    }
 
+    @BeforeClass
+    private void beforeClassOpenRestClient() {
         client = LoggingClientBuilder.newClient();
     }
 }
