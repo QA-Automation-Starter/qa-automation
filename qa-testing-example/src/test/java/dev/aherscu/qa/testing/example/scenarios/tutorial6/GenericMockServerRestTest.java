@@ -71,7 +71,10 @@ public final class GenericMockServerRestTest extends
         then()
             .the_response_contents(asList(
                 new JsonAssertion<>("$[0].id", greaterThan(0)),
-                new JsonAssertion<>("$[1].id", equalTo(2))));
+                new JsonAssertion<>("$[1].id", equalTo(2))))
+            .and().$("the requests were sent to mock server",
+                __ -> mockServer.verify(request()
+                    .withPath("/some-id")));
 
         when()
             .connecting_to(mockServerUri())
@@ -81,11 +84,8 @@ public final class GenericMockServerRestTest extends
 
         then()
             .$("the requests were sent to mock server",
-                __ -> mockServer.verify(
-                    request()
-                        .withPath("/some-id"),
-                    request()
-                        .withPath("/drop-connection")));
+                __ -> mockServer.verify(request()
+                    .withPath("/drop-connection")));
     }
 
     @AfterClass
@@ -96,15 +96,15 @@ public final class GenericMockServerRestTest extends
     @BeforeClass
     private void beforeClassOpenRestClient() {
         mockServer
+                .when(request() // GET is implied
+                        .withPath("/drop-connection"))
+                .error(error().withDropConnection(true));
+
+        mockServer
             .when(request() // GET is implied
                 .withPath("/some-id"))
             .respond(response()
                 .withBody("[{\"id\":1},{\"id\":2},{\"id\":3}]", JSON_UTF_8));
-
-        mockServer
-            .when(request() // GET is implied
-                .withPath("/drop-connection"))
-            .error(error().withDropConnection(true));
 
         client = LoggingClientBuilder.newClient();
     }
