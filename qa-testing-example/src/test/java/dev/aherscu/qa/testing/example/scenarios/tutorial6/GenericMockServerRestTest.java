@@ -159,6 +159,7 @@ public final class GenericMockServerRestTest extends
 
         then()
             .the_response_status(is(CLIENT_ERROR))
+            // ISSUE verifies that was called twice while was three times
             .and().$("the method was called more than twice",
                 __ -> mockServer.verify(as(twiceExpectations)));
     }
