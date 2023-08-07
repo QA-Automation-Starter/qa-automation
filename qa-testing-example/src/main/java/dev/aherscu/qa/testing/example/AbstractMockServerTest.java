@@ -15,10 +15,12 @@
  */
 package dev.aherscu.qa.testing.example;
 
+import java.io.*;
 import java.net.*;
 
 import javax.ws.rs.core.*;
 
+import org.mockserver.client.*;
 import org.mockserver.integration.*;
 import org.testng.annotations.*;
 
@@ -26,6 +28,8 @@ import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.testing.utils.config.*;
+import lombok.*;
+import lombok.extern.slf4j.*;
 
 /**
  * Contains REST sample tests just to ensure that the testing infrastructure
@@ -45,24 +49,51 @@ import dev.aherscu.qa.testing.utils.config.*;
 @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
     value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
     justification = "JGiven framework limitation")
+@Slf4j
 abstract public class AbstractMockServerTest<T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
     extends
     UnitilsScenarioTest<BaseConfiguration, T, GIVEN, WHEN, THEN> {
 
-    protected final ClientAndServer mockServer;
+    public static final int          DEFAULT_PORT = 1080;
+
+    protected final MockServerClient mockServer;
+
+    private final boolean            usingOutOfProcessMockServer;
 
     /**
-     * Initializes with {@link BaseConfiguration}.
+     * If port 1080 is free will initiate an in-process MockServer, otherwise
+     * will try connecting to port 1080.
      */
     protected AbstractMockServerTest() {
         super(BaseConfiguration.class);
-        // NOTE port 0 means any free port
-        mockServer = ClientAndServer.startClientAndServer(0);
+
+        usingOutOfProcessMockServer = canUseOutOfProcessMockServer();
+
+        log.debug("using out-of-process MockServer: {}",
+            usingOutOfProcessMockServer);
+
+        mockServer = usingOutOfProcessMockServer
+            ? new MockServerClient("localhost", outOfProcessPort())
+            : ClientAndServer.startClientAndServer(0);
+    }
+
+    private boolean canUseOutOfProcessMockServer() {
+        try (val socket = new ServerSocket(outOfProcessPort())) {
+            socket.close();
+            return false;
+        } catch (final IOException ioe) {
+            return true;
+        }
+    }
+
+    protected int outOfProcessPort() {
+        return DEFAULT_PORT;
     }
 
     @AfterClass(alwaysRun = true)
     protected void stopMockRestServer() {
-        mockServer.stop();
+        if (!usingOutOfProcessMockServer)
+            mockServer.stop();
     }
 
     protected URI mockServerUri() {
