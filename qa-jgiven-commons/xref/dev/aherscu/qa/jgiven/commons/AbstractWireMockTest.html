@@ -1,11 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang="">
 <head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-<title>AbstractMockedServiceTest xref</title>
+<title>AbstractWireMockTest xref</title>
 <link type="text/css" rel="stylesheet" href="../../../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../../../apidocs/dev/aherscu/qa/jgiven/commons/AbstractMockedServiceTest.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../../../apidocs/dev/aherscu/qa/jgiven/commons/AbstractWireMockTest.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2023 Adrian Herscu</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
@@ -52,7 +52,7 @@
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>      value = <span class="jxr_string">"BC_UNCONFIRMED_CAST_OF_RETURN_VALUE"</span>,
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      justification = <span class="jxr_string">"JGiven framework limitation"</span>)
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> AbstractMockedServiceTest&lt;T <strong class="jxr_keyword">extends</strong> AnyScenarioType, GIVEN <strong class="jxr_keyword">extends</strong> GenericFixtures&lt;T, ?&gt; &amp; ScenarioType&lt;T&gt;, WHEN <strong class="jxr_keyword">extends</strong> GenericActions&lt;T, ?&gt; &amp; ScenarioType&lt;T&gt;, THEN <strong class="jxr_keyword">extends</strong> GenericVerifications&lt;T, ?&gt; &amp; ScenarioType&lt;T&gt;&gt;
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> AbstractWireMockTest&lt;T <strong class="jxr_keyword">extends</strong> AnyScenarioType, GIVEN <strong class="jxr_keyword">extends</strong> GenericFixtures&lt;T, ?&gt; &amp; ScenarioType&lt;T&gt;, WHEN <strong class="jxr_keyword">extends</strong> GenericActions&lt;T, ?&gt; &amp; ScenarioType&lt;T&gt;, THEN <strong class="jxr_keyword">extends</strong> GenericVerifications&lt;T, ?&gt; &amp; ScenarioType&lt;T&gt;&gt;
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>      <strong class="jxr_keyword">extends</strong>
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>      UnitilsScenarioTest&lt;BaseConfiguration, T, GIVEN, WHEN, THEN&gt; {
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  
@@ -61,7 +61,7 @@
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">     * Initializes with {@link BaseConfiguration}.</em>
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>      <strong class="jxr_keyword">protected</strong> <a name="AbstractMockedServiceTest" href="../../../../../dev/aherscu/qa/jgiven/commons/AbstractMockedServiceTest.html#AbstractMockedServiceTest">AbstractMockedServiceTest</a>() {
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>      <strong class="jxr_keyword">protected</strong> <a name="AbstractWireMockTest" href="../../../../../dev/aherscu/qa/jgiven/commons/AbstractWireMockTest.html#AbstractWireMockTest">AbstractWireMockTest</a>() {
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>          <strong class="jxr_keyword">super</strong>(BaseConfiguration.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>          wireMockServer = wireMockServerOnDynamicPort();
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>      }
