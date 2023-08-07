@@ -17,7 +17,9 @@ package dev.aherscu.qa.testing.example.scenarios.tutorial6;
 
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static java.util.Arrays.*;
+import static javax.ws.rs.core.Response.Status.Family.*;
 import static org.hamcrest.Matchers.*;
+import static org.mockserver.matchers.Times.*;
 import static org.mockserver.model.HttpError.*;
 import static org.mockserver.model.HttpRequest.*;
 import static org.mockserver.model.HttpResponse.*;
@@ -29,6 +31,7 @@ import javax.ws.rs.client.*;
 
 import org.mockserver.mock.*;
 import org.mockserver.model.*;
+import org.mockserver.verify.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.tags.*;
@@ -107,6 +110,27 @@ public final class GenericMockServerRestTest extends
     @Test
     @Reference("159")
     @SneakyThrows
+    public void shouldVerifyAccessedTwice() {
+        given()
+            .a_REST_client(client);
+
+        when()
+            .connecting_to(mockServerUri())
+            .and().appending_path("twice")
+            .and().getting_the_response()
+            .and().getting_the_response()
+            .and().getting_the_response(); // should return 404
+
+        then()
+            .the_response_status(is(CLIENT_ERROR))
+            .and().$("the method was called more than twice",
+                __ -> mockServer.verify(request().withPath("/twice"),
+                    VerificationTimes.exactly(3)));
+    }
+
+    @Test
+    @Reference("159")
+    @SneakyThrows
     public void shouldVerifyAccessOfDroppedConnection() {
         given()
             .a_REST_client(client);
@@ -132,6 +156,10 @@ public final class GenericMockServerRestTest extends
     private void beforeClassAddExpectations() {
         expectations = mockServer // GET is implied
             .when(request().withPath("/dummy"))
+            .respond(response(EMPTY));
+
+        mockServer // GET is implied
+            .when(request().withPath("/twice"), exactly(2))
             .respond(response(EMPTY));
 
         mockServer // GET is implied
