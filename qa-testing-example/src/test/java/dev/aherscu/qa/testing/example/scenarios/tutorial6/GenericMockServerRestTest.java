@@ -107,7 +107,7 @@ public final class GenericMockServerRestTest extends
     @Test
     @Reference("159")
     @SneakyThrows
-    public void shouldVeryAccessOfDroppedConnection() {
+    public void shouldVerifyAccessOfDroppedConnection() {
         given()
             .a_REST_client(client);
 
