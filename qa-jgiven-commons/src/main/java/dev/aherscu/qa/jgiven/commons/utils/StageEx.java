@@ -99,14 +99,6 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
     @ExpectedScenarioState
     public CurrentStep                currentStep;
 
-    @Override
-    @SneakyThrows
-    @Deprecated // the description no longer appears in report
-    public final SELF $(final String description,
-        @Hidden final StepFunction<? super SELF> function) {
-        return super.$(description, function);
-    }
-
     protected final SELF alert(
         final Consumer<Alert> action,
         final WebDriver driver) {

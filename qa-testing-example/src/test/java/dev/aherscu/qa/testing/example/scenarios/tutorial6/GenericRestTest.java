@@ -22,13 +22,13 @@ import static org.hamcrest.Matchers.equalTo;
 
 import javax.ws.rs.client.*;
 
-import dev.aherscu.qa.jgiven.rest.tags.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.jgiven.rest.steps.*;
+import dev.aherscu.qa.jgiven.rest.tags.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import dev.aherscu.qa.testing.utils.rest.*;
 
@@ -47,7 +47,7 @@ import dev.aherscu.qa.testing.utils.rest.*;
 @SuppressWarnings({ "boxing" })
 public final class GenericRestTest
     extends
-    AbstractMockedServiceTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+    AbstractWireMockTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 
@@ -77,10 +77,13 @@ public final class GenericRestTest
     }
 
     @BeforeClass
-    private void beforeClassOpenRestClient() {
+    private void beforeClassAddStubs() {
         wireMockServer.stubFor(get(urlEqualTo("/some-id"))
             .willReturn(ok("[{id:1},{id:2},{id:3}]")));
+    }
 
+    @BeforeClass
+    private void beforeClassOpenRestClient() {
         client = LoggingClientBuilder.newClient();
     }
 }
