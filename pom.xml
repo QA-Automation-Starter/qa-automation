@@ -99,31 +99,39 @@
       this may lead to having different versions of same library -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <delombok.directory>${project.build.directory}/delombok</delombok.directory>
+
     <!-- NOTE: cannot upgrade AspectJ Runtime beyond 1.9.7 for Java 8 -->
     <!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=552687 -->
     <!-- see https://github.com/eclipse/org.aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md -->
     <aspectj.version>1.8.14</aspectj.version>
     <aspectj.showWeaveInfo>true</aspectj.showWeaveInfo>
     <aspectj.verbose>true</aspectj.verbose>
+
     <!-- NOTE: currently supported 1.8 and 11+; specified via profiles -->
+    <maven.version>3.9.2</maven.version>
+    <maven.tools.version>3.9.0</maven.tools.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.xlint>all</maven.compiler.xlint>
+    <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+    <maven.build.cache.skipCache>true</maven.build.cache.skipCache>
+    <maven.reflow.version>2.3.3</maven.reflow.version>
+
     <jgiven.version>1.1.0</jgiven.version>
+    <!-- NOTE: may cause the console logs to blow out -->
+    <jgiven.report.text>true</jgiven.report.text>
+
     <jersey.version>2.31</jersey.version>
     <slf4j.version>1.7.36</slf4j.version>
     <log.root.level>info</log.root.level>
+
     <connection.mstimeout>30000</connection.mstimeout>
     <read.mstimeout>30000</read.mstimeout>
+
     <test.properties.file>test.properties</test.properties.file>
+
     <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
     <surefire.version>3.0.0-M3</surefire.version>
-    <maven.version>3.9.2</maven.version>
-    <maven.tools.version>3.9.0</maven.tools.version>
-    <!-- NOTE: may cause the console logs to blow out -->
-    <jgiven.report.text>true</jgiven.report.text>
-    <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
-    <maven.build.cache.skipCache>true</maven.build.cache.skipCache>
   </properties>
 
   <repositories>
@@ -738,17 +746,14 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>4.0.0-M8</version>
-<!--        <dependencies>-->
-<!--          <dependency>-->
-<!--            <groupId>io.github.olamy.maven.skins</groupId>-->
-<!--            <artifactId>reflow-velocity-tools</artifactId>-->
-<!--            <version>2.0.0</version>-->
-<!--            &lt;!&ndash;            <groupId>io.github.devacfr.maven.skins</groupId>&ndash;&gt;-->
-<!--            &lt;!&ndash;            <artifactId>reflow-velocity-tools</artifactId>&ndash;&gt;-->
-<!--            &lt;!&ndash;            <version>2.3.3</version>&ndash;&gt;-->
-<!--          </dependency>-->
-<!--        </dependencies>-->
+        <version>4.0.0-M9</version>
+        <dependencies>
+          <dependency>
+            <groupId>io.github.devacfr.maven.skins</groupId>
+            <artifactId>reflow-velocity-tools</artifactId>
+            <version>${maven.reflow.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

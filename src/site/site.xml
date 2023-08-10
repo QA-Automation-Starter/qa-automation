@@ -18,33 +18,30 @@
          xmlns="http://maven.apache.org/DECORATION/1.8.0"
          xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 https://maven.apache.org/xsd/decoration-1.8.0.xsd">
   <skin>
-<!--    <groupId>io.github.olamy.maven.skins</groupId>-->
-<!--    <artifactId>reflow-maven-skin</artifactId>-->
-<!--    <version>2.0.0</version>-->
-<!--    <groupId>io.github.devacfr.maven.skins</groupId>-->
-<!--    <artifactId>reflow-maven-skin</artifactId>-->
-<!--    <version>2.3.3</version>-->
-    <groupId>org.apache.maven.skins</groupId>
-    <artifactId>maven-fluido-skin</artifactId>
-    <version>2.0.0-M6</version>
+    <groupId>io.github.devacfr.maven.skins</groupId>
+    <artifactId>reflow-maven-skin</artifactId>
+    <version>${maven.reflow.version}</version>
+<!--    <groupId>org.apache.maven.skins</groupId>-->
+<!--    <artifactId>maven-fluido-skin</artifactId>-->
+<!--    <version>2.0.0-M6</version>-->
   </skin>
 
   <custom>
-<!--    <reflowSkin>-->
-<!--      <absoluteResourceURL>https://qa-automation-starter.aherscu.dev</absoluteResourceURL>-->
-<!--      <theme>bootswatch-readable</theme>-->
-<!--    </reflowSkin>-->
-    <fluidoSkin>
-      <!--profile>pre-release</profile-->
-      <gitHub>
-        <projectId>QA-Automation-Starter/qa-automation</projectId>
-        <ribbonOrientation>right</ribbonOrientation>
-        <ribbonColor>black</ribbonColor>
-      </gitHub>
-      <googleSearch>
-        <sitesearch>qa-automation-starter.aherscu.dev</sitesearch>
-      </googleSearch>
-    </fluidoSkin>
+    <reflowSkin>
+      <absoluteResourceURL>https://qa-automation-starter.aherscu.dev</absoluteResourceURL>
+      <theme>default</theme>
+    </reflowSkin>
+<!--    <fluidoSkin>-->
+<!--      &lt;!&ndash;profile>pre-release</profile&ndash;&gt;-->
+<!--      <gitHub>-->
+<!--        <projectId>QA-Automation-Starter/qa-automation</projectId>-->
+<!--        <ribbonOrientation>right</ribbonOrientation>-->
+<!--        <ribbonColor>black</ribbonColor>-->
+<!--      </gitHub>-->
+<!--      <googleSearch>-->
+<!--        <sitesearch>qa-automation-starter.aherscu.dev</sitesearch>-->
+<!--      </googleSearch>-->
+<!--    </fluidoSkin>-->
   </custom>
 
   <body>
