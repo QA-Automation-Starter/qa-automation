@@ -122,6 +122,9 @@
     <jgiven.report.text>true</jgiven.report.text>
     <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
     <maven.build.cache.skipCache>true</maven.build.cache.skipCache>
+  
+    <version.maven-site-plugin>4.0.0-M9</version.maven-site-plugin>
+    <reflow-maven-skin.version>2.3.4-SNAPSHOT</reflow-maven-skin.version>
   </properties>
 
   <repositories>
@@ -617,6 +620,19 @@
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
           <version>4.7.3.5</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${version.maven-site-plugin}</version>
+          <dependencies>
+            <dependency>
+              <groupId>io.github.devacfr.maven.skins</groupId>
+              <artifactId>reflow-velocity-tools</artifactId>
+              <version>${reflow-maven-skin.version}</version>
+            </dependency>
+          </dependencies>
         </plugin>
       </plugins>
     </pluginManagement>
