@@ -90,8 +90,13 @@ abstract public class AbstractMockServerTest<T extends AnyScenarioType, GIVEN ex
         return DEFAULT_PORT;
     }
 
+    @BeforeClass
+    protected void beforeClassClearMockServer() {
+        mockServer.reset();
+    }
+
     @AfterClass(alwaysRun = true)
-    protected void stopMockRestServer() {
+    protected void afterClassStopInProcessMockRestServer() {
         if (!usingOutOfProcessMockServer)
             mockServer.stop();
     }
