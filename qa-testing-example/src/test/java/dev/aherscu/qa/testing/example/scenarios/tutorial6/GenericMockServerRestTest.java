@@ -59,9 +59,7 @@ import lombok.*;
 public final class GenericMockServerRestTest extends
     AbstractMockServerTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
-    private Client        client;
-
-    private Expectation[] expectations;
+    private Client client;
 
     private static ExpectationId[] as(final Expectation[] expectations) {
         return Arrays.stream(expectations)
@@ -74,6 +72,10 @@ public final class GenericMockServerRestTest extends
     @Reference("159")
     @SneakyThrows
     public void shouldVerifyAccessByExpectionId() {
+        val dummyExpectations = mockServer // GET is implied
+            .when(request().withPath("/dummy"))
+            .respond(response(EMPTY));
+
         given()
             .a_REST_client(client);
 
@@ -84,13 +86,18 @@ public final class GenericMockServerRestTest extends
 
         then()
             .$("the dummy request was sent",
-                __ -> mockServer.verify(as(expectations)));
+                __ -> mockServer.verify(as(dummyExpectations)));
     }
 
     @Test
     @Reference("159")
     @SneakyThrows
     public void shouldVerifyAccessByDefinition() {
+        mockServer // GET is implied
+            .when(request().withPath("/some-id"))
+            .respond(response()
+                .withBody("[{\"id\":1},{\"id\":2},{\"id\":3}]", JSON_UTF_8));
+
         given()
             .a_REST_client(client);
 
@@ -111,6 +118,10 @@ public final class GenericMockServerRestTest extends
     @Reference("159")
     @SneakyThrows
     public void shouldVerifyAccessedTwice() {
+        mockServer // GET is implied
+            .when(request().withPath("/twice"), exactly(2))
+            .respond(response(EMPTY));
+
         given()
             .a_REST_client(client);
 
@@ -131,7 +142,36 @@ public final class GenericMockServerRestTest extends
     @Test
     @Reference("159")
     @SneakyThrows
+    public void shouldVerifyAccessedTwiceByExpectationId() {
+        val twiceExpectations = mockServer // GET is implied
+            .when(request().withPath("/twice"), exactly(2))
+            .respond(response(EMPTY));
+
+        given()
+            .a_REST_client(client);
+
+        when()
+            .connecting_to(mockServerUri())
+            .and().appending_path("twice")
+            .and().getting_the_response()
+            .and().getting_the_response()
+            .and().getting_the_response(); // should return 404
+
+        then()
+            .the_response_status(is(CLIENT_ERROR))
+            // ISSUE verifies that was called twice while was three times
+            .and().$("the method was called more than twice",
+                __ -> mockServer.verify(as(twiceExpectations)));
+    }
+
+    @Test
+    @Reference("159")
+    @SneakyThrows
     public void shouldVerifyAccessOfDroppedConnection() {
+        mockServer // GET is implied
+            .when(request().withPath("/drop-connection"))
+            .error(error().withDropConnection(true));
+
         given()
             .a_REST_client(client);
 
@@ -150,26 +190,6 @@ public final class GenericMockServerRestTest extends
     @AfterClass
     private void afterClassCloseRestClient() {
         client.close();
-    }
-
-    @BeforeClass
-    private void beforeClassAddExpectations() {
-        expectations = mockServer // GET is implied
-            .when(request().withPath("/dummy"))
-            .respond(response(EMPTY));
-
-        mockServer // GET is implied
-            .when(request().withPath("/twice"), exactly(2))
-            .respond(response(EMPTY));
-
-        mockServer // GET is implied
-            .when(request().withPath("/drop-connection"))
-            .error(error().withDropConnection(true));
-
-        mockServer // GET is implied
-            .when(request().withPath("/some-id"))
-            .respond(response()
-                .withBody("[{\"id\":1},{\"id\":2},{\"id\":3}]", JSON_UTF_8));
     }
 
     @BeforeClass
