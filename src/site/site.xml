@@ -18,12 +18,9 @@
          xmlns="http://maven.apache.org/DECORATION/1.8.0"
          xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 https://maven.apache.org/xsd/decoration-1.8.0.xsd">
   <skin>
-    <groupId>io.github.devacfr.maven.skins</groupId>
-    <artifactId>reflow-maven-skin</artifactId>
-    <version>${maven.reflow.version}</version>
-<!--    <groupId>org.apache.maven.skins</groupId>-->
-<!--    <artifactId>maven-fluido-skin</artifactId>-->
-<!--    <version>2.0.0-M6</version>-->
+    <groupId>org.apache.maven.skins</groupId>
+    <artifactId>maven-fluido-skin</artifactId>
+    <version>2.0.0-M7</version>
   </skin>
 
   <custom>
