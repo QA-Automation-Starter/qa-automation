@@ -24,21 +24,19 @@
   </skin>
 
   <custom>
-    <reflowSkin>
-      <absoluteResourceURL>https://qa-automation-starter.aherscu.dev</absoluteResourceURL>
-      <theme>default</theme>
-    </reflowSkin>
-<!--    <fluidoSkin>-->
-<!--      &lt;!&ndash;profile>pre-release</profile&ndash;&gt;-->
-<!--      <gitHub>-->
-<!--        <projectId>QA-Automation-Starter/qa-automation</projectId>-->
-<!--        <ribbonOrientation>right</ribbonOrientation>-->
-<!--        <ribbonColor>black</ribbonColor>-->
-<!--      </gitHub>-->
-<!--      <googleSearch>-->
-<!--        <sitesearch>qa-automation-starter.aherscu.dev</sitesearch>-->
-<!--      </googleSearch>-->
-<!--    </fluidoSkin>-->
+    <fluidoSkin>
+      <topBarEnabled>true</topBarEnabled>
+      <sideBarEnabled>false</sideBarEnabled>
+      <!--profile>pre-release</profile-->
+      <gitHub>
+        <projectId>QA-Automation-Starter/qa-automation</projectId>
+        <ribbonOrientation>right-bottom</ribbonOrientation>
+        <ribbonColor>gray</ribbonColor>
+      </gitHub>
+      <googleSearch>
+        <sitesearch>qa-automation-starter.aherscu.dev</sitesearch>
+      </googleSearch>
+    </fluidoSkin>
   </custom>
 
   <body>
