@@ -14,7 +14,9 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <!-- see
@@ -75,21 +77,24 @@
   </ciManagement>
 
   <modules>
+    <module>qa-testing-archetype</module>
+    <module>qa-testing-example</module>
+    <module>qa-testing-parent</module>
+
     <module>qa-jgiven-commons</module>
     <module>qa-jgiven-webdriver</module>
     <module>qa-jgiven-ssh</module>
     <module>qa-jgiven-rest</module>
     <module>qa-jgiven-rabbitmq</module>
     <module>qa-jgiven-elasticsearch</module>
+
     <module>qa-jgiven-reporter</module>
     <module>qa-testrail-reporter</module>
     <module>qa-jgiven-reporter-maven-plugin</module>
     <module>qa-orcanos-publisher-maven-plugin</module>
     <module>qa-s3-publisher-maven-plugin</module>
+
     <module>qa-testing-utils</module>
-    <module>qa-testing-parent</module>
-    <module>qa-testing-archetype</module>
-    <module>qa-testing-example</module>
   </modules>
 
   <properties>
@@ -97,31 +102,38 @@
       this may lead to having different versions of same library -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <delombok.directory>${project.build.directory}/delombok</delombok.directory>
+
     <!-- NOTE: cannot upgrade AspectJ Runtime beyond 1.9.7 for Java 8 -->
     <!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=552687 -->
     <!-- see https://github.com/eclipse/org.aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md -->
     <aspectj.version>1.8.14</aspectj.version>
     <aspectj.showWeaveInfo>true</aspectj.showWeaveInfo>
     <aspectj.verbose>true</aspectj.verbose>
+
     <!-- NOTE: currently supported 1.8 and 11+; specified via profiles -->
+    <maven.version>3.9.2</maven.version>
+    <maven.tools.version>3.9.0</maven.tools.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.compiler.xlint>all</maven.compiler.xlint>
+    <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+    <maven.build.cache.skipCache>true</maven.build.cache.skipCache>
+
     <jgiven.version>1.1.0</jgiven.version>
+    <!-- NOTE: may cause the console logs to blow out -->
+    <jgiven.report.text>true</jgiven.report.text>
+
     <jersey.version>2.31</jersey.version>
     <slf4j.version>1.7.36</slf4j.version>
     <log.root.level>info</log.root.level>
+
     <connection.mstimeout>30000</connection.mstimeout>
     <read.mstimeout>30000</read.mstimeout>
+
     <test.properties.file>test.properties</test.properties.file>
+
     <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
     <surefire.version>3.0.0-M3</surefire.version>
-    <maven.version>3.9.2</maven.version>
-    <maven.tools.version>3.9.0</maven.tools.version>
-    <!-- NOTE: may cause the console logs to blow out -->
-    <jgiven.report.text>true</jgiven.report.text>
-    <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
-    <maven.build.cache.skipCache>true</maven.build.cache.skipCache>
   </properties>
 
   <repositories>
@@ -389,8 +401,8 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
             <showWeaveInfo>${aspectj.showWeaveInfo}</showWeaveInfo>
-            <sources />
-            <testSources />
+            <sources/>
+            <testSources/>
             <verbose>${aspectj.verbose}</verbose>
             <Xlint>ignore</Xlint>
             <!-- NOTE: Lombok requires compilation via javac,
@@ -578,7 +590,9 @@
               </goals>
               <configuration>
                 <target>
-                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}" />
+                  <jar
+                    destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
+                    basedir="${delombok.directory}"/>
                 </target>
               </configuration>
             </execution>
@@ -734,7 +748,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>4.0.0-M8</version>
+        <version>4.0.0-M9</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -896,7 +910,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -909,7 +923,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -925,7 +939,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -939,7 +953,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore />
+                        <ignore/>
                       </action>
                     </pluginExecution>
                   </pluginExecutions>

@@ -1,41 +1,3 @@
-# Testing Tutorial
-
-[Prerequisites](#prerequisites) |
-[Basic Steps](#basic-steps) |
-[Advanced Steps](#advanced-steps) |
-[Development Workflow](#development-workflow) |
-[Branching Diagram](#branching-diagram)
-
-## Prerequisites
-
-1. Working development environment -- see [README](../../../README.md)
-2. Knowledge of testing frameworks and libraries, in this order:
-    * [TestNG](https://testng.org/doc/documentation-main.html)
-    * [Hamcrest](http://hamcrest.org/JavaHamcrest/tutorial)
-    * [Selenium WebDriver](https://www.selenium.dev/documentation/en/)
-      -- specifically the parts related to WebDriver and RemoteWebDriver clients
-        - [Getting started with WebDriver](https://www.selenium.dev/documentation/en/getting_started_with_webdriver/)
-        - [WebDriver](https://www.selenium.dev/documentation/en/webdriver/)
-        - [Remote WebDriver client](https://www.selenium.dev/documentation/en/remote_webdriver/remote_webdriver_client/)
-    * [XPath](https://www.w3.org/TR/1999/REC-xpath-19991116/)
-    * [Appium Introduction](http://appium.io/docs/en/about-appium/intro/)
-    * [JGiven](http://jgiven.org/userguide/)
-    * [JsonPath](https://github.com/json-path/JsonPath)
-
-## Basic Steps
-
-1. [Plain TestNG](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_1_PlainTestNg.java)
-2. [TestNG with Hamcrest](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_2_TestNgWithHamcrest.java)
-3. [Testing Web Application](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_3_TestingWebApplication.java)
-4. [Testing Mobile Application](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_4_TestingMobileApplication.java)
-5. [Testing Mobile Application on SauceLabs](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_5_TestingMobileApplicationOnSauceLabs.java)
-
-## Advanced Steps
-
-1. [Testing and reporting with JGiven in parallel](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_6_TestingWithJGiven.java)
-2. [Testing Windows Application](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_7_TestingWindowsApplication.java)
-3. [Testing Windows with JGiven](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_8_TestingWindowsWithJGiven.java)
-
 ## Development Workflow
 
 Branching, committing, merging and pull requests.
@@ -87,8 +49,6 @@ The main milestones are as follows:
 
     * maintenance will occur on same branch as described in #3 above
 
-## Branching Diagram
-
 The above can be summarized as follows:
 
 ```
@@ -102,3 +62,5 @@ The above can be summarized as follows:
                                                                       |pull request
                                                                       |code review fixes
 ```
+
+Next: [Tutorials Prerequisites](../tutorials/prerequisites.md)

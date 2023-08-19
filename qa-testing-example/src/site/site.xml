@@ -19,7 +19,18 @@
          xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 https://maven.apache.org/xsd/decoration-1.8.0.xsd">
 
   <body>
-    <menu name="Overview">
+    <menu name="Architecture">
+      <item name="Folder Structure" href="architecture/folder-structure.html" />
+      <item name="Adding Tests" href="architecture/adding-tests.html" />
+      <item name="Development Workflow" href="architecture/development-workflow.html" />
+      <item name="Branching Diagram" href="architecture/branching-diagram.html" />
+    </menu>
+    <menu name="Tutorials">
+      <item name="Prerequisites" href="tutorials/prerequisites.html" />
+      <item name="Basic Steps" href="tutorials/basic-steps.html" />
+      <item name="Advanced Steps" href="tutorials/advanced-steps.html" />
+    </menu>
+    <menu name="Sample Reports">
       <item name="JGiven Report" href="${jgiven.reports}/html/index.html"/>
       <item name="QA Report" href="${jgiven.reports}/qa-html/qa-jgiven-reporter.html"/>
     </menu>

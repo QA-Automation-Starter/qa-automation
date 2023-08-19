@@ -20,16 +20,18 @@
   <skin>
     <groupId>org.apache.maven.skins</groupId>
     <artifactId>maven-fluido-skin</artifactId>
-    <version>2.0.0-M6</version>
+    <version>2.0.0-M7</version>
   </skin>
 
   <custom>
     <fluidoSkin>
+      <topBarEnabled>true</topBarEnabled>
+      <sideBarEnabled>false</sideBarEnabled>
       <!--profile>pre-release</profile-->
       <gitHub>
         <projectId>QA-Automation-Starter/qa-automation</projectId>
-        <ribbonOrientation>right</ribbonOrientation>
-        <ribbonColor>black</ribbonColor>
+        <ribbonOrientation>right-bottom</ribbonOrientation>
+        <ribbonColor>gray</ribbonColor>
       </gitHub>
       <googleSearch>
         <sitesearch>qa-automation-starter.aherscu.dev</sitesearch>
