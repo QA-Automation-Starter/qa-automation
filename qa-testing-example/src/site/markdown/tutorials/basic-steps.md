@@ -1,9 +1,10 @@
 ## Basic Steps
 
-1. [Plain TestNG](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_1_PlainTestNg.java)
-2. [TestNG with Hamcrest](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_2_TestNgWithHamcrest.java)
-3. [Testing Web Application](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_3_TestingWebApplication.java)
-4. [Testing Mobile Application](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_4_TestingMobileApplication.java)
-5. [Testing Mobile Application on SauceLabs](../src/test/java/dev/aherscu/qa/testing/example/scenarios/tutorial/_5_TestingMobileApplicationOnSauceLabs.java)
+
+1. [Plain TestNG](../xref-test/dev/aherscu/qa/testing/example/scenarios/tutorial1/package-frame.html)
+2. [TestNG with Hamcrest](../xref-test/dev/aherscu/qa/testing/example/scenarios/tutorial2/package-frame.html)
+3. [Testing Web Application](../xref-test/dev/aherscu/qa/testing/example/scenarios/tutorial3/package-frame.html)
+4. [Testing Mobile Application](../xref-test/dev/aherscu/qa/testing/example/scenarios/tutorial4/package-frame.html)
+5. [Testing Mobile Application on SauceLabs](../xref-test/dev/aherscu/qa/testing/example/scenarios/tutorial5/package-frame.html)
 
 Next: [Advanced Steps](advanced-steps.html)
