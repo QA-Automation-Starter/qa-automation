@@ -636,6 +636,15 @@
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
           <version>4.7.3.5</version>
+          <configuration>
+            <effort>Max</effort>
+            <failOnError>false</failOnError>
+            <threshold>Low</threshold>
+            <xmlOutput>true</xmlOutput>
+            <spotbugsXmlOutputDirectory>${project.build.directory}/findbugs
+            </spotbugsXmlOutputDirectory>
+            <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -729,28 +738,6 @@
       </plugin>
 
       <plugin>
-        <groupId>com.github.spotbugs</groupId>
-        <artifactId>spotbugs-maven-plugin</artifactId>
-        <configuration>
-          <effort>Max</effort>
-          <failOnError>false</failOnError>
-          <threshold>Low</threshold>
-          <xmlOutput>true</xmlOutput>
-          <spotbugsXmlOutputDirectory>${project.build.directory}/findbugs
-          </spotbugsXmlOutputDirectory>
-          <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
-        </configuration>
-        <executions>
-          <execution>
-            <id>analyze-compile</id>
-            <phase>compile</phase>
-            <goals>
-              <goal>check</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
         <version>4.0.0-M9</version>
@@ -824,7 +811,6 @@
         <formatter.skip>true</formatter.skip>
         <impsort.skip>true</impsort.skip>
         <maven.test.skip>true</maven.test.skip>
-        <spotbugs.skip>true</spotbugs.skip>
         <archetype.test.skip>true</archetype.test.skip>
         <maven.javadoc.skip>true</maven.javadoc.skip>
         <maven.jxr.skip>true</maven.jxr.skip>
