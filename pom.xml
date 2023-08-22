@@ -111,7 +111,7 @@
     <aspectj.verbose>true</aspectj.verbose>
 
     <!-- NOTE: currently supported 1.8 and 11+; specified via profiles -->
-    <maven.version>3.9.2</maven.version>
+    <maven.version>3.9.4</maven.version>
     <maven.tools.version>3.9.0</maven.tools.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -461,7 +461,7 @@
               <path>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.20</version>
+                <version>1.18.28</version>
               </path>
             </annotationProcessorPaths>
           </configuration>
