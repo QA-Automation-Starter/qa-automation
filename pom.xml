@@ -14,9 +14,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <!-- see
@@ -30,7 +28,7 @@
     -->
   <groupId>dev.aherscu.qa</groupId>
   <artifactId>qa-automation</artifactId>
-  <version>0.0.28-SNAPSHOT</version>
+  <version>0.0.28</version>
   <packaging>pom</packaging>
 
   <name>QA Automation</name>
@@ -63,7 +61,7 @@
       scm:git:ssh://git@github.com/QA-Automation-Starter/qa-automation.git
     </developerConnection>
     <url>https://github.com/QA-Automation-Starter/qa-automation</url>
-    <tag>HEAD</tag>
+    <tag>qa-automation-0.0.28</tag>
   </scm>
 
   <issueManagement>
@@ -406,8 +404,8 @@
             <source>${java.version}</source>
             <target>${java.version}</target>
             <showWeaveInfo>${aspectj.showWeaveInfo}</showWeaveInfo>
-            <sources/>
-            <testSources/>
+            <sources />
+            <testSources />
             <verbose>${aspectj.verbose}</verbose>
             <Xlint>ignore</Xlint>
             <!-- NOTE: Lombok requires compilation via javac,
@@ -595,9 +593,7 @@
               </goals>
               <configuration>
                 <target>
-                  <jar
-                    destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
-                    basedir="${delombok.directory}"/>
+                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}" />
                 </target>
               </configuration>
             </execution>
@@ -901,7 +897,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore/>
+                        <ignore />
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -914,7 +910,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore/>
+                        <ignore />
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -930,7 +926,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore/>
+                        <ignore />
                       </action>
                     </pluginExecution>
                     <pluginExecution>
@@ -944,7 +940,7 @@
                         </goals>
                       </pluginExecutionFilter>
                       <action>
-                        <ignore/>
+                        <ignore />
                       </action>
                     </pluginExecution>
                   </pluginExecutions>
