@@ -17,7 +17,7 @@
 <suite name="QA Tester Utils" verbose="1" parallel="tests">
   <test name="utils" parallel="methods">
     <packages>
-      <package name="dev.aherscu.qa.testing.utils.*"/>
+      <package name="dev.aherscu.qa.testing.extra.*"/>
     </packages>
   </test>
 </suite>

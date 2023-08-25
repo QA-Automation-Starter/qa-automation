@@ -23,19 +23,12 @@
     <version>0.0.29-SNAPSHOT</version>
   </parent>
 
-  <artifactId>qa-testing-utils</artifactId>
+  <artifactId>qa-testing-extra</artifactId>
   <packaging>jar</packaging>
 
-  <name>QA Testing Utilities</name>
+  <name>QA Testing Extra</name>
   <description>
-    JAX-RS generic providers, authenticators and logging filters, an
-    auto-returning pool implementation based on Apache Commons Pooling, a
-    wrapper around Apache Commons Configuration to make it look like a map,
-    various assertions for JSON and XML, a Read-Multi-Write lock, Hamcrest
-    Matchers extensions for streams, and many other utilities for handling text,
-    streams, lists, maps, etc. In addition, provides an AWS Cognito SRP filter
-    for JAX-RS and a CLI for it, see generate-aws-cognito-srp-authenticator
-    profile for generating it.
+    TBD
   </description>
 
   <repositories>
@@ -50,6 +43,12 @@
   </repositories>
 
   <dependencies>
+    <dependency>
+      <groupId>dev.aherscu.qa</groupId>
+      <artifactId>qa-testing-utils</artifactId>
+      <version>0.0.29-SNAPSHOT</version>
+    </dependency>
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
@@ -86,6 +85,37 @@
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-library</artifactId>
       <version>2.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-pool2</artifactId>
+      <version>2.8.0</version>
+    </dependency>
+
+    <!-- TODO extract to qa-testing-utils-aws -->
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-cognitoidp</artifactId>
+      <version>1.12.418</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>com.opencsv</groupId>
+      <artifactId>opencsv</artifactId>
+      <version>4.4</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- NOTE: see profiles below -->
@@ -128,6 +158,12 @@
           <artifactId>java-hamcrest</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>net.sf.oval</groupId>
+      <artifactId>oval</artifactId>
+      <version>3.2.1</version>
     </dependency>
 
     <dependency>
@@ -189,6 +225,12 @@
       <groupId>javax.ws.rs</groupId>
       <artifactId>javax.ws.rs-api</artifactId>
       <version>2.1.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.esotericsoftware.yamlbeans</groupId>
+      <artifactId>yamlbeans</artifactId>
+      <version>1.13</version>
     </dependency>
 
     <dependency>
@@ -280,12 +322,6 @@
       <groupId>commons-cli</groupId>
       <artifactId>commons-cli</artifactId>
       <version>1.4</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.samskivert</groupId>
-      <artifactId>jmustache</artifactId>
-      <version>1.14</version>
     </dependency>
 
     <dependency>

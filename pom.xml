@@ -93,6 +93,7 @@
     <module>qa-s3-publisher-maven-plugin</module>
 
     <module>qa-testing-utils</module>
+    <module>qa-testing-extra</module>
   </modules>
 
   <properties>
@@ -642,10 +643,22 @@
             <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
           </configuration>
         </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.6.0</version>
+        </plugin>
+
       </plugins>
     </pluginManagement>
 
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+      </plugin>
+
       <!-- NOTE: configured according to following guides
       https://central.sonatype.org/publish/publish-guide/
       https://maven.apache.org/repository/guide-central-repository-upload.html
@@ -985,6 +998,17 @@
           <reportSet>
             <reports>
               <report>jxr-no-fork</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>analyze-report</report>
             </reports>
           </reportSet>
         </reportSets>

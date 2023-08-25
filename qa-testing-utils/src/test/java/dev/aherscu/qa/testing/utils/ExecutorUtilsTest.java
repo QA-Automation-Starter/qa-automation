@@ -36,6 +36,8 @@ public class ExecutorUtilsTest {
     @Test(expectedExceptions = TimeoutException.class,
         timeOut = 1_500, // millis
         invocationCount = 10,
+        threadPoolSize = 10,
+        successPercentage = 90,
         groups = { "time-sensitive" })
     public void shouldTimeout() {
         val timeout = Duration.ofSeconds(1);

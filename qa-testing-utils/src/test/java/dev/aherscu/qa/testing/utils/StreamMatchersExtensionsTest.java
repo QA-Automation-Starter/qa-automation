@@ -37,9 +37,9 @@ import lombok.extern.slf4j.*;
 @SuppressFBWarnings(value = "SIC_INNER_SHOULD_BE_STATIC_ANON",
     justification = "no real impact on memory/disk consumption")
 @SuppressWarnings({ "javadoc", "static-method", "boxing" })
-@Test
 @Slf4j
 public class StreamMatchersExtensionsTest {
+    @Test
     public void shouldAllowMatcherReuse() {
         final Matcher<Stream<Integer>> m = orderedStream(Ordering.natural());
         try {
@@ -56,15 +56,18 @@ public class StreamMatchersExtensionsTest {
         }
     }
 
+    @Test
     public void shouldAssertEmpty() {
         assertThat(Stream.<Integer> empty(),
             hasItemsMatching());
     }
 
+    @Test
     public void shouldAssertEmptyStream() {
         assertThat(Stream.empty(), emptyStream());
     }
 
+    @Test
     public void shouldAssertOnAdaptedStream() {
         @AllArgsConstructor
         @ToString
@@ -80,12 +83,14 @@ public class StreamMatchersExtensionsTest {
                     anyMatch(is(7))));
     }
 
+    @Test
     public void shouldAssertOnCollectedStream() {
         assertThat(Stream.of(1, 2, 10, 3), adapt(HashSet::new,
             both(iterable(everyItem(not(0))))
                 .and(iterableSuper(hasItem(1)))));
     }
 
+    @Test
     public void shouldAssertOnFirstMatch() {
         assertThat(Stream
             .of(1, 4, 2)
@@ -93,6 +98,7 @@ public class StreamMatchersExtensionsTest {
             anyMatch(is(4)));
     }
 
+    @Test
     public void shouldAssertOnFirstMatches() {
         assertThat(Stream
             .of(1, 4, 9, 2, 7, 0)
@@ -101,6 +107,7 @@ public class StreamMatchersExtensionsTest {
                 is(4), is(2), greaterThan(6)));
     }
 
+    @Test
     public void shouldAssertOnFirstValues() {
         assertThat(Stream
             .of(1, 4, 9, 2, 7, 0)
@@ -108,6 +115,7 @@ public class StreamMatchersExtensionsTest {
             hasSpecificItems(4, 2));
     }
 
+    @Test
     public void shouldAssertOnOrder() {
         assertThat(Stream
             .of(1, 4, 5, 6, 7, 9)
@@ -115,6 +123,7 @@ public class StreamMatchersExtensionsTest {
             orderedStream(Ordering.natural()));
     }
 
+    @Test
     public void shouldAssertOnVeryFirstMatches() {
         assertThat(Stream
             .of(1, 4, 2)
@@ -122,6 +131,7 @@ public class StreamMatchersExtensionsTest {
             startsWith(1, 4));
     }
 
+    @Test
     public void shouldAssertWithAnyOrder() {
         assertThat(Stream
             .of(1, 4, 9, 2, 7, 0),
@@ -130,14 +140,17 @@ public class StreamMatchersExtensionsTest {
                 is(9)));
     }
 
+    @Test
     public void shouldCount() {
         assertThat(Stream.of(1, 2, 3), counts(3));
     }
 
+    @Test
     public void shouldCountAtLeast() {
         assertThat(Stream.of(1, 2, 3, 4), counts(greaterThanOrEqualTo(3L)));
     }
 
+    @Test
     public void shouldLimitAssertionOnFirstMatches() {
         assertThat(Stream
             .of(1, 4, 9, 2, 7, 0)
@@ -147,6 +160,7 @@ public class StreamMatchersExtensionsTest {
                     is(4), is(2), greaterThan(6))));
     }
 
+    @Test
     public void shouldMatchAll() {
         assertThat(Stream.of("bardjffoodjio", "foobar", "jfbarioffoo"),
             allMatch(both(containsString("foo"))
