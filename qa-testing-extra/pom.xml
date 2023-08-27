@@ -65,29 +65,6 @@
     </dependency>
 
     <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>javax.annotation</groupId>
-      <artifactId>javax.annotation-api</artifactId>
-      <version>1.3.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest</artifactId>
-      <version>2.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-library</artifactId>
-      <version>2.1</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-pool2</artifactId>
       <version>2.8.0</version>
@@ -118,95 +95,10 @@
       </exclusions>
     </dependency>
 
-    <!-- NOTE: see profiles below -->
-    <!--dependency>
-      <groupId>org.jooq</groupId>
-      <artifactId>jool</artifactId>
-      <version>0.9.14</version>
-    </dependency-->
-
-    <dependency>
-      <groupId>net.coobird</groupId>
-      <artifactId>thumbnailator</artifactId>
-      <version>0.4.19</version>
-    </dependency>
-
-    <dependency>
-      <!-- ISSUE https://github.com/mrwilson/java-8-matchers/issues/20 -->
-      <groupId>uk.co.probablyfine</groupId>
-      <artifactId>java-8-matchers</artifactId>
-      <version>1.9</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.github.adorow</groupId>
-      <artifactId>jcurry</artifactId>
-      <version>1.0.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>it.ozimov</groupId>
-      <artifactId>hamcrest-matchers</artifactId>
-      <version>2.0.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.hamcrest</groupId>
-          <artifactId>java-hamcrest</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
     <dependency>
       <groupId>net.sf.oval</groupId>
       <artifactId>oval</artifactId>
       <version>3.2.1</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.reflections</groupId>
-      <artifactId>reflections</artifactId>
-      <version>0.10.2</version>
-      <exclusions>
-        <exclusion>
-          <groupId>com.google.guava</groupId>
-          <artifactId>guava</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-configuration</groupId>
-      <artifactId>commons-configuration</artifactId>
-      <version>1.10</version>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-    <dependency>
-      <!-- NOTE: required by commons-configuration above -->
-      <groupId>commons-collections</groupId>
-      <artifactId>commons-collections</artifactId>
-      <version>3.2.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-collections4</artifactId>
-      <version>4.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-text</artifactId>
-      <version>1.6</version>
     </dependency>
 
     <dependency>
@@ -246,12 +138,6 @@
     </dependency>
 
     <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
-      <version>1.11</version>
-    </dependency>
-
-    <dependency>
       <groupId>com.github.rodionmoiseev.c10n</groupId>
       <artifactId>c10n-core</artifactId>
       <version>1.2</version>
@@ -266,6 +152,7 @@
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
       <version>${slf4j.version}</version>
+      <scope>runtime</scope>
     </dependency>
 
     <dependency>
@@ -282,29 +169,13 @@
       <scope>runtime</scope>
     </dependency>
 
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>com.jayway.jsonpath</groupId>
-      <artifactId>json-path-assert</artifactId>
-      <version>2.6.0</version>
-    </dependency>
-
     <!-- TODO should be removed, it does not work well with Hamcrest -->
     <!-- ISSUE: https://github.com/assertj/assertj/issues/3089 -->
     <dependency>
       <groupId>org.assertj</groupId>
       <artifactId>assertj-core</artifactId>
       <version>3.24.2</version>
-    </dependency>
-
-    <dependency>
-      <groupId>commons-jxpath</groupId>
-      <artifactId>commons-jxpath</artifactId>
-      <version>1.3</version>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -313,23 +184,11 @@
     </dependency>
 
     <dependency>
-      <groupId>com.github.tomakehurst</groupId>
-      <artifactId>wiremock-jre8</artifactId>
-      <version>2.35.0</version>
-    </dependency>
-
-    <dependency>
       <groupId>commons-cli</groupId>
       <artifactId>commons-cli</artifactId>
       <version>1.4</version>
     </dependency>
 
-    <dependency>
-      <groupId>com.github.romankh3</groupId>
-      <artifactId>image-comparison</artifactId>
-      <version>4.4.0</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
 
   <build>
@@ -376,7 +235,7 @@
         <dependency>
           <groupId>org.jooq</groupId>
           <artifactId>jool</artifactId>
-          <version>0.9.14</version>
+          <scope>test</scope>
         </dependency>
       </dependencies>
     </profile>
@@ -390,7 +249,7 @@
         <dependency>
           <groupId>org.jooq</groupId>
           <artifactId>jool-java-8</artifactId>
-          <version>0.9.14</version>
+          <scope>test</scope>
         </dependency>
       </dependencies>
     </profile>
