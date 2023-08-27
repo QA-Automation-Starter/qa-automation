@@ -63,6 +63,11 @@
       <artifactId>qa-testing-utils</artifactId>
       <version>0.0.29-SNAPSHOT</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
@@ -89,4 +94,34 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>platform-jdk11</id>
+      <activation>
+        <jdk>[11,)</jdk>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>org.jooq</groupId>
+          <artifactId>jool</artifactId>
+          <version>0.9.14</version>
+        </dependency>
+      </dependencies>
+    </profile>
+
+    <profile>
+      <id>platform-jdk8</id>
+      <activation>
+        <jdk>1.8</jdk>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>org.jooq</groupId>
+          <artifactId>jool-java-8</artifactId>
+          <version>0.9.14</version>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 </project>
