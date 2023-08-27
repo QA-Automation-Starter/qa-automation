@@ -831,6 +831,8 @@
       <!-- NOTE for having faster Maven builds -->
       <id>mode-build-fast</id>
       <properties>
+        <mdep.analyze.skip>true</mdep.analyze.skip>
+        <enforcer.skip>true</enforcer.skip>
         <findbugs.skip>true</findbugs.skip>
         <formatter.skip>true</formatter.skip>
         <impsort.skip>true</impsort.skip>
