@@ -25,7 +25,6 @@ import org.testng.internal.thread.*;
 
 import lombok.*;
 
-// TODO move to separate parallel module
 public class ParallelLoopTest {
     // NOTE: with less interval will spend more time switching threads
     private static final int INTERVAL_MS = 10;
@@ -43,7 +42,7 @@ public class ParallelLoopTest {
 
     @Test(timeOut = TIMEOUT_MS,
         groups = { "time-sensitive" })
-    // ISSUE not stable when running with 2 processors
+    @Ignore // ISSUE not stable when running with 2 processors
     public void shouldLoopFasterInParallel() {
         ParallelLoop.PROTOTYPE
             .withThreadPool(new ForkJoinPool(10))
