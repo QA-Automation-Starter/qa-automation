@@ -10,7 +10,7 @@ call mvn archetype:generate ^
   -DarchetypeCatalog=local ^
   -DarchetypeGroupId=dev.aherscu.qa ^
   -DarchetypeArtifactId=qa-testing-archetype ^
-  -DarchetypeVersion=0.0.9-SNAPSHOT ^
+  -DarchetypeVersion=LATEST ^
   -DgroupId=com.acme ^
   -DartifactId=testing ^
   -Dversion=0.0.1-SNAPSHOT ^
