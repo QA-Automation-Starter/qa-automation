@@ -60,7 +60,7 @@
     <developerConnection>
       scm:git:ssh://git@github.com/QA-Automation-Starter/qa-automation.git
     </developerConnection>
-    <url>https://github.com/QA-Automation-Starter/qa-automation</url>
+    <url>https://github.com/QA-Automation-Starter/qa-automation.git</url>
     <tag>HEAD</tag>
   </scm>
 
