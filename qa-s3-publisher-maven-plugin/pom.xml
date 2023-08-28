@@ -31,9 +31,6 @@
     Binds to Maven's prepare-package phase to publish test reports on
     an AWS S3 bucket.
   </description>
-  <url>
-    https://github.com/QA-Automation-Starter/qa-automation/tree/main/qa-s3-uploader-maven-plugin
-  </url>
 
   <properties>
     <maven.test.skip>true</maven.test.skip>
