@@ -25,7 +25,6 @@ import com.google.common.collect.*;
 
 import dev.aherscu.qa.testing.utils.config.BaseConfiguration;
 
-@Test
 public class BaseConfigurationTest {
     @Test
     public void shouldGroupProperties() {

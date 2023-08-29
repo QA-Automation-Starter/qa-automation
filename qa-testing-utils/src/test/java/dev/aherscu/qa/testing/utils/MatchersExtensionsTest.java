@@ -39,14 +39,15 @@ import com.jayway.jsonpath.*;
 import lombok.*;
 
 @SuppressWarnings({ "javadoc", "static-method", "boxing", "MagicNumber" })
-@Test
 public class MatchersExtensionsTest {
+    @Test
     public void shouldAssertNotEmptyIterable() {
         final Iterable<Integer> anIterable = asList(1, 2, 3);
         assertThat(anIterable,
             adaptedIterableToCollectionMatcher(not(collection(empty()))));
     }
 
+    @Test
     public void shouldAssertOnBooleanString() {
         assertThat("true", adaptedStringToBooleanMatcher(is(TRUE)));
     }
@@ -58,6 +59,7 @@ public class MatchersExtensionsTest {
             adaptedTypeOfNumericMatcher(equalTo(5), Integer.class));
     }
 
+    @Test
     public void shouldAssertOnDoubleString() {
         assertThat("5.0",
             adaptedStringToNumericMatcher(equalTo(5.0)));
@@ -70,11 +72,13 @@ public class MatchersExtensionsTest {
             adaptedTypeOfNumericMatcher(equalTo(5.0), Double.class));
     }
 
+    @Test
     public void shouldAssertOnIntegerString() {
         assertThat("5",
             adaptedStringToNumericMatcher(equalTo(5), Integer.class));
     }
 
+    @Test
     public void shouldAssertOnListOfStringsByJsonPath() {
         assertThat(
             asList(
@@ -84,28 +88,33 @@ public class MatchersExtensionsTest {
             adapted(s -> parse(s).read("$.a"), hasItems("b")));
     }
 
+    @Test
     public void shouldAssertOnListWithCombinedMatchers() {
         assertThat(asList(1, 2, 3, -1),
             both(iterable(everyItem(not(0))))
                 .and(iterableSuper(hasItem(3))));
     }
 
+    @Test
     public void shouldBeAlphabeticallyOrdered() {
         assertThat(asList(
             "Ba", "Cain", "Goldstein", "Jimenez", "Thompson"),
             is(ordered(natural())));
     }
 
+    @Test
     public void shouldBeFilterNumbersWithNulls() {
         assertThat(asList(99, 99, 10, 3, null, null),
             is(ordered(natural().reverse().nullsLast())));
     }
 
+    @Test
     public void shouldBeOrdered() {
         assertThat(asList(1, 2, 3),
             is(ordered(natural())));
     }
 
+    @Test
     public void shouldBeOrderedByData() {
         assertThat(
             asList(
@@ -115,6 +124,7 @@ public class MatchersExtensionsTest {
                 is(ordered(Ordering.natural().reverse()))));
     }
 
+    @Test
     public void shouldBeOrderedById() {
         assertThat(
             asList(
@@ -131,6 +141,7 @@ public class MatchersExtensionsTest {
      * adaptedCollectionToIterableMatcher( hasDistinctElements()))); }
      */
 
+    @Test
     public void shouldBeOrderedBySpecificProperties() {
         assertThat(
             asList(
@@ -141,6 +152,7 @@ public class MatchersExtensionsTest {
                     is(ordered(Ordering.natural().reverse())))));
     }
 
+    @Test
     public void shouldBeOrderedTextually() {
         assertThat(
             asList("99+", "99", "12" /* , "2" */), // "2" is greater than "12"
@@ -174,6 +186,7 @@ public class MatchersExtensionsTest {
             someTypeAdapter.apply(equalTo("blah")));
     }
 
+    @Test
     public void shouldGetValueByJXPath() {
         assertThat(JXPathContext
             .newContext(new SomeType(123, "data"))
@@ -181,6 +194,7 @@ public class MatchersExtensionsTest {
             equalTo(123));
     }
 
+    @Test
     public void shouldIgnoreMissingProperties() {
 
         assertThat(Stream

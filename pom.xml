@@ -60,7 +60,7 @@
     <developerConnection>
       scm:git:ssh://git@github.com/QA-Automation-Starter/qa-automation.git
     </developerConnection>
-    <url>https://github.com/QA-Automation-Starter/qa-automation</url>
+    <url>https://github.com/QA-Automation-Starter/qa-automation.git</url>
     <tag>HEAD</tag>
   </scm>
 
@@ -93,6 +93,7 @@
     <module>qa-s3-publisher-maven-plugin</module>
 
     <module>qa-testing-utils</module>
+    <module>qa-testing-extra</module>
   </modules>
 
   <properties>
@@ -202,6 +203,16 @@
         <version>7.4.0</version>
       </dependency>
       <dependency>
+        <groupId>org.jooq</groupId>
+        <artifactId>jool-java-8</artifactId>
+        <version>0.9.14</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jooq</groupId>
+        <artifactId>jool</artifactId>
+        <version>0.9.14</version>
+      </dependency>
+      <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
         <version>1.18.26</version>
@@ -211,6 +222,11 @@
         <groupId>javax.validation</groupId>
         <artifactId>validation-api</artifactId>
         <version>2.0.1.Final</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-collections4</artifactId>
+        <version>4.4</version>
       </dependency>
       <dependency>
         <groupId>com.google.code.findbugs</groupId>
@@ -642,10 +658,22 @@
             <excludeFilterFile>spotbugs-exclude.xml</excludeFilterFile>
           </configuration>
         </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.6.0</version>
+        </plugin>
+
       </plugins>
     </pluginManagement>
 
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+      </plugin>
+
       <!-- NOTE: configured according to following guides
       https://central.sonatype.org/publish/publish-guide/
       https://maven.apache.org/repository/guide-central-repository-upload.html
@@ -803,6 +831,8 @@
       <!-- NOTE for having faster Maven builds -->
       <id>mode-build-fast</id>
       <properties>
+        <mdep.analyze.skip>true</mdep.analyze.skip>
+        <enforcer.skip>true</enforcer.skip>
         <findbugs.skip>true</findbugs.skip>
         <formatter.skip>true</formatter.skip>
         <impsort.skip>true</impsort.skip>
@@ -985,6 +1015,17 @@
           <reportSet>
             <reports>
               <report>jxr-no-fork</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>analyze-report</report>
             </reports>
           </reportSet>
         </reportSets>

@@ -56,11 +56,6 @@
     </dependency>
 
     <dependency>
-      <groupId>javax.validation</groupId>
-      <artifactId>validation-api</artifactId>
-    </dependency>
-
-    <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-core</artifactId>
       <version>4.2.15</version>
@@ -127,34 +122,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.glassfish.jersey.core</groupId>
-      <artifactId>jersey-client</artifactId>
-      <version>${jersey.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.glassfish.jersey.inject</groupId>
-      <artifactId>jersey-hk2</artifactId>
-      <version>${jersey.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.unitils</groupId>
-      <artifactId>unitils-testng</artifactId>
-      <version>3.4.6</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.testng</groupId>
-          <artifactId>testng</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-    <dependency>
       <groupId>org.unitils</groupId>
       <artifactId>unitils-io</artifactId>
       <version>3.4.6</version>
@@ -183,6 +150,29 @@
       <artifactId>jgiven-testng</artifactId>
       <version>${jgiven.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.rodionmoiseev.c10n</groupId>
+      <artifactId>c10n-core</artifactId>
+      <version>1.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jul-to-slf4j</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+
     <!-- ISSUE: when relying on the dependency brought by testing-utils,
     the tests are failing with method not found exceptions... -->
     <dependency>
@@ -191,33 +181,17 @@
       <version>2.5.0</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.skyscreamer</groupId>
-      <artifactId>jsonassert</artifactId>
-      <version>1.5.0</version>
-    </dependency>
-
     <!-- dependency>
       ISSUE: cannot read the descriptor perhaps due to missing configuration
       <groupId>com.oracle.jdbc</groupId>
       <artifactId>OracleJdbcDriver12</artifactId>
     </dependency-->
-    <dependency>
-      <groupId>com.tngtech.jgiven</groupId>
-      <artifactId>jgiven-html5-report</artifactId>
-    </dependency>
 
     <dependency>
       <groupId>org.apache.derby</groupId>
       <artifactId>derbyclient</artifactId>
       <version>10.14.2.0</version>
       <scope>provided</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>com.saucelabs</groupId>
-      <artifactId>saucerest</artifactId>
-      <version>1.2.0</version>
     </dependency>
 
     <dependency>
@@ -231,13 +205,6 @@
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
       <version>3.2.4</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-testng</artifactId>
-      <version>0.1.1</version>
       <scope>test</scope>
     </dependency>
 
@@ -336,6 +303,20 @@
   </build>
 
   <profiles>
+
+    <profile>
+      <id>platform-jdk8</id>
+      <activation>
+        <jdk>1.8</jdk>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>org.jooq</groupId>
+          <artifactId>jool-java-8</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
+
     <profile>
       <id>platform-jdk11</id>
       <activation>
@@ -345,6 +326,12 @@
         <!-- ISSUE https://issues.apache.org/jira/projects/MCOMPILER/issues/MCOMPILER-464 -->
         <maven.test.skip>true</maven.test.skip>
       </properties>
+      <dependencies>
+        <dependency>
+          <groupId>org.jooq</groupId>
+          <artifactId>jool</artifactId>
+        </dependency>
+      </dependencies>
     </profile>
   </profiles>
 </project>

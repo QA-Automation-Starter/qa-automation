@@ -14,13 +14,8 @@
   ~ limitations under the License.
   -->
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="QA Tester Utils" verbose="1">
+<suite name="QA Tester Utils" verbose="1" parallel="tests">
   <test name="utils" parallel="methods">
-    <groups>
-      <run>
-        <exclude name=".*"/>
-      </run>
-    </groups>
     <packages>
       <package name="dev.aherscu.qa.testing.utils.*"/>
     </packages>

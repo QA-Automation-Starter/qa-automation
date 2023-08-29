@@ -34,9 +34,6 @@
     and test suites. There is a special profile for generating a standalone test
     executable to used in constrained environments.
   </description>
-  <url>
-    https://github.com/QA-Automation-Starter/qa-automation/tree/main/qa-testing-parent
-  </url>
 
   <properties>
     <logback.configurationFile>logback-test.xml</logback.configurationFile>

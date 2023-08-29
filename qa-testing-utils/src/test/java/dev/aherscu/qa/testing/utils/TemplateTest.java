@@ -22,6 +22,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.*;
 import java.io.*;
 import java.nio.charset.*;
 
+import dev.aherscu.qa.testing.utils.*;
 import org.testng.annotations.*;
 
 import com.samskivert.mustache.*;
@@ -29,11 +30,11 @@ import com.samskivert.mustache.*;
 import lombok.*;
 
 @SuppressWarnings({ "javadoc", "static-method" })
-@Test
 public class TemplateTest {
 
     public static final String MUSTACHE_OUT = "mustache.out";
 
+    @Test
     public void shouldMapFlatObjectViaTemplate() {
         assertThat(TemplateUtils
             .using(Mustache.compiler())
@@ -45,6 +46,7 @@ public class TemplateTest {
             .isEqualTo("7-blah");
     }
 
+    @Test
     public void shouldMapHierarchicalObjectViaTemplate() {
         assertThat(TemplateUtils
             .using(Mustache.compiler())
@@ -59,6 +61,7 @@ public class TemplateTest {
             .isEqualTo("7-3-trah");
     }
 
+    @Test
     @SneakyThrows(IOException.class)
     public void shouldWriteToFile() {
         try (val writer = fileWriter(new File(MUSTACHE_OUT))) {
