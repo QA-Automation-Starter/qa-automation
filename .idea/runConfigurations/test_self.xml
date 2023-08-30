@@ -36,8 +36,6 @@
           <option name="profilesMap">
             <map>
               <entry key="mode-logs-level-debug" value="true" />
-              <entry key="mode-build-fast" value="true" />
-              <entry key="mode-build-quiet" value="true" />
               <entry key="mode-build-nosign" value="true" />
               <entry key="testing-self" value="true" />
             </map>

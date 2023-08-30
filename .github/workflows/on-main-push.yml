@@ -38,16 +38,14 @@ jobs:
         if: ${{ !contains(matrix.os, 'windows') }}
         run: |
           chmod +x mvnw && ./mvnw install \
-            -s $GITHUB_WORKSPACE/settings.xml \
-            -Pmode-build-fast
+            -s $GITHUB_WORKSPACE/settings.xml
 
       - name: windows mvn install
         if: ${{ contains(matrix.os, 'windows') }}
         shell: cmd
         run: |
           mvnw install ^
-            -s %GITHUB_WORKSPACE%\settings.xml ^
-            -Pmode-build-fast
+            -s %GITHUB_WORKSPACE%\settings.xml
 
   deploy-for-jdk8:
     name: jdk-8 snapshot publish

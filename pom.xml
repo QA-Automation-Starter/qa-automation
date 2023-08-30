@@ -106,18 +106,14 @@
     <!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=552687 -->
     <!-- see https://github.com/eclipse/org.aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md -->
     <aspectj.version>1.8.14</aspectj.version>
-    <aspectj.showWeaveInfo>false</aspectj.showWeaveInfo>
-    <aspectj.verbose>false</aspectj.verbose>
 
     <!-- NOTE: currently supported 1.8 and 11+; specified via profiles -->
     <maven.version>3.9.4</maven.version>
     <maven.tools.version>3.9.0</maven.tools.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <maven.compiler.xlint>none</maven.compiler.xlint>
 
     <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
-    <maven.build.cache.skipCache>true</maven.build.cache.skipCache>
 
     <jgiven.version>1.1.0</jgiven.version>
     <!-- NOTE: may cause the console logs to blow out -->
@@ -134,6 +130,26 @@
 
     <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
     <surefire.version>3.0.0-M3</surefire.version>
+
+    <!-- settings to quieter builds -->
+    <aspectj.showWeaveInfo>false</aspectj.showWeaveInfo>
+    <aspectj.verbose>false</aspectj.verbose>
+    <maven.compiler.xlint>none</maven.compiler.xlint>
+
+    <!-- settings for faster builds -->
+    <archetype.test.skip>true</archetype.test.skip>
+    <buildhelper.skipAttach>true</buildhelper.skipAttach>
+    <enforcer.skip>true</enforcer.skip>
+    <findbugs.skip>true</findbugs.skip>
+    <formatter.skip>true</formatter.skip>
+    <gpg.skip>true</gpg.skip>
+    <impsort.skip>true</impsort.skip>
+    <lombok.delombok.skip>true</lombok.delombok.skip>
+    <maven.antrun.skip>true</maven.antrun.skip>
+    <maven.javadoc.skip>true</maven.javadoc.skip>
+    <maven.jxr.skip>true</maven.jxr.skip>
+    <maven.test.skip>true</maven.test.skip>
+    <mdep.analyze.skip>true</mdep.analyze.skip>
   </properties>
 
   <repositories>
@@ -829,23 +845,23 @@
     </profile>
 
     <profile>
-      <!-- NOTE for having faster Maven builds -->
-      <id>mode-build-fast</id>
+      <id>mode-build-full</id>
       <properties>
-        <mdep.analyze.skip>true</mdep.analyze.skip>
-        <enforcer.skip>true</enforcer.skip>
-        <findbugs.skip>true</findbugs.skip>
-        <formatter.skip>true</formatter.skip>
-        <impsort.skip>true</impsort.skip>
-        <maven.test.skip>true</maven.test.skip>
-        <archetype.test.skip>true</archetype.test.skip>
-        <maven.javadoc.skip>true</maven.javadoc.skip>
-        <maven.jxr.skip>true</maven.jxr.skip>
-        <gpg.skip>true</gpg.skip>
-        <lombok.delombok.skip>true</lombok.delombok.skip>
-        <buildhelper.skipAttach>true</buildhelper.skipAttach>
-        <maven.antrun.skip>true</maven.antrun.skip>
-        <maven.build.cache.skipCache>false</maven.build.cache.skipCache>
+        <maven.build.cache.skipCache>true</maven.build.cache.skipCache>
+
+        <archetype.test.skip>false</archetype.test.skip>
+        <buildhelper.skipAttach>false</buildhelper.skipAttach>
+        <enforcer.skip>false</enforcer.skip>
+        <findbugs.skip>false</findbugs.skip>
+        <formatter.skip>false</formatter.skip>
+        <gpg.skip>false</gpg.skip>
+        <impsort.skip>false</impsort.skip>
+        <lombok.delombok.skip>false</lombok.delombok.skip>
+        <maven.antrun.skip>false</maven.antrun.skip>
+        <maven.javadoc.skip>false</maven.javadoc.skip>
+        <maven.jxr.skip>false</maven.jxr.skip>
+        <maven.test.skip>false</maven.test.skip>
+        <mdep.analyze.skip>false</mdep.analyze.skip>
       </properties>
     </profile>
 

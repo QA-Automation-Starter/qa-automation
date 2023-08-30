@@ -30,13 +30,14 @@ jobs:
 
       # IMPORTANT: releasing to Maven Central requires sources, javadoc,
       # in addition to binary artifacts, and everything must be GPG signed.
-      # Hence, we cannot run this with mode-build-fast profile.
+      # Hence, we must fully build it.
       - name: Maven release prepare and perform
         run: |
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
           chmod +x mvnw && ./mvnw release:prepare release:perform \
-            -s $GITHUB_WORKSPACE/settings.xml
+            -s $GITHUB_WORKSPACE/settings.xml \
+            -Pmode-build-full
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}

@@ -11,7 +11,6 @@
           <option name="mavenHome" value="Use Maven wrapper" />
           <option name="nonRecursive" value="false" />
           <option name="outputLevel" value="INFO" />
-          <option name="pluginUpdatePolicy" value="DEFAULT" />
           <option name="printErrorStackTraces" value="false" />
           <option name="showDialogWithAdvancedSettings" value="false" />
           <option name="threads" />
@@ -24,6 +23,7 @@
       <option name="myRunnerSettings" />
       <option name="myRunnerParameters">
         <MavenRunnerParameters>
+          <option name="cmdOptions" />
           <option name="profiles">
             <set />
           </option>
@@ -36,9 +36,10 @@
           <option name="profilesMap">
             <map>
               <entry key="generate-standalone" value="true" />
-              <entry key="mode-build-fast" value="true" />
-              <entry key="mode-build-quiet" value="true" />
             </map>
+          </option>
+          <option name="projectsCmdOptionValues">
+            <list />
           </option>
           <option name="resolveToWorkspace" value="false" />
           <option name="workingDirPath" value="$PROJECT_DIR$/qa-testing-example" />

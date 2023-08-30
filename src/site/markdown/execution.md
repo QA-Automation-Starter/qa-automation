@@ -19,8 +19,7 @@ Detailed in [QA Testing Parent](qa-testing-parent/profiles.html)
   defaults to `info`
 * `mode-aspectj-skip`: for debugging, it is easier to see code without AspectJ
   weaved code
-* `mode-build-fast`: disables self unit tests, static analysis, source code
-  formatting, gpg signatures, and source code documentation
+* `mode-build-full`: full build including unit tests, static code analysis, etc.
 * `mode-build-verbose`: more diagnostics
 * `mode-build-nosign`: skips gpg signatures
 * `mode-site-fast`: diables SureFire and Project Info reports, useful for
