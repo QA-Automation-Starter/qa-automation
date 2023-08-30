@@ -106,15 +106,16 @@
     <!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=552687 -->
     <!-- see https://github.com/eclipse/org.aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md -->
     <aspectj.version>1.8.14</aspectj.version>
-    <aspectj.showWeaveInfo>true</aspectj.showWeaveInfo>
-    <aspectj.verbose>true</aspectj.verbose>
+    <aspectj.showWeaveInfo>false</aspectj.showWeaveInfo>
+    <aspectj.verbose>false</aspectj.verbose>
 
     <!-- NOTE: currently supported 1.8 and 11+; specified via profiles -->
     <maven.version>3.9.4</maven.version>
     <maven.tools.version>3.9.0</maven.tools.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <maven.compiler.xlint>all</maven.compiler.xlint>
+    <maven.compiler.xlint>none</maven.compiler.xlint>
+
     <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
     <maven.build.cache.skipCache>true</maven.build.cache.skipCache>
 
@@ -879,12 +880,11 @@
     </profile>
 
     <profile>
-      <!-- NOTE for having lighter Maven logs -->
-      <id>mode-build-quiet</id>
+      <id>mode-build-verbose</id>
       <properties>
-        <aspectj.showWeaveInfo>false</aspectj.showWeaveInfo>
-        <aspectj.verbose>false</aspectj.verbose>
-        <maven.compiler.xlint>none</maven.compiler.xlint>
+        <aspectj.showWeaveInfo>true</aspectj.showWeaveInfo>
+        <aspectj.verbose>true</aspectj.verbose>
+        <maven.compiler.xlint>all</maven.compiler.xlint>
       </properties>
     </profile>
 

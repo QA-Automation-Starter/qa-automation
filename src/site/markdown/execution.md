@@ -21,7 +21,7 @@ Detailed in [QA Testing Parent](qa-testing-parent/profiles.html)
   weaved code
 * `mode-build-fast`: disables self unit tests, static analysis, source code
   formatting, gpg signatures, and source code documentation
-* `mode-build-quiet`: silent output for several build plugins (e.g. aspectj)
+* `mode-build-verbose`: more diagnostics
 * `mode-build-nosign`: skips gpg signatures
 * `mode-site-fast`: diables SureFire and Project Info reports, useful for
   testing documentation
