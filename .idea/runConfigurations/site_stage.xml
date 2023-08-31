@@ -35,9 +35,7 @@
           </option>
           <option name="pomFileName" value="pom.xml" />
           <option name="profilesMap">
-            <map>
-              <entry key="mode-build-quiet" value="true" />
-            </map>
+            <map />
           </option>
           <option name="projectsCmdOptionValues">
             <list />

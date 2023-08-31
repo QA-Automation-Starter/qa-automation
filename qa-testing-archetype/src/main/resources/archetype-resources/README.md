@@ -268,9 +268,8 @@ see <https://github.com/cjnygard/rest-maven-plugin/issues/12>
   defaults to `info`
 * `mode-aspectj-skip`: for debugging, it is easier to see code without AspectJ
   weaved code
-* `mode-build-fast`: disables self unit tests, static analysis and source code
-  formatting
-* `mode-build-quiet`: silent output for several build plugins (e.g. aspectj)
+* `mode-build-full`: full build including unit tests, static code analysis, etc.
+* `mode-build-verbose`: more diagnostics
 * `mode-jenkins`: sets the logging level to `info` and the build label to match
   job name and build number in Jenkins
 * `mode-noscreenshots`: disables screenshot gathering during GUI tests

@@ -3,4 +3,4 @@
 # ISSUE https://stackoverflow.com/questions/49927792/include-aspectj-support-to-vs-code
 tasks:
   - before: chmod +x mvnw
-  - init: ./mvnw install -Pmode-build-fast
+  - init: ./mvnw install
