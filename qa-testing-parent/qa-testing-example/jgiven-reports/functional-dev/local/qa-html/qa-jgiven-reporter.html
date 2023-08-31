@@ -1,0 +1,510 @@
+<!--
+  ~ Copyright 2023 Adrian Herscu
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<!-- @formatter:off -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Design Verification Procedure</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      word-wrap: break-word;
+    }
+
+    table {
+      table-layout: fixed;
+      width: 100%;
+    }
+
+    caption {
+      font-size: large;
+      font-weight: bold;
+      margin: 25px;
+    }
+
+    .header {
+      border: 1px solid black;
+      text-align: center;
+    }
+
+    body {
+      counter-reset: h1counter;
+    }
+
+    h1:before {
+      content: counter(h1counter) ". ";
+      counter-increment: h1counter;
+    }
+
+    h1 {
+      counter-reset: h2counter;
+    }
+
+    h2:before {
+      content: counter(h1counter) "." counter(h2counter) ". ";
+      counter-increment: h2counter;
+    }
+
+    h2 {
+      counter-reset: h3counter;
+    }
+
+    h3:before {
+      content: counter(h1counter) "." counter(h2counter) "." counter(h3counter) ". ";
+      counter-increment: h3counter;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    @page {
+      margin: 25mm 25mm 25mm 25mm;
+    }
+
+    .centered {
+      text-align: center;
+      vertical-align: middle;
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+<div class="header">
+  <div>
+    <strong>Design Verification Procedure</strong>
+  </div>
+  <div>
+    <span>Product Name:</span>
+    <span>App/Product Name</span>
+  </div>
+  <div>
+    <span>Product Revision:</span>
+    <span>SpecDocRev</span>
+  </div>
+</div>
+
+<table>
+  <thead>
+  <tr>
+    <th></th>
+    <th>Name</th>
+    <th>Function</th>
+    <th>Signature</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th>Author</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>2023-Aug-31 15:53 GMT</td>
+  </tr>
+  <tr>
+    <th>Reviewer</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th>Approver</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <th>Tester</th>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Introduction</h1>
+
+<h2>Purpose</h2>
+<p>This document's (TestDocIdD) purpose is to test the App/Product Name,
+  according to the detailed specifications defined in
+  the 'App/Product Name' Design Requirements Specification (SpecDocId
+  -Rev SpecDocRev). It contains test procedures and related test
+  cases, and test results.</p>
+
+<h2>Scope</h2>
+<p>This Design Verification Procedure contains the System Testing activity as
+  specified in the 'App/Product Name' Design Verification Plan
+  PlanDocId
+  -Rev PlanDocRev.</p>
+
+<h1>References</h1>
+<p>The following table references related program documents:</p>
+
+<table>
+  <thead>
+  <tr>
+    <th>Document Name</th>
+    <th>Document Id</th>
+    <th>Revision</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Design Requirements Specification</td>
+    <td>SpecDocId</td>
+    <td>SpecDocRev</td>
+  </tr>
+  <tr>
+    <td>Design Verification Plan</td>
+    <td>PlanDocId</td>
+    <td>PlanDocRev</td>
+  </tr>
+  <tr>
+    <td>Traceability Matrix</td>
+    <td>TraceabilityDocId</td>
+    <td>TraceabilityDocRev</td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Definitions, Acronyms, Abbreviations</h1>
+<p>The following are the acronyms and abbreviations used in this document:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Term</th>
+    <th>Definition</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>--</td>
+    <td>--</td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Traceability</h1>
+<p>Traceability between the requirements and test procedures is provided in
+  the 'App/Product Name' Traceability Matrix TraceabilityDocId
+  -Rev TraceabilityDocRev.</p>
+
+<h1>Configurations and Environments</h1>
+<p>The following configurations, along with specific environment details
+  required, are required for the test procedures:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Configuration</th>
+    <th>Environment Details</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>TBD</td>
+    <td>TBD</td>
+  </tr>
+  </tbody>
+</table>
+
+<h2>Setup and Initial Conditions</h2>
+<p>The following setup steps must be performed prior to executing the test
+  procedure:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Sequence</th>
+    <th>Setup Instructions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>TBD</td>
+    <td>TBD</td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Test Equipment, Tools, and Data</h1>
+<p>The following tools are used during testing:</p>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Version</th>
+    <th>Intended Use</th>
+    <th>Validation Evidence</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>App/Product Name</td>
+    <td>ProductVersion</td>
+    <td>Verification (Test Automation, BDD testing)</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<h1>Design Output Under Test</h1>
+<p>App/Product Name-Rev SpecDocId</p>
+
+
+<h1>Test Procedures</h1>
+
+<h2>Testing Web With J Given</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Tag</th>
+    <th>Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>UI Test</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Reference</td>
+    <td>68</td>
+  </tr>
+  <tr>
+    <td>DeviceName</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>PlatformName</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>PlatformVersion</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>[T-454A0FE6] Should find</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>google</span>
+      <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {browserName: Chrome, build: local, class: org.openqa.selenium.remote...., goog:chromeOptions: {w3c: false}, idleTimeout: 1000, maxDuration: 6000, name: TestingWebWithJGiven:should..., platform: WINDOWS, tags: functional,dev, target: ${web.url}, type: web, url: https://oauth-adrian.herscu..., version: }, driver&#x3D;RemoteWebDriver: chrome on WINDOWS (cc01076f507045f28e156cf71ed9ce42))</span>
+    </td>
+
+    <td>
+      {browserName&#x3D;Chrome, build&#x3D;local, class&#x3D;org.openqa.selenium.remote.RemoteWebDriver, goog:chromeOptions&#x3D;{w3c&#x3D;false}, idleTimeout&#x3D;1000, maxDuration&#x3D;6000, name&#x3D;TestingWebWithJGiven:shouldFind:fedd40fd:1:1693497145971, platform&#x3D;WINDOWS, tags&#x3D;functional,dev, target&#x3D;${web.url}, type&#x3D;web, url&#x3D;https://oauth-adrian.herscu-d81b6:524dbdcd-6577-4f9b-bec3-9fc4f193d487@ondemand.saucelabs.com:443/wd/hub, version&#x3D;}
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>searching for</span>
+      <span>&quot;3hWWAPD77T3T90AZra2zOaWYM1iNaI5yMx8Dz8D4&quot;</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the results</span>
+      <span>contains &lt;0L&gt; items</span>
+    </td>
+
+    <td>
+      <!-- ISSUE: current Jenkins configuration blocks data images -->
+      <!-- see https://content-security-policy.com/ -->
+      <!-- and https://www.w3.org/TR/CSP2/ -->
+      <!-- Jenkins sends content-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline'; -->
+      <!-- NOTE: assuming binary attachements are always images -->
+      <img alt="Actual screenshot might be blocked by server"
+           src="data:image/png;base64,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">
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+<p>Test scenario:2</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>google</span>
+      <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {browserName: Firefox, build: local, class: org.openqa.selenium.remote...., goog:chromeOptions: {w3c: false}, idleTimeout: 1000, maxDuration: 6000, name: TestingWebWithJGiven:should..., platform: WINDOWS, tags: functional,dev, target: ${web.url}, type: web, url: https://oauth-adrian.herscu..., version: }, driver&#x3D;RemoteWebDriver: firefox on ANY (b72ef294e909418fae0adfd34e9d425b))</span>
+    </td>
+
+    <td>
+      {browserName&#x3D;Firefox, build&#x3D;local, class&#x3D;org.openqa.selenium.remote.RemoteWebDriver, goog:chromeOptions&#x3D;{w3c&#x3D;false}, idleTimeout&#x3D;1000, maxDuration&#x3D;6000, name&#x3D;TestingWebWithJGiven:shouldFind:df4889cc:1:1693497164531, platform&#x3D;WINDOWS, tags&#x3D;functional,dev, target&#x3D;${web.url}, type&#x3D;web, url&#x3D;https://oauth-adrian.herscu-d81b6:524dbdcd-6577-4f9b-bec3-9fc4f193d487@ondemand.saucelabs.com:443/wd/hub, version&#x3D;}
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>searching for</span>
+      <span>&quot;testng&quot;</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the results</span>
+      <span>Any to match &lt;a string containing &quot;testng&quot; ignoring case&gt;</span>
+    </td>
+
+    <td>
+      <!-- ISSUE: current Jenkins configuration blocks data images -->
+      <!-- see https://content-security-policy.com/ -->
+      <!-- and https://www.w3.org/TR/CSP2/ -->
+      <!-- Jenkins sends content-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline'; -->
+      <!-- NOTE: assuming binary attachements are always images -->
+      <img alt="Actual screenshot might be blocked by server"
+           src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM0AAACICAAAAABhQjBqAAAX6UlEQVR42u2dh3cbx53H/Y/ce5fYknz2c84tic9dtpzkYjty4kvsOI6L3O4s996L3GRFriq2KFEiKRaxEyTRiN47FljsAotFr0Tv2EXdvV0AJEGKVrFoEfTTUCR2BrM7+OA3v+/8ZrboIvLnlC66QHOBpmNoiPr5SMR5oanVqJZ+8lSv12rngWYtGjmzVK+e4wHQ3iZNkjFhXCq1tPeyyk/14csnlVTP8osrrajf/0ST5kSeLJL5JFkrkEQM55DRxXqVOg1tpjp1OU5tGYtrwIGQtiZNXNrvod0lrBTTDRLlszqMZGzA1djQAYChjaY4QSoYiqEZvcXnYqqOsPnsvoVdcPpPfFAinJJ3zchHPdU1oImfiDZpHHlRim5Aj4P5RmNnowRp4bCF2dgy2RCw3TbDGULI0sfGUAIeJabYx0XBhX2wRgOyoT5e3xfARPdaCA+psaqaNFBBbW90AIPOttTYGaYUf9rKamyBKAq102TZDKDCmUkH7FmE3acNTMkWe3e79QOmNfGYCllp0iS1aV+rLEILDn5Wh9GfGPY3Nsyw1dJO05YUbP4yockTP5EKnOzy+bPsxg2fXkUF2hO2Qnpy50mi6zn8HL8479jpR89KLps7HylbPvdecNHpD0FUy+chVetrEdkQ5M8oLfS0Ml5qJrzpirXFfNNtqov5psgRpYWCVcpWq0OV4s2vv7JQq7RarR+uv7yxU9AQ2JKdGzpZWgpoqnSj+JLc1OlGKqXlnXFFWSNfLZ0UzJTpt2rLa51ClhtHxFeqUP2Hh6WLlkb8xUZKZKX9CPUyWVq2P04XrUhUWelU+dY3U13eFEY3dopUrawaHzSPUf0BmjplCX9bNEf9kIFgKLKYp3YXhsgcScbqsRoVHVLv+6WNoxUydKhSoUJteh8VWQw3v4hawzL65thMVmOt+A6nYzFjLLoYNlO1cnmSjmuIWGNcb+xST2QWmqbqB/0kLiQ89kQRTDZAyvUWUxylXjOLg3uyQUN/9V8whMzeqdHxoRaNWtU/PDMmGJTSeWoMMoLACL+Hq/qaOnyJeh8o9IgYJ8bHGWLm0GSxWablCgam2byZSSpALVP56KcC/iRD2i8eZLN5DIaA+gR02H94fLpffPT4pJfaizpysIc79d1hgaa/iz8e12iF4oNjPPY4b3Zijv7EVHOKmRNZ1tj3e7p7vld29+5ThYgoq9a0kNphhNXmFo0PbdDUKNsofH71xADi0LZo4h6d2OnWgEjLNmG3DtIZwyB/wTYatwmy+BELqFbKKk1bzBOiGBAym0KZZj6IGwMBiw7WA0bIFDZbWrbxgEq10YWEYlSnoGplQQ9osGIOM2gykeYZq06PomYDGDZZWh/F41HnpDA6B8Mqk8wgC8TLdbzV38KuUMAfaNEEncv8ppJs5crt4l9vHPL0flNud8DV6jS+Nnz5Xqf2m5X1z8hvKJ0i2iSD7nvV5RrXpnlN/VrxUWnhaS9bmV+SR6JNkRq1ToGzsn7bBzjNeFNqjcktba4u5qstsVzINwOQ+uIOq5StVocuri1r6gdqtdVf0fTCbhdWoDYkTfnnlC70tI1Oc5IkEkQn00jckWy6aMNithxApToAAUZTIRzLJIookig5zU4PjNYymWgmE04lo2AjQOpUmriWazFbdIISrA9GbCIoa9QiIjRl5Sp0OiFi8TkAOAir7ShHDlkcKqeJZ7B3ME2VCv8qFeofWclRsRReLFERAUaFAdUSVi7j9XS5WimV6mW6SrFGzeSKmQsqcIFmw9PUflY05XOmqTWWQfMANadNhjL2+HrT6F9gNMY1sfx4bm70yImzoikmwkl6oqHqH5id7RoIG9fdNkdTu3dPfyV8mdll6p+OiGJno9CJz3fxk9T4blebpKBBqtStP42+ZxKc4gyL3QenDhWZ+rOgKfm+HBImqp3kN0ZiVjTfF2fB6RAa7FWc1eiZYL0wTdkmntOl8Sxu9RWzwRSO4cVclnoT2GgqgCWitN9YzcN6udFrPgGwTUMO2D4DQ9RM1rjhNK3eWKMvYlEwGUnj8wl/Ju6BM/GEiT6Ptw40RHJxaXJlCm288QaO2yCV0IzaZ/QwGNBZYEStcivVPMq3PRuPxouazahKjigkQChoVztRs1phVbik+LI15tVpQr2TjaVPCeU5o15qy1oTxIOko7x+mtZIieZLkrJIDa6esd+M546pv1N+tJ872ZdUUnmU/yZXfmxceQTqUh3qYkwwNpQKjAMfTH3LHGcw+rq9+0i+l3zR8cmBg9/1+0ZSn6sHJ589RGwkGjsxYh+jpps1jfdYo18aSV1w0B6YTB4PhWG7UrixFLrTVIAonVmqlnRGUOFv5TqVpoKfWaraAQh1eZBkI9eicZWzmbpj3kEWHJGoHW9cZhOfC9aiTpPHL8ZzUTKFeTK5GBqPFdM5SzwWjxbTBTya9+RziUI8mU6lcpG4LZwqRFNkOOqPpOzVSApz4rZILBhJorEoFg+no95oKhsLYJlMqhiprRGNxYF6UHs7TZqjR52kP+0k63YX7JIqKuFwmhTsYR2YYR8SAVGYUwYUsAzg6jhCkyrJ8XDkjFnD8CwskTlRGUuumJbLtUY7qNVPCA0VwMYXa4whpnzKkJVJEKlEDtiMaokHVDDlRqWZoTNAcr4mvjY0lg+RpVyTJkPKQtkqmsbyaX8s4aykG6VBlU/kQVxxcSlhrqG+hNcLBjxhQIz7Y9C81+1zhS2JRDg977SzPfMRL5yMx7yu+Vjei4bm5wMJSzgIlOM+R3g+GIwjHhdlT48v6rW7zZ5gJDCSWxuayd9NYCto1iERa+Q32VDC7ffnfpgm1YiqG+FeGU/TzWLF1tVEjWsJCivq5yvNaxixxTAR+ylUINWeoby3SePrDVMvfp8vsUgTBGGRDJgJQ+ZpjSgnB+ZMBqVdJzLZpuERlXKOlI0iPGlIapGzgdmgW4qqFAZAqUpoLEaZmgkIrOKMXSCFpWmmSyRwspVxOWg/Z5rivbdesa23DeDGQnSEfu024QWLTKdW+GmanluGAv44tRXz+EJNmpwEnENhbdEJaxAu6RRxnTrYphE6ZVyUbQoJcNjAlEABBOFwQG3Ba3J6FHqrNRSWmiCBCnI5Dfy8aM4C6JOQRiUz6pGaDbCWMfxcbeP9B/3hC7RbYNSfmwqRbSJqe78eUzmo14w2Tvc0fYYicfnp3pY/F78p4D/teEPTOP7+93u+wA3b/zT+7r89rnvuOSNN4wWX/CYxFW1tBjz+Th49KZrCHWYcf7P7ZQDz0rZ5PfCMk6IBIks0w1uPeCnDBAJefyTT4TTi33722WcfbGVuhxo97XXc+kxkv94Qo951qdV62jaTC2jFVLDDaWaeNVEJxvV3TzVpcPUre/Wojf70WFpF0YQGGjT5pN8f7HSa6O1pHBf0F/HkX1s0OOtOfUEWomn0XlrTtg76A363P1ZcNt6Y+oaXHzTmoCYG/vWlwcf/sOfF7eFX3/7HMUqhI6/RZujV42mV1m6V22m/SfKaIRoe9gbaVEAW5E909X7FQkfe+eyrwy/27zs41P3F+4x93x34uLo+NAXaAhGuCsMxCUCNkHix6SL0uJnwB7MNFXAeCOYpDr+bymJtNNyuEd57E8z+3hPTU9/sG44e7Hvuoz6KZpKf7+AZwdDNY4FGoFb0+bxLNDlTom4lHaQrmUil8p5UJR2wRoKpeCSVrXUwTQambVT0en3FdYw614omMhIren00yjIVSEN1kkRTYSTbiDcLVKCZaGz5ltpJUtXqC+uPmRp9QWMj4JwP01dOYdhCpfNI07t1qIWyPIZWD4vEPeB4zmGfiQF8F0MwO2sZYvGrg/rD8rk+PpMjnRRqAhyhfNAgHJbMcLilObldN8dhDctZTLkbmo0KhGrNJFNwXmlizDi+2vwmAPrdmhjiCEY9UQ+SBX0eIIgqxaQlCHgjWq/HDiJhf17rCVrcIkUI9eqqLigZsbiCLKvVZax64TwQCKEWECCLReK80SzLnc5vsFX7TXBZDifbLnxdI7+xK5UqlUqtoWbdAGiBYNgCGAx6nVZNlSqV2cpCqlbaU6eqwM5/v/iSSzZd+qtrb/z7Yw8+tfOpR+/f/sBtN1531WWbL7nkl78wtxsEs6TXfSZ9BjSbKJpf33TvP598e9cjTz9+/3133HL9NZdv2bTp4mU0WPG4Gutwmmd+cfGmTVsuu/K6W//y0LO7nv/HY88/ev/vb7v511dcunnTJb8E22Aw1fuCYofTPHvxps00zfW33vvIi688+vCHu5548K47tt585WVbNl9ycRtN+vs3xkXe4koae/9sa6vYPNFpXG+azZdecfUNt/310ZffefHJVz945uF77/rTvddevoUyzhIN+uxXh3cNGk6ikQU5vGPHrMiXh+f2d0snh8Y+WFca2mt+c821N22795HXPvvg/bc+fn3njofuueVqmmbTIk3xhb0jj454Tu5pMu9Qf/DYkd2zxe9edvbue3vg2PrSbN5y+dY7fnvz7//2yKsf7dm796tP335hx/bbKBnYvHmRBit+Oqy7R7rKeBObtubY5VQ8XEN9c0m+DpWus20ufejFG7bdeveOx978bO+/9nV9v/ud5+773W8oGdiyZBs81JXYvzPWXNTpXBV47pJNW+7829W3bL9vxwu793+779jw8W8+fv/J/77uV5ddumgbLBcr+o32T41YshFJt9M0lzDxWsq57O4G6o3a4lUujdsl8vR8xxWg3sgW834yRoUxMTeJtZZAK1WSxNeE5rLLr7xh+xMvvH+gr6dnYHTowO4P/+/u69toMEG3FLaD+hnVfA4ZTC2n0YyiwCipz5ImecLDL0AisYyFquWTRlWIa9TVlTqmVsVXaeVOpYA/WfTq2HNSidIIVvg6YULrVUNShcg0mVcI1aBaJAXXhubG7U+/8+0QlzM9zWQc+urjp7ffQNNsbtkmKOdx2GyeTOXMyY7Cy2h8Mi5i4FZj6dR8hPSDvoDdI2FqjT4TAmSMgI90ScUuh8Jql9ntdrWpHkFQi8xuRA0lRKevQw6dUya0S4EaW2vQqkRWpFQsnqMKXErR3PznN3c+1T0zdOj41wfe/eCjnfcsoymGx8ZHR0YGZuPoOCdzOr+pZVdZ23f80CpBqdSa3RCuyrmrwKYmzV9eeOf1fw1/0zt86Ohrr3z5yp+WaLAiVixIeWIRmwFkUtFiR6tAk+amPz/78QGuCbaYjIreA7uevuv6/1ykyaPWpP3Ese6jx1g5LNXhNE2/uefp979hw3YbaJYf/XLPzj9ev2Qbe9e4UKcSslkcsVpv8BQ7XKEvu+KaW5547pVPZmGH3WYRH/h46NU7b7hy0W8KqForF/F5vDneHHNKmOtgmue3XHbVdVvv2nHi85fembG5XU5YvPf1t15+4t5t1199xX9YFgKbEALqNCqt1uTJ4q+99lqbpnXPkCTiXphWd0uQRmllfWjeuOnOHbvee+mth5966VOhy+fzunRfv/z8Q/9z3+PPPHT3Nmv7jABrneDZ8djnbXHaLCKYYWiPjjBZ0j5SBfcxtFr1QaZgf2A9aD5/6Is9D//hj08+uHM/wxGNRiMRv+jwmzvuuWnb3U+9+5KrCWK107qWyWcy8VAB3/H0bBuNPjHlY0yPjAn3f32soBpCGZMjY9p9A5G59aDp3f/eXbfffM1dD7w8OOuKJZOJRFh7fO8/H/+va+/4/WMHmiegsKN8eUjWzWVBUrU1gO3Y+WVbTzvBAhQIskeuEIPTRCBDIqopyXtCS8G5HjS8o0/duvWmq7Y98sAbh2a1sN1qEBz/6PEH7r/2mtvv+OMnsWYvm+0/PLH3ez0wyHahUmzH/zJOUoHwsoxmvVRA3/PKHbdsveG3t//1wcd2vvH+Z7tef+axB++76/rrtm677cGPQ00a2M+2zSh88WQE0sawHTvanstRztGDPJanb76t1Qv0ifSFpyY1njjV2K60LZQtjwmIXIm+R71WLtFPRCFq50hTz2cTsViM8ph4Ip1Jp1OpdDJOZWOxeCxTqK32KKnp6eklGkyugMSxJENqUk6LrI6szGaENCqTTVoxiGwuhc+rR1MKrsWo0lrKoMVmDSosTp/RrbX7fHq921BVGYwKyTRohKtMqcHEd54bzY9LbT3NagOYyQpLYuGKZajBYfArYZ7QMCuuirlauVhtgszItFAPTGu4BAcGeA6LFvSgEhOQkql4YphENCBHCYj1PIIjtPDVwnoRW0+aVVK6EUhGKMND7VMWYtlFvBnsJ/Cbn4Jm/WKB6s/m7tWfn20u0LTT1NWB5qOyyGp049MYGAYLe9I9gQw75xLQOJOzoWlCpiP/2nv8+337Y99/iAz0jU6tK8282BUPzfkt5lTEV43F3Z6oTxtGkr6KMOQIO2PRUNqdAFLz2kigxEJSKdLjjOecbVcQR7pmhb1K3VFxicU5IJRq1OtKQ0i4MmDKwApbLfI4JHXOqhVsm4ylJyeRATN8SMPj2oa1lqDQZCOHhSJLzsSd1HORjlWBgi+RCmNFT7kQqEYTpWg0kMhmrAoynvfkitFIPufP5/OldAwjg1QUh6UC2Wxg5dV2P3D2lSBPeVkp0Xl+k56DHIFBK88WiUMet82bNDs91pgHMYXUvlk0qPQFTUp3wJ9FbA5BJaAxWt2INRGLW52RmhCuugU2sQ4I+nMGh10pdiJeof2cVgdPXskrUMVZ+mRxxo8VqgUq5go3Zi+FRvSVbawWt9lGNa6RDMKzsA6RGybmdCZQO2thGaaVRu08xyIY9ZukAwqeGB02jovL/AGVljVs0s3LtJNSkqFPKYY5Wo6GrQ9ptFNitU4/IZO7KuXKj6YBJWNMQKaVT6tHGRWJViiUDTKFGkCj0gcsGbFMOKmXVNUKJkOm4ISounMSckDNFLfRUNOaapmo40TEWqmXqrV6pYIFK9VarUKU6+VajfotUy+lWg0ny9REhqBmM5l0mSjRT9GpVkv1RtUafZg6VVqmH/b7o2m8BqkNUqlUWuMcRAAul8eo1HtgJ2KVkC4z4lfrg0DFaoXsAp8ubrNY1UZS5kcYnRwLROmzDoEV9j3VhQmFjRDZnEZkiKXXTqVJ2CHHLCm0uhUmu4l0KSWojXBKbS6z26Ep+FGLH3VEXbz8HGQNqAQqsy/gTKs9gYtOJ7rE2ivwmdCYRsBxDglItTNS2FjHnJYTrIpmkKUY1WsUHlCimR6zW9UQaZlSsAER0yxGlBAAAEs0I9CMBYCCHgtssPqH+H5vjwVUcSozOsDRI3Ua82oINJRc54umXiWICknUK/U6vWJC0LlqvVKref11wuuv0u/XCJISnWqdoH9r9XqtvkSjGu2aMx4GjIKp8V7mxOxkcMTIU3QlWF9xJ75ly9kWHl/Fwrvr6+A3P2b0pB8GTtBLO1UKnFJbguIl6vQtx5Q4u6xElXBZz19PwxKpeDmcx8iEqeiNZ7yZbDliT1XD+WIikYnjZCmbSHhIsJhN5ALedCGRy0XIdMdqmgHl6oYFUhtsVNb6lfq5NOgYNgkYPKsZPG5URkhomIOYSTM0wgHNCmiEa1VAJJ/ZqTTxEBSDBnzhIhQjXKDHnfW7jF4nfDwYTtncSIx0Qv4UisddkD/od7rRgM+Jki57R483JztpfWOuC1DBU3PxF2vdkt+68Qo76Q79VOuiWbyDaVwalkhiEjunpVqd3k7CEqGJJN2QXDGZBJRyEBA4EDMkhrkSQAYKSLHEBBoQMdypNCgqU3hNLHjWLNfCjgLiMwClQnoWtJpCDi8X8BpTWgA0zhh8XodYUuFwnYAV9Uk72m/QhbsoK21/F1L8wurgOtEYfUlwPiAJRc1hr07rd4YyJCKysYNKpzM0EtQVNhaN3qRTzRQmzQaVlD1lGFTpvaR62vCF6mvJyP5p9Rh0Khr81W8WVgfGGy/spV6pafzHB0T2/NLkE8lcMhNKZHORUCKOeefT1XQlF86Igt6CueDInZLm3YHuT9h9x7qGx/d9uJ8UvNVz/EvliSFS+PbobtYR+uRnWb5x/AafJPd+NyI8chg88umnR8mDu3eL9x/Q9pAH9wx3f7F3o9HUk2QBId3pSaiS8CbIBBosQCSaJ5NoBsxh9CI7kd54mpbsGBU48sgYc1jAPiHhfXuM0Ts0MiBm13v6BJxpFSjvk7I5Jg/JF7gtK+6O+X+Eso+s7c+loAAAAABJRU5ErkJg">
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+
+
+<h1>Test Summary</h1>
+<p>The following summarizes the results for all test procedures:</p>
+
+<table>
+  <tbody>
+  <tr>
+    <td>Total scenarios</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Total duration [nanoseconds]</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Successful scenarios</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Failed scenarios</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Manual scenarios</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<h1>Revision History</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Revision</th>
+    <th>Date</th>
+    <th>Reason for change</th>
+    <th>Author</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td colspan="4">
+      no revision data
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+</body>
+</html>
