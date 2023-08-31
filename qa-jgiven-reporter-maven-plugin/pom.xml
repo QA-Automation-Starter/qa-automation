@@ -22,7 +22,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.31</version>
+    <version>0.0.32-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-jgiven-reporter-maven-plugin</artifactId>
@@ -79,7 +79,7 @@
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-reporter</artifactId>
-      <version>0.0.31</version>
+      <version>0.0.32-SNAPSHOT</version>
     </dependency>
 
     <dependency>
