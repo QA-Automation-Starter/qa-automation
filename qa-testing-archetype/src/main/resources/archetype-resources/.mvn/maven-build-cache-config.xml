@@ -44,4 +44,13 @@
       </includes>
     </global>
   </input>
+
+  <executionControl>
+    <runAlways>
+      <plugins>
+        <plugin artifactId="maven-failsafe-plugin"/>
+        <plugin artifactId="jgiven-maven-plugin"/>
+      </plugins>
+    </runAlways>
+  </executionControl>
 </cache>
