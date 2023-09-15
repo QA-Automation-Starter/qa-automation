@@ -81,6 +81,12 @@
     <alm.href>
       https://github.com/QA-Automation-Starter/qa-automation/issues/{0}
     </alm.href>
+    
+    <!-- NOTE: these defaults are required in order to enable Eclipse TestNG launchers -->
+    <saucelabs.reporter.url></saucelabs.reporter.url>
+    <application.workingdir></application.workingdir>
+    <testobject.ipa.id></testobject.ipa.id>
+    <testobject.apk.id></testobject.apk.id>
   </properties>
 
   <dependencies>
@@ -235,8 +241,6 @@
               <dryrun>${dryrun}</dryrun>
               <screenshots>${screenshots}</screenshots>
               <screenshotDelayMs>500</screenshotDelayMs>
-              <logs.verification.skip>${logs.verification.skip}
-              </logs.verification.skip>
               <reference.href>
                 <![CDATA[@{StringUtilsExtensions.format('${alm.href}', '(\\d+)', value)}]]></reference.href>
               <reference.templatelink>
