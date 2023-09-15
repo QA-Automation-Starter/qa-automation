@@ -241,8 +241,6 @@
               <dryrun>${dryrun}</dryrun>
               <screenshots>${screenshots}</screenshots>
               <screenshotDelayMs>500</screenshotDelayMs>
-              <logs.verification.skip>${logs.verification.skip}
-              </logs.verification.skip>
               <reference.href>
                 <![CDATA[@{StringUtilsExtensions.format('${alm.href}', '(\\d+)', value)}]]></reference.href>
               <reference.templatelink>
