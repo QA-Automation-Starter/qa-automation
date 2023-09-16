@@ -15,7 +15,9 @@
   ~ limitations under the License.
   -->
 <!--suppress ALL -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -39,7 +41,7 @@
     <logback.configurationFile>logback-test.xml</logback.configurationFile>
 
     <!-- NOTE: we are not using TestNG grouping mechanism -->
-    <groups />
+    <groups/>
     <silent>true</silent>
 
     <environment>dev</environment>
@@ -47,7 +49,7 @@
     <!-- NOTE: these properties are referenced by the failsafe plugin below -->
     <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
     <provider>provider.local.</provider>
-    <device.type />
+    <device.type/>
     <application.uploading.phase>none</application.uploading.phase>
     <!-- NOTE: overriden by jenkins profile below -->
     <!-- NOTE: cannot use volatile properties because of caching -->
@@ -70,7 +72,7 @@
     <poll.timeout>15</poll.timeout>
     <poll.delay>5</poll.delay>
 
-    <dryrun />
+    <dryrun/>
     <screenshots>true</screenshots>
 
     <!-- NOTE for skipping tests just do not supply any testing-* profile -->
@@ -81,12 +83,17 @@
     <alm.href>
       https://github.com/QA-Automation-Starter/qa-automation/issues/{0}
     </alm.href>
-    
+
     <!-- NOTE: these defaults are required in order to enable Eclipse TestNG launchers -->
     <saucelabs.reporter.url></saucelabs.reporter.url>
     <application.workingdir></application.workingdir>
     <testobject.ipa.id></testobject.ipa.id>
     <testobject.apk.id></testobject.apk.id>
+
+    <reference.href>
+      <![CDATA[@{StringUtilsExtensions.format('${alm.href}', '(\\d+)', value)}]]></reference.href>
+    <reference.templatelink>
+      <![CDATA[@{StringUtilsExtensions.format('<a target="_blank" href="${alm.href}">Click here to open ALM {0}</a>', '(\\d+)', value)}]]></reference.templatelink>
   </properties>
 
   <dependencies>
@@ -241,10 +248,9 @@
               <dryrun>${dryrun}</dryrun>
               <screenshots>${screenshots}</screenshots>
               <screenshotDelayMs>500</screenshotDelayMs>
-              <reference.href>
-                <![CDATA[@{StringUtilsExtensions.format('${alm.href}', '(\\d+)', value)}]]></reference.href>
-              <reference.templatelink>
-                <![CDATA[@{StringUtilsExtensions.format('<a target="_blank" href="${alm.href}">Click here to open ALM {0}</a>', '(\\d+)', value)}]]></reference.templatelink>
+              <reference.href>${reference.href}</reference.href>
+              <reference.templatelink>${reference.templatelink}
+              </reference.templatelink>
               <java.awt.headless>true</java.awt.headless>
             </systemPropertyVariables>
           </configuration>
@@ -304,6 +310,15 @@
 
   <profiles>
     <profile>
+      <id>mode-eclipse</id>
+      <properties>
+        <!-- NOTE the defaults above interfere with Eclipse M2E,
+          and irrelevant when tests are launched via Eclipse Launchers -->
+        <reference.href/>
+        <reference.templatelink/>
+      </properties>
+    </profile>
+    <profile>
       <id>generate-standalone</id>
       <build>
         <plugins>
@@ -346,7 +361,7 @@
     <profile>
       <id>mode-noscreenshots</id>
       <properties>
-        <screenshots />
+        <screenshots/>
       </properties>
     </profile>
 
@@ -357,7 +372,7 @@
 
         <build.tags>dryrun</build.tags>
         <application.filename>NA</application.filename>
-        <device.type />
+        <device.type/>
 
         <jgiven.reports>
           jgiven-reports/${build.tags}/${build.label}
