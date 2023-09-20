@@ -198,39 +198,31 @@ public class WebDriverEx {
         final Capabilities capabilities) {
         val driverClass = Class.forName(requireNonNull(capabilities
             .getCapability("class"), "must have a class capability")
-            .toString())
+                .toString())
             .asSubclass(WebDriver.class);
 
-        if (driverClass.isAssignableFrom(ChromeDriver.class)) {
+        if (driverClass.isAssignableFrom(ChromeDriver.class))
             WebDriverManager.chromedriver().setup();
-            return driverClass;
-        }
+
         // ISSUE sometimes this fails with
         // WebDriverManagerException: Error HTTP 403 executing
         // https://api.github.com/repos/mozilla/geckodriver/releases
         // TODO should find a method to retry these driver downloads
-        if (driverClass.isAssignableFrom(FirefoxDriver.class)) {
+        if (driverClass.isAssignableFrom(FirefoxDriver.class))
             WebDriverManager.firefoxdriver().setup();
-            return driverClass;
-        }
 
-        if (driverClass.isAssignableFrom(EdgeDriver.class)) {
+        if (driverClass.isAssignableFrom(EdgeDriver.class))
             WebDriverManager.edgedriver().setup();
-            return driverClass;
-        }
 
-        if (driverClass.isAssignableFrom(SafariDriver.class)) {
+        if (driverClass.isAssignableFrom(SafariDriver.class))
             WebDriverManager.safaridriver().setup();
-            return driverClass;
-        }
 
-        if (driverClass.isAssignableFrom(OperaDriver.class)) {
+        if (driverClass.isAssignableFrom(OperaDriver.class))
             WebDriverManager.operadriver().setup();
-            return driverClass;
-        }
 
-        throw new IllegalArgumentException(
-            capabilities.getBrowserName() + "is not supported");
+        // NOTE there are drivers, like WinAppDriver, that are not supported
+        //  by WebDriverManager -- in this case we just return the class
+        return driverClass;
     }
 
     /**
