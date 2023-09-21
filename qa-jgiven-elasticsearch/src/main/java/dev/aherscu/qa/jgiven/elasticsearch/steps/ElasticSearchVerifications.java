@@ -29,7 +29,9 @@ import co.elastic.clients.elasticsearch.core.*;
 import co.elastic.clients.elasticsearch.core.search.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.elasticsearch.model.*;
+import lombok.extern.slf4j.*;
 
+@Slf4j
 public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVerifications<TDocument, SELF>>
     extends GenericVerifications<ElasticSearchScenarioType<TDocument>, SELF> {
     @ExpectedScenarioState
@@ -47,6 +49,7 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
     public SELF the_document(
         final String id,
         final Matcher<TDocument> matcher) {
+        log.debug("looking-up by id: {}", id);
         return eventually_assert_that(
             Unchecked.supplier(() -> elasticsearchClient.get(g -> g
                 .index(index.get())
@@ -59,6 +62,7 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
     public SELF the_index(
         final Query query,
         final Matcher<Stream<TDocument>> matcher) {
+        log.debug("querying: {}", query);
         return eventually_assert_that(
             Unchecked.supplier(() -> elasticsearchClient.search(s -> s
                 .index(index.get())
