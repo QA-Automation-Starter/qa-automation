@@ -21,7 +21,6 @@ import static org.hamcrest.Matchers.*;
 
 import org.testng.annotations.*;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.*;
 import dev.aherscu.qa.jgiven.elasticsearch.*;
 import lombok.*;
 import lombok.extern.jackson.*;
@@ -60,11 +59,13 @@ public class ElasticSearchTest
             .adding_single_document(AnObject.DUMMY, AnObject::getId);
 
         then()
-            .the_index(new Query.Builder()
-                .match(t -> t
-                    .field("value")
-                    .query("kuku"))
-                .build(),
+            .the_index(q -> q.bool(b -> b
+                .must(m -> m.match(mm -> mm
+                    .field("value1")
+                    .query("kuku")))
+                .must(m -> m.match(mm -> mm
+                    .field("value2")
+                    .query("muku")))),
                 hasSpecificItemsInAnyOrder(AnObject.DUMMY));
     }
 
@@ -76,10 +77,12 @@ public class ElasticSearchTest
     public static class AnObject {
         public static final AnObject DUMMY = AnObject.builder()
             .id("dummy")
-            .value("kuku")
+            .value1("kuku")
+            .value2("muku")
             .build();
 
         public final String          id;
-        public final String          value;
+        public final String          value1;
+        public final String          value2;
     }
 }

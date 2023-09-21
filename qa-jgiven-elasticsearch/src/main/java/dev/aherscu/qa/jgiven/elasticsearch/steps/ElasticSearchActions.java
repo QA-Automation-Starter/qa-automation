@@ -42,7 +42,7 @@ public class ElasticSearchActions<TDocument, SELF extends ElasticSearchActions<T
     @SneakyThrows
     public SELF adding_single_document(
         final TDocument document,
-        final Function<TDocument, String> indexedBy) {
+        @Hidden final Function<TDocument, String> indexedBy) {
         response.set(elasticsearchClient.index(i -> i
             .index(index.get())
             .id(indexedBy.apply(document))

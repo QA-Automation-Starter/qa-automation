@@ -16,6 +16,7 @@
 
 package dev.aherscu.qa.jgiven.elasticsearch.steps;
 
+import java.util.function.*;
 import java.util.stream.*;
 
 import org.hamcrest.*;
@@ -27,7 +28,9 @@ import co.elastic.clients.elasticsearch.*;
 import co.elastic.clients.elasticsearch._types.query_dsl.*;
 import co.elastic.clients.elasticsearch.core.*;
 import co.elastic.clients.elasticsearch.core.search.*;
+import co.elastic.clients.util.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
+import dev.aherscu.qa.jgiven.elasticsearch.formatters.*;
 import dev.aherscu.qa.jgiven.elasticsearch.model.*;
 import lombok.extern.slf4j.*;
 
@@ -60,9 +63,9 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
     }
 
     public SELF the_index(
-        final Query query,
+        @QueryBuilderFnFormatter.Annotation final Function<Query.Builder, ObjectBuilder<Query>> query,
         final Matcher<Stream<TDocument>> matcher) {
-        log.debug("querying: {}", query);
+        log.debug("querying: {}", query.apply(new Query.Builder()).build());
         return eventually_assert_that(
             Unchecked.supplier(() -> elasticsearchClient.search(s -> s
                 .index(index.get())
