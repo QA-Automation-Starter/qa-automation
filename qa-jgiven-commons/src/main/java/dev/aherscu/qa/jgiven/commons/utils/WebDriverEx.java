@@ -221,7 +221,7 @@ public class WebDriverEx {
             WebDriverManager.operadriver().setup();
 
         // NOTE there are drivers, like WinAppDriver, that are not supported
-        //  by WebDriverManager -- in this case we just return the class
+        // by WebDriverManager -- in this case we just return the class
         return driverClass;
     }
 
