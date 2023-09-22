@@ -16,6 +16,9 @@
 
 package dev.aherscu.qa.jgiven.elasticsearch.steps;
 
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
+
+import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
@@ -49,6 +52,8 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
     @ExpectedScenarioState
     protected ElasticsearchClient           elasticsearchClient;
 
+    protected ThreadLocal<List<TDocument>> hits = new ThreadLocal<>();
+
     public SELF the_document(
         final String id,
         final Matcher<TDocument> matcher) {
@@ -65,7 +70,8 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
     public SELF the_index(
         @QueryBuilderFnFormatter.Annotation final Function<Query.Builder, ObjectBuilder<Query>> query,
         final Matcher<Stream<TDocument>> matcher) {
-        log.debug("querying: {}", query.apply(new Query.Builder()).build());
+        log.debug(query.apply(new Query.Builder()).build().toString());
+        hits.set(new LinkedList<>());
         return eventually_assert_that(
             Unchecked.supplier(() -> elasticsearchClient.search(s -> s
                 .index(index.get())
@@ -73,8 +79,12 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
                 documentType.get())
                 .hits()
                 .hits()
-                .stream()
-                .map(Hit::source)),
+                .stream().map(Hit::source).peek(hits.get()::add)),
             matcher);
+    }
+
+    @AfterStage
+    protected void attachActualResponse() {
+        attach(hits.get().isEmpty() ? null : hits.get().stream().map(Object::toString).collect(Collectors.joining(LF)));
     }
 }
