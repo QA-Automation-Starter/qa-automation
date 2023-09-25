@@ -155,6 +155,7 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
 
             // FIXME for each report only its screenshots must be attached
             // TODO the screenshots must be somehow associated with their report
+            // ISSUE sometimes throws UncheckedIOException
             listScreenshots(
                 new File(outputDirectory, targetNameFor(scenarioModel)))
                     .forEach(file -> {
@@ -166,8 +167,7 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
                     });
 
         } catch (final Exception e) {
-            log.error("failed to report case {} on run {} -> {}",
-                testCaseId, testRailRunId, e.getMessage());
+            log.error("failed to report case {} on run {} -> {}", testCaseId, testRailRunId, e.toString());
         }
     }
 
