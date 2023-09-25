@@ -36,10 +36,7 @@ public class ElasticSearchTest
 
     @Test
     public void shouldIndexDocument() {
-        given()
-            .an_index("some-objects")
-            .and().with(AnObject.class)
-            .and().an_elasticsearch_instance(configuration()
+        given().indexed_by("some-objects").and().storing(AnObject.class).and().elastic_search(configuration()
                 .elasticSearchClient());
 
         when()
@@ -51,10 +48,7 @@ public class ElasticSearchTest
 
     @Test
     void shouldFindDocument() {
-        given()
-            .an_index("some-objects")
-            .and().with(AnObject.class)
-            .and().an_elasticsearch_instance(configuration()
+        given().indexed_by("some-objects").and().storing(AnObject.class).and().elastic_search(configuration()
                 .elasticSearchClient());
 
         when()

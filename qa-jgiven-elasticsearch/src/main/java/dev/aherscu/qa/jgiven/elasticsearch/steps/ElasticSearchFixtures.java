@@ -36,18 +36,17 @@ public class ElasticSearchFixtures<TDocument, SELF extends ElasticSearchFixtures
     @ProvidedScenarioState
     protected ElasticsearchClient                 elasticsearchClient;
 
-    public SELF with(final Class<TDocument> documentType) {
+    public SELF storing(final Class<TDocument> documentType) {
         this.documentType.set(documentType);
         return self();
     }
 
-    public SELF an_index(final String index) {
+    public SELF indexed_by(final String index) {
         this.index.set(index);
         return self();
     }
 
-    public SELF an_elasticsearch_instance(
-        final ElasticsearchClient elasticsearchClient) {
+    public SELF elastic_search(@Hidden final ElasticsearchClient elasticsearchClient) {
         this.elasticsearchClient = elasticsearchClient;
         return self();
     }
