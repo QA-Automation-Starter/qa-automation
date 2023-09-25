@@ -18,39 +18,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://maven.apache.org/BUILD-CACHE-CONFIG/1.0.0 https://maven.apache.org/xsd/build-cache-config-1.0.0.xsd">
 
-  <!-- ISSUE: support caching of site artifacts
-      https://issues.apache.org/jira/projects/MBUILDCACHE/issues/MBUILDCACHE-65
-      -->
   <configuration>
-    <enabled>true</enabled>
-    <hashAlgorithm>SHA-256</hashAlgorithm>
-    <validateXml>true</validateXml>
-    <!--remote enabled="true">
-        <url>http://host:port</url>
-    </remote-->
-    <local>
-      <maxBuildsCached>3</maxBuildsCached>
-    </local>
-    <projectVersioning adjustMetaInf="true"/>
+    <!-- NOTE disabling maven cache due to
+      https://issues.apache.org/jira/projects/MBUILDCACHE/issues/MBUILDCACHE-72 -->
+    <enabled>false</enabled>
   </configuration>
-
-  <input>
-    <global>
-      <glob>
-        {*.java,*.properties,*.xml,*.sh,*.bat}
-      </glob>
-      <includes>
-        <include>src/</include>
-      </includes>
-    </global>
-  </input>
-
-  <executionControl>
-    <runAlways>
-      <plugins>
-        <plugin artifactId="maven-failsafe-plugin"/>
-        <plugin artifactId="jgiven-maven-plugin"/>
-      </plugins>
-    </runAlways>
-  </executionControl>
 </cache>
