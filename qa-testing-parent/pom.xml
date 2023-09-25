@@ -38,6 +38,7 @@
   </description>
 
   <properties>
+    <maven.plugin.validation>BRIEF</maven.plugin.validation>
     <logback.configurationFile>logback-test.xml</logback.configurationFile>
 
     <!-- NOTE: we are not using TestNG grouping mechanism -->
