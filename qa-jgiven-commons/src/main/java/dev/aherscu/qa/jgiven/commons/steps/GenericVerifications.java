@@ -191,9 +191,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
         @ObjectsMatrixFormatter.Annotation(
             args = { "30" }) final Object[][] expectedResults) {
         val resultSet = resultSetOf(sql);
-        assertThat(resultSet.toArray(
-            new Object[resultSet.size()][]))
-                .isEqualTo(expectedResults);
+        assertThat(resultSet.toArray(new Object[resultSet.size()][])).isEqualTo(expectedResults);
         return self();
     }
 
