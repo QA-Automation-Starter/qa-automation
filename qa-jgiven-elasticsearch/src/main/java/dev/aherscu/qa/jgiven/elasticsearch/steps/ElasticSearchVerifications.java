@@ -58,11 +58,10 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
         final String id,
         final Matcher<TDocument> matcher) {
         log.debug("looking-up by id: {}", id);
-        return eventually_assert_that(
-            Unchecked.supplier(() -> elasticsearchClient.get(g -> g
-                .index(index.get())
-                .id(id),
-                documentType.get())
+        return eventually_assert_that(Unchecked
+            .supplier(() -> elasticsearchClient
+                .get(g -> g.index(index.get()).id(id),
+                    documentType.get())
                 .source()),
             matcher);
     }
@@ -72,14 +71,15 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
         final Matcher<Stream<TDocument>> matcher) {
         log.debug(query.apply(new Query.Builder()).build().toString());
         hits.set(new LinkedList<>());
-        return eventually_assert_that(
-            Unchecked.supplier(() -> elasticsearchClient.search(s -> s
-                .index(index.get())
-                .query(query),
-                documentType.get())
+        return eventually_assert_that(Unchecked
+            .supplier(() -> elasticsearchClient
+                .search(s -> s.index(index.get()).query(query),
+                    documentType.get())
                 .hits()
                 .hits()
-                .stream().map(Hit::source).peek(hits.get()::add)),
+                .stream()
+                .map(Hit::source)
+                .peek(hits.get()::add)),
             matcher);
     }
 
