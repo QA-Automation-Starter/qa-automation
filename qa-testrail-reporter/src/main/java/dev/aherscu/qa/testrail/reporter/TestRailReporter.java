@@ -16,29 +16,35 @@
 
 package dev.aherscu.qa.testrail.reporter;
 
-import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.*;
-import static dev.aherscu.qa.testing.utils.UriUtils.*;
-import static java.text.MessageFormat.*;
-import static java.util.Objects.*;
-import static org.apache.commons.io.FileUtils.*;
+import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.fromJson;
+import static dev.aherscu.qa.testing.utils.UriUtils.passwordFrom;
+import static dev.aherscu.qa.testing.utils.UriUtils.usernameFrom;
+import static java.text.MessageFormat.format;
+import static java.util.Objects.requireNonNull;
+import static org.apache.commons.io.FileUtils.listFiles;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URI;
+import java.util.Collection;
 
-import org.apache.commons.io.*;
-import org.apache.commons.io.filefilter.*;
-import org.testng.xml.*;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.filefilter.SuffixFileFilter;
+import org.testng.xml.XmlSuite;
 
-import com.fasterxml.jackson.annotation.*;
-import com.google.common.collect.*;
-import com.samskivert.mustache.*;
-import com.tngtech.jgiven.report.model.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.ImmutableMap;
+import com.samskivert.mustache.Escapers;
+import com.samskivert.mustache.Mustache;
+import com.tngtech.jgiven.report.model.ExecutionStatus;
+import com.tngtech.jgiven.report.model.ScenarioModel;
 
-import dev.aherscu.qa.jgiven.reporter.*;
+import dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter;
 import lombok.*;
-import lombok.experimental.*;
-import lombok.extern.slf4j.*;
+import lombok.experimental.SuperBuilder;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Per method test reporter uploading results with screenshot attachments to
@@ -161,14 +167,14 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
                     .forEach(file -> {
                         log.trace("attaching {}", file);
                         val attachScreenshotsResponse =
-                            addAttachmentToResult(addResultForCaseResponse.id,
-                                file);
+                                addAttachmentToResult(addResultForCaseResponse.id,
+                                        file);
                         log.debug("attached {}", attachScreenshotsResponse.id);
                     });
 
         } catch (final Exception e) {
-            log.error("failed to report case {} on run {} -> {}", testCaseId,
-                    testRailRunId, e.toString());
+            log.error("failed to report case {} on run {} -> {}",
+                    testCaseId, testRailRunId, e.toString());
         }
     }
 
