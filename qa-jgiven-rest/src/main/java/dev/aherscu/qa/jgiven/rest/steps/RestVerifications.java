@@ -173,6 +173,7 @@ public class RestVerifications<SELF extends RestVerifications<SELF>>
      */
     @AfterStage
     protected void attachActualResponse() {
+        log.debug("attaching actual response");
         attach(null != responseContent ? responseContent.get() : null);
     }
 }
