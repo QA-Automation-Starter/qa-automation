@@ -16,35 +16,29 @@
 
 package dev.aherscu.qa.testrail.reporter;
 
-import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.fromJson;
-import static dev.aherscu.qa.testing.utils.UriUtils.passwordFrom;
-import static dev.aherscu.qa.testing.utils.UriUtils.usernameFrom;
-import static java.text.MessageFormat.format;
-import static java.util.Objects.requireNonNull;
-import static org.apache.commons.io.FileUtils.listFiles;
+import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.*;
+import static dev.aherscu.qa.testing.utils.UriUtils.*;
+import static java.text.MessageFormat.*;
+import static java.util.Objects.*;
+import static org.apache.commons.io.FileUtils.*;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.net.URI;
-import java.util.Collection;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.io.filefilter.SuffixFileFilter;
-import org.testng.xml.XmlSuite;
+import org.apache.commons.io.*;
+import org.apache.commons.io.filefilter.*;
+import org.testng.xml.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.common.collect.ImmutableMap;
-import com.samskivert.mustache.Escapers;
-import com.samskivert.mustache.Mustache;
-import com.tngtech.jgiven.report.model.ExecutionStatus;
-import com.tngtech.jgiven.report.model.ScenarioModel;
+import com.fasterxml.jackson.annotation.*;
+import com.google.common.collect.*;
+import com.samskivert.mustache.*;
+import com.tngtech.jgiven.report.model.*;
 
-import dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter;
+import dev.aherscu.qa.jgiven.reporter.*;
 import lombok.*;
-import lombok.experimental.SuperBuilder;
-import lombok.extern.slf4j.Slf4j;
+import lombok.experimental.*;
+import lombok.extern.slf4j.*;
 
 /**
  * Per method test reporter uploading results with screenshot attachments to
@@ -57,13 +51,41 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @ToString(callSuper = true)
 public class TestRailReporter extends QaJGivenPerMethodReporter {
+    @Getter
+    @AllArgsConstructor
+    private enum Status {
+        SUCCESS(1), FAILED(5);
+
+        final int id;
+
+        static Status from(final ExecutionStatus status) {
+            return status == ExecutionStatus.SUCCESS ? SUCCESS : FAILED;
+        }
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    static class AttachScreenshotsResponse {
+        @JsonProperty("attachment_id")
+        String id;
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    static class ResultForCaseResponse {
+        @JsonProperty("id")
+        String id;
+        @JsonProperty("test_id")
+        String testId;
+    }
     // FIXME use .mustache extension
     @SuppressWarnings("hiding")
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/permethod-reporter.testrail";
-
     private final URI          testRailUrl;
     private final String       testRailRunId;
+
+    private static Collection<File> listScreenshots(final File directory) {
+        return listFiles(directory, new SuffixFileFilter(".png"), null);
+    }
 
     private static TestRailClient testRailClient(final URI testRailUrl) {
         val testRailClient = new TestRailClient(testRailUrl.toString());
@@ -72,8 +94,17 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
         return testRailClient;
     }
 
-    private static Collection<File> listScreenshots(final File directory) {
-        return listFiles(directory, new SuffixFileFilter(".png"), null);
+    @Override
+    protected Mustache.Compiler compiler() {
+        return Mustache.compiler().withEscaper(Escapers.NONE);
+    }
+
+    @Override
+    protected TestRailReportModel reportModel(File targetReportFile) {
+        return TestRailReportModel.builder()
+            .outputDirectory(outputDirectory)
+            .targetReportFile(targetReportFile)
+            .build();
     }
 
     /**
@@ -85,7 +116,7 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
      * <dt>testRailUrl</dt>
      * <dd>the TestRail location</dd>
      * </dl>
-     * 
+     *
      * @param xmlSuite
      *            TestNG XML suite
      * @return reporter configured
@@ -106,8 +137,41 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
     }
 
     @Override
-    protected Mustache.Compiler compiler() {
-        return Mustache.compiler().withEscaper(Escapers.NONE);
+    protected void reportGenerated(
+        final ScenarioModel scenarioModel,
+        final File reportFile) {
+        super.reportGenerated(scenarioModel, reportFile);
+
+        val testCaseId = readAttributesOf(reportFile)
+            // TODO make it configurable
+            .get("dev.aherscu.qa.jgiven.commons.tags.Reference");
+
+        try {
+            val addResultForCaseResponse =
+                addResultForCase(scenarioModel, reportFile, testCaseId);
+            log.debug(
+                "reported result id {} for case {} on run {} to {}/index.php?/tests/view/{}",
+                addResultForCaseResponse.id,
+                testCaseId, testRailRunId, testRailUrl,
+                addResultForCaseResponse.testId);
+
+            // FIXME for each report only its screenshots must be attached
+            // TODO the screenshots must be somehow associated with their report
+            // ISSUE sometimes throws UncheckedIOException
+            listScreenshots(
+                new File(outputDirectory, targetNameFor(scenarioModel)))
+                .forEach(file -> {
+                    log.trace("attaching {}", file);
+                    val attachScreenshotsResponse =
+                        addAttachmentToResult(addResultForCaseResponse.id,
+                            file);
+                    log.debug("attached {}", attachScreenshotsResponse.id);
+                });
+
+        } catch (final Exception e) {
+            log.error("failed to report case {} on run {} -> {}",
+                testCaseId, testRailRunId, e.toString());
+        }
     }
 
     private AttachScreenshotsResponse addAttachmentToResult(
@@ -138,77 +202,5 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
                 .toString(),
                 ResultForCaseResponse.class);
         }
-    }
-
-    @Override
-    protected void reportGenerated(
-        final ScenarioModel scenarioModel,
-        final File reportFile) {
-        super.reportGenerated(scenarioModel, reportFile);
-
-        val testCaseId = readAttributesOf(reportFile)
-            // TODO make it configurable
-            .get("dev.aherscu.qa.jgiven.commons.tags.Reference");
-
-        try {
-            val addResultForCaseResponse =
-                addResultForCase(scenarioModel, reportFile, testCaseId);
-            log.debug(
-                "reported result id {} for case {} on run {} to {}/index.php?/tests/view/{}",
-                addResultForCaseResponse.id,
-                testCaseId, testRailRunId, testRailUrl,
-                addResultForCaseResponse.testId);
-
-            // FIXME for each report only its screenshots must be attached
-            // TODO the screenshots must be somehow associated with their report
-            // ISSUE sometimes throws UncheckedIOException
-            listScreenshots(
-                new File(outputDirectory, targetNameFor(scenarioModel)))
-                    .forEach(file -> {
-                        log.trace("attaching {}", file);
-                        val attachScreenshotsResponse =
-                                addAttachmentToResult(addResultForCaseResponse.id,
-                                        file);
-                        log.debug("attached {}", attachScreenshotsResponse.id);
-                    });
-
-        } catch (final Exception e) {
-            log.error("failed to report case {} on run {} -> {}",
-                    testCaseId, testRailRunId, e.toString());
-        }
-    }
-
-    @Override
-    protected TestRailReportModel reportModel(File targetReportFile) {
-        return TestRailReportModel.builder()
-            .outputDirectory(outputDirectory)
-            .targetReportFile(targetReportFile)
-            .build();
-    }
-
-    @Getter
-    @AllArgsConstructor
-    private enum Status {
-        SUCCESS(1), FAILED(5);
-
-        final int id;
-
-        static Status from(final ExecutionStatus status) {
-            return status == ExecutionStatus.SUCCESS ? SUCCESS : FAILED;
-        }
-    }
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    static class ResultForCaseResponse {
-        @JsonProperty("id")
-        String id;
-        @JsonProperty("test_id")
-        String testId;
-    }
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    static class AttachScreenshotsResponse {
-        @JsonProperty("attachment_id")
-        String id;
     }
 }

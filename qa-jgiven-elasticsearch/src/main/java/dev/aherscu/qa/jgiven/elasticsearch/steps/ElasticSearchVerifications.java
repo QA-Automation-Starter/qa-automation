@@ -52,7 +52,7 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
     @ExpectedScenarioState
     protected ElasticsearchClient           elasticsearchClient;
 
-    protected ThreadLocal<List<TDocument>> hits = new ThreadLocal<>();
+    protected ThreadLocal<List<TDocument>>  hits = new ThreadLocal<>();
 
     public SELF the_document(
         final String id,
@@ -85,6 +85,11 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
 
     @AfterStage
     protected void attachActualResponse() {
-        attach(hits.get().isEmpty() ? null : hits.get().stream().map(Object::toString).collect(Collectors.joining(LF)));
+        attach(hits.get().isEmpty()
+            ? null
+            : hits.get()
+                .stream()
+                .map(Object::toString)
+                .collect(Collectors.joining(LF)));
     }
 }

@@ -16,16 +16,15 @@
 
 package dev.aherscu.qa.testing.utils;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 
-import lombok.SneakyThrows;
-import lombok.experimental.UtilityClass;
+import lombok.*;
+import lombok.experimental.*;
 
 @UtilityClass
 public class ObjectMapperUtils {
     public static final ObjectMapper mapper =
-            new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+        new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
     @SneakyThrows
     public static <T> T fromJson(final String json, final Class<T> type) {
