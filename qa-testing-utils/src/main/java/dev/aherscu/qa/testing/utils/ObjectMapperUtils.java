@@ -23,7 +23,7 @@ import lombok.experimental.*;
 
 @UtilityClass
 public class ObjectMapperUtils {
-    public static final ObjectMapper mapper = new ObjectMapper();
+    public static final ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
 
     @SneakyThrows
     public static <T> T fromJson(final String json, final Class<T> type) {
