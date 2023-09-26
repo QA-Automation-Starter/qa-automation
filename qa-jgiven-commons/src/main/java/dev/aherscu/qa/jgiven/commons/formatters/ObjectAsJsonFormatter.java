@@ -31,10 +31,12 @@ import com.tngtech.jgiven.format.*;
  * @author aherscu
  */
 @ThreadSafe
-public class ObjectAsJsonFormatter implements AnnotationArgumentFormatter<ObjectAsJsonFormatter.Annotation> {
+public class ObjectAsJsonFormatter
+    implements AnnotationArgumentFormatter<ObjectAsJsonFormatter.Annotation> {
 
     @Override
-    public String format(final Object argumentToFormat, final ObjectAsJsonFormatter.Annotation annotation) {
+    public String format(final Object argumentToFormat,
+        final ObjectAsJsonFormatter.Annotation annotation) {
         try {
             return mapper.writeValueAsString(argumentToFormat);
         } catch (final JsonProcessingException e) {
@@ -49,7 +51,7 @@ public class ObjectAsJsonFormatter implements AnnotationArgumentFormatter<Object
      */
     @AnnotationFormat(ObjectAsJsonFormatter.class)
     @Retention(RetentionPolicy.RUNTIME)
-    @Target({ElementType.PARAMETER, ElementType.ANNOTATION_TYPE})
+    @Target({ ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })
     public @interface Annotation {
         // no fields on purpose
     }
