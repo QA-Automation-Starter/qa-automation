@@ -46,7 +46,8 @@ public class ElasticSearchFixtures<TDocument, SELF extends ElasticSearchFixtures
         return self();
     }
 
-    public SELF elastic_search(@Hidden final ElasticsearchClient elasticsearchClient) {
+    public SELF elastic_search(
+        @Hidden final ElasticsearchClient elasticsearchClient) {
         this.elasticsearchClient = elasticsearchClient;
         return self();
     }
