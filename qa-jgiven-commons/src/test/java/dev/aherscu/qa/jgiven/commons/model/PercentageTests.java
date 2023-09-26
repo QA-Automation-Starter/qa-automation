@@ -16,22 +16,26 @@
 
 package dev.aherscu.qa.jgiven.commons.model;
 
-import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.*;
-import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
+import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.fromJson;
+import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.toJson;
+import static org.apache.commons.lang3.StringUtils.deleteWhitespace;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
-import lombok.*;
-import lombok.extern.jackson.*;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.extern.jackson.Jacksonized;
 
 public class PercentageTests {
 
     @Test
     public final void shouldSerialize() {
-        assertThat(toJson(Foo.builder()
+        assertThat(deleteWhitespace(toJson(Foo.builder()
             .percentage(new DoublePercentage(0.12356))
-            .build()),
+                        .build())),
             equalToCompressingWhiteSpace("{\"percentage\":0.12356}"));
     }
 
