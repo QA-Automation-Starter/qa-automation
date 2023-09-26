@@ -21,7 +21,6 @@ import static org.hamcrest.Matchers.*;
 import java.lang.SuppressWarnings;
 import java.math.*;
 
-import dev.aherscu.qa.jgiven.commons.steps.*;
 import org.testng.annotations.*;
 import org.unitils.io.annotation.*;
 
@@ -30,6 +29,7 @@ import com.tngtech.jgiven.*;
 import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.data.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.testing.utils.*;

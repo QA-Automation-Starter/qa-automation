@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,10 +18,10 @@ package dev.aherscu.qa.testing.example.scenarios.tutorial5;
 
 import static org.hamcrest.Matchers.*;
 
-import dev.aherscu.qa.jgiven.webdriver.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.webdriver.*;
 import dev.aherscu.qa.testing.example.*;
 import dev.aherscu.qa.testing.example.model.tutorial.*;
 import dev.aherscu.qa.testing.example.steps.tutorial.*;

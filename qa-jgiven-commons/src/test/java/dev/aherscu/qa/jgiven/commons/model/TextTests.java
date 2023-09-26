@@ -16,18 +16,15 @@
 
 package dev.aherscu.qa.jgiven.commons.model;
 
-import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.fromJson;
-import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.toJson;
-import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.deleteWhitespace;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
+import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.*;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.extern.jackson.Jacksonized;
+import lombok.*;
+import lombok.extern.jackson.*;
 
 public class TextTests {
     @Test

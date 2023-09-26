@@ -76,6 +76,7 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
         @JsonProperty("test_id")
         String testId;
     }
+
     // FIXME use .mustache extension
     @SuppressWarnings("hiding")
     public static final String DEFAULT_TEMPLATE_RESOURCE =
@@ -160,13 +161,13 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
             // ISSUE sometimes throws UncheckedIOException
             listScreenshots(
                 new File(outputDirectory, targetNameFor(scenarioModel)))
-                .forEach(file -> {
-                    log.trace("attaching {}", file);
-                    val attachScreenshotsResponse =
-                        addAttachmentToResult(addResultForCaseResponse.id,
-                            file);
-                    log.debug("attached {}", attachScreenshotsResponse.id);
-                });
+                    .forEach(file -> {
+                        log.trace("attaching {}", file);
+                        val attachScreenshotsResponse =
+                            addAttachmentToResult(addResultForCaseResponse.id,
+                                file);
+                        log.debug("attached {}", attachScreenshotsResponse.id);
+                    });
 
         } catch (final Exception e) {
             log.error("failed to report case {} on run {} -> {}",

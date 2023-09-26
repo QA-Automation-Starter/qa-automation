@@ -17,20 +17,19 @@
 package dev.aherscu.qa.testing.example.scenarios.tutorial3;
 
 import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
-import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.DOUBLE_QUOTE;
+import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static org.apache.commons.lang3.RandomStringUtils.*;
-import static org.apache.commons.lang3.StringUtils.wrap;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
 import java.util.stream.*;
 
-import dev.aherscu.qa.jgiven.webdriver.*;
 import org.hamcrest.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
+import dev.aherscu.qa.jgiven.webdriver.*;
 import dev.aherscu.qa.testing.example.*;
 import dev.aherscu.qa.testing.example.steps.tutorial.*;
 import lombok.*;
