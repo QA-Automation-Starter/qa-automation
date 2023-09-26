@@ -167,7 +167,8 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
                     });
 
         } catch (final Exception e) {
-            log.error("failed to report case {} on run {} -> {}", testCaseId, testRailRunId, e.toString());
+            log.error("failed to report case {} on run {} -> {}", testCaseId,
+                    testRailRunId, e.toString());
         }
     }
 
