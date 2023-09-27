@@ -25,7 +25,9 @@ import co.elastic.clients.elasticsearch.core.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.elasticsearch.model.*;
 import lombok.*;
+import lombok.extern.slf4j.*;
 
+@Slf4j
 public class ElasticSearchActions<TDocument, SELF extends ElasticSearchActions<TDocument, SELF>>
     extends GenericActions<ElasticSearchScenarioType<TDocument>, SELF> {
     @ProvidedScenarioState
@@ -43,6 +45,8 @@ public class ElasticSearchActions<TDocument, SELF extends ElasticSearchActions<T
     public SELF adding_single_document(
         final TDocument document,
         @Hidden final Function<TDocument, String> indexedBy) {
+        log.debug("adding document {} indexed by {}",
+            document, indexedBy.apply(document));
         response.set(elasticsearchClient.index(i -> i
             .index(index.get())
             .id(indexedBy.apply(document))

@@ -21,7 +21,9 @@ import com.tngtech.jgiven.annotation.*;
 import co.elastic.clients.elasticsearch.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.elasticsearch.model.*;
+import lombok.extern.slf4j.*;
 
+@Slf4j
 public class ElasticSearchFixtures<TDocument, SELF extends ElasticSearchFixtures<TDocument, SELF>>
     extends GenericFixtures<ElasticSearchScenarioType<TDocument>, SELF> {
 
@@ -37,17 +39,20 @@ public class ElasticSearchFixtures<TDocument, SELF extends ElasticSearchFixtures
     protected ElasticsearchClient                 elasticsearchClient;
 
     public SELF storing(final Class<TDocument> documentType) {
+        log.debug("setting document type {}", documentType);
         this.documentType.set(documentType);
         return self();
     }
 
     public SELF indexed_by(final String index) {
+        log.debug("setting index {}", index);
         this.index.set(index);
         return self();
     }
 
     public SELF elastic_search(
         @Hidden final ElasticsearchClient elasticsearchClient) {
+        log.debug("setting client {}", elasticsearchClient);
         this.elasticsearchClient = elasticsearchClient;
         return self();
     }

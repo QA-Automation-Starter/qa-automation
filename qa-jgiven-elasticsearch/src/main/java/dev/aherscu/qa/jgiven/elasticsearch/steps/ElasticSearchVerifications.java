@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.elasticsearch.steps;
 
-import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
+import static org.apache.commons.lang3.StringUtils.*;
 
 import java.util.*;
 import java.util.function.*;
@@ -57,7 +57,7 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
     public SELF the_document(
         final String id,
         final Matcher<TDocument> matcher) {
-        log.debug("looking-up by id: {}", id);
+        log.debug("looking-up by id: {} on index {}", id, index.get());
         return eventually_assert_that(Unchecked
             .supplier(() -> elasticsearchClient
                 .get(g -> g.index(index.get()).id(id),
@@ -69,7 +69,10 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
     public SELF the_index(
         @QueryBuilderFnFormatter.Annotation final Function<Query.Builder, ObjectBuilder<Query>> query,
         final Matcher<Stream<TDocument>> matcher) {
-        log.debug(query.apply(new Query.Builder()).build().toString());
+        log.debug("{} on index {} for document type {}",
+            query.apply(new Query.Builder()).build().toString(),
+            index.get(),
+            documentType.get());
         hits.set(new LinkedList<>());
         return eventually_assert_that(Unchecked
             .supplier(() -> elasticsearchClient
@@ -79,6 +82,7 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
                 .hits()
                 .stream()
                 .map(Hit::source)
+                .peek(tDocument -> log.debug("received document {}", tDocument))
                 .peek(hits.get()::add)),
             matcher);
     }
