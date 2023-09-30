@@ -37,32 +37,43 @@ import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;
 
 public class TestRailReporterTest {
-    public static final File     REPORTING_INPUT  = new File(
+    public static final File     REPORTING_INPUT      = new File(
         "target/test-classes");
-    public static final File     REPORTING_OUTPUT = new File(
+    public static final File     REPORTING_OUTPUT     = new File(
         "target/test-classes/reporting-output");
-    private final WireMockServer wireMockServer   =
+    public static final File     REPORTING_ALT_OUTPUT = new File(
+        "target/test-classes/reporting-alt-output");
+    private final WireMockServer wireMockServer       =
         wireMockServerOnDynamicPort();
 
+    @BeforeMethod
+    protected void beforeMethodAddStubs() {
+        wireMockServer.stubFor(
+                get(urlEqualTo("/self-test"))
+                        .willReturn(ok()));
+        wireMockServer.stubFor(
+                post(urlEqualTo("/index.php?/api/v2/add_result_for_case/123/68"))
+                        .willReturn(okJson("{\"id\":321,\"test_id\":321}")));
+        wireMockServer.stubFor(
+                post(urlEqualTo("/index.php?/api/v2/add_attachment_to_result/321"))
+                        .willReturn(okJson("{\"attachment_id\":444}")));
+    }
+
+    @AfterMethod
+    protected void afterMethodResetAll() {
+        wireMockServer.resetAll();
+    }
+
     @BeforeClass
-    protected void startMockRestServer() {
+    protected void beforeClassStartMockRestServer() {
         // TODO maybe should move into some base class
         // -- see AbstractMockedServiceTest
         // then, should depend on qa-jgiven-commons, making the build slower
         wireMockServer.start();
-        wireMockServer.stubFor(
-            get(urlEqualTo("/self-test"))
-                .willReturn(ok()));
-        wireMockServer.stubFor(
-            post(urlEqualTo("/index.php?/api/v2/add_result_for_case/123/68"))
-                .willReturn(okJson("{\"id\":321,\"test_id\":321}")));
-        wireMockServer.stubFor(
-            post(urlEqualTo("/index.php?/api/v2/add_attachment_to_result/321"))
-                .willReturn(okJson("{\"attachment_id\":444}")));
     }
 
     @AfterClass(alwaysRun = true)
-    protected void stopMockRestServer() {
+    protected void afterClassStopMockRestServer() {
         wireMockServer.stop();
     }
 
@@ -78,6 +89,42 @@ public class TestRailReporterTest {
                 is(Response.Status.Family.SUCCESSFUL));
         }
         wireMockServer.verify(getRequestedFor(urlEqualTo("/self-test")));
+    }
+
+    @Test
+    @SneakyThrows
+    public void shouldGenerateAltReport() {
+        val xmlSuite = new XmlSuite();
+        xmlSuite.setParameters(ImmutableMap.<String, String> builder()
+            .put("templateResourceTestRailReporter",
+             "/alt-permethod-reporter.testrail")
+            .put("testRailUrl", wireMockServer.baseUrl())
+            .put("testRailRunId", "123")
+            .build());
+        new TestRailReporter()
+            .toBuilder()
+            .sourceDirectory(REPORTING_INPUT)
+            .outputDirectory(REPORTING_ALT_OUTPUT)
+            .build()
+            // .with(xmlSuite) this is already called by generateReport
+            .generateReport(
+                singletonList(xmlSuite),
+                emptyList(),
+                null);
+
+        // ISSUE Hamcrest failure description does not include the verified file
+        assertThat(REPORTING_ALT_OUTPUT, is(anExistingDirectory()));
+        assertThat(new File(REPORTING_ALT_OUTPUT,
+            "SUCCESS-dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingWebWithJGiven-shouldFind.testrail"),
+            is(anExistingFile()));
+
+        wireMockServer
+            .verify(postRequestedFor(
+                urlEqualTo("/index.php?/api/v2/add_result_for_case/123/68")));
+        wireMockServer
+            .verify(2, postRequestedFor(
+                urlEqualTo(
+                    "/index.php?/api/v2/add_attachment_to_result/321")));
     }
 
     @Test
