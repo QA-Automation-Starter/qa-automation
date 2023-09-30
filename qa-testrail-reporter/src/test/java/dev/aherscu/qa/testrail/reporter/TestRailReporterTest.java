@@ -17,7 +17,7 @@
 package dev.aherscu.qa.testrail.reporter;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static dev.aherscu.qa.testing.utils.WireMockServerUtils.*;
+import static dev.aherscu.qa.testing.utils.WireMockServerUtils.wireMockServerOnDynamicPort;
 import static java.util.Collections.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -37,58 +37,50 @@ import dev.aherscu.qa.testing.utils.rest.*;
 import lombok.*;
 
 public class TestRailReporterTest {
-    public static final File     REPORTING_INPUT      = new File(
+    public static final File                  REPORTING_INPUT      = new File(
         "target/test-classes");
-    public static final File     REPORTING_OUTPUT     = new File(
+    public static final File                  REPORTING_OUTPUT     = new File(
         "target/test-classes/reporting-output");
-    public static final File     REPORTING_ALT_OUTPUT = new File(
+    public static final File                  REPORTING_ALT_OUTPUT = new File(
         "target/test-classes/reporting-alt-output");
-    private final WireMockServer wireMockServer       =
-        wireMockServerOnDynamicPort();
+    private final ThreadLocal<WireMockServer> wireMockServer       =
+        new ThreadLocal<>();
 
     @BeforeMethod
-    protected void beforeMethodAddStubs() {
-        wireMockServer.stubFor(
-                get(urlEqualTo("/self-test"))
-                        .willReturn(ok()));
-        wireMockServer.stubFor(
-                post(urlEqualTo("/index.php?/api/v2/add_result_for_case/123/68"))
-                        .willReturn(okJson("{\"id\":321,\"test_id\":321}")));
-        wireMockServer.stubFor(
-                post(urlEqualTo("/index.php?/api/v2/add_attachment_to_result/321"))
-                        .willReturn(okJson("{\"attachment_id\":444}")));
-    }
-
-    @AfterMethod
-    protected void afterMethodResetAll() {
-        wireMockServer.resetAll();
-    }
-
-    @BeforeClass
-    protected void beforeClassStartMockRestServer() {
+    protected void beforeMethodInitiateWireMockServer() {
         // TODO maybe should move into some base class
         // -- see AbstractMockedServiceTest
         // then, should depend on qa-jgiven-commons, making the build slower
-        wireMockServer.start();
+        wireMockServer.set(wireMockServerOnDynamicPort());
+        wireMockServer.get().start();
+        wireMockServer.get().stubFor(
+            get(urlEqualTo("/self-test"))
+                .willReturn(ok()));
+        wireMockServer.get().stubFor(
+            post(urlEqualTo("/index.php?/api/v2/add_result_for_case/123/68"))
+                .willReturn(okJson("{\"id\":321,\"test_id\":321}")));
+        wireMockServer.get().stubFor(
+            post(urlEqualTo("/index.php?/api/v2/add_attachment_to_result/321"))
+                .willReturn(okJson("{\"attachment_id\":444}")));
     }
 
-    @AfterClass(alwaysRun = true)
-    protected void afterClassStopMockRestServer() {
-        wireMockServer.stop();
+    @AfterMethod(alwaysRun = true)
+    protected void afterMethodStopWireMockServer() {
+        wireMockServer.get().stop();
     }
 
     @Test
     public void selfTest() {
         try (val request = LoggingClientBuilder
             .newClient()
-            .target(wireMockServer.baseUrl())
+            .target(wireMockServer.get().baseUrl())
             .path("self-test")
             .request()
             .get()) {
             assertThat(request.getStatusInfo().getFamily(),
                 is(Response.Status.Family.SUCCESSFUL));
         }
-        wireMockServer.verify(getRequestedFor(urlEqualTo("/self-test")));
+        wireMockServer.get().verify(getRequestedFor(urlEqualTo("/self-test")));
     }
 
     @Test
@@ -97,8 +89,8 @@ public class TestRailReporterTest {
         val xmlSuite = new XmlSuite();
         xmlSuite.setParameters(ImmutableMap.<String, String> builder()
             .put("templateResourceTestRailReporter",
-             "/alt-permethod-reporter.testrail")
-            .put("testRailUrl", wireMockServer.baseUrl())
+                "/alt-permethod-reporter.testrail")
+            .put("testRailUrl", wireMockServer.get().baseUrl())
             .put("testRailRunId", "123")
             .build());
         new TestRailReporter()
@@ -118,10 +110,10 @@ public class TestRailReporterTest {
             "SUCCESS-dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingWebWithJGiven-shouldFind.testrail"),
             is(anExistingFile()));
 
-        wireMockServer
+        wireMockServer.get()
             .verify(postRequestedFor(
                 urlEqualTo("/index.php?/api/v2/add_result_for_case/123/68")));
-        wireMockServer
+        wireMockServer.get()
             .verify(2, postRequestedFor(
                 urlEqualTo(
                     "/index.php?/api/v2/add_attachment_to_result/321")));
@@ -135,7 +127,7 @@ public class TestRailReporterTest {
             // default is used if not specified
             // .put("templateResourceTestRailReporter",
             // "/permethod-reporter.testrail")
-            .put("testRailUrl", wireMockServer.baseUrl())
+            .put("testRailUrl", wireMockServer.get().baseUrl())
             .put("testRailRunId", "123")
             .build());
         new TestRailReporter()
@@ -155,10 +147,10 @@ public class TestRailReporterTest {
             "SUCCESS-dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingWebWithJGiven-shouldFind.testrail"),
             is(anExistingFile()));
 
-        wireMockServer
+        wireMockServer.get()
             .verify(postRequestedFor(
                 urlEqualTo("/index.php?/api/v2/add_result_for_case/123/68")));
-        wireMockServer
+        wireMockServer.get()
             .verify(2, postRequestedFor(
                 urlEqualTo(
                     "/index.php?/api/v2/add_attachment_to_result/321")));
