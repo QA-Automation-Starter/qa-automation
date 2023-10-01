@@ -15,13 +15,22 @@ Test case:{{-index}}
 {{/isSectionTitle}}
 {{^isSectionTitle}}
 {{^isIntroWord}}
-{{-index}}. {{#words}}{{#-first}}{{value}}{{/-first}}{{/words}} {{#words}}{{^argumentInfo}} {{value}} {{/argumentInfo}}{{/words}}{{#words}}{{^-first}}{{#argumentInfo}} '{{argumentName}}' {{/argumentInfo}}{{/-first}}{{/words}}
-  * parameters:
-    {{#words}}{{^-first}}{{#argumentInfo}}* {{argumentName}}: {{value}}
-    {{/argumentInfo}}{{/-first}}{{/words}}
-  * actual: {{^attachments}}[Nothing to attach]{{/attachments}}{{#attachments}}{{#-last}}{{^binary}}{{#shorten}}{{#deleteEOL}}` {{value}}`{{/deleteEOL}}{{/shorten}}{{/binary}}{{#binary}}>{{#saveScreenshot}}{{value}}{{/saveScreenshot}}<{{/binary}}{{/-last}}{{/attachments}}
-  * status: {{status}}
-  * duration [ms]: {{#nanoToMillis}}{{durationInNanos}}{{/nanoToMillis}}
+{{-index}}. {{#words}}{{^argumentInfo}} {{value}} {{/argumentInfo}}{{#argumentInfo}} **{{argumentName}}** {{/argumentInfo}}{{/words}}
+
+    * status: {{status}}
+    * duration [ms]: {{#nanoToMillis}}{{durationInNanos}}{{/nanoToMillis}}
+    * parameters:
+
+        {{#words}}{{^-first}}{{#argumentInfo}}* **{{argumentName}}**:
+
+            `{{formattedValue}}`
+
+        {{/argumentInfo}}{{/-first}}{{/words}}
+
+    * actual:
+
+        {{^attachments}}[Nothing to attach]{{/attachments}}{{#attachments}}{{#-last}}{{^binary}}{{#shorten}}{{#deleteEOL}}`{{value}}`{{/deleteEOL}}{{/shorten}}{{/binary}}{{#binary}}>{{#saveScreenshot}}{{value}}{{/saveScreenshot}}<{{/binary}}{{/-last}}{{/attachments}}
+
 {{/isIntroWord}}
 {{/isSectionTitle}}
 {{/steps}}
