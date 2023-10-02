@@ -119,8 +119,8 @@
 <th>Errors</th>
 <th>Missing Classes</th></tr>
 <tr class="b">
-<td>12</td>
-<td>5</td>
+<td>14</td>
+<td>6</td>
 <td>0</td>
 <td>0</td></tr></table></section><section>
 <h1>Files</h1>
@@ -139,6 +139,9 @@
 <td>1</td></tr>
 <tr class="a">
 <td><a href="#dev.aherscu.qa.jgiven.rabbitmq.utils.QueueHandler$QueueHandlerBuilder">dev.aherscu.qa.jgiven.rabbitmq.utils.QueueHandler$QueueHandlerBuilder</a></td>
+<td>1</td></tr>
+<tr class="b">
+<td><a href="#dev.aherscu.qa.jgiven.rabbitmq.utils.QueueHandler$Singleton$SingletonBuilder">dev.aherscu.qa.jgiven.rabbitmq.utils.QueueHandler$Singleton$SingletonBuilder</a></td>
 <td>1</td></tr></table></section><a name="dev.aherscu.qa.jgiven.rabbitmq.AbstractRabbitMqTest"></a><section>
 <h2>dev.aherscu.qa.jgiven.rabbitmq.AbstractRabbitMqTest</h2>
 <table class="table table-striped">
@@ -200,7 +203,21 @@
 <td>dev.aherscu.qa.jgiven.rabbitmq.utils.QueueHandler$QueueHandlerBuilder.channel(Channel) may expose internal representation by storing an externally mutable object into QueueHandler$QueueHandlerBuilder.channel</td>
 <td>MALICIOUS_CODE</td>
 <td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
-<td><a href="./xref/dev/aherscu/qa/jgiven/rabbitmq/utils/QueueHandler.html#L66">66</a></td>
+<td><a href="./xref/dev/aherscu/qa/jgiven/rabbitmq/utils/QueueHandler.html#L68">68</a></td>
+<td>Medium</td></tr></table></section><a name="dev.aherscu.qa.jgiven.rabbitmq.utils.QueueHandler$Singleton$SingletonBuilder"></a><section>
+<h2>dev.aherscu.qa.jgiven.rabbitmq.utils.QueueHandler$Singleton$SingletonBuilder</h2>
+<table class="table table-striped">
+<tr class="a">
+<th>Bug</th>
+<th>Category</th>
+<th>Details</th>
+<th>Line</th>
+<th>Priority</th></tr>
+<tr class="b">
+<td>dev.aherscu.qa.jgiven.rabbitmq.utils.QueueHandler$Singleton$SingletonBuilder.connectionFactory(ConnectionFactory) may expose internal representation by storing an externally mutable object into QueueHandler$Singleton$SingletonBuilder.connectionFactory</td>
+<td>MALICIOUS_CODE</td>
+<td><a class="externalLink" href="https://spotbugs.readthedocs.io/en/latest/bugDescriptions.html#EI_EXPOSE_REP2">EI_EXPOSE_REP2</a></td>
+<td><a href="./xref/dev/aherscu/qa/jgiven/rabbitmq/utils/QueueHandler.html#L114">114</a></td>
 <td>Medium</td></tr></table></section>
         </main>
     </div>
