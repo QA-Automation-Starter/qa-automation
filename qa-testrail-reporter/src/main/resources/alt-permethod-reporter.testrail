@@ -1,0 +1,39 @@
+{{#jgivenReport}}
+{{description}}
+{{date}}
+
+[{{#tagIds}}{{#simpleName}}{{this}}{{/simpleName}}{{^-last}},{{/-last}}{{/tagIds}}]
+
+{{#scenarioCases}}
+Test case: {{-index}} -- {{description}} ({{#nanoToMillis}}{{durationInNanos}}{{/nanoToMillis}} [ms])
+==
+**Arguments**: {{#explicitArguments}}{{^-first}}, {{/-first}}{{this}}{{/explicitArguments}}
+
+{{#steps}}
+{{#isSectionTitle}}
+{{name}}
+{{/isSectionTitle}}
+{{^isSectionTitle}}
+{{^isIntroWord}}
+{{-index}}. {{#words}}{{^argumentInfo}} {{value}} {{/argumentInfo}}{{#argumentInfo}} **{{argumentName}}** {{/argumentInfo}}{{/words}}
+
+    * status: {{status}}
+    * duration [ms]: {{#nanoToMillis}}{{durationInNanos}}{{/nanoToMillis}}
+    * parameters:
+
+        {{#words}}{{^-first}}{{#argumentInfo}}* **{{argumentName}}**:
+
+            `{{formattedValue}}`
+
+        {{/argumentInfo}}{{/-first}}{{/words}}
+
+    * actual:
+
+        {{^attachments}}[Nothing to attach]{{/attachments}}{{#attachments}}{{#-last}}{{^binary}}{{#shorten}}{{#deleteEOL}}`{{value}}`{{/deleteEOL}}{{/shorten}}{{/binary}}{{#binary}}>{{#saveScreenshot}}{{value}}{{/saveScreenshot}}<{{/binary}}{{/-last}}{{/attachments}}
+
+{{/isIntroWord}}
+{{/isSectionTitle}}
+{{/steps}}
+
+{{/scenarioCases}}
+{{/jgivenReport}}

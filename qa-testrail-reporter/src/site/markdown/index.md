@@ -35,3 +35,12 @@ then set its parameters to suite your environment:
 <parameter name="testRailUrl"
            value="https://user:password@testrail.host"/>
 ```
+
+# Customizing the Template
+
+```xml
+<parameter name="templateResourceXXX"
+           value="your-reporter.testrail"/>
+```
+
+where `XXX` is `TestRailReporter` or descendant class. 
