@@ -5,9 +5,11 @@
 [{{#tagIds}}{{#simpleName}}{{this}}{{/simpleName}}{{^-last}},{{/-last}}{{/tagIds}}]
 
 {{#scenarioCases}}
-Test case: {{-index}} -- {{description}} ({{#nanoToMillis}}{{durationInNanos}}{{/nanoToMillis}} [ms])
+Test case: {{-index}} -- {{description}}
 ==
-**Arguments**: {{#explicitArguments}}{{^-first}}, {{/-first}}{{this}}{{/explicitArguments}}
+**Status**: {{status}}
+{{errorMessage}}
+**Duration**: {{#nanoToMillis}}{{durationInNanos}}{{/nanoToMillis}} [ms]
 
 {{#steps}}
 {{#isSectionTitle}}

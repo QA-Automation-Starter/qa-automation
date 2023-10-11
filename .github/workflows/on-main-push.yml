@@ -85,7 +85,7 @@ jobs:
           git config --global user.email "adrian.herscu@gmail.com"
           mvnw deploy site site:stage scm-publish:publish-scm ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
-            -Pprovider-saucelabs-selenium,testing-tutorials
+            -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
