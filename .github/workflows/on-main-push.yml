@@ -22,6 +22,10 @@ jobs:
 
     strategy:
       matrix:
+        # ISSUE on JDK 21 --
+        #  while running lombok-maven-plugin
+        #  Class com.sun.tools.javac.tree.JCTree$JCImport does not have member field 'com.sun.tools.javac.tree.JCTree qualid'
+        # see also https://github.com/projectlombok/lombok/issues/3393
         java-version: [ 17, 11 ]
         os: [ ubuntu-latest, macos-latest, windows-latest ]
 
