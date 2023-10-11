@@ -20,7 +20,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.34-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-testing-utils</artifactId>
@@ -83,14 +83,13 @@
       <version>2.1</version>
     </dependency>
 
-    <!-- NOTE: see profiles below -->
-    <!--dependency>
+    <dependency>
       <groupId>org.jooq</groupId>
       <artifactId>jool</artifactId>
-      <version>0.9.14</version>
-    </dependency-->
+      <scope>test</scope>
+    </dependency>
 
-    <dependency>
+   <dependency>
       <groupId>net.coobird</groupId>
       <artifactId>thumbnailator</artifactId>
       <version>0.4.19</version>
@@ -294,34 +293,6 @@
   </build>
 
   <profiles>
-    <profile>
-      <id>platform-jdk11</id>
-      <activation>
-        <jdk>[11,)</jdk>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>org.jooq</groupId>
-          <artifactId>jool</artifactId>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-    </profile>
-
-    <profile>
-      <id>platform-jdk8</id>
-      <activation>
-        <jdk>1.8</jdk>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>org.jooq</groupId>
-          <artifactId>jool-java-8</artifactId>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-    </profile>
-
     <profile>
       <id>generate-aws-cognito-srp-authenticator</id>
 
