@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        java-version: [ 17, 11, 8 ]
+        java-version: [ 17, 11 ]
         os: [ ubuntu-latest, macos-latest, windows-latest ]
 
     steps:
@@ -44,8 +44,8 @@ jobs:
           mvnw install ^
             -s %GITHUB_WORKSPACE%\settings.xml
 
-  verify-for-jdk8:
-    name: jdk-8 verify
+  verify-for-jdk11:
+    name: jdk-11 verify
     # ISSUE ChromeDriver/GeckoDriver fail to initialize on Ubuntu
     # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3294884059/jobs/5432863668
     # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
@@ -58,7 +58,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
-          java-version: '8'
+          java-version: '11'
           distribution: 'temurin'
           cache: maven
           settings-path: ${{ github.workspace }}
@@ -102,7 +102,7 @@ jobs:
 
   generate-automation-project:
     name: generate-build-run-standalone
-    needs: verify-for-jdk8
+    needs: verify-for-jdk11
     runs-on: windows-latest
 
     steps:
