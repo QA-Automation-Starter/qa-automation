@@ -17,7 +17,7 @@ package dev.aherscu.qa.jgiven.commons.model;
 
 /**
  * Any type of scenario.
- * 
+ *
  * @author aherscu
  *
  */

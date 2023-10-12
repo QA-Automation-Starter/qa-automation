@@ -32,7 +32,7 @@ import lombok.*;
 
 /**
  * Annotation formatter for WebDriver.
- * 
+ *
  * @author aherscu
  *
  */

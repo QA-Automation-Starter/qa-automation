@@ -19,7 +19,7 @@ import dev.aherscu.qa.jgiven.commons.model.*;
 
 /**
  * SSH configuration type of scenario.
- * 
+ *
  * @author aherscu
  *
  */

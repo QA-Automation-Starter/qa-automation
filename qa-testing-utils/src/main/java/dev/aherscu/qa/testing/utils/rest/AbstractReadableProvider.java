@@ -23,7 +23,7 @@ import javax.ws.rs.ext.*;
 
 /**
  * Provides common implementation.
- * 
+ *
  * @author aherscu
  *
  * @param <T>

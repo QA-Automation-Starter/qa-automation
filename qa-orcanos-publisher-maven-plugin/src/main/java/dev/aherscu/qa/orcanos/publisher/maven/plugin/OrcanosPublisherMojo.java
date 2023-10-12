@@ -193,7 +193,7 @@ public class OrcanosPublisherMojo extends AbstractMojo {
             + "on execution set {2} with status {3}",
             requireNonNull(results.getRun(),
                 "couldn't get execution run result, check orcanos credentials")
-                    .getName(),
+                .getName(),
             reportHandle.testId(),
             reportHandle.executionSetId(),
             reportHandle.status()));
@@ -240,7 +240,7 @@ public class OrcanosPublisherMojo extends AbstractMojo {
                     retrieveExecutionSetRunResults(orcanosEndpointTarget,
                         reportHandle),
                     uploadReport(orcanosEndpointTarget, reportToUpload))
-                        .toString());
+                    .toString());
         } catch (final Throwable t) {
             getLog().error(reportHandle.toString(), t);
         }

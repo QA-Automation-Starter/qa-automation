@@ -50,7 +50,7 @@ public class TestRailClient {
      * Get/Set Password
      * <p>
      * Returns/sets the password used for authenticating the API requests.
-     * 
+     *
      * @return the password
      */
     public String getPassword() {
@@ -65,7 +65,7 @@ public class TestRailClient {
      * Get/Set User
      * <p>
      * Returns/sets the user used for authenticating the API requests.
-     * 
+     *
      * @return the user
      */
     public String getUser() {
@@ -92,7 +92,7 @@ public class TestRailClient {
      * same as java.util.Map.
      * <p>
      * If 'get_attachment/:attachment_id', returns a String
-     * 
+     *
      * @param uri
      *            uri
      * @param data
@@ -123,7 +123,7 @@ public class TestRailClient {
      * an instance of JSONObject or JSONArray (depending on the API method). In
      * most cases, this returns a JSONObject instance which is basically the
      * same as java.util.Map.
-     * 
+     *
      * @param uri
      *            uri
      * @param data

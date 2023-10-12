@@ -31,7 +31,7 @@ import lombok.*;
 /**
  * Formats an {@link IDataSet} such that each table appears in a separate
  * section and each row appears on separate line.
- * 
+ *
  * <p>
  * NOTE: meanwhile, only table names are reported
  * </p>

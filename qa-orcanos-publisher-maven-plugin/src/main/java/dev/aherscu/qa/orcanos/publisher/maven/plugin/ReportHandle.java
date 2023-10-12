@@ -57,9 +57,9 @@ final class ReportHandle {
 
     /**
      * Returns the device name from {@code DeviceName} attribute.
-     * 
+     *
      * @return the device name
-     * 
+     *
      */
     public String deviceName() {
         return attributes.get(DEVICE_NAME);
@@ -67,9 +67,9 @@ final class ReportHandle {
 
     /**
      * Returns the execution set identifier from {@code Reference} attribute.
-     * 
+     *
      * @return the id
-     * 
+     *
      */
     public String executionSetId() {
         return substringAfter(reference(), UNDERSCORE);
@@ -78,9 +78,9 @@ final class ReportHandle {
     /**
      * Returns supported {@code Reference} has an execution set id and a test
      * case id.
-     * 
+     *
      * @return true if has a execution set id
-     * 
+     *
      */
     public boolean hasSupportedReference() {
         return reference().matches("\\d+_\\d+");
@@ -88,9 +88,9 @@ final class ReportHandle {
 
     /**
      * Returns supported status can be {@code SUCCESS</tt> or <tt>FAIL}.
-     * 
+     *
      * @return true if supported
-     * 
+     *
      */
     public boolean hasSupportedStatus() {
         return !Status.UNSUPPORTED.equals(status());
@@ -98,9 +98,9 @@ final class ReportHandle {
 
     /**
      * Returns the platform name from {@code PlatformName} attribute.
-     * 
+     *
      * @return platform name
-     * 
+     *
      */
     public String platformName() {
         return attributes.get(PLATFORM_NAME);
@@ -108,9 +108,9 @@ final class ReportHandle {
 
     /**
      * Returns the platform version from {@code PlatformVersion} attribute.
-     * 
+     *
      * @return platform version
-     * 
+     *
      */
     public String platformVersion() {
         return attributes.get(PLATFORM_VERSION);
@@ -138,9 +138,9 @@ final class ReportHandle {
 
     /**
      * Returns the report source file to upload.
-     * 
+     *
      * @return the source file
-     * 
+     *
      */
     public File sourceFile() {
         return sourceFile;
@@ -148,9 +148,9 @@ final class ReportHandle {
 
     /**
      * Returns the execution status.
-     * 
+     *
      * @return the status
-     * 
+     *
      */
     public Status status() {
         return Status.from(status);
@@ -158,7 +158,7 @@ final class ReportHandle {
 
     /**
      * Returns the test case identifier from {@code Reference} attribute.
-     * 
+     *
      * @return the test id
      */
     public String testId() {

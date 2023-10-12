@@ -35,7 +35,7 @@ public class UriUtils {
      * Extracts the last segment of the path of specified URL. For example, for
      * {@code http://somewhere.com/path/to/resource}, {@code resource} would be
      * returned.
-     * 
+     *
      * @param url
      *            the URL
      * @return the last segment of the specified URL
@@ -57,7 +57,7 @@ public class UriUtils {
      * Extracts the password from specified URL. For example, for
      * {@code http://jdoe:s3cr3t@somewhere.com/path/to/resource}, {@code s3cr3t}
      * would be returned.
-     * 
+     *
      * @param url
      *            the URL
      * @return the password
@@ -68,7 +68,7 @@ public class UriUtils {
 
     /**
      * Extracts a path segment from specified URL.
-     * 
+     *
      * @param url
      *            the URL
      * @param n
@@ -81,7 +81,7 @@ public class UriUtils {
 
     /**
      * Sneakily re-throws the {@link URISyntaxException} thrown by {@link URI}.
-     * 
+     *
      * @param url
      *            the {@code String} to parse as a URL
      * @return {@link URL#URL(String)}
@@ -93,7 +93,7 @@ public class UriUtils {
 
     /**
      * Removes username and password from specified URL.
-     * 
+     *
      * @param url
      *            the URL
      * @return URL without username and password
@@ -107,7 +107,7 @@ public class UriUtils {
      * Extracts the user-name from specified URL. For example, for
      * {@code http://jdoe:s3cr3t@somewhere.com/path/to/resource}, {@code jdoe}
      * would be returned.
-     * 
+     *
      * @param url
      *            the URL
      * @return the password

@@ -26,7 +26,7 @@ import lombok.extern.slf4j.*;
 /**
  * Wraps the {@link com.esotericsoftware.yamlbeans.YamlReader} in order to
  * implement {@link java.io.Closeable}.
- * 
+ *
  * @param <T>
  *            the type to read
  *
@@ -39,12 +39,12 @@ public class YamlReader<T>
     /**
      * Creates a file-based YAML reader; you should call {@link #close()} in
      * order to release it.
-     * 
+     *
      * @param from
      *            the file to read from
      * @throws IOException
      *             if the file cannot be open for reading
-     * 
+     *
      * @see com.esotericsoftware.yamlbeans.YamlReader#YamlReader(Reader)
      */
     public YamlReader(final File from) throws IOException {
@@ -57,7 +57,7 @@ public class YamlReader<T>
     /**
      * @param reader
      *            the reader
-     * 
+     *
      * @see com.esotericsoftware.yamlbeans.YamlReader#YamlReader(Reader)
      */
     public YamlReader(final Reader reader) {
@@ -70,7 +70,7 @@ public class YamlReader<T>
      * @return object read
      * @throws YamlException
      *             if anything fails
-     * 
+     *
      * @see com.esotericsoftware.yamlbeans.YamlReader#read(Class)
      */
     public T read(final Class<T> type)

@@ -116,12 +116,12 @@ public class QaJGivenPerMethodReporter
                 .debug("reading " + reportModelFile.getName()))
             .flatMap(reportModelFile -> new ReportModelFileReader()
                 .apply(reportModelFile).model
-                    .getScenarios()
+                .getScenarios()
+                .stream()
+                .filter(scenarioModel -> scenarioModel
+                    .getTagIds()
                     .stream()
-                    .filter(scenarioModel -> scenarioModel
-                        .getTagIds()
-                        .stream()
-                        .anyMatch(tagId -> tagId.contains(referenceTag))))
+                    .anyMatch(tagId -> tagId.contains(referenceTag))))
             .peek(scenarioModel -> log
                 .debug("processing " + targetNameFor(scenarioModel)))
             .forEach(Unchecked.consumer(scenarioModel -> {

@@ -26,7 +26,7 @@ import lombok.extern.slf4j.*;
 
 /**
  * Provides common XML unmarshalling over REST.
- * 
+ *
  * @author aherscu
  *
  * @param <T>

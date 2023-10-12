@@ -31,7 +31,7 @@ public class AutoReturnable<T> implements AutoCloseable {
 
     /**
      * Returns the object to its pool.
-     * 
+     *
      * @throws Exception
      *             pooled object is missing reference to originating pool;
      *             should not happen if borrowed via

@@ -21,7 +21,7 @@ import com.tngtech.jgiven.annotation.*;
 
 /**
  * Self test tagging annotation.
- * 
+ *
  * @author aherscu
  *
  */

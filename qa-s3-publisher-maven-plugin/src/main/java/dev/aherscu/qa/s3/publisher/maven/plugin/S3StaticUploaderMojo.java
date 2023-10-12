@@ -111,7 +111,7 @@ public class S3StaticUploaderMojo extends AbstractMojo {
      * for those remote objects which remain unchanged but contain metadata with
      * expired timestamps. This is useful if you want to enlarge cache lifetime
      * for unchanged objects when you deploy new versions of the site.
-     * 
+     *
      * @parameter default-value= false
      */
     private boolean            refreshExpiredObjects;

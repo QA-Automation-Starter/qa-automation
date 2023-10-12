@@ -22,13 +22,13 @@ import dev.aherscu.qa.jgiven.commons.formatters.*;
 
 /**
  * Wraps a {@link Function} with a description.
- * 
+ *
  * @param <T>
  *            the type of input
  *
  * @param <R>
  *            the type of output
- * 
+ *
  * @author Adrian Herscu
  *
  */

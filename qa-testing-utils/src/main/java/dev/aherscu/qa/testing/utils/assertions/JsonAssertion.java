@@ -19,14 +19,14 @@ import org.hamcrest.*;
 
 /**
  * Represents a JSON assertion as a JSON path paired with a Hamcrest matcher.
- * 
+ *
  * <p>
  * NOTE: not designed for serialization
  * </p>
  *
  * @param <M>
  *            type of data to match
- * 
+ *
  * @author aherscu
  */
 @SuppressWarnings("serial")
@@ -36,7 +36,7 @@ public class JsonAssertion<M> extends Assertion<String, M> {
     /**
      * Constructs a JSON assertion without a matcher. Use to assert path
      * existence only.
-     * 
+     *
      * @param jsonPath
      *            the JSON path
      */
@@ -46,7 +46,7 @@ public class JsonAssertion<M> extends Assertion<String, M> {
 
     /**
      * Constructs a JSON assertion with specified matcher.
-     * 
+     *
      * @param jsonPath
      *            the JSON path
      * @param matcher

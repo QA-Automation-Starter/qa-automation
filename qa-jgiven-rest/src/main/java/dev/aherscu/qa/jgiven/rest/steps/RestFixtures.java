@@ -47,7 +47,7 @@ public class RestFixtures<SELF extends RestFixtures<SELF>>
 
     /**
      * Keeps a {@link Client} for later operations.
-     * 
+     *
      * @param aClient
      *            a REST client
      *

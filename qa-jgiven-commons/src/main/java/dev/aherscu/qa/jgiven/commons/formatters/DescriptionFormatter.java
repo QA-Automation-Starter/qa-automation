@@ -24,7 +24,7 @@ import com.tngtech.jgiven.format.*;
 
 /**
  * Annotation formatter for objects with {@link HasDescription}.
- * 
+ *
  * @author aherscu
  *
  */

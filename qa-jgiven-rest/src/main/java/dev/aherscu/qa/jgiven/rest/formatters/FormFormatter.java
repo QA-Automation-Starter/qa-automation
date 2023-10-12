@@ -27,7 +27,7 @@ import com.tngtech.jgiven.format.*;
 
 /**
  * Annotation formatter for {@link Form} objects.
- * 
+ *
  * @author aherscu
  *
  */

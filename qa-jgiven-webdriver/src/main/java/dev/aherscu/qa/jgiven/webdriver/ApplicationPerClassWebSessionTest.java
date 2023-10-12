@@ -70,7 +70,7 @@ public abstract class ApplicationPerClassWebSessionTest<C extends WebDriverConfi
         log.debug("after class quitting web driver");
         requireNonNull(webDriver.get(),
             "web driver not initialized nothing to quit")
-                .safelyQuit();
+            .safelyQuit();
     }
 
     /**
@@ -105,7 +105,7 @@ public abstract class ApplicationPerClassWebSessionTest<C extends WebDriverConfi
 
     /**
      * Continues on same device session without recovery.
-     * 
+     *
      * @see #continuing_section(Runnable)
      */
     protected void continuing_section() {

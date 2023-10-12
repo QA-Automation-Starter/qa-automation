@@ -23,7 +23,7 @@ import com.tngtech.jgiven.annotation.*;
 
 /**
  * Database testing annotation.
- * 
+ *
  * @author aherscu
  *
  */

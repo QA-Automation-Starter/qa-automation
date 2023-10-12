@@ -143,7 +143,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
     /**
      * Attaches specified text. Useful for attaching JSON, XML, or just plain
      * text. Override to customize, e.g. to shorten or format the text.
-     * 
+     *
      * @param text
      *            the text to attach
      * @return the attached text

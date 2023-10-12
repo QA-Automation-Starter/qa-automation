@@ -25,7 +25,7 @@ import lombok.extern.slf4j.*;
 
 /**
  * Parallel looping with specified threads, repetitions and block of code.
- * 
+ *
  * <p>
  * NOTE: there is a library class at
  * https://github.com/pablormier/parallel-loops
@@ -56,7 +56,7 @@ public final class ParallelLoop {
 
     /**
      * Runs specified function in configured loop.
-     * 
+     *
      * @param function
      *            the function to run; is called with the run identifier and
      *            expected to return it
@@ -79,7 +79,7 @@ public final class ParallelLoop {
 
     /**
      * Runs specified consumer in configured loop.
-     * 
+     *
      * @param consumer
      *            the consumer to run; is called with the run identifier.
      */

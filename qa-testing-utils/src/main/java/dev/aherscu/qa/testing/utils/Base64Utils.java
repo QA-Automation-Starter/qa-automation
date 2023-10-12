@@ -33,11 +33,11 @@ public class Base64Utils {
     /**
      * Encodes a specified UUID in short textual format compatible with URI
      * spec.
-     * 
+     *
      * @param uuid
      *            a UUID (16 bytes)
      * @return a 22 character Base64-encoded string of given UUID
-     * 
+     *
      * @throws NullPointerException
      *             if the UUID is null
      */
@@ -55,7 +55,7 @@ public class Base64Utils {
     /**
      * Encodes a specified long in short textual format compatible with URI
      * spec.
-     * 
+     *
      * @param l
      *            a long (8-bytes)
      * @return a 11 character Base64-encoded string of given long

@@ -26,11 +26,11 @@ import edu.umd.cs.findbugs.annotations.*;
  * Logs the information passing through an output stream at
  * <strong>trace</strong> level. The information will be logged upon
  * {@link #close()}.
- * 
+ *
  * @see Logger
- * 
+ *
  * @author aherscu
- * 
+ *
  */
 @SuppressFBWarnings("LO_SUSPECT_LOG_PARAMETER")
 public class LoggingOutputStream
@@ -39,7 +39,7 @@ public class LoggingOutputStream
 
     /**
      * Initializes a logging output stream.
-     * 
+     *
      * @param output
      *            the output stream to log
      * @param logger

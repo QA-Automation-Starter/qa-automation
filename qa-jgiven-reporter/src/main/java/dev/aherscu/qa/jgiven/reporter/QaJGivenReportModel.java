@@ -56,7 +56,7 @@ import lombok.extern.slf4j.*;
  * </p>
  *
  * @see AbstractQaJgivenReporter
- * 
+ *
  * @param <T>
  *            one of JGiven's report models: {@link CompleteReportModel},
  *            {@link ScenarioModel}, or {@link ReportModelFile}

@@ -30,7 +30,7 @@ import com.tngtech.jgiven.format.*;
 
 /**
  * Annotation formatter for {@link Capabilities} objects.
- * 
+ *
  * @author aherscu
  *
  */

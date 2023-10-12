@@ -32,7 +32,7 @@ import lombok.extern.slf4j.*;
 
 /**
  * Template utilities.
- * 
+ *
  * @author aherscu
  *
  */

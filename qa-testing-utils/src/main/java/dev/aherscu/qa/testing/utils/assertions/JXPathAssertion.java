@@ -17,14 +17,14 @@ package dev.aherscu.qa.testing.utils.assertions;
 
 /**
  * Represents an JXPath assertion as a path paired with a Hamcrest matcher.
- * 
+ *
  * <p>
  * NOTE: not designed for serialization
  * </p>
  *
  * @param <M>
  *            type of data to match
- * 
+ *
  * @author aherscu
  */
 @SuppressWarnings("serial")
@@ -34,7 +34,7 @@ public class JXPathAssertion<M> extends Assertion<String, M> {
     /**
      * Constructs a JXPath assertion without and expected value. Use to assert
      * path existence only.
-     * 
+     *
      * @param jxpath
      *            the JXPath
      */

@@ -28,7 +28,7 @@ import dev.aherscu.qa.testing.utils.*;
 
 /**
  * Formatter for {@link Object}s.
- * 
+ *
  * @author aherscu
  *
  */

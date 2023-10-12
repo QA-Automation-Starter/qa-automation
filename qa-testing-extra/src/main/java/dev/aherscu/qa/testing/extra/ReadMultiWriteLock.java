@@ -26,7 +26,7 @@ import lombok.extern.slf4j.*;
 /**
  * Based on
  * http://tutorials.jenkov.com/java-concurrency/read-write-locks.html#simple
- * 
+ *
  * <p>
  * Allows for multiple writers.
  * </p>
@@ -94,7 +94,7 @@ public class ReadMultiWriteLock {
 
     /**
      * Waits for writers to finish and accounts for another reader lock.
-     * 
+     *
      * @throws InterruptedException
      *             if this thread was interrupted
      */
@@ -117,7 +117,7 @@ public class ReadMultiWriteLock {
 
     /**
      * Waits for readers to finish and accounts for another writer lock.
-     * 
+     *
      * @throws InterruptedException
      *             if this thread was interrupted
      */

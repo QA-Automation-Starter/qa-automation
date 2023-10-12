@@ -27,7 +27,7 @@ import lombok.extern.slf4j.*;
 
 /**
  * Provides common XML marshalling over REST.
- * 
+ *
  * @author aherscu
  *
  * @param <T>
@@ -38,7 +38,7 @@ public abstract class AbstractJaxbWriteableProvider<T>
     extends AbstractWriteableProvider<T> {
     /**
      * The root XML element name to use when marshalling.
-     * 
+     *
      * @see #writeTo(Object, Class, Type, Annotation[], MediaType,
      *      MultivaluedMap, OutputStream)
      */
@@ -46,7 +46,7 @@ public abstract class AbstractJaxbWriteableProvider<T>
 
     /**
      * Initializes this provider to use a specified root XML element name.
-     * 
+     *
      * @param elementName
      *            to be used as the name of the root XML element
      */

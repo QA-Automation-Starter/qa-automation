@@ -39,7 +39,7 @@ public class UrlUtils {
 
     /**
      * Checks whether specified URL is well-formed.
-     * 
+     *
      * @param url
      *            the URL to check
      * @return true if URL is well-formed, namely if {@code new URL(url)} does
@@ -59,7 +59,7 @@ public class UrlUtils {
     /**
      * Sneakily re-throws the {@link MalformedURLException} thrown by
      * {@link URL#URL(String)}.
-     * 
+     *
      * @param url
      *            the {@code String} to parse as a URL
      * @return {@link URL}

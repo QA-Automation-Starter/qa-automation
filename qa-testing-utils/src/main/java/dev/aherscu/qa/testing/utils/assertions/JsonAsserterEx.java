@@ -27,7 +27,7 @@ public interface JsonAsserterEx extends JsonAsserter {
 
     /**
      * Asserts that expected contents match.
-     * 
+     *
      * @param expectedContents
      *            the expected contents
      *
@@ -38,7 +38,7 @@ public interface JsonAsserterEx extends JsonAsserter {
 
     /**
      * Asserts that expected contents match.
-     * 
+     *
      * @param expectedContents
      *            the expected contents
      *

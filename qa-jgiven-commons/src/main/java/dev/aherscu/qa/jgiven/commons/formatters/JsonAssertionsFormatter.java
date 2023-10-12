@@ -30,7 +30,7 @@ import dev.aherscu.qa.testing.utils.assertions.*;
 
 /**
  * Annotation formatter for JSON paths.
- * 
+ *
  * @author aherscu
  *
  */

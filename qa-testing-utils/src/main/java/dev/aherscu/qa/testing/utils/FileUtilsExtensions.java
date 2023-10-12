@@ -30,7 +30,7 @@ import lombok.experimental.*;
 
 /**
  * Provides encoding-safe file readers and writers.
- * 
+ *
  * @author aherscu
  *
  */
@@ -40,12 +40,12 @@ public final class FileUtilsExtensions extends FileUtils {
      * Reads lines from source file and appends them into target file, checking
      * whether the parent directory exists, and creating it if it does not
      * exist.
-     * 
+     *
      * @param sourceFile
      *            the source file
      * @param targetFile
      *            the target file
-     * 
+     *
      * @throws IOException
      *             in case of an I/O error
      */
@@ -68,7 +68,7 @@ public final class FileUtilsExtensions extends FileUtils {
 
     /**
      * Constructs a {@link File} by specified name relative to specified class.
-     * 
+     *
      * @param clazz
      *            the class from which package to compute
      * @param name
@@ -78,12 +78,12 @@ public final class FileUtilsExtensions extends FileUtils {
     public static File file(final Class<?> clazz, final String name) {
         return new File(requireNonNull(clazz.getResource(name),
             name + "resource missing")
-                .getPath());
+            .getPath());
     }
 
     /**
      * Constructs a {@link FileReader} using {@link StandardCharsets#UTF_8}.
-     * 
+     *
      * @param from
      *            the file from which to read
      * @return the reader
@@ -96,7 +96,7 @@ public final class FileUtilsExtensions extends FileUtils {
 
     /**
      * Constructs a {@link FileWriter} using {@link StandardCharsets#UTF_8}.
-     * 
+     *
      * @param to
      *            the file to which to write
      * @return the writer

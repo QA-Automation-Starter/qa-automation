@@ -23,16 +23,16 @@ import lombok.experimental.*;
 
 /**
  * Provides REST client utility functions.
- * 
+ *
  * @author aherscu
- * 
+ *
  */
 @UtilityClass
 public final class RestClientUtils {
 
     /**
      * Tests whether the status is successful.
-     * 
+     *
      * @param status
      *            the REST status
      * @return true if the status belongs to {@link Family#SUCCESSFUL}
@@ -43,7 +43,7 @@ public final class RestClientUtils {
 
     /**
      * Tests whether the status is unauthorised.
-     * 
+     *
      * @param status
      *            the REST status
      * @return true if the status was {@link Status#UNAUTHORIZED}

@@ -44,7 +44,7 @@ public class StepModelPatchAspect {
     /**
      * Monitors attempts to set step method's duration. If the duration is
      * already set, then overrides to do nothing.
-     * 
+     *
      * @param thisJoinPoint
      *            this join-point
      * @param stepModel

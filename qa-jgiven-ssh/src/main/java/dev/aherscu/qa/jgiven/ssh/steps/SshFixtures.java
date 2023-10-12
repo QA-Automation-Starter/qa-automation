@@ -86,10 +86,10 @@ public class SshFixtures<SELF extends SshFixtures<SELF>>
     /**
      * Sets up a specific SSH configuration; otherwise the {@link DefaultConfig}
      * will be used.
-     * 
+     *
      * @param config
      *            the configuration to use
-     * 
+     *
      * @return {@link #self()}
      */
     public SELF an_SSH_client_configuration(final Config config) {
@@ -100,7 +100,7 @@ public class SshFixtures<SELF extends SshFixtures<SELF>>
     /**
      * Sets the connection timeout on the given SSH client; otherwise
      * {@link ConnectionDefaults#DEFAULT_CONNECTION_TIMEOUT}.
-     * 
+     *
      * @param millis
      *            the read timeout interval, in milliseconds.
      *
@@ -115,7 +115,7 @@ public class SshFixtures<SELF extends SshFixtures<SELF>>
     /**
      * Sets the execution output on the given SSH client; otherwise
      * {@link System#err}.
-     * 
+     *
      * @param target
      *            the target output stream
      *
@@ -129,7 +129,7 @@ public class SshFixtures<SELF extends SshFixtures<SELF>>
     /**
      * Sets the execution timeout on the given SSH client; otherwise
      * {@link ConnectionDefaults#DEFAULT_EXECUTION_TIMEOUT}.
-     * 
+     *
      * @param millis
      *            the read timeout interval, in milliseconds.
      *
@@ -144,7 +144,7 @@ public class SshFixtures<SELF extends SshFixtures<SELF>>
     /**
      * Sets the read timeout on the given SSH client; otherwise
      * {@link ConnectionDefaults#DEFAULT_READ_TIMEOUT}.
-     * 
+     *
      * @param millis
      *            the read timeout interval, in milliseconds.
      *

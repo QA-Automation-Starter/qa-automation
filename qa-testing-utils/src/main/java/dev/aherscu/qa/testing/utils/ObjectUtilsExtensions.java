@@ -29,7 +29,7 @@ import lombok.experimental.*;
 
 /**
  * Object utilities.
- * 
+ *
  * @author aherscu
  *
  */
@@ -98,7 +98,7 @@ public final class ObjectUtilsExtensions extends ObjectUtils {
     /**
      * Returns a string representation of specified object, while keeping the
      * length of its fields to the specified length.
-     * 
+     *
      * @param obj
      *            the object from which to extract the string
      * @param separator

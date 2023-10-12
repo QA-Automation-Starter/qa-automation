@@ -26,7 +26,7 @@ import lombok.extern.slf4j.*;
 
 /**
  * Holds the classes comprising a REST application.
- * 
+ *
  * @author aherscu
  *
  */
@@ -38,7 +38,7 @@ public abstract class AbstractRestApplication extends Application {
     /**
      * Sets up an REST application by scanning a given package for {@link Path}
      * annotated classes.
-     * 
+     *
      * @param packageName
      *            the name of the package to scan
      */

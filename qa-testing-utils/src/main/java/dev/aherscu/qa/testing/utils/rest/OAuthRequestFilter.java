@@ -35,7 +35,7 @@ import lombok.extern.jackson.*;
  * <p>
  * Your concrete implementation may look like this:
  * </p>
- * 
+ *
  * <pre>
  * protected TokenBlock retrieveTokenBlockFor(
  *     final ClientRequestContext context) {
