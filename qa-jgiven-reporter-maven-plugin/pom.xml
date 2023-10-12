@@ -95,7 +95,7 @@
       <artifactId>junit</artifactId>
       <!-- NOTE: this version matches the one used by
         maven-plugin-testing-harness above -->
-      <version>3.8.1</version>
+      <version>3.8.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

@@ -158,7 +158,7 @@
       <artifactId>junit</artifactId>
       <!-- NOTE: this version matches the one used by
         maven-plugin-testing-harness above -->
-      <version>3.8.1</version>
+      <version>3.8.2</version>
       <scope>test</scope>
     </dependency>
 
@@ -189,6 +189,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>jaxb2-maven-plugin</artifactId>
+        <!-- ISSUE 3.1.0 fails processing Execution_Set_Run_Results.xsd -->
         <version>2.5.0</version>
         <executions>
           <execution>
