@@ -19,9 +19,8 @@ package dev.aherscu.qa.testing.utils.rest;
 import java.io.*;
 import java.util.function.*;
 
-import javax.ws.rs.ext.*;
-
 import dev.aherscu.qa.testing.utils.logging.*;
+import jakarta.ws.rs.ext.*;
 
 /**
  * Use to log the outbound stream.

@@ -15,11 +15,11 @@
  */
 package dev.aherscu.qa.testing.extra.rest;
 
-import static javax.ws.rs.core.HttpHeaders.*;
+import static jakarta.ws.rs.core.HttpHeaders.*;
 
 import javax.annotation.concurrent.*;
-import javax.ws.rs.client.*;
 
+import jakarta.ws.rs.client.*;
 import lombok.*;
 
 /**

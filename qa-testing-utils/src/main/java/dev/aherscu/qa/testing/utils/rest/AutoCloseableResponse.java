@@ -17,9 +17,8 @@ package dev.aherscu.qa.testing.utils.rest;
 
 import java.lang.SuppressWarnings;
 
-import javax.ws.rs.core.*;
-
 import edu.umd.cs.findbugs.annotations.*;
+import jakarta.ws.rs.core.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 

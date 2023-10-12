@@ -15,8 +15,7 @@
  */
 package dev.aherscu.qa.testing.utils.rest;
 
-import javax.ws.rs.client.*;
-
+import jakarta.ws.rs.client.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
 

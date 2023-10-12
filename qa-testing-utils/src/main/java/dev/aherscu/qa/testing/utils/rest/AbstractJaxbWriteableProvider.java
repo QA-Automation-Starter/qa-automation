@@ -19,10 +19,10 @@ import java.io.*;
 import java.lang.annotation.*;
 import java.lang.reflect.*;
 
-import javax.ws.rs.core.*;
 import javax.xml.bind.*;
 import javax.xml.namespace.*;
 
+import jakarta.ws.rs.core.*;
 import lombok.extern.slf4j.*;
 
 /**

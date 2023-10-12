@@ -17,8 +17,8 @@ package dev.aherscu.qa.jgiven.rest.scenarios;
 
 import java.net.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.client.*;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.client.*;
 
 import org.testng.annotations.*;
 

@@ -26,7 +26,7 @@ import static dev.aherscu.qa.testing.utils.rest.LoggingClientBuilder.*;
 import java.io.*;
 import java.net.*;
 
-import javax.ws.rs.client.*;
+import jakarta.ws.rs.client.*;
 
 import org.apache.maven.plugin.testing.*;
 

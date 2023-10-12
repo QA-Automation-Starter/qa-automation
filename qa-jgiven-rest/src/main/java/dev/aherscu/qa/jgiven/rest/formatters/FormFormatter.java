@@ -18,12 +18,13 @@ package dev.aherscu.qa.jgiven.rest.formatters;
 import java.lang.annotation.*;
 
 import javax.annotation.concurrent.*;
-import javax.ws.rs.core.*;
 
 import org.openqa.selenium.*;
 
 import com.tngtech.jgiven.annotation.*;
 import com.tngtech.jgiven.format.*;
+
+import jakarta.ws.rs.core.*;
 
 /**
  * Annotation formatter for {@link Form} objects.

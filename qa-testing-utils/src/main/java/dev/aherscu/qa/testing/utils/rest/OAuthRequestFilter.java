@@ -15,17 +15,16 @@
  */
 package dev.aherscu.qa.testing.utils.rest;
 
+import static jakarta.ws.rs.core.HttpHeaders.*;
 import static java.util.Objects.*;
-import static javax.ws.rs.core.HttpHeaders.*;
 import static org.apache.commons.lang3.StringUtils.*;
 
 import java.time.*;
 
-import javax.ws.rs.client.*;
-
 import com.fasterxml.jackson.annotation.*;
 import com.google.common.cache.*;
 
+import jakarta.ws.rs.client.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.jackson.*;

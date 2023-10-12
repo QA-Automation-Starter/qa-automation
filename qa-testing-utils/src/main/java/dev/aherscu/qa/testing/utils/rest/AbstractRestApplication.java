@@ -17,11 +17,10 @@ package dev.aherscu.qa.testing.utils.rest;
 
 import java.util.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-
 import org.reflections.*;
 
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.*;
 import lombok.extern.slf4j.*;
 
 /**

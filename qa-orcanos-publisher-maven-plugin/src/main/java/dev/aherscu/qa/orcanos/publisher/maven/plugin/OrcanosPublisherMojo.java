@@ -19,12 +19,12 @@ package dev.aherscu.qa.orcanos.publisher.maven.plugin;
 import static dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter.*;
 import static dev.aherscu.qa.testing.utils.FileUtilsExtensions.*;
 import static dev.aherscu.qa.testing.utils.UriUtils.*;
+import static jakarta.ws.rs.client.Entity.*;
+import static jakarta.ws.rs.core.MediaType.*;
 import static java.text.MessageFormat.*;
 import static java.util.Objects.*;
 import static java.util.UUID.*;
 import static java.util.regex.Pattern.*;
-import static javax.ws.rs.client.Entity.*;
-import static javax.ws.rs.core.MediaType.*;
 import static org.apache.commons.io.IOUtils.*;
 import static org.glassfish.jersey.client.ClientProperties.*;
 
@@ -32,9 +32,6 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import java.util.regex.*;
-
-import javax.ws.rs.*;
-import javax.ws.rs.client.*;
 
 import org.apache.commons.io.filefilter.*;
 import org.apache.maven.plugin.*;
@@ -49,6 +46,8 @@ import org.jooq.lambda.*;
 import dev.aherscu.qa.orcanos.publisher.maven.plugin.model.*;
 import dev.aherscu.qa.testing.utils.*;
 import dev.aherscu.qa.testing.utils.rest.*;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.client.*;
 import lombok.*;
 
 /**

@@ -18,12 +18,12 @@ package dev.aherscu.qa.jgiven.rest.steps;
 import static java.util.Objects.*;
 
 import javax.annotation.concurrent.*;
-import javax.ws.rs.client.*;
 
 import com.tngtech.jgiven.annotation.*;
 
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
+import jakarta.ws.rs.client.*;
 import lombok.extern.slf4j.*;
 
 /**

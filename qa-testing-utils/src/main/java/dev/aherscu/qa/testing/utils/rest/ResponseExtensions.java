@@ -15,9 +15,8 @@
  */
 package dev.aherscu.qa.testing.utils.rest;
 
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.*;
-
+import jakarta.ws.rs.client.*;
+import jakarta.ws.rs.core.*;
 import lombok.experimental.*;
 
 /**

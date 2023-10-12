@@ -18,8 +18,8 @@ package dev.aherscu.qa.testing.utils.rest;
 import java.text.*;
 import java.util.function.*;
 
-import javax.ws.rs.client.*;
-import javax.ws.rs.ext.*;
+import jakarta.ws.rs.client.*;
+import jakarta.ws.rs.ext.*;
 
 /**
  * Logs client JAX-RS requests.

@@ -18,8 +18,8 @@ package dev.aherscu.qa.testing.utils.rest;
 import java.lang.annotation.*;
 import java.lang.reflect.*;
 
-import javax.ws.rs.core.*;
-import javax.ws.rs.ext.*;
+import jakarta.ws.rs.core.*;
+import jakarta.ws.rs.ext.*;
 
 /**
  * Provides common implementation.
