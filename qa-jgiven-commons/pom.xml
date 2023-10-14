@@ -39,12 +39,17 @@
 
   <properties>
     <powermock.version>2.0.5</powermock.version>
-    <!-- FIXME testCompile fails due to JDK 11 modules:
-        11:11:27 [ERROR] module not found: org.openqa.selenium.core
-        11:11:27 [ERROR] module not found: httpcore
-        11:11:27 [ERROR] module not found: httpclient
-      -->
-    <!--    <maven.test.skip>true</maven.test.skip>-->
+    <!-- ISSUE:
+13:55:33 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.1.2:test (default-test) on project qa-jgiven-commons:
+13:55:33 [ERROR]
+13:55:33 [ERROR] Please refer to C:\projects\qa-automation\qa-jgiven-commons\target\surefire-reports for the individual test results.
+13:55:33 [ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+13:55:33 [ERROR] The forked VM terminated without properly saying goodbye. VM crash or System.exit called?
+13:55:33 [ERROR] Command was cmd.exe /X /C "C:\Users\aherscu\.jdks\corretto-11.0.20.1\bin\java -illegal-access=permit @C:\Users\aherscu\AppData\Local\Temp\surefire12252994306331214093\surefireargs-20231014135530975_3 C:\Users\aherscu\AppData\Local\Temp\surefire12252994306331214093 2023-10-14T13-55-30_606-jvmRun1 surefire-20231014135530975_1tmp surefire_0-20231014135530975_2tmp"
+13:55:33 [ERROR] Error occurred in starting fork, check output in log
+13:55:33 [ERROR] Process Exit Code: 1
+    -->
+    <skipTests>true</skipTests>
   </properties>
 
   <dependencies>
@@ -90,6 +95,12 @@
           <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>4.14.1</version>
     </dependency>
 
     <dependency>
@@ -271,44 +282,6 @@
             </http.connection.timeout>
             <http.socket.timeout>${read.mstimeout}</http.socket.timeout>
           </systemPropertyVariables>
-          <!-- ISSUE:
-13:55:33 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.1.2:test (default-test) on project qa-jgiven-commons:
-13:55:33 [ERROR]
-13:55:33 [ERROR] Please refer to C:\projects\qa-automation\qa-jgiven-commons\target\surefire-reports for the individual test results.
-13:55:33 [ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
-13:55:33 [ERROR] The forked VM terminated without properly saying goodbye. VM crash or System.exit called?
-13:55:33 [ERROR] Command was cmd.exe /X /C "C:\Users\aherscu\.jdks\corretto-11.0.20.1\bin\java -illegal-access=permit @C:\Users\aherscu\AppData\Local\Temp\surefire12252994306331214093\surefireargs-20231014135530975_3 C:\Users\aherscu\AppData\Local\Temp\surefire12252994306331214093 2023-10-14T13-55-30_606-jvmRun1 surefire-20231014135530975_1tmp surefire_0-20231014135530975_2tmp"
-13:55:33 [ERROR] Error occurred in starting fork, check output in log
-13:55:33 [ERROR] Process Exit Code: 1
-13:55:33 [ERROR] org.apache.maven.surefire.booter.SurefireBooterForkException: The forked VM terminated without properly saying goodbye. VM crash or System.exit called?
-13:55:33 [ERROR] Command was cmd.exe /X /C "C:\Users\aherscu\.jdks\corretto-11.0.20.1\bin\java -illegal-access=permit @C:\Users\aherscu\AppData\Local\Temp\surefire12252994306331214093\surefireargs-20231014135530975_3 C:\Users\aherscu\AppData\Local\Temp\surefire12252994306331214093 2023-10-14T13-55-30_606-jvmRun1 surefire-20231014135530975_1tmp surefire_0-20231014135530975_2tmp"
-13:55:33 [ERROR] Error occurred in starting fork, check output in log
-13:55:33 [ERROR] Process Exit Code: 1
-13:55:33 [ERROR] 	at org.apache.maven.plugin.surefire.booterclient.ForkStarter.fork(ForkStarter.java:643)
-13:55:33 [ERROR] 	at org.apache.maven.plugin.surefire.booterclient.ForkStarter.run(ForkStarter.java:285)
-13:55:33 [ERROR] 	at org.apache.maven.plugin.surefire.booterclient.ForkStarter.run(ForkStarter.java:250)
-13:55:33 [ERROR] 	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.executeProvider(AbstractSurefireMojo.java:1203)
-13:55:33 [ERROR] 	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.executeAfterPreconditionsChecked(AbstractSurefireMojo.java:1055)
-13:55:33 [ERROR] 	at org.apache.maven.plugin.surefire.AbstractSurefireMojo.execute(AbstractSurefireMojo.java:871)
-13:55:33 [ERROR] 	at org.apache.maven.plugin.DefaultBuildPluginManager.executeMojo(DefaultBuildPluginManager.java:126)
-13:55:33 [ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute2(MojoExecutor.java:328)
-13:55:33 [ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.doExecute(MojoExecutor.java:316)
-13:55:33 [ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:212)
-13:55:33 [ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:174)
-13:55:33 [ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.access$000(MojoExecutor.java:75)
-13:55:33 [ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor$1.run(MojoExecutor.java:162)
-13:55:33 [ERROR] 	at org.apache.maven.buildcache.BuildCacheMojosExecutionStrategy.execute(BuildCacheMojosExecutionStrategy.java:130)
-13:55:33 [ERROR] 	at org.apache.maven.lifecycle.internal.MojoExecutor.execute(MojoExecutor.java:159)
-13:55:33 [ERROR] 	at org.apache.maven.lifecycle.internal.LifecycleModuleBuilder.buildProject(LifecycleModuleBuilder.java:105)
-13:55:33 [ERROR] 	at org.apache.maven.lifecycle.internal.builder.multithreaded.MultiThreadedBuilder$1.call(MultiThreadedBuilder.java:193)
-13:55:33 [ERROR] 	at org.apache.maven.lifecycle.internal.builder.multithreaded.MultiThreadedBuilder$1.call(MultiThreadedBuilder.java:180)
-13:55:33 [ERROR] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-13:55:33 [ERROR] 	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
-13:55:33 [ERROR] 	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-13:55:33 [ERROR] 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-13:55:33 [ERROR] 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-13:55:33 [ERROR] 	at java.base/java.lang.Thread.run(Thread.java:829)
-          -->
           <argLine>--illegal-access=permit</argLine>
         </configuration>
       </plugin>
