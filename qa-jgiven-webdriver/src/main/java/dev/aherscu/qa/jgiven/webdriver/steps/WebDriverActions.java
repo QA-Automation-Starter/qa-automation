@@ -27,6 +27,7 @@ import java.util.function.*;
 import javax.annotation.concurrent.*;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.NoSuchContextException;
 import org.openqa.selenium.NoSuchElementException;
 
 import com.tngtech.jgiven.annotation.*;
@@ -34,6 +35,8 @@ import com.tngtech.jgiven.annotation.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.webdriver.model.*;
+import io.appium.java_client.*;
+import io.appium.java_client.remote.*;
 import io.appium.java_client.windows.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
@@ -244,7 +247,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
      * @return #self()
      */
     public SELF rotating_device_to(final ScreenOrientation orientation) {
-        thisWebDriver().asMobile().rotate(orientation);
+        ((SupportsRotation) thisWebDriver()).rotate(orientation);
         return self();
     }
 
@@ -257,7 +260,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
      */
     public SELF sending_application_to_background_for(final Duration duration) {
         log.debug("sending application to background for {}", duration);
-        thisWebDriver().asMobile().runAppInBackground(duration);
+        ((InteractsWithApps) thisWebDriver()).runAppInBackground(duration);
         log.debug("returned from background");
         return self();
     }
@@ -288,7 +291,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
     public SELF terminating_application(final String appId) {
         log.debug("application {} was running and stopped successfully: {}",
             appId,
-            thisWebDriver().asMobile().terminateApp(appId));
+            ((InteractsWithApps) thisWebDriver()).terminateApp(appId));
         return self();
     }
 
@@ -364,7 +367,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
     @Hidden
     protected SELF activating_application(final String appId) {
         log.debug("activating application {}", appId);
-        thisWebDriver().asMobile().activateApp(appId);
+        ((InteractsWithApps) thisWebDriver()).activateApp(appId);
         return self();
     }
 
@@ -474,7 +477,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
      */
     @Hidden
     protected SELF switching_to_context(final Predicate<String> byRule) {
-        return context(byRule, thisWebDriver().asMobile());
+        return context(byRule, (ContextAware) thisWebDriver());
     }
 
     /**

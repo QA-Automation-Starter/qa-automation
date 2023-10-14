@@ -121,7 +121,7 @@
 
     <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
 
-    <jgiven.version>1.1.0</jgiven.version>
+    <jgiven.version>1.3.0</jgiven.version>
     <!-- NOTE: may cause the console logs to blow out -->
     <jgiven.report.text>true</jgiven.report.text>
 
@@ -546,8 +546,7 @@
               <jgiven.report.text>${jgiven.report.text}</jgiven.report.text>
               <testng.dtd.http>false</testng.dtd.http>
             </systemPropertyVariables>
-            <argLine>--add-opens java.base/java.io=ALL-UNNAMED -noverify -Dfile.encoding=${project.build.sourceEncoding}
-            </argLine>
+            <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
           </configuration>
         </plugin>
 

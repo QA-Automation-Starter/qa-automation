@@ -90,18 +90,6 @@ public class WebDriverFixtures<SELF extends WebDriverFixtures<SELF>>
     }
 
     /**
-     * Restarts the mobile application in clean state.
-     *
-     * @return #self()
-     */
-    public SELF application_is_restarted_in_clean_state() {
-        val mobileDriver = thisWebDriver().asMobile();
-        log.debug("restarting {}", mobileDriver);
-        mobileDriver.resetApp();
-        return self();
-    }
-
-    /**
      * Opens Web application at specified host if not already open.
      *
      * @param applicationUrl
@@ -138,7 +126,7 @@ public class WebDriverFixtures<SELF extends WebDriverFixtures<SELF>>
      */
     @Hidden
     protected SELF context(final Predicate<String> byRule) {
-        return context(byRule, thisWebDriver().asMobile());
+        return context(byRule, (ContextAware) thisWebDriver());
     }
 
     /**

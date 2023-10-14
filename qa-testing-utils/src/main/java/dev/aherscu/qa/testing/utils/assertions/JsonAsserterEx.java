@@ -15,8 +15,6 @@
  */
 package dev.aherscu.qa.testing.utils.assertions;
 
-import com.jayway.jsonassert.*;
-
 /**
  * Supports asserting on multiple JSON paths.
  *

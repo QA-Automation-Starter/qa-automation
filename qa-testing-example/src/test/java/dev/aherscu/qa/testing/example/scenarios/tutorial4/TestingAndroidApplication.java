@@ -40,8 +40,8 @@ public class TestingAndroidApplication {
 
     @java.lang.SuppressWarnings("serial")
     @SneakyThrows
-    static AndroidDriver<WebElement> localApp() {
-        return new AndroidDriver<>(
+    static AndroidDriver localApp() {
+        return new AndroidDriver(
             new URL("http://127.0.0.1:4723/wd/hub"),
             new DesiredCapabilities() {
                 {
