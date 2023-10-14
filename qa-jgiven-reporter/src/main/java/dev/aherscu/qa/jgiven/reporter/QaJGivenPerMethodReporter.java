@@ -114,8 +114,8 @@ public class QaJGivenPerMethodReporter
             .parallelStream()
             .peek(reportModelFile -> log
                 .debug("reading " + reportModelFile.getName()))
-            .flatMap(reportModelFile -> new ReportModelFileReader()
-                .apply(reportModelFile).model
+            .flatMap(reportModelFile -> new ScenarioJsonReader()
+                .apply(reportModelFile)
                 .getScenarios()
                 .stream()
                 .filter(scenarioModel -> scenarioModel
