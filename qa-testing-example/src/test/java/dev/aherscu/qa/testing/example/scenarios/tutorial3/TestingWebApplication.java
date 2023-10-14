@@ -17,10 +17,10 @@
 package dev.aherscu.qa.testing.example.scenarios.tutorial3;
 
 import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
+import static dev.aherscu.qa.testing.utils.StreamMatchers.allMatch;
 import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static uk.co.probablyfine.matchers.StreamMatchers.*;
 
 import java.util.function.*;
 
