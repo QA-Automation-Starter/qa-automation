@@ -39,8 +39,12 @@
 
   <properties>
     <powermock.version>2.0.5</powermock.version>
-    <!-- FIXME testCompile fails due to JDK 11 modules -->
-    <maven.test.skip>true</maven.test.skip>
+    <!-- FIXME testCompile fails due to JDK 11 modules:
+        11:11:27 [ERROR] module not found: org.openqa.selenium.core
+        11:11:27 [ERROR] module not found: httpcore
+        11:11:27 [ERROR] module not found: httpclient
+      -->
+    <!--    <maven.test.skip>true</maven.test.skip>-->
   </properties>
 
   <dependencies>
