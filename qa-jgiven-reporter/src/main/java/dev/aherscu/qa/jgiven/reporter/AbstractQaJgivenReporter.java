@@ -63,10 +63,9 @@ import lombok.extern.slf4j.*;
 public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenReporter<?, ?>>
     implements IReporter {
 
+    public static final String DEFAULT_DATE_PATTERN     = "yyyy-MMM-dd HH:mm O";
     public static final String DEFAULT_REFERENCE_TAG    = "Reference";
     public static final String DEFAULT_SCREENSHOT_SCALE = "0.2";
-    public static final String DEFAULT_DATE_PATTERN     = "yyyy-MMM-dd HH:mm O";
-
     @Builder.Default
     protected final File       sourceDirectory          =
         // FIXME Warning:(72, 40) 'Optional.get()' without 'isPresent()' check
@@ -87,19 +86,10 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
     protected final String     referenceTag             = DEFAULT_REFERENCE_TAG;
     protected final String     templateResource;
 
-    // see
-    // https://stackoverflow.com/questions/61633821/using-lombok-superbuilder-annotation-with-tobuilder-on-an-abstract-class
-    public abstract AbstractQaJgivenReporterBuilder<M, T, ?, ?> toBuilder();
-
-    protected Mustache.Compiler compiler() {
-        return Mustache.compiler();
-    }
-
-    protected QaJGivenReportModel<M> reportModel(final File targetReportFile) {
-        return QaJGivenReportModel.<M> builder()
-            .targetReportFile(targetReportFile)
-            .build();
-    }
+    /**
+     * Hook for implementing different reporting strategies.
+     */
+    abstract public void generate();
 
     /**
      * @param xmlSuites
@@ -121,6 +111,78 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
         suites.forEach(suite -> log.info("suite {}", suite.getName()));
 
         xmlSuites.forEach(xmlSuite -> with(xmlSuite).prepare().generate());
+    }
+
+    /**
+     * Prepares the output directory. By default, just makes it if it does not
+     * exist. Multiple executions, without cleaning in-between, may cause
+     * corrupted reports.
+     *
+     * @return this reporter
+     */
+    @SneakyThrows
+    public AbstractQaJgivenReporter<M, T> prepare() {
+        log.info("configuration {}", this);
+
+        forceMkdir(outputDirectory);
+
+        return this;
+    }
+
+    // see
+    // https://stackoverflow.com/questions/61633821/using-lombok-superbuilder-annotation-with-tobuilder-on-an-abstract-class
+    public abstract AbstractQaJgivenReporterBuilder<M, T, ?, ?> toBuilder();
+
+    /**
+     * Hook for customizing the Mustache compiler.
+     * 
+     * @return default Mustache compiler
+     */
+    protected Mustache.Compiler compiler() {
+        return Mustache.compiler();
+    }
+
+    protected final Collection<File> listJGivenReports() {
+        return listFiles(sourceDirectory, new SuffixFileFilter(".json"), null);
+    }
+
+    protected final File reportFile(
+        final File reportModelFile,
+        final String extension) {
+        return new File(outputDirectory, reportModelFile.getName() + extension);
+    }
+
+    /**
+     * Hook for initiating a {@link QaJGivenReportModel}; by default,
+     * initializes with a specified JGiven JSON report file.
+     * 
+     * @param targetReportFile
+     *            JGiven JSON report file
+     * @return the report model
+     */
+    protected QaJGivenReportModel<M> reportModel(final File targetReportFile) {
+        return QaJGivenReportModel.<M> builder()
+            .targetReportFile(targetReportFile)
+            .build();
+    }
+
+    /**
+     * Hook for loading a Mustache template; by default, loads from
+     * {@link #templateResource} specified during construction.
+     * 
+     * @return the template
+     */
+    protected Template template() {
+        return TemplateUtils.using(compiler()).loadFrom(templateResource);
+    }
+
+    protected final String templateResourceParamFrom(
+        final XmlSuite xmlSuite,
+        final String defaultTemplateResource) {
+        return defaultIfBlank(
+            xmlSuite.getParameter(
+                "templateResource" + this.getClass().getSimpleName()),
+            defaultTemplateResource);
     }
 
     /**
@@ -158,38 +220,5 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
             .templateResource(templateResourceParamFrom(xmlSuite,
                 templateResource))
             .build();
-    }
-
-    @SneakyThrows
-    public AbstractQaJgivenReporter<M, T> prepare() {
-        log.info("configuration {}", this);
-
-        forceMkdir(outputDirectory);
-
-        return this;
-    }
-
-    protected String templateResourceParamFrom(
-        final XmlSuite xmlSuite,
-        final String defaultTemplateResource) {
-        return defaultIfBlank(
-            xmlSuite.getParameter(
-                "templateResource" + this.getClass().getSimpleName()),
-            defaultTemplateResource);
-    }
-
-    abstract public void generate();
-
-    protected File reportFile(final File reportModelFile,
-        final String extension) {
-        return new File(outputDirectory, reportModelFile.getName() + extension);
-    }
-
-    protected Collection<File> listJGivenReports() {
-        return listFiles(sourceDirectory, new SuffixFileFilter(".json"), null);
-    }
-
-    protected Template template() {
-        return TemplateUtils.using(compiler()).loadFrom(templateResource);
     }
 }
