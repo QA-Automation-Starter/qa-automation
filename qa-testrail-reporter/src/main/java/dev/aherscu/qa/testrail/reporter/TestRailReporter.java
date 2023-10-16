@@ -19,6 +19,7 @@ package dev.aherscu.qa.testrail.reporter;
 import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.*;
 import static dev.aherscu.qa.testing.utils.UriUtils.*;
 import static java.text.MessageFormat.*;
+import static java.util.Collections.*;
 import static java.util.Objects.*;
 import static org.apache.commons.io.FileUtils.*;
 
@@ -85,7 +86,9 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
     private final String       testRailRunId;
 
     private static Collection<File> listScreenshots(final File directory) {
-        return listFiles(directory, new SuffixFileFilter(".png"), null);
+        return directory.exists()
+            ? listFiles(directory, new SuffixFileFilter(".png"), null)
+            : emptyList();
     }
 
     private static TestRailClient testRailClient(final URI testRailUrl) {
@@ -156,9 +159,6 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
                 testCaseId, testRailRunId, testRailUrl,
                 addResultForCaseResponse.testId);
 
-            // FIXME for each report only its screenshots must be attached
-            // TODO the screenshots must be somehow associated with their report
-            // ISSUE sometimes throws UncheckedIOException
             listScreenshots(
                 new File(outputDirectory, targetNameFor(scenarioModel)))
                     .forEach(file -> {
