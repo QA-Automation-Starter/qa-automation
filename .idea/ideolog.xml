@@ -6,7 +6,7 @@
   </highlightingPatterns>
   <hiddenSubstrings />
   <parsingPatterns>
-    <LogParsingPattern enabled="true" name="mixed-threads" pattern="^(\d+:\d+:\d+\.\d+) \[(\w+)\s*\] \[((\w|:)+)\s*\] \[\d+]:\s.*$" timePattern="HH:mm:ss.SSS" linePattern="^\d+:\d+:\d+\.\d+" timeId="0" severityId="1" categoryId="2" fullmatch="false" uuid="7238f32f-3760-4c2f-8bcb-e36bcee8cb1d" />
+    <LogParsingPattern enabled="true" name="mixed-threads" pattern="^(\d+:\d+:\d+\.\d+) \[(\w+)\s*\] \[((\w|:|\-)+)\s*\] \[\d+]:\s.*$" timePattern="HH:mm:ss.SSS" linePattern="^\d+:\d+:\d+\.\d+" timeId="0" severityId="1" categoryId="2" fullmatch="false" uuid="7238f32f-3760-4c2f-8bcb-e36bcee8cb1d" />
     <LogParsingPattern enabled="true" name="per-thread" pattern="^(\d+:\d+:\d+\.\d+) \[(\w+)\s*\] \[\d+]:\s((\w|$)+)\s.*$" timePattern="HH:mm:ss.SSS" linePattern="^\d+:\d+:\d+\.\d+" timeId="0" severityId="1" categoryId="2" fullmatch="false" uuid="0b5f2929-6799-4119-97e7-e06248afc243" />
   </parsingPatterns>
   <settingsVersion>7</settingsVersion>
