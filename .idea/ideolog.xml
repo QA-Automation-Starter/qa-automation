@@ -1,0 +1,17 @@
+<State>
+  <highlightingPatterns>
+    <LogHighlightingPattern enabled="true" pattern="^ERROR$" action="HIGHLIGHT_LINE" fg="-39836" bold="true" italic="false" stripe="true" uuid="de2d3bb2-78c9-4beb-835e-d483c35c07b6" />
+    <LogHighlightingPattern enabled="true" pattern="^WARN$" action="HIGHLIGHT_LINE" fg="-6329600" bold="true" italic="false" stripe="false" uuid="11ff1574-2118-4722-905a-61bec89b079e" />
+    <LogHighlightingPattern enabled="true" pattern="^INFO$" action="HIGHLIGHT_LINE" fg="-10316203" bold="false" italic="false" stripe="false" uuid="5e882ebc-2179-488b-8e1a-2fe488636f36" />
+  </highlightingPatterns>
+  <hiddenSubstrings />
+  <parsingPatterns>
+    <LogParsingPattern enabled="true" name="mixed-threads" pattern="^(\d+:\d+:\d+\.\d+) \[(\w+)\s*\] \[((\w|:|\-)+)\s*\] \[\d+]:\s.*$" timePattern="HH:mm:ss.SSS" linePattern="^\d+:\d+:\d+\.\d+" timeId="0" severityId="1" categoryId="2" fullmatch="false" uuid="7238f32f-3760-4c2f-8bcb-e36bcee8cb1d" />
+    <LogParsingPattern enabled="true" name="per-thread" pattern="^(\d+:\d+:\d+\.\d+) \[(\w+)\s*\] \[\d+]:\s((\w|$)+)\s.*$" timePattern="HH:mm:ss.SSS" linePattern="^\d+:\d+:\d+\.\d+" timeId="0" severityId="1" categoryId="2" fullmatch="false" uuid="0b5f2929-6799-4119-97e7-e06248afc243" />
+  </parsingPatterns>
+  <settingsVersion>7</settingsVersion>
+  <lastAddedDefaultFormat>b5772998-bf1e-4d9d-ab41-da0b86451163,8a0e8992-94cb-4f4c-8be2-42b03609626b,e9fa2755-8390-42f5-a41e-a909c58c8cf9</lastAddedDefaultFormat>
+  <errorStripeModel>heatmap</errorStripeModel>
+  <readonlySizeThreshold>16</readonlySizeThreshold>
+  <highlight_links>true</highlight_links>
+</State>
