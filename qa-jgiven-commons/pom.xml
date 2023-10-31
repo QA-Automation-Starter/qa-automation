@@ -39,10 +39,11 @@
 
   <properties>
     <powermock.version>2.0.5</powermock.version>
-<!--18:54:44 [ERROR] Error occurred during initialization of boot layer-->
-<!--18:54:44 [INFO] Results:-->
-<!--18:54:44 [INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0-->
-<!--18:54:44 [WARNING] Corrupted channel by directly writing to native stream in forked JVM 1. See FAQ web page and the dump file C:\projects\qa-automation\qa-jgiven-commons\target\surefire-reports\2023-10-30T18-54-37_138-jvmRun1.dumpstream-->
+    <!-- ISSUE surefire fails launching due to JPMS errors; see below -->
+    <!--18:54:44 [ERROR] Error occurred during initialization of boot layer-->
+    <!--18:54:44 [INFO] Results:-->
+    <!--18:54:44 [INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0-->
+    <!--18:54:44 [WARNING] Corrupted channel by directly writing to native stream in forked JVM 1. See FAQ web page and the dump file C:\projects\qa-automation\qa-jgiven-commons\target\surefire-reports\2023-10-30T18-54-37_138-jvmRun1.dumpstream-->
     <skipTests>true</skipTests>
   </properties>
 
@@ -77,6 +78,37 @@
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-testing-utils</artifactId>
       <version>1.0.0-SNAPSHOT</version>
+      <!-- ISSUE does not solve JPMS errors -->
+      <!--exclusions>
+        <exclusion>
+          <groupId>com.github.jknack</groupId>
+          <artifactId>handlebars</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.github.jknack</groupId>
+          <artifactId>handlebars-helpers</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.google.code.findbugs</groupId>
+          <artifactId>jsr305</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>javax.annotation</groupId>
+          <artifactId>javax.annotation-api</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.xmlunit</groupId>
+          <artifactId>xmlunit-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.xmlunit</groupId>
+          <artifactId>xmlunit-legacy</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.xmlunit</groupId>
+          <artifactId>xmlunit-placeholders</artifactId>
+        </exclusion>
+      </exclusions-->
     </dependency>
 
     <dependency>
@@ -119,12 +151,26 @@
       <groupId>com.danhaywood.java</groupId>
       <artifactId>danhaywood-java-assertjext</artifactId>
       <version>0.1.0</version>
+      <!-- ISSUE does not solve JPMS errors -->
+      <!--      <exclusions>-->
+      <!--        <exclusion>-->
+      <!--          <groupId>org.hamcrest</groupId>-->
+      <!--          <artifactId>hamcrest-core</artifactId>-->
+      <!--        </exclusion>-->
+      <!--      </exclusions>-->
     </dependency>
 
     <dependency>
       <groupId>commons-dbutils</groupId>
       <artifactId>commons-dbutils</artifactId>
       <version>1.8.1</version>
+      <!-- ISSUE does not solve JPMS errors -->
+      <!--      <exclusions>-->
+      <!--        <exclusion>-->
+      <!--          <groupId>xmlunit</groupId>-->
+      <!--          <artifactId>xmlunit</artifactId>-->
+      <!--        </exclusion>-->
+      <!--      </exclusions>-->
     </dependency>
 
     <dependency>
@@ -167,6 +213,13 @@
       <groupId>com.tngtech.jgiven</groupId>
       <artifactId>jgiven-testng</artifactId>
       <version>${jgiven.version}</version>
+      <!-- ISSUE does not solve JPMS errors -->
+      <!--      <exclusions>-->
+      <!--        <exclusion>-->
+      <!--          <groupId>com.tngtech.jgiven</groupId>-->
+      <!--          <artifactId>jgiven-html5-report</artifactId>-->
+      <!--        </exclusion>-->
+      <!--      </exclusions>-->
     </dependency>
 
     <dependency>
@@ -229,6 +282,11 @@
           <groupId>commons-logging</groupId>
           <artifactId>commons-logging</artifactId>
         </exclusion>
+        <!-- ISSUE does not solve JPMS errors -->
+        <!--        <exclusion>-->
+        <!--          <groupId>net.sourceforge.htmlunit</groupId>-->
+        <!--          <artifactId>htmlunit-core-js</artifactId>-->
+        <!--        </exclusion>-->
       </exclusions>
     </dependency>
   </dependencies>
