@@ -16,73 +16,49 @@
 
 package dev.aherscu.qa.testing.example.scenarios.tutorial3;
 
-import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
-import static dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingRemoteWebApplication.*;
 import static dev.aherscu.qa.testing.utils.StreamMatchers.*;
+import static java.util.Objects.*;
 import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.openqa.selenium.remote.CapabilityType.*;
 
 import java.net.*;
-import java.util.function.*;
 
-import org.jooq.lambda.*;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.remote.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import edu.umd.cs.findbugs.annotations.*;
-import io.github.bonigarcia.wdm.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
 @Slf4j
-public class TestingWebApplication {
-    private final WebDriver webDriver;
+public class TestingRemoteWebApplication {
+    public final static String SAUCELABS_PASSWORD;
+    public final static String SAUCELABS_URL;
+    public final static String SAUCELABS_USER;
 
-    @Factory(dataProvider = INTERNAL_DATA_PROVIDER)
-    public TestingWebApplication(final Supplier<WebDriver> webDriver) {
-        this.webDriver = webDriver.get();
-        log.trace("testing with {}", webDriver);
+    static {
+        SAUCELABS_PASSWORD =
+            requireNonNull(System.getenv("SAUCELABS_PASSWORD"),
+                "missing SauceLabs password");
+        SAUCELABS_USER =
+            requireNonNull(System.getenv("SAUCELABS_USER"),
+                "missing SauceLabs username");
+        SAUCELABS_URL = String
+            .format("https://%s:%s@ondemand.saucelabs.com:443/wd/hub",
+                SAUCELABS_USER, SAUCELABS_PASSWORD);
     }
 
-    // NOTE: parallel with @Factory requires parallel=instances
-    // see https://github.com/testng-team/testng/issues/1951
-    @DataProvider(parallel = true)
-    private static Object[][] data() {
-        // NOTE we use suppliers in order to lazily create drivers;
-        // thus, only when the test is constructed by TestNG
-        return new Object[][] {
-            // ISSUE Firefox cannot be installed on certain systems
-            // { Unchecked.supplier(() -> {
-            // log.trace("setting up firefox driver");
-            // WebDriverManager.firefoxdriver().setup();
-            // return new FirefoxDriver();
-            // }) },
-            { Unchecked.supplier(() -> {
-                log.trace("setting up chrome driver");
-                WebDriverManager.chromedriver().setup();
-                return new ChromeDriver();
-            }) },
-            { Unchecked.supplier(() -> {
-                log.trace("setting up remote driver");
-                return new RemoteWebDriver(
-                    new URL(SAUCELABS_URL),
-                    new DesiredCapabilitiesEx()
-                        .with(BROWSER_NAME, "firefox"));
-            }) }
-        };
-    }
+    private WebDriver webDriver;
 
     @Test
     public void shouldFind() {
         // NOTE the search keyword must be unique such that it is not
         // translated to other languages or written differently
         val SEARCH_KEYWORD = "testng";
-        log.debug("searching for {} on Google", SEARCH_KEYWORD);
         webDriver.findElement(By.name("q"))
             .sendKeys(SEARCH_KEYWORD + Keys.ENTER);
         assertThat(
@@ -97,7 +73,6 @@ public class TestingWebApplication {
 
     @Test
     public void shouldOpenWeb() {
-        log.debug("window title must contain Google");
         assertThat(webDriver.getTitle(), containsString("Google"));
     }
 
@@ -115,9 +90,24 @@ public class TestingWebApplication {
     @BeforeClass
     @SneakyThrows
     private void beforeClassOpenWebDriver() {
-        log.trace("before connecting selenium");
+        log.trace("connecting saucelabs with {}:{}",
+            SAUCELABS_USER, SAUCELABS_PASSWORD);
+        webDriver = new RemoteWebDriver(new URL(SAUCELABS_URL),
+            new DesiredCapabilitiesEx()
+                .with(BROWSER_NAME, "firefox")
+        // NOTE since Selenium 4, non-standard capabilities must be prefixed;
+        // see https://www.w3.org/TR/webdriver1/#capabilities
+        // and https://docs.saucelabs.com/dev/test-configuration-options/
+        // and
+        // https://docs.saucelabs.com/dev/test-configuration-options/#desktop-and-mobile-capabilities-sauce-specific--optional
+        // and
+        // https://docs.saucelabs.com/mobile-apps/automated-testing/appium/appium-2-migration/
+        // For example,
+        // .with("my:capability", "kuku")
+        );
+
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(10, SECONDS);
-        webDriver.get("https://google.com?hl=en"); // ensure English
+        webDriver.get("https://google.com?hl=en");
     }
 }
