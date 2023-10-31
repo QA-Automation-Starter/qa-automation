@@ -35,10 +35,8 @@ import com.google.common.collect.*;
 import com.google.gson.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
-import io.appium.java_client.*;
 import io.appium.java_client.android.*;
 import io.appium.java_client.ios.*;
-import io.appium.java_client.remote.*;
 import io.appium.java_client.windows.*;
 import io.github.bonigarcia.wdm.*;
 import lombok.*;
