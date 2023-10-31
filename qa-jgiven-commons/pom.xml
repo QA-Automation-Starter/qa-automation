@@ -39,16 +39,10 @@
 
   <properties>
     <powermock.version>2.0.5</powermock.version>
-    <!-- ISSUE:
-13:55:33 [ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.1.2:test (default-test) on project qa-jgiven-commons:
-13:55:33 [ERROR]
-13:55:33 [ERROR] Please refer to C:\projects\qa-automation\qa-jgiven-commons\target\surefire-reports for the individual test results.
-13:55:33 [ERROR] Please refer to dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
-13:55:33 [ERROR] The forked VM terminated without properly saying goodbye. VM crash or System.exit called?
-13:55:33 [ERROR] Command was cmd.exe /X /C "C:\Users\aherscu\.jdks\corretto-11.0.20.1\bin\java -illegal-access=permit @C:\Users\aherscu\AppData\Local\Temp\surefire12252994306331214093\surefireargs-20231014135530975_3 C:\Users\aherscu\AppData\Local\Temp\surefire12252994306331214093 2023-10-14T13-55-30_606-jvmRun1 surefire-20231014135530975_1tmp surefire_0-20231014135530975_2tmp"
-13:55:33 [ERROR] Error occurred in starting fork, check output in log
-13:55:33 [ERROR] Process Exit Code: 1
-    -->
+<!--18:54:44 [ERROR] Error occurred during initialization of boot layer-->
+<!--18:54:44 [INFO] Results:-->
+<!--18:54:44 [INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0-->
+<!--18:54:44 [WARNING] Corrupted channel by directly writing to native stream in forked JVM 1. See FAQ web page and the dump file C:\projects\qa-automation\qa-jgiven-commons\target\surefire-reports\2023-10-30T18-54-37_138-jvmRun1.dumpstream-->
     <skipTests>true</skipTests>
   </properties>
 

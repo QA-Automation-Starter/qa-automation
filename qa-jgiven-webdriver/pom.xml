@@ -33,6 +33,7 @@
   </description>
 
   <properties>
+    <!--Cannot instantiate class dev.aherscu.qa.jgiven.webdriver.scenarios.GenericWebDriverTest-->
     <skipTests>true</skipTests>
   </properties>
 
