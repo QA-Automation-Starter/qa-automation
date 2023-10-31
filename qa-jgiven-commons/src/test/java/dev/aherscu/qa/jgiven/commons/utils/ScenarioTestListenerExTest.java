@@ -18,13 +18,15 @@ package dev.aherscu.qa.jgiven.commons.utils;
 
 import static dev.aherscu.qa.jgiven.commons.utils.ScenarioTestListenerEx.*;
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
-import static io.appium.java_client.remote.MobileCapabilityType.*;
+import static io.appium.java_client.remote.options.SupportsDeviceNameOption.DEVICE_NAME_OPTION;
+import static io.appium.java_client.remote.options.SupportsPlatformVersionOption.PLATFORM_VERSION_OPTION;
 import static java.util.Arrays.*;
 import static java.util.Collections.*;
 import static java.util.stream.Collectors.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
+import static org.openqa.selenium.remote.CapabilityType.*;
 
 import java.util.*;
 
@@ -151,24 +153,24 @@ public class ScenarioTestListenerExTest {
                     // NOTE a method can zero or more WebDriver sessions
                     WebDriverSessionInfo.builder()
                         .capabilities(new DesiredCapabilitiesEx()
-                            .with(DEVICE_NAME, T_DEVICE_2)
+                            .with(DEVICE_NAME_OPTION, T_DEVICE_2)
                             .with(PLATFORM_NAME, T_PLATFORM_2)
-                            .with(PLATFORM_VERSION, T_VERSION_2))
+                            .with(PLATFORM_VERSION_OPTION, T_VERSION_2))
                         .build(),
                     WebDriverSessionInfo.builder()
                         .capabilities(new DesiredCapabilitiesEx()
-                            .with(DEVICE_NAME, T_DEVICE_1)
+                            .with(DEVICE_NAME_OPTION, T_DEVICE_1)
                             .with(PLATFORM_NAME, T_PLATFORM_1)
-                            .with(PLATFORM_VERSION, T_VERSION_1))
+                            .with(PLATFORM_VERSION_OPTION, T_VERSION_1))
                         .build())
                 .putAll(SessionName.builder()
                     .className(CLASS_INCLUDED)
                     .methodName(METHOD_WITH_ONE_SESSION).build(),
                     WebDriverSessionInfo.builder()
                         .capabilities(new DesiredCapabilitiesEx()
-                            .with(DEVICE_NAME, T_DEVICE_1)
+                            .with(DEVICE_NAME_OPTION, T_DEVICE_1)
                             .with(PLATFORM_NAME, T_PLATFORM_1)
-                            .with(PLATFORM_VERSION, T_VERSION_1))
+                            .with(PLATFORM_VERSION_OPTION, T_VERSION_1))
                         .build())
                 .build())
             .onFinish(mockedTestContext);

@@ -15,9 +15,11 @@
  */
 package dev.aherscu.qa.jgiven.webdriver.formatters;
 
-import static io.appium.java_client.remote.MobileCapabilityType.*;
+import static io.appium.java_client.remote.options.SupportsDeviceNameOption.*;
+import static io.appium.java_client.remote.options.SupportsPlatformVersionOption.*;
 import static java.util.Objects.*;
 import static org.apache.commons.lang3.StringUtils.*;
+import static org.openqa.selenium.remote.CapabilityType.*;
 
 import java.lang.annotation.*;
 import java.text.*;
@@ -40,20 +42,6 @@ import lombok.*;
 public class WebDriverFormatter implements
     AnnotationArgumentFormatter<WebDriverFormatter.Annotation> {
 
-    @Override
-    public String format(final Object argumentToFormat,
-        final WebDriverFormatter.Annotation annotation) {
-        if (isNull(argumentToFormat))
-            return EMPTY;
-
-        val capabilities =
-            ((WebDriverEx) argumentToFormat).originalCapabilities;
-        return MessageFormat.format("{0} {1} {2}",
-            capabilities.getCapability(DEVICE_NAME),
-            capabilities.getCapability(PLATFORM_NAME),
-            capabilities.getCapability(PLATFORM_VERSION));
-    }
-
     /**
      * Formatter annotation for WebDriver.
      *
@@ -65,5 +53,19 @@ public class WebDriverFormatter implements
     @Target({ ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })
     public @interface Annotation {
         // no parameter to declare
+    }
+
+    @Override
+    public String format(final Object argumentToFormat,
+        final WebDriverFormatter.Annotation annotation) {
+        if (isNull(argumentToFormat))
+            return EMPTY;
+
+        val capabilities =
+            ((WebDriverEx) argumentToFormat).originalCapabilities;
+        return MessageFormat.format("{0} {1} {2}",
+            capabilities.getCapability(DEVICE_NAME_OPTION),
+            capabilities.getCapability(PLATFORM_NAME),
+            capabilities.getCapability(PLATFORM_VERSION_OPTION));
     }
 }

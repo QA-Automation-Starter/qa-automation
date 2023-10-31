@@ -18,9 +18,11 @@ package dev.aherscu.qa.jgiven.commons.utils;
 
 import static dev.aherscu.qa.jgiven.commons.utils.WebDriverEx.*;
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
-import static io.appium.java_client.remote.MobileCapabilityType.*;
+import static io.appium.java_client.remote.options.SupportsDeviceNameOption.*;
+import static io.appium.java_client.remote.options.SupportsPlatformVersionOption.*;
 import static java.util.Objects.*;
 import static lombok.AccessLevel.*;
+import static org.openqa.selenium.remote.CapabilityType.*;
 
 import java.util.*;
 import java.util.stream.*;
@@ -108,22 +110,22 @@ public final class ScenarioTestListenerEx extends ScenarioTestListener {
         final WebDriverSessionInfo session,
         final ScenarioModel scenario) {
         scenario.addTag(new Tag(DEVICE_NAME_TAG, DEVICE_NAME_TAG,
-            session.capabilities.getCapability(DEVICE_NAME)));
+            session.capabilities.getCapability(DEVICE_NAME_OPTION)));
         scenario.addTag(new Tag(PLATFORM_NAME_TAG, PLATFORM_NAME_TAG,
             session.capabilities.getCapability(PLATFORM_NAME)));
         scenario.addTag(new Tag(PLATFORM_VERSION_TAG, PLATFORM_VERSION_TAG,
-            session.capabilities.getCapability(PLATFORM_VERSION)));
+            session.capabilities.getCapability(PLATFORM_VERSION_OPTION)));
     }
 
     private static void reportSession(
         final WebDriverSessionInfo session,
         final ReportModel reportModel) {
         reportModel.addTag(new Tag(DEVICE_NAME_TAG, DEVICE_NAME_TAG,
-            session.capabilities.getCapability(DEVICE_NAME)));
+            session.capabilities.getCapability(DEVICE_NAME_OPTION)));
         reportModel.addTag(new Tag(PLATFORM_NAME_TAG, PLATFORM_NAME_TAG,
             session.capabilities.getCapability(PLATFORM_NAME)));
         reportModel.addTag(new Tag(PLATFORM_VERSION_TAG, PLATFORM_VERSION_TAG,
-            session.capabilities.getCapability(PLATFORM_VERSION)));
+            session.capabilities.getCapability(PLATFORM_VERSION_OPTION)));
     }
 
     @Override
