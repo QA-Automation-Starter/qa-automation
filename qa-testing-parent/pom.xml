@@ -265,6 +265,8 @@
               <dryrun>${dryrun}</dryrun>
               <screenshots>${screenshots}</screenshots>
               <screenshotDelayMs>500</screenshotDelayMs>
+              <!-- ISSUE Eclipse TestNG launch cannot deal with these two and
+                must be commented out; a profile maybe the long-time solution -->
               <reference.href>
                 <![CDATA[@{StringUtilsExtensions.format('${alm.href}', '(\\d+)', value)}]]></reference.href>
               <reference.templatelink>
