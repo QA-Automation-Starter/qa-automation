@@ -150,13 +150,14 @@ jobs:
         shell: cmd
         # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
         # NOTE will use last released archetype
+        # TODO after 1.0.0 release should change DarchetypeVersion to LATEST
         run: |
           mvn archetype:generate ^
             --batch-mode ^
             -Dmaven.wagon.http.ssl.insecure=true ^
             -DarchetypeGroupId=dev.aherscu.qa ^
             -DarchetypeArtifactId=qa-testing-archetype ^
-            -DarchetypeVersion=LATEST ^
+            -DarchetypeVersion=1.0.0-SNAPSHOT ^
             -DgroupId=com.acme ^
             -DartifactId=testing ^
             -Dversion=0.0.1-SNAPSHOT ^

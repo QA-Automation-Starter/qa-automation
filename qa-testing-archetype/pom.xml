@@ -38,10 +38,9 @@
 
   <properties>
     <spotbugs.skip>true</spotbugs.skip>
-    <!-- FIXME it tries to run with JDK 8 and fails on enforcement -->
-    <archetype.test.skip>true</archetype.test.skip>
   </properties>
 
+  <!-- NOTE must ensure JAVA_HOME points to expected JDK installation -->
   <build>
     <extensions>
       <extension>

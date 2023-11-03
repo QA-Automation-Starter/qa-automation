@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,13 @@
 
 package ${package}.scenarios.tutorial4;
 
-import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static io.appium.java_client.remote.MobilePlatform.*;
+import static io.appium.java_client.remote.options.SupportsAppOption.*;
+import static io.appium.java_client.remote.options.SupportsAutoWebViewOption.*;
+import static io.appium.java_client.remote.options.SupportsDeviceNameOption.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+import static org.openqa.selenium.remote.CapabilityType.*;
 
 import java.io.*;
 import java.net.*;
@@ -39,15 +42,15 @@ public class TestingAndroidApplication {
     private WebDriver webDriver;
 
     @SneakyThrows
-    static AndroidDriver<WebElement> localApp() {
-        return new AndroidDriver<>(
+    static AndroidDriver localApp() {
+        return new AndroidDriver(
             new URL("http://127.0.0.1:4723/wd/hub"),
             new DesiredCapabilities() {
                 {
                     setCapability(PLATFORM_NAME, ANDROID);
-                    setCapability(DEVICE_NAME, "DONTCARE"); // local
-                    setCapability(AUTO_WEBVIEW, true);
-                    setCapability(APP,
+                    setCapability(DEVICE_NAME_OPTION, "DONTCARE"); // local
+                    setCapability(AUTO_WEB_VIEW_OPTION, true);
+                    setCapability(APP_OPTION,
                         new File(System.getProperty("user.dir"), "app.apk")
                             .toString());
                 }
