@@ -95,6 +95,7 @@ public class TestingRemoteWebApplication {
         webDriver = new RemoteWebDriver(new URL(SAUCELABS_URL),
             new DesiredCapabilitiesEx()
                 .with(BROWSER_NAME, "firefox")
+                .with("sauce:name", "selenium 4 test")
         // NOTE since Selenium 4, non-standard capabilities must be prefixed;
         // see https://www.w3.org/TR/webdriver1/#capabilities
         // and https://docs.saucelabs.com/dev/test-configuration-options/

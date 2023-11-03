@@ -257,7 +257,7 @@ public class WebDriverEx {
      */
     public static WebDriverEx from(final Capabilities capabilities) {
         log.debug("connecting session {} with {}",
-            capabilities.getCapability("name"), capabilities);
+            capabilities.getCapability("sauce:name"), capabilities);
 
         return DryRunAspect.dryRun
             ? null
@@ -282,7 +282,7 @@ public class WebDriverEx {
     }
 
     private static void registerSession(final WebDriverEx driver) {
-        val name = driver.originalCapabilities.getCapability("name");
+        val name = driver.originalCapabilities.getCapability("sauce:name");
 
         if (isNull(name)) {
             log.warn("session name missing from capabilities"
@@ -321,7 +321,7 @@ public class WebDriverEx {
     private static Class<? extends WebDriver> webDriverClassFor(
         final Capabilities capabilities) {
         val driverClass = Class.forName(requireNonNull(capabilities
-            .getCapability("class"), "must have a class capability")
+            .getCapability("-x:class"), "must have a class capability")
             .toString())
             .asSubclass(WebDriver.class);
 
@@ -359,17 +359,18 @@ public class WebDriverEx {
     @SneakyThrows
     public static WebDriver webDriverFor(final Capabilities capabilities) {
         try {
-            return nonNull(capabilities.getCapability("url"))
+            return nonNull(capabilities.getCapability("-x:url"))
                 ? webDriverClassFor(capabilities)
                     .getConstructor(URL.class, Capabilities.class)
                     .newInstance(new URL(
-                        capabilities.getCapability("url")
+                        capabilities.getCapability("-x:url")
                             .toString()),
                         capabilities)
                 : webDriverClassFor(capabilities)
-                    .getConstructor(Capabilities.class)
-                    .newInstance(capabilities);
+                    .getDeclaredConstructor()
+                    .newInstance();
         } catch (final InvocationTargetException e) {
+            log.error("remote selenium connection failed");
             throw e.getCause();
         }
     }

@@ -57,7 +57,7 @@ public abstract class AbstractSauceLabsReporter extends TestListenerAdapter {
                 sessionInfo -> {
                     log.trace("succeeded on session {} -> {}",
                         sessionInfo.sessionId.toString(),
-                        sessionInfo.capabilities.getCapability("name"));
+                        sessionInfo.capabilities.getCapability("sauce:name"));
                     sauceLabs()
                         .jobPassed(sessionInfo.sessionId.toString());
                 });
@@ -76,7 +76,7 @@ public abstract class AbstractSauceLabsReporter extends TestListenerAdapter {
                 sessionInfo -> {
                     log.trace("failed on session {} -> {}",
                         sessionInfo.sessionId.toString(),
-                        sessionInfo.capabilities.getCapability("name"));
+                        sessionInfo.capabilities.getCapability("sauce:name"));
                     sauceLabs()
                         .jobFailed(sessionInfo.sessionId.toString());
                 });
