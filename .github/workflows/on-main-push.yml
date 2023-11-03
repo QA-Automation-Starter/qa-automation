@@ -102,6 +102,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
       - name: setup maven for sonatype snapshots
         uses: whelk-io/maven-settings-xml-action@v20
         with:
