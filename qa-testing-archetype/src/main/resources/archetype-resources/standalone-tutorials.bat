@@ -7,7 +7,7 @@ if [%TEST_JAR%]==[] (
     echo INFO: run "mvn package -Pgenerate-standalone" to generate the test jar
     exit /b 1
 )
-java ^
+%JAVA_HOME%\bin\java ^
 -Dlog.root.level=info ^
 -Dlogback.configurationFile=logback-test.xml ^
 -Dpoll.timeout=15 ^
