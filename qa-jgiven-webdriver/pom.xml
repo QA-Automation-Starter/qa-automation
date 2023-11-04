@@ -32,11 +32,6 @@
     and support for taking screenshots.
   </description>
 
-  <properties>
-    <!--Cannot instantiate class dev.aherscu.qa.jgiven.webdriver.scenarios.GenericWebDriverTest-->
-    <skipTests>true</skipTests>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
@@ -56,6 +51,10 @@
         <exclusion>
           <groupId>commons-logging</groupId>
           <artifactId>commons-logging</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.eclipse.jetty.websocket</groupId>
+          <artifactId>websocket-client</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
