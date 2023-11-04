@@ -44,7 +44,8 @@
     <!--18:54:44 [INFO] Results:-->
     <!--18:54:44 [INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0-->
     <!--18:54:44 [WARNING] Corrupted channel by directly writing to native stream in forked JVM 1. See FAQ web page and the dump file C:\projects\qa-automation\qa-jgiven-commons\target\surefire-reports\2023-10-30T18-54-37_138-jvmRun1.dumpstream-->
-    <skipTests>true</skipTests>
+    <!-- https://github.com/wiremock/wiremock/issues/2480 -->
+    <skipTests>false</skipTests>
   </properties>
 
   <dependencies>
@@ -71,7 +72,7 @@
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-core</artifactId>
-      <version>4.2.20</version>
+      <version>4.2.21</version>
     </dependency>
 
     <dependency>
@@ -79,7 +80,7 @@
       <artifactId>qa-testing-utils</artifactId>
       <version>1.0.0-SNAPSHOT</version>
       <!-- ISSUE does not solve JPMS errors -->
-      <!--exclusions>
+      <exclusions>
         <exclusion>
           <groupId>com.github.jknack</groupId>
           <artifactId>handlebars</artifactId>
@@ -108,7 +109,7 @@
           <groupId>org.xmlunit</groupId>
           <artifactId>xmlunit-placeholders</artifactId>
         </exclusion>
-      </exclusions-->
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -133,6 +134,16 @@
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
       <version>5.5.3</version>
+      <exclusions>
+        <exclusion>
+          <groupId>com.github.docker-java</groupId>
+          <artifactId>docker-java</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.github.docker-java</groupId>
+          <artifactId>docker-java-transport-httpclient5</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -151,13 +162,12 @@
       <groupId>com.danhaywood.java</groupId>
       <artifactId>danhaywood-java-assertjext</artifactId>
       <version>0.1.0</version>
-      <!-- ISSUE does not solve JPMS errors -->
-      <!--      <exclusions>-->
-      <!--        <exclusion>-->
-      <!--          <groupId>org.hamcrest</groupId>-->
-      <!--          <artifactId>hamcrest-core</artifactId>-->
-      <!--        </exclusion>-->
-      <!--      </exclusions>-->
+      <exclusions>
+        <exclusion>
+          <groupId>org.hamcrest</groupId>
+          <artifactId>hamcrest-core</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -189,6 +199,12 @@
       <groupId>org.unitils</groupId>
       <artifactId>unitils-io</artifactId>
       <version>3.4.6</version>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -199,6 +215,14 @@
         <exclusion>
           <groupId>org.slf4j</groupId>
           <artifactId>slf4j-nop</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>xmlunit</groupId>
+          <artifactId>xmlunit</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
     </dependency>
@@ -214,12 +238,12 @@
       <artifactId>jgiven-testng</artifactId>
       <version>${jgiven.version}</version>
       <!-- ISSUE does not solve JPMS errors -->
-      <!--      <exclusions>-->
-      <!--        <exclusion>-->
-      <!--          <groupId>com.tngtech.jgiven</groupId>-->
-      <!--          <artifactId>jgiven-html5-report</artifactId>-->
-      <!--        </exclusion>-->
-      <!--      </exclusions>-->
+      <exclusions>
+        <exclusion>
+          <groupId>com.tngtech.jgiven</groupId>
+          <artifactId>jgiven-html5-report</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -275,7 +299,7 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
-      <version>2.70.0</version>
+      <version>4.13.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -283,10 +307,10 @@
           <artifactId>commons-logging</artifactId>
         </exclusion>
         <!-- ISSUE does not solve JPMS errors -->
-        <!--        <exclusion>-->
-        <!--          <groupId>net.sourceforge.htmlunit</groupId>-->
-        <!--          <artifactId>htmlunit-core-js</artifactId>-->
-        <!--        </exclusion>-->
+        <exclusion>
+          <groupId>net.sourceforge.htmlunit</groupId>
+          <artifactId>htmlunit</artifactId>
+        </exclusion>
       </exclusions>
     </dependency>
   </dependencies>
@@ -334,7 +358,7 @@
             </http.connection.timeout>
             <http.socket.timeout>${read.mstimeout}</http.socket.timeout>
           </systemPropertyVariables>
-          <argLine>--illegal-access=permit</argLine>
+          <argLine>--illegal-access=debug</argLine>
         </configuration>
       </plugin>
 

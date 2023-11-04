@@ -137,7 +137,7 @@
     <test.properties.file>test.properties</test.properties.file>
 
     <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
-    <surefire.version>3.1.2</surefire.version>
+    <surefire.version>3.2.1</surefire.version>
 
     <!-- settings for quieter builds -->
     <aspectj.showWeaveInfo>false</aspectj.showWeaveInfo>

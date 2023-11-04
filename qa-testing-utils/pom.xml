@@ -226,9 +226,9 @@
     </dependency>
 
     <dependency>
-      <groupId>org.wiremock</groupId>
-      <artifactId>wiremock</artifactId>
-      <version>3.2.0</version>
+      <groupId>com.github.tomakehurst</groupId>
+      <artifactId>wiremock-jre8</artifactId>
+      <version>3.0.1</version>
     </dependency>
 
     <dependency>
