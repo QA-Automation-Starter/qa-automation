@@ -23,5 +23,7 @@
 
   <additional>
     <properties fileName="test.properties"/>
+    <properties fileName="webdriver.properties"/>
+    <properties fileName="required-capabilities.properties"/>
   </additional>
 </configuration>

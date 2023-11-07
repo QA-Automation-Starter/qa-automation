@@ -162,7 +162,7 @@ public class WebDriverConfigurationTest {
     public void shouldRetrieveCapabilitiesBySpecificPrefix() {
         assertThat(configuration
             .capabilitiesFor("provider.local.android")
-            .getCapability("-x:class"),
+            .getCapability("class"),
             is("io.appium.java_client.android.AndroidDriver"));
     }
 
@@ -172,7 +172,7 @@ public class WebDriverConfigurationTest {
         final Class<?> clazz) {
         assertThat(configuration
             .capabilities(deviceType)
-            .getCapability("-x:class"),
+            .getCapability("class"),
             is(clazz.getName()));
     }
 

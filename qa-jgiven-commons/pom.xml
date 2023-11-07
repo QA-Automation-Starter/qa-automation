@@ -39,12 +39,6 @@
 
   <properties>
     <powermock.version>2.0.5</powermock.version>
-    <!-- ISSUE surefire fails launching due to JPMS errors; see below -->
-    <!--18:54:44 [ERROR] Error occurred during initialization of boot layer-->
-    <!--18:54:44 [INFO] Results:-->
-    <!--18:54:44 [INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0-->
-    <!--18:54:44 [WARNING] Corrupted channel by directly writing to native stream in forked JVM 1. See FAQ web page and the dump file C:\projects\qa-automation\qa-jgiven-commons\target\surefire-reports\2023-10-30T18-54-37_138-jvmRun1.dumpstream-->
-    <skipTests>true</skipTests>
   </properties>
 
   <dependencies>
@@ -71,56 +65,19 @@
     <dependency>
       <groupId>io.dropwizard.metrics</groupId>
       <artifactId>metrics-core</artifactId>
-      <version>4.2.20</version>
+      <version>4.2.21</version>
     </dependency>
 
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-testing-utils</artifactId>
       <version>1.0.0-SNAPSHOT</version>
-      <!-- ISSUE does not solve JPMS errors -->
-      <!--exclusions>
-        <exclusion>
-          <groupId>com.github.jknack</groupId>
-          <artifactId>handlebars</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.github.jknack</groupId>
-          <artifactId>handlebars-helpers</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.google.code.findbugs</groupId>
-          <artifactId>jsr305</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>javax.annotation</groupId>
-          <artifactId>javax.annotation-api</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.xmlunit</groupId>
-          <artifactId>xmlunit-core</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.xmlunit</groupId>
-          <artifactId>xmlunit-legacy</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.xmlunit</groupId>
-          <artifactId>xmlunit-placeholders</artifactId>
-        </exclusion>
-      </exclusions-->
     </dependency>
 
     <dependency>
       <groupId>io.appium</groupId>
       <artifactId>java-client</artifactId>
       <version>9.0.0</version>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <dependency>
@@ -151,38 +108,18 @@
       <groupId>com.danhaywood.java</groupId>
       <artifactId>danhaywood-java-assertjext</artifactId>
       <version>0.1.0</version>
-      <!-- ISSUE does not solve JPMS errors -->
-      <!--      <exclusions>-->
-      <!--        <exclusion>-->
-      <!--          <groupId>org.hamcrest</groupId>-->
-      <!--          <artifactId>hamcrest-core</artifactId>-->
-      <!--        </exclusion>-->
-      <!--      </exclusions>-->
     </dependency>
 
     <dependency>
       <groupId>commons-dbutils</groupId>
       <artifactId>commons-dbutils</artifactId>
       <version>1.8.1</version>
-      <!-- ISSUE does not solve JPMS errors -->
-      <!--      <exclusions>-->
-      <!--        <exclusion>-->
-      <!--          <groupId>xmlunit</groupId>-->
-      <!--          <artifactId>xmlunit</artifactId>-->
-      <!--        </exclusion>-->
-      <!--      </exclusions>-->
     </dependency>
 
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
       <version>1.9.4</version>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <dependency>
@@ -195,12 +132,6 @@
       <groupId>org.unitils</groupId>
       <artifactId>unitils-dbunit</artifactId>
       <version>3.4.6</version>
-      <exclusions>
-        <exclusion>
-          <groupId>org.slf4j</groupId>
-          <artifactId>slf4j-nop</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
 
     <dependency>
@@ -213,13 +144,6 @@
       <groupId>com.tngtech.jgiven</groupId>
       <artifactId>jgiven-testng</artifactId>
       <version>${jgiven.version}</version>
-      <!-- ISSUE does not solve JPMS errors -->
-      <!--      <exclusions>-->
-      <!--        <exclusion>-->
-      <!--          <groupId>com.tngtech.jgiven</groupId>-->
-      <!--          <artifactId>jgiven-html5-report</artifactId>-->
-      <!--        </exclusion>-->
-      <!--      </exclusions>-->
     </dependency>
 
     <dependency>
@@ -275,19 +199,8 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
-      <version>2.70.0</version>
+      <version>4.13.0</version>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-        <!-- ISSUE does not solve JPMS errors -->
-        <!--        <exclusion>-->
-        <!--          <groupId>net.sourceforge.htmlunit</groupId>-->
-        <!--          <artifactId>htmlunit-core-js</artifactId>-->
-        <!--        </exclusion>-->
-      </exclusions>
     </dependency>
   </dependencies>
 
@@ -334,7 +247,6 @@
             </http.connection.timeout>
             <http.socket.timeout>${read.mstimeout}</http.socket.timeout>
           </systemPropertyVariables>
-          <argLine>--illegal-access=permit</argLine>
         </configuration>
       </plugin>
 
@@ -343,10 +255,20 @@
         <artifactId>aspectj-maven-plugin</artifactId>
         <configuration>
           <weaveDependencies>
-            <weaveDependency>
-              <groupId>org.seleniumhq.selenium</groupId>
-              <artifactId>selenium-remote-driver</artifactId>
-            </weaveDependency>
+            <!-- ISSUE Surefire fails launching due to JPMS error
+              ResolutionException:
+              Module org.seleniumhq.selenium.remote_driver
+              contains package com.tngtech.jgiven.impl,
+              module com.tngtech.jgiven.core
+              exports package com.tngtech.jgiven.impl
+              to org.seleniumhq.selenium.remote_driver-->
+            <!-- This was meant to be weaved by RemoteWebDriverHttpClientAspect,
+              but that aspect was disabled due to other issues -->
+            -->
+            <!--            <weaveDependency>-->
+            <!--              <groupId>org.seleniumhq.selenium</groupId>-->
+            <!--              <artifactId>selenium-remote-driver</artifactId>-->
+            <!--            </weaveDependency>-->
             <weaveDependency>
               <groupId>com.tngtech.jgiven</groupId>
               <artifactId>jgiven-core</artifactId>
