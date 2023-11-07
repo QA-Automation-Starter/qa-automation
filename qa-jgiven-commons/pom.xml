@@ -247,7 +247,6 @@
             </http.connection.timeout>
             <http.socket.timeout>${read.mstimeout}</http.socket.timeout>
           </systemPropertyVariables>
-          <argLine>--illegal-access=debug</argLine>
         </configuration>
       </plugin>
 
