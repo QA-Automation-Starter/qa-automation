@@ -81,14 +81,14 @@
       <version>1.0.0-SNAPSHOT</version>
       <!-- ISSUE does not solve JPMS errors -->
       <exclusions>
-        <exclusion>
-          <groupId>com.github.jknack</groupId>
-          <artifactId>handlebars</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>com.github.jknack</groupId>
-          <artifactId>handlebars-helpers</artifactId>
-        </exclusion>
+<!--        <exclusion>-->
+<!--          <groupId>com.github.jknack</groupId>-->
+<!--          <artifactId>handlebars</artifactId>-->
+<!--        </exclusion>-->
+<!--        <exclusion>-->
+<!--          <groupId>com.github.jknack</groupId>-->
+<!--          <artifactId>handlebars-helpers</artifactId>-->
+<!--        </exclusion>-->
         <exclusion>
           <groupId>com.google.code.findbugs</groupId>
           <artifactId>jsr305</artifactId>
@@ -367,10 +367,20 @@
         <artifactId>aspectj-maven-plugin</artifactId>
         <configuration>
           <weaveDependencies>
-            <weaveDependency>
-              <groupId>org.seleniumhq.selenium</groupId>
-              <artifactId>selenium-remote-driver</artifactId>
-            </weaveDependency>
+            <!-- ISSUE Surefire fails launching due to JPMS error
+              ResolutionException:
+              Module org.seleniumhq.selenium.remote_driver
+              contains package com.tngtech.jgiven.impl,
+              module com.tngtech.jgiven.core
+              exports package com.tngtech.jgiven.impl
+              to org.seleniumhq.selenium.remote_driver-->
+            <!-- This was meant to be weaved by RemoteWebDriverHttpClientAspect,
+              but that aspect was disabled due to other issues -->
+            -->
+            <!--            <weaveDependency>-->
+            <!--              <groupId>org.seleniumhq.selenium</groupId>-->
+            <!--              <artifactId>selenium-remote-driver</artifactId>-->
+            <!--            </weaveDependency>-->
             <weaveDependency>
               <groupId>com.tngtech.jgiven</groupId>
               <artifactId>jgiven-core</artifactId>
