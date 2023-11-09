@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,8 @@ import static java.lang.Thread.*;
 import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+
+import java.lang.SuppressWarnings;
 
 import org.openqa.selenium.*;
 import org.testng.annotations.*;
@@ -123,7 +125,7 @@ public class TestingAndroidWithJGiven extends
         private final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
 
         Fixtures application_installed(
-            @Hidden final WebDriver webDriver) {
+            @SuppressWarnings("hiding") @Hidden final WebDriver webDriver) {
             log.debug("application installed {}", webDriver);
             this.webDriver.set(webDriver);
             return self();

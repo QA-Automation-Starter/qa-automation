@@ -26,7 +26,7 @@ import lombok.extern.slf4j.*;
 
 /**
  * Provides data insertion method using the default dataset factory.
- * 
+ *
  * <p>
  * In order to use this class during runtime, the {@code unitils.properties}
  * file of the project shall contain
@@ -69,7 +69,7 @@ public class DbUnitExModule extends DbUnitModule {
 
     /**
      * Creates a multi-schema data-set from given DbUnit dataset file.
-     * 
+     *
      * @param dataSetFile
      *            The test data set, not null
      * @return the data-set
@@ -81,7 +81,7 @@ public class DbUnitExModule extends DbUnitModule {
     /**
      * Loads the given dataset into the default schema of the database, using
      * the default load strategy.
-     * 
+     *
      * @param dataSet
      *            dataset that is inserted in the database
      */
@@ -92,7 +92,7 @@ public class DbUnitExModule extends DbUnitModule {
     /**
      * Loads the given dataset into the default schema of the database, using a
      * specified load strategy.
-     * 
+     *
      * @param dataSet
      *            dataset that is inserted in the database
      * @param dataSetLoadStrategy
@@ -115,7 +115,7 @@ public class DbUnitExModule extends DbUnitModule {
     /**
      * Loads the given dataset into the default schema of the database, using
      * the default load strategy.
-     * 
+     *
      * @param multiSchemaDataSet
      *            multi-schema dataset that is inserted in the database
      */

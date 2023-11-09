@@ -32,21 +32,8 @@ import dev.aherscu.qa.jgiven.commons.utils.*;
  * https://github.com/TNG/JGiven/pull/422
  */
 @Listeners({ ScenarioTestListenerEx.class })
-public class JGivenSelfTests extends
-    ScenarioTest<JGivenSelfTests.SomeGiven<?>, JGivenSelfTests.SomeWhen<?>, JGivenSelfTests.SomeThen<?>> {
-
-    @Test(retryAnalyzer = TestRetryAnalyzer.class)
-    @TestRetryAnalyzer.Config(retries = 129, intervalMs = 13)
-    public void shouldFinallySucceed() {
-        then().should_fail_sometimes();
-    }
-
-    @Ignore // fails after retries as expected
-    @Test(retryAnalyzer = TestRetryAnalyzer.class)
-    @TestRetryAnalyzer.Config(retries = 129, intervalMs = 13)
-    public void shouldNeverSucceed() {
-        then().should_fail();
-    }
+public class JGivenTestNgRetryTests extends
+    ScenarioTest<JGivenTestNgRetryTests.SomeGiven<?>, JGivenTestNgRetryTests.SomeWhen<?>, JGivenTestNgRetryTests.SomeThen<?>> {
 
     public static class SomeGiven<SELF extends SomeGiven<SELF>>
         extends Stage<SELF> {
@@ -69,5 +56,18 @@ public class JGivenSelfTests extends
     public static class SomeWhen<SELF extends SomeWhen<SELF>>
         extends Stage<SELF> {
         // empty
+    }
+
+    @Test(retryAnalyzer = TestRetryAnalyzer.class)
+    @TestRetryAnalyzer.Config(retries = 129, intervalMs = 13)
+    public void shouldFinallySucceed() {
+        then().should_fail_sometimes();
+    }
+
+    @Ignore // fails after retries as expected
+    @Test(retryAnalyzer = TestRetryAnalyzer.class)
+    @TestRetryAnalyzer.Config(retries = 129, intervalMs = 13)
+    public void shouldNeverSucceed() {
+        then().should_fail();
     }
 }

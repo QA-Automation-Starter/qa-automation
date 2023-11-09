@@ -67,7 +67,7 @@ public class DesiredCapabilitiesEx extends DesiredCapabilities {
 
     /**
      * Chains a {@code true} capability.
-     * 
+     *
      * @param key
      *            the capability to chain
      * @return chained capabilities, on new set of capabilities
@@ -113,7 +113,7 @@ public class DesiredCapabilitiesEx extends DesiredCapabilities {
         return with(key,
             requireNonNull(getCapability(key),
                 "capability does not exist")
-                    .toString()
+                .toString()
                 + value);
     }
 }

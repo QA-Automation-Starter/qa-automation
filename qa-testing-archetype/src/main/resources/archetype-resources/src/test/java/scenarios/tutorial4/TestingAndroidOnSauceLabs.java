@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,15 @@
 
 package ${package}.scenarios.tutorial4;
 
-import static io.appium.java_client.remote.MobileCapabilityType.*;
 import static io.appium.java_client.remote.MobilePlatform.*;
+import static io.appium.java_client.remote.options.SupportsAppOption.APP_OPTION;
+import static io.appium.java_client.remote.options.SupportsAutoWebViewOption.AUTO_WEB_VIEW_OPTION;
+import static io.appium.java_client.remote.options.SupportsDeviceNameOption.DEVICE_NAME_OPTION;
+import static io.appium.java_client.remote.options.SupportsPlatformVersionOption.PLATFORM_VERSION_OPTION;
 import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+import static org.openqa.selenium.remote.CapabilityType.*;
 
 import java.net.*;
 import java.time.*;
@@ -41,19 +45,22 @@ public class TestingAndroidOnSauceLabs {
 
     private WebDriver webDriver;
 
+    @java.lang.SuppressWarnings("serial")
     @SneakyThrows
-    static AndroidDriver<WebElement> saucelabsApp(
+    static AndroidDriver saucelabsApp(
         final String name) {
-        return new AndroidDriver<>(new URL(
+        return new AndroidDriver(new URL(
+            // FIXME should get these credentials from system enviroment
+            // SAUCELABS_USERNAME and SAUCELABS_PASSWORD
             "https://TBD:TBD@ondemand.saucelabs.com:443/wd/hub"),
             new DesiredCapabilities() {
                 {
                     setCapability(PLATFORM_NAME, ANDROID);
-                    setCapability(PLATFORM_VERSION, "8");
-                    setCapability(DEVICE_NAME,
+                    setCapability(PLATFORM_VERSION_OPTION, "8");
+                    setCapability(DEVICE_NAME_OPTION,
                         "Samsung Galaxy S9 Plus WQHD GoogleAPI Emulator");
-                    setCapability(AUTO_WEBVIEW, true);
-                    setCapability(APP, "sauce-storage:app.apk");
+                    setCapability(AUTO_WEB_VIEW_OPTION, true);
+                    setCapability(APP_OPTION, "sauce-storage:app.apk");
                     setCapability("name", name);
                     setCapability("build", "local-"
                         + DateTimeFormatter.ofPattern("yyyyMMddHHmmss")

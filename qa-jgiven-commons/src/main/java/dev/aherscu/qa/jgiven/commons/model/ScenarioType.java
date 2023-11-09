@@ -17,7 +17,7 @@ package dev.aherscu.qa.jgiven.commons.model;
 
 /**
  * Used to mark a stage as belonging to some type of scenario.
- * 
+ *
  * @author aherscu
  *
  * @param <T>

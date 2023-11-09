@@ -19,7 +19,16 @@ jobs:
 
     strategy:
       matrix:
-        java-version: [ 17, 11, 8 ]
+        # ISSUE on JDK 21 --
+        #  when running aggregated as
+        #  mvnw install mode-build-full mode-build-nosign testing-tutorials
+        #  while running qa-testing-example:
+        #  Cannot define class using reflection: Unable to make protected java.lang.Package
+        #  when running verify on qa-testing-example standalone:
+        #  java.lang.RuntimeException: ProcessBuilder.start() debug
+        #  (in addition)
+        #  In summary, on JDK 21 the tests do not work.
+        java-version: [ 21, 17, 11 ]
         os: [ ubuntu-latest, macos-latest, windows-latest ]
 
     steps:
@@ -44,8 +53,8 @@ jobs:
           mvnw install ^
             -s %GITHUB_WORKSPACE%\settings.xml
 
-  verify-for-jdk8:
-    name: jdk-8 verify
+  verify-for-jdk11:
+    name: jdk-11 verify
     # ISSUE ChromeDriver/GeckoDriver fail to initialize on Ubuntu
     # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3294884059/jobs/5432863668
     # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
@@ -58,7 +67,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
-          java-version: '8'
+          java-version: '11'
           distribution: 'temurin'
           cache: maven
           settings-path: ${{ github.workspace }}
@@ -102,10 +111,15 @@ jobs:
 
   generate-automation-project:
     name: generate-build-run-standalone
-    needs: verify-for-jdk8
+    needs: verify-for-jdk11
     runs-on: windows-latest
 
     steps:
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
       - name: setup maven for sonatype snapshots
         uses: whelk-io/maven-settings-xml-action@v20
         with:
@@ -141,13 +155,14 @@ jobs:
         shell: cmd
         # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
         # NOTE will use last released archetype
+        # TODO after 1.0.0 release should change DarchetypeVersion to LATEST
         run: |
           mvn archetype:generate ^
             --batch-mode ^
             -Dmaven.wagon.http.ssl.insecure=true ^
             -DarchetypeGroupId=dev.aherscu.qa ^
             -DarchetypeArtifactId=qa-testing-archetype ^
-            -DarchetypeVersion=LATEST ^
+            -DarchetypeVersion=1.0.0-SNAPSHOT ^
             -DgroupId=com.acme ^
             -DartifactId=testing ^
             -Dversion=0.0.1-SNAPSHOT ^

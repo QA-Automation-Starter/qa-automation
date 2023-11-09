@@ -25,7 +25,7 @@ import lombok.extern.slf4j.*;
 /**
  * Wraps the {@link com.esotericsoftware.yamlbeans.YamlWriter} in order to
  * implement {@link java.io.Closeable}.
- * 
+ *
  * @param <T>
  *            the type to write
  *
@@ -38,7 +38,7 @@ public class YamlWriter<T>
     /**
      * Creates a YAML writer based on a supplied file; you should call
      * {@link #close()} in order to release it.
-     * 
+     *
      * @param file
      *            the file
      * @throws IOException
@@ -54,7 +54,7 @@ public class YamlWriter<T>
     /**
      * @param writer
      *            the writer
-     * 
+     *
      * @see com.esotericsoftware.yamlbeans.YamlWriter#YamlWriter(Writer)
      */
     public YamlWriter(final Writer writer) {
@@ -66,7 +66,7 @@ public class YamlWriter<T>
      *            the type to read
      * @throws YamlException
      *             if anything fails
-     * 
+     *
      * @see com.esotericsoftware.yamlbeans.YamlWriter#write(Object)
      */
     public void write(final T object) throws YamlException {

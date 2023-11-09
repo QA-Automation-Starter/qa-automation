@@ -114,14 +114,14 @@ public class QaJGivenPerMethodReporter
             .parallelStream()
             .peek(reportModelFile -> log
                 .debug("reading " + reportModelFile.getName()))
-            .flatMap(reportModelFile -> new ReportModelFileReader()
-                .apply(reportModelFile).model
-                    .getScenarios()
+            .flatMap(reportModelFile -> new ScenarioJsonReader()
+                .apply(reportModelFile)
+                .getScenarios()
+                .stream()
+                .filter(scenarioModel -> scenarioModel
+                    .getTagIds()
                     .stream()
-                    .filter(scenarioModel -> scenarioModel
-                        .getTagIds()
-                        .stream()
-                        .anyMatch(tagId -> tagId.contains(referenceTag))))
+                    .anyMatch(tagId -> tagId.contains(referenceTag))))
             .peek(scenarioModel -> log
                 .debug("processing " + targetNameFor(scenarioModel)))
             .forEach(Unchecked.consumer(scenarioModel -> {

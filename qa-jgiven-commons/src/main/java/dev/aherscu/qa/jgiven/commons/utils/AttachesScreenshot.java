@@ -19,7 +19,7 @@ import java.lang.annotation.*;
 
 /**
  * Screenshot directive annotation.
- * 
+ *
  * @author aherscu
  *
  */

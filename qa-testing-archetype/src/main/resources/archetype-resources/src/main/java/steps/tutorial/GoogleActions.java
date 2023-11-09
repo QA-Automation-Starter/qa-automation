@@ -16,10 +16,10 @@
 
 package ${package}.steps.tutorial;
 
-import dev.aherscu.qa.jgiven.webdriver.steps.*;
 import org.openqa.selenium.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.webdriver.steps.*;
 
 public class GoogleActions<SELF extends GoogleActions<SELF>>
     extends WebDriverActions<SELF> {

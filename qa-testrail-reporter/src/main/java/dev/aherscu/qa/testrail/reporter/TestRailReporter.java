@@ -161,13 +161,13 @@ public class TestRailReporter extends QaJGivenPerMethodReporter {
 
             listScreenshots(
                 new File(outputDirectory, targetNameFor(scenarioModel)))
-                    .forEach(file -> {
-                        log.trace("attaching {}", file);
-                        val attachScreenshotsResponse =
-                            addAttachmentToResult(addResultForCaseResponse.id,
-                                file);
-                        log.debug("attached {}", attachScreenshotsResponse.id);
-                    });
+                .forEach(file -> {
+                    log.trace("attaching {}", file);
+                    val attachScreenshotsResponse =
+                        addAttachmentToResult(addResultForCaseResponse.id,
+                            file);
+                    log.debug("attached {}", attachScreenshotsResponse.id);
+                });
 
         } catch (final Exception e) {
             log.error("failed to report case {} on run {} -> {}",

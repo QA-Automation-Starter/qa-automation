@@ -25,7 +25,7 @@ import lombok.experimental.*;
 
 /**
  * Number utilities.
- * 
+ *
  * @author aherscu
  *
  */

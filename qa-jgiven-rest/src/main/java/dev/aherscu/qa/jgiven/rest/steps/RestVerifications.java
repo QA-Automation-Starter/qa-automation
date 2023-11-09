@@ -18,8 +18,6 @@ package dev.aherscu.qa.jgiven.rest.steps;
 import java.util.function.*;
 
 import javax.annotation.concurrent.*;
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.*;
 
 import org.hamcrest.*;
 import org.json.*;
@@ -31,6 +29,8 @@ import dev.aherscu.qa.jgiven.commons.formatters.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
+import jakarta.ws.rs.client.*;
+import jakarta.ws.rs.core.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 

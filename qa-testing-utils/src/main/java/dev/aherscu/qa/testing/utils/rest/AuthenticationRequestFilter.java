@@ -18,13 +18,13 @@ package dev.aherscu.qa.testing.utils.rest;
 import java.nio.charset.*;
 
 import javax.annotation.*;
-import javax.ws.rs.*;
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.*;
-import javax.ws.rs.ext.*;
 
 import org.apache.commons.codec.binary.*;
 
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.client.*;
+import jakarta.ws.rs.core.*;
+import jakarta.ws.rs.ext.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 

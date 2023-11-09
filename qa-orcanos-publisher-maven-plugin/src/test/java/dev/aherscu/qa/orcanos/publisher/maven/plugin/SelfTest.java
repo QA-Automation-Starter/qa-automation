@@ -18,13 +18,13 @@ package dev.aherscu.qa.orcanos.publisher.maven.plugin;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static dev.aherscu.qa.testing.utils.WireMockServerUtils.*;
-import static javax.ws.rs.client.Entity.*;
-import static javax.ws.rs.core.HttpHeaders.*;
-import static javax.ws.rs.core.MediaType.*;
+import static jakarta.ws.rs.client.Entity.*;
+import static jakarta.ws.rs.core.HttpHeaders.*;
+import static jakarta.ws.rs.core.MediaType.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-import javax.ws.rs.client.*;
+import jakarta.ws.rs.client.*;
 
 import org.testng.annotations.*;
 

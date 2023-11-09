@@ -18,16 +18,14 @@ package ${package}.steps.tutorial;
 
 import java.util.stream.*;
 
-import dev.aherscu.qa.jgiven.webdriver.steps.*;
 import org.hamcrest.*;
 import org.openqa.selenium.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.webdriver.steps.*;
 import ${package}.model.tutorial.*;
-import lombok.extern.slf4j.*;
 
-@Slf4j
 public class GoogleVerifications<SELF extends GoogleVerifications<SELF>>
     extends WebDriverVerifications<SELF> {
 

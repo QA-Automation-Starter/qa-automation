@@ -20,7 +20,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.35-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-testing-utils</artifactId>
@@ -62,8 +62,8 @@
     </dependency>
 
     <dependency>
-      <groupId>com.google.code.findbugs</groupId>
-      <artifactId>annotations</artifactId>
+      <groupId>com.github.spotbugs</groupId>
+      <artifactId>spotbugs-annotations</artifactId>
     </dependency>
 
     <dependency>
@@ -80,27 +80,19 @@
     <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest</artifactId>
-      <version>2.1</version>
+      <version>2.2</version>
     </dependency>
 
-    <!-- NOTE: see profiles below -->
-    <!--dependency>
+    <dependency>
       <groupId>org.jooq</groupId>
       <artifactId>jool</artifactId>
-      <version>0.9.14</version>
-    </dependency-->
-
-    <dependency>
-      <groupId>net.coobird</groupId>
-      <artifactId>thumbnailator</artifactId>
-      <version>0.4.19</version>
+      <scope>test</scope>
     </dependency>
 
-    <dependency>
-      <!-- ISSUE https://github.com/mrwilson/java-8-matchers/issues/20 -->
-      <groupId>uk.co.probablyfine</groupId>
-      <artifactId>java-8-matchers</artifactId>
-      <version>1.9</version>
+   <dependency>
+      <groupId>net.coobird</groupId>
+      <artifactId>thumbnailator</artifactId>
+      <version>0.4.20</version>
     </dependency>
 
     <dependency>
@@ -143,13 +135,13 @@
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-text</artifactId>
-      <version>1.6</version>
+      <version>1.10.0</version>
     </dependency>
 
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>27.0.1-jre</version>
+      <version>32.1.3-jre</version>
       <exclusions>
         <exclusion>
           <groupId>com.google.code.findbugs</groupId>
@@ -159,27 +151,27 @@
     </dependency>
 
     <dependency>
-      <groupId>javax.ws.rs</groupId>
-      <artifactId>javax.ws.rs-api</artifactId>
-      <version>2.1.1</version>
+      <groupId>jakarta.ws.rs</groupId>
+      <artifactId>jakarta.ws.rs-api</artifactId>
+      <version>3.1.0</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
-      <version>3.8.1</version>
+      <version>3.13.0</version>
     </dependency>
 
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.11.0</version>
+      <version>2.14.0</version>
     </dependency>
 
     <dependency>
       <groupId>commons-codec</groupId>
       <artifactId>commons-codec</artifactId>
-      <version>1.11</version>
+      <version>1.16.0</version>
     </dependency>
 
     <dependency>
@@ -215,8 +207,8 @@
 
     <dependency>
       <groupId>com.jayway.jsonpath</groupId>
-      <artifactId>json-path-assert</artifactId>
-      <version>2.6.0</version>
+      <artifactId>json-path</artifactId>
+      <version>2.8.0</version>
     </dependency>
 
     <!-- TODO should be removed, it does not work well with Hamcrest -->
@@ -236,13 +228,13 @@
     <dependency>
       <groupId>com.github.tomakehurst</groupId>
       <artifactId>wiremock-jre8</artifactId>
-      <version>2.35.0</version>
+      <version>3.0.1</version>
     </dependency>
 
     <dependency>
       <groupId>com.samskivert</groupId>
       <artifactId>jmustache</artifactId>
-      <version>1.14</version>
+      <version>1.15</version>
     </dependency>
 
     <dependency>
@@ -295,34 +287,6 @@
 
   <profiles>
     <profile>
-      <id>platform-jdk11</id>
-      <activation>
-        <jdk>[11,)</jdk>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>org.jooq</groupId>
-          <artifactId>jool</artifactId>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-    </profile>
-
-    <profile>
-      <id>platform-jdk8</id>
-      <activation>
-        <jdk>1.8</jdk>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>org.jooq</groupId>
-          <artifactId>jool-java-8</artifactId>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-    </profile>
-
-    <profile>
       <id>generate-aws-cognito-srp-authenticator</id>
 
       <build>
@@ -330,7 +294,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-shade-plugin</artifactId>
-            <version>3.2.2</version>
+            <version>3.5.1</version>
             <executions>
               <execution>
                 <phase>package</phase>

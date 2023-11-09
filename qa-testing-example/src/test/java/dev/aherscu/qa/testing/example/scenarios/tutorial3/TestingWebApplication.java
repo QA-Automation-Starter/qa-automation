@@ -17,19 +17,23 @@
 package dev.aherscu.qa.testing.example.scenarios.tutorial3;
 
 import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
+import static dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingRemoteWebApplication.*;
+import static dev.aherscu.qa.testing.utils.StreamMatchers.*;
 import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
-import static uk.co.probablyfine.matchers.StreamMatchers.*;
+import static org.openqa.selenium.remote.CapabilityType.*;
 
+import java.net.*;
 import java.util.function.*;
 
 import org.jooq.lambda.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.remote.*;
 import org.testng.annotations.*;
 
+import dev.aherscu.qa.jgiven.commons.utils.*;
 import edu.umd.cs.findbugs.annotations.*;
 import io.github.bonigarcia.wdm.*;
 import lombok.*;
@@ -40,41 +44,37 @@ public class TestingWebApplication {
     private final WebDriver webDriver;
 
     @Factory(dataProvider = INTERNAL_DATA_PROVIDER)
-    public TestingWebApplication(Supplier<WebDriver> webDriver) {
+    public TestingWebApplication(final Supplier<WebDriver> webDriver) {
         this.webDriver = webDriver.get();
         log.trace("testing with {}", webDriver);
     }
 
-    @DataProvider
+    // NOTE: parallel with @Factory requires parallel=instances
+    // see https://github.com/testng-team/testng/issues/1951
+    @DataProvider(parallel = true)
     private static Object[][] data() {
         // NOTE we use suppliers in order to lazily create drivers;
         // thus, only when the test is constructed by TestNG
         return new Object[][] {
-            { Unchecked.supplier(() -> {
-                log.trace("setting up firefox driver");
-                WebDriverManager.firefoxdriver().setup();
-                return new FirefoxDriver();
-            }) },
+            // ISSUE Firefox cannot be installed on certain systems
+            // { Unchecked.supplier(() -> {
+            // log.trace("setting up firefox driver");
+            // WebDriverManager.firefoxdriver().setup();
+            // return new FirefoxDriver();
+            // }) },
             { Unchecked.supplier(() -> {
                 log.trace("setting up chrome driver");
                 WebDriverManager.chromedriver().setup();
                 return new ChromeDriver();
             }) },
-            // TODO setup Selenium on GitHub runner or wait for SauceLabs
-            // { Unchecked.supplier(() -> new RemoteWebDriver(
-            // new URL("http://localhost:4444"),
-            // new DesiredCapabilitiesEx() {
-            // {
-            // setCapability(BROWSER_NAME, "firefox");
-            // }
-            // })) }
+            { Unchecked.supplier(() -> {
+                log.trace("setting up remote driver");
+                return new RemoteWebDriver(
+                    new URL(SAUCELABS_URL),
+                    new DesiredCapabilitiesEx()
+                        .with(BROWSER_NAME, "firefox"));
+            }) }
         };
-
-    }
-
-    @Test
-    public void shouldOpenWeb() {
-        assertThat(webDriver.getTitle(), containsString("Google"));
     }
 
     @Test
@@ -82,6 +82,7 @@ public class TestingWebApplication {
         // NOTE the search keyword must be unique such that it is not
         // translated to other languages or written differently
         val SEARCH_KEYWORD = "testng";
+        log.debug("searching for {} on Google", SEARCH_KEYWORD);
         webDriver.findElement(By.name("q"))
             .sendKeys(SEARCH_KEYWORD + Keys.ENTER);
         assertThat(
@@ -92,6 +93,12 @@ public class TestingWebApplication {
             allMatch(either(containsStringIgnoringCase("testng"))
                 .or(containsStringIgnoringCase("Try again"))
                 .or(containsStringIgnoringCase("More results"))));
+    }
+
+    @Test
+    public void shouldOpenWeb() {
+        log.debug("window title must contain Google");
+        assertThat(webDriver.getTitle(), containsString("Google"));
     }
 
     @SuppressFBWarnings(
@@ -111,6 +118,6 @@ public class TestingWebApplication {
         log.trace("before connecting selenium");
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(10, SECONDS);
-        webDriver.get("https://google.com");
+        webDriver.get("https://google.com?hl=en"); // ensure English
     }
 }

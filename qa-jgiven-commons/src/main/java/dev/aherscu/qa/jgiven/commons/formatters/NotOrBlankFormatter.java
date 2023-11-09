@@ -21,7 +21,7 @@ import com.tngtech.jgiven.format.*;
 
 /**
  * Annotation formatter for {@link Boolean} objects.
- * 
+ *
  * @author aherscu
  *
  */

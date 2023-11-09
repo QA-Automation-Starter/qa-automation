@@ -26,7 +26,7 @@ package dev.aherscu.qa.jgiven.commons.model;
 public interface Element<T> {
     /**
      * Deserializes this object from given strings.
-     * 
+     *
      * @param strings
      *            the strings from which to deserialize
      * @return the deserialized object

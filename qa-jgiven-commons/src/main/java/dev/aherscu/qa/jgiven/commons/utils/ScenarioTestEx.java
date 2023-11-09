@@ -29,7 +29,7 @@ import lombok.extern.slf4j.*;
  * This is a complete replacement of
  * {@link com.tngtech.jgiven.testng.ScenarioTest} in order to use
  * {@link ScenarioTestListenerEx}.
- * 
+ *
  * @param <GIVEN>
  *            type of given stage
  * @param <WHEN>

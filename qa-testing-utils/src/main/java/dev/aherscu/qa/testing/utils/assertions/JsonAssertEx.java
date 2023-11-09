@@ -15,7 +15,6 @@
  */
 package dev.aherscu.qa.testing.utils.assertions;
 
-import com.jayway.jsonassert.*;
 import com.jayway.jsonpath.*;
 
 import lombok.extern.slf4j.*;

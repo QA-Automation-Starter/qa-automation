@@ -24,7 +24,7 @@ import lombok.experimental.*;
 
 /**
  * Map utilities.
- * 
+ *
  * @author aherscu
  *
  */
@@ -32,19 +32,19 @@ import lombok.experimental.*;
 public final class MapUtils {
     /**
      * Creates a map from a list of pairs.
-     * 
+     *
      * @param pairs
      *            one ore more pairs; if none, an empty map will be returned
-     * 
+     *
      * @param <L>
      *            the type of left-side of the pair; this will become the key of
      *            the map
      * @param <R>
      *            the type of right-side of the pair; this will become the value
      *            of the map
-     * 
+     *
      * @return the map of pairs
-     * 
+     *
      * @see Pair
      */
     @SafeVarargs

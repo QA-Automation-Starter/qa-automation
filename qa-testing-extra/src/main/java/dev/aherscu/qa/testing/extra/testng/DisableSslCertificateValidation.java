@@ -23,7 +23,7 @@ import dev.aherscu.qa.testing.utils.*;
 /**
  * Disables SSL certificate validation before the TestNG test suites begins
  * execution. This allows running with self-signed certificates.
- * 
+ *
  * <p>
  * Usage: <a href=
  * "http://testng.org/doc/documentation-main.html#listeners-dev.aherscu.qa.testing.utils.testng-xml">TestNG

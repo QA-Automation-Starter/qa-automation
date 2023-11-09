@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,20 +30,10 @@ import lombok.extern.slf4j.*;
 
 @Slf4j
 public class TestingWindowsWithJGiven
-    extends
-    ApplicationPerClassWebSessionTest<TestConfiguration, CalculatorFixtures<?>, CalculatorActions<?>, CalculatorVerifications<?>> {
+    extends ApplicationPerClassWebSessionTest<TestConfiguration, CalculatorFixtures<?>, CalculatorActions<?>, CalculatorVerifications<?>> {
 
     protected TestingWindowsWithJGiven() {
         super(TestConfiguration.class);
-    }
-
-    @BeforeClass
-    @SneakyThrows
-    @Override
-    protected void beforeClassOpenWebDriver() {
-        log.debug("before class opening WinAppDriver");
-        webDriver.set(WebDriverEx.from(configuration()
-            .capabilitiesFor("provider.local.windows")));
     }
 
     @DataProvider
@@ -56,6 +46,15 @@ public class TestingWindowsWithJGiven
         };
     }
 
+    @BeforeClass
+    @SneakyThrows
+    @Override
+    protected void beforeClassOpenWebDriver() {
+        log.debug("before class opening WinAppDriver");
+        webDriver.set(WebDriverEx.from(configuration()
+            .capabilitiesFor("provider.local.windows")));
+    }
+
     @Test
     public void shouldOpenCalculator() {
         given()
@@ -65,7 +64,7 @@ public class TestingWindowsWithJGiven
             .the_title(is(equalTo("Calculator")));
     }
 
-    @Test(dataProvider = INTERNAL_DATA_PROVIDER)
+    @Test(dataProvider = "data")
     public void shouldCalculate(final Calculation calculation) {
         given()
             .a_calculator(webDriver.get());

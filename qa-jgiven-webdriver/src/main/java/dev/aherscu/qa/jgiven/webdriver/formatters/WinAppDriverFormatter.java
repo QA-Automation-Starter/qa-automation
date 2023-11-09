@@ -16,9 +16,11 @@
 
 package dev.aherscu.qa.jgiven.webdriver.formatters;
 
-import static io.appium.java_client.remote.MobileCapabilityType.*;
+import static io.appium.java_client.remote.options.SupportsAppOption.*;
+import static io.appium.java_client.remote.options.SupportsPlatformVersionOption.*;
 import static java.util.Objects.*;
 import static org.apache.commons.lang3.StringUtils.*;
+import static org.openqa.selenium.remote.CapabilityType.*;
 
 import java.lang.annotation.*;
 import java.text.*;
@@ -39,19 +41,6 @@ import dev.aherscu.qa.jgiven.commons.utils.*;
 public class WinAppDriverFormatter
     implements
     AnnotationArgumentFormatter<WinAppDriverFormatter.Annotation> {
-    @Override
-    public String format(final Object argumentToFormat,
-        final WinAppDriverFormatter.Annotation annotation) {
-        if (isNull(argumentToFormat))
-            return EMPTY;
-        final org.openqa.selenium.Capabilities capabilities =
-            ((WebDriverEx) argumentToFormat).originalCapabilities;
-        return MessageFormat.format("{0} {1} {2}",
-            capabilities.getCapability(PLATFORM_NAME),
-            capabilities.getCapability(PLATFORM_VERSION),
-            capabilities.getCapability("app"));
-    }
-
     /**
      * Formatter annotation for WebDriver.
      *
@@ -62,5 +51,18 @@ public class WinAppDriverFormatter
     @Target({ ElementType.PARAMETER, ElementType.ANNOTATION_TYPE })
     public @interface Annotation {
         // no parameter to declare
+    }
+
+    @Override
+    public String format(final Object argumentToFormat,
+        final WinAppDriverFormatter.Annotation annotation) {
+        if (isNull(argumentToFormat))
+            return EMPTY;
+        final org.openqa.selenium.Capabilities capabilities =
+            ((WebDriverEx) argumentToFormat).originalCapabilities;
+        return MessageFormat.format("{0} {1} {2}",
+            capabilities.getCapability(PLATFORM_NAME),
+            capabilities.getCapability(PLATFORM_VERSION_OPTION),
+            capabilities.getCapability(APP_OPTION));
     }
 }

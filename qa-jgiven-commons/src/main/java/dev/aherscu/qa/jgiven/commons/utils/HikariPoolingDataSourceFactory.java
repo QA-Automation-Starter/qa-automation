@@ -31,13 +31,13 @@ import lombok.extern.slf4j.*;
  * pooling used by
  * <a href="http://unitils.org/tutorial-database.html">Unitils</a>'
  * {@link DatabaseModule}.
- * 
+ *
  * <p>
  * This implementation uses
  * <a href="http://brettwooldridge.github.io/HikariCP/">HikariCP</a> as its
  * connection pooling library.
  * </p>
- * 
+ *
  * <p>
  * Adapted from {@link PropertiesDataSourceFactory}.
  * </p>
@@ -72,7 +72,7 @@ public class HikariPoolingDataSourceFactory
 
     /**
      * Override to customize the connection timeout.
-     * 
+     *
      * @return the configured connection timeout; by default 30,000 ms
      * @see HikariConfig#setConnectionTimeout(long)
      */
@@ -83,7 +83,7 @@ public class HikariPoolingDataSourceFactory
 
     /**
      * Override to customize the idle timeout.
-     * 
+     *
      * @return the configured idle timeout; by default 600,000 ms (10 minutes)
      * @see HikariConfig#setIdleTimeout(long)
      */

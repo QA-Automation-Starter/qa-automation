@@ -37,7 +37,6 @@ import org.hamcrest.*;
 import org.unitils.database.*;
 
 import com.google.common.collect.*;
-import com.jayway.jsonassert.*;
 import com.tngtech.jgiven.annotation.*;
 
 import dev.aherscu.qa.jgiven.commons.formatters.*;

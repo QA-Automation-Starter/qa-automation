@@ -39,7 +39,7 @@ public class BaseConfiguration
 
     /**
      * Loads the specified configurations.
-     * 
+     *
      * @param configurations
      *            the additional configurations; might be null or empty
      */

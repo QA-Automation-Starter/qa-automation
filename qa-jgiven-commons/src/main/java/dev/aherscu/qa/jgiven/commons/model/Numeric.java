@@ -26,10 +26,10 @@ import lombok.*;
 
 /**
  * Represents an identifier.
- * 
+ *
  * @param <T>
  *            type of indentifier's value
- * 
+ *
  * @author aherscu
  *
  */

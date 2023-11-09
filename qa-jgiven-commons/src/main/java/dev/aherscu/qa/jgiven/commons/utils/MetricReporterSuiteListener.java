@@ -43,12 +43,12 @@ import lombok.extern.slf4j.*;
  * CSV files are written to directory as specified via {@code target-directory}
  * parameter. If this parameter is not specified, then {@code target} is
  * assumed.
- * 
+ *
  * <p>
  * If {@code metric-report-interval-ms} parameter is specified, then plots the
  * accumulated metrics to console every so milliseconds.
  * </p>
- * 
+ *
  * <p>
  * To be used via {@code testng.xml}; see <a href=
  * "https://testng.org/doc/documentation-main.html#parameters-testng-xml">

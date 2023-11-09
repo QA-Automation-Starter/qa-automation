@@ -22,15 +22,12 @@ import javax.annotation.concurrent.*;
 import org.apache.commons.configuration.*;
 
 import dev.aherscu.qa.jgiven.webdriver.*;
-import lombok.extern.slf4j.*;
 
 /**
  * Represents the configuration parameters for tests.
  *
  * @author aherscu
  */
-@SuppressWarnings("boxing")
-@Slf4j
 @ThreadSafe
 public final class TestConfiguration extends WebDriverConfiguration {
 

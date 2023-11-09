@@ -29,7 +29,7 @@ import lombok.*;
  *
  * @param <T>
  *            the type of percentage value
- * 
+ *
  * @author aherscu
  *
  */

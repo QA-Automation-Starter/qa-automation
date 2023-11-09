@@ -14,7 +14,9 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <!-- see
@@ -28,7 +30,7 @@
     -->
   <groupId>dev.aherscu.qa</groupId>
   <artifactId>qa-automation</artifactId>
-  <version>0.0.35-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>QA Automation</name>
@@ -102,26 +104,31 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <delombok.directory>${project.build.directory}/delombok</delombok.directory>
 
+    <java.version>11</java.version>
+
+    <lombok.version>1.18.30</lombok.version>
+
     <!-- NOTE: cannot upgrade AspectJ Runtime beyond 1.9.7 for Java 8 -->
     <!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=552687 -->
     <!-- see https://github.com/eclipse/org.aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md -->
-    <aspectj.version>1.8.14</aspectj.version>
+    <aspectj.version>1.9.20.1</aspectj.version>
 
-    <!-- NOTE: currently supported 1.8 and 11+; specified via profiles -->
-    <maven.version>3.9.4</maven.version>
+    <maven.version>3.9.5</maven.version>
     <maven.tools.version>3.9.0</maven.tools.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.compiler.release>${java.version}</maven.compiler.release>
 
     <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
 
-    <jgiven.version>1.1.0</jgiven.version>
+    <jgiven.version>1.3.0</jgiven.version>
     <!-- NOTE: may cause the console logs to blow out -->
     <jgiven.report.text>true</jgiven.report.text>
 
-    <jersey.version>2.40</jersey.version>
-    <jackson.version>2.15.2</jackson.version>
-    <slf4j.version>1.7.36</slf4j.version>
+    <jaxb.version>2.4.0-b180830.0359</jaxb.version>
+    <jersey.version>3.1.3</jersey.version>
+    <jackson.version>2.15.3</jackson.version>
+    <slf4j.version>2.0.9</slf4j.version>
     <log.root.level>info</log.root.level>
 
     <connection.mstimeout>30000</connection.mstimeout>
@@ -130,7 +137,7 @@
     <test.properties.file>test.properties</test.properties.file>
 
     <surefire.suiteXmlFiles>testng.xml</surefire.suiteXmlFiles>
-    <surefire.version>3.0.0-M3</surefire.version>
+    <surefire.version>3.2.1</surefire.version>
 
     <!-- settings for quieter builds -->
     <aspectj.showWeaveInfo>false</aspectj.showWeaveInfo>
@@ -218,22 +225,17 @@
       <dependency>
         <groupId>org.testng</groupId>
         <artifactId>testng</artifactId>
-        <version>7.4.0</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jooq</groupId>
-        <artifactId>jool-java-8</artifactId>
-        <version>0.9.14</version>
+        <version>7.8.0</version>
       </dependency>
       <dependency>
         <groupId>org.jooq</groupId>
         <artifactId>jool</artifactId>
-        <version>0.9.14</version>
+        <version>0.9.15</version>
       </dependency>
       <dependency>
         <groupId>org.projectlombok</groupId>
         <artifactId>lombok</artifactId>
-        <version>1.18.26</version>
+        <version>${lombok.version}</version>
         <scope>provided</scope>
       </dependency>
       <dependency>
@@ -247,20 +249,36 @@
         <version>4.4</version>
       </dependency>
       <dependency>
-        <groupId>com.google.code.findbugs</groupId>
-        <artifactId>annotations</artifactId>
-        <version>3.0.1u2</version>
+        <groupId>com.github.spotbugs</groupId>
+        <artifactId>spotbugs-annotations</artifactId>
+        <version>4.8.0</version>
       </dependency>
       <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
-        <version>1.2.3</version>
+        <version>1.4.11</version>
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
         <version>${slf4j.version}</version>
       </dependency>
+    <dependency>
+      <groupId>com.sun.activation</groupId>
+      <artifactId>javax.activation</artifactId>
+      <version>1.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>${jaxb.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <!-- ISSUE tests are failing with versions of 3.x and above -->
+      <version>2.4.0-b180830.0438</version>
+    </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -280,7 +298,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-scm-publish-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>3.2.1</version>
           <configuration>
             <!-- ISSUE fails displaying JGiven thumbnails and attachments
               although these appear on gh-pages branch;
@@ -302,7 +320,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-release-plugin</artifactId>
-          <version>3.0.0-M6</version>
+          <version>3.0.1</version>
           <configuration>
             <autoVersionSubmodules>true</autoVersionSubmodules>
             <useReleaseProfile>false</useReleaseProfile>
@@ -337,12 +355,12 @@
         </plugin>
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.2.0</version>
+          <version>3.3.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>3.6.0</version>
           <configuration>
             <additionalJOption>-Xdoclint:none</additionalJOption>
             <sourcepath>${delombok.directory}</sourcepath>
@@ -358,16 +376,16 @@
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
-          <version>3.0.0-M1</version>
+          <version>3.1.1</version>
         </plugin>
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>3.0.0-M1</version>
+          <version>3.1.1</version>
         </plugin>
         <plugin>
           <groupId>net.revelc.code.formatter</groupId>
           <artifactId>formatter-maven-plugin</artifactId>
-          <version>2.8.1</version>
+          <version>2.23.0</version>
           <configuration>
             <configFile>${project.basedir}/code-formatter-rules.xml</configFile>
             <directories>
@@ -388,7 +406,7 @@
         <plugin>
           <groupId>net.revelc.code</groupId>
           <artifactId>impsort-maven-plugin</artifactId>
-          <version>1.5.0</version>
+          <version>1.9.0</version>
           <dependencies>
             <!-- see https://github.com/revelc/impsort-maven-plugin/issues/64 -->
             <dependency>
@@ -493,7 +511,7 @@
               <path>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
-                <version>1.18.28</version>
+                <version>${lombok.version}</version>
               </path>
             </annotationProcessorPaths>
           </configuration>
@@ -528,8 +546,7 @@
               <jgiven.report.text>${jgiven.report.text}</jgiven.report.text>
               <testng.dtd.http>false</testng.dtd.http>
             </systemPropertyVariables>
-            <argLine>-noverify -Dfile.encoding=${project.build.sourceEncoding}
-            </argLine>
+            <argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>
           </configuration>
         </plugin>
 
@@ -571,7 +588,7 @@
             <dependency>
               <groupId>org.slf4j</groupId>
               <artifactId>slf4j-simple</artifactId>
-              <version>1.7.13</version>
+              <version>${slf4j.version}</version>
             </dependency>
           </dependencies>
           <!-- executions>
@@ -609,6 +626,13 @@
               </configuration>
             </execution>
           </executions>
+          <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+          </dependencies>
         </plugin>
 
         <plugin>
@@ -617,7 +641,7 @@
             this is used instead of maven-source-plugin -->
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
-          <version>3.0.0</version>
+          <version>3.1.0</version>
           <executions>
             <execution>
               <id>generate-delomboked-sources-jar</id>
@@ -627,7 +651,9 @@
               </goals>
               <configuration>
                 <target>
-                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}" />
+                  <jar
+                      destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
+                      basedir="${delombok.directory}" />
                 </target>
               </configuration>
             </execution>
@@ -639,7 +665,7 @@
             otherwise the attached sources JAR will not match their bytecode -->
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.3.0</version>
+          <version>3.4.0</version>
           <executions>
             <execution>
               <id>attach-delomboked-sources-jar</id>
@@ -665,7 +691,7 @@
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.7.3.5</version>
+          <version>4.7.3.6</version>
           <configuration>
             <effort>Max</effort>
             <failOnError>false</failOnError>
@@ -741,7 +767,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-help-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.0</version>
         <!-- ISSUE: too much noise when configured as below -->
         <!--        <executions>-->
         <!--          <execution>-->
@@ -758,7 +784,7 @@
         <!-- NOTE enforce Java runtime version for Maven -->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.4.1</version>
         <executions>
           <execution>
             <id>enforce-java</id>
@@ -782,7 +808,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
-        <version>4.0.0-M9</version>
+        <version>4.0.0-M10</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -793,33 +819,6 @@
   </build>
 
   <profiles>
-    <profile>
-      <id>platform-jdk8</id>
-      <activation>
-        <jdk>1.8</jdk>
-      </activation>
-      <properties>
-        <java.version>1.8</java.version>
-      </properties>
-    </profile>
-
-    <profile>
-      <!-- on JDKs from version 11 onwards, compile as Java 11 -->
-      <id>platform-jdk11</id>
-      <activation>
-        <jdk>[11,)</jdk>
-      </activation>
-      <properties>
-        <java.version>11</java.version>
-        <aspectj.version>1.9.2</aspectj.version>
-        <maven.compiler.release>${java.version}</maven.compiler.release>
-        <maven.deploy.skip>true</maven.deploy.skip>
-        <!-- ISSUE Maven Archetype integration tests run with JDK 8
-          further failing due to class version -->
-        <archetype.test.skip>true</archetype.test.skip>
-      </properties>
-    </profile>
-
     <profile>
       <!-- NOTE debug, error and informal logs,
         if none selected, the default is informal -->

@@ -21,8 +21,8 @@ import static java.util.Arrays.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.*;
+import jakarta.ws.rs.client.*;
+import jakarta.ws.rs.core.*;
 
 import org.testng.annotations.*;
 

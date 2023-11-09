@@ -40,13 +40,13 @@ import lombok.extern.slf4j.*;
 
 /**
  * Generic fixtures.
- * 
+ *
  * @param <SELF>
  *            the type of the subclass
- * 
+ *
  * @param <T>
  *            type of scenario
- * 
+ *
  * @author aherscu
  */
 @ThreadSafe
@@ -73,9 +73,9 @@ public class GenericFixtures<T extends AnyScenarioType, SELF extends GenericFixt
 
     /**
      * Run a specified Unitils multi-schema dataset file.
-     * 
+     *
      * @see #data(IDataSet)
-     * 
+     *
      * @param multiSchemaDataSetFile
      *            a Unitils multi-schema dataset file; by default, a <a href=
      *            "http://www.unitils.org/tutorial-database.html#Configuring_the_dataset_factory">
@@ -95,13 +95,13 @@ public class GenericFixtures<T extends AnyScenarioType, SELF extends GenericFixt
 
     /**
      * Run a specified DBUnit dataset.
-     * 
+     *
      * <p>
      * This method of data insertion should be prefered instead of Unitils'
      * {@link DataSet} annotation. By using this method your data-sets are
      * rendered in the JGiven report, while otherwise they would not.
      * </p>
-     * 
+     *
      * <p>
      * Internally, uses the default {@link DataSetLoadStrategy} and
      * {@link DataSetFactory}. These may be configured via the
@@ -111,9 +111,9 @@ public class GenericFixtures<T extends AnyScenarioType, SELF extends GenericFixt
      * Configuring the dataset load strategy section of Unitils' Database
      * Tutorial</a>.
      * </p>
-     * 
+     *
      * @see DbUnitExModule#insertDataSet(IDataSet)
-     * 
+     *
      * @param dataSet
      *            a DBUnit dataset object
      * @return {@link #self()}
@@ -146,16 +146,16 @@ public class GenericFixtures<T extends AnyScenarioType, SELF extends GenericFixt
 
     /**
      * Runs specified SQL-DML batch.
-     * 
+     *
      * @param sql
      *            the SQL statement to execute
      * @param params
      *            an array of query replacement parameters, where each row in
      *            this array is one set of batch replacement values
-     * 
+     *
      * @see QueryRunner#batch(String, Object[][])
      * @return {@link #self()}
-     * 
+     *
      * @throws IllegalArgumentException
      *             if the array of replacement parameters is empty
      */
@@ -177,7 +177,7 @@ public class GenericFixtures<T extends AnyScenarioType, SELF extends GenericFixt
 
     /**
      * Does nothing -- just initializes the JGiven infrastructure.
-     * 
+     *
      * @return {@link #self()}
      */
     public SELF nothing() {

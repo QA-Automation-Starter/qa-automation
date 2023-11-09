@@ -21,7 +21,7 @@ import lombok.experimental.*;
 
 /**
  * Thread utilities.
- * 
+ *
  * @author aherscu
  *
  */
@@ -33,7 +33,7 @@ import lombok.experimental.*;
 public final class ThreadUtils {
     /**
      * Safe alternative to {@link Thread#join()}.
-     * 
+     *
      * @param thread
      *            the thread to join
      * @param timeoutMs
@@ -46,7 +46,7 @@ public final class ThreadUtils {
 
     /**
      * Safe alternative to {@link Thread#sleep(long)}
-     * 
+     *
      * @param millis
      *            how many milliseconds to sleep
      */

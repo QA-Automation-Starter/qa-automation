@@ -31,7 +31,7 @@ import lombok.*;
 
 /**
  * Formatter for {@link File}s.
- * 
+ *
  * @author aherscu
  *
  */

@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.testing.example.steps.tutorial;
 
-import static io.appium.java_client.MobileBy.*;
+import static io.appium.java_client.AppiumBy.*;
 
 import org.hamcrest.*;
 
@@ -29,7 +29,7 @@ public class CalculatorVerifications<SELF extends CalculatorVerifications<SELF>>
     @AttachesScreenshot
     public SELF the_result(final Matcher<String> matcher) {
         return eventually_assert_that(
-            () -> element(AccessibilityId("CalculatorResults")).getText(),
+            () -> element(accessibilityId("CalculatorResults")).getText(),
             matcher);
     }
 }

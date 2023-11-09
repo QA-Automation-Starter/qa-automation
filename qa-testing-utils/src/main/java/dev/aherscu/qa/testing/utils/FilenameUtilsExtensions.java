@@ -35,12 +35,12 @@ public class FilenameUtilsExtensions extends FilenameUtils {
     /**
      * Gets the base name, minus the full path and extension, from a full
      * filename.
-     * 
+     *
      * @param file
      *            the filename to query, null returns null
      * @return the name of the file without the path, or an empty string if none
      *         exists
-     * 
+     *
      * @see FilenameUtils#getBaseName(String)
      */
     public String getBaseName(final File file) {

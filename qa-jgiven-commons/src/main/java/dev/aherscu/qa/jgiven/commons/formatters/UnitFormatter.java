@@ -24,7 +24,7 @@ import com.tngtech.jgiven.format.*;
 
 /**
  * Annotation formatter for units.
- * 
+ *
  * @author aherscu
  *
  */

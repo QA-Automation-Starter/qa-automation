@@ -19,7 +19,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static java.util.Arrays.*;
 import static org.hamcrest.Matchers.equalTo;
 
-import javax.ws.rs.client.*;
+import jakarta.ws.rs.client.*;
 
 import org.testng.annotations.*;
 

@@ -20,12 +20,12 @@ import com.tngtech.jgiven.annotation.*;
 
 /**
  * Use to mark a JGiven stage that may attach screenshots.
- * 
+ *
  * @param <SELF>
  *            type of JGiven stage
  *
  * @see AttachesScreenshot
- * 
+ *
  * @author Adrian Herscu
  *
  */

@@ -52,8 +52,6 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
     @ExpectedScenarioState
     protected ElasticsearchClient           elasticsearchClient;
 
-    protected ThreadLocal<List<TDocument>>  hits = new ThreadLocal<>();
-
     public SELF the_document(
         final String id,
         final Matcher<TDocument> matcher) {
@@ -73,7 +71,6 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
             query.apply(new Query.Builder()).build().toString(),
             index.get(),
             documentType.get());
-        hits.set(new LinkedList<>());
         return eventually_assert_that(Unchecked
             .supplier(() -> elasticsearchClient
                 .search(s -> s.index(index.get()).query(query),
@@ -82,18 +79,9 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
                 .hits()
                 .stream()
                 .map(Hit::source)
+                .filter(Objects::nonNull)
                 .peek(tDocument -> log.debug("received document {}", tDocument))
-                .peek(hits.get()::add)),
+                .peek(tDocument -> attach(tDocument.toString()))),
             matcher);
-    }
-
-    @AfterStage
-    protected void attachActualResponse() {
-        attach(hits.get().isEmpty()
-            ? null
-            : hits.get()
-                .stream()
-                .map(Object::toString)
-                .collect(Collectors.joining(LF)));
     }
 }

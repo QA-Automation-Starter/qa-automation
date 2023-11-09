@@ -31,6 +31,7 @@ import com.tngtech.jgiven.annotation.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.webdriver.model.*;
+import io.appium.java_client.*;
 import io.appium.java_client.appmanagement.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
@@ -120,7 +121,7 @@ public class WebDriverVerifications<SELF extends WebDriverVerifications<SELF>>
     public SELF the_application(final Matcher<ApplicationState> matcher,
         final String appId) {
         return eventually_assert_that(
-            () -> thisWebDriver().asMobile().queryAppState(appId),
+            () -> ((InteractsWithApps) thisWebDriver()).queryAppState(appId),
             matcher);
     }
 

@@ -21,7 +21,7 @@ import com.tngtech.jgiven.annotation.*;
 
 /**
  * User interface testing annotation.
- * 
+ *
  * @author aherscu
  *
  */

@@ -21,7 +21,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-testing-parent</artifactId>
-    <version>0.0.35-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <relativePath>../qa-testing-parent</relativePath>
   </parent>
 
@@ -43,29 +43,29 @@
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-webdriver</artifactId>
-      <version>0.0.35-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.mock-server</groupId>
       <artifactId>mockserver-netty</artifactId>
-      <version>5.14.0</version>
+      <version>5.15.0</version>
     </dependency>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-rest</artifactId>
-      <version>0.0.35-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-rabbitmq</artifactId>
-      <version>0.0.35-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-elasticsearch</artifactId>
-      <version>0.0.35-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
       <scope>test</scope>
     </dependency>
     <dependency>

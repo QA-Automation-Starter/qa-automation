@@ -27,16 +27,15 @@ import java.util.stream.*;
 import org.hamcrest.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.webdriver.*;
-import dev.aherscu.qa.jgiven.webdriver.model.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.tags.*;
+import dev.aherscu.qa.jgiven.webdriver.*;
 import ${package}.*;
 import ${package}.steps.tutorial.*;
 import lombok.*;
 
 public class TestingWebWithJGiven
-    extends
-    ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
+    extends ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
 
     protected TestingWebWithJGiven() {
         super(TestConfiguration.class);
@@ -45,15 +44,14 @@ public class TestingWebWithJGiven
     @DataProvider
     private Object[][] data() {
         return new Object[][] {
-            { new Text(wrap(randomAlphanumeric(40), DOUBLE_QUOTE)),
+            { new QuotedText(randomAlphanumeric(40)),
                 counts(equalTo(0L)) },
-            { new Text("testng"),
-                allMatch(either(containsStringIgnoringCase("testng"))
-                        .or(containsStringIgnoringCase("Try again"))
-                        .or(containsStringIgnoringCase("More results"))) }
+            { new QuotedText("testng"),
+                anyMatch(containsStringIgnoringCase("testng")) }
         };
     }
 
+    @Reference("68")
     @Test(dataProvider = INTERNAL_DATA_PROVIDER)
     public void shouldFind(
         final Text textToSearch,
@@ -76,5 +74,11 @@ public class TestingWebWithJGiven
     public void beforeMethodOpenWebDriver() {
         super.beforeMethodOpenWebDriver();
         webDriver.get().asRemote().manage().window().maximize();
+    }
+
+    private static class QuotedText extends Text {
+        public QuotedText(final String value) {
+            super(wrap(value, DOUBLE_QUOTE));
+        }
     }
 }
