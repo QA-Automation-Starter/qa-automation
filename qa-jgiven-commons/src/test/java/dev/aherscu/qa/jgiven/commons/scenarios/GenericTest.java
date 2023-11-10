@@ -79,7 +79,7 @@ public final class GenericTest extends
     /**
      * Should fail just to see that failures are reported.
      */
-    @Test(enabled = false)
+    @Test(expectedExceptions = AssertionError.class)
     public void shouldFail() {
         given().nothing();
         when().doing_nothing();
@@ -124,7 +124,7 @@ public final class GenericTest extends
      * Defined to complete within 1000 ms but sleeps for 2000 ms.
      */
     @SneakyThrows(Exception.class)
-    @Test(enabled = false, timeOut = 1000)
+    @Test(enabled = false, timeOut = 1000) // fails with Error!!!
     public void shouldFailOnTimeout() {
         // noinspection MagicNumber
         when().$("sleeping too much", //$NON-NLS-1$
@@ -138,46 +138,46 @@ public final class GenericTest extends
      * report.
      */
     @SneakyThrows(Exception.class)
-    @Test(enabled = false)
+    @Test(expectedExceptions = TestRuntimeException.class)
     public void shouldFailWithUnexpectedRuntimeException() {
         then().$("should throw a runtime exception", //$NON-NLS-1$
             (StepFunction<GenericVerifications<AnyScenarioType, ?>>) stage -> {
-                throw new TestRuntimeException();
+                throw new TestRuntimeException("!!!");
             });
-    }
-
-    /**
-     * Should retry upon any {@link Throwable}, eventually failing.
-     * <p>
-     * NOTE: JGiven catches {@link Throwable}s in order to generate its report,
-     * hence this cannot be handled via {@link Test#expectedExceptions}.
-     * </p>
-     * <p>
-     * Disabled in order to allow {@code mvn install} pass.
-     * </p>
-     */
-    @Test(enabled = false)
-    public void shouldRetrySomethingBeforeFailing() {
-        given().nothing();
-        when().retrying(step -> step.failing_on_purpose_with(
-            new InternalError("just to see it retry")));
-        section("should be skipped");
-        then().should_succeed(is(false));
     }
 
     // /**
     // * Should have a temporary file.
     // *
     // * <p>
-    // * NOTE: fails to create temporary file on Jenkins.
+    // * ISSUE: fails to create temporary file on Jenkins.
+    // org.unitils.core.UnitilsException: Error creating temp file for field
+    // tempFile
+    // Caused by: org.unitils.core.UnitilsException: Unable to delete temp
+    // file/dir
+    // C:\Users\aherscu\AppData\Local\Temp
+    // \dev.aherscu.qa.jgiven.commons.scenarios.GenericTest-shouldTestInParallel.tmp
     // */
     // @SneakyThrows(Exception.class)
-    // @Test(enabled = false)
+    // @Test
     // public void shouldHaveTempFile() {
     // then().$("should find a temporary file", //$NON-NLS-1$
-    // (StepFunction<GenericVerifications<Any, ?>>) stage -> assertThat(
+    // (StepFunction<GenericVerifications<AnyScenarioType, ?>>) stage ->
+    // assertThat(
     // tempFile.exists()).isTrue());
     // }
+
+    /**
+     * Should retry upon any {@link Throwable}, eventually failing.
+     */
+    @Test(expectedExceptions = Throwable.class)
+    public void shouldRetrySomethingBeforeFailing() {
+        given().nothing();
+        when().retrying(step -> step.failing_on_purpose_with(
+            new Throwable("just to see it retry")));
+        section("should be skipped");
+        then().should_succeed(is(false));
+    }
 
     /**
      * Should succeed just to see the successes are reported.

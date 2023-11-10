@@ -22,8 +22,7 @@
   reporting mechanism causing all tests to be reported as failing -->
 <suite name="JGiven Commons Tests Suite" verbose="1"
        data-provider-thread-count="2">
-  <!-- ISSUE: JGiven does not support parallel methods -->
-  <test name="development" parallel="classes">
+  <test name="development" parallel="methods">
     <packages>
       <package
         name="dev.aherscu.qa.jgiven.commons"/>
