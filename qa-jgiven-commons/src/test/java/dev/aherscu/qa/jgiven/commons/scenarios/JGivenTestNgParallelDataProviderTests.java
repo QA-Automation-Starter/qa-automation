@@ -23,6 +23,7 @@ import static org.hamcrest.MatcherAssert.*;
 import java.util.*;
 import java.util.stream.*;
 
+import lombok.extern.slf4j.*;
 import org.hamcrest.*;
 import org.testng.annotations.*;
 
@@ -38,6 +39,7 @@ import dev.aherscu.qa.jgiven.commons.utils.*;
  * see https://github.com/TNG/JGiven/issues/829
  */
 @Listeners({ ScenarioTestListenerEx.class })
+@Slf4j
 public class JGivenTestNgParallelDataProviderTests extends
     ScenarioTest<JGivenTestNgParallelDataProviderTests.SomeGiven<?>, JGivenTestNgParallelDataProviderTests.SomeWhen<?>, JGivenTestNgParallelDataProviderTests.SomeThen<?>> {
 
@@ -84,12 +86,21 @@ public class JGivenTestNgParallelDataProviderTests extends
         // empty
     }
 
-    @ScenarioStage
-    protected OtherGiven<?> otherGiven;
-    @ScenarioStage
-    protected OtherThen<?>  otherThen;
-    @ScenarioStage
-    protected OtherWhen<?>  otherWhen;
+    // does not work via parallel data provider
+    // @ScenarioStage
+    // protected OtherGiven<?> otherGiven;
+    // @ScenarioStage
+    // protected OtherThen<?> otherThen;
+    // @ScenarioStage
+    // protected OtherWhen<?> otherWhen;
+    //
+    // @BeforeScenario or @BeforeMethod
+    // protected void beforeMethodInitStages() {
+    // does not work, something is not yet initialized
+    // otherGiven.set(getScenario().addStage(OtherGiven.class));
+    // otherThen.set(getScenario().addStage(OtherThen.class));
+    // otherWhen.set(getScenario().addStage(OtherWhen.class));
+    // }
 
     @DataProvider(parallel = true)
     private static Iterator<Integer> data() {
@@ -99,7 +110,23 @@ public class JGivenTestNgParallelDataProviderTests extends
 
     @Test(dataProvider = INTERNAL_DATA_PROVIDER)
     public void shouldRunWithParallelDataProvider(final Integer aValue) {
-        otherGiven.with(aValue);
-        otherThen.the_value(is(aValue));
+        // stage(OtherGiven.class).with(aValue);
+        // ISSUE compiler warning unchecked call as member of raw type
+        // stage(OtherThen.class).the_value(is(aValue));
+        log.debug("# {}", aValue);
+        otherGiven().given().with(aValue);
+        otherThen().then().the_value(is(aValue));
+    }
+
+    protected OtherGiven<?> otherGiven() {
+        return addStage(OtherGiven.class);
+    }
+
+    protected OtherThen<?> otherThen() {
+        return addStage(OtherThen.class);
+    }
+
+    protected OtherWhen<?> otherWhen() {
+        return addStage(OtherWhen.class);
     }
 }
