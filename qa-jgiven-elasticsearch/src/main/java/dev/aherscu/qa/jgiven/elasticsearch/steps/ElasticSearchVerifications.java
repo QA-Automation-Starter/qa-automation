@@ -16,8 +16,6 @@
 
 package dev.aherscu.qa.jgiven.elasticsearch.steps;
 
-import static org.apache.commons.lang3.StringUtils.*;
-
 import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
@@ -38,35 +36,37 @@ import dev.aherscu.qa.jgiven.elasticsearch.model.*;
 import lombok.extern.slf4j.*;
 
 @Slf4j
-public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVerifications<TDocument, SELF>>
+public class ElasticSearchVerifications<T, TDocument, SELF extends ElasticSearchVerifications<T, TDocument, SELF>>
     extends GenericVerifications<ElasticSearchScenarioType<TDocument>, SELF> {
     @ExpectedScenarioState
-    protected ThreadLocal<IndexResponse>    response;
+    protected ThreadLocal<IndexResponse>          response;
     @ExpectedScenarioState
-    protected ThreadLocal<String>           index;
+    protected ThreadLocal<String>                 index;
     @ExpectedScenarioState
-    protected ThreadLocal<Class<TDocument>> documentType;
+    protected ThreadLocal<Class<TDocument>>       documentType;
+    @ExpectedScenarioState
+    protected ThreadLocal<Function<TDocument, T>> convertBy;
 
     // see
     // https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/object-lifecycles.html
     @ExpectedScenarioState
-    protected ElasticsearchClient           elasticsearchClient;
+    protected ElasticsearchClient                 elasticsearchClient;
 
     public SELF the_document(
         final String id,
-        final Matcher<TDocument> matcher) {
+        final Matcher<T> matcher) {
         log.debug("looking-up by id: {} on index {}", id, index.get());
         return eventually_assert_that(Unchecked
-            .supplier(() -> elasticsearchClient
+            .supplier(() -> convertBy.get().apply(elasticsearchClient
                 .get(g -> g.index(index.get()).id(id),
                     documentType.get())
-                .source()),
+                .source())),
             matcher);
     }
 
     public SELF the_index(
         @QueryBuilderFnFormatter.Annotation final Function<Query.Builder, ObjectBuilder<Query>> query,
-        final Matcher<Stream<TDocument>> matcher) {
+        final Matcher<Stream<T>> matcher) {
         log.debug("{} on index {} for document type {}",
             query.apply(new Query.Builder()).build().toString(),
             index.get(),
@@ -80,8 +80,9 @@ public class ElasticSearchVerifications<TDocument, SELF extends ElasticSearchVer
                 .stream()
                 .map(Hit::source)
                 .filter(Objects::nonNull)
-                .peek(tDocument -> log.debug("received document {}", tDocument))
-                .peek(tDocument -> attach(tDocument.toString()))),
+                .map(convertBy.get())
+                .peek(o -> log.debug("received object {}", o))
+                .peek(o -> attach(o.toString()))),
             matcher);
     }
 }

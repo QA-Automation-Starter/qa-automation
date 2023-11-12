@@ -28,7 +28,7 @@ import lombok.extern.jackson.*;
 // NOTE duplicated from qa-jgiven-elasticsearch module
 // -- maybe should do something else here?
 public class ElasticSearchTest
-    extends AbstractElasticSearchTest<ElasticSearchTest.AnObject> {
+    extends AbstractElasticSearchTest<ElasticSearchTest.AnObject, ElasticSearchTest.AnObject> {
 
     protected ElasticSearchTest() {
         super(TestConfiguration.class);
@@ -36,7 +36,9 @@ public class ElasticSearchTest
 
     @Test
     public void shouldIndexDocument() {
-        given().indexed_by("some-objects").and().storing(AnObject.class).and().elastic_search(configuration()
+        given().indexed_by("some-objects")
+            .and().storing(AnObject.class)
+            .and().elastic_search(configuration()
                 .elasticSearchClient());
 
         when()
