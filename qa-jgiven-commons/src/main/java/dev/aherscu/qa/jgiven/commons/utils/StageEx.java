@@ -323,7 +323,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
                 .withMaxDuration(pollTimeout)
                 .onRetriesExceeded(
                     e -> log.trace("retries exceeded for {}", e.toString()))
-                .handleResultIf(result -> 0 == result.size())
+                .handleResultIf(List::isEmpty)
                 .onRetry(e -> log.debug(
                     "retrying since no matching elements found {}", e)))
             .get(() -> elements(locator, context));
