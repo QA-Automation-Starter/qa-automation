@@ -88,7 +88,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
     /**
      * The configured retry policy.
      *
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      */
     protected final RetryPolicy<SELF> retryPolicy =
         new RetryPolicy<>();
@@ -201,7 +201,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
      * </p>
      */
     @BeforeScenario
-    protected void configurePolling() {
+    protected void beforeScenarioConfigurePolling() {
         retryPolicy
             .withMaxRetries(-1)
             .withDelay(pollDelay)

@@ -106,7 +106,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
     /**
      * Executes specified step on <strong>same thread</strong>, and repeats it
      * upon {@link AssertionError}. The interval and duration of these
-     * repetitions are configured via {@link #configurePolling()}.
+     * repetitions are configured via {@link #beforeScenarioConfigurePolling()}.
      *
      * @param step
      *            the block to execute
@@ -116,7 +116,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      * @throws AssertionError
      *             if the supplied object does not match
      *
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      */
     @SafeVarargs
     public final SELF eventually(final StepWithDescription<SELF> step,
@@ -135,7 +135,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      * Asserts supplied object matches specified matcher on <strong>same
      * thread</strong>. Upon {@link AssertionError}, asks for updated object and
      * asserts again. Ignores all exceptions. The interval and duration of these
-     * assertions are configured via {@link #configurePolling()}.
+     * assertions are configured via {@link #beforeScenarioConfigurePolling()}.
      *
      * @param objectToBeAsserted
      *            the supplied object to assert upon
@@ -149,7 +149,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      * @throws AssertionError
      *             if the supplied object does not match
      *
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      */
     @SafeVarargs
     public final <V> SELF eventually_assert_that(
@@ -176,7 +176,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      * Repeatedly runs specified SQL statement until the returned result set
      * matches the expected results, or until a predefined timeout.
      *
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      *
      * @param sql
      *            the SQL statement to execute
@@ -199,7 +199,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      * Repeatedly runs specified SQL statement until the returned result set
      * matches the expected results in any order, or until a predefined timeout.
      *
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      *
      * @param sql
      *            the SQL statement to execute
@@ -221,7 +221,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      * Asserts that the result set returned by specified SQL statement matches
      * the expected results.
      *
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      *
      * @param sql
      *            the SQL statement to execute
@@ -245,7 +245,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      * Asserts that the result set returned by specified SQL statement matches
      * the expected results in any order.
      *
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      *
      * @param sql
      *            the SQL statement to execute
@@ -346,8 +346,8 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
     }
 
     @Override
-    protected void configurePolling() {
-        super.configurePolling();
+    protected void beforeScenarioConfigurePolling() {
+        super.beforeScenarioConfigurePolling();
         retryPolicy.handle(AssertionError.class);
     }
 }

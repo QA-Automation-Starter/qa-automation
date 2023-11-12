@@ -169,7 +169,7 @@ public class GenericActions<T extends AnyScenarioType, SELF extends GenericActio
      * @param step
      *            the step to retry
      * @return {@link #self()}
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      */
     public final SELF retrying(final Function<SELF, SELF> step) {
         return retrying(new StepWithDescription<>(EMPTY, step));
@@ -181,7 +181,7 @@ public class GenericActions<T extends AnyScenarioType, SELF extends GenericActio
      * @param step
      *            the step to retry
      * @return {@link #self()}
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      */
     public final SELF retrying(final StepWithDescription<SELF> step) {
         return retry(() -> step.apply(self()));
