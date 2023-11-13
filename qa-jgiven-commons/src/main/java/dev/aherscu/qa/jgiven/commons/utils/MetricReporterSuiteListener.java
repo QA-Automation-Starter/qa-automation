@@ -94,7 +94,7 @@ public class MetricReporterSuiteListener implements ISuiteListener {
                 pathFor(suite)
                     .resolve("all-metrics.csv")
                     .toFile(),
-                StandardCharsets.UTF_8.toString())) {
+                StandardCharsets.UTF_8)) {
 
             val wasHeaderProcessed = new boolean[] { false };
 

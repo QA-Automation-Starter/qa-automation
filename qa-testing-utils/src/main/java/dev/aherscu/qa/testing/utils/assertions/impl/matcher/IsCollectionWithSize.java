@@ -74,6 +74,6 @@ public class IsCollectionWithSize<E>
     public static <E> Matcher<? super Collection<? extends E>> hasSize(
         int size) {
         Matcher<? super Integer> matcher = equalTo(size);
-        return IsCollectionWithSize.<E> hasSize(matcher);
+        return IsCollectionWithSize.hasSize(matcher);
     }
 }

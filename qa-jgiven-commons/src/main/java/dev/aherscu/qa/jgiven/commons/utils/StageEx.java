@@ -88,7 +88,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
     /**
      * The configured retry policy.
      *
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      */
     protected final RetryPolicy<SELF> retryPolicy =
         new RetryPolicy<>();
@@ -201,7 +201,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
      * </p>
      */
     @BeforeScenario
-    protected void configurePolling() {
+    protected void beforeScenarioConfigurePolling() {
         retryPolicy
             .withMaxRetries(-1)
             .withDelay(pollDelay)
@@ -246,7 +246,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
                         "within " + join(contexts, COMMA))));
             // ISSUE on jdk11+ fails to compile via maven due to missing
             // (SELF) cast
-            return (SELF) self();
+            return self();
         });
     }
 
@@ -323,7 +323,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
                 .withMaxDuration(pollTimeout)
                 .onRetriesExceeded(
                     e -> log.trace("retries exceeded for {}", e.toString()))
-                .handleResultIf(result -> 0 == result.size())
+                .handleResultIf(List::isEmpty)
                 .onRetry(e -> log.debug(
                     "retrying since no matching elements found {}", e)))
             .get(() -> elements(locator, context));

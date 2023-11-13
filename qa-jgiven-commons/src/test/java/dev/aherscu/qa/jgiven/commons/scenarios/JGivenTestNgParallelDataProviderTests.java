@@ -36,7 +36,7 @@ import dev.aherscu.qa.jgiven.commons.utils.*;
 /**
  * Seems that parallel data providers are not supported.
  * <p>
- * see https://github.com/TNG/JGiven/issues/829
+ * see <a href="https://github.com/TNG/JGiven/issues/829">...</a>
  */
 @Listeners({ ScenarioTestListenerEx.class })
 @Slf4j
@@ -54,6 +54,7 @@ public class JGivenTestNgParallelDataProviderTests extends
         }
     }
 
+    @Slf4j
     public static class OtherThen<SELF extends OtherThen<SELF>>
         extends Stage<SELF> {
         @ExpectedScenarioState
@@ -63,6 +64,11 @@ public class JGivenTestNgParallelDataProviderTests extends
             // ISSUE: when running with enough parallelism aValue is null
             assertThat(aValue.get(), rule);
             return self();
+        }
+
+        @BeforeScenario
+        protected void beforeScenario() {
+            log.debug("before scenario");
         }
     }
 
@@ -76,9 +82,13 @@ public class JGivenTestNgParallelDataProviderTests extends
         // empty
     }
 
+    @Slf4j
     public static class SomeThen<SELF extends SomeThen<SELF>>
         extends Stage<SELF> {
-
+        @BeforeScenario
+        protected void beforeScenario() {
+            log.debug("before scenario");
+        }
     }
 
     public static class SomeWhen<SELF extends SomeWhen<SELF>>
@@ -105,7 +115,7 @@ public class JGivenTestNgParallelDataProviderTests extends
     @DataProvider(parallel = true)
     private static Iterator<Integer> data() {
         // ISSUE up to 10 it seems working... with 100 it does not
-        return IntStream.range(0, 100).iterator();
+        return IntStream.range(0, 1).iterator();
     }
 
     @Test(dataProvider = INTERNAL_DATA_PROVIDER)

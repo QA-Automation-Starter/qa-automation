@@ -16,6 +16,8 @@
 
 package dev.aherscu.qa.jgiven.elasticsearch.steps;
 
+import java.util.function.*;
+
 import com.tngtech.jgiven.annotation.*;
 
 import co.elastic.clients.elasticsearch.*;
@@ -24,23 +26,35 @@ import dev.aherscu.qa.jgiven.elasticsearch.model.*;
 import lombok.extern.slf4j.*;
 
 @Slf4j
-public class ElasticSearchFixtures<TDocument, SELF extends ElasticSearchFixtures<TDocument, SELF>>
+public class ElasticSearchFixtures<T, TDocument, SELF extends ElasticSearchFixtures<T, TDocument, SELF>>
     extends GenericFixtures<ElasticSearchScenarioType<TDocument>, SELF> {
 
     @ProvidedScenarioState
-    protected final ThreadLocal<String>           index        =
+    protected final ThreadLocal<String>                 index        =
         new ThreadLocal<>();
     @ProvidedScenarioState
-    protected final ThreadLocal<Class<TDocument>> documentType =
+    protected final ThreadLocal<Class<TDocument>>       documentType =
         new ThreadLocal<>();
+    @ProvidedScenarioState
+    protected final ThreadLocal<Function<TDocument, T>> convertBy    =
+        ThreadLocal.withInitial(() -> tDocument -> (T) tDocument);
+
     // see
     // https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/object-lifecycles.html
     @ProvidedScenarioState
-    protected ElasticsearchClient                 elasticsearchClient;
+    protected ElasticsearchClient                       elasticsearchClient;
 
-    public SELF storing(final Class<TDocument> documentType) {
-        log.debug("setting document type {}", documentType);
-        this.documentType.set(documentType);
+    @Hidden
+    public SELF convertingBy(final Function<TDocument, T> convertBy) {
+        log.debug("setting custom conversion function");
+        this.convertBy.set(convertBy);
+        return self();
+    }
+
+    public SELF elastic_search(
+        @Hidden final ElasticsearchClient elasticsearchClient) {
+        log.debug("setting client {}", elasticsearchClient);
+        this.elasticsearchClient = elasticsearchClient;
         return self();
     }
 
@@ -50,10 +64,9 @@ public class ElasticSearchFixtures<TDocument, SELF extends ElasticSearchFixtures
         return self();
     }
 
-    public SELF elastic_search(
-        @Hidden final ElasticsearchClient elasticsearchClient) {
-        log.debug("setting client {}", elasticsearchClient);
-        this.elasticsearchClient = elasticsearchClient;
+    public SELF storing(final Class<TDocument> documentType) {
+        log.debug("setting document type {}", documentType);
+        this.documentType.set(documentType);
         return self();
     }
 }

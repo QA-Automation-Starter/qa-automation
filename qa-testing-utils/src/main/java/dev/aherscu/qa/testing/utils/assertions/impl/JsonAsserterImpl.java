@@ -33,11 +33,10 @@ public class JsonAsserterImpl implements JsonAsserter {
         T obj = null;
 
         try {
-            obj = JsonPath.<T> read(jsonObject, path);
+            obj = JsonPath.read(jsonObject, path);
         } catch (Exception e) {
             final AssertionError assertionError = new AssertionError(
-                String.format("Error reading JSON path [%s]", path));
-            assertionError.initCause(e);
+                String.format("Error reading JSON path [%s]", path), e);
             throw assertionError;
         }
 
@@ -45,7 +44,7 @@ public class JsonAsserterImpl implements JsonAsserter {
 
             throw new AssertionError(String.format(
                 "JSON path [%s] doesn't match.\nExpected:\n%s\nActual:\n%s",
-                path, matcher.toString(), obj));
+                path, matcher, obj));
         }
         return this;
     }
@@ -56,11 +55,11 @@ public class JsonAsserterImpl implements JsonAsserter {
     @SuppressWarnings("unchecked")
     public <T> JsonAsserter assertThat(String path, Matcher<T> matcher,
         String message) {
-        T obj = JsonPath.<T> read(jsonObject, path);
+        T obj = JsonPath.read(jsonObject, path);
         if (!matcher.matches(obj)) {
             throw new AssertionError(String.format(
                 "JSON Assert Error: %s\nExpected:\n%s\nActual:\n%s", message,
-                matcher.toString(), obj));
+                matcher, obj));
         }
         return this;
     }

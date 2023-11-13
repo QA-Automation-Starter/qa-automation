@@ -28,7 +28,7 @@ import lombok.*;
 import lombok.extern.slf4j.*;
 
 @Slf4j
-public class ElasticSearchActions<TDocument, SELF extends ElasticSearchActions<TDocument, SELF>>
+public class ElasticSearchActions<T, TDocument, SELF extends ElasticSearchActions<T, TDocument, SELF>>
     extends GenericActions<ElasticSearchScenarioType<TDocument>, SELF> {
     @ProvidedScenarioState
     protected final ThreadLocal<IndexResponse> response = new ThreadLocal<>();
