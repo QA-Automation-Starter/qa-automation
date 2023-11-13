@@ -289,7 +289,7 @@ public class RestActions<SELF extends RestActions<SELF>>
                 }
                 // ISSUE on jdk11+ fails to compile via maven due to missing
                 // (SELF) cast
-                return (SELF) self();
+                return self();
             });
     }
 

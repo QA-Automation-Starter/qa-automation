@@ -36,7 +36,7 @@ import dev.aherscu.qa.jgiven.commons.utils.*;
 /**
  * Seems that parallel data providers are not supported.
  * <p>
- * see https://github.com/TNG/JGiven/issues/829
+ * see <a href="https://github.com/TNG/JGiven/issues/829">...</a>
  */
 @Listeners({ ScenarioTestListenerEx.class })
 @Slf4j

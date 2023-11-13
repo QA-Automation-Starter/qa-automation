@@ -60,7 +60,7 @@ public class IsMapContainingValue<V> extends MapTypeSafeMatcher<Map<?, V>> {
     }
 
     public static <V> Matcher<? super Map<?, V>> hasValue(V value) {
-        return IsMapContainingValue.<V> hasValue(equalTo(value));
+        return IsMapContainingValue.hasValue(equalTo(value));
     }
 
     public static <V> Matcher<? super Map<?, V>> hasValue(

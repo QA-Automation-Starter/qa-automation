@@ -89,7 +89,7 @@ public class QueueHandlerLoadTest extends AbstractQueueHandlerTest {
                     .channel(channel)
                     .queue(channel.queueDeclare().getQueue())
                     // NOTE should fail parsing noise
-                    .indexingBy(message -> new Integer(message.content))
+                    .indexingBy(message -> Integer.valueOf(message.content))
                     .consumingBy(bytes -> new String(bytes, UTF_8))
                     .publishingBy(String::getBytes)
                     .build()) {
