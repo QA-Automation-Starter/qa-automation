@@ -76,6 +76,24 @@ public final class GenericTest extends
             "failing on purpose just to see the test passing");
     }
 
+    @Test
+    @SneakyThrows
+    public void shouldAccessDb() {
+        QUERY_RUNNER.batch(
+            "create table TEST_TABLE(INTEGER_COLUMN INTEGER)",
+            new Object[][] { {} });
+        QUERY_RUNNER.batch(
+            "insert into TEST_TABLE values (1)",
+            new Object[][] { {} });
+        // this works too :)
+        QUERY_RUNNER.execute(
+            "insert into TEST_TABLE values (2)");
+        QUERY_RUNNER
+            .query("select INTEGER_COLUMN from TEST_TABLE",
+                new ArrayListHandler())
+            .forEach(row -> log.debug("row: {}", row));
+    }
+
     /**
      * Should fail just to see that failures are reported.
      */
