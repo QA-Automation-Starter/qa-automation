@@ -19,10 +19,8 @@ import static org.assertj.core.api.Assertions.*;
 import static org.hamcrest.Matchers.*;
 
 import java.lang.SuppressWarnings;
-import java.math.*;
 
 import org.testng.annotations.*;
-import org.unitils.io.annotation.*;
 
 import com.tngtech.jgiven.*;
 
@@ -36,6 +34,7 @@ import dev.aherscu.qa.testing.utils.*;
 import dev.aherscu.qa.testing.utils.config.*;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
+import lombok.extern.slf4j.*;
 
 /**
  * Contains sample tests just to ensure that the testing infrastructure works as
@@ -49,12 +48,9 @@ import lombok.*;
     justification = "framework limitation")
 @SuppressWarnings({ "static-method" })
 @SelfTest
+@Slf4j
 public final class GenericTest extends
     UnitilsScenarioTest<BaseConfiguration, AnyScenarioType, GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
-
-    @FileContent
-    private String sql;
-
     // ISSUE: sometimes creating a temporary file on Windows 7 fails with
     // "access denied".
     // @TempFile
@@ -74,24 +70,6 @@ public final class GenericTest extends
     public void expectingSomeFailure() {
         throw new RuntimeException(
             "failing on purpose just to see the test passing");
-    }
-
-    @Test
-    @SneakyThrows
-    public void shouldAccessDb() {
-        QUERY_RUNNER.batch(
-            "create table TEST_TABLE(INTEGER_COLUMN INTEGER)",
-            new Object[][] { {} });
-        QUERY_RUNNER.batch(
-            "insert into TEST_TABLE values (1)",
-            new Object[][] { {} });
-        // this works too :)
-        QUERY_RUNNER.execute(
-            "insert into TEST_TABLE values (2)");
-        QUERY_RUNNER
-            .query("select INTEGER_COLUMN from TEST_TABLE",
-                new ArrayListHandler())
-            .forEach(row -> log.debug("row: {}", row));
     }
 
     /**
@@ -121,24 +99,6 @@ public final class GenericTest extends
     }
 
     /**
-     * Should fail reading something from a database.
-     *
-     * <p>
-     * FIXME insert required data before running the test
-     * </p>
-     */
-    @Test(enabled = false) // requires a mock database
-    public void shouldFailFindingSomethingInDatabase() {
-        // noinspection MagicNumber
-        then().querying_$_evaluates_as(
-            sql,
-            new Object[][] {
-                { BigDecimal.valueOf(95144630) },
-                { BigDecimal.valueOf(80366961) }
-            });
-    }
-
-    /**
      * Defined to complete within 1000 ms but sleeps for 2000 ms.
      */
     @SneakyThrows(Exception.class)
@@ -164,6 +124,18 @@ public final class GenericTest extends
             });
     }
 
+    /**
+     * Should retry upon any {@link Throwable}, eventually failing.
+     */
+    @Test(expectedExceptions = Throwable.class)
+    public void shouldRetrySomethingBeforeFailing() {
+        given().nothing();
+        when().retrying(step -> step.failing_on_purpose_with(
+            new Throwable("just to see it retry")));
+        section("should be skipped");
+        then().should_succeed(is(false));
+    }
+
     // /**
     // * Should have a temporary file.
     // *
@@ -186,18 +158,6 @@ public final class GenericTest extends
     // }
 
     /**
-     * Should retry upon any {@link Throwable}, eventually failing.
-     */
-    @Test(expectedExceptions = Throwable.class)
-    public void shouldRetrySomethingBeforeFailing() {
-        given().nothing();
-        when().retrying(step -> step.failing_on_purpose_with(
-            new Throwable("just to see it retry")));
-        section("should be skipped");
-        then().should_succeed(is(false));
-    }
-
-    /**
      * Should succeed just to see the successes are reported.
      */
     @Test
@@ -205,24 +165,6 @@ public final class GenericTest extends
         given().nothing();
         when().doing_nothing();
         then().should_succeed(is(true));
-    }
-
-    /**
-     * Should succeed reading something from a database.
-     *
-     * <p>
-     * FIXME insert required data before running the test
-     * </p>
-     */
-    @Test(enabled = false)
-    public void shouldSucceedFindingSomethingInDatabase() {
-        // noinspection MagicNumber
-        then().querying_$_evaluates_as(
-            sql,
-            new Object[][] {
-                { BigDecimal.valueOf(95144630) },
-                { BigDecimal.valueOf(80366964) }
-            });
     }
 
     /**
