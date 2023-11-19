@@ -81,9 +81,8 @@ public final class DatabaseTest extends
      * FIXME insert required data before running the test
      * </p>
      */
-    @Test(enabled = false) // requires a mock database
+    @Test(expectedExceptions = AssertionError.class)
     public void shouldFailFindingSomethingInDatabase() {
-        // noinspection MagicNumber
         then().querying_$_evaluates_as(
             "select INTEGER_COLUMN from TEST_TABLE",
             new Object[][] {
@@ -99,9 +98,8 @@ public final class DatabaseTest extends
      * FIXME insert required data before running the test
      * </p>
      */
-    @Test(enabled = false)
+    @Test
     public void shouldSucceedFindingSomethingInDatabase() {
-        // noinspection MagicNumber
         then().querying_$_evaluates_as(
             "select INTEGER_COLUMN from TEST_TABLE",
             new Object[][] {
@@ -115,7 +113,6 @@ public final class DatabaseTest extends
     protected void beforeTestInitDatabase() {
         log.debug("initializing database with: {}", initializationSql);
         // ISSUE all these are not seen by dbunit while performing @DataSet load
-        //QUERY_RUNNER.execute("create table TEST_TABLE(INTEGER_COLUMN INTEGER)");
         QUERY_RUNNER.batch(
             "create table TEST_TABLE(INTEGER_COLUMN INTEGER)",
             new Object[][] { {} });
