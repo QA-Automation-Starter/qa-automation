@@ -204,6 +204,13 @@
     </dependency>
 
     <dependency>
+      <groupId>org.unitils</groupId>
+      <artifactId>unitils-testng</artifactId>
+      <version>3.4.6</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <groupId>org.apache.derby</groupId>
       <artifactId>derby</artifactId>
       <version>10.15.2.0</version>

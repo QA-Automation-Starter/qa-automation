@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/java/dev/aherscu/qa/jgiven/commons/scenarios/DbUnitTest.java" dialect="Derby" />
     <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/java/dev/aherscu/qa/jgiven/commons/scenarios/GenericTest.java" dialect="Derby" />
-    <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/java/dev/aherscu/qa/jgiven/commons/utils/EmbeddedDbTest.java" dialect="Derby" />
-    <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/resources/dev/aherscu/qa/jgiven/commons/scenarios/GenericTest.sql" dialect="Derby" />
+    <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/java/dev/aherscu/qa/jgiven/commons/utils/DbUnitTest.java" dialect="Derby" />
+    <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/java/dev/aherscu/qa/jgiven/commons/utils/DbUtilsTest.java" dialect="Derby" />
+    <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/java/dev/aherscu/qa/jgiven/commons/utils/UnitilsTestNGTest.java" dialect="Derby" />
+    <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/resources/dev/aherscu/qa/jgiven/commons/utils/001_DatabaseTest.sql" dialect="Derby" />
   </component>
 </project>

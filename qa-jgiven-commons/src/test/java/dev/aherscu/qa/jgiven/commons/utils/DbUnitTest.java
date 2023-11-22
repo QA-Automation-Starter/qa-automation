@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.commons.scenarios;
+package dev.aherscu.qa.jgiven.commons.utils;
 
 import static com.google.common.base.Suppliers.*;
 import static dev.aherscu.qa.testing.utils.ClassUtilsExtensions.*;
