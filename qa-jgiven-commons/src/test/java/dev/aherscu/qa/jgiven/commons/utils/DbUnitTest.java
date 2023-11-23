@@ -46,16 +46,13 @@ public class DbUnitTest extends DataSourceBasedDBTestCase {
 
     @SneakyThrows
     public void testWithDbUtils() {
-        queryRunner()
-            .execute("insert into TEST_TABLE values (7)");
-        queryRunner()
-            .execute("insert into TEST_TABLE values (8)");
         assertThat(queryRunner()
             .query("select * from TEST_TABLE", new ArrayListHandler())
             .stream(),
             adaptedStream(row -> row[0],
-                // NOTE 1 and 2 arrive from DatabaseTest.xml
-                hasSpecificItems(1, 2, 7, 8)));
+                hasSpecificItems(
+                    "dataset value 1",
+                    "dataset value 2")));
     }
 
     @Override
@@ -69,14 +66,16 @@ public class DbUnitTest extends DataSourceBasedDBTestCase {
     protected DatabaseOperation getSetUpOperation() throws Exception {
         // NOTE: ensures table exists before dataset is applied
         queryRunner()
-            .execute("create table TEST_TABLE(INTEGER_COLUMN INTEGER)");
+            .execute("create table TEST_TABLE(NAME VARCHAR(20))");
         return super.getSetUpOperation();
     }
 
     @Override
     protected DataSource getDataSource() {
         val dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl("jdbc:derby:memory:testing;create=true");
+        // NOTE: database name must be unique for this class
+        // otherwise its initialization may fail when running with other class
+        dataSource.setJdbcUrl("jdbc:derby:memory:DbUnitTest;create=true");
         return dataSource;
     }
 
