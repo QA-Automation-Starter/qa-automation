@@ -61,8 +61,7 @@ import lombok.extern.slf4j.*;
  * JGiven/TestNG tests.
  *
  * <p>
- * NOTE: implementation copied from <a href=
- * "https://github.com/arteam/unitils/blob/master/unitils-testng/src/main/java/org/unitils/UnitilsTestNG.java">UnitilsTestNG.java</a>
+ * NOTE: implementation copied from org.unitils.UnitilsTestNG
  * </p>
  *
  * @param <C>

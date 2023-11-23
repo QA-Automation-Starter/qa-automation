@@ -24,22 +24,29 @@ import org.apache.commons.dbutils.handlers.*;
 import org.unitils.*;
 import org.unitils.database.*;
 import org.unitils.dbunit.annotation.*;
+import org.unitils.dbunit.datasetloadstrategy.impl.*;
 
 import lombok.*;
 import lombok.extern.slf4j.*;
 
-// ISSUE dataset fails to apply due to
-//  org.dbunit.dataset.NoSuchTableException: TEST_TABLE
-// It seems like the DbMaintainer script is applied to different Derby instance
-@DataSet("DatabaseTest.xml")
+@DataSet(loadStrategy = InsertLoadStrategy.class)
 @Slf4j
 public class UnitilsJUnitTest extends UnitilsJUnit3 {
     @SneakyThrows
-    public void testUsingDb() {
-        assertThat(new QueryRunner(DatabaseUnitils.getDataSource())
+    public static void assertExistenceOfInitialAndDataSetValues() {
+        assertThat(new QueryRunner(DatabaseUnitils.getDataSource("testing"))
             .query("select * from TEST_TABLE", new ArrayListHandler())
             .stream(),
             adaptedStream(row -> row[0],
-                hasSpecificItems(7, 8, 1, 2)));
+                hasSpecificItems(
+                    // NOTE: initial values are preserved by the load strategy
+                    "initial value 1",
+                    "initial value 2",
+                    "dataset value 1",
+                    "dataset value 2")));
+    }
+
+    public void testUsingDb() {
+        assertExistenceOfInitialAndDataSetValues();
     }
 }

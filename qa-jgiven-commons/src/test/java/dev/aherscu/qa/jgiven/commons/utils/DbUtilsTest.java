@@ -40,38 +40,30 @@ public class DbUtilsTest {
 
     private static DataSource getDataSource() {
         val dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl("jdbc:derby:memory:testing;create=true");
+        // NOTE: database name must be unique for this class
+        // otherwise its initialization may fail when running with other class
+        dataSource.setJdbcUrl("jdbc:derby:memory:DbUtilsTest;create=true");
         return dataSource;
     }
 
     @Test
     @SneakyThrows
     public void shouldUseDb() {
-        queryRunner()
-            .execute("insert into TEST_TABLE values (7)");
-        queryRunner()
-            .execute("insert into TEST_TABLE values (8)");
         assertThat(queryRunner()
-            .query("select INTEGER_COLUMN from APP.TEST_TABLE",
+            .query("select NAME from TEST_TABLE",
                 new ArrayListHandler())
             .stream(),
             adaptedStream(row -> row[0],
-                hasSpecificItems(1, 7, 8)));
+                hasSpecificItems("inserted value 1")));
     }
 
     @BeforeClass
     @SneakyThrows
     private void beforeClassInitDb() {
         queryRunner().execute(
-            "create table APP.TEST_TABLE(INTEGER_COLUMN INTEGER)");
+            "create table TEST_TABLE(NAME VARCHAR(20))");
         queryRunner().execute(
-            "insert into APP.TEST_TABLE values (1)");
-    }
-
-    private HikariDataSource dataSource(final String url) {
-        val dataSource = new HikariDataSource();
-        dataSource.setJdbcUrl(url);
-        return dataSource;
+            "insert into TEST_TABLE values ('inserted value 1')");
     }
 
     private QueryRunner queryRunner() {

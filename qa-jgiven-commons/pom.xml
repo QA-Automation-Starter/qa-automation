@@ -168,18 +168,12 @@
       <version>${slf4j.version}</version>
     </dependency>
 
-    <!-- dependency>
-      ISSUE: cannot read the descriptor perhaps due to missing configuration
-      <groupId>com.oracle.jdbc</groupId>
-      <artifactId>OracleJdbcDriver12</artifactId>
-    </dependency-->
-
+    <!-- ISSUE: when relying on the dependency brought by testing-utils,
+    the tests are failing with method not found exceptions... -->
     <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derbyclient</artifactId>
-      <!-- NOTE: higher versions are compiled with jdk17 -->
-      <version>10.15.2.0</version>
-      <scope>provided</scope>
+      <groupId>com.jayway.jsonpath</groupId>
+      <artifactId>json-path-assert</artifactId>
+      <version>2.5.0</version>
     </dependency>
 
     <dependency>
@@ -208,13 +202,28 @@
       <artifactId>unitils-testng</artifactId>
       <version>3.4.6</version>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-logging</groupId>
+          <artifactId>commons-logging</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
+
+    <!-- ISSUE: cannot use since depends on TestNG 5.8 (old) -->
+    <!--dependency>
+      <groupId>org.unitils</groupId>
+      <artifactId>unitils-testng</artifactId>
+      <version>3.4.6</version>
+      <scope>test</scope>
+    </dependency-->
 
     <dependency>
       <groupId>org.apache.derby</groupId>
       <artifactId>derby</artifactId>
-      <version>10.15.2.0</version>
-<!--      <scope>test</scope>-->
+      <!-- NOTE: this is the latest version compatible with jdk8 -->
+      <version>10.14.2.0</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
