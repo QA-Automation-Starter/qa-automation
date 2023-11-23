@@ -208,12 +208,13 @@
       </exclusions>
     </dependency>
 
-    <dependency>
+    <!-- ISSUE: cannot use since depends on TestNG 5.8 (old) -->
+    <!--dependency>
       <groupId>org.unitils</groupId>
       <artifactId>unitils-testng</artifactId>
       <version>3.4.6</version>
       <scope>test</scope>
-    </dependency>
+    </dependency-->
 
     <dependency>
       <groupId>org.apache.derby</groupId>

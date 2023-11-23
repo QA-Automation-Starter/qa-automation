@@ -7,6 +7,6 @@
     <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/java/dev/aherscu/qa/jgiven/commons/utils/DbUtilsTest.java" dialect="Derby" />
     <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/java/dev/aherscu/qa/jgiven/commons/utils/UnitilsJUnitTest.java" dialect="Derby" />
     <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/java/dev/aherscu/qa/jgiven/commons/utils/UnitilsTestNGTest.java" dialect="Derby" />
-    <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/resources/dev/aherscu/qa/jgiven/commons/utils/001_DatabaseTest.sql" dialect="Derby" />
+    <file url="file://$PROJECT_DIR$/qa-jgiven-commons/src/test/resources/dev/aherscu/qa/jgiven/commons/utils/001_init.sql" dialect="Derby" />
   </component>
 </project>

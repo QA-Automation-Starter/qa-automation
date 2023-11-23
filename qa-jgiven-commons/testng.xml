@@ -38,6 +38,7 @@
   <test name="development-ex" junit="true">
     <classes>
       <class name="dev.aherscu.qa.jgiven.commons.utils.DbUnitTest" />
+      <class name="dev.aherscu.qa.jgiven.commons.utils.UnitilsJUnitTest" />
     </classes>
    </test>
 </suite>

@@ -29,11 +29,11 @@ import org.unitils.dbunit.datasetloadstrategy.impl.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
-@DataSet(value = "DatabaseTest.xml", loadStrategy = InsertLoadStrategy.class)
+@DataSet(loadStrategy = InsertLoadStrategy.class)
 @Slf4j
 public class UnitilsJUnitTest extends UnitilsJUnit3 {
     @SneakyThrows
-    public void testUsingDb() {
+    public static void assertExistenceOfInitialAndDataSetValues() {
         assertThat(new QueryRunner(DatabaseUnitils.getDataSource("testing"))
             .query("select * from TEST_TABLE", new ArrayListHandler())
             .stream(),
@@ -44,5 +44,9 @@ public class UnitilsJUnitTest extends UnitilsJUnit3 {
                     "initial value 2",
                     "dataset value 1",
                     "dataset value 2")));
+    }
+
+    public void testUsingDb() {
+        assertExistenceOfInitialAndDataSetValues();
     }
 }

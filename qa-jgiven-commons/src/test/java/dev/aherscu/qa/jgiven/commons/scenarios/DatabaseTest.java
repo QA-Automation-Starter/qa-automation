@@ -16,11 +16,10 @@
 package dev.aherscu.qa.jgiven.commons.scenarios;
 
 import java.lang.SuppressWarnings;
-import java.math.*;
 
-import org.apache.commons.dbutils.handlers.*;
 import org.testng.annotations.*;
-import org.unitils.io.annotation.*;
+import org.unitils.dbunit.annotation.*;
+import org.unitils.dbunit.datasetloadstrategy.impl.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
@@ -28,7 +27,6 @@ import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.testing.utils.config.*;
 import edu.umd.cs.findbugs.annotations.*;
-import lombok.*;
 import lombok.extern.slf4j.*;
 
 /**
@@ -43,53 +41,16 @@ import lombok.extern.slf4j.*;
     justification = "framework limitation")
 @SuppressWarnings({ "static-method" })
 @SelfTest
-// ISSUE does not work because in-mem db not initialized with schema/tables
-// looks like @BeforeClass above is not enough "before..."
-// changed to @BeforeTest... same effect
-// workaround:
-// instead of jdbc:derby:memory:testing;create=true
-// use a file based one -- and put it in source-control
-// @DataSet
+@DataSet(loadStrategy = InsertLoadStrategy.class)
 @Slf4j
 public final class DatabaseTest extends
     UnitilsScenarioTest<BaseConfiguration, AnyScenarioType, GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
-
-    // ISSUE not initialized !!!
-    @FileContent("GenericTest.sql")
-    private String initializationSql;
 
     /**
      * Initializes with {@link BaseConfiguration}.
      */
     private DatabaseTest() {
         super(BaseConfiguration.class);
-    }
-
-    @Test
-    @SneakyThrows
-    public void shouldAccessDb() {
-        QUERY_RUNNER
-            .query("select INTEGER_COLUMN from TEST_TABLE",
-                new ArrayListHandler())
-            .forEach(row -> log.debug("row: {}", row));
-    }
-
-    /**
-     * Should fail reading something from a database.
-     *
-     * <p>
-     * FIXME insert required data before running the test
-     * </p>
-     */
-    @Test(enabled = false) // requires a mock database
-    public void shouldFailFindingSomethingInDatabase() {
-        // noinspection MagicNumber
-        then().querying_$_evaluates_as(
-            "select INTEGER_COLUMN from TEST_TABLE",
-            new Object[][] {
-                { BigDecimal.valueOf(95144630) },
-                { BigDecimal.valueOf(80366961) }
-            });
     }
 
     /**
@@ -99,32 +60,15 @@ public final class DatabaseTest extends
      * FIXME insert required data before running the test
      * </p>
      */
-    @Test(enabled = false)
+    @Test
     public void shouldSucceedFindingSomethingInDatabase() {
-        // noinspection MagicNumber
         then().querying_$_evaluates_as(
-            "select INTEGER_COLUMN from TEST_TABLE",
+            "select NAME from TEST_TABLE",
             new Object[][] {
-                { 1 },
-                { 2 }
+                { "initial value 1" },
+                { "initial value 2" },
+                { "dataset value 1" },
+                { "dataset value 2" },
             });
-    }
-
-    @BeforeTest
-    @SneakyThrows
-    protected void beforeTestInitDatabase() {
-        log.debug("initializing database with: {}", initializationSql);
-        // ISSUE all these are not seen by dbunit while performing @DataSet load
-        // QUERY_RUNNER.execute("create table TEST_TABLE(INTEGER_COLUMN
-        // INTEGER)");
-        QUERY_RUNNER.batch(
-            "create table TEST_TABLE(INTEGER_COLUMN INTEGER)",
-            new Object[][] { {} });
-        QUERY_RUNNER.batch(
-            "insert into TEST_TABLE values (1)",
-            new Object[][] { {} });
-        // this works too :)
-        QUERY_RUNNER.execute(
-            "insert into TEST_TABLE values (2)");
     }
 }

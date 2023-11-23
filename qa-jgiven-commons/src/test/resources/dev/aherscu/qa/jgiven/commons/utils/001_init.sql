@@ -1,5 +1,4 @@
---
---  Copyright 2022 Adrian Herscu
+--  Copyright 2023 Adrian Herscu
 --
 --  Licensed under the Apache License, Version 2.0 (the "License");
 --  you may not use this file except in compliance with the License.
@@ -12,13 +11,12 @@
 --  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 --  See the License for the specific language governing permissions and
 --  limitations under the License.
---
 
 create table TEST_TABLE
 (
-    INTEGER_COLUMN INTEGER
+    NAME VARCHAR(20)
 );
 insert into TEST_TABLE
-values (7);
+values ('initial value 1');
 insert into TEST_TABLE
-values (8);
+values ('initial value 2');
