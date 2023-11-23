@@ -36,11 +36,13 @@ import javax.annotation.concurrent.*;
 
 import org.apache.commons.beanutils.*;
 import org.apache.commons.configuration.Configuration;
+import org.apache.commons.dbutils.*;
 import org.jooq.lambda.*;
 import org.reflections.*;
 import org.testng.*;
 import org.testng.annotations.*;
 import org.unitils.core.*;
+import org.unitils.database.*;
 
 import com.github.rodionmoiseev.c10n.*;
 import com.github.rodionmoiseev.c10n.annotations.*;
@@ -59,7 +61,7 @@ import lombok.extern.slf4j.*;
  * JGiven/TestNG tests.
  *
  * <p>
- * NOTE: implementation copied from {@link org.unitils.UnitilsTestNG}
+ * NOTE: implementation copied from org.unitils.UnitilsTestNG
  * </p>
  *
  * @param <C>
@@ -78,10 +80,18 @@ import lombok.extern.slf4j.*;
 @Slf4j
 public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? extends Configuration>, T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
     extends TypedScenarioTest<T, GIVEN, WHEN, THEN> implements IHookable {
+    @SuppressFBWarnings("SE_NO_SERIALVERSIONID")
+    private static class Configurations extends
+        ConcurrentHashMap<Class<? extends AbstractConfiguration<?>>, AbstractConfiguration<?>> {
+        // NOTE: just to make further declaration shorter...
+    }
+
     /**
      * The internal data provider name.
      */
     public static final String          INTERNAL_DATA_PROVIDER = "data"; // $NON-NLS-1$
+    public static final QueryRunner     QUERY_RUNNER           =
+        new QueryRunner(DatabaseUnitils.getDataSource());
     /**
      * Concurrency achieved so far.
      */
@@ -448,11 +458,5 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
         // } catch (final Exception e) {
         // log.warn("before test got {}", e.getMessage()); //$NON-NLS-1$
         // }
-    }
-
-    @SuppressFBWarnings("SE_NO_SERIALVERSIONID")
-    private static class Configurations extends
-        ConcurrentHashMap<Class<? extends AbstractConfiguration<?>>, AbstractConfiguration<?>> {
-        // NOTE: just to make further declaration shorter...
     }
 }

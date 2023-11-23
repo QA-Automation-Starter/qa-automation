@@ -15,6 +15,7 @@
  */
 package dev.aherscu.qa.jgiven.commons.steps;
 
+import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.QUERY_RUNNER;
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 
 import java.io.*;
@@ -25,7 +26,6 @@ import javax.annotation.concurrent.*;
 import org.apache.commons.dbutils.*;
 import org.dbunit.dataset.*;
 import org.unitils.core.*;
-import org.unitils.database.*;
 import org.unitils.dbunit.annotation.*;
 import org.unitils.dbunit.datasetfactory.*;
 import org.unitils.dbunit.datasetloadstrategy.*;
@@ -169,8 +169,7 @@ public class GenericFixtures<T extends AnyScenarioType, SELF extends GenericFixt
         if (0 >= params.length)
             throw new IllegalArgumentException("no replacement parameters"); //$NON-NLS-1$
 
-        new QueryRunner(DatabaseUnitils.getDataSource())
-            .batch(sql, params);
+        QUERY_RUNNER.batch(sql, params);
 
         return self();
     }

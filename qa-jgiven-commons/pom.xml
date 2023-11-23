@@ -181,19 +181,6 @@
       <version>2.5.0</version>
     </dependency>
 
-    <!-- dependency>
-      ISSUE: cannot read the descriptor perhaps due to missing configuration
-      <groupId>com.oracle.jdbc</groupId>
-      <artifactId>OracleJdbcDriver12</artifactId>
-    </dependency-->
-
-    <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derbyclient</artifactId>
-      <version>10.14.2.0</version>
-      <scope>provided</scope>
-    </dependency>
-
     <dependency>
       <groupId>com.google.inject</groupId>
       <artifactId>guice</artifactId>
@@ -219,6 +206,21 @@
           <artifactId>commons-logging</artifactId>
         </exclusion>
       </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.unitils</groupId>
+      <artifactId>unitils-testng</artifactId>
+      <version>3.4.6</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.derby</groupId>
+      <artifactId>derby</artifactId>
+      <!-- NOTE: this is the latest version compatible with jdk8 -->
+      <version>10.14.2.0</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

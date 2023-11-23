@@ -19,10 +19,8 @@ import static org.assertj.core.api.Assertions.*;
 import static org.hamcrest.Matchers.*;
 
 import java.lang.SuppressWarnings;
-import java.math.*;
 
 import org.testng.annotations.*;
-import org.unitils.io.annotation.*;
 
 import com.tngtech.jgiven.*;
 
@@ -36,6 +34,7 @@ import dev.aherscu.qa.testing.utils.*;
 import dev.aherscu.qa.testing.utils.config.*;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
+import lombok.extern.slf4j.*;
 
 /**
  * Contains sample tests just to ensure that the testing infrastructure works as
@@ -49,12 +48,9 @@ import lombok.*;
     justification = "framework limitation")
 @SuppressWarnings({ "static-method" })
 @SelfTest
+@Slf4j
 public final class GenericTest extends
     UnitilsScenarioTest<BaseConfiguration, AnyScenarioType, GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
-
-    @FileContent
-    private String sql;
-
     // ISSUE: sometimes creating a temporary file on Windows 7 fails with
     // "access denied".
     // @TempFile
@@ -100,24 +96,6 @@ public final class GenericTest extends
             new RuntimeException("just to see it failing"));
         section("should be skipped");
         then().should_succeed(is(false));
-    }
-
-    /**
-     * Should fail reading something from a database.
-     *
-     * <p>
-     * FIXME insert required data before running the test
-     * </p>
-     */
-    @Test(enabled = false) // requires a mock database
-    public void shouldFailFindingSomethingInDatabase() {
-        // noinspection MagicNumber
-        then().querying_$_evaluates_as(
-            sql,
-            new Object[][] {
-                { BigDecimal.valueOf(95144630) },
-                { BigDecimal.valueOf(80366961) }
-            });
     }
 
     /**
@@ -187,24 +165,6 @@ public final class GenericTest extends
         given().nothing();
         when().doing_nothing();
         then().should_succeed(is(true));
-    }
-
-    /**
-     * Should succeed reading something from a database.
-     *
-     * <p>
-     * FIXME insert required data before running the test
-     * </p>
-     */
-    @Test(enabled = false)
-    public void shouldSucceedFindingSomethingInDatabase() {
-        // noinspection MagicNumber
-        then().querying_$_evaluates_as(
-            sql,
-            new Object[][] {
-                { BigDecimal.valueOf(95144630) },
-                { BigDecimal.valueOf(80366964) }
-            });
     }
 
     /**

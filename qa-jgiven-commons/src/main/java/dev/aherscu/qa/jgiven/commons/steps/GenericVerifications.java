@@ -16,6 +16,7 @@
 package dev.aherscu.qa.jgiven.commons.steps;
 
 import static com.danhaywood.java.assertjext.Conditions.*;
+import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.QUERY_RUNNER;
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -30,11 +31,9 @@ import java.util.function.*;
 
 import javax.annotation.concurrent.*;
 
-import org.apache.commons.dbutils.*;
 import org.apache.commons.dbutils.handlers.*;
 import org.apache.commons.io.*;
 import org.hamcrest.*;
-import org.unitils.database.*;
 
 import com.google.common.collect.*;
 import com.jayway.jsonassert.*;
@@ -77,8 +76,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
     private static List<Object[]> resultSetOf(final String sql) {
         log.debug("querying {}", sql); //$NON-NLS-1$
         final List<Object[]> resultSet =
-            new QueryRunner(DatabaseUnitils.getDataSource())
-                .query(sql, new ArrayListHandler());
+            QUERY_RUNNER.query(sql, new ArrayListHandler());
         log.trace("result set contains {} rows", //$NON-NLS-1$
             resultSet.size());
         return resultSet;
