@@ -26,13 +26,18 @@
   <test name="development" parallel="classes">
     <packages>
       <package
-        name="dev.aherscu.qa.jgiven.commons"/>
+        name="dev.aherscu.qa.jgiven.commons" />
       <package
-        name="dev.aherscu.qa.jgiven.commons.model"/>
+        name="dev.aherscu.qa.jgiven.commons.model" />
       <package
-        name="dev.aherscu.qa.jgiven.commons.scenarios"/>
+        name="dev.aherscu.qa.jgiven.commons.scenarios" />
       <package
-        name="dev.aherscu.qa.jgiven.commons.utils"/>
+        name="dev.aherscu.qa.jgiven.commons.utils" />
     </packages>
   </test>
+  <test name="development-ex" junit="true">
+    <classes>
+      <class name="dev.aherscu.qa.jgiven.commons.utils.DbUnitTest" />
+    </classes>
+   </test>
 </suite>
