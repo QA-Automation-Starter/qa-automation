@@ -15,8 +15,11 @@
  */
 package dev.aherscu.qa.jgiven.commons.scenarios;
 
+import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
+
 import java.lang.SuppressWarnings;
 
+import org.apache.commons.dbutils.handlers.*;
 import org.testng.annotations.*;
 import org.unitils.dbunit.annotation.*;
 import org.unitils.dbunit.datasetloadstrategy.impl.*;
@@ -27,6 +30,7 @@ import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.testing.utils.config.*;
 import edu.umd.cs.findbugs.annotations.*;
+import lombok.*;
 import lombok.extern.slf4j.*;
 
 /**
@@ -61,14 +65,38 @@ public final class DatabaseTest extends
      * </p>
      */
     @Test
+    @SneakyThrows
     public void shouldSucceedFindingSomethingInDatabase() {
-        then().querying_$_evaluates_as(
-            "select NAME from TEST_TABLE",
-            new Object[][] {
-                { "initial value 1" },
-                { "initial value 2" },
-                { "dataset value 1" },
-                { "dataset value 2" },
-            });
+        QUERY_RUNNER.query("select * from TEST_TABLE", new ArrayListHandler())
+            .forEach(row -> log.debug(">>> {}", row[0]));
+
+        then()
+            .querying_$_evaluates_as(
+                "select NAME from TEST_TABLE",
+                adaptedStream(row -> row[0],
+                    hasSpecificItems(
+                        // NOTE: initial values are preserved by the load
+                        // strategy
+                        "initial value 1",
+                        "initial value 2",
+                        "dataset value 1",
+                        "dataset value 2")));
+    }
+
+    @Test
+    @SneakyThrows
+    public void shouldSucceedFindingSomethingElseInDatabase() {
+        QUERY_RUNNER.query("select * from TEST_TABLE", new ArrayListHandler())
+            .forEach(row -> log.debug(">>> {}", row[0]));
+
+        then()
+            .querying_$_evaluates_as(
+                "select NAME from TEST_TABLE",
+                adaptedStream(row -> row[0],
+                    hasSpecificItems(
+                        // NOTE: initial values are preserved by the load
+                        // strategy
+                        "initial value 1",
+                        "dataset value 2")));
     }
 }

@@ -15,6 +15,6 @@
   ~ limitations under the License.
   -->
 <dataset>
-  <TEST_TABLE INTEGER_COLUMN="1" />
-  <TEST_TABLE INTEGER_COLUMN="2" />
+  <TEST_TABLE NAME="dataset value 1" />
+  <TEST_TABLE NAME="dataset value 2" />
 </dataset>

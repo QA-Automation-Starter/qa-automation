@@ -20,6 +20,7 @@ import static com.google.common.base.Suppliers.*;
 import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
 import static org.hamcrest.MatcherAssert.*;
 
+import dev.aherscu.qa.testing.utils.*;
 import java.util.function.*;
 
 import javax.sql.*;
@@ -53,6 +54,24 @@ public class DbUtilsTest {
             .query("select NAME from TEST_TABLE",
                 new ArrayListHandler())
             .stream(),
+            adaptedStream(row -> row[0],
+                hasSpecificItems("inserted value 1")));
+    }
+
+    @Test
+    @Ignore // TODO complete implementation
+    @SneakyThrows
+    public void shouldUseDbInParallel() {
+        ExecutorUtils.EXECUTOR_SERVICE
+            .submit(()->queryRunner()
+                .insert("insert into TEST_TABLE values ('inserted value 1')", new ArrayListHandler()));
+
+        // TODO submit multiple inserts and selects
+        //  then, wait for all tasks to complete and assert on inserted values
+        assertThat(queryRunner()
+                .query("select NAME from TEST_TABLE",
+                    new ArrayListHandler())
+                .stream(),
             adaptedStream(row -> row[0],
                 hasSpecificItems("inserted value 1")));
     }

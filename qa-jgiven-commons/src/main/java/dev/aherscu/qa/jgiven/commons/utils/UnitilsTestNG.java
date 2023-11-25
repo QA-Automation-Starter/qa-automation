@@ -15,6 +15,8 @@
  */
 package dev.aherscu.qa.jgiven.commons.utils;
 
+import static java.lang.ThreadLocal.withInitial;
+
 import java.lang.reflect.*;
 
 import org.testng.*;
@@ -33,7 +35,8 @@ import org.unitils.core.*;
 public abstract class UnitilsTestNG implements IHookable {
 
     /* True if beforeTestSetUp was called */
-    private boolean beforeTestSetUpCalled = false;
+    private final ThreadLocal<Boolean> beforeTestSetUpCalled =
+        withInitial(() -> Boolean.FALSE);
 
     /**
      * Implementation of the hookable interface to be able to call
@@ -147,8 +150,8 @@ public abstract class UnitilsTestNG implements IHookable {
     protected void unitilsAfterTestTearDown(Method testMethod) {
         // alwaysRun is enabled, extra test to ensure that
         // unitilsBeforeTestSetUp was called
-        if (beforeTestSetUpCalled) {
-            beforeTestSetUpCalled = false;
+        if (beforeTestSetUpCalled.get()) {
+            beforeTestSetUpCalled.set(false);
             getTestListener().afterTestTearDown(this, testMethod);
         }
     }
@@ -172,7 +175,7 @@ public abstract class UnitilsTestNG implements IHookable {
      */
     @BeforeMethod(alwaysRun = true)
     protected void unitilsBeforeTestSetUp(Method testMethod) {
-        beforeTestSetUpCalled = true;
+        beforeTestSetUpCalled.set(true);
         getTestListener().beforeTestSetUp(this, testMethod);
     }
 

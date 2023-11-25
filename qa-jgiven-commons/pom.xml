@@ -221,8 +221,9 @@
     <dependency>
       <groupId>org.apache.derby</groupId>
       <artifactId>derby</artifactId>
-      <!-- NOTE: this is the latest version compatible with jdk8 -->
-      <version>10.14.2.0</version>
+      <!-- NOTE: this is the latest version compatible with jdk11 -->
+      <!-- https://db.apache.org/derby/derby_downloads.html -->
+      <version>10.15.2.0</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

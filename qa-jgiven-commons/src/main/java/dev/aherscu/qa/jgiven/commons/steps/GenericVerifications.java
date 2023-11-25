@@ -16,7 +16,7 @@
 package dev.aherscu.qa.jgiven.commons.steps;
 
 import static com.danhaywood.java.assertjext.Conditions.*;
-import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.QUERY_RUNNER;
+import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -28,6 +28,7 @@ import java.nio.charset.*;
 import java.sql.*;
 import java.util.*;
 import java.util.function.*;
+import java.util.stream.*;
 
 import javax.annotation.concurrent.*;
 
@@ -191,6 +192,15 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
         assertThat(resultSet.toArray(new Object[resultSet.size()][]))
             .isEqualTo(expectedResults);
         return self();
+    }
+
+    public SELF querying_$_evaluates_as(
+        @StringFormatter.Annotation(maxWidth = 400) final String sql,
+        final Matcher<Stream<Object[]>> matcher) {
+        return eventually_assert_that(
+            // TODO make resultSetOf(sql) return a stream
+            () -> resultSetOf(sql).stream(),
+            matcher);
     }
 
     /**
