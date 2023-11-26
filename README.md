@@ -3,6 +3,8 @@
 [![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/on-main-push.yml/badge.svg)](https://github.com/QA-Automation-Starter/qa-automation/actions)
 [![Sauce Test Status](https://saucelabs.com/buildstatus/oauth-adrian.herscu-d81b6)](https://app.saucelabs.com/u/oauth-adrian.herscu-d81b6)
 
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/oauth-adrian.herscu-d81b6.svg)](https://saucelabs.com/u/oauth-adrian.herscu-d81b6)
+
 
 > > **[Usage instructions and Brief introduction](https://qa-automation-starter.aherscu.dev)**
 >
