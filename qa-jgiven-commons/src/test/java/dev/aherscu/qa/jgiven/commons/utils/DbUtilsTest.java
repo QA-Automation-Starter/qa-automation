@@ -18,21 +18,25 @@ package dev.aherscu.qa.jgiven.commons.utils;
 
 import static com.google.common.base.Suppliers.*;
 import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
+import static java.time.Duration.*;
+import static java.util.concurrent.CompletableFuture.*;
 import static org.hamcrest.MatcherAssert.*;
 
-import dev.aherscu.qa.testing.utils.*;
 import java.util.function.*;
+import java.util.stream.*;
 
 import javax.sql.*;
 
 import org.apache.commons.dbutils.*;
 import org.apache.commons.dbutils.handlers.*;
+import org.jooq.lambda.*;
 import org.testng.annotations.*;
 
 import com.zaxxer.hikari.*;
 
 import lombok.*;
 import lombok.extern.slf4j.*;
+import net.jodah.failsafe.*;
 
 @Slf4j
 public class DbUtilsTest {
@@ -59,21 +63,30 @@ public class DbUtilsTest {
     }
 
     @Test
-    @Ignore // TODO complete implementation
+    // @Ignore // TODO complete implementation
     @SneakyThrows
     public void shouldUseDbInParallel() {
-        ExecutorUtils.EXECUTOR_SERVICE
-            .submit(()->queryRunner()
-                .insert("insert into TEST_TABLE values ('inserted value 1')", new ArrayListHandler()));
-
-        // TODO submit multiple inserts and selects
-        //  then, wait for all tasks to complete and assert on inserted values
-        assertThat(queryRunner()
-                .query("select NAME from TEST_TABLE",
-                    new ArrayListHandler())
-                .stream(),
-            adaptedStream(row -> row[0],
-                hasSpecificItems("inserted value 1")));
+        val r = 10_000; // more repetitions need more retries
+        allOf(
+            runAsync(() -> IntStream.range(0, r)
+                .parallel()
+                .forEach(Unchecked.intConsumer(i -> queryRunner()
+                    .execute("insert into TEST_TABLE values (?)",
+                        String.valueOf(i))))),
+            runAsync(() -> IntStream.range(0, r)
+                .parallel()
+                .forEach(Unchecked.intConsumer(i -> Failsafe
+                    .with(new RetryPolicy<>()
+                        .withDelay(ofSeconds(1))
+                        .onRetry(e -> log.debug(">>> {}", e)))
+                    .run(() -> assertThat(queryRunner()
+                        .query("select NAME from TEST_TABLE",
+                            new ArrayListHandler())
+                        .stream(),
+                        // .peek(row -> log.debug(">>> {}", row[0])),
+                        adaptedStream(row -> row[0],
+                            hasSpecificItems(String.valueOf(i)))))))))
+            .join();
     }
 
     @BeforeClass
