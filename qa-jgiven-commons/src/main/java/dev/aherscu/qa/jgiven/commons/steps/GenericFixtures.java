@@ -15,7 +15,7 @@
  */
 package dev.aherscu.qa.jgiven.commons.steps;
 
-import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.QUERY_RUNNER;
+import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.queryRunner;
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 
 import java.io.*;
@@ -169,7 +169,7 @@ public class GenericFixtures<T extends AnyScenarioType, SELF extends GenericFixt
         if (0 >= params.length)
             throw new IllegalArgumentException("no replacement parameters"); //$NON-NLS-1$
 
-        QUERY_RUNNER.batch(sql, params);
+        queryRunner().batch(sql, params);
 
         return self();
     }

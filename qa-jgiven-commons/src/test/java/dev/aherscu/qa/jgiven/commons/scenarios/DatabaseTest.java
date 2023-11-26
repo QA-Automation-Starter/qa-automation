@@ -19,7 +19,6 @@ import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
 
 import java.lang.SuppressWarnings;
 
-import org.apache.commons.dbutils.handlers.*;
 import org.testng.annotations.*;
 import org.unitils.dbunit.annotation.*;
 import org.unitils.dbunit.datasetloadstrategy.impl.*;
@@ -57,19 +56,23 @@ public final class DatabaseTest extends
         super(BaseConfiguration.class);
     }
 
-    /**
-     * Should succeed reading something from a database.
-     *
-     * <p>
-     * FIXME insert required data before running the test
-     * </p>
-     */
+    @Test
+    @SneakyThrows
+    public void shouldSucceedFindingSomethingElseInDatabase() {
+        then()
+            .querying_$_evaluates_as(
+                "select NAME from TEST_TABLE",
+                adaptedStream(row -> row[0],
+                    hasSpecificItems(
+                        // NOTE: initial values are preserved by the load
+                        // strategy
+                        "initial value 1",
+                        "dataset value 2")));
+    }
+
     @Test
     @SneakyThrows
     public void shouldSucceedFindingSomethingInDatabase() {
-        QUERY_RUNNER.query("select * from TEST_TABLE", new ArrayListHandler())
-            .forEach(row -> log.debug(">>> {}", row[0]));
-
         then()
             .querying_$_evaluates_as(
                 "select NAME from TEST_TABLE",
@@ -80,23 +83,6 @@ public final class DatabaseTest extends
                         "initial value 1",
                         "initial value 2",
                         "dataset value 1",
-                        "dataset value 2")));
-    }
-
-    @Test
-    @SneakyThrows
-    public void shouldSucceedFindingSomethingElseInDatabase() {
-        QUERY_RUNNER.query("select * from TEST_TABLE", new ArrayListHandler())
-            .forEach(row -> log.debug(">>> {}", row[0]));
-
-        then()
-            .querying_$_evaluates_as(
-                "select NAME from TEST_TABLE",
-                adaptedStream(row -> row[0],
-                    hasSpecificItems(
-                        // NOTE: initial values are preserved by the load
-                        // strategy
-                        "initial value 1",
                         "dataset value 2")));
     }
 }

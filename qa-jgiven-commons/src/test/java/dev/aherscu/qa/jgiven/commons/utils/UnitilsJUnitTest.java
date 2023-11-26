@@ -19,13 +19,12 @@ package dev.aherscu.qa.jgiven.commons.utils;
 import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
 import static org.hamcrest.MatcherAssert.*;
 
-import org.apache.commons.dbutils.*;
-import org.apache.commons.dbutils.handlers.*;
 import org.unitils.*;
 import org.unitils.database.*;
 import org.unitils.dbunit.annotation.*;
 import org.unitils.dbunit.datasetloadstrategy.impl.*;
 
+import dev.aherscu.qa.jgiven.commons.utils.dbunit.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
@@ -34,16 +33,19 @@ import lombok.extern.slf4j.*;
 public class UnitilsJUnitTest extends UnitilsJUnit3 {
     @SneakyThrows
     public static void assertExistenceOfInitialAndDataSetValues() {
-        assertThat(new QueryRunner(DatabaseUnitils.getDataSource("testing"))
-            .query("select * from TEST_TABLE", new ArrayListHandler())
-            .stream(),
-            adaptedStream(row -> row[0],
-                hasSpecificItems(
-                    // NOTE: initial values are preserved by the load strategy
-                    "initial value 1",
-                    "initial value 2",
-                    "dataset value 1",
-                    "dataset value 2")));
+        try (val results =
+            new StreamingQueryRunner(DatabaseUnitils.getDataSource("testing"))
+                .queryStream("select * from TEST_TABLE")) {
+            assertThat(results,
+                adaptedStream(row -> row[0],
+                    hasSpecificItems(
+                        // NOTE: initial values are preserved by the load
+                        // strategy
+                        "initial value 1",
+                        "initial value 2",
+                        "dataset value 1",
+                        "dataset value 2")));
+        }
     }
 
     public void testUsingDb() {

@@ -21,31 +21,31 @@
 <!-- IMPORTANT: do not use the timeout attribute as it interferes with JGiven
   reporting mechanism causing all tests to be reported as failing -->
 <suite name="JGiven Commons Tests Suite" verbose="1"
-       data-provider-thread-count="2" parallel="tests">
-<!--  <test name="development" parallel="methods">-->
-<!--    <packages>-->
-<!--      <package-->
-<!--        name="dev.aherscu.qa.jgiven.commons" />-->
-<!--      <package-->
-<!--        name="dev.aherscu.qa.jgiven.commons.model" />-->
-<!--      <package-->
-<!--        name="dev.aherscu.qa.jgiven.commons.scenarios" />-->
-<!--      <package-->
-<!--        name="dev.aherscu.qa.jgiven.commons.utils" />-->
-<!--    </packages>-->
-<!--  </test>-->
-<!--  <test name="unitils-junit" junit="true" parallel="classes">-->
-<!--    <classes>-->
-<!--      <class name="dev.aherscu.qa.jgiven.commons.utils.DbUnitTest" />-->
-<!--      <class name="dev.aherscu.qa.jgiven.commons.utils.UnitilsJUnitTest" />-->
-<!--    </classes>-->
-<!--   </test>-->
+       data-provider-thread-count="2">
+  <test name="development" parallel="methods">
+    <packages>
+      <package
+        name="dev.aherscu.qa.jgiven.commons" />
+      <package
+        name="dev.aherscu.qa.jgiven.commons.model" />
+      <package
+        name="dev.aherscu.qa.jgiven.commons.scenarios" />
+      <package
+        name="dev.aherscu.qa.jgiven.commons.utils" />
+    </packages>
+  </test>
+  <test name="unitils-junit" junit="true" parallel="classes">
+    <classes>
+      <class name="dev.aherscu.qa.jgiven.commons.utils.DbUnitTest" />
+      <class name="dev.aherscu.qa.jgiven.commons.utils.UnitilsJUnitTest" />
+    </classes>
+  </test>
   <!-- ISSUE fails in parallel methods mode-->
   <test name="unitils-testng" parallel="none">
     <classes>
       <class name="dev.aherscu.qa.jgiven.commons.scenarios.DatabaseTest" />
-<!--      <class name="dev.aherscu.qa.jgiven.commons.utils.DbUtilsTest" />-->
-<!--      <class name="dev.aherscu.qa.jgiven.commons.utils.UnitilsTestNGTest" />-->
+      <class name="dev.aherscu.qa.jgiven.commons.utils.DbUtilsTest" />
+      <class name="dev.aherscu.qa.jgiven.commons.utils.UnitilsTestNGTest" />
     </classes>
   </test>
 </suite>

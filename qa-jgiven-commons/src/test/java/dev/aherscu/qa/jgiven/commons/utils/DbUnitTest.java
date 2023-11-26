@@ -21,12 +21,11 @@ import static dev.aherscu.qa.testing.utils.ClassUtilsExtensions.*;
 import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
 import static org.hamcrest.MatcherAssert.*;
 
+import dev.aherscu.qa.jgiven.commons.utils.dbunit.*;
 import java.util.function.*;
 
 import javax.sql.*;
 
-import org.apache.commons.dbutils.*;
-import org.apache.commons.dbutils.handlers.*;
 import org.dbunit.*;
 import org.dbunit.dataset.*;
 import org.dbunit.dataset.xml.*;
@@ -41,18 +40,19 @@ import lombok.extern.slf4j.*;
 @Slf4j
 public class DbUnitTest extends DataSourceBasedDBTestCase {
 
-    private final Supplier<QueryRunner> queryRunnerSupplier =
-        memoize(() -> new QueryRunner(getDataSource()));
+    private final Supplier<StreamingQueryRunner> queryRunnerSupplier =
+        memoize(() -> new StreamingQueryRunner(getDataSource()));
 
     @SneakyThrows
     public void testWithDbUtils() {
-        assertThat(queryRunner()
-            .query("select * from TEST_TABLE", new ArrayListHandler())
-            .stream(),
-            adaptedStream(row -> row[0],
-                hasSpecificItems(
-                    "dataset value 1",
-                    "dataset value 2")));
+        try (val results = queryRunner()
+            .queryStream("select * from TEST_TABLE")) {
+            assertThat(results,
+                adaptedStream(row -> row[0],
+                    hasSpecificItems(
+                        "dataset value 1",
+                        "dataset value 2")));
+        }
     }
 
     @Override
@@ -79,7 +79,7 @@ public class DbUnitTest extends DataSourceBasedDBTestCase {
         return dataSource;
     }
 
-    protected QueryRunner queryRunner() {
+    protected StreamingQueryRunner queryRunner() {
         return queryRunnerSupplier.get();
     }
 }

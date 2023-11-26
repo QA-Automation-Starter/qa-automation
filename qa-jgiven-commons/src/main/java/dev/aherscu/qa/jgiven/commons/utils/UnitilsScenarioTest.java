@@ -15,6 +15,7 @@
  */
 package dev.aherscu.qa.jgiven.commons.utils;
 
+import static com.google.common.base.Suppliers.*;
 import static dev.aherscu.qa.testing.utils.Base64Utils.*;
 import static dev.aherscu.qa.testing.utils.config.AbstractConfiguration.*;
 import static java.lang.Integer.*;
@@ -31,12 +32,12 @@ import java.time.*;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.*;
+import java.util.function.*;
 
 import javax.annotation.concurrent.*;
 
 import org.apache.commons.beanutils.*;
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.dbutils.*;
 import org.jooq.lambda.*;
 import org.reflections.*;
 import org.testng.*;
@@ -51,6 +52,7 @@ import com.tngtech.jgiven.annotation.*;
 import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
+import dev.aherscu.qa.jgiven.commons.utils.dbunit.*;
 import dev.aherscu.qa.testing.utils.config.AbstractConfiguration;
 import edu.umd.cs.findbugs.annotations.*;
 import lombok.*;
@@ -89,25 +91,28 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
     /**
      * The internal data provider name.
      */
-    public static final String          INTERNAL_DATA_PROVIDER = "data"; // $NON-NLS-1$
-    public static final QueryRunner     QUERY_RUNNER           =
-        new QueryRunner(DatabaseUnitils.getDataSource());
+    public static final String                          INTERNAL_DATA_PROVIDER =
+        "data";                                                                 // $NON-NLS-1$
     /**
      * Concurrency achieved so far.
      */
-    public static final AtomicInteger   concurrency            =
+    public static final AtomicInteger                   concurrency            =
         new AtomicInteger(0);
     /**
      * List of generated random identifiers.
      */
-    public static final Set<String>     issuedRandomIds        =
+    public static final Set<String>                     issuedRandomIds        =
         synchronizedSet(new HashSet<>());
     /**
      * The first parameter to be used with {@link CaseAs} annotation.
      */
-    protected static final String       USE_FIRST_PARAM        = "$1";   // $NON-NLS-1$
-    private static final Configurations CACHED_CONFIGURATIONS  =
+    protected static final String                       USE_FIRST_PARAM        =
+        "$1";                                                                   // $NON-NLS-1$
+    private static final Configurations                 CACHED_CONFIGURATIONS  =
         new Configurations();
+    private static final Supplier<StreamingQueryRunner> queryRunnerSupplier    =
+        memoize(
+            () -> new StreamingQueryRunner(DatabaseUnitils.getDataSource()));
 
     static {
         // TODO add a test for the string resources infrastructure
@@ -183,6 +188,10 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
 
     private static TestListener getTestListener() {
         return Unitils.getInstance().getTestListener();
+    }
+
+    public static StreamingQueryRunner queryRunner() {
+        return queryRunnerSupplier.get();
     }
 
     @SuppressFBWarnings("ITC_INHERITANCE_TYPE_CHECKING")

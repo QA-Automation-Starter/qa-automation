@@ -15,24 +15,20 @@
  */
 package dev.aherscu.qa.jgiven.commons.steps;
 
-import static com.danhaywood.java.assertjext.Conditions.*;
 import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.testng.Assert.*;
 
 import java.io.*;
 import java.nio.charset.*;
 import java.sql.*;
-import java.util.*;
 import java.util.function.*;
 import java.util.stream.*;
 
 import javax.annotation.concurrent.*;
 
-import org.apache.commons.dbutils.handlers.*;
 import org.apache.commons.io.*;
 import org.hamcrest.*;
 
@@ -42,6 +38,7 @@ import com.tngtech.jgiven.annotation.*;
 import dev.aherscu.qa.jgiven.commons.formatters.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.commons.utils.dbunit.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
@@ -73,13 +70,13 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
     }
 
     @SneakyThrows(SQLException.class)
-    private static List<Object[]> resultSetOf(final String sql) {
+    private static Stream<Object[]> resultSetOf(final String sql,
+        final Object... params) {
         log.debug("querying {}", sql); //$NON-NLS-1$
-        final List<Object[]> resultSet =
-            QUERY_RUNNER.query(sql, new ArrayListHandler());
-        log.trace("result set contains {} rows", //$NON-NLS-1$
-            resultSet.size());
-        return resultSet;
+        return queryRunner()
+            .queryStream(sql, params)
+            .peek(row -> log
+                .trace("retrieved row -- first column: {}", row[0]));
     }
 
     /**
@@ -171,104 +168,22 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
         }, additionalRetryPolicies);
     }
 
-    /**
-     * Repeatedly runs specified SQL statement until the returned result set
-     * matches the expected results, or until a predefined timeout.
-     *
-     * @see #beforeScenarioConfigurePolling()
-     *
-     * @param sql
-     *            the SQL statement to execute
-     * @param expectedResults
-     *            the expected result set
-     *
-     * @return {@link #self()}
-     */
     public SELF querying_$_evaluates_as(
         @StringFormatter.Annotation(maxWidth = 400) final String sql,
-        @ObjectsMatrixFormatter.Annotation(
-            args = { "30" }) final Object[][] expectedResults) {
-        val resultSet = resultSetOf(sql);
-        assertThat(resultSet.toArray(new Object[resultSet.size()][]))
-            .isEqualTo(expectedResults);
-        return self();
-    }
-
-    public SELF querying_$_evaluates_as(
-        @StringFormatter.Annotation(maxWidth = 400) final String sql,
-        final Matcher<Stream<Object[]>> matcher) {
-        return eventually_assert_that(
-            // TODO make resultSetOf(sql) return a stream
-            () -> resultSetOf(sql).stream(),
-            matcher);
-    }
-
-    /**
-     * Repeatedly runs specified SQL statement until the returned result set
-     * matches the expected results in any order, or until a predefined timeout.
-     *
-     * @see #beforeScenarioConfigurePolling()
-     *
-     * @param sql
-     *            the SQL statement to execute
-     * @param expectedResults
-     *            the expected result set
-     *
-     * @return {@link #self()}
-     */
-    public SELF querying_$_evaluates_as_$_in_any_order(
-        @StringFormatter.Annotation(maxWidth = 400) final String sql,
-        @ObjectsMatrixFormatter.Annotation(
-            args = { "30" }) final Object[][] expectedResults) {
-        assertThat(resultSetOf(sql))
-            .containsExactlyInAnyOrder(expectedResults);
-        return self();
-    }
-
-    /**
-     * Asserts that the result set returned by specified SQL statement matches
-     * the expected results.
-     *
-     * @see #beforeScenarioConfigurePolling()
-     *
-     * @param sql
-     *            the SQL statement to execute
-     * @param expectedResults
-     *            the expected result set
-     *
-     * @return {@link #self()}
-     */
-    public SELF querying_$_immediately_evaluates_as(
-        @StringFormatter.Annotation(maxWidth = 400) final String sql,
-        @ObjectsMatrixFormatter.Annotation(
-            args = { "30" }) final Object[][] expectedResults) {
-        // FIXME Warning:(240, 14) 'isEqualTo()' between objects of
-        // inconvertible types 'Condition<Object[][]>' and 'List<Object[]>'
-        assertThat(resultSetOf(sql))
-            .isEqualTo(matchedBy(equalTo(expectedResults)));
-        return self();
-    }
-
-    /**
-     * Asserts that the result set returned by specified SQL statement matches
-     * the expected results in any order.
-     *
-     * @see #beforeScenarioConfigurePolling()
-     *
-     * @param sql
-     *            the SQL statement to execute
-     * @param expectedResults
-     *            the expected result set
-     *
-     * @return {@link #self()}
-     */
-    public SELF querying_$_immediately_evaluates_as_$_in_any_order(
-        @StringFormatter.Annotation(maxWidth = 400) final String sql,
-        @ObjectsMatrixFormatter.Annotation(
-            args = { "30" }) final Object[][] expectedResults) {
-        assertThat(resultSetOf(sql))
-            .is(matchedBy(containsInAnyOrder((Cloneable[]) expectedResults)));
-        return self();
+        final Matcher<Stream<Object[]>> matcher,
+        final Object... params) {
+        val results = new ThreadLocal<Stream<Object[]>>();
+        try {
+            return eventually_assert_that(
+                () -> {
+                    results.set(resultSetOf(sql, params));
+                    return results.get();
+                },
+                matcher);
+        } finally {
+            log.trace("closing query stream");
+            results.get().close();
+        }
     }
 
     /**
