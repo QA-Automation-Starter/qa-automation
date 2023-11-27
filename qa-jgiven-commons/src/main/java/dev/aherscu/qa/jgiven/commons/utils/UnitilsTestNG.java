@@ -15,13 +15,15 @@
  */
 package dev.aherscu.qa.jgiven.commons.utils;
 
-import static java.lang.ThreadLocal.withInitial;
+import static java.lang.ThreadLocal.*;
 
 import java.lang.reflect.*;
 
 import org.testng.*;
 import org.testng.annotations.*;
 import org.unitils.core.*;
+
+import lombok.extern.slf4j.*;
 
 /**
  * Base test class that will Unitils-enable your test. This base class will make
@@ -32,6 +34,7 @@ import org.unitils.core.*;
  * @author Tim Ducheyne
  * @author Filip Neven
  */
+@Slf4j
 public abstract class UnitilsTestNG implements IHookable {
 
     /* True if beforeTestSetUp was called */
@@ -51,6 +54,7 @@ public abstract class UnitilsTestNG implements IHookable {
     public void run(IHookCallBack callBack, ITestResult testResult) {
         Throwable beforeTestMethodException = null;
         try {
+            log.trace("before test method");
             getTestListener().beforeTestMethod(this, testResult
                 .getMethod()
                 .getConstructorOrMethod()
@@ -58,11 +62,13 @@ public abstract class UnitilsTestNG implements IHookable {
 
         } catch (Throwable e) {
             // hold exception until later, first call afterTestMethod
+            log.error("before test method failed: {}", e.toString());
             beforeTestMethodException = e;
         }
 
         Throwable testMethodException = null;
         if (beforeTestMethodException == null) {
+            log.trace("running test method");
             callBack.runTestMethod(testResult);
 
             // Since TestNG calls the method using reflection, the exception is
@@ -73,11 +79,14 @@ public abstract class UnitilsTestNG implements IHookable {
                 testMethodException =
                     ((InvocationTargetException) testMethodException)
                         .getTargetException();
+                log.error("test method failed: {}",
+                    testMethodException.toString());
             }
         }
 
         Throwable afterTestMethodException = null;
         try {
+            log.trace("after test method");
             getTestListener().afterTestMethod(this, testResult
                 .getMethod()
                 .getConstructorOrMethod()
@@ -87,6 +96,7 @@ public abstract class UnitilsTestNG implements IHookable {
                     : testMethodException);
 
         } catch (Throwable e) {
+            log.error("after test method failed: {}", e.toString());
             afterTestMethodException = e;
         }
 
@@ -141,18 +151,21 @@ public abstract class UnitilsTestNG implements IHookable {
      * {@link TestListener#afterTestTearDown} is called.
      * <p/>
      * NOTE: alwaysRun is enabled to be sure that this method is called even
-     * when an exception occurs during {@link #unitilsBeforeTestSetUp}.
+     * when an exception occurs during {@link #beforeMethodSetUp}.
      *
      * @param testMethod
      *            The test method, not null
      */
     @AfterMethod(alwaysRun = true)
-    protected void unitilsAfterTestTearDown(Method testMethod) {
+    protected void afterMethodTearDown(Method testMethod) {
         // alwaysRun is enabled, extra test to ensure that
         // unitilsBeforeTestSetUp was called
         if (beforeTestSetUpCalled.get()) {
+            log.trace("after test tear down");
             beforeTestSetUpCalled.set(false);
             getTestListener().afterTestTearDown(this, testMethod);
+        } else {
+            log.error("before test setup not called/completed");
         }
     }
 
@@ -161,7 +174,8 @@ public abstract class UnitilsTestNG implements IHookable {
      * {@link TestListener#afterCreateTestObject(Object)} is called.
      */
     @BeforeClass(alwaysRun = true)
-    protected void unitilsBeforeClass() {
+    protected void beforeClass() {
+        log.trace("beforeTestClass & afterCreateTestObject");
         getTestListener().beforeTestClass(this.getClass());
         getTestListener().afterCreateTestObject(this);
     }
@@ -174,7 +188,8 @@ public abstract class UnitilsTestNG implements IHookable {
      *            The test method, not null
      */
     @BeforeMethod(alwaysRun = true)
-    protected void unitilsBeforeTestSetUp(Method testMethod) {
+    protected void beforeMethodSetUp(Method testMethod) {
+        log.trace("before test set up");
         beforeTestSetUpCalled.set(true);
         getTestListener().beforeTestSetUp(this, testMethod);
     }

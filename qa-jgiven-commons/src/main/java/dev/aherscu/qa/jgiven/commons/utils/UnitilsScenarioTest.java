@@ -190,6 +190,9 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
         return Unitils.getInstance().getTestListener();
     }
 
+    // FIXME there might be multiple databases configured in unitils.properties
+    //  on which one the query should be run, should be selected via param
+    // see -- https://github.com/QA-Automation-Starter/qa-automation/issues/209
     public static StreamingQueryRunner queryRunner() {
         return queryRunnerSupplier.get();
     }

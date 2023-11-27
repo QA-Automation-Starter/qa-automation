@@ -14,14 +14,13 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.commons.utils;
+package dev.aherscu.qa.jgiven.commons.utils.dbunit;
 
 import static com.google.common.base.Suppliers.*;
 import static dev.aherscu.qa.testing.utils.ClassUtilsExtensions.*;
 import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
 import static org.hamcrest.MatcherAssert.*;
 
-import dev.aherscu.qa.jgiven.commons.utils.dbunit.*;
 import java.util.function.*;
 
 import javax.sql.*;

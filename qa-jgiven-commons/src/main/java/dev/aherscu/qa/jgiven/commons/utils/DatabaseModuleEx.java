@@ -16,41 +16,11 @@
 
 package dev.aherscu.qa.jgiven.commons.utils;
 
-import static org.unitils.util.AnnotationUtils.*;
-
-import java.util.*;
-
-import javax.sql.*;
+import org.unitils.database.*;
 
 import lombok.extern.slf4j.*;
-import org.unitils.database.*;
-import org.unitils.database.annotations.*;
-
-import lombok.*;
 
 @Slf4j
 public class DatabaseModuleEx extends DatabaseModule {
-    @Override
-    public void injectDataSource(final Object testObject) {
-        val fields = getFieldsAnnotatedWith(testObject.getClass(),
-            TestDataSource.class);
-        val methods = getMethodsAnnotatedWith(testObject.getClass(),
-            TestDataSource.class);
-
-        if (fields.isEmpty() || methods.isEmpty()) {
-            log.info("no datasources needed");
-            return;
-        }
-
-        val mapDatasources = new HashMap<String, DataSource>();
-        // update all databases
-        for (Map.Entry<String, DataSourceWrapper> wrapper : wrappers
-            .entrySet()) {
-            DataSource dataSource2 =
-                getDataSource(wrapper.getKey(), mapDatasources, testObject);
-            // look if datasource is needed in test.
-            setFieldDataSource(wrapper.getKey(), dataSource2, testObject,
-                fields, methods);
-        }
-    }
+    // nothing yet...
 }

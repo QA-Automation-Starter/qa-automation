@@ -14,13 +14,15 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.commons.utils;
+package dev.aherscu.qa.jgiven.commons.utils.dbunit;
 
 import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
 import static org.hamcrest.MatcherAssert.*;
 
+import javax.sql.*;
+
 import org.unitils.*;
-import org.unitils.database.*;
+import org.unitils.database.annotations.*;
 import org.unitils.dbunit.annotation.*;
 import org.unitils.dbunit.datasetloadstrategy.impl.*;
 
@@ -31,10 +33,19 @@ import lombok.extern.slf4j.*;
 @DataSet(loadStrategy = InsertLoadStrategy.class)
 @Slf4j
 public class UnitilsJUnitTest extends UnitilsJUnit3 {
+    @TestDataSource // ("db1")
+    private DataSource dataSource1;
+
+    // ISSUE -- see
+    // https://github.com/QA-Automation-Starter/qa-automation/issues/209
+    // @TestDataSource("db2")
+    // private DataSource dataSource2;
+
     @SneakyThrows
-    public static void assertExistenceOfInitialAndDataSetValues() {
+    public static void assertExistenceOfInitialAndDataSetValues(
+        final DataSource dataSource) {
         try (val results =
-            new StreamingQueryRunner(DatabaseUnitils.getDataSource("testing"))
+            new StreamingQueryRunner(dataSource)
                 .queryStream("select * from TEST_TABLE")) {
             assertThat(results,
                 adaptedStream(row -> row[0],
@@ -49,6 +60,6 @@ public class UnitilsJUnitTest extends UnitilsJUnit3 {
     }
 
     public void testUsingDb() {
-        assertExistenceOfInitialAndDataSetValues();
+        assertExistenceOfInitialAndDataSetValues(dataSource1);
     }
 }
