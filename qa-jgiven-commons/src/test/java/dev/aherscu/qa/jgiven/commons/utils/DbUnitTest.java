@@ -59,7 +59,7 @@ public class DbUnitTest extends DataSourceBasedDBTestCase {
     protected IDataSet getDataSet() throws Exception {
         return new FlatXmlDataSetBuilder()
             .build(getRelativeResourceAsStream(DbUnitTest.class,
-                "DatabaseTest.xml"));
+                "DbUnitTest.xml"));
     }
 
     @Override
