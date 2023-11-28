@@ -23,22 +23,27 @@
 <suite name="JGiven Commons Tests Suite" verbose="1"
        data-provider-thread-count="2">
   <!-- ISSUE: JGiven does not support parallel methods -->
-  <test name="development" parallel="classes">
-    <packages>
-      <package
-        name="dev.aherscu.qa.jgiven.commons" />
-      <package
-        name="dev.aherscu.qa.jgiven.commons.model" />
-      <package
-        name="dev.aherscu.qa.jgiven.commons.scenarios" />
-      <package
-        name="dev.aherscu.qa.jgiven.commons.utils" />
-    </packages>
-  </test>
-  <test name="development-ex" junit="true">
+<!--  <test name="development" parallel="classes">-->
+<!--    <packages>-->
+<!--      <package-->
+<!--        name="dev.aherscu.qa.jgiven.commons" />-->
+<!--      <package-->
+<!--        name="dev.aherscu.qa.jgiven.commons.model" />-->
+<!--      <package-->
+<!--        name="dev.aherscu.qa.jgiven.commons.scenarios" />-->
+<!--      <package-->
+<!--        name="dev.aherscu.qa.jgiven.commons.utils" />-->
+<!--    </packages>-->
+<!--  </test>-->
+<!--  <test name="development-ex" junit="true">-->
+<!--    <classes>-->
+<!--      <class name="dev.aherscu.qa.jgiven.commons.utils.DbUnitTest" />-->
+<!--      <class name="dev.aherscu.qa.jgiven.commons.utils.UnitilsJUnitTest" />-->
+<!--    </classes>-->
+<!--   </test>-->
+  <test name="experimental" parallel="methods">
     <classes>
-      <class name="dev.aherscu.qa.jgiven.commons.utils.DbUnitTest" />
-      <class name="dev.aherscu.qa.jgiven.commons.utils.UnitilsJUnitTest" />
+      <class name="dev.aherscu.qa.jgiven.commons.utils.UnitilsTestNGTest" />
     </classes>
-   </test>
+  </test>
 </suite>

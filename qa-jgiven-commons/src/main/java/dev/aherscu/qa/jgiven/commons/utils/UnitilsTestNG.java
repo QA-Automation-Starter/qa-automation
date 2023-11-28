@@ -33,7 +33,8 @@ import org.unitils.core.*;
 public abstract class UnitilsTestNG implements IHookable {
 
     /* True if beforeTestSetUp was called */
-    private boolean beforeTestSetUpCalled = false;
+    private final ThreadLocal<Boolean> beforeTestSetUpCalled =
+        ThreadLocal.withInitial(() -> false);
 
     /**
      * Implementation of the hookable interface to be able to call
@@ -147,8 +148,8 @@ public abstract class UnitilsTestNG implements IHookable {
     protected void unitilsAfterTestTearDown(Method testMethod) {
         // alwaysRun is enabled, extra test to ensure that
         // unitilsBeforeTestSetUp was called
-        if (beforeTestSetUpCalled) {
-            beforeTestSetUpCalled = false;
+        if (beforeTestSetUpCalled.get()) {
+            beforeTestSetUpCalled.set(false);
             getTestListener().afterTestTearDown(this, testMethod);
         }
     }
@@ -172,7 +173,11 @@ public abstract class UnitilsTestNG implements IHookable {
      */
     @BeforeMethod(alwaysRun = true)
     protected void unitilsBeforeTestSetUp(Method testMethod) {
-        beforeTestSetUpCalled = true;
+        beforeTestSetUpCalled.set(true);
+        // DB and connection pool initialization occur here... that is before
+        // each test method. Should override the database module behavior to
+        // ensure that the pool and DB are only initialized once.
+        // Or, if possible, override beforeTestClass to init the pool and db...
         getTestListener().beforeTestSetUp(this, testMethod);
     }
 

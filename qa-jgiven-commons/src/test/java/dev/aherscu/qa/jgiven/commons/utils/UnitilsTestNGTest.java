@@ -31,4 +31,9 @@ public class UnitilsTestNGTest extends UnitilsTestNG {
     public void shouldUseDb() {
         assertExistenceOfInitialAndDataSetValues();
     }
+
+    @Test
+    public void shouldUseDbAgain() {
+        assertExistenceOfInitialAndDataSetValues();
+    }
 }
