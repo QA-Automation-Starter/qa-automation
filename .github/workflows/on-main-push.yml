@@ -3,7 +3,7 @@ name: main branch deploy and site publishing
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ 1_0 ]
     paths-ignore:
       - '**.md'
       - '.idea/**'
