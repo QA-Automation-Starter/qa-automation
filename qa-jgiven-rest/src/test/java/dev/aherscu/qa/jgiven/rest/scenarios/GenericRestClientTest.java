@@ -45,7 +45,7 @@ import lombok.*;
     justification = "JGiven framework limitation")
 public final class GenericRestClientTest
     extends
-    UnitilsScenarioTest<BaseConfiguration, RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+    ConfigurableScenarioTest<BaseConfiguration, RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 

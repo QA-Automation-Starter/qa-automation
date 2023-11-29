@@ -14,17 +14,24 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.jgiven.elasticsearch;
+package dev.aherscu.qa.jgiven.jdbc.steps;
 
-import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.elasticsearch.model.*;
-import dev.aherscu.qa.jgiven.elasticsearch.steps.*;
+import org.apache.commons.dbutils.*;
 
-public abstract class AbstractElasticSearchTest<T, TDocument> extends
-    ConfigurableScenarioTest<TestConfiguration, ElasticSearchScenarioType<TDocument>, ElasticSearchFixtures<T, TDocument, ?>, ElasticSearchActions<T, TDocument, ?>, ElasticSearchVerifications<T, TDocument, ?>> {
+import com.tngtech.jgiven.annotation.*;
 
-    public AbstractElasticSearchTest(
-        Class<TestConfiguration> configurationType) {
-        super(configurationType);
+import dev.aherscu.qa.jgiven.commons.steps.*;
+import dev.aherscu.qa.jgiven.jdbc.model.*;
+import lombok.extern.slf4j.*;
+
+@Slf4j
+public class JdbcFixtures<SELF extends JdbcFixtures<SELF>>
+    extends GenericFixtures<JdbcScenarioType, SELF> {
+    @ProvidedScenarioState
+    public final ThreadLocal<QueryRunner> queryRunner = new ThreadLocal<>();
+
+    public SELF a_query_runner(final QueryRunner queryRunner) {
+        this.queryRunner.set(queryRunner);
+        return self();
     }
 }

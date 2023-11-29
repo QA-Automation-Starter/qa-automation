@@ -242,8 +242,8 @@ public class WebDriverEx {
      * <p>
      * In addition, adds the Remote Web Driver session identifier to
      * {@link #remoteSessions} mapped to name of test as defined by
-     * {@link UnitilsScenarioTest#unitilsBeforeClass} or
-     * {@link UnitilsScenarioTest#unitilsBeforeMethod}
+     * {@link ConfigurableScenarioTest#beforeClassInitializeSession} or
+     * {@link ConfigurableScenarioTest#beforeMethodInitializeSession}
      * </p>
      *
      * @param capabilities

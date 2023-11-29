@@ -19,10 +19,8 @@ import static org.assertj.core.api.Assertions.*;
 import static org.hamcrest.Matchers.*;
 
 import java.lang.SuppressWarnings;
-import java.math.*;
 
 import org.testng.annotations.*;
-import org.unitils.io.annotation.*;
 
 import com.tngtech.jgiven.*;
 
@@ -50,15 +48,8 @@ import lombok.*;
 @SuppressWarnings({ "static-method" })
 @SelfTest
 public final class GenericTest extends
-    UnitilsScenarioTest<BaseConfiguration, AnyScenarioType, GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
+    ConfigurableScenarioTest<BaseConfiguration, AnyScenarioType, GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
 
-    @FileContent
-    private String sql;
-
-    // ISSUE: sometimes creating a temporary file on Windows 7 fails with
-    // "access denied".
-    // @TempFile
-    // private File tempFile;
 
     /**
      * Initializes with {@link BaseConfiguration}.
@@ -102,23 +93,7 @@ public final class GenericTest extends
         then().should_succeed(is(false));
     }
 
-    /**
-     * Should fail reading something from a database.
-     *
-     * <p>
-     * FIXME insert required data before running the test
-     * </p>
-     */
-    @Test(enabled = false) // requires a mock database
-    public void shouldFailFindingSomethingInDatabase() {
-        // noinspection MagicNumber
-        then().querying_$_evaluates_as(
-            sql,
-            new Object[][] {
-                { BigDecimal.valueOf(95144630) },
-                { BigDecimal.valueOf(80366961) }
-            });
-    }
+
 
     /**
      * Defined to complete within 1000 ms but sleeps for 2000 ms.
@@ -189,23 +164,7 @@ public final class GenericTest extends
         then().should_succeed(is(true));
     }
 
-    /**
-     * Should succeed reading something from a database.
-     *
-     * <p>
-     * FIXME insert required data before running the test
-     * </p>
-     */
-    @Test(enabled = false)
-    public void shouldSucceedFindingSomethingInDatabase() {
-        // noinspection MagicNumber
-        then().querying_$_evaluates_as(
-            sql,
-            new Object[][] {
-                { BigDecimal.valueOf(95144630) },
-                { BigDecimal.valueOf(80366964) }
-            });
-    }
+
 
     /**
      * Left should be equal to right.

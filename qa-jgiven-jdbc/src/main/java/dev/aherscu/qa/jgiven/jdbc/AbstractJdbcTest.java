@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,26 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.tags;
 
-import java.lang.annotation.*;
+package dev.aherscu.qa.jgiven.jdbc;
 
-import org.unitils.dbunit.annotation.*;
+import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.jdbc.model.*;
+import dev.aherscu.qa.jgiven.jdbc.steps.*;
 
-import com.tngtech.jgiven.annotation.*;
-
-/**
- * Database testing annotation.
- *
- * @author aherscu
- *
- */
-@IsTag(
-    name = "Database Test",
-    description = "Tests interacting with databases")
-@Retention(RetentionPolicy.RUNTIME)
-@DataSet
-@Inherited
-public @interface DatabaseTest {
-    // no parameter to declare
+public abstract class AbstractJdbcTest
+    extends
+    ConfigurableScenarioTest<TestConfiguration, JdbcScenarioType, JdbcFixtures<?>, JdbcActions<?>, JdbcVerifications<?>> {
+    public AbstractJdbcTest(Class<TestConfiguration> configurationType) {
+        super(configurationType);
+    }
 }
