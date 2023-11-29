@@ -44,6 +44,7 @@ public class JdbcVerifications<SELF extends JdbcVerifications<SELF>>
 
     // DELETEME after implementing streaming as in above method
     public SELF the_result_matches(final Object[][] expected) {
+        log.debug("verifying result-set");
         assertThat(resultSet.get()
             .toArray(new Object[resultSet.get().size()][]),
             is(expected));

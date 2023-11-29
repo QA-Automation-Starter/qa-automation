@@ -67,16 +67,6 @@
     </sift>
   </appender>
 
-  <!-- NOTE: must suppres traces for these two classes
-    otherwise the log will be flooded during tests -->
-  <!-- DELETEME log level is now controlled via profiles defined in parent -->
-  <!--  <logger-->
-  <!--      name="dev.aherscu.qa.testing.utils.pooling.AutoReturnable"-->
-  <!--      level="debug" />-->
-  <!--  <logger-->
-  <!--      name="dev.aherscu.qa.testing.utils.pooling.AutoReturnableObjectPool"-->
-  <!--      level="debug" />-->
-
   <logger name="dev.aherscu.qa.testing.utils.config" level="info"/>
   <logger name="jdk" level="info"/>
   <logger name="sun" level="info"/>
@@ -87,7 +77,9 @@
   <logger name="com.jayway" level="info"/>
   <logger name="com.tngtech" level="info"/>
 
-  <root level="off">
+  <!-- NOTE: the log root level defaults to trace, but might be overridden via
+    a system property, e.g. via a Maven profile defining Surefire/Failsafe system properties  -->
+  <root level="${log.root.level:-trace}">
     <appender-ref ref="one-file-log"/>
     <appender-ref ref="console"/>
     <appender-ref ref="per-thread-logs"/>

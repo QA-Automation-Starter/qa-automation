@@ -31,6 +31,8 @@ public class JdbcFixtures<SELF extends JdbcFixtures<SELF>>
     public final ThreadLocal<QueryRunner> queryRunner = new ThreadLocal<>();
 
     public SELF a_query_runner(final QueryRunner queryRunner) {
+        log.debug("setting query runner {}",
+            queryRunner.getDataSource().toString());
         this.queryRunner.set(queryRunner);
         return self();
     }

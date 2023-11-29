@@ -26,26 +26,28 @@ import com.tngtech.jgiven.annotation.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.jdbc.model.*;
 import lombok.*;
+import lombok.extern.slf4j.*;
 
+@Slf4j
 public class JdbcActions<SELF extends JdbcActions<SELF>>
     extends GenericActions<JdbcScenarioType, SELF> {
+    @ProvidedScenarioState
+    public final ThreadLocal<Integer>        result    = new ThreadLocal<>();
+    @ProvidedScenarioState
+    public final ThreadLocal<List<Object[]>> resultSet = new ThreadLocal<>();
     @ExpectedScenarioState
     public ThreadLocal<QueryRunner>          queryRunner;
 
-    @ProvidedScenarioState
-    public final ThreadLocal<Integer>        result    = new ThreadLocal<>();
-
-    @ProvidedScenarioState
-    public final ThreadLocal<List<Object[]>> resultSet = new ThreadLocal<>();
-
     @SneakyThrows
     public SELF executing(final String sql, final Object... params) {
+        log.debug("executing {}", sql);
         result.set(queryRunner.get().execute(sql, params));
         return self();
     }
 
     @SneakyThrows
     public SELF querying(final String sql, final Object... params) {
+        log.debug("querying {}", sql);
         resultSet
             .set(queryRunner.get().query(sql, new ArrayListHandler(), params));
         return self();

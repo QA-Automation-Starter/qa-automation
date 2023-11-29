@@ -26,9 +26,30 @@ public class JdbcTest extends AbstractJdbcTest {
     }
 
     @Test
-    public void shouldAccessDb() {
+    public void shouldAccessDb1() {
         given()
             .a_query_runner(configuration().queryRunnerFor("db-1"));
+
+        when()
+            // TODO make the initialization sql work
+            .executing("create table TEST_TABLE(NAME varchar(20))")
+            .and().executing("insert into TEST_TABLE values ('value 1')")
+            .and().querying("select * from TEST_TABLE");
+
+        then()
+            // TODO make it work with streams
+            // .the_result_matches(
+            // adaptedStream(row -> row[0],
+            // hasSpecificItems("value 1")));
+            .the_result_matches(new Object[][] {
+                { "value 1"},
+            });
+    }
+
+    @Test
+    public void shouldAccessDb2() {
+        given()
+            .a_query_runner(configuration().queryRunnerFor("db-2"));
 
         when()
             // TODO make the initialization sql work
