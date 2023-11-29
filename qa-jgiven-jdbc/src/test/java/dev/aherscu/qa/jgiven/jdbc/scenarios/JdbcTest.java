@@ -32,8 +32,7 @@ public class JdbcTest extends AbstractJdbcTest {
 
         when()
             // TODO make the initialization sql work
-            .executing("create table TEST_TABLE(NAME varchar(20))")
-            .and().executing("insert into TEST_TABLE values ('value 1')")
+            .executing("insert into TEST_TABLE values ('value 1')")
             .and().querying("select * from TEST_TABLE");
 
         then()
@@ -53,8 +52,7 @@ public class JdbcTest extends AbstractJdbcTest {
 
         when()
             // TODO make the initialization sql work
-            .executing("create table TEST_TABLE(NAME varchar(20))")
-            .and().executing("insert into TEST_TABLE values ('value 1')")
+            .executing("insert into TEST_TABLE values ('value 1')")
             .and().querying("select * from TEST_TABLE");
 
         then()

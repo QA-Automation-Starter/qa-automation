@@ -73,7 +73,8 @@ public final class TestConfiguration extends BaseConfiguration {
             // dataSource.setIdleTimeout(datasourceInt(_id,
             // "pool.ideltimeout"));
             // FIXME should read the referenced file
-            // dataSource.setConnectionInitSql(datasourceString(_id, "init"));
+            dataSource.setConnectionInitSql(
+                stringResourceFrom(datasourceString(_id, "init")));
             return new QueryRunner(dataSource);
         });
     }
