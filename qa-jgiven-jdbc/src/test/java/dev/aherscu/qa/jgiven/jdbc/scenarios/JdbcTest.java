@@ -33,8 +33,8 @@ public class JdbcTest extends AbstractJdbcTest {
             .a_query_runner(configuration().queryRunnerFor("db-1"));
 
         when()
-            // TODO make the initialization sql work
-            .executing("insert into TEST_TABLE values ('value 1')")
+            .executing("create table TEST_TABLE(NAME varchar(20))")
+            .and().executing("insert into TEST_TABLE values ('value 1')")
             .and().querying("select * from TEST_TABLE");
 
         then()
@@ -48,14 +48,13 @@ public class JdbcTest extends AbstractJdbcTest {
     }
 
     @Test
-    @Ignore
     public void shouldAccessDb2() {
         given()
             .a_query_runner(configuration().queryRunnerFor("db-2"));
 
         when()
-            // TODO make the initialization sql work
-            .executing("insert into TEST_TABLE values ('value 1')")
+            .executing("create table TEST_TABLE(NAME varchar(20))")
+            .and().executing("insert into TEST_TABLE values ('value 1')")
             .and().querying("select * from TEST_TABLE");
 
         then()

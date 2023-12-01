@@ -21,6 +21,7 @@ import java.util.concurrent.*;
 
 import javax.annotation.concurrent.*;
 
+import lombok.extern.slf4j.*;
 import org.apache.commons.configuration.*;
 import org.apache.commons.configuration.AbstractConfiguration;
 import org.apache.commons.dbutils.*;
@@ -36,6 +37,7 @@ import lombok.*;
  * @author aherscu
  */
 @ThreadSafe
+@Slf4j
 public final class TestConfiguration extends BaseConfiguration {
     private static final ConcurrentMap<String, QueryRunner> queryRunners =
         new ConcurrentHashMap<>();
@@ -58,6 +60,7 @@ public final class TestConfiguration extends BaseConfiguration {
     }
 
     public QueryRunner queryRunnerFor(final String id) {
+        log.debug("configuring query runner {}", id);
         return queryRunners.computeIfAbsent(id, _id -> {
             val dataSource = new HikariDataSource();
             dataSource.setDriverClassName(datasourceString(_id, "class"));
@@ -72,9 +75,6 @@ public final class TestConfiguration extends BaseConfiguration {
             // "pool.maxlifetime"));
             // dataSource.setIdleTimeout(datasourceInt(_id,
             // "pool.ideltimeout"));
-            // FIXME script should execute once nor per connection initialization
-            dataSource.setConnectionInitSql(
-                stringResourceFrom(datasourceString(_id, "init")));
             return new QueryRunner(dataSource);
         });
     }
