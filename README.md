@@ -107,6 +107,14 @@ https://central.sonatype.org/publish/publish-maven/#gpg-signed-components
 
 and ensure your correct Maven Settings as described above.
 
+## Running Web/Mobile tests on SauceLabs
+
+Must add following environment variables before launching Maven:
+* `SAUCELABS_USER`
+* `SAUCELABS_PASSWORD`
+
+These are available from https://app.saucelabs.com/
+
 ## Acknowledgments
 
 [![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/community/opensource/#support)
