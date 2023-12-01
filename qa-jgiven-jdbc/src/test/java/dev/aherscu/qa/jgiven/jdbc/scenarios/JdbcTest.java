@@ -16,6 +16,9 @@
 
 package dev.aherscu.qa.jgiven.jdbc.scenarios;
 
+import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.adaptedStream;
+import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.hasSpecificItems;
+
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.jdbc.*;
@@ -38,13 +41,9 @@ public class JdbcTest extends AbstractJdbcTest {
             .and().querying("select * from TEST_TABLE");
 
         then()
-            // TODO make it work with streams
-            // .the_result_matches(
-            // adaptedStream(row -> row[0],
-            // hasSpecificItems("value 1")));
-            .the_result_matches(new Object[][] {
-                { "value 1" },
-            });
+            .the_result_matches(
+                adaptedStream(row -> row[0],
+                    hasSpecificItems("value 1")));
     }
 
     @Test
@@ -58,12 +57,8 @@ public class JdbcTest extends AbstractJdbcTest {
             .and().querying("select * from TEST_TABLE");
 
         then()
-            // TODO make it work with streams
-            // .the_result_matches(
-            // adaptedStream(row -> row[0],
-            // hasSpecificItems("value 1")));
-            .the_result_matches(new Object[][] {
-                { "value 1" },
-            });
+            .the_result_matches(
+                adaptedStream(row -> row[0],
+                    hasSpecificItems("value 1")));
     }
 }

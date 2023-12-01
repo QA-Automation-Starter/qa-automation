@@ -17,14 +17,16 @@
 package dev.aherscu.qa.jgiven.jdbc.steps;
 
 import static org.hamcrest.MatcherAssert.*;
-import static org.hamcrest.Matchers.*;
 
-import java.util.*;
+import java.util.stream.*;
+
+import org.hamcrest.*;
 
 import com.tngtech.jgiven.annotation.*;
 
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.jdbc.model.*;
+import lombok.*;
 import lombok.extern.slf4j.*;
 
 @Slf4j
@@ -32,22 +34,16 @@ public class JdbcVerifications<SELF extends JdbcVerifications<SELF>>
     extends GenericVerifications<JdbcScenarioType, SELF> {
 
     @ExpectedScenarioState
-    public final ThreadLocal<Integer>        result    = new ThreadLocal<>();
+    public final ThreadLocal<Integer>          result    = new ThreadLocal<>();
 
     @ExpectedScenarioState
-    public final ThreadLocal<List<Object[]>> resultSet = new ThreadLocal<>();
+    public final ThreadLocal<Stream<Object[]>> resultSet = new ThreadLocal<>();
 
-    // public SELF the_result_matches(final Matcher<Stream<Object[]>> matcher) {
-    // // TODO implement
-    // return self();
-    // }
-
-    // DELETEME after implementing streaming as in above method
-    public SELF the_result_matches(final Object[][] expected) {
+    public SELF the_result_matches(final Matcher<Stream<Object[]>> expected) {
         log.debug("verifying result-set");
-        assertThat(resultSet.get()
-            .toArray(new Object[resultSet.get().size()][]),
-            is(expected));
+        try (val results = resultSet.get()) {
+            assertThat(results, expected);
+        }
         return self();
     }
 }
