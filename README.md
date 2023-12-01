@@ -98,6 +98,10 @@ the [LICENSE](LICENSE) file for details.
 For validating published artifacts, use
 <https://keys.openpgp.org/search?q=39F1B2495B0260B2D974C634F89B5DBA3AF082E0>
 
+## Importing GPG Private Key
+
+gpg --import 39F1B2495B0260B2D974C634F89B5DBA3AF082E0.gpg
+
 ## Acknowledgments
 
 [![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/community/opensource/#support)
