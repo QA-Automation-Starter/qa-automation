@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 // source https://github.com/rhuffman/dbstream
-package dev.aherscu.qa.jgiven.jdbc.utils.dbunit;
+package dev.aherscu.qa.jgiven.jdbc.utils.dbutils;
 
 import java.sql.*;
 import java.util.stream.*;

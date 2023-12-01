@@ -26,6 +26,8 @@
     <packages>
       <package
         name="dev.aherscu.qa.jgiven.jdbc.scenarios"/>
+      <package
+        name="dev.aherscu.qa.jgiven.jdbc.utils.dbutils"/>
     </packages>
   </test>
 </suite>

@@ -16,13 +16,13 @@
 
 package dev.aherscu.qa.jgiven.jdbc.steps;
 
+import dev.aherscu.qa.jgiven.jdbc.utils.dbutils.*;
 import java.util.stream.*;
 
 import com.tngtech.jgiven.annotation.*;
 
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.jdbc.model.*;
-import dev.aherscu.qa.jgiven.jdbc.utils.dbunit.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 

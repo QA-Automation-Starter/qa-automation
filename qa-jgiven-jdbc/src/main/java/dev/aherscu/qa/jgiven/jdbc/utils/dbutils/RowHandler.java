@@ -14,31 +14,25 @@
  * limitations under the License.
  */
 // source https://github.com/rhuffman/dbstream
-package dev.aherscu.qa.jgiven.jdbc.utils.dbunit;
+package dev.aherscu.qa.jgiven.jdbc.utils.dbutils;
 
 import java.sql.*;
 
-import org.apache.commons.dbutils.*;
-
 /**
- * ResultSetHandler implementation that converts the ResultSet into a Stream of
- * Object[]s.
+ * Converts the current row of a ResultSet to an object
  *
- * @see org.apache.commons.dbutils.ResultSetHandler
+ * @param <T>
+ *            The type of object to which the row will be converted
  */
-public class BeanStreamingHandler<T> extends StreamingResultSetHandler<T> {
+interface RowHandler<T> {
 
-    private static final BasicRowProcessor rowProcessor =
-        new BasicRowProcessor();
+    /**
+     * Converts the current row of the ResultSet to an object
+     *
+     * @param resultSet
+     *            The ResultSet to use
+     * @return The currente row converted to an object of type T
+     */
+    T handleRow(ResultSet resultSet) throws SQLException;
 
-    private final Class<? extends T>       type;
-
-    BeanStreamingHandler(Class<? extends T> type) {
-        this.type = type;
-    }
-
-    @Override
-    protected T handleRow(ResultSet rs) throws SQLException {
-        return rowProcessor.toBean(rs, type);
-    }
 }

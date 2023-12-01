@@ -17,19 +17,19 @@ package dev.aherscu.qa.jgiven.jdbc;
 
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 
+import dev.aherscu.qa.jgiven.jdbc.utils.dbutils.*;
 import java.util.concurrent.*;
 
 import javax.annotation.concurrent.*;
 
-import lombok.extern.slf4j.*;
 import org.apache.commons.configuration.*;
 import org.apache.commons.configuration.AbstractConfiguration;
-import org.apache.commons.dbutils.*;
 
 import com.zaxxer.hikari.*;
 
 import dev.aherscu.qa.testing.utils.config.BaseConfiguration;
 import lombok.*;
+import lombok.extern.slf4j.*;
 
 /**
  * Represents the configuration parameters for tests.
@@ -39,7 +39,7 @@ import lombok.*;
 @ThreadSafe
 @Slf4j
 public final class TestConfiguration extends BaseConfiguration {
-    private static final ConcurrentMap<String, QueryRunner> queryRunners =
+    private static final ConcurrentMap<String, StreamingQueryRunner> queryRunners =
         new ConcurrentHashMap<>();
 
     static {
@@ -59,7 +59,7 @@ public final class TestConfiguration extends BaseConfiguration {
         super(configurations);
     }
 
-    public QueryRunner queryRunnerFor(final String id) {
+    public StreamingQueryRunner queryRunnerFor(final String id) {
         log.debug("configuring query runner {}", id);
         return queryRunners.computeIfAbsent(id, _id -> {
             val dataSource = new HikariDataSource();
@@ -75,7 +75,7 @@ public final class TestConfiguration extends BaseConfiguration {
             // "pool.maxlifetime"));
             // dataSource.setIdleTimeout(datasourceInt(_id,
             // "pool.ideltimeout"));
-            return new QueryRunner(dataSource);
+            return new StreamingQueryRunner(dataSource);
         });
     }
 
