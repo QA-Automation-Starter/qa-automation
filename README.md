@@ -93,14 +93,19 @@ the [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md).
 This project is licensed under the Apache License - see
 the [LICENSE](LICENSE) file for details.
 
-## GPG Public Key
+## My GPG Public Key
 
 For validating published artifacts, use
 <https://keys.openpgp.org/search?q=39F1B2495B0260B2D974C634F89B5DBA3AF082E0>
 
 ## Importing GPG Private Key
 
-gpg --import 39F1B2495B0260B2D974C634F89B5DBA3AF082E0.gpg
+Per OSSRH depolyment rules, all artifacts must be signed using gpg --
+https://central.sonatype.org/publish/publish-maven/#gpg-signed-components
+
+`gpg --import 39F1B2495B0260B2D974C634F89B5DBA3AF082E0.gpg`
+
+and ensure your correct Maven Settings as described above.
 
 ## Acknowledgments
 
