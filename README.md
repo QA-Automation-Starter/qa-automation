@@ -1,7 +1,7 @@
 [![Apache License 2.0](https://img.shields.io/badge/license-apache2-red.svg?style=flat-square)](http://opensource.org/licenses/Apache-2.0)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/dev.aherscu.qa/qa-automation/badge.svg)](https://search.maven.org/search?q=dev.aherscu)
 [![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/on-main-push.yml/badge.svg)](https://github.com/QA-Automation-Starter/qa-automation/actions)
-[![Open Source Helpers](https://www.codetriage.com/adrian-herscu/qa-automation/badges/users.svg)](https://www.codetriage.com/adrian-herscu/qa-automation)
+[![Sauce Test Status](https://saucelabs.com/buildstatus/oauth-adrian.herscu-d81b6)](https://app.saucelabs.com/u/oauth-adrian.herscu-d81b6)
 
 > > **[Usage instructions and Brief introduction](https://qa-automation-starter.aherscu.dev)**
 >
@@ -111,3 +111,5 @@ and ensure your correct Maven Settings as described above.
 
 [![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/community/opensource/#support)
 [<img src="https://jgiven.org/img/logo.png" height="80" alt="JGiven">](https://jgiven.org)
+[![Testing Powered By SauceLabs](https://opensource.saucelabs.com/images/opensauce/powered-by-saucelabs-badge-red.png?sanitize=true "Testing Powered By SauceLabs")](https://saucelabs.com)
+
