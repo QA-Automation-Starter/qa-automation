@@ -72,7 +72,7 @@ public final class TestConfiguration extends BaseConfiguration {
             // "pool.maxlifetime"));
             // dataSource.setIdleTimeout(datasourceInt(_id,
             // "pool.ideltimeout"));
-            // FIXME should read the referenced file
+            // FIXME script should execute once nor per connection initialization
             dataSource.setConnectionInitSql(
                 stringResourceFrom(datasourceString(_id, "init")));
             return new QueryRunner(dataSource);

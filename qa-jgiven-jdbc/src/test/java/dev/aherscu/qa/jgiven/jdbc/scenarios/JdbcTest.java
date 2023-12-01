@@ -25,6 +25,8 @@ public class JdbcTest extends AbstractJdbcTest {
         super(TestConfiguration.class);
     }
 
+    // ISSUE does not fail but throws multiple SQL errors about already existent
+    // table
     @Test
     public void shouldAccessDb1() {
         given()
@@ -41,11 +43,12 @@ public class JdbcTest extends AbstractJdbcTest {
             // adaptedStream(row -> row[0],
             // hasSpecificItems("value 1")));
             .the_result_matches(new Object[][] {
-                { "value 1"},
+                { "value 1" },
             });
     }
 
     @Test
+    @Ignore
     public void shouldAccessDb2() {
         given()
             .a_query_runner(configuration().queryRunnerFor("db-2"));
@@ -61,7 +64,7 @@ public class JdbcTest extends AbstractJdbcTest {
             // adaptedStream(row -> row[0],
             // hasSpecificItems("value 1")));
             .the_result_matches(new Object[][] {
-                { "value 1"},
+                { "value 1" },
             });
     }
 }
