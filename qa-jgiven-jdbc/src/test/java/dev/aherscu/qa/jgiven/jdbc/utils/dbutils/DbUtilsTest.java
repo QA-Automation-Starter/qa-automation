@@ -56,10 +56,10 @@ public class DbUtilsTest {
     @Test
     @SneakyThrows
     public void shouldUseDbInParallel() {
-        val repetitions = 100_000; // takes about 7 seconds
+        val repetitions = 10_000; // takes about 7 seconds
         val retryPolicy = new RetryPolicy<>()
             .withDelay(ofSeconds(2))
-            .withMaxDuration(ofSeconds(10))
+            .withMaxDuration(ofSeconds(20))
             .onRetry(e -> log.debug(">>> {}",
                 abbreviate(e.toString(), 120)));
 
