@@ -16,21 +16,18 @@
 
 package dev.aherscu.qa.jgiven.commons.scenarios;
 
-import static org.hamcrest.Matchers.*;
-
-import com.tngtech.jgiven.annotation.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.model.*;
-import dev.aherscu.qa.jgiven.commons.steps.*;
-import dev.aherscu.qa.jgiven.commons.utils.*;
+import com.tngtech.jgiven.*;
+import com.tngtech.jgiven.testng.*;
+
 import lombok.extern.slf4j.*;
 
 @Slf4j
 public class JGivenMultipleStages extends
-    ScenarioTestEx<GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
+    ScenarioTest<JGivenMultipleStages.MFixtures<?>, JGivenMultipleStages.MActions<?>, JGivenMultipleStages.MVerifications<?>> {
     public static class MActions<SELF extends MActions<SELF>>
-        extends GenericActions<AnyScenarioType, SELF> {
+        extends Stage<SELF> {
 
         public SELF m_action() {
             return self();
@@ -38,13 +35,13 @@ public class JGivenMultipleStages extends
     }
 
     public static class MFixtures<SELF extends MFixtures<SELF>>
-        extends GenericFixtures<AnyScenarioType, SELF> {
+        extends Stage<SELF> {
         // ISSUE super given(), and(), all intro words do not return this type
-        @Override
-        @IntroWord
-        public SELF and() {
-            return super.and();
-        }
+        // @Override
+        // @IntroWord
+        // public SELF and() {
+        // return super.and();
+        // }
 
         public SELF m_fixture() {
             return self();
@@ -52,7 +49,7 @@ public class JGivenMultipleStages extends
     }
 
     public static class MVerifications<SELF extends MVerifications<SELF>>
-        extends GenericVerifications<AnyScenarioType, SELF> {
+        extends Stage<SELF> {
 
         public SELF m_verification() {
             log.info(">>> m_verification");
@@ -61,7 +58,7 @@ public class JGivenMultipleStages extends
     }
 
     public static class NActions<SELF extends NActions<SELF>>
-        extends GenericActions<AnyScenarioType, SELF> {
+        extends Stage<SELF> {
 
         public SELF n_action() {
             return self();
@@ -69,14 +66,14 @@ public class JGivenMultipleStages extends
     }
 
     public static class NFixtures<SELF extends NFixtures<SELF>>
-        extends GenericFixtures<AnyScenarioType, SELF> {
+        extends Stage<SELF> {
         public SELF n_fixture() {
             return self();
         }
     }
 
     public static class NVerifications<SELF extends NVerifications<SELF>>
-        extends GenericVerifications<AnyScenarioType, SELF> {
+        extends Stage<SELF> {
 
         public SELF n_verification() {
             return self();
@@ -85,20 +82,15 @@ public class JGivenMultipleStages extends
 
     @Test
     public void shouldWorkWithMultipleStages() {
-        given().nothing();
-        // ISSUE cannot add intro words
-        addStage(MFixtures.class)
-            .and().m_fixture();
+        given().m_fixture();
         addStage(NFixtures.class)
             // must define it in NFixtures like in MFixtures
-            /*.and()*/.n_fixture();
+            /* .and() */.n_fixture();
 
-        when().doing_nothing();
-        addStage(MActions.class).m_action();
+        when().m_action();
         addStage(NActions.class).n_action();
 
-        then().should_succeed(is(true));
-        addStage(MVerifications.class).m_verification();
+        then().m_verification();
         addStage(NVerifications.class).n_verification();
     }
 }
