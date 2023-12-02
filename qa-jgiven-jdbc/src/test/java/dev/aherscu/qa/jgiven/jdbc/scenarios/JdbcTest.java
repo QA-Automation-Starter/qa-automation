@@ -37,11 +37,10 @@ public class JdbcTest extends AbstractJdbcTest {
 
         when()
             .executing("create table TEST_TABLE(NAME varchar(20))")
-            .and().executing("insert into TEST_TABLE values ('value 1')")
-            .and().querying("select * from TEST_TABLE");
+            .and().executing("insert into TEST_TABLE values ('value 1')");
 
         then()
-            .the_result_matches(
+            .the_query("select * from TEST_TABLE",
                 adaptedStream(row -> row[0],
                     hasSpecificItems("value 1")));
     }
@@ -53,11 +52,10 @@ public class JdbcTest extends AbstractJdbcTest {
 
         when()
             .executing("create table TEST_TABLE(NAME varchar(20))")
-            .and().executing("insert into TEST_TABLE values ('value 1')")
-            .and().querying("select * from TEST_TABLE");
+            .and().executing("insert into TEST_TABLE values ('value 1')");
 
         then()
-            .the_result_matches(
+            .the_query("select * from TEST_TABLE",
                 adaptedStream(row -> row[0],
                     hasSpecificItems("value 1")));
     }

@@ -16,38 +16,25 @@
 
 package dev.aherscu.qa.jgiven.jdbc.steps;
 
-import dev.aherscu.qa.jgiven.jdbc.utils.dbutils.*;
-import java.util.stream.*;
-
 import com.tngtech.jgiven.annotation.*;
 
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.jdbc.model.*;
+import dev.aherscu.qa.jgiven.jdbc.utils.dbutils.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
 @Slf4j
 public class JdbcActions<SELF extends JdbcActions<SELF>>
     extends GenericActions<JdbcScenarioType, SELF> {
-    @ProvidedScenarioState
-    public final ThreadLocal<Integer>          result    = new ThreadLocal<>();
-    @ProvidedScenarioState
-    public final ThreadLocal<Stream<Object[]>> resultSet = new ThreadLocal<>();
     @ExpectedScenarioState
-    public ThreadLocal<StreamingQueryRunner>   queryRunner;
+    public ThreadLocal<StreamingQueryRunner> queryRunner;
 
     @SneakyThrows
     public SELF executing(final String sql, final Object... params) {
-        log.debug("executing {}", sql);
-        result.set(queryRunner.get().execute(sql, params));
-        return self();
-    }
-
-    @SneakyThrows
-    public SELF querying(final String sql, final Object... params) {
-        log.debug("querying {}", sql);
-        resultSet.set(queryRunner.get()
-            .queryStream(sql, new ArrayStreamingHandler(), params));
+        log.debug("executing {} -> updated {} rows",
+            sql,
+            queryRunner.get().execute(sql, params));
         return self();
     }
 }

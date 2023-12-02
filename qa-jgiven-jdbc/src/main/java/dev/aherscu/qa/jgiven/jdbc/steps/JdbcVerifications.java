@@ -16,16 +16,18 @@
 
 package dev.aherscu.qa.jgiven.jdbc.steps;
 
-import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.stream.*;
 
 import org.hamcrest.*;
+import org.jooq.lambda.*;
 
 import com.tngtech.jgiven.annotation.*;
 
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.jdbc.model.*;
+import dev.aherscu.qa.jgiven.jdbc.utils.dbutils.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
@@ -34,16 +36,19 @@ public class JdbcVerifications<SELF extends JdbcVerifications<SELF>>
     extends GenericVerifications<JdbcScenarioType, SELF> {
 
     @ExpectedScenarioState
-    public final ThreadLocal<Integer>          result    = new ThreadLocal<>();
+    public ThreadLocal<StreamingQueryRunner> queryRunner;
 
-    @ExpectedScenarioState
-    public final ThreadLocal<Stream<Object[]>> resultSet = new ThreadLocal<>();
-
-    public SELF the_result_matches(final Matcher<Stream<Object[]>> expected) {
-        log.debug("verifying result-set");
-        try (val results = resultSet.get()) {
-            assertThat(results, expected);
-        }
-        return self();
+    public SELF the_query(
+        final String sql,
+        final Matcher<Stream<Object[]>> expected,
+        final Object... params) {
+        return eventually(Unchecked.function(self -> {
+            try (val results = queryRunner.get()
+                .queryStream(sql, new ArrayStreamingHandler(), params)
+                .peek(row -> log.trace("row[0]: {}", row[0]))) {
+                assertThat(results, expected);
+                return self;
+            }
+        }));
     }
 }
