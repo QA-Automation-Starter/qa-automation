@@ -63,18 +63,7 @@ public final class TestConfiguration extends BaseConfiguration {
         log.trace("configuring query runner {}", id);
         return queryRunners.computeIfAbsent(id, _id -> {
             val dataSource = new HikariDataSource();
-            dataSource.setDriverClassName(datasourceString(_id, "class"));
             dataSource.setJdbcUrl(datasourceString(_id, "url"));
-            // FIXME all these are optional
-            // dataSource.setUsername(datasourceString(_id, "username"));
-            // dataSource.setPassword(datasourceString(_id, "password"));
-            // dataSource.setConnectionTimeout(datasourceInt(_id, "timeout"));
-            // dataSource.setMaximumPoolSize(datasourceInt(_id,
-            // "pool.maxsize"));
-            // dataSource.setMaxLifetime(datasourceInt(_id,
-            // "pool.maxlifetime"));
-            // dataSource.setIdleTimeout(datasourceInt(_id,
-            // "pool.ideltimeout"));
             return new StreamingQueryRunner(dataSource);
         });
     }
