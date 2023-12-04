@@ -57,7 +57,7 @@ public class RandomIdReporter implements ISuiteListener {
         log.info("writing identifiers into {}", identifiersFileName);
 
         try (val writer = fileWriter(new File(identifiersFileName))) {
-            UnitilsScenarioTest.issuedRandomIds
+            ConfigurableScenarioTest.issuedRandomIds
                 .forEach(Unchecked.consumer(
                     writer::write));
 

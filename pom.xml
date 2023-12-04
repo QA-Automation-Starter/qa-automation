@@ -82,6 +82,7 @@
     <module>qa-testing-parent</module>
 
     <module>qa-jgiven-commons</module>
+    <module>qa-jgiven-jdbc</module>
     <module>qa-jgiven-webdriver</module>
     <module>qa-jgiven-ssh</module>
     <module>qa-jgiven-rest</module>

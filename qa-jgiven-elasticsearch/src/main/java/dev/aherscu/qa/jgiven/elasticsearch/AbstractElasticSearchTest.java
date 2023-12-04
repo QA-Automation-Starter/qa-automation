@@ -21,7 +21,7 @@ import dev.aherscu.qa.jgiven.elasticsearch.model.*;
 import dev.aherscu.qa.jgiven.elasticsearch.steps.*;
 
 public abstract class AbstractElasticSearchTest<T, TDocument> extends
-    UnitilsScenarioTest<TestConfiguration, ElasticSearchScenarioType<TDocument>, ElasticSearchFixtures<T, TDocument, ?>, ElasticSearchActions<T, TDocument, ?>, ElasticSearchVerifications<T, TDocument, ?>> {
+    ConfigurableScenarioTest<TestConfiguration, ElasticSearchScenarioType<TDocument>, ElasticSearchFixtures<T, TDocument, ?>, ElasticSearchActions<T, TDocument, ?>, ElasticSearchVerifications<T, TDocument, ?>> {
 
     public AbstractElasticSearchTest(
         Class<TestConfiguration> configurationType) {
