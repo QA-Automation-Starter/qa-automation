@@ -33,7 +33,7 @@ public class BeanStreamingHandler<T> extends StreamingResultSetHandler<T> {
 
     private final Class<? extends T>       type;
 
-    BeanStreamingHandler(Class<? extends T> type) {
+    public BeanStreamingHandler(Class<? extends T> type) {
         this.type = type;
     }
 

@@ -23,6 +23,9 @@ import javax.sql.*;
 
 import org.apache.commons.dbutils.*;
 
+import jakarta.ws.rs.core.*;
+import lombok.*;
+
 /**
  * An extension of the Apache DbUtils QueryRunner that adds methods to produce
  * Streams where each element of the stream is constructed from a row in a
@@ -31,7 +34,6 @@ import org.apache.commons.dbutils.*;
  * memory.
  */
 public class StreamingQueryRunner extends QueryRunner {
-
     public StreamingQueryRunner(DataSource dataSource) {
         super(dataSource);
     }
@@ -99,6 +101,12 @@ public class StreamingQueryRunner extends QueryRunner {
         Object... args)
         throws SQLException {
         return query(connection, false, sql, handler, args);
+    }
+
+    @Override
+    @SneakyThrows
+    public String toString() {
+        return getDataSource().getConnection().getMetaData().getURL();
     }
 
     /**

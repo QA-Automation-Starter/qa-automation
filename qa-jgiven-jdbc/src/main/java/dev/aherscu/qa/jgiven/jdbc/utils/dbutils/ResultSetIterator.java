@@ -50,7 +50,7 @@ class ResultSetIterator<T> implements Iterator<T> {
      * Constructs an iterator over the result set that will use the specified
      * RowHandler to convert each row to an object.
      */
-    ResultSetIterator(ResultSet resultSet, RowHandler<T> rowHandler)
+    public ResultSetIterator(ResultSet resultSet, RowHandler<T> rowHandler)
         throws SQLException {
         this.resultSet = resultSet;
         this.rowHandler = rowHandler;

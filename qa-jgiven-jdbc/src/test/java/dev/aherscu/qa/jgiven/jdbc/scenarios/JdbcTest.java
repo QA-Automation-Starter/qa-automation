@@ -16,14 +16,23 @@
 
 package dev.aherscu.qa.jgiven.jdbc.scenarios;
 
-import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.adaptedStream;
-import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.hasSpecificItems;
+import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
 
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.jdbc.*;
+import lombok.*;
 
 public class JdbcTest extends AbstractJdbcTest {
+    @AllArgsConstructor
+    @NoArgsConstructor // otherwise BasicRowProcessor fails to create it
+    @EqualsAndHashCode
+    @ToString
+    @Setter // otherwise BasicRowProcessor fails to populate it
+    public static class AnObject {
+        String name;
+    }
+
     protected JdbcTest() {
         super(TestConfiguration.class);
     }
@@ -33,7 +42,7 @@ public class JdbcTest extends AbstractJdbcTest {
     @Test
     public void shouldAccessDb1() {
         given()
-            .a_query_runner(configuration().queryRunnerFor("db-1"));
+            .a_query_runner_for(configuration().queryRunnerFor("db-1"));
 
         when()
             .executing("create table TEST_TABLE(NAME varchar(20))")
@@ -48,15 +57,16 @@ public class JdbcTest extends AbstractJdbcTest {
     @Test
     public void shouldAccessDb2() {
         given()
-            .a_query_runner(configuration().queryRunnerFor("db-2"));
+            .a_query_runner_for(configuration().queryRunnerFor("db-2"));
 
         when()
             .executing("create table TEST_TABLE(NAME varchar(20))")
             .and().executing("insert into TEST_TABLE values ('value 1')");
 
         then()
-            .the_query("select * from TEST_TABLE",
-                adaptedStream(row -> row[0],
-                    hasSpecificItems("value 1")));
+            .the_query(
+                AnObject.class,
+                "select * from TEST_TABLE",
+                hasSpecificItems(new AnObject("value 1")));
     }
 }
