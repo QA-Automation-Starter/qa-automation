@@ -196,9 +196,9 @@ public class DryRunAspect {
 
     /**
      * Matches the execution of any method not within
-     * {@link dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest}.
+     * {@link ConfigurableScenarioTest}.
      */
-    @Pointcut("within(!dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest)")
+    @Pointcut("within(!dev.aherscu.qa.jgiven.commons.utils.ConfigurableScenarioTest)")
     public void notUnitilsScenarioTestMethod() {
         // nothing to do here -- just defines a pointcut matcher
     }

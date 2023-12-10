@@ -18,6 +18,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
+    <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>
   <component name="PWA">
     <option name="wasEnabledAtLeastOnce" value="true" />

@@ -51,7 +51,7 @@ import lombok.extern.slf4j.*;
 @Slf4j
 abstract public class AbstractMockServerTest<T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
     extends
-    UnitilsScenarioTest<BaseConfiguration, T, GIVEN, WHEN, THEN> {
+    ConfigurableScenarioTest<BaseConfiguration, T, GIVEN, WHEN, THEN> {
 
     public static final int          DEFAULT_PORT = 1080;
 

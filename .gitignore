@@ -95,3 +95,4 @@ fabric.properties
 
 /.idea/sonarlint
 /ajcore.*.txt
+/.mvn/wrapper/maven-wrapper.jar

@@ -111,33 +111,15 @@
     </dependency>
 
     <dependency>
-      <groupId>commons-dbutils</groupId>
-      <artifactId>commons-dbutils</artifactId>
-      <version>1.8.1</version>
-    </dependency>
-
-    <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
       <version>1.9.4</version>
     </dependency>
 
     <dependency>
-      <groupId>org.unitils</groupId>
-      <artifactId>unitils-io</artifactId>
-      <version>3.4.6</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.unitils</groupId>
-      <artifactId>unitils-dbunit</artifactId>
-      <version>3.4.6</version>
-    </dependency>
-
-    <dependency>
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
-      <version>5.0.1</version>
+      <version>5.1.0</version>
     </dependency>
 
     <dependency>
@@ -166,20 +148,6 @@
       <groupId>org.slf4j</groupId>
       <artifactId>jul-to-slf4j</artifactId>
       <version>${slf4j.version}</version>
-    </dependency>
-
-    <!-- dependency>
-      ISSUE: cannot read the descriptor perhaps due to missing configuration
-      <groupId>com.oracle.jdbc</groupId>
-      <artifactId>OracleJdbcDriver12</artifactId>
-    </dependency-->
-
-    <dependency>
-      <groupId>org.apache.derby</groupId>
-      <artifactId>derbyclient</artifactId>
-      <!-- NOTE: higher versions are compiled with jdk17 -->
-      <version>10.15.2.0</version>
-      <scope>provided</scope>
     </dependency>
 
     <dependency>

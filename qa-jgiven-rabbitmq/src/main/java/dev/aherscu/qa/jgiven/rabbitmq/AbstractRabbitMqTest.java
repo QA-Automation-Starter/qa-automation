@@ -27,7 +27,7 @@ import dev.aherscu.qa.jgiven.rabbitmq.utils.*;
 import lombok.*;
 
 public abstract class AbstractRabbitMqTest<K, V> extends
-    UnitilsScenarioTest<TestConfiguration, RabbitMqScenarioType, RabbitMqFixtures<K, V, ?>, RabbitMqActions<K, V, ?>, RabbitMqVerifications<K, V, ?>> {
+    ConfigurableScenarioTest<TestConfiguration, RabbitMqScenarioType, RabbitMqFixtures<K, V, ?>, RabbitMqActions<K, V, ?>, RabbitMqVerifications<K, V, ?>> {
     protected QueueHandler<K, V> queueHandler;
     protected Connection         connection;
 

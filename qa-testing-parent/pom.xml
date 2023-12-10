@@ -84,6 +84,10 @@
     <alm.href>
       https://github.com/QA-Automation-Starter/qa-automation/issues/{0}
     </alm.href>
+    
+    <reference.href><![CDATA[@{StringUtilsExtensions.format('${alm.href}', '(\\d+)', value)}]]></reference.href>
+	  <reference.templatelink><![CDATA[@{StringUtilsExtensions.format('<a target="_blank" href="${alm.href}">Click here to open ALM {0}</a>', '(\\d+)', value)}]]></reference.templatelink>
+
 
     <!-- NOTE: these defaults are required in order to enable Eclipse TestNG launchers -->
     <saucelabs.reporter.url />
@@ -265,12 +269,8 @@
               <dryrun>${dryrun}</dryrun>
               <screenshots>${screenshots}</screenshots>
               <screenshotDelayMs>500</screenshotDelayMs>
-              <!-- ISSUE Eclipse TestNG launch cannot deal with these two and
-                must be commented out; a profile maybe the long-time solution -->
-              <reference.href>
-                <![CDATA[@{StringUtilsExtensions.format('${alm.href}', '(\\d+)', value)}]]></reference.href>
-              <reference.templatelink>
-                <![CDATA[@{StringUtilsExtensions.format('<a target="_blank" href="${alm.href}">Click here to open ALM {0}</a>', '(\\d+)', value)}]]></reference.templatelink>
+              <reference.href>${reference.href}</reference.href>
+              <reference.templatelink>${reference.templatelink}</reference.templatelink>
               <java.awt.headless>true</java.awt.headless>
             </systemPropertyVariables>
           </configuration>
@@ -329,6 +329,22 @@
   </build>
 
   <profiles>
+    <profile>
+      <!--This plugin's configuration is used to store Eclipse m2e settings only.
+        It has no influence on the Maven build itself.-->
+      <!-- https://stackoverflow.com/questions/7905501/get-rid-of-pom-not-found-warning-for-org-eclipse-m2elifecycle-mapping -->
+      <id>mode-eclipse</id>
+      <activation>
+        <property>
+          <name>m2e.version</name>
+        </property>
+      </activation>
+      <properties>
+        <!-- NOTE: TestNG/m2e integration does not parse these well -->
+        <reference.href />
+        <reference.templatelink />
+	    </properties>
+    </profile>
     <profile>
       <id>generate-standalone</id>
       <build>

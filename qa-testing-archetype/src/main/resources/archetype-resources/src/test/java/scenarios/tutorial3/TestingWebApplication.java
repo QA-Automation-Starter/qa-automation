@@ -16,7 +16,7 @@
 
 package ${package}.scenarios.tutorial3;
 
-import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
+import static dev.aherscu.qa.jgiven.commons.utils.ConfigurableScenarioTest.*;
 import static ${package}.scenarios.tutorial3.TestingRemoteWebApplication.*;
 import static dev.aherscu.qa.testing.utils.StreamMatchers.*;
 import static java.util.concurrent.TimeUnit.*;

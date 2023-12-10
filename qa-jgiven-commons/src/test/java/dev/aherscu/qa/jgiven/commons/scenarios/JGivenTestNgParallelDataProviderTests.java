@@ -16,7 +16,7 @@
 
 package dev.aherscu.qa.jgiven.commons.scenarios;
 
-import static dev.aherscu.qa.jgiven.commons.utils.UnitilsScenarioTest.*;
+import static dev.aherscu.qa.jgiven.commons.utils.ConfigurableScenarioTest.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 

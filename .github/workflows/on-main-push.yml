@@ -3,7 +3,7 @@ name: main branch deploy and site publishing
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ 1_0 ]
     paths-ignore:
       - '**.md'
       - '.idea/**'
@@ -85,6 +85,7 @@ jobs:
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
           mvnw deploy site site:stage scm-publish:publish-scm ^
+            --threads 1 ^
             -s %GITHUB_WORKSPACE%\settings.xml ^
             -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
         env:

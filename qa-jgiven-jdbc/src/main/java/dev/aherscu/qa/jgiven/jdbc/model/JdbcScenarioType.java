@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.utils;
+package dev.aherscu.qa.jgiven.jdbc.model;
 
-import org.unitils.io.conversion.impl.*;
+import dev.aherscu.qa.jgiven.commons.model.*;
 
 /**
- * SQL file conversion strategy. Same thing as {@link StringConversionStrategy}
- * except the file extension.
+ * Rest client type of scenario.
  *
  * @author aherscu
  *
  */
-public class SqlConversionStrategy extends StringConversionStrategy {
-
-    @Override
-    public String getDefaultFileExtension() {
-        return "sql"; //$NON-NLS-1$
-    }
+public interface JdbcScenarioType extends AnyScenarioType {
+    // marker interface
 }

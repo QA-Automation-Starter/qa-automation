@@ -1,28 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>qa-testing-example</name>
-	<comment></comment>
-	<projects>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.wst.validation.validationbuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.m2e.core.maven2Builder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
-		<nature>org.eclipse.m2e.core.maven2Nature</nature>
-	</natures>
+  <name>qa-testing-example</name>
+  <comment>Demonstrates how to use QA Automation infrastructure for testing. Provides
+    overviews and example tests. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <projects>
+    <project>qa-jgiven-webdriver</project>
+    <project>qa-jgiven-commons</project>
+    <project>qa-testing-utils</project>
+    <project>qa-jgiven-rest</project>
+    <project>qa-jgiven-rabbitmq</project>
+    <project>qa-jgiven-elasticsearch</project>
+    <project>qa-jgiven-reporter</project>
+  </projects>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+    <buildCommand>
+      <name>org.eclipse.wst.validation.validationbuilder</name>
+    </buildCommand>
+    <buildCommand>
+      <name>org.eclipse.m2e.core.maven2Builder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+    <nature>org.eclipse.m2e.core.maven2Nature</nature>
+  </natures>
 </projectDescription>

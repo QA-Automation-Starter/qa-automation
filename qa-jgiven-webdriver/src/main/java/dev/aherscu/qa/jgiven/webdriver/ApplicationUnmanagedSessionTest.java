@@ -45,7 +45,8 @@ import edu.umd.cs.findbugs.annotations.*;
 // extends GenericActions<T, ?> & ScenarioType<T>, THEN extends
 // GenericVerifications<T, ?> & ScenarioType<T>>
 public abstract class ApplicationUnmanagedSessionTest<C extends WebDriverConfiguration, GIVEN extends WebDriverFixtures<?>, WHEN extends WebDriverActions<?>, THEN extends WebDriverVerifications<?>>
-    extends UnitilsScenarioTest<C, WebDriverScenarioType, GIVEN, WHEN, THEN> {
+    extends
+    ConfigurableScenarioTest<C, WebDriverScenarioType, GIVEN, WHEN, THEN> {
 
     protected ApplicationUnmanagedSessionTest(Class<C> configurationType) {
         super(configurationType);

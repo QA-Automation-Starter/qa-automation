@@ -46,7 +46,7 @@ import dev.aherscu.qa.testing.utils.config.*;
     justification = "JGiven framework limitation")
 abstract public class AbstractWireMockTest<T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
     extends
-    UnitilsScenarioTest<BaseConfiguration, T, GIVEN, WHEN, THEN> {
+    ConfigurableScenarioTest<BaseConfiguration, T, GIVEN, WHEN, THEN> {
 
     protected final WireMockServer wireMockServer;
 

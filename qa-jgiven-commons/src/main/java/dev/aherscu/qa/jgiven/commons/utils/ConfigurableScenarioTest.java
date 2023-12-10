@@ -40,7 +40,6 @@ import org.jooq.lambda.*;
 import org.reflections.*;
 import org.testng.*;
 import org.testng.annotations.*;
-import org.unitils.core.*;
 
 import com.github.rodionmoiseev.c10n.*;
 import com.github.rodionmoiseev.c10n.annotations.*;
@@ -55,12 +54,7 @@ import lombok.*;
 import lombok.extern.slf4j.*;
 
 /**
- * Enables <a href="http://unitils.org/tutorial-core.html">Unitils</a> on
- * JGiven/TestNG tests.
- *
- * <p>
- * NOTE: implementation copied from {@link org.unitils.UnitilsTestNG}
- * </p>
+ * Enables Apache Configuration on JGiven/TestNG tests.
  *
  * @param <C>
  *            type of configuration used by scenario
@@ -76,8 +70,14 @@ import lombok.extern.slf4j.*;
  */
 @ThreadSafe
 @Slf4j
-public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? extends Configuration>, T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
-    extends TypedScenarioTest<T, GIVEN, WHEN, THEN> implements IHookable {
+public abstract class ConfigurableScenarioTest<C extends AbstractConfiguration<? extends Configuration>, T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
+    extends TypedScenarioTest<T, GIVEN, WHEN, THEN> {
+    @SuppressFBWarnings("SE_NO_SERIALVERSIONID")
+    private static class Configurations extends
+        ConcurrentHashMap<Class<? extends AbstractConfiguration<?>>, AbstractConfiguration<?>> {
+        // NOTE: just to make further declaration shorter...
+    }
+
     /**
      * The internal data provider name.
      */
@@ -144,15 +144,12 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
     protected final Class<C>             configurationType;
     /**
      * Start time of execution thread.
-     *
-     * @see #unitilsBeforeMethod(Method, Object[])
      */
     protected final ThreadLocal<Instant> startTime             =
         withInitial(Instant::now);
     /**
      * Stores a random string per thread.
      *
-     * @see #unitilsBeforeMethod(Method, Object[])
      * @see #randomId()
      */
     protected final ThreadLocal<String>  randomId              =
@@ -167,99 +164,22 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
      * @param configurationType
      *            type of configuration
      */
-    protected UnitilsScenarioTest(final Class<C> configurationType) {
+    protected ConfigurableScenarioTest(final Class<C> configurationType) {
         this.configurationType = configurationType;
     }
 
-    private static TestListener getTestListener() {
-        return Unitils.getInstance().getTestListener();
-    }
-
-    @SuppressFBWarnings("ITC_INHERITANCE_TYPE_CHECKING")
-    private static void throwException(final Throwable throwable) {
-        if (throwable instanceof RuntimeException)
-            throw (RuntimeException) throwable;
-        else if (throwable instanceof Error)
-            throw (Error) throwable;
-        else
-            throw new RuntimeException(throwable);
-    }
-
     /**
-     * Implementation of the hookable interface to be able to call
-     * {@link TestListener#beforeTestMethod} and
-     * {@link TestListener#afterTestMethod}.
+     * When running repeated tests in Jenkins we must write something into the
+     * console otherwise connection is lost.
      *
-     * @param callBack
-     *            the TestNG test callback, not null
-     * @param testResult
-     *            the TestNG test result, not null
+     * @param testMethod
+     *            The test method, not null
      */
-    // implementation copied from UnitilsTestNG
-    @Override
-    public final void run(
-        final IHookCallBack callBack,
-        final ITestResult testResult) {
-        // ISSUE seems that UnitilsScenarioTest derived test classes
-        // prevents IHookable#run to be invoked, hence cannot use this method
-        // for handling pre/post method execution.
-        // UnitilsScenarioTest implements IHookable#run in order to integrate
-        // with the Unitils framework; perhaps this implementation is faulty.
-
-        log.trace("running {}", testResult.getName());
-
-        Throwable beforeTestMethodException = null;
-        try {
-            getTestListener()
-                .beforeTestMethod(this,
-                    testResult.getMethod().getConstructorOrMethod()
-                        .getMethod());
-
-        } catch (final Throwable e) {
-            // hold exception until later, first call afterTestMethod
-            beforeTestMethodException = e;
-        }
-
-        Throwable testMethodException = null;
-        if (beforeTestMethodException == null) {
-            callBack.runTestMethod(testResult);
-
-            // Since TestNG calls the method using reflection, the exception is
-            // wrapped in an InvocationTargetException
-            testMethodException = testResult.getThrowable();
-            if (testMethodException instanceof InvocationTargetException) {
-                testMethodException =
-                    ((InvocationTargetException) testMethodException)
-                        .getTargetException();
-            }
-        }
-
-        Throwable afterTestMethodException = null;
-        try {
-            getTestListener()
-                .afterTestMethod(
-                    this,
-                    testResult.getMethod().getConstructorOrMethod().getMethod(),
-                    beforeTestMethodException != null
-                        ? beforeTestMethodException
-                        : testMethodException);
-
-        } catch (final Throwable e) {
-            afterTestMethodException = e;
-        }
-
-        // if there were exceptions, make sure the exception that occurred first
-        // is reported by TestNG
-        if (beforeTestMethodException != null) {
-            throwException(beforeTestMethodException);
-        } else {
-            // We don't throw the testMethodException, it is already registered
-            // by TestNG and will be reported to the user
-            if (testMethodException == null
-                && afterTestMethodException != null) {
-                throwException(afterTestMethodException);
-            }
-        }
+    @AfterMethod(alwaysRun = true)
+    protected final void afterMethodKeepJenkinsAlive(final Method testMethod) {
+        log.info("test {}:{} ended", //$NON-NLS-1$
+            testMethod.getDeclaringClass().getName(),
+            testMethod.getName());
     }
 
     /**
@@ -298,45 +218,9 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
 
     /**
      * @return a random string; by default, initialized before each method.
-     * @see #unitilsBeforeMethod(Method, Object[])
      */
     protected final String randomId() {
         return randomId.get();
-    }
-
-    /**
-     * Called after all test tear down. This is where
-     * {@link TestListener#afterTestTearDown} is called.
-     * <p/>
-     * NOTE: alwaysRun is enabled to be sure that this method is called even
-     * when an exception occurs during {@link #unitilsBeforeMethod}.
-     *
-     * @param testMethod
-     *            The test method, not null
-     */
-    @AfterMethod(alwaysRun = true)
-    protected final void unitilsAfterMethod(final Method testMethod) {
-        // alwaysRun is enabled, extra test to ensure that
-        // unitilsBeforeTestSetUp was called
-        try {
-            if (beforeTestSetUpCalled.get().booleanValue()) {
-                beforeTestSetUpCalled.set(Boolean.FALSE);
-                // NOTE: sometimes no transaction is started by Unitils, but it
-                // always tries to commit the transaction associated with
-                // current test. When trying to commit a not existent
-                // transaction a NullPointerException occurs. This seems like a
-                // bug in Unitils; see DefaultUnitilsTransactionManager#137.
-                getTestListener().afterTestTearDown(this, testMethod);
-            }
-        } catch (final Exception e) {
-            log.warn("after test got {}", e.getMessage()); //$NON-NLS-1$
-        } finally {
-            // IMPORTANT: when running repeated tests in Jenkins we must write
-            // something into the console otherwise connection is lost
-            log.info("test {}:{} ended", //$NON-NLS-1$
-                testMethod.getDeclaringClass().getName(),
-                testMethod.getName());
-        }
     }
 
     /**
@@ -346,14 +230,9 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
      * {@link BeforeClass} or {@link BeforeTest} annotated methods will have its
      * thread named such this.
      * </p>
-     * <p>
-     * Finally, notifies {@code Unitils} about being before class via
-     * {@link TestListener#beforeTestClass(Class)} and
-     * {@link TestListener#afterCreateTestObject(Object)}.
-     * </p>
      */
     @BeforeClass(alwaysRun = true)
-    protected final void unitilsBeforeClass() {
+    protected final void beforeClassInitializeSession() {
         currentThread().setName(SessionName.builder()
             .className(getClass().getSimpleName())
             .id(String.valueOf(currentThread().getId()))
@@ -363,15 +242,9 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
         // IMPORTANT: when running repeated tests in Jenkins we must write
         // something into the console otherwise connection is lost
         log.info("starting test class {}", getClass().getSimpleName());
-
-        getTestListener().beforeTestClass(this.getClass());
-        getTestListener().afterCreateTestObject(this);
     }
 
     /**
-     * Called before every test method. This is where
-     * {@link TestListener#beforeTestSetUp} is called.
-     *
      * <p>
      * If the {@link #randomId} for {@code current thread} was not already set,
      * then generates one and sets it. The generated random id is URL-friendly.
@@ -397,10 +270,6 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
      * This means code running in {@link Test} annotated methods will have its
      * thread named such this.
      * </p>
-     * <p>
-     * Finally, notifies {@code Unitils} about being before method via
-     * {@link TestListener#beforeTestSetUp(Object, Method)}
-     * </p>
      *
      * @param testMethod
      *            The test method, not null
@@ -408,7 +277,7 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
      *            the parameters used to invoke this test method instance
      */
     @BeforeMethod(alwaysRun = true)
-    protected final void unitilsBeforeMethod(
+    protected final void beforeMethodInitializeSession(
         final Method testMethod,
         final Object[] parameters) {
         currentThread().setName(SessionName.builder()
@@ -439,20 +308,5 @@ public abstract class UnitilsScenarioTest<C extends AbstractConfiguration<? exte
             log.debug("running on previous thread, reusing random id {}",
                 randomId.get());
         }
-
-        beforeTestSetUpCalled.set(Boolean.TRUE);
-
-        // NOTE: should fail fast if not able to connect to database
-        // try {
-        getTestListener().beforeTestSetUp(this, testMethod);
-        // } catch (final Exception e) {
-        // log.warn("before test got {}", e.getMessage()); //$NON-NLS-1$
-        // }
-    }
-
-    @SuppressFBWarnings("SE_NO_SERIALVERSIONID")
-    private static class Configurations extends
-        ConcurrentHashMap<Class<? extends AbstractConfiguration<?>>, AbstractConfiguration<?>> {
-        // NOTE: just to make further declaration shorter...
     }
 }
