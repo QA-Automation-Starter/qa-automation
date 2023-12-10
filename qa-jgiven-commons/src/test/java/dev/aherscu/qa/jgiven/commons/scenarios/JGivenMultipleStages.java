@@ -16,6 +16,7 @@
 
 package dev.aherscu.qa.jgiven.commons.scenarios;
 
+import com.tngtech.jgiven.annotation.*;
 import org.testng.annotations.*;
 
 import com.tngtech.jgiven.*;
@@ -83,14 +84,18 @@ public class JGivenMultipleStages extends
     @Test
     public void shouldWorkWithMultipleStages() {
         given().m_fixture();
-        addStage(NFixtures.class)
+        nFixtures()
             // must define it in NFixtures like in MFixtures
-            /* .and() */.n_fixture();
+            .and().n_fixture();
 
         when().m_action();
         addStage(NActions.class).n_action();
 
         then().m_verification();
         addStage(NVerifications.class).n_verification();
+    }
+
+    public NFixtures<?> nFixtures() {
+        return addStage(NFixtures.class);
     }
 }
