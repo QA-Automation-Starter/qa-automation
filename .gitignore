@@ -14,6 +14,11 @@
 # TestNG plugin output
 **/test-output/
 
+# Eclipse auto-generated configuration files
+**/.classpath
+**/.project
+**/.factorypath
+
 # Other temporary files
 **/*.jpage
 **/*.log
