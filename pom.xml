@@ -14,9 +14,7 @@
   ~ See the License for the specific language governing permissions and
   ~ limitations under the License.
   -->
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <!-- see
@@ -30,7 +28,7 @@
     -->
   <groupId>dev.aherscu.qa</groupId>
   <artifactId>qa-automation</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
 
   <name>QA Automation</name>
@@ -63,7 +61,7 @@
       scm:git:ssh://git@github.com/QA-Automation-Starter/qa-automation.git
     </developerConnection>
     <url>https://github.com/QA-Automation-Starter/qa-automation.git</url>
-    <tag>HEAD</tag>
+    <tag>qa-automation-1.0.0</tag>
   </scm>
 
   <issueManagement>
@@ -652,9 +650,7 @@
               </goals>
               <configuration>
                 <target>
-                  <jar
-                      destfile="${project.build.directory}/${project.build.finalName}-sources.jar"
-                      basedir="${delombok.directory}" />
+                  <jar destfile="${project.build.directory}/${project.build.finalName}-sources.jar" basedir="${delombok.directory}" />
                 </target>
               </configuration>
             </execution>
