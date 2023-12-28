@@ -25,7 +25,6 @@
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-testing-parent</artifactId>
     <version>1.0.2-SNAPSHOT</version>
-    <version>0.0.36-SNAPSHOT</version>
     <relativePath>../qa-testing-parent</relativePath>
   </parent>
 

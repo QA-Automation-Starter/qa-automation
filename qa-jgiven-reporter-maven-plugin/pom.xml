@@ -23,7 +23,6 @@
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
     <version>1.0.2-SNAPSHOT</version>
-    <version>0.0.36-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-jgiven-reporter-maven-plugin</artifactId>
