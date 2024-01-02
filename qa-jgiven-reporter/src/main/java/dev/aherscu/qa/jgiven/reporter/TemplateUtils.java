@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Adrian Herscu
+ * Copyright 2024 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.testing.utils;
+package dev.aherscu.qa.jgiven.reporter;
 
 import static dev.aherscu.qa.testing.utils.FileUtilsExtensions.*;
 import static java.nio.charset.StandardCharsets.*;

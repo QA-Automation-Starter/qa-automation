@@ -52,6 +52,12 @@
     </dependency>
 
     <dependency>
+      <groupId>com.samskivert</groupId>
+      <artifactId>jmustache</artifactId>
+      <version>1.16</version>
+    </dependency>
+
+    <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-testing-utils</artifactId>
       <version>1.0.2-SNAPSHOT</version>

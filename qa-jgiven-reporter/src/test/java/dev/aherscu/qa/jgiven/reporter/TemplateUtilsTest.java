@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Adrian Herscu
+ * Copyright 2024 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package dev.aherscu.qa.testing.utils;
+package dev.aherscu.qa.jgiven.reporter;
 
 import static dev.aherscu.qa.testing.utils.FileUtilsExtensions.*;
 import static org.assertj.core.api.AssertionsForClassTypes.*;
@@ -29,7 +29,7 @@ import com.samskivert.mustache.*;
 import lombok.*;
 
 @SuppressWarnings({ "javadoc", "static-method" })
-public class TemplateTest {
+public class TemplateUtilsTest {
 
     public static final String MUSTACHE_OUT = "mustache.out";
 
