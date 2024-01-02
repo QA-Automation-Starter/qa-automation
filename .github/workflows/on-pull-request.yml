@@ -17,8 +17,8 @@ jobs:
     uses: ./.github/workflows/matrix-build.yml
     secrets: inherit
 
-  verify-for-jdk11:
-    name: jdk-11 verify
+  deploy-for-jdk11:
+    name: jdk-11 snapshot deploy
     # ISSUE ChromeDriver/GeckoDriver fail to initialize on Ubuntu
     # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3294884059/jobs/5432863668
     # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
@@ -77,3 +77,4 @@ jobs:
   generate-automation-project:
     uses: ./.github/workflows/generate-automation-project.yml
     secrets: inherit
+    needs: deploy-for-jdk11
