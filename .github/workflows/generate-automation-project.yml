@@ -2,10 +2,6 @@ name: generate automation and build
 
 on:
   workflow_call:
-    ## DELETEME -- needed???
-    inputs:
-      config-path:
-        type: string
 
 jobs:
 
