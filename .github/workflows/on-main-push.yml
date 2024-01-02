@@ -2,6 +2,8 @@ name: main branch deploy and site publishing
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *' # nightly
   push:
     branches: [ 1_0 ]
     paths-ignore:
