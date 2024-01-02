@@ -63,64 +63,6 @@ jobs:
           SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
           SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
 
-  # TODO pull into separate workflow file and reuse
-  # same as in on-pull-request.yml
   generate-automation-project:
-    name: Generates new automation project and builds it
-    needs: deploy-for-jdk11
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'temurin'
-
-      - name: setup maven for sonatype snapshots
-        uses: whelk-io/maven-settings-xml-action@v20
-        with:
-          repositories: >
-            [
-              {
-                "id": "ossrh",
-                "url": "https://s01.oss.sonatype.org/content/repositories/snapshots",
-                "snapshots": {
-                    "enabled": "true",
-                    "checksumPolicy": "warn"
-                }
-              }
-            ]
-
-      # FIXME should run with controlled java version
-      - name: bootstrap maven
-        uses: aahmed-se/setup-maven@v3
-        with:
-          maven-version: 3.6.1
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-
-      - name: setup maven cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
-      - name: generate testing project
-        # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
-        # NOTE will use last released archetype
-        # TODO after 1.0.0 release should change DarchetypeVersion to LATEST
-        run: |
-          mvn --batch-mode archetype:generate \
-            -DarchetypeGroupId=dev.aherscu.qa \
-            -DarchetypeArtifactId=qa-testing-archetype \
-            -DarchetypeVersion=1.0.0-SNAPSHOT \
-            -DgroupId=com.acme \
-            -DartifactId=testing \
-            -Dversion=1.0-SNAPSHOT \
-            -Dpackage=com.acme.testing
-
-      - name: build testing project
-        run: |
-          cd testing && chmod +x mvnw && ./mvnw
+    uses: ./.github/workflows/generate-automation-project.yml
+    secrets: inherit
