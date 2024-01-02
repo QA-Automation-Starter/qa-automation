@@ -26,8 +26,6 @@ import org.testng.annotations.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
-// TODO move to separate parallel module
-
 @Slf4j
 public class ReadMultiWriteLockTest {
     private static final int   MAX_DELAY_MS  = 10;
