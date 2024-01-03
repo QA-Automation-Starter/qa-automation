@@ -99,7 +99,7 @@ public class DryRunAspect {
      * @see #stageMethod()
      * @see #stepMethod()
      */
-    @Around("notUnitilsScenarioTestMethod() && beforeOrAfterMethod()")
+    @Around("notConfigurableScenarioTestMethod() && beforeOrAfterMethod()")
     @SuppressWarnings("static-method")
     public Object aroundBeforeOrAfterMethod(
         final ProceedingJoinPoint thisJoinPoint)
@@ -199,7 +199,7 @@ public class DryRunAspect {
      * {@link ConfigurableScenarioTest}.
      */
     @Pointcut("within(!dev.aherscu.qa.jgiven.commons.utils.ConfigurableScenarioTest)")
-    public void notUnitilsScenarioTestMethod() {
+    public void notConfigurableScenarioTestMethod() {
         // nothing to do here -- just defines a pointcut matcher
     }
 

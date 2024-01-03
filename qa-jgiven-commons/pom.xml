@@ -31,8 +31,7 @@
     Provides generic JGiven-style actions and verifications, mostly for dealing
     with latency and exceptions via a pre-configured retry mechanism.
     In addition, adapts Apache Commons Configuration to be used for loading test
-    properties and integrating Unitils for managing file-loading and
-    database-driven tests.
+    properties.
   </description>
 
   <properties>

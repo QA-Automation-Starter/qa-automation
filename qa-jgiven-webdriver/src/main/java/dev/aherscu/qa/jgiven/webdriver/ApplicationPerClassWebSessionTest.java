@@ -48,8 +48,6 @@ import lombok.extern.slf4j.*;
  */
 @Listeners({ ExceptionPerThreadListener.class })
 @Slf4j
-// BUG see UnitilsScenarioTest#unitilsBeforeMethod call to
-// UnitilsScenarioTest#setFormattedThreadName
 // ISSUE https://github.com/cbeust/testng/issues/54
 // Current TestNG implementation ignores
 // @Test(singleThreaded = true)

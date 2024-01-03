@@ -121,27 +121,6 @@ public final class GenericTest extends
             });
     }
 
-    // /**
-    // * Should have a temporary file.
-    // *
-    // * <p>
-    // * ISSUE: fails to create temporary file on Jenkins.
-    // org.unitils.core.UnitilsException: Error creating temp file for field
-    // tempFile
-    // Caused by: org.unitils.core.UnitilsException: Unable to delete temp
-    // file/dir
-    // C:\Users\aherscu\AppData\Local\Temp
-    // \dev.aherscu.qa.jgiven.commons.scenarios.GenericTest-shouldTestInParallel.tmp
-    // */
-    // @SneakyThrows(Exception.class)
-    // @Test
-    // public void shouldHaveTempFile() {
-    // then().$("should find a temporary file", //$NON-NLS-1$
-    // (StepFunction<GenericVerifications<AnyScenarioType, ?>>) stage ->
-    // assertThat(
-    // tempFile.exists()).isTrue());
-    // }
-
     /**
      * Should retry upon any {@link Throwable}, eventually failing.
      */

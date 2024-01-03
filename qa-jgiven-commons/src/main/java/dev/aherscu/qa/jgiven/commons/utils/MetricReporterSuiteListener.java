@@ -59,11 +59,6 @@ import lombok.extern.slf4j.*;
  */
 @Slf4j
 public class MetricReporterSuiteListener implements ISuiteListener {
-    // ISSUE seems that UnitilsScenarioTest derived test classes
-    // prevents IHookable#run to be invoked, hence cannot use this method
-    // for handling pre/post method execution.
-    // UnitilsScenarioTest implements IHookable#run in order to integrate with
-    // the Unitils framework; perhaps that implementation is faulty.
 
     /**
      * Metrics to be reported shall be registered here.
