@@ -28,7 +28,6 @@ contains few exemplary tests, with all required dependencies for
 [Selenium](https://www.selenium.dev/documentation/webdriver/),
 [Appium](http://appium.io/docs/en/2.0/),
 [SouceLabs](https://saucelabs.com/) integration,
-[Unitils](http://www.unitils.org/summary.html),
 [DbUnit](https://www.dbunit.org/), and many other utility libraries which I
 found useful across a dozen of projects.
 

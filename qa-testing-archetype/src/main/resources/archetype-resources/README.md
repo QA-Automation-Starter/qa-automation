@@ -362,11 +362,8 @@ In order to find where things are located we need to follow these conventions:
 - [src/test/java](src/test/java)
     - `scenarios` package -- contains test flows; these are using the fixtures,
       actions and verifications from [src/main/java](src/main/java)
-    - `data` package (optional) -- may contain test data generators
 - [src/test/resources](src/test/resources)
-    - `scenarios` package -- contains Unitils/DBUnit data-set files
-    - `data` package (optional) -- may contain test data files, namely static
-      data
+    - `scenarios` package -- may contain test data files, namely static data
     - `environments` folder -- property files for various environments
     - other configuration files for logging, ssh, databases, etc.
 
