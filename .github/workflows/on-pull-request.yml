@@ -14,47 +14,11 @@ on:
 jobs:
 
   matrix-build:
-    name: ${{ matrix.os }} jdk-${{ matrix.java-version }} build w/o tests
-    runs-on: ${{ matrix.os }}
+    uses: ./.github/workflows/matrix-build.yml
+    secrets: inherit
 
-    strategy:
-      matrix:
-        # ISSUE on JDK 21 --
-        #  when running aggregated as
-        #  mvnw install mode-build-full mode-build-nosign testing-tutorials
-        #  while running qa-testing-example:
-        #  Cannot define class using reflection: Unable to make protected java.lang.Package
-        #  when running verify on qa-testing-example standalone:
-        #  java.lang.RuntimeException: ProcessBuilder.start() debug
-        #  (in addition)
-        #  In summary, on JDK 21 the tests do not work.
-        java-version: [ 21, 17, 11 ]
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          java-version: ${{ matrix.java-version }}
-          distribution: 'temurin'
-          cache: maven
-          settings-path: ${{ github.workspace }}
-
-      - name: unix mvn install
-        if: ${{ !contains(matrix.os, 'windows') }}
-        run: |
-          chmod +x mvnw && ./mvnw install \
-            -s $GITHUB_WORKSPACE/settings.xml
-
-      - name: windows mvn install
-        if: ${{ contains(matrix.os, 'windows') }}
-        shell: cmd
-        run: |
-          mvnw install ^
-            -s %GITHUB_WORKSPACE%\settings.xml
-
-  verify-for-jdk11:
-    name: jdk-11 verify
+  deploy-for-jdk11:
+    name: jdk-11 snapshot deploy
     # ISSUE ChromeDriver/GeckoDriver fail to initialize on Ubuntu
     # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3294884059/jobs/5432863668
     # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
@@ -111,70 +75,6 @@ jobs:
           SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
 
   generate-automation-project:
-    name: generate-build-run-standalone
-    needs: verify-for-jdk11
-    runs-on: windows-latest
-
-    steps:
-      - uses: actions/setup-java@v3
-        with:
-          java-version: '11'
-          distribution: 'temurin'
-
-      - name: setup maven for sonatype snapshots
-        uses: whelk-io/maven-settings-xml-action@v20
-        with:
-          repositories: >
-            [
-              {
-                "id": "ossrh",
-                "url": "https://s01.oss.sonatype.org/content/repositories/snapshots",
-                "snapshots": {
-                    "enabled": "true",
-                    "checksumPolicy": "warn"
-                }
-              }
-            ]
-
-      # FIXME should run with controlled java version
-      - name: bootstrap maven
-        uses: aahmed-se/setup-maven@v3
-        with:
-          maven-version: 3.6.1
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-
-      - name: setup maven cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: setup-java-${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            setup-java-${{ runner.os }}-maven-
-
-      - name: generate testing project
-        shell: cmd
-        # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
-        # NOTE will use last released archetype
-        # TODO after 1.0.0 release should change DarchetypeVersion to LATEST
-        run: |
-          mvn archetype:generate ^
-            --batch-mode ^
-            -Dmaven.wagon.http.ssl.insecure=true ^
-            -DarchetypeGroupId=dev.aherscu.qa ^
-            -DarchetypeArtifactId=qa-testing-archetype ^
-            -DarchetypeVersion=1.0.0-SNAPSHOT ^
-            -DgroupId=com.acme ^
-            -DartifactId=testing ^
-            -Dversion=0.0.1-SNAPSHOT ^
-            -Dpackage=com.acme.testing
-
-      - name: build testing project
-        shell: cmd
-        run: |
-          chdir testing && mvnw -Pgenerate-standalone
-
-      - name: run standalone tests executable
-        shell: cmd
-        run: |
-          chdir testing && standalone-tutorials.bat
+    uses: ./.github/workflows/generate-automation-project.yml
+    secrets: inherit
+    needs: deploy-for-jdk11
