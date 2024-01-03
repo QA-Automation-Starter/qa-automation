@@ -264,7 +264,7 @@ instead of repeating ourselves in each scenario we can hold this in a common
 base class:</p>
 
 <div class="verbatim">
-<pre><code class="language-java">public abstract class SystemRestTest extends UnitilsScenarioTest&lt;TestConfiguration, RestScenarioType, SystemRestFixtures&lt;?&gt;, SystemRestActions&lt;?&gt;, SystemRestVerifications&lt;?&gt;&gt; {
+<pre><code class="language-java">public abstract class SystemRestTest extends ConfigurableScenarioTest&lt;TestConfiguration, RestScenarioType, SystemRestFixtures&lt;?&gt;, SystemRestActions&lt;?&gt;, SystemRestVerifications&lt;?&gt;&gt; {
 
     protected Client client; // we should manage the REST client
 
