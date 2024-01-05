@@ -141,12 +141,12 @@ public abstract class SystemRestTest extends ConfigurableScenarioTest<TestConfig
 
     protected Client client; // we should manage the REST client
 
-    protected BekaRestTest() { // mandatory
+    protected SystemRestTest() { // mandatory
         super(TestConfiguration.class);
     }
 
     // so this one...
-    protected BekaRestTest(final Class<TestConfiguration> configurationType) {
+    protected SystemRestTest(final Class<TestConfiguration> configurationType) {
         super(configurationType);
     }
 
