@@ -4,7 +4,7 @@
 
 # Generating a QA Automation Project
 
-Assuming JDK 8 and Maven 3.6+ are already installed, on Windows it would be:
+Assuming JDK 11 and Maven 3.6+ are already installed, on Windows it would be:
 
 ```shell
 mvn --batch-mode archetype:generate ^
@@ -28,7 +28,7 @@ contains few exemplary tests, with all required dependencies for
 [Selenium](https://www.selenium.dev/documentation/webdriver/),
 [Appium](http://appium.io/docs/en/2.0/),
 [SouceLabs](https://saucelabs.com/) integration,
-[DbUnit](https://www.dbunit.org/), and many other utility libraries which I
+and many other utility libraries which I
 found useful across a dozen of projects.
 
 All above pieces are already integrated, all you have to do is:
@@ -38,9 +38,9 @@ All above pieces are already integrated, all you have to do is:
 3. optionally, add support modules; currently one of:
     * [QA JGiven REST](../../qa-jgiven-rest/index.html)
     * [QA JGiven SSH](../../qa-jgiven-ssh/index.html)
+    * [QA JGiven JDBC](../../qa-jgiven-jdbc/index.html)
     * [QA JGiven ElasticSearch](../../qa-jgiven-elasticsearch/index.html)
     * [QA JGiven RabbitMQ](../../qa-jgiven-rabbitmq/index.html)
-    * [QA JGiven ElasticSearch](../../qa-jgiven-elasticsearch/index.html)
     * or prepare one of yours :)
 
 See [QA Testing Example](../qa-testing-example/index.html), for more examples.
