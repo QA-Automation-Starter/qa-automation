@@ -33,7 +33,7 @@ import dev.aherscu.qa.jgiven.reporter.*;
  * The association is done by file name. These "attributes" can later be used as
  * additional publishing information.
  */
-@Mojo(name = "segregated-permethod-report",
+@Mojo(name = "permethod-report",
     defaultPhase = LifecyclePhase.VERIFY)
 public class QaJGivenPerMethodReporterMojo
     extends AbstractQaJgivenReporterMojo {

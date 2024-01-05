@@ -313,10 +313,10 @@
           </configuration>
           <executions>
             <execution>
-              <id>segregated-report</id>
+              <id>permethod-report</id>
               <phase>post-integration-test</phase>
               <goals>
-                <goal>segregated-permethod-report</goal>
+                <goal>permethod-report</goal>
               </goals>
               <configuration>
                 <referenceTag>Reference</referenceTag>
