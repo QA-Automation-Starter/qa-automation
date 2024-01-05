@@ -29,8 +29,8 @@ import org.assertj.core.api.*;
 import lombok.*;
 
 /**
- * Simulates a real Maven plugin running the "report" and "segregated-report"
- * goals. The generated reports should be verified manually.
+ * Simulates a real Maven plugin running its "report" goals.
+ * The generated reports should be verified manually.
  * 
  * <p>
  * This is a JUnit test, not a TestNG, hence cannot be configured via the *
@@ -51,7 +51,7 @@ public class QaJGivenReporterMavenPluginTest
     // see https://github.com/assertj/assertj/issues/2922
 
     private static File actualReports(final String relativePath) {
-        return new File(outdir("target/test-classes/jgiven-reports/qa-html"),
+        return new File(outdir("qa-html-reports"),
             relativePath);
     }
 
@@ -89,8 +89,8 @@ public class QaJGivenReporterMavenPluginTest
      * Tests execution of report goal.
      */
     @SneakyThrows
-    public void testSegregatedPerMethodReportGoal() {
-        lookupConfiguredMojo("segregated-permethod-report")
+    public void testPerMethodReportGoal() {
+        lookupConfiguredMojo("permethod-report")
             .execute();
 
         val softly = new SoftAssertions();
@@ -113,8 +113,8 @@ public class QaJGivenReporterMavenPluginTest
      * Tests execution of report goal.
      */
     @SneakyThrows
-    public void testSegregatedReportGoal() {
-        lookupConfiguredMojo("segregated-report")
+    public void testPerClassReportGoal() {
+        lookupConfiguredMojo("perclass-report")
             .execute();
 
         val softly = new SoftAssertions();

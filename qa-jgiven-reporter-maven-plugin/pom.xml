@@ -34,11 +34,6 @@
     JSON Report files.
   </description>
 
-  <properties>
-    <!-- FIXME: JGiven 1.3 changed structure of JSON report files -->
-    <skipTests>true</skipTests>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.projectlombok</groupId>
