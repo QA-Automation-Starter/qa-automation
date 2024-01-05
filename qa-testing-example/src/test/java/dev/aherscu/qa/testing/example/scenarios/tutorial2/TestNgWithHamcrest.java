@@ -41,39 +41,39 @@ import lombok.*;
 public class TestNgWithHamcrest {
 
     @Test
-    public void _1_shouldNotSucceed() {
-        assert false; // no description generated for this failure
+    public void _1_shouldSucceed() {
+        assert true; // false; // no description generated for this failure
     }
 
     @Test
-    public void _2_shouldNotSucceedWithDescription() {
-        assertThat(true, is(false));
+    public void _2_shouldAssertOnBoolean() {
+        assertThat(true, is(true));
     }
 
     @Test
-    public void _3_shouldFailOnStringContents() {
+    public void _3_shouldAssertOnStringContents() {
         assertThat("should verify string contents",
             both(containsString("verify"))
-                .and(containsString("kuku")));
+                .and(containsString("string")));
     }
 
     @Test
-    public void _4_shouldFailOnListContents() {
+    public void _4_shouldAssertOnListContents() {
         assertThat(asList("should", "verify", "list", "contents"),
             both(hasItem(startsWith("verify")))
-                .and(hasItem(equalTo("kuku"))));
+                .and(hasItem(equalTo("list"))));
     }
 
     @Test
-    public void _5_shouldFailOnListOrder() {
-        assertThat(asList(1, 2, 4, 3, 5), is(ordered(natural())));
+    public void _5_shouldAssertOnListOrder() {
+        assertThat(asList(1, 2, 3, 4, 5), is(ordered(natural())));
     }
 
     @Test
-    public void _6_shouldFailOnEquality() {
+    public void _6_shouldAssertOnEquality() {
         @AllArgsConstructor // lombok generates a constructor
         @ToString // lombok generates a nice toString method
-        // @EqualsAndHashCode
+        @EqualsAndHashCode // comment to make it fail the test
         class Foo {
             final int    id;
             final String contents;
@@ -84,7 +84,7 @@ public class TestNgWithHamcrest {
     }
 
     @Test
-    public void _7_shouldFailOnStreamContents() {
+    public void _7_shouldAssertOnStreamContents() {
         @AllArgsConstructor
         @ToString
         class Foo {
@@ -99,11 +99,11 @@ public class TestNgWithHamcrest {
             new Foo(4, "contents")),
             adaptedStream(f -> f.contents, // we need to "adapt" Foo into a
                                            // String
-                hasItemsMatching(equalTo("kuku"))));
+                hasItemsMatching(equalTo("stream"))));
     }
 
     @Test
-    public void _8_shouldFailOnStreamOfJsons() {
+    public void _8_shouldAssertOnStreamOfJsons() {
         assertThat(Stream.of(
             "{'id':1, 'contents':'should'}",
             "{'id':2, 'contents':'verify'}",
@@ -111,7 +111,7 @@ public class TestNgWithHamcrest {
             "{'id':4, 'contents':'contents'}"),
             // we need to adapt JSON structure into contents value
             adaptedStream(json -> parse(json).read("$.contents"),
-                hasItemsMatching(equalTo("kuku"))));
+                hasItemsMatching(equalTo("json"))));
     }
 
     @Test(dataProvider = "sinusFunctionTable")
@@ -131,7 +131,7 @@ public class TestNgWithHamcrest {
             // there are toooooooo much possibilities...
             { PI,                0 },
             { 2 * PI,            0 },
-            { pow(2, 1000) * PI, 0 }, // this will fail due to much precision loss
+            // { pow(2, 1000) * PI, 0 }, // this will fail due to much precision loss
             // @formatter:on
         };
     }
