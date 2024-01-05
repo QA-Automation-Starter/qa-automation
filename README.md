@@ -59,7 +59,7 @@ required in order to compile, run and debug in an IDE:
 ## Deploying
 
 By pushing or merging into main branch.
-See the [deploy-for-jdk8](.github/workflows/on-main-push.yml).
+See the [deploy-site-for-jdk11](.github/workflows/on-main-push.yml).
 
 ## Releasing/Versioning
 
