@@ -1,0 +1,45 @@
+{
+  "className": "dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingRemoteWebApplication",
+  "name": "Testing Remote Web Application",
+  "scenarios": [
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingRemoteWebApplication",
+      "testMethodName": "shouldFind",
+      "description": "Should find",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 1293716100
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 1293716100
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingRemoteWebApplication",
+      "testMethodName": "shouldOpenWeb",
+      "description": "Should open web",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 182305300
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 182305300
+    }
+  ],
+  "tagMap": {}
+}

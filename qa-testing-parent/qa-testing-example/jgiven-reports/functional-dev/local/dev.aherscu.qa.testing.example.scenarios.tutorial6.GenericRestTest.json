@@ -1,0 +1,186 @@
+{
+  "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.GenericRestTest",
+  "name": "Generic Rest",
+  "scenarios": [
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.GenericRestTest",
+      "testMethodName": "shouldRetrieveJsonFieldFromFakeRestService",
+      "description": "Should retrieve json field from fake rest service",
+      "tagIds": [
+        "dev.aherscu.qa.jgiven.commons.tags.SelfTest",
+        "dev.aherscu.qa.jgiven.rest.tags.RestTest",
+        "dev.aherscu.qa.jgiven.commons.tags.Reference-70"
+      ],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "a REST client",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "a REST client"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1772300,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "connecting to",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "connecting to"
+                },
+                {
+                  "value": "http://localhost:51892",
+                  "argumentInfo": {
+                    "argumentName": "url",
+                    "formattedValue": "http://localhost:51892"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1095400,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "appending path",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "appending path"
+                },
+                {
+                  "value": "some-id",
+                  "argumentInfo": {
+                    "argumentName": "path",
+                    "formattedValue": "some-id"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1080000,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getting the response",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getting the response"
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "getting the response with headers",
+                  "words": [
+                    {
+                      "value": "getting the response with headers"
+                    },
+                    {
+                      "value": "{}",
+                      "argumentInfo": {
+                        "argumentName": "headers",
+                        "formattedValue": "{}"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 1667428900,
+                  "depth": 0,
+                  "parentFailed": false
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1668280600,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the response contents",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the response contents"
+                },
+                {
+                  "value": "[a value greater than \u003c0\u003e \u003c\u003c\u003c---\u003e\u003e\u003e $[0].id, \u003c2\u003e \u003c\u003c\u003c---\u003e\u003e\u003e $[1].id]",
+                  "argumentInfo": {
+                    "argumentName": "expectedContents",
+                    "formattedValue": "a value greater than \u003c0\u003e \u003c\u003c\u003c---\u003e\u003e\u003e $[0].id,\r\n\u003c2\u003e \u003c\u003c\u003c---\u003e\u003e\u003e $[1].id"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 4293400,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "[{id:1},{id:2},{id:3}]",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 1933882700
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 1933882700
+    }
+  ],
+  "tagMap": {
+    "dev.aherscu.qa.jgiven.commons.tags.SelfTest": {
+      "fullType": "dev.aherscu.qa.jgiven.commons.tags.SelfTest",
+      "type": "SelfTest",
+      "name": "Self Test",
+      "description": "Self tests",
+      "href": ""
+    },
+    "dev.aherscu.qa.jgiven.rest.tags.RestTest": {
+      "fullType": "dev.aherscu.qa.jgiven.rest.tags.RestTest",
+      "type": "RestTest",
+      "name": "REST Test",
+      "description": "Tests interacting with REST interfaces",
+      "href": ""
+    },
+    "dev.aherscu.qa.jgiven.commons.tags.Reference-70": {
+      "fullType": "dev.aherscu.qa.jgiven.commons.tags.Reference",
+      "type": "Reference",
+      "name": "Reference",
+      "value": "70",
+      "description": "\u003ca target\u003d\"_blank\" href\u003d\"https://github.com/QA-Automation-Starter/qa-automation/issues/70\"\u003eClick here to open ALM 70\u003c/a\u003e",
+      "prependType": true,
+      "style": "background-color: darkgreen; color: white; font-weight: bold",
+      "href": "https://github.com/QA-Automation-Starter/qa-automation/issues/70"
+    }
+  }
+}

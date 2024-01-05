@@ -49,39 +49,39 @@
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="TestNgWithHamcrest" href="../../../../../../../dev/aherscu/qa/testing/example/scenarios/tutorial2/TestNgWithHamcrest.html#TestNgWithHamcrest">TestNgWithHamcrest</a> {
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>      @Test
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _1_shouldNotSucceed() {
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>          assert false; <em class="jxr_comment">// no description generated for this failure</em>
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _1_shouldSucceed() {
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>          assert <strong class="jxr_keyword">true</strong>; <em class="jxr_comment">// false; // no description generated for this failure</em>
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      }
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>      @Test
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _2_shouldNotSucceedWithDescription() {
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>          assertThat(<strong class="jxr_keyword">true</strong>, is(false));
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _2_shouldAssertOnBoolean() {
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>          assertThat(<strong class="jxr_keyword">true</strong>, is(<strong class="jxr_keyword">true</strong>));
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>      }
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>      @Test
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _3_shouldFailOnStringContents() {
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _3_shouldAssertOnStringContents() {
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>          assertThat(<span class="jxr_string">"should verify string contents"</span>,
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>              both(containsString(<span class="jxr_string">"verify"</span>))
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>                  .and(containsString(<span class="jxr_string">"kuku"</span>)));
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>                  .and(containsString(<span class="jxr_string">"string"</span>)));
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>      }
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>      @Test
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _4_shouldFailOnListContents() {
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _4_shouldAssertOnListContents() {
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>          assertThat(asList(<span class="jxr_string">"should"</span>, <span class="jxr_string">"verify"</span>, <span class="jxr_string">"list"</span>, <span class="jxr_string">"contents"</span>),
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>              both(hasItem(startsWith(<span class="jxr_string">"verify"</span>)))
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>                  .and(hasItem(equalTo(<span class="jxr_string">"kuku"</span>))));
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>                  .and(hasItem(equalTo(<span class="jxr_string">"list"</span>))));
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>      }
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>      @Test
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _5_shouldFailOnListOrder() {
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>          assertThat(asList(1, 2, 4, 3, 5), is(ordered(natural())));
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _5_shouldAssertOnListOrder() {
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>          assertThat(asList(1, 2, 3, 4, 5), is(ordered(natural())));
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>      }
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>      @Test
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _6_shouldFailOnEquality() {
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _6_shouldAssertOnEquality() {
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>          @AllArgsConstructor <em class="jxr_comment">// lombok generates a constructor</em>
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>          @ToString <em class="jxr_comment">// lombok generates a nice toString method</em>
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>          <em class="jxr_comment">// @EqualsAndHashCode</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>          @EqualsAndHashCode <em class="jxr_comment">// comment to make it fail the test</em>
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>          <strong class="jxr_keyword">class</strong> Foo {
 <a class="jxr_linenumber" name="L78" href="#L78">78</a>              <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong>    id;
 <a class="jxr_linenumber" name="L79" href="#L79">79</a>              <strong class="jxr_keyword">final</strong> String contents;
@@ -92,7 +92,7 @@
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>      }
 <a class="jxr_linenumber" name="L85" href="#L85">85</a>  
 <a class="jxr_linenumber" name="L86" href="#L86">86</a>      @Test
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _7_shouldFailOnStreamContents() {
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _7_shouldAssertOnStreamContents() {
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>          @AllArgsConstructor
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>          @ToString
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>          <strong class="jxr_keyword">class</strong> Foo {
@@ -107,11 +107,11 @@
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>              <strong class="jxr_keyword">new</strong> Foo(4, <span class="jxr_string">"contents"</span>)),
 <a class="jxr_linenumber" name="L100" href="#L100">100</a>             adaptedStream(f -&gt; f.contents, <em class="jxr_comment">// we need to "adapt" Foo into a</em>
 <a class="jxr_linenumber" name="L101" href="#L101">101</a>                                            <em class="jxr_comment">// String</em>
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>                 hasItemsMatching(equalTo(<span class="jxr_string">"kuku"</span>))));
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>                 hasItemsMatching(equalTo(<span class="jxr_string">"stream"</span>))));
 <a class="jxr_linenumber" name="L103" href="#L103">103</a>     }
 <a class="jxr_linenumber" name="L104" href="#L104">104</a> 
 <a class="jxr_linenumber" name="L105" href="#L105">105</a>     @Test
-<a class="jxr_linenumber" name="L106" href="#L106">106</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _8_shouldFailOnStreamOfJsons() {
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> _8_shouldAssertOnStreamOfJsons() {
 <a class="jxr_linenumber" name="L107" href="#L107">107</a>         assertThat(Stream.of(
 <a class="jxr_linenumber" name="L108" href="#L108">108</a>             <span class="jxr_string">"{'id':1, 'contents':'should'}"</span>,
 <a class="jxr_linenumber" name="L109" href="#L109">109</a>             <span class="jxr_string">"{'id':2, 'contents':'verify'}"</span>,
@@ -119,7 +119,7 @@
 <a class="jxr_linenumber" name="L111" href="#L111">111</a>             <span class="jxr_string">"{'id':4, 'contents':'contents'}"</span>),
 <a class="jxr_linenumber" name="L112" href="#L112">112</a>             <em class="jxr_comment">// we need to adapt JSON structure into contents value</em>
 <a class="jxr_linenumber" name="L113" href="#L113">113</a>             adaptedStream(json -&gt; parse(json).read(<span class="jxr_string">"$.contents"</span>),
-<a class="jxr_linenumber" name="L114" href="#L114">114</a>                 hasItemsMatching(equalTo(<span class="jxr_string">"kuku"</span>))));
+<a class="jxr_linenumber" name="L114" href="#L114">114</a>                 hasItemsMatching(equalTo(<span class="jxr_string">"json"</span>))));
 <a class="jxr_linenumber" name="L115" href="#L115">115</a>     }
 <a class="jxr_linenumber" name="L116" href="#L116">116</a> 
 <a class="jxr_linenumber" name="L117" href="#L117">117</a>     @Test(dataProvider = <span class="jxr_string">"sinusFunctionTable"</span>)
@@ -139,7 +139,7 @@
 <a class="jxr_linenumber" name="L131" href="#L131">131</a>             <em class="jxr_comment">// there are toooooooo much possibilities...</em>
 <a class="jxr_linenumber" name="L132" href="#L132">132</a>             { PI,                0 },
 <a class="jxr_linenumber" name="L133" href="#L133">133</a>             { 2 * PI,            0 },
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>             { pow(2, 1000) * PI, 0 }, <em class="jxr_comment">// this will fail due to much precision loss</em>
+<a class="jxr_linenumber" name="L134" href="#L134">134</a>             <em class="jxr_comment">// { pow(2, 1000) * PI, 0 }, // this will fail due to much precision loss</em>
 <a class="jxr_linenumber" name="L135" href="#L135">135</a>             <em class="jxr_comment">// @formatter:on</em>
 <a class="jxr_linenumber" name="L136" href="#L136">136</a>         };
 <a class="jxr_linenumber" name="L137" href="#L137">137</a>     }

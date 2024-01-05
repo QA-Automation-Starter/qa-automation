@@ -1,0 +1,987 @@
+{
+  "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.GenericMockServerRestTest",
+  "name": "Generic Mock Server Rest",
+  "scenarios": [
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.GenericMockServerRestTest",
+      "testMethodName": "shouldVerifyAccessByDefinition",
+      "description": "Should verify access by definition",
+      "tagIds": [
+        "dev.aherscu.qa.jgiven.commons.tags.SelfTest",
+        "dev.aherscu.qa.jgiven.rest.tags.RestTest",
+        "dev.aherscu.qa.jgiven.commons.tags.Reference-159"
+      ],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "a REST client",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "a REST client"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 556900,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "connecting to",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "connecting to"
+                },
+                {
+                  "value": "http://localhost:51888",
+                  "argumentInfo": {
+                    "argumentName": "url",
+                    "formattedValue": "http://localhost:51888"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 8687100,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "appending path",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "appending path"
+                },
+                {
+                  "value": "some-id",
+                  "argumentInfo": {
+                    "argumentName": "path",
+                    "formattedValue": "some-id"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 466600,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getting the response",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getting the response"
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "getting the response with headers",
+                  "words": [
+                    {
+                      "value": "getting the response with headers"
+                    },
+                    {
+                      "value": "{}",
+                      "argumentInfo": {
+                        "argumentName": "headers",
+                        "formattedValue": "{}"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 317827600,
+                  "depth": 0,
+                  "parentFailed": false
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 317894000,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the response contents",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the response contents"
+                },
+                {
+                  "value": "[a value greater than \u003c0\u003e \u003c\u003c\u003c---\u003e\u003e\u003e $[0].id, \u003c2\u003e \u003c\u003c\u003c---\u003e\u003e\u003e $[1].id]",
+                  "argumentInfo": {
+                    "argumentName": "expectedContents",
+                    "formattedValue": "a value greater than \u003c0\u003e \u003c\u003c\u003c---\u003e\u003e\u003e $[0].id,\r\n\u003c2\u003e \u003c\u003c\u003c---\u003e\u003e\u003e $[1].id"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 5741100,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "$",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the some id request was sent",
+                  "argumentInfo": {
+                    "argumentName": "description",
+                    "formattedValue": "the some id request was sent"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 179847500,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "[{\"id\":1},{\"id\":2},{\"id\":3}]",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 1382237400
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 1382237400
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.GenericMockServerRestTest",
+      "testMethodName": "shouldVerifyAccessByExpectionId",
+      "description": "Should verify access by expection id",
+      "tagIds": [
+        "dev.aherscu.qa.jgiven.commons.tags.SelfTest",
+        "dev.aherscu.qa.jgiven.rest.tags.RestTest",
+        "dev.aherscu.qa.jgiven.commons.tags.Reference-159"
+      ],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "a REST client",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "a REST client"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 514100,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "connecting to",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "connecting to"
+                },
+                {
+                  "value": "http://localhost:51888",
+                  "argumentInfo": {
+                    "argumentName": "url",
+                    "formattedValue": "http://localhost:51888"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 3237500,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "appending path",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "appending path"
+                },
+                {
+                  "value": "dummy",
+                  "argumentInfo": {
+                    "argumentName": "path",
+                    "formattedValue": "dummy"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 2055000,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getting the response",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getting the response"
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "getting the response with headers",
+                  "words": [
+                    {
+                      "value": "getting the response with headers"
+                    },
+                    {
+                      "value": "{}",
+                      "argumentInfo": {
+                        "argumentName": "headers",
+                        "formattedValue": "{}"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 44486100,
+                  "depth": 0,
+                  "parentFailed": false
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 44547900,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "$",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the dummy request was sent",
+                  "argumentInfo": {
+                    "argumentName": "description",
+                    "formattedValue": "the dummy request was sent"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 217321100,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "\u003c\u003cempty\u003e\u003e",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 422517100
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 422517100
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.GenericMockServerRestTest",
+      "testMethodName": "shouldVerifyAccessOfDroppedConnection",
+      "description": "Should verify access of dropped connection",
+      "tagIds": [
+        "dev.aherscu.qa.jgiven.commons.tags.SelfTest",
+        "dev.aherscu.qa.jgiven.rest.tags.RestTest",
+        "dev.aherscu.qa.jgiven.commons.tags.Reference-159"
+      ],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "a REST client",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "a REST client"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1494800,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "connecting to",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "connecting to"
+                },
+                {
+                  "value": "http://localhost:51888",
+                  "argumentInfo": {
+                    "argumentName": "url",
+                    "formattedValue": "http://localhost:51888"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 2115600,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "appending path",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "appending path"
+                },
+                {
+                  "value": "drop-connection",
+                  "argumentInfo": {
+                    "argumentName": "path",
+                    "formattedValue": "drop-connection"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 117743200,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "$",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "trying to access",
+                  "argumentInfo": {
+                    "argumentName": "description",
+                    "formattedValue": "trying to access"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 147083500,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "$",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the drop connection request was sent",
+                  "argumentInfo": {
+                    "argumentName": "description",
+                    "formattedValue": "the drop connection request was sent"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 34097800,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "\u003c\u003cnull\u003e\u003e",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 464850800
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 464850800
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.GenericMockServerRestTest",
+      "testMethodName": "shouldVerifyAccessedTwice",
+      "description": "Should verify accessed twice",
+      "tagIds": [
+        "dev.aherscu.qa.jgiven.commons.tags.SelfTest",
+        "dev.aherscu.qa.jgiven.rest.tags.RestTest",
+        "dev.aherscu.qa.jgiven.commons.tags.Reference-159"
+      ],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "a REST client",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "a REST client"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 2639500,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "connecting to",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "connecting to"
+                },
+                {
+                  "value": "http://localhost:51888",
+                  "argumentInfo": {
+                    "argumentName": "url",
+                    "formattedValue": "http://localhost:51888"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 1257200,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "appending path",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "appending path"
+                },
+                {
+                  "value": "twice",
+                  "argumentInfo": {
+                    "argumentName": "path",
+                    "formattedValue": "twice"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 582300,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getting the response",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getting the response"
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "getting the response with headers",
+                  "words": [
+                    {
+                      "value": "getting the response with headers"
+                    },
+                    {
+                      "value": "{}",
+                      "argumentInfo": {
+                        "argumentName": "headers",
+                        "formattedValue": "{}"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 10403000,
+                  "depth": 0,
+                  "parentFailed": false
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 10460700,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getting the response",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getting the response"
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "getting the response with headers",
+                  "words": [
+                    {
+                      "value": "getting the response with headers"
+                    },
+                    {
+                      "value": "{}",
+                      "argumentInfo": {
+                        "argumentName": "headers",
+                        "formattedValue": "{}"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 3622000,
+                  "depth": 0,
+                  "parentFailed": false
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 3725700,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getting the response",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getting the response"
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "getting the response with headers",
+                  "words": [
+                    {
+                      "value": "getting the response with headers"
+                    },
+                    {
+                      "value": "{}",
+                      "argumentInfo": {
+                        "argumentName": "headers",
+                        "formattedValue": "{}"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 22966300,
+                  "depth": 0,
+                  "parentFailed": false
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 23049200,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the response status",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the response status"
+                },
+                {
+                  "value": "is \u003cCLIENT_ERROR\u003e",
+                  "argumentInfo": {
+                    "argumentName": "familyMatcher",
+                    "formattedValue": "is \u003cCLIENT_ERROR\u003e"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 788700,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "$",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the method was called more than twice",
+                  "argumentInfo": {
+                    "argumentName": "description",
+                    "formattedValue": "the method was called more than twice"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 296877400,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "\u003c\u003cempty\u003e\u003e",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 382238800
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 382238800
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.GenericMockServerRestTest",
+      "testMethodName": "shouldVerifyAccessedTwiceByExpectationId",
+      "description": "Should verify accessed twice by expectation id",
+      "tagIds": [
+        "dev.aherscu.qa.jgiven.commons.tags.SelfTest",
+        "dev.aherscu.qa.jgiven.rest.tags.RestTest",
+        "dev.aherscu.qa.jgiven.commons.tags.Reference-159"
+      ],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "a REST client",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "a REST client"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 666800,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "connecting to",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "connecting to"
+                },
+                {
+                  "value": "http://localhost:51888",
+                  "argumentInfo": {
+                    "argumentName": "url",
+                    "formattedValue": "http://localhost:51888"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 678000,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "appending path",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "appending path"
+                },
+                {
+                  "value": "twice",
+                  "argumentInfo": {
+                    "argumentName": "path",
+                    "formattedValue": "twice"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 457800,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getting the response",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getting the response"
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "getting the response with headers",
+                  "words": [
+                    {
+                      "value": "getting the response with headers"
+                    },
+                    {
+                      "value": "{}",
+                      "argumentInfo": {
+                        "argumentName": "headers",
+                        "formattedValue": "{}"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 11271500,
+                  "depth": 0,
+                  "parentFailed": false
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 11322500,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getting the response",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getting the response"
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "getting the response with headers",
+                  "words": [
+                    {
+                      "value": "getting the response with headers"
+                    },
+                    {
+                      "value": "{}",
+                      "argumentInfo": {
+                        "argumentName": "headers",
+                        "formattedValue": "{}"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 3240000,
+                  "depth": 0,
+                  "parentFailed": false
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 3327200,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "getting the response",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "getting the response"
+                }
+              ],
+              "nestedSteps": [
+                {
+                  "name": "getting the response with headers",
+                  "words": [
+                    {
+                      "value": "getting the response with headers"
+                    },
+                    {
+                      "value": "{}",
+                      "argumentInfo": {
+                        "argumentName": "headers",
+                        "formattedValue": "{}"
+                      }
+                    }
+                  ],
+                  "status": "PASSED",
+                  "durationInNanos": 4190500,
+                  "depth": 0,
+                  "parentFailed": false
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 4264300,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the response status",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the response status"
+                },
+                {
+                  "value": "is \u003cCLIENT_ERROR\u003e",
+                  "argumentInfo": {
+                    "argumentName": "familyMatcher",
+                    "formattedValue": "is \u003cCLIENT_ERROR\u003e"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 530400,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "$",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the method was called more than twice",
+                  "argumentInfo": {
+                    "argumentName": "description",
+                    "formattedValue": "the method was called more than twice"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 28068400,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "\u003c\u003cempty\u003e\u003e",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 124307500
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 124307500
+    }
+  ],
+  "tagMap": {
+    "dev.aherscu.qa.jgiven.commons.tags.SelfTest": {
+      "fullType": "dev.aherscu.qa.jgiven.commons.tags.SelfTest",
+      "type": "SelfTest",
+      "name": "Self Test",
+      "description": "Self tests",
+      "href": ""
+    },
+    "dev.aherscu.qa.jgiven.rest.tags.RestTest": {
+      "fullType": "dev.aherscu.qa.jgiven.rest.tags.RestTest",
+      "type": "RestTest",
+      "name": "REST Test",
+      "description": "Tests interacting with REST interfaces",
+      "href": ""
+    },
+    "dev.aherscu.qa.jgiven.commons.tags.Reference-159": {
+      "fullType": "dev.aherscu.qa.jgiven.commons.tags.Reference",
+      "type": "Reference",
+      "name": "Reference",
+      "value": "159",
+      "description": "\u003ca target\u003d\"_blank\" href\u003d\"https://github.com/QA-Automation-Starter/qa-automation/issues/159\"\u003eClick here to open ALM 159\u003c/a\u003e",
+      "prependType": true,
+      "style": "background-color: darkgreen; color: white; font-weight: bold",
+      "href": "https://github.com/QA-Automation-Starter/qa-automation/issues/159"
+    }
+  }
+}

@@ -268,12 +268,12 @@ base class:</p>
 
     protected Client client; // we should manage the REST client
 
-    protected BekaRestTest() { // mandatory
+    protected SystemRestTest() { // mandatory
         super(TestConfiguration.class);
     }
 
     // so this one...
-    protected BekaRestTest(final Class&lt;TestConfiguration&gt; configurationType) {
+    protected SystemRestTest(final Class&lt;TestConfiguration&gt; configurationType) {
         super(configurationType);
     }
 
