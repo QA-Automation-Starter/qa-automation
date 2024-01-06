@@ -6,8 +6,12 @@ on:
 jobs:
 
   generate-automation-project:
-    name: Generates new automation project and builds it
-    runs-on: ubuntu-latest
+    name: ${{ matrix.os }} generates and tests tutorials
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
 
     steps:
       - uses: actions/setup-java@v3
@@ -49,6 +53,7 @@ jobs:
       - name: generate testing project
         # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
         # NOTE will use last released archetype
+        shell: bash
         run: |
           mvn --batch-mode archetype:generate \
             -DarchetypeGroupId=dev.aherscu.qa \
@@ -60,5 +65,6 @@ jobs:
             -Dpackage=com.acme.testing
 
       - name: build testing project
+        shell: bash
         run: |
           cd testing && chmod +x mvnw && ./mvnw
