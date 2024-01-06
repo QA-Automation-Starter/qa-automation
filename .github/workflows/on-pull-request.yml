@@ -56,6 +56,7 @@ jobs:
 
       # NOTE: must run install at least in order to have artifacts in .m2
       # .m2 artifacts are cached and reused in following generate-automation-project
+      # ISSUE: building in multi-threaded mode blocks during deploy phase
       - name: Maven deploy snapshots
         shell: cmd
         run: |
