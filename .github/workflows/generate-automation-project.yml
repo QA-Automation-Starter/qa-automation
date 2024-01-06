@@ -69,4 +69,4 @@ jobs:
       - name: build testing project
         shell: bash
         run: |
-          cd testing && chmod +x mvnw && ./mvnw
+          cd testing && chmod +x mvnw && ./mvnw -Ptesting-tutorials
