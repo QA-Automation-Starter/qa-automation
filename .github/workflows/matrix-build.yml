@@ -32,15 +32,8 @@ jobs:
           cache: maven
           settings-path: ${{ github.workspace }}
 
-      - name: unix mvn install
-        if: ${{ !contains(matrix.os, 'windows') }}
+      - name: mvn install
+        shell: bash
         run: |
           chmod +x mvnw && ./mvnw install \
             -s $GITHUB_WORKSPACE/settings.xml
-
-      - name: windows mvn install
-        if: ${{ contains(matrix.os, 'windows') }}
-        shell: cmd
-        run: |
-          mvnw install ^
-            -s %GITHUB_WORKSPACE%\settings.xml
