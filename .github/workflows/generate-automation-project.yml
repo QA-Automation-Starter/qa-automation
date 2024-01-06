@@ -53,6 +53,8 @@ jobs:
       - name: generate testing project
         # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
         # NOTE will use last released archetype
+        # TODO make it generate the standalone JAR and run it
+        # there must be a standalone-tutorials.sh
         shell: bash
         run: |
           mvn --batch-mode archetype:generate \
