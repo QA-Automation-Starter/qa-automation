@@ -15,11 +15,11 @@
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 1293716100
+          "durationInNanos": 1027981901
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 1293716100
+      "durationInNanos": 1027981901
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingRemoteWebApplication",
@@ -34,11 +34,11 @@
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 182305300
+          "durationInNanos": 172248301
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 182305300
+      "durationInNanos": 172248301
     }
   ],
   "tagMap": {}
