@@ -15,6 +15,11 @@ jobs:
 
     strategy:
       # ISSUE selenium fails to launch local chrome on ubuntu-latest
+      # following https://github.com/QA-Automation-Starter/qa-automation/issues/221
+      # we will run these tests on ubuntu via deploy-* jobs,
+      # see on-main-push.yml and on-pull-request.yml.
+      # These jobs have credentials for SauceLabs account associated with
+      # this project, hence can bypass this limitation.
       matrix:
         os: [ macos-latest, windows-latest ]
 
