@@ -68,7 +68,7 @@ jobs:
           git config --global user.email "adrian.herscu@gmail.com"
           chmod +x mvnw && ./mvnw deploy \
             --threads 1 \
-            -s %GITHUB_WORKSPACE%\settings.xml \
+            -s $GITHUB_OUTPUT/settings.xml \
             -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
           echo "version=$(cat target/version.txt)" >> $GITHUB_OUTPUT
         env:
