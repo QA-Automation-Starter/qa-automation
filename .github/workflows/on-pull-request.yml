@@ -26,6 +26,8 @@ jobs:
     # ISSUE Google Search behaves differently on MacOS causing tests to fail
     runs-on: windows-latest
     environment: development
+    outputs:
+      version: ${{ steps.deploy.outputs.version }}
 
     steps:
       - uses: actions/checkout@v3
@@ -58,17 +60,17 @@ jobs:
       # .m2 artifacts are cached and reused in following generate-automation-project
       # ISSUE: building in multi-threaded mode blocks during deploy phase
       - name: Maven deploy snapshots
-        # TODO replace with bash shell
-        shell: cmd
+        id: deploy
+        shell: bash
         run: |
-          reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 0x1
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
-          mvnw deploy ^
-            --threads 1 ^
-            -s %GITHUB_WORKSPACE%\settings.xml ^
+          chmod +x mvnw && ./mvnw deploy \
+            --threads 1 \
+            -s %GITHUB_WORKSPACE%\settings.xml \
             -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
+          echo "version=$(cat target/version.txt)" >> $GITHUB_OUTPUT
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
@@ -79,7 +81,6 @@ jobs:
   generate-automation-project:
     uses: ./.github/workflows/generate-automation-project.yml
     secrets: inherit
-    # TODO read the project version from target/version.txt
     with:
-      archetype-version: 1.0.2-SNAPSHOT
+      archetype-version: ${{ needs.deploy-for-jdk11.outputs.version }}
     needs: deploy-for-jdk11
