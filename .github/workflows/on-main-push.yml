@@ -49,6 +49,7 @@ jobs:
 
       - name: Maven deploy snapshots and publish site
         id: deploy
+        shell: bash
         run: |
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"

@@ -32,6 +32,7 @@ jobs:
       # in addition to binary artifacts, and everything must be GPG signed.
       # Hence, we must fully build it.
       - name: Maven release prepare and perform
+        shell: bash
         run: |
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
