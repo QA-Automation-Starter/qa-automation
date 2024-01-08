@@ -43,7 +43,7 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
-      - name: Setup SSH
+      - name: setup SSH
         uses: webfactory/ssh-agent@v0.6.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -59,8 +59,7 @@ jobs:
       # NOTE: must run install at least in order to have artifacts in .m2
       # .m2 artifacts are cached and reused in following generate-automation-project
       # ISSUE: building in multi-threaded mode blocks during deploy phase
-      - name: Maven deploy snapshots
-        id: deploy
+      - name: deploy snapshots
         shell: bash
         run: |
           git config --global core.longpaths true

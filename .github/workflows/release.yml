@@ -1,4 +1,4 @@
-name: Release
+name: release
 
 on:
   workflow_dispatch:
@@ -23,7 +23,7 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
-      - name: Setup SSH
+      - name: setup SSH
         uses: webfactory/ssh-agent@v0.6.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -31,7 +31,7 @@ jobs:
       # IMPORTANT: releasing to Maven Central requires sources, javadoc,
       # in addition to binary artifacts, and everything must be GPG signed.
       # Hence, we must fully build it.
-      - name: Maven release prepare and perform
+      - name: release prepare and perform
         shell: bash
         run: |
           git config --global user.name "Adrian Herscu"

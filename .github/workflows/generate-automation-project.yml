@@ -10,7 +10,7 @@ on:
 jobs:
 
   generate-automation-project:
-    name: ${{ matrix.os }} generates and tests tutorials
+    name: ${{ matrix.os }} generate and test tutorials
     runs-on: ${{ matrix.os }}
 
     strategy:

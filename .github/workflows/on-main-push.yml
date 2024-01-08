@@ -26,7 +26,7 @@ jobs:
     runs-on: windows-latest
     environment: development
     outputs:
-      version: ${{ steps.deploy.outputs.version }}
+      version: ${{ steps.version.outputs.version }}
 
     steps:
       - uses: actions/checkout@v3
@@ -42,12 +42,12 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
-      - name: Setup SSH
+      - name: setup SSH
         uses: webfactory/ssh-agent@v0.6.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Maven deploy snapshots and publish site
+      - name: deploy snapshots and publish site
         id: deploy
         shell: bash
         run: |
@@ -58,13 +58,18 @@ jobs:
             --threads 1 \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
-          echo "version=$(cat target/version.txt)" >> $GITHUB_OUTPUT
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
           SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
+
+      - name: save project version
+        id: version
+        shell: bash
+        run: |
+          echo "version=$(cat target/version.txt)" >> $GITHUB_OUTPUT
 
   generate-automation-project:
     uses: ./.github/workflows/generate-automation-project.yml

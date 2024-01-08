@@ -32,7 +32,7 @@ jobs:
           cache: maven
           settings-path: ${{ github.workspace }}
 
-      - name: mvn install
+      - name: maven install
         shell: bash
         run: |
           chmod +x mvnw && ./mvnw install \
