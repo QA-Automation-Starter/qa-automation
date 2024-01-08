@@ -2,6 +2,10 @@ name: generate automation and build
 
 on:
   workflow_call:
+    inputs:
+      archetype-version:
+        required: true
+        type: string
 
 jobs:
 
@@ -58,7 +62,7 @@ jobs:
           mvn --batch-mode archetype:generate \
             -DarchetypeGroupId=dev.aherscu.qa \
             -DarchetypeArtifactId=qa-testing-archetype \
-            -DarchetypeVersion=LATEST \
+            -DarchetypeVersion=${{ inputs.archetype-version }} \
             -DgroupId=com.acme \
             -DartifactId=testing \
             -Dversion=1.0-SNAPSHOT \

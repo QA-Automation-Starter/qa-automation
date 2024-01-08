@@ -58,6 +58,7 @@ jobs:
       # .m2 artifacts are cached and reused in following generate-automation-project
       # ISSUE: building in multi-threaded mode blocks during deploy phase
       - name: Maven deploy snapshots
+        # TODO replace with bash shell
         shell: cmd
         run: |
           reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 0x1
@@ -78,4 +79,7 @@ jobs:
   generate-automation-project:
     uses: ./.github/workflows/generate-automation-project.yml
     secrets: inherit
+    # TODO read the project version from target/version.txt
+    with:
+      archetype-version: 1.0.2-SNAPSHOT
     needs: deploy-for-jdk11
