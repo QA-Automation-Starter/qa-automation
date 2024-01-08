@@ -57,6 +57,7 @@ jobs:
       - name: generate testing project
         # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
         # NOTE will use last released archetype
+        shell: bash
         run: |
           mvn --batch-mode archetype:generate \
             -DarchetypeGroupId=dev.aherscu.qa \
@@ -68,10 +69,12 @@ jobs:
             -Dpackage=com.acme.testing
 
       - name: build standalone testing project
+        shell: bash
         run: |
           cd testing && chmod +x mvnw && ./mvnw package -Pgenerate-standalone
 
       - name: run standalone testing project
+        shell: bash
         run: |
           cd testing && chmod +x standalone-tutorials.sh && ./standalone-tutorials.sh
           

@@ -61,6 +61,7 @@ jobs:
       # ISSUE: building in multi-threaded mode blocks during deploy phase
       - name: Maven deploy snapshots
         id: deploy
+        shell: bash
         run: |
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"

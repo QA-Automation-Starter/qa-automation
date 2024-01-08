@@ -33,6 +33,7 @@ jobs:
           settings-path: ${{ github.workspace }}
 
       - name: mvn install
+        shell: bash
         run: |
           chmod +x mvnw && ./mvnw install \
             -s $GITHUB_WORKSPACE/settings.xml
