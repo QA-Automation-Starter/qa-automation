@@ -2,12 +2,21 @@ name: generate automation and build
 
 on:
   workflow_call:
+    inputs:
+      archetype-version:
+        required: true
+        type: string
 
 jobs:
 
   generate-automation-project:
-    name: Generates new automation project and builds it
-    runs-on: ubuntu-latest
+    name: ${{ matrix.os }} generate and test tutorials
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      # ISSUE selenium fails to launch local chrome on ubuntu-latest
+      matrix:
+        os: [ macos-latest, windows-latest ]
 
     steps:
       - uses: actions/setup-java@v3
@@ -49,16 +58,24 @@ jobs:
       - name: generate testing project
         # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
         # NOTE will use last released archetype
+        shell: bash
         run: |
           mvn --batch-mode archetype:generate \
             -DarchetypeGroupId=dev.aherscu.qa \
             -DarchetypeArtifactId=qa-testing-archetype \
-            -DarchetypeVersion=LATEST \
+            -DarchetypeVersion=${{ inputs.archetype-version }} \
             -DgroupId=com.acme \
             -DartifactId=testing \
             -Dversion=1.0-SNAPSHOT \
             -Dpackage=com.acme.testing
 
-      - name: build testing project
+      - name: build standalone testing project
+        shell: bash
         run: |
-          cd testing && chmod +x mvnw && ./mvnw
+          cd testing && chmod +x mvnw && ./mvnw package -Pgenerate-standalone
+
+      - name: run standalone testing project
+        shell: bash
+        run: |
+          cd testing && chmod +x standalone-tutorials.sh && ./standalone-tutorials.sh
+          

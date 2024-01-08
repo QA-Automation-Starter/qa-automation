@@ -26,6 +26,8 @@ jobs:
     # ISSUE Google Search behaves differently on MacOS causing tests to fail
     runs-on: windows-latest
     environment: development
+    outputs:
+      version: ${{ steps.version.outputs.version }}
 
     steps:
       - uses: actions/checkout@v3
@@ -41,7 +43,7 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
-      - name: Setup SSH
+      - name: setup SSH
         uses: webfactory/ssh-agent@v0.6.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -56,16 +58,16 @@ jobs:
 
       # NOTE: must run install at least in order to have artifacts in .m2
       # .m2 artifacts are cached and reused in following generate-automation-project
-      - name: Maven deploy snapshots
-        shell: cmd
+      # ISSUE: building in multi-threaded mode blocks during deploy phase
+      - name: deploy snapshots
+        shell: bash
         run: |
-          reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 0x1
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
-          mvnw deploy ^
-            --threads 1 ^
-            -s %GITHUB_WORKSPACE%\settings.xml ^
+          chmod +x mvnw && ./mvnw deploy \
+            --threads 1 \
+            -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
@@ -74,7 +76,15 @@ jobs:
           SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
           SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
 
+      - name: save project version
+        id: version
+        shell: bash
+        run: |
+          echo "version=$(cat target/version.txt)" >> $GITHUB_OUTPUT
+
   generate-automation-project:
     uses: ./.github/workflows/generate-automation-project.yml
     secrets: inherit
+    with:
+      archetype-version: ${{ needs.deploy-for-jdk11.outputs.version }}
     needs: deploy-for-jdk11
