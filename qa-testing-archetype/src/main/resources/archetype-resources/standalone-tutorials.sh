@@ -1,4 +1,5 @@
 pushd target || exit 1
+
 TEST_JAR=$(find . -name "*-test-with-dependencies.jar")
 if [ -z "$TEST_JAR" ]
 then
@@ -29,4 +30,9 @@ $JAVA_HOME/bin/java \
 -d test-output \
 -testjar $TEST_JAR \
 -xmlpathinjar testing-tutorials.xml
+
+STATUS=$?
+
 popd
+
+exit $STATUS
