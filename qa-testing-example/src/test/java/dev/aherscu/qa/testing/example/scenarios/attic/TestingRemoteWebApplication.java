@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Adrian Herscu
+ * Copyright 2024 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package ${package}.scenarios.tutorial3;
+package dev.aherscu.qa.testing.example.scenarios.attic;
 
 import static dev.aherscu.qa.testing.utils.StreamMatchers.*;
 import static java.util.Objects.*;

@@ -1,4 +1,7 @@
-cd target || exit
+pushd target || exit
+# ISSUE using LATEST for archetypeVersion always resolves to latest release
+# instead of latest snapshot
+# https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
 mvn archetype:generate \
   --batch-mode \
   --settings ../development-maven-settings.xml \
@@ -10,3 +13,4 @@ mvn archetype:generate \
   -DartifactId=testing \
   -Dversion=1.0-SNAPSHOT \
   -Dpackage=com.acme.testing
+popd

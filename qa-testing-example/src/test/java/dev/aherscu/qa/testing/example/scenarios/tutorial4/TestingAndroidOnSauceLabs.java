@@ -17,10 +17,10 @@
 package dev.aherscu.qa.testing.example.scenarios.tutorial4;
 
 import static io.appium.java_client.remote.MobilePlatform.*;
-import static io.appium.java_client.remote.options.SupportsAppOption.APP_OPTION;
-import static io.appium.java_client.remote.options.SupportsAutoWebViewOption.AUTO_WEB_VIEW_OPTION;
-import static io.appium.java_client.remote.options.SupportsDeviceNameOption.DEVICE_NAME_OPTION;
-import static io.appium.java_client.remote.options.SupportsPlatformVersionOption.PLATFORM_VERSION_OPTION;
+import static io.appium.java_client.remote.options.SupportsAppOption.*;
+import static io.appium.java_client.remote.options.SupportsAutoWebViewOption.*;
+import static io.appium.java_client.remote.options.SupportsDeviceNameOption.*;
+import static io.appium.java_client.remote.options.SupportsPlatformVersionOption.*;
 import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.testing.example.scenarios.tutorial6;
+package ${package}.scenarios.tutorial6;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static com.github.tomakehurst.wiremock.stubbing.Scenario.*;
@@ -48,7 +48,8 @@ import lombok.*;
     justification = "JGiven framework limitation")
 @SuppressWarnings({ "boxing" })
 public final class StatefulRestTest
-    extends AbstractWireMockTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+    extends
+    AbstractWireMockTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 

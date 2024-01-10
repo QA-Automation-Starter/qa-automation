@@ -22,6 +22,16 @@ import lombok.extern.slf4j.*;
 
 @Slf4j
 public class AbstractSelfTests {
+    @AfterClass
+    public void afterClass() {
+        log.debug("after class");
+    }
+
+    @BeforeClass
+    public void beforeClass() {
+        log.debug("before class");
+    }
+
     @AfterMethod
     protected void afterMethod() {
         log.debug("after method");
@@ -30,15 +40,5 @@ public class AbstractSelfTests {
     @BeforeMethod
     protected void beforeMethod() {
         log.debug("before method");
-    }
-
-    @BeforeClass
-    public void beforeClass() {
-        log.debug("before class");
-    }
-
-    @AfterClass
-    public void afterClass() {
-        log.debug("after class");
     }
 }

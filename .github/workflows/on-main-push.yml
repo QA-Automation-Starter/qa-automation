@@ -23,7 +23,10 @@ jobs:
     # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
     # and https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
     # ISSUE Google Search behaves differently on MacOS causing tests to fail
-    runs-on: windows-latest
+    # following this issues, the least worst remedy is to run against a
+    # remote Selenium node, like SauceLabs, hence bypassing the need for
+    # a ChromeDriver/GeckoDriver, and allowing this job to run un Ubuntu.
+    runs-on: ubuntu-latest
     environment: development
     outputs:
       version: ${{ steps.version.outputs.version }}
@@ -55,7 +58,6 @@ jobs:
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
           chmod +x mvnw && ./mvnw deploy site site:stage scm-publish:publish-scm \
-            --threads 1 \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
         env:

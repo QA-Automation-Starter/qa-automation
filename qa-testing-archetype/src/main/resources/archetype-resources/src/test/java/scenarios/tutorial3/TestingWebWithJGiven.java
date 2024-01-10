@@ -22,6 +22,7 @@ import static org.apache.commons.lang3.RandomStringUtils.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
+import dev.aherscu.qa.jgiven.webdriver.*;
 import java.util.stream.*;
 
 import org.hamcrest.*;
@@ -29,26 +30,30 @@ import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
-import dev.aherscu.qa.jgiven.webdriver.*;
 import ${package}.*;
 import ${package}.steps.tutorial.*;
 import lombok.*;
 
 public class TestingWebWithJGiven
-    extends ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
+    extends
+    ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
+
+    private static class QuotedText extends Text {
+        public QuotedText(final String value) {
+            super(wrap(value, DOUBLE_QUOTE));
+        }
+    }
 
     protected TestingWebWithJGiven() {
         super(TestConfiguration.class);
     }
 
-    @DataProvider
-    private Object[][] data() {
-        return new Object[][] {
-            { new QuotedText(randomAlphanumeric(40)),
-                counts(equalTo(0L)) },
-            { new QuotedText("testng"),
-                anyMatch(containsStringIgnoringCase("testng")) }
-        };
+    @BeforeMethod
+    @SneakyThrows
+    @Override
+    public void beforeMethodOpenWebDriver() {
+        super.beforeMethodOpenWebDriver();
+        webDriver.get().asRemote().manage().window().maximize();
     }
 
     @Reference("68")
@@ -68,17 +73,13 @@ public class TestingWebWithJGiven
                     titleRule));
     }
 
-    @BeforeMethod
-    @SneakyThrows
-    @Override
-    public void beforeMethodOpenWebDriver() {
-        super.beforeMethodOpenWebDriver();
-        webDriver.get().asRemote().manage().window().maximize();
-    }
-
-    private static class QuotedText extends Text {
-        public QuotedText(final String value) {
-            super(wrap(value, DOUBLE_QUOTE));
-        }
+    @DataProvider
+    private Object[][] data() {
+        return new Object[][] {
+            { new QuotedText(randomAlphanumeric(40)),
+                counts(equalTo(0L)) },
+            { new QuotedText("testng"),
+                anyMatch(containsStringIgnoringCase("testng")) }
+        };
     }
 }
