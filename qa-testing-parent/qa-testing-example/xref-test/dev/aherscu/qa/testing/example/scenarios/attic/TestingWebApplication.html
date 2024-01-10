@@ -5,9 +5,9 @@
 <link type="text/css" rel="stylesheet" href="../../../../../../../stylesheet.css" />
 </head>
 <body>
-<div id="overview"><a href="../../../../../../../../testapidocs/dev/aherscu/qa/testing/example/scenarios/tutorial3/TestingWebApplication.html">View Javadoc</a></div><pre>
+<div id="overview"><a href="../../../../../../../../testapidocs/dev/aherscu/qa/testing/example/scenarios/attic/TestingWebApplication.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2023 Adrian Herscu</em>
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   <em class="jxr_comment"> * Copyright 2024 Adrian Herscu</em>
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <em class="jxr_comment"> *</em>
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <em class="jxr_comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <em class="jxr_comment"> * you may not use this file except in compliance with the License.</em>
@@ -22,10 +22,10 @@
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_comment"> * limitations under the License.</em>
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_comment"> */</em>
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">package</strong> dev.aherscu.qa.testing.example.scenarios.tutorial3;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">package</strong> dev.aherscu.qa.testing.example.scenarios.attic;
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> dev.aherscu.qa.jgiven.commons.utils.ConfigurableScenarioTest.*;
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingRemoteWebApplication.*;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> dev.aherscu.qa.testing.example.scenarios.attic.TestingRemoteWebApplication.*;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> dev.aherscu.qa.testing.utils.StreamMatchers.*;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> java.util.concurrent.TimeUnit.*;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.hamcrest.MatcherAssert.*;
@@ -48,11 +48,11 @@
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <strong class="jxr_keyword">import</strong> lombok.extern.slf4j.*;
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  @Slf4j
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="TestingWebApplication" href="../../../../../../../dev/aherscu/qa/testing/example/scenarios/tutorial3/TestingWebApplication.html#TestingWebApplication">TestingWebApplication</a> {
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a name="TestingWebApplication" href="../../../../../../../dev/aherscu/qa/testing/example/scenarios/attic/TestingWebApplication.html#TestingWebApplication">TestingWebApplication</a> {
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">final</strong> WebDriver webDriver;
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>      @Factory(dataProvider = INTERNAL_DATA_PROVIDER)
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">public</strong> <a name="TestingWebApplication" href="../../../../../../../dev/aherscu/qa/testing/example/scenarios/tutorial3/TestingWebApplication.html#TestingWebApplication">TestingWebApplication</a>(<strong class="jxr_keyword">final</strong> Supplier&lt;WebDriver&gt; webDriver) {
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>      <strong class="jxr_keyword">public</strong> <a name="TestingWebApplication" href="../../../../../../../dev/aherscu/qa/testing/example/scenarios/attic/TestingWebApplication.html#TestingWebApplication">TestingWebApplication</a>(<strong class="jxr_keyword">final</strong> Supplier&lt;WebDriver&gt; webDriver) {
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>          <strong class="jxr_keyword">this</strong>.webDriver = webDriver.get();
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>          log.trace(<span class="jxr_string">"testing with {}"</span>, webDriver);
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>      }
