@@ -8,6 +8,8 @@ jobs:
   matrix-build:
     name: ${{ matrix.os }} jdk-${{ matrix.java-version }} build w/o tests
     runs-on: ${{ matrix.os }}
+    outputs:
+      version: ${{ steps.version.outputs.version }}
 
     strategy:
       matrix:
@@ -37,3 +39,9 @@ jobs:
         run: |
           chmod +x mvnw && ./mvnw install \
             -s $GITHUB_WORKSPACE/settings.xml
+
+      - name: save project version
+        id: version
+        shell: bash
+        run: |
+          echo "version=$(cat target/version.txt)" >> $GITHUB_OUTPUT

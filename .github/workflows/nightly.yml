@@ -10,3 +10,10 @@ jobs:
   matrix-build:
     uses: ./.github/workflows/matrix-build.yml
     secrets: inherit
+
+  generate-automation-project:
+    uses: ./.github/workflows/generate-automation-project.yml
+    secrets: inherit
+    with:
+      archetype-version: ${{ needs.matrix-build.outputs.version }}
+    needs: matrix-build
