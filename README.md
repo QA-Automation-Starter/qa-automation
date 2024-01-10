@@ -15,13 +15,13 @@ Following instructions apply to Windows machines:
 
 1. Run PowerShell as Administrator -- required by Chocolatey
 2. Install Chocolatey -- <https://chocolatey.org/install#individual>
-3. `choco install -y jdk8`
+3. `choco install -y jdk11`
 4. `choco install -y git`
 5. `choco install -y tortoisegit`
 6. `choco install -y intellijidea-community`
    or `choco install eclipse-java-oxygen`
 
-There should be alternative commands for Mac and various Linux distros.
+There should be similar commands for Mac and various Linux distros.
 
 ## Maven Settings
 
@@ -49,8 +49,8 @@ required in order to compile, run and debug in an IDE:
   requires additional configuration as follows:
     1. ajc (AspectJ Compiler) must be used
     2. AspectJ facet must be configured in "post-compile weave mode" for
-       following modules: `qa-testing`, `qa-jgiven-utils` and
-       `qa-jgiven-commons`
+       following modules: `qa-testing-example`, `qa-testing-utils`,
+       `qa-testing-extra` and `qa-jgiven-commons`
 
 ## Testing
 
