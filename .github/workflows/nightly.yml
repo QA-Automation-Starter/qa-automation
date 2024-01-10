@@ -26,7 +26,7 @@ jobs:
           settings-path: ${{ github.workspace }}
       - id: version
         run: |
-          chmod +x mvnw && ./mvnw validate
+          chmod +x mvnw && ./mvnw validate -N
           echo "version=$(cat target/version.txt)" >> $GITHUB_OUTPUT
 
   generate-automation-project:
