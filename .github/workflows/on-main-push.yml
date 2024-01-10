@@ -58,7 +58,6 @@ jobs:
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
           chmod +x mvnw && ./mvnw deploy site site:stage scm-publish:publish-scm \
-            --threads 1 \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
         env:
