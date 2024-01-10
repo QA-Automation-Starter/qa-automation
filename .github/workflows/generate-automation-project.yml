@@ -81,4 +81,3 @@ jobs:
         shell: bash
         run: |
           cd testing && chmod +x standalone-tutorials.sh && ./standalone-tutorials.sh
-          

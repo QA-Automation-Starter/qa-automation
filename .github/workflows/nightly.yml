@@ -11,9 +11,27 @@ jobs:
     uses: ./.github/workflows/matrix-build.yml
     secrets: inherit
 
+  get-version:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+          settings-path: ${{ github.workspace }}
+      - id: version
+        run: |
+          chmod +x mvnw && ./mvnw validate
+          echo "version=$(cat target/version.txt)" >> $GITHUB_OUTPUT
+
   generate-automation-project:
     uses: ./.github/workflows/generate-automation-project.yml
     secrets: inherit
     with:
-      archetype-version: ${{ needs.matrix-build.outputs.version }}
-    needs: matrix-build
+      archetype-version: ${{ needs.get-version.outputs.version }}
+    needs: get-version
