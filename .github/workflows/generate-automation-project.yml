@@ -21,7 +21,7 @@ jobs:
       # These jobs have credentials for SauceLabs account associated with
       # this project, hence can bypass this limitation.
       matrix:
-        os: [ macos-latest, windows-latest ]
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
 
     steps:
       - uses: actions/setup-java@v3
