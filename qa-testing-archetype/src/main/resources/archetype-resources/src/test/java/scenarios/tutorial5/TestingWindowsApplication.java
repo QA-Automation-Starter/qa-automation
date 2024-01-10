@@ -34,17 +34,17 @@ public class TestingWindowsApplication {
     private WindowsDriver driver;
 
     @Test
-    public void shouldOpenCalculator() {
-        assertThat(driver.getTitle(), equalTo("Calculator"));
-    }
-
-    @Test
     public void shouldCalculate() {
         driver.findElement(By.id("CalculatorResults"))
             .sendKeys("8+7=");
         assertThat(driver.findElement(By.id("CalculatorResults"))
             .getText(),
             stringContainsInOrder("Display is", "15"));
+    }
+
+    @Test
+    public void shouldOpenCalculator() {
+        assertThat(driver.getTitle(), equalTo("Calculator"));
     }
 
     @SuppressFBWarnings(

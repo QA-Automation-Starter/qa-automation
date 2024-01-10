@@ -44,63 +44,6 @@ import lombok.extern.slf4j.*;
 public class TestingAndroidWithJGiven extends
     ScenarioTest<TestingAndroidWithJGiven.Fixtures, TestingAndroidWithJGiven.Actions, TestingAndroidWithJGiven.Verifications> {
 
-    private final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
-
-    @DataProvider(parallel = true)
-    static Object[][] environmentLabels() {
-        return new Object[][] {
-            { new Label("TBD") },
-            { new Label("TBD") },
-            { new Label("TBD") },
-            { new Label("TBD") },
-            { new Label("TBD") },
-            { new Label("TBD") },
-            { new Label("TBD") },
-            { new Label("TBD") }
-        };
-    }
-
-    @Test(dataProvider = "environmentLabels")
-    public void shouldAllowLogin(final Label label) {
-        given()
-            .application_installed(webDriver.get());
-
-        then()
-            .valid_email_required();
-
-        when()
-            .entering_environment(label)
-            .and().hiding_keyboard();
-
-        then()
-            .can_tap_to_login();
-    }
-
-    @SuppressFBWarnings(
-        value = "UPM_UNCALLED_PRIVATE_METHOD",
-        justification = "called by testng framework")
-    @AfterMethod(alwaysRun = true) // important, otherwise we may leak resources
-    private void afterMethodCloseWebDriver() {
-        log.debug("quitting");
-        webDriver.get().quit();
-    }
-
-    @SuppressFBWarnings(
-        value = "UPM_UNCALLED_PRIVATE_METHOD",
-        justification = "called by testng framework")
-    @BeforeMethod
-    @SneakyThrows
-    private void beforeMethodOpenWebDriver() {
-        // NOTE: ensure you have app.apk uploaded to SauceLabs
-        // curl -u "TBD:TBD" -X POST
-        // https://saucelabs.com/rest/v1/storage/TBD --data-binary
-        // @TBD.apk
-        log.debug("opening web driver");
-        webDriver.set(saucelabsApp(getClass().getSimpleName()
-            + "#" + currentThread().getId()));
-        webDriver.get().manage().timeouts().implicitlyWait(5, SECONDS);
-    }
-
     static class Actions extends Stage<Actions> {
         @ScenarioState
         private final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
@@ -164,5 +107,61 @@ public class TestingAndroidWithJGiven extends
                 not(empty()));
             return self();
         }
+    }
+    private final ThreadLocal<WebDriver> webDriver = new ThreadLocal<>();
+
+    @DataProvider(parallel = true)
+    static Object[][] environmentLabels() {
+        return new Object[][] {
+            { new Label("TBD") },
+            { new Label("TBD") },
+            { new Label("TBD") },
+            { new Label("TBD") },
+            { new Label("TBD") },
+            { new Label("TBD") },
+            { new Label("TBD") },
+            { new Label("TBD") }
+        };
+    }
+
+    @Test(dataProvider = "environmentLabels")
+    public void shouldAllowLogin(final Label label) {
+        given()
+            .application_installed(webDriver.get());
+
+        then()
+            .valid_email_required();
+
+        when()
+            .entering_environment(label)
+            .and().hiding_keyboard();
+
+        then()
+            .can_tap_to_login();
+    }
+
+    @SuppressFBWarnings(
+        value = "UPM_UNCALLED_PRIVATE_METHOD",
+        justification = "called by testng framework")
+    @AfterMethod(alwaysRun = true) // important, otherwise we may leak resources
+    private void afterMethodCloseWebDriver() {
+        log.debug("quitting");
+        webDriver.get().quit();
+    }
+
+    @SuppressFBWarnings(
+        value = "UPM_UNCALLED_PRIVATE_METHOD",
+        justification = "called by testng framework")
+    @BeforeMethod
+    @SneakyThrows
+    private void beforeMethodOpenWebDriver() {
+        // NOTE: ensure you have app.apk uploaded to SauceLabs
+        // curl -u "TBD:TBD" -X POST
+        // https://saucelabs.com/rest/v1/storage/TBD --data-binary
+        // @TBD.apk
+        log.debug("opening web driver");
+        webDriver.set(saucelabsApp(getClass().getSimpleName()
+            + "#" + currentThread().getId()));
+        webDriver.get().manage().timeouts().implicitlyWait(5, SECONDS);
     }
 }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.testing.example.scenarios.tutorial6;
+package ${package}.scenarios.tutorial6;
 
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static jakarta.ws.rs.core.Response.Status.Family.*;
@@ -36,9 +36,9 @@ import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.jgiven.rest.steps.*;
 import dev.aherscu.qa.jgiven.rest.tags.*;
-import dev.aherscu.qa.testing.example.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import dev.aherscu.qa.testing.utils.rest.*;
+import ${package}.*;
 import jakarta.ws.rs.client.*;
 import lombok.*;
 
@@ -70,6 +70,31 @@ public final class GenericMockServerRestTest extends
     @Test
     @Reference("159")
     @SneakyThrows
+    public void shouldVerifyAccessByDefinition() {
+        mockServer // GET is implied
+            .when(request().withPath("/some-id"))
+            .respond(response()
+                .withBody("[{\"id\":1},{\"id\":2},{\"id\":3}]", JSON_UTF_8));
+
+        given()
+            .a_REST_client(client);
+
+        when()
+            .connecting_to(mockServerUri())
+            .and().appending_path("some-id")
+            .and().getting_the_response();
+
+        then()
+            .the_response_contents(asList(
+                new JsonAssertion<>("$[0].id", greaterThan(0)),
+                new JsonAssertion<>("$[1].id", equalTo(2))))
+            .and().$("the some id request was sent",
+                __ -> mockServer.verify(request().withPath("/some-id")));
+    }
+
+    @Test
+    @Reference("159")
+    @SneakyThrows
     public void shouldVerifyAccessByExpectionId() {
         val dummyExpectations = mockServer // GET is implied
             .when(request().withPath("/dummy"))
@@ -91,26 +116,24 @@ public final class GenericMockServerRestTest extends
     @Test
     @Reference("159")
     @SneakyThrows
-    public void shouldVerifyAccessByDefinition() {
+    public void shouldVerifyAccessOfDroppedConnection() {
         mockServer // GET is implied
-            .when(request().withPath("/some-id"))
-            .respond(response()
-                .withBody("[{\"id\":1},{\"id\":2},{\"id\":3}]", JSON_UTF_8));
+            .when(request().withPath("/drop-connection"))
+            .error(error().withDropConnection(true));
 
         given()
             .a_REST_client(client);
 
         when()
             .connecting_to(mockServerUri())
-            .and().appending_path("some-id")
-            .and().getting_the_response();
+            .and().appending_path("drop-connection")
+            .and().$("trying to access",
+                self -> self.safely(__ -> self.getting_the_response()));
 
         then()
-            .the_response_contents(asList(
-                new JsonAssertion<>("$[0].id", greaterThan(0)),
-                new JsonAssertion<>("$[1].id", equalTo(2))))
-            .and().$("the some id request was sent",
-                __ -> mockServer.verify(request().withPath("/some-id")));
+            .$("the drop connection request was sent",
+                __ -> mockServer.verify(request()
+                    .withPath("/drop-connection")));
     }
 
     @Test
@@ -161,29 +184,6 @@ public final class GenericMockServerRestTest extends
             // ISSUE verifies that was called twice while was three times
             .and().$("the method was called more than twice",
                 __ -> mockServer.verify(as(twiceExpectations)));
-    }
-
-    @Test
-    @Reference("159")
-    @SneakyThrows
-    public void shouldVerifyAccessOfDroppedConnection() {
-        mockServer // GET is implied
-            .when(request().withPath("/drop-connection"))
-            .error(error().withDropConnection(true));
-
-        given()
-            .a_REST_client(client);
-
-        when()
-            .connecting_to(mockServerUri())
-            .and().appending_path("drop-connection")
-            .and().$("trying to access",
-                self -> self.safely(__ -> self.getting_the_response()));
-
-        then()
-            .$("the drop connection request was sent",
-                __ -> mockServer.verify(request()
-                    .withPath("/drop-connection")));
     }
 
     @AfterClass

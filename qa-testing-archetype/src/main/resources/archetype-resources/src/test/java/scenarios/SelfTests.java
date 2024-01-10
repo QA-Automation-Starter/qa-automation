@@ -17,7 +17,7 @@
 package ${package}.scenarios;
 
 import static dev.aherscu.qa.jgiven.commons.utils.ConfigurableScenarioTest.*;
-import static dev.aherscu.qa.testing.utils.StreamMatchers.allMatch;
+import static dev.aherscu.qa.testing.utils.StreamMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 

@@ -30,7 +30,8 @@ import lombok.extern.slf4j.*;
 
 @Slf4j
 public class TestingWindowsWithJGiven
-    extends ApplicationPerClassWebSessionTest<TestConfiguration, CalculatorFixtures<?>, CalculatorActions<?>, CalculatorVerifications<?>> {
+    extends
+    ApplicationPerClassWebSessionTest<TestConfiguration, CalculatorFixtures<?>, CalculatorActions<?>, CalculatorVerifications<?>> {
 
     protected TestingWindowsWithJGiven() {
         super(TestConfiguration.class);
@@ -46,13 +47,17 @@ public class TestingWindowsWithJGiven
         };
     }
 
-    @BeforeClass
-    @SneakyThrows
-    @Override
-    protected void beforeClassOpenWebDriver() {
-        log.debug("before class opening WinAppDriver");
-        webDriver.set(WebDriverEx.from(configuration()
-            .capabilitiesFor("provider.local.windows")));
+    @Test(dataProvider = INTERNAL_DATA_PROVIDER)
+    public void shouldCalculate(final Calculation calculation) {
+        given()
+            .a_calculator(webDriver.get());
+
+        when()
+            .typing(calculation.expression + "=");
+
+        then()
+            .the_result(is(
+                stringContainsInOrder("Display is", calculation.result)));
     }
 
     @Test
@@ -64,16 +69,12 @@ public class TestingWindowsWithJGiven
             .the_title(is(equalTo("Calculator")));
     }
 
-    @Test(dataProvider = "data")
-    public void shouldCalculate(final Calculation calculation) {
-        given()
-            .a_calculator(webDriver.get());
-
-        when()
-            .typing(calculation.expression + "=");
-
-        then()
-            .the_result(is(
-                stringContainsInOrder("Display is", calculation.result)));
+    @BeforeClass
+    @SneakyThrows
+    @Override
+    protected void beforeClassOpenWebDriver() {
+        log.debug("before class opening WinAppDriver");
+        webDriver.set(WebDriverEx.from(configuration()
+            .capabilitiesFor("provider.local.windows")));
     }
 }

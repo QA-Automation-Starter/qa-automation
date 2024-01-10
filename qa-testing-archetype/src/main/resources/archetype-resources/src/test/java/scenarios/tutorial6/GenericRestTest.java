@@ -13,26 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.testing.example.scenarios.tutorial6;
+package ${package}.scenarios.tutorial6;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
-import static com.github.tomakehurst.wiremock.stubbing.Scenario.*;
 import static java.util.Arrays.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
+import dev.aherscu.qa.jgiven.rest.model.*;
+import dev.aherscu.qa.jgiven.rest.steps.*;
+import dev.aherscu.qa.jgiven.rest.tags.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.jgiven.commons.tags.*;
-import dev.aherscu.qa.jgiven.rest.model.*;
-import dev.aherscu.qa.jgiven.rest.steps.*;
-import dev.aherscu.qa.jgiven.rest.tags.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import dev.aherscu.qa.testing.utils.rest.*;
 import jakarta.ws.rs.client.*;
-import jakarta.ws.rs.core.*;
-import lombok.*;
 
 /**
  * Contains REST sample tests just to ensure that the testing infrastructure
@@ -47,8 +44,9 @@ import lombok.*;
     value = "BC_UNCONFIRMED_CAST_OF_RETURN_VALUE",
     justification = "JGiven framework limitation")
 @SuppressWarnings({ "boxing" })
-public final class StatefulRestTest
-    extends AbstractWireMockTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+public final class GenericRestTest
+    extends
+    AbstractWireMockTest<RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 
@@ -56,21 +54,8 @@ public final class StatefulRestTest
      * Should retrieve a JSON field from a REST service
      */
     @Test
-    public void shouldAuthenticate() {
-        given()
-            .a_REST_client(client);
-
-        when()
-            .connecting_to(wireMockServer.baseUrl())
-            .and().appending_path("authenticate")
-            .and().posting(new Form());
-
-        then()
-            .the_response_status(is(Response.Status.Family.SUCCESSFUL));
-    }
-
-    @Test(dependsOnMethods = "shouldOperate")
-    public void shouldFailOnAuthentication() {
+    @Reference("70")
+    public void shouldRetrieveJsonFieldFromFakeRestService() {
         given()
             .a_REST_client(client);
 
@@ -80,22 +65,7 @@ public final class StatefulRestTest
             .and().getting_the_response();
 
         then()
-            .the_response_status(is(Response.Status.Family.CLIENT_ERROR));
-    }
-
-    @Test(dependsOnMethods = "shouldAuthenticate")
-    public void shouldOperate() {
-        given()
-            .a_REST_client(client);
-
-        when()
-            .connecting_to(wireMockServer.baseUrl())
-            .and().appending_path("some-id")
-            .and().getting_the_response();
-
-        then()
-            .the_response_status(is(Response.Status.Family.SUCCESSFUL))
-            .and().the_response_contents(asList(
+            .the_response_contents(asList(
                 new JsonAssertion<>("$[0].id", greaterThan(0)),
                 new JsonAssertion<>("$[1].id", equalTo(2))));
     }
@@ -107,23 +77,8 @@ public final class StatefulRestTest
 
     @BeforeClass
     private void beforeClassAddStubs() {
-        val AUTHENTICATED = "AUTHENTICATED";
-        wireMockServer.stubFor(post(urlEqualTo("/authenticate"))
-            .inScenario(StatefulRestTest.class.getName())
-            .willReturn(ok())
-            .willSetStateTo(AUTHENTICATED));
-
         wireMockServer.stubFor(get(urlEqualTo("/some-id"))
-            .inScenario(StatefulRestTest.class.getName())
-            .whenScenarioStateIs(AUTHENTICATED)
-            .willReturn(ok("[{id:1},{id:2},{id:3}]"))
-            .willSetStateTo(STARTED));
-
-        wireMockServer.stubFor(get(urlEqualTo("/some-id"))
-            .inScenario(StatefulRestTest.class.getName())
-            .whenScenarioStateIs(STARTED)
-            .willReturn(unauthorized())
-            .willSetStateTo(STARTED));
+            .willReturn(ok("[{id:1},{id:2},{id:3}]")));
     }
 
     @BeforeClass

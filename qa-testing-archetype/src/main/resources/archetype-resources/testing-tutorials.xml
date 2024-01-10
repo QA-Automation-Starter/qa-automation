@@ -14,21 +14,47 @@
   ~ limitations under the License.
   -->
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Tutorials" verbose="1">
-  <test name="JGiven Tutorial">
-    <!-- NOTE: contains tests that fail on purpose -->
-    <!--packages>
-      <package name="${package}.scenarios.tutorial"/>
-    </packages-->
-    <classes>
+<suite name="Tutorials" verbose="1" parallel="tests">
+  <listeners>
+    <!--    <listener-->
+    <!--      class-name="dev.aherscu.qa.jgiven.webdriver.utils.SauceLabsReporter"/>-->
+    <!--    <listener-->
+    <!--        class-name="dev.aherscu.qa.jgiven.commons.utils.TestRetryAnalyzer" />-->
+    <listener
+      class-name="dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter"/>
+  </listeners>
+
+  <test name="TestNG Tutorials" parallel="methods">
+    <packages>
+      <package name="${package}.scenarios.tutorial1"/>
+    </packages>
+  </test>
+
+  <test name="Hamcrest Tutorials" parallel="methods">
+    <packages>
+      <package name="${package}.scenarios.tutorial2"/>
+    </packages>
+  </test>
+
+  <test name="JGiven Selenium Tutorials" parallel="classes">
+    <packages>
+      <package name="${package}.scenarios.tutorial3"/>
+    </packages>
+  </test>
+
+  <test name="JGiven REST Tutorials" parallel="classes">
+    <packages>
+      <package name="${package}.scenarios.tutorial6"/>
+    </packages>
+  </test>
+
+  <test name="JGiven Windows Tutorials">
+    <packages>
       <!-- ISSUE still fails on GitHub
         see https://stackoverflow.com/questions/74085088/running-gui-application-on-github-hosted-runner
         and https://github.com/orgs/community/discussions/36704
         -->
-      <!--class
-        name="${package}.scenarios.tutorial5.TestingWindowsApplication"/-->
-      <class
-        name="${package}.scenarios.tutorial3.TestingWebWithJGiven"/>
-    </classes>
+      <!-- <package name="${package}.scenarios.tutorial5"/>-->
+    </packages>
   </test>
 </suite>
