@@ -152,7 +152,7 @@ public class GenericActions<T extends AnyScenarioType, SELF extends GenericActio
 
     /**
      * Failing with specified throwable for self-testing purposes.
-     * 
+     *
      * @param throwable
      *            the throwable
      * @return {@link #self()}
@@ -169,7 +169,7 @@ public class GenericActions<T extends AnyScenarioType, SELF extends GenericActio
      * @param step
      *            the step to retry
      * @return {@link #self()}
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      */
     public final SELF retrying(final Function<SELF, SELF> step) {
         return retrying(new StepWithDescription<>(EMPTY, step));
@@ -181,7 +181,7 @@ public class GenericActions<T extends AnyScenarioType, SELF extends GenericActio
      * @param step
      *            the step to retry
      * @return {@link #self()}
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      */
     public final SELF retrying(final StepWithDescription<SELF> step) {
         return retry(() -> step.apply(self()));
@@ -189,7 +189,7 @@ public class GenericActions<T extends AnyScenarioType, SELF extends GenericActio
 
     /**
      * Safely executes specified step, swallowing all exceptions.
-     * 
+     *
      * <p>
      * <strong>IMPORTANT:</strong>must not be called from step method that is
      * annotated with {@link NestedSteps} since this interferes with exception

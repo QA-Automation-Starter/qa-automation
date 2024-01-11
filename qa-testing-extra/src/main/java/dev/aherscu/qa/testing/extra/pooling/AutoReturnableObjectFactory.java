@@ -31,7 +31,7 @@ import lombok.extern.slf4j.*;
 /**
  * Creates {@link AutoReturnable}s. To be used with
  * {@link AutoReturnableObjectPool}.
- * 
+ *
  * @param <T>
  *            type of object to pool
  */
@@ -61,7 +61,7 @@ public class AutoReturnableObjectFactory<T>
 
     /**
      * As long as there are available objects, creates a pooled object.
-     * 
+     *
      * @return a pooled object
      * @throws Exception
      *             should not happen

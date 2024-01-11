@@ -21,7 +21,7 @@ import com.tngtech.jgiven.annotation.*;
 
 /**
  * Missing coverage.
- * 
+ *
  * @author aherscu
  *
  */

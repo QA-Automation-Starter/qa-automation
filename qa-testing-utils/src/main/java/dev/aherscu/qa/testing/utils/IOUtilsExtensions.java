@@ -43,7 +43,6 @@ public class IOUtilsExtensions extends IOUtils {
         }
     }
 
-    @SneakyThrows(IOException.class)
     public static List<String> readUTF8Lines(final InputStream in) {
         return IOUtils.readLines(in, UTF_8);
     }

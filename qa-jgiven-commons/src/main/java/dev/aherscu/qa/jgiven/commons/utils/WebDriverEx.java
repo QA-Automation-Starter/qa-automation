@@ -28,7 +28,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.edge.*;
 import org.openqa.selenium.firefox.*;
-import org.openqa.selenium.opera.*;
 import org.openqa.selenium.remote.*;
 import org.openqa.selenium.safari.*;
 
@@ -36,7 +35,6 @@ import com.google.common.collect.*;
 import com.google.gson.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
-import io.appium.java_client.*;
 import io.appium.java_client.android.*;
 import io.appium.java_client.ios.*;
 import io.appium.java_client.windows.*;
@@ -58,6 +56,132 @@ import net.jodah.failsafe.function.*;
 @Slf4j
 @ToString
 public class WebDriverEx {
+    /**
+     * Represents a <a href=
+     * "https://www.w3.org/TR/2015/REC-dom-20151119/#interface-event">DOM
+     * Event</a>.
+     */
+    @AllArgsConstructor
+    public static class Event {
+        /**
+         * Represents an event type.
+         *
+         * @author Adrian Herscu
+         */
+        public interface Type {
+            // marker interface
+        }
+
+        /**
+         * The type of this Pointer Event.
+         */
+        public final Type                type;
+        /**
+         * <a href=
+         * "https://www.w3.org/TR/pointerevents2/#dom-pointereventinit">Event
+         * Initialization Dictionary</a>
+         */
+        public final Map<String, Object> eventInitDict;
+
+        /**
+         * @return JavaScript literal representation of this Event
+         */
+        @Override
+        public String toString() {
+            return MessageFormat.format("new {0}(\"{1}\",{2})",
+                getClass().getSimpleName(),
+                type,
+                new Gson().toJson(eventInitDict, Map.class));
+        }
+    }
+
+    /**
+     * Represents a <a href=
+     * "https://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/events.html#Events-MouseEvent">DOM
+     * MouseEvent</a>.
+     *
+     * <p>
+     * see also <a href=
+     * "https://www.w3.org/TR/2019/WD-uievents-20190530/#idl-mouseevent">MouseEvent
+     * Working Draft</a>
+     * </p>
+     */
+    public static class MouseEvent extends UIEvent {
+        /**
+         * @param type
+         *            type of event
+         * @param eventInitDict
+         *            initialization data
+         */
+        public MouseEvent(
+            final Type type,
+            final Map<String, Object> eventInitDict) {
+            super(type, eventInitDict);
+        }
+    }
+
+    /**
+     * Represents a
+     * <a href="https://www.w3.org/TR/2019/REC-pointerevents2-20190404/">DOM
+     * Pointer Event.</a>
+     */
+    public static class PointerEvent extends MouseEvent {
+        /**
+         * Types of <a href=
+         * "https://www.w3.org/TR/pointerevents2/#pointer-event-types">Pointer
+         * Events</a>
+         */
+        public enum PointerEventType implements Type {
+            pointerover,
+            pointerenter,
+            pointerdown,
+            pointermove,
+            pointerup,
+            pointercancel,
+            pointerout,
+            pointerleave,
+            gotpointercapture,
+            lostpointercapture
+        }
+
+        /**
+         * @param type
+         *            type of event
+         * @param eventInitDict
+         *            initialization data
+         */
+        public PointerEvent(
+            final PointerEventType type,
+            final Map<String, Object> eventInitDict) {
+            super(type, eventInitDict);
+        }
+    }
+
+    /**
+     * Represents a <a href=
+     * "https://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/events.html#Events-UIEvent">DOM
+     * UIEvent</a>.
+     *
+     * <p>
+     * see also <a href=
+     * "https://www.w3.org/TR/2019/WD-uievents-20190530/#interface-uievent">UIEvent
+     * Working Draft</a>
+     * </p>
+     */
+    public static class UIEvent extends Event {
+        /**
+         * @param type
+         *            type of event
+         * @param eventInitDict
+         *            initialization data
+         */
+        public UIEvent(
+            final Type type,
+            final Map<String, Object> eventInitDict) {
+            super(type, eventInitDict);
+        }
+    }
+
     /**
      * The application native context id.
      */
@@ -118,8 +242,8 @@ public class WebDriverEx {
      * <p>
      * In addition, adds the Remote Web Driver session identifier to
      * {@link #remoteSessions} mapped to name of test as defined by
-     * {@link UnitilsScenarioTest#unitilsBeforeClass} or
-     * {@link UnitilsScenarioTest#unitilsBeforeMethod}
+     * {@link ConfigurableScenarioTest#beforeClassInitializeSession} or
+     * {@link ConfigurableScenarioTest#beforeMethodInitializeSession}
      * </p>
      *
      * @param capabilities
@@ -133,7 +257,7 @@ public class WebDriverEx {
      */
     public static WebDriverEx from(final Capabilities capabilities) {
         log.debug("connecting session {} with {}",
-            capabilities.getCapability("name"), capabilities);
+            capabilities.getCapability("sauce:name"), capabilities);
 
         return DryRunAspect.dryRun
             ? null
@@ -158,7 +282,7 @@ public class WebDriverEx {
     }
 
     private static void registerSession(final WebDriverEx driver) {
-        val name = driver.originalCapabilities.getCapability("name");
+        val name = driver.originalCapabilities.getCapability("sauce:name");
 
         if (isNull(name)) {
             log.warn("session name missing from capabilities"
@@ -197,8 +321,8 @@ public class WebDriverEx {
     private static Class<? extends WebDriver> webDriverClassFor(
         final Capabilities capabilities) {
         val driverClass = Class.forName(requireNonNull(capabilities
-            .getCapability("class"), "must have a class capability")
-                .toString())
+            .getCapability("-x:class"), "must have a class capability")
+            .toString())
             .asSubclass(WebDriver.class);
 
         if (driverClass.isAssignableFrom(ChromeDriver.class))
@@ -217,8 +341,8 @@ public class WebDriverEx {
         if (driverClass.isAssignableFrom(SafariDriver.class))
             WebDriverManager.safaridriver().setup();
 
-        if (driverClass.isAssignableFrom(OperaDriver.class))
-            WebDriverManager.operadriver().setup();
+        // if (driverClass.isAssignableFrom(OperaDriver.class))
+        // WebDriverManager.operadriver().setup();
 
         // NOTE there are drivers, like WinAppDriver, that are not supported
         // by WebDriverManager -- in this case we just return the class
@@ -235,17 +359,18 @@ public class WebDriverEx {
     @SneakyThrows
     public static WebDriver webDriverFor(final Capabilities capabilities) {
         try {
-            return nonNull(capabilities.getCapability("url"))
+            return nonNull(capabilities.getCapability("-x:url"))
                 ? webDriverClassFor(capabilities)
                     .getConstructor(URL.class, Capabilities.class)
                     .newInstance(new URL(
-                        capabilities.getCapability("url")
+                        capabilities.getCapability("-x:url")
                             .toString()),
                         capabilities)
                 : webDriverClassFor(capabilities)
-                    .getConstructor(Capabilities.class)
-                    .newInstance(capabilities);
+                    .getDeclaredConstructor()
+                    .newInstance();
         } catch (final InvocationTargetException e) {
+            log.error("remote selenium connection failed");
             throw e.getCause();
         }
     }
@@ -262,8 +387,8 @@ public class WebDriverEx {
     @SuppressWarnings("unchecked")
     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
         value = "BC_UNCONFIRMED_CAST")
-    public <T extends WebElement> AndroidDriver<T> asAndroid() {
-        return (AndroidDriver<T>) driver;
+    public <T extends WebElement> AndroidDriver asAndroid() {
+        return (AndroidDriver) driver;
     }
 
     public WebDriver asGeneric() {
@@ -271,8 +396,8 @@ public class WebDriverEx {
     }
 
     @SuppressWarnings("unchecked")
-    public <T extends WebElement> IOSDriver<T> asIOS() {
-        return (IOSDriver<T>) driver;
+    public <T extends WebElement> IOSDriver asIOS() {
+        return (IOSDriver) driver;
     }
 
     /**
@@ -289,38 +414,6 @@ public class WebDriverEx {
     }
 
     /**
-     * Casts an WebDriver into a MobileDriver.
-     *
-     * @param <T>
-     *            type of WebElement
-     * @return the MobileDriver interface
-     * @throws ClassCastException
-     *             if the driver is not of MobileDriver type
-     */
-    @SuppressWarnings("unchecked")
-    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
-        value = "BC_UNCONFIRMED_CAST")
-    public <T extends WebElement> MobileDriver<T> asMobile() {
-        return (MobileDriver<T>) driver;
-    }
-
-    /**
-     * Casts an WebDriver into a WindowsDriver.
-     *
-     * @param <T>
-     *            type of WebElement
-     * @return the WindowsDriver interface
-     * @throws ClassCastException
-     *             if the driver is not of WindowsDriver type
-     */
-    @SuppressWarnings("unchecked")
-    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
-        value = "BC_UNCONFIRMED_CAST")
-    public <T extends WebElement> WindowsDriver<T> asWindows() {
-        return (WindowsDriver<T>) driver;
-    }
-
-    /**
      * Casts an WebDriver into a RemoteWebDriver.
      *
      * @return the RemoteWebDriver interface
@@ -331,6 +424,20 @@ public class WebDriverEx {
         value = "BC_UNCONFIRMED_CAST")
     public RemoteWebDriver asRemote() {
         return (RemoteWebDriver) driver;
+    }
+
+    /**
+     * Casts an WebDriver into a WindowsDriver.
+     *
+     * @return the WindowsDriver interface
+     * @throws ClassCastException
+     *             if the driver is not of WindowsDriver type
+     */
+    @SuppressWarnings("unchecked")
+    @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+        value = "BC_UNCONFIRMED_CAST")
+    public WindowsDriver asWindows() {
+        return (WindowsDriver) driver;
     }
 
     /**
@@ -436,7 +543,7 @@ public class WebDriverEx {
                     e.getFailure())))
             .onSuccess(e -> log
                 .debug("found web view context {}", e.getResult()))
-            .get(() -> asMobile()
+            .get(() -> ((ContextAware) driver)
                 .getContextHandles()
                 .stream()
                 .peek(contextId -> log.trace("found context {}", contextId))
@@ -444,131 +551,5 @@ public class WebDriverEx {
                 .findFirst()
                 .orElseThrow(
                     () -> new TestRuntimeException("no webview available")));
-    }
-
-    /**
-     * Represents a <a href=
-     * "https://www.w3.org/TR/2015/REC-dom-20151119/#interface-event">DOM
-     * Event</a>.
-     */
-    @AllArgsConstructor
-    public static class Event {
-        /**
-         * The type of this Pointer Event.
-         */
-        public final Type                type;
-        /**
-         * <a href=
-         * "https://www.w3.org/TR/pointerevents2/#dom-pointereventinit">Event
-         * Initialization Dictionary</a>
-         */
-        public final Map<String, Object> eventInitDict;
-
-        /**
-         * @return JavaScript literal representation of this Event
-         */
-        @Override
-        public String toString() {
-            return MessageFormat.format("new {0}(\"{1}\",{2})",
-                getClass().getSimpleName(),
-                type,
-                new Gson().toJson(eventInitDict, Map.class));
-        }
-
-        /**
-         * Represents an event type.
-         *
-         * @author Adrian Herscu
-         */
-        public interface Type {
-            // marker interface
-        }
-    }
-
-    /**
-     * Represents a <a href=
-     * "https://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/events.html#Events-MouseEvent">DOM
-     * MouseEvent</a>.
-     *
-     * <p>
-     * see also <a href=
-     * "https://www.w3.org/TR/2019/WD-uievents-20190530/#idl-mouseevent">MouseEvent
-     * Working Draft</a>
-     * </p>
-     */
-    public static class MouseEvent extends UIEvent {
-        /**
-         * @param type
-         *            type of event
-         * @param eventInitDict
-         *            initialization data
-         */
-        public MouseEvent(
-            final Type type,
-            final Map<String, Object> eventInitDict) {
-            super(type, eventInitDict);
-        }
-    }
-
-    /**
-     * Represents a
-     * <a href="https://www.w3.org/TR/2019/REC-pointerevents2-20190404/">DOM
-     * Pointer Event.</a>
-     */
-    public static class PointerEvent extends MouseEvent {
-        /**
-         * @param type
-         *            type of event
-         * @param eventInitDict
-         *            initialization data
-         */
-        public PointerEvent(
-            final PointerEventType type,
-            final Map<String, Object> eventInitDict) {
-            super(type, eventInitDict);
-        }
-
-        /**
-         * Types of <a href=
-         * "https://www.w3.org/TR/pointerevents2/#pointer-event-types">Pointer
-         * Events</a>
-         */
-        public enum PointerEventType implements Type {
-            pointerover,
-            pointerenter,
-            pointerdown,
-            pointermove,
-            pointerup,
-            pointercancel,
-            pointerout,
-            pointerleave,
-            gotpointercapture,
-            lostpointercapture
-        }
-    }
-
-    /**
-     * Represents a <a href=
-     * "https://www.w3.org/TR/2000/REC-DOM-Level-2-Events-20001113/events.html#Events-UIEvent">DOM
-     * UIEvent</a>.
-     *
-     * <p>
-     * see also <a href=
-     * "https://www.w3.org/TR/2019/WD-uievents-20190530/#interface-uievent">UIEvent
-     * Working Draft</a>
-     * </p>
-     */
-    public static class UIEvent extends Event {
-        /**
-         * @param type
-         *            type of event
-         * @param eventInitDict
-         *            initialization data
-         */
-        public UIEvent(
-            final Type type,
-            final Map<String, Object> eventInitDict) {
-            super(type, eventInitDict);
-        }
     }
 }

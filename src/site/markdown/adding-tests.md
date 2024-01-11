@@ -137,16 +137,16 @@ instead of repeating ourselves in each scenario we can hold this in a common
 base class:
 
 ```java
-public abstract class SystemRestTest extends UnitilsScenarioTest<TestConfiguration, RestScenarioType, SystemRestFixtures<?>, SystemRestActions<?>, SystemRestVerifications<?>> {
+public abstract class SystemRestTest extends ConfigurableScenarioTest<TestConfiguration, RestScenarioType, SystemRestFixtures<?>, SystemRestActions<?>, SystemRestVerifications<?>> {
 
     protected Client client; // we should manage the REST client
 
-    protected BekaRestTest() { // mandatory
+    protected SystemRestTest() { // mandatory
         super(TestConfiguration.class);
     }
 
     // so this one...
-    protected BekaRestTest(final Class<TestConfiguration> configurationType) {
+    protected SystemRestTest(final Class<TestConfiguration> configurationType) {
         super(configurationType);
     }
 

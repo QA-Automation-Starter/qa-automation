@@ -80,6 +80,36 @@
       <artifactId>qa-jgiven-webdriver</artifactId>
       <version>${projectVersion}</version>
     </dependency>
+    <dependency>
+      <groupId>org.mock-server</groupId>
+      <artifactId>mockserver-netty</artifactId>
+      <version>5.15.0</version>
+    </dependency>
+    <dependency>
+      <groupId>dev.aherscu.qa</groupId>
+      <artifactId>qa-jgiven-rest</artifactId>
+      <version>${projectVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.aherscu.qa</groupId>
+      <artifactId>qa-jgiven-rabbitmq</artifactId>
+      <version>${projectVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>dev.aherscu.qa</groupId>
+      <artifactId>qa-jgiven-elasticsearch</artifactId>
+      <version>${projectVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- TODO add database tests via qa-jgiven-jdbc -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>

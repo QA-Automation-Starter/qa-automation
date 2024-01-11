@@ -55,7 +55,7 @@
     <discriminator
       class="dev.aherscu.qa.testing.utils.logging.ThreadIdBasedDiscriminator"/>
     <sift>
-      <appender class="ch.qos.logback.core.FileAppender">
+      <appender name="file-appender" class="ch.qos.logback.core.FileAppender">
         <file>target/per-thread-logs/test-${threadId}.log</file>
         <append>false</append>
         <layout class="ch.qos.logback.classic.PatternLayout">

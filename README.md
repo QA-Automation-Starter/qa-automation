@@ -15,13 +15,13 @@ Following instructions apply to Windows machines:
 
 1. Run PowerShell as Administrator -- required by Chocolatey
 2. Install Chocolatey -- <https://chocolatey.org/install#individual>
-3. `choco install -y jdk8`
+3. `choco install -y jdk11`
 4. `choco install -y git`
 5. `choco install -y tortoisegit`
 6. `choco install -y intellijidea-community`
    or `choco install eclipse-java-oxygen`
 
-There should be alternative commands for Mac and various Linux distros.
+There should be similar commands for Mac and various Linux distros.
 
 ## Maven Settings
 
@@ -49,8 +49,8 @@ required in order to compile, run and debug in an IDE:
   requires additional configuration as follows:
     1. ajc (AspectJ Compiler) must be used
     2. AspectJ facet must be configured in "post-compile weave mode" for
-       following modules: `qa-testing`, `qa-jgiven-utils` and
-       `qa-jgiven-commons`
+       following modules: `qa-testing-example`, `qa-testing-utils`,
+       `qa-testing-extra` and `qa-jgiven-commons`
 
 ## Testing
 
@@ -59,7 +59,7 @@ required in order to compile, run and debug in an IDE:
 ## Deploying
 
 By pushing or merging into main branch.
-See the [deploy-for-jdk8](.github/workflows/on-main-push.yml).
+See the [deploy-site-for-jdk11](.github/workflows/on-main-push.yml).
 
 ## Releasing/Versioning
 
@@ -93,10 +93,27 @@ the [CODE_OF_CONDUCT.md](.github/CODE_OF_CONDUCT.md).
 This project is licensed under the Apache License - see
 the [LICENSE](LICENSE) file for details.
 
-## GPG Public Key
+## My GPG Public Key
 
 For validating published artifacts, use
 <https://keys.openpgp.org/search?q=39F1B2495B0260B2D974C634F89B5DBA3AF082E0>
+
+## Importing GPG Private Key
+
+Per OSSRH depolyment rules, all artifacts must be signed using gpg --
+https://central.sonatype.org/publish/publish-maven/#gpg-signed-components
+
+`gpg --import 39F1B2495B0260B2D974C634F89B5DBA3AF082E0.gpg`
+
+and ensure your correct Maven Settings as described above.
+
+## Running Web/Mobile tests on SauceLabs
+
+Must add following environment variables before launching Maven:
+* `SAUCELABS_USER`
+* `SAUCELABS_PASSWORD`
+
+These are available from https://app.saucelabs.com/
 
 ## Acknowledgments
 

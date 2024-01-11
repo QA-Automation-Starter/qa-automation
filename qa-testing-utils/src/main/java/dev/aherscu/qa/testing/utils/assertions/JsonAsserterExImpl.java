@@ -20,9 +20,7 @@ import static java.util.Arrays.*;
 
 import java.util.ArrayList;
 
-import com.jayway.jsonassert.*;
-import com.jayway.jsonassert.impl.*;
-
+import dev.aherscu.qa.testing.utils.assertions.impl.*;
 import lombok.*;
 
 /**

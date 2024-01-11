@@ -34,10 +34,8 @@
         <configuration>
           <skip>false</skip>
           <debug>true</debug>
-          <sourceDirectory>target/test-classes/jgiven-report-samples
-          </sourceDirectory>
-          <outputDirectory>target/test-classes/jgiven-reports/qa-html
-          </outputDirectory>
+          <sourceDirectory>jgiven-report-samples</sourceDirectory>
+          <outputDirectory>qa-html-reports</outputDirectory>
           <pdf>true</pdf>
           <screenshotScale>0.2</screenshotScale>
           <!-- NOTE: suppressing date generation in order to simplify testing -->
@@ -53,15 +51,15 @@
             <id>segregated-permethod-report</id>
             <phase>post-integration-test</phase>
             <goals>
-              <goal>segregated-permethod-report</goal>
+              <goal>permethod-report</goal>
             </goals>
           </execution>
 
           <execution>
-            <id>segregated-report</id>
+            <id>segregated-perclass-report</id>
             <phase>post-integration-test</phase>
             <goals>
-              <goal>segregated-report</goal>
+              <goal>perclass-report</goal>
             </goals>
           </execution>
 

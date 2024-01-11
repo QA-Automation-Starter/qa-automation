@@ -17,10 +17,9 @@ package dev.aherscu.qa.jgiven.commons;
 
 import java.net.*;
 
-import javax.ws.rs.*;
-
 import org.openqa.selenium.*;
 
+import jakarta.ws.rs.*;
 import lombok.extern.slf4j.*;
 
 /**

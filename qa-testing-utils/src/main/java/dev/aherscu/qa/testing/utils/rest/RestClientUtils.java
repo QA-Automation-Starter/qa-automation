@@ -15,24 +15,23 @@
  */
 package dev.aherscu.qa.testing.utils.rest;
 
-import javax.ws.rs.core.*;
-import javax.ws.rs.core.Response.*;
-import javax.ws.rs.core.Response.Status.*;
-
+import jakarta.ws.rs.core.*;
+import jakarta.ws.rs.core.Response.*;
+import jakarta.ws.rs.core.Response.Status.*;
 import lombok.experimental.*;
 
 /**
  * Provides REST client utility functions.
- * 
+ *
  * @author aherscu
- * 
+ *
  */
 @UtilityClass
 public final class RestClientUtils {
 
     /**
      * Tests whether the status is successful.
-     * 
+     *
      * @param status
      *            the REST status
      * @return true if the status belongs to {@link Family#SUCCESSFUL}
@@ -43,7 +42,7 @@ public final class RestClientUtils {
 
     /**
      * Tests whether the status is unauthorised.
-     * 
+     *
      * @param status
      *            the REST status
      * @return true if the status was {@link Status#UNAUTHORIZED}

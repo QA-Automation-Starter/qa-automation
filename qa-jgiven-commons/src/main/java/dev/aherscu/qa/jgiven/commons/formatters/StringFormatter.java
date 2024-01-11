@@ -26,7 +26,7 @@ import com.tngtech.jgiven.format.*;
 
 /**
  * Formatter for {@link String}s.
- * 
+ *
  * @author aherscu
  *
  */

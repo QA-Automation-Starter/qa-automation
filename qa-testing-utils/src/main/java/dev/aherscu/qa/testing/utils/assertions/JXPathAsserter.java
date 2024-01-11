@@ -16,7 +16,7 @@
 package dev.aherscu.qa.testing.utils.assertions;
 
 /**
- * 
+ *
  *
  * @author Adrian Herscu
  *
@@ -25,7 +25,7 @@ public interface JXPathAsserter {
 
     /**
      * Asserts that expected contents match.
-     * 
+     *
      * @param expectedContents
      *            the expected contents
      *
@@ -36,7 +36,7 @@ public interface JXPathAsserter {
 
     /**
      * Asserts that expected contents match.
-     * 
+     *
      * @param expectedContents
      *            the expected contents
      *

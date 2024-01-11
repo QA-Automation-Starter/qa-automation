@@ -21,9 +21,6 @@ import static java.util.Arrays.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.*;
-
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
@@ -33,6 +30,8 @@ import dev.aherscu.qa.jgiven.rest.steps.*;
 import dev.aherscu.qa.jgiven.rest.tags.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import dev.aherscu.qa.testing.utils.rest.*;
+import jakarta.ws.rs.client.*;
+import jakarta.ws.rs.core.*;
 import lombok.*;
 
 /**

@@ -29,7 +29,6 @@ import org.hamcrest.*;
 import com.google.common.collect.*;
 
 import edu.umd.cs.findbugs.annotations.*;
-import uk.co.probablyfine.matchers.*;
 
 // NOTE cannot use lombok.val/var here on JDK 16
 // ISSUE https://github.com/projectlombok/lombok/issues/2839

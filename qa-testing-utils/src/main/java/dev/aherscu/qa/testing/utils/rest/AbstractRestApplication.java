@@ -17,16 +17,15 @@ package dev.aherscu.qa.testing.utils.rest;
 
 import java.util.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.core.*;
-
 import org.reflections.*;
 
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.*;
 import lombok.extern.slf4j.*;
 
 /**
  * Holds the classes comprising a REST application.
- * 
+ *
  * @author aherscu
  *
  */
@@ -38,7 +37,7 @@ public abstract class AbstractRestApplication extends Application {
     /**
      * Sets up an REST application by scanning a given package for {@link Path}
      * annotated classes.
-     * 
+     *
      * @param packageName
      *            the name of the package to scan
      */

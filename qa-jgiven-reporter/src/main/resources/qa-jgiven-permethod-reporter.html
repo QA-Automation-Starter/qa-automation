@@ -23,7 +23,7 @@
   <style type="text/css">
     @page {
       @top-left {
-        content: "{{jgivenReport.model.name}}";
+        content: "{{#simpleName}}{{jgivenReport.className}}{{/simpleName}}::{{jgivenReport.testMethodName}}";
       }
 
       @bottom-right {

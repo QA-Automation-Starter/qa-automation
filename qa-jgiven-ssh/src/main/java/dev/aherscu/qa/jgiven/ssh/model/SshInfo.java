@@ -91,7 +91,7 @@ public final class SshInfo {
      * </li>
      * <li>{@code <password>} -- required, the password; can be empty
      * </ul>
-     * 
+     *
      *
      * @param client
      *            the SSH client

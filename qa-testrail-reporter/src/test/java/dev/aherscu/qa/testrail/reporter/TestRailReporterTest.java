@@ -25,7 +25,7 @@ import static org.hamcrest.io.FileMatchers.*;
 
 import java.io.*;
 
-import javax.ws.rs.core.*;
+import jakarta.ws.rs.core.*;
 
 import org.testng.annotations.*;
 import org.testng.xml.*;

@@ -22,11 +22,11 @@ import com.github.rodionmoiseev.c10n.share.*;
 
 /**
  * Annotation bound to {@link Locale#ROOT} locale.
- * 
+ *
  * @see <a href=
  *      "https://github.com/rodionmoiseev/c10n/wiki/Overview#storing-translations-in-source-code">
  *      Storing translations in source code</a>
- * 
+ *
  * @author aherscu
  */
 @Target(ElementType.METHOD)

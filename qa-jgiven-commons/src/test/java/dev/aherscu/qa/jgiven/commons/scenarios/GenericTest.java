@@ -19,10 +19,8 @@ import static org.assertj.core.api.Assertions.*;
 import static org.hamcrest.Matchers.*;
 
 import java.lang.SuppressWarnings;
-import java.math.*;
 
 import org.testng.annotations.*;
-import org.unitils.io.annotation.*;
 
 import com.tngtech.jgiven.*;
 
@@ -50,15 +48,8 @@ import lombok.*;
 @SuppressWarnings({ "static-method" })
 @SelfTest
 public final class GenericTest extends
-    UnitilsScenarioTest<BaseConfiguration, AnyScenarioType, GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
+    ConfigurableScenarioTest<BaseConfiguration, AnyScenarioType, GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
 
-    @FileContent
-    private String sql;
-
-    // ISSUE: sometimes creating a temporary file on Windows 7 fails with
-    // "access denied".
-    // @TempFile
-    // private File tempFile;
 
     /**
      * Initializes with {@link BaseConfiguration}.
@@ -79,7 +70,7 @@ public final class GenericTest extends
     /**
      * Should fail just to see that failures are reported.
      */
-    @Test(enabled = false)
+    @Test(expectedExceptions = AssertionError.class)
     public void shouldFail() {
         given().nothing();
         when().doing_nothing();
@@ -102,29 +93,13 @@ public final class GenericTest extends
         then().should_succeed(is(false));
     }
 
-    /**
-     * Should fail reading something from a database.
-     *
-     * <p>
-     * FIXME insert required data before running the test
-     * </p>
-     */
-    @Test(enabled = false) // requires a mock database
-    public void shouldFailFindingSomethingInDatabase() {
-        // noinspection MagicNumber
-        then().querying_$_evaluates_as(
-            sql,
-            new Object[][] {
-                { BigDecimal.valueOf(95144630) },
-                { BigDecimal.valueOf(80366961) }
-            });
-    }
+
 
     /**
      * Defined to complete within 1000 ms but sleeps for 2000 ms.
      */
     @SneakyThrows(Exception.class)
-    @Test(enabled = false, timeOut = 1000)
+    @Test(enabled = false, timeOut = 1000) // fails with Error!!!
     public void shouldFailOnTimeout() {
         // noinspection MagicNumber
         when().$("sleeping too much", //$NON-NLS-1$
@@ -138,46 +113,25 @@ public final class GenericTest extends
      * report.
      */
     @SneakyThrows(Exception.class)
-    @Test(enabled = false)
+    @Test(expectedExceptions = TestRuntimeException.class)
     public void shouldFailWithUnexpectedRuntimeException() {
         then().$("should throw a runtime exception", //$NON-NLS-1$
             (StepFunction<GenericVerifications<AnyScenarioType, ?>>) stage -> {
-                throw new TestRuntimeException();
+                throw new TestRuntimeException("!!!");
             });
     }
 
     /**
      * Should retry upon any {@link Throwable}, eventually failing.
-     * <p>
-     * NOTE: JGiven catches {@link Throwable}s in order to generate its report,
-     * hence this cannot be handled via {@link Test#expectedExceptions}.
-     * </p>
-     * <p>
-     * Disabled in order to allow {@code mvn install} pass.
-     * </p>
      */
-    @Test(enabled = false)
+    @Test(expectedExceptions = Throwable.class)
     public void shouldRetrySomethingBeforeFailing() {
         given().nothing();
         when().retrying(step -> step.failing_on_purpose_with(
-            new InternalError("just to see it retry")));
+            new Throwable("just to see it retry")));
         section("should be skipped");
         then().should_succeed(is(false));
     }
-
-    // /**
-    // * Should have a temporary file.
-    // *
-    // * <p>
-    // * NOTE: fails to create temporary file on Jenkins.
-    // */
-    // @SneakyThrows(Exception.class)
-    // @Test(enabled = false)
-    // public void shouldHaveTempFile() {
-    // then().$("should find a temporary file", //$NON-NLS-1$
-    // (StepFunction<GenericVerifications<Any, ?>>) stage -> assertThat(
-    // tempFile.exists()).isTrue());
-    // }
 
     /**
      * Should succeed just to see the successes are reported.
@@ -189,23 +143,7 @@ public final class GenericTest extends
         then().should_succeed(is(true));
     }
 
-    /**
-     * Should succeed reading something from a database.
-     *
-     * <p>
-     * FIXME insert required data before running the test
-     * </p>
-     */
-    @Test(enabled = false)
-    public void shouldSucceedFindingSomethingInDatabase() {
-        // noinspection MagicNumber
-        then().querying_$_evaluates_as(
-            sql,
-            new Object[][] {
-                { BigDecimal.valueOf(95144630) },
-                { BigDecimal.valueOf(80366964) }
-            });
-    }
+
 
     /**
      * Left should be equal to right.

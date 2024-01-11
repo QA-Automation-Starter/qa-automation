@@ -38,7 +38,7 @@ import lombok.extern.slf4j.*;
  * <p>
  * Had an issue with JGiven: https://github.com/TNG/JGiven/issues/312
  * </p>
- * 
+ *
  * <p>
  * Can be added as a listener, in this case the retry mechanism will get applied
  * to all test methods covered by.

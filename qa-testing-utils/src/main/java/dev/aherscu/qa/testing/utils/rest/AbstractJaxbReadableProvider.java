@@ -19,14 +19,14 @@ import java.io.*;
 import java.lang.annotation.*;
 import java.lang.reflect.*;
 
-import javax.ws.rs.core.*;
 import javax.xml.bind.*;
 
+import jakarta.ws.rs.core.*;
 import lombok.extern.slf4j.*;
 
 /**
  * Provides common XML unmarshalling over REST.
- * 
+ *
  * @author aherscu
  *
  * @param <T>

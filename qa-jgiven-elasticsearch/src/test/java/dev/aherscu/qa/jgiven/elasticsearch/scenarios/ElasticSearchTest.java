@@ -26,42 +26,8 @@ import lombok.*;
 import lombok.extern.jackson.*;
 
 public class ElasticSearchTest
-    extends AbstractElasticSearchTest<ElasticSearchTest.AnObject> {
-
-    protected ElasticSearchTest() {
-        super(TestConfiguration.class);
-    }
-
-    @Test
-    public void shouldIndexDocument() {
-        given().indexed_by("some-objects").and().storing(AnObject.class).and().elastic_search(configuration()
-                .elasticSearchClient());
-
-        when()
-            .adding_single_document(AnObject.DUMMY, AnObject::getId);
-
-        then()
-            .the_document("dummy", is(AnObject.DUMMY));
-    }
-
-    @Test
-    void shouldFindDocument() {
-        given().indexed_by("some-objects").and().storing(AnObject.class).and().elastic_search(configuration()
-                .elasticSearchClient());
-
-        when()
-            .adding_single_document(AnObject.DUMMY, AnObject::getId);
-
-        then()
-            .the_index(q -> q.bool(b -> b
-                .must(m -> m.match(mm -> mm
-                    .field("value1")
-                    .query("kuku")))
-                .must(m -> m.match(mm -> mm
-                    .field("value2")
-                    .query("muku")))),
-                hasSpecificItemsInAnyOrder(AnObject.DUMMY));
-    }
+    extends
+    AbstractElasticSearchTest<ElasticSearchTest.AnObject, ElasticSearchTest.AnObject> {
 
     @Builder
     @Jacksonized
@@ -78,5 +44,43 @@ public class ElasticSearchTest
         public final String          id;
         public final String          value1;
         public final String          value2;
+    }
+
+    protected ElasticSearchTest() {
+        super(TestConfiguration.class);
+    }
+
+    @Test
+    public void shouldIndexDocument() {
+        given().indexed_by("some-objects")
+            .and().storing(AnObject.class)
+            .and().elastic_search(configuration()
+                .elasticSearchClient());
+
+        when()
+            .adding_single_document(AnObject.DUMMY, AnObject::getId);
+
+        then()
+            .the_document("dummy", is(AnObject.DUMMY));
+    }
+
+    @Test
+    void shouldFindDocument() {
+        given().indexed_by("some-objects").and().storing(AnObject.class).and()
+            .elastic_search(configuration()
+                .elasticSearchClient());
+
+        when()
+            .adding_single_document(AnObject.DUMMY, AnObject::getId);
+
+        then()
+            .the_index(q -> q.bool(b -> b
+                .must(m -> m.match(mm -> mm
+                    .field("value1")
+                    .query("kuku")))
+                .must(m -> m.match(mm -> mm
+                    .field("value2")
+                    .query("muku")))),
+                hasSpecificItemsInAnyOrder(AnObject.DUMMY));
     }
 }

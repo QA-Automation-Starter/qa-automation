@@ -20,6 +20,7 @@
 
   <test name="Acceptance" parallel="classes">
     <packages>
+      <package name="dev.aherscu.qa.jgiven.webdriver"/>
       <package name="dev.aherscu.qa.jgiven.webdriver.scenarios"/>
     </packages>
   </test>

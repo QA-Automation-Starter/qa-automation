@@ -38,7 +38,7 @@ import lombok.extern.slf4j.*;
 @ToString(callSuper = true)
 public class QaJGivenPerClassReporter
     extends
-    AbstractQaJgivenReporter<ReportModelFile, QaJGivenPerClassReporter> {
+    AbstractQaJgivenReporter<ReportModel, QaJGivenPerClassReporter> {
 
     public static final String DEFAULT_TEMPLATE_RESOURCE =
         "/qa-jgiven-perclass-reporter.html";
@@ -77,7 +77,7 @@ public class QaJGivenPerClassReporter
                 template()
                     .execute(reportModel(targetReportFile)
                         .toBuilder()
-                        .jgivenReport(new ReportModelFileReader()
+                        .jgivenReport(new ScenarioJsonReader()
                             .apply(reportModelFile))
                         .screenshotScale(screenshotScale)
                         .datePattern(datePattern)

@@ -15,29 +15,21 @@
  */
 package dev.aherscu.qa.jgiven.commons.steps;
 
-import static com.danhaywood.java.assertjext.Conditions.*;
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.testng.Assert.*;
 
 import java.io.*;
 import java.nio.charset.*;
-import java.sql.*;
-import java.util.*;
 import java.util.function.*;
 
 import javax.annotation.concurrent.*;
 
-import org.apache.commons.dbutils.*;
-import org.apache.commons.dbutils.handlers.*;
 import org.apache.commons.io.*;
 import org.hamcrest.*;
-import org.unitils.database.*;
 
 import com.google.common.collect.*;
-import com.jayway.jsonassert.*;
 import com.tngtech.jgiven.annotation.*;
 
 import dev.aherscu.qa.jgiven.commons.formatters.*;
@@ -73,17 +65,6 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
         log.trace("then stage {} constructed", this); //$NON-NLS-1$
     }
 
-    @SneakyThrows(SQLException.class)
-    private static List<Object[]> resultSetOf(final String sql) {
-        log.debug("querying {}", sql); //$NON-NLS-1$
-        final List<Object[]> resultSet =
-            new QueryRunner(DatabaseUnitils.getDataSource())
-                .query(sql, new ArrayListHandler());
-        log.trace("result set contains {} rows", //$NON-NLS-1$
-            resultSet.size());
-        return resultSet;
-    }
-
     /**
      * Repeatedly executes specified block on <strong>same thread</strong>,
      * verifying its outcome matches the expected.
@@ -107,7 +88,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
     /**
      * Executes specified step on <strong>same thread</strong>, and repeats it
      * upon {@link AssertionError}. The interval and duration of these
-     * repetitions are configured via {@link #configurePolling()}.
+     * repetitions are configured via {@link #beforeScenarioConfigurePolling()}.
      *
      * @param step
      *            the block to execute
@@ -117,7 +98,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      * @throws AssertionError
      *             if the supplied object does not match
      *
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      */
     @SafeVarargs
     public final SELF eventually(final StepWithDescription<SELF> step,
@@ -136,7 +117,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      * Asserts supplied object matches specified matcher on <strong>same
      * thread</strong>. Upon {@link AssertionError}, asks for updated object and
      * asserts again. Ignores all exceptions. The interval and duration of these
-     * assertions are configured via {@link #configurePolling()}.
+     * assertions are configured via {@link #beforeScenarioConfigurePolling()}.
      *
      * @param objectToBeAsserted
      *            the supplied object to assert upon
@@ -150,7 +131,7 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
      * @throws AssertionError
      *             if the supplied object does not match
      *
-     * @see #configurePolling()
+     * @see #beforeScenarioConfigurePolling()
      */
     @SafeVarargs
     public final <V> SELF eventually_assert_that(
@@ -171,97 +152,6 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
             assertThat(value, matcher);
             return self;
         }, additionalRetryPolicies);
-    }
-
-    /**
-     * Repeatedly runs specified SQL statement until the returned result set
-     * matches the expected results, or until a predefined timeout.
-     *
-     * @see #configurePolling()
-     *
-     * @param sql
-     *            the SQL statement to execute
-     * @param expectedResults
-     *            the expected result set
-     *
-     * @return {@link #self()}
-     */
-    public SELF querying_$_evaluates_as(
-        @StringFormatter.Annotation(maxWidth = 400) final String sql,
-        @ObjectsMatrixFormatter.Annotation(
-            args = { "30" }) final Object[][] expectedResults) {
-        val resultSet = resultSetOf(sql);
-        assertThat(resultSet.toArray(new Object[resultSet.size()][]))
-            .isEqualTo(expectedResults);
-        return self();
-    }
-
-    /**
-     * Repeatedly runs specified SQL statement until the returned result set
-     * matches the expected results in any order, or until a predefined timeout.
-     *
-     * @see #configurePolling()
-     *
-     * @param sql
-     *            the SQL statement to execute
-     * @param expectedResults
-     *            the expected result set
-     *
-     * @return {@link #self()}
-     */
-    public SELF querying_$_evaluates_as_$_in_any_order(
-        @StringFormatter.Annotation(maxWidth = 400) final String sql,
-        @ObjectsMatrixFormatter.Annotation(
-            args = { "30" }) final Object[][] expectedResults) {
-        assertThat(resultSetOf(sql))
-            .containsExactlyInAnyOrder(expectedResults);
-        return self();
-    }
-
-    /**
-     * Asserts that the result set returned by specified SQL statement matches
-     * the expected results.
-     *
-     * @see #configurePolling()
-     *
-     * @param sql
-     *            the SQL statement to execute
-     * @param expectedResults
-     *            the expected result set
-     *
-     * @return {@link #self()}
-     */
-    public SELF querying_$_immediately_evaluates_as(
-        @StringFormatter.Annotation(maxWidth = 400) final String sql,
-        @ObjectsMatrixFormatter.Annotation(
-            args = { "30" }) final Object[][] expectedResults) {
-        // FIXME Warning:(240, 14) 'isEqualTo()' between objects of
-        // inconvertible types 'Condition<Object[][]>' and 'List<Object[]>'
-        assertThat(resultSetOf(sql))
-            .isEqualTo(matchedBy(equalTo(expectedResults)));
-        return self();
-    }
-
-    /**
-     * Asserts that the result set returned by specified SQL statement matches
-     * the expected results in any order.
-     *
-     * @see #configurePolling()
-     *
-     * @param sql
-     *            the SQL statement to execute
-     * @param expectedResults
-     *            the expected result set
-     *
-     * @return {@link #self()}
-     */
-    public SELF querying_$_immediately_evaluates_as_$_in_any_order(
-        @StringFormatter.Annotation(maxWidth = 400) final String sql,
-        @ObjectsMatrixFormatter.Annotation(
-            args = { "30" }) final Object[][] expectedResults) {
-        assertThat(resultSetOf(sql))
-            .is(matchedBy(containsInAnyOrder((Cloneable[]) expectedResults)));
-        return self();
     }
 
     /**
@@ -347,8 +237,8 @@ public class GenericVerifications<T extends AnyScenarioType, SELF extends Generi
     }
 
     @Override
-    protected void configurePolling() {
-        super.configurePolling();
+    protected void beforeScenarioConfigurePolling() {
+        super.beforeScenarioConfigurePolling();
         retryPolicy.handle(AssertionError.class);
     }
 }

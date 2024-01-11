@@ -22,14 +22,14 @@ import static org.apache.commons.lang3.RandomStringUtils.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
+import dev.aherscu.qa.jgiven.webdriver.*;
 import java.util.stream.*;
 
 import org.hamcrest.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.webdriver.*;
-import dev.aherscu.qa.jgiven.webdriver.model.*;
 import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.tags.*;
 import ${package}.*;
 import ${package}.steps.tutorial.*;
 import lombok.*;
@@ -38,22 +38,25 @@ public class TestingWebWithJGiven
     extends
     ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
 
+    private static class QuotedText extends Text {
+        public QuotedText(final String value) {
+            super(wrap(value, DOUBLE_QUOTE));
+        }
+    }
+
     protected TestingWebWithJGiven() {
         super(TestConfiguration.class);
     }
 
-    @DataProvider
-    private Object[][] data() {
-        return new Object[][] {
-            { new Text(wrap(randomAlphanumeric(40), DOUBLE_QUOTE)),
-                counts(equalTo(0L)) },
-            { new Text("testng"),
-                allMatch(either(containsStringIgnoringCase("testng"))
-                        .or(containsStringIgnoringCase("Try again"))
-                        .or(containsStringIgnoringCase("More results"))) }
-        };
+    @BeforeMethod
+    @SneakyThrows
+    @Override
+    public void beforeMethodOpenWebDriver() {
+        super.beforeMethodOpenWebDriver();
+        webDriver.get().asRemote().manage().window().maximize();
     }
 
+    @Reference("68")
     @Test(dataProvider = INTERNAL_DATA_PROVIDER)
     public void shouldFind(
         final Text textToSearch,
@@ -70,11 +73,13 @@ public class TestingWebWithJGiven
                     titleRule));
     }
 
-    @BeforeMethod
-    @SneakyThrows
-    @Override
-    public void beforeMethodOpenWebDriver() {
-        super.beforeMethodOpenWebDriver();
-        webDriver.get().asRemote().manage().window().maximize();
+    @DataProvider
+    private Object[][] data() {
+        return new Object[][] {
+            { new QuotedText(randomAlphanumeric(40)),
+                counts(equalTo(0L)) },
+            { new QuotedText("testng"),
+                anyMatch(containsStringIgnoringCase("testng")) }
+        };
     }
 }

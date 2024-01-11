@@ -19,7 +19,7 @@ import org.apache.commons.lang3.tuple.*;
 import org.hamcrest.*;
 
 /**
- * 
+ *
  *
  * @param <E>
  *            type of expression to assert
@@ -33,7 +33,7 @@ public abstract class Assertion<E, M> extends MutablePair<E, Matcher<M>> {
 
     /**
      * Constructs an assertion.
-     * 
+     *
      * @param expr
      *            the expression
      * @param matcher

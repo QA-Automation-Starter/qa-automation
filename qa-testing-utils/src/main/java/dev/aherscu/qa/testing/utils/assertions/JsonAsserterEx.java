@@ -15,8 +15,6 @@
  */
 package dev.aherscu.qa.testing.utils.assertions;
 
-import com.jayway.jsonassert.*;
-
 /**
  * Supports asserting on multiple JSON paths.
  *
@@ -27,7 +25,7 @@ public interface JsonAsserterEx extends JsonAsserter {
 
     /**
      * Asserts that expected contents match.
-     * 
+     *
      * @param expectedContents
      *            the expected contents
      *
@@ -38,7 +36,7 @@ public interface JsonAsserterEx extends JsonAsserter {
 
     /**
      * Asserts that expected contents match.
-     * 
+     *
      * @param expectedContents
      *            the expected contents
      *

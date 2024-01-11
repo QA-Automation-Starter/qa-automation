@@ -20,8 +20,6 @@ import static java.util.Arrays.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
-import javax.ws.rs.client.*;
-
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
@@ -31,6 +29,7 @@ import dev.aherscu.qa.jgiven.rest.steps.*;
 import dev.aherscu.qa.jgiven.rest.tags.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import dev.aherscu.qa.testing.utils.rest.*;
+import jakarta.ws.rs.client.*;
 
 /**
  * Contains REST sample tests just to ensure that the testing infrastructure

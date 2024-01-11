@@ -29,8 +29,6 @@ import org.testng.annotations.*;
 import dev.aherscu.qa.testing.extra.*;
 import lombok.*;
 
-// TODO move to separate parallel module
-
 public class AutoReturnableObjectPoolTest {
 
     private static final int                              MAX_AVAILABLE_OBJECTS =

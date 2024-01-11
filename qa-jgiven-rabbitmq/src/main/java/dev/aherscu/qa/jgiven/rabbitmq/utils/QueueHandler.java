@@ -73,7 +73,7 @@ public class QueueHandler<K, V> implements AutoCloseable {
      *
      * <p>
      * Build it:
-     * 
+     *
      * <pre>
      * private final Supplier<QueueHandler<YourKeyType, YourContentType>> queueHandlerSupplier =
      *     QueueHandler.Singleton.<UUID, RetrieveTransactionResponse> builder()
@@ -98,12 +98,12 @@ public class QueueHandler<K, V> implements AutoCloseable {
      * It is guaranteed that calling {@code queueHandler()} <strong>from any
      * thread</strong>, will supply the same QueueHandler instance.
      * </p>
-     * 
+     *
      * <p>
      * The connection is internally managed and closed via a runtime shutdown
      * hook.
      * </p>
-     * 
+     *
      * @param <K>
      *            type of message-key; it should have a proper hash function in
      *            order to get O(1) access time, otherwise it may degrade to

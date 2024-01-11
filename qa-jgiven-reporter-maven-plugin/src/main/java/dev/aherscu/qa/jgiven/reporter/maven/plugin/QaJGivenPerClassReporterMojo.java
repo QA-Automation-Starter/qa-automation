@@ -27,7 +27,7 @@ import dev.aherscu.qa.jgiven.reporter.*;
 /**
  * Generates JGiven report in QA format per class (segregated).
  */
-@Mojo(name = "segregated-report", defaultPhase = LifecyclePhase.VERIFY)
+@Mojo(name = "perclass-report", defaultPhase = LifecyclePhase.VERIFY)
 public class QaJGivenPerClassReporterMojo extends AbstractQaJgivenReporterMojo {
 
     @Parameter(defaultValue = DEFAULT_TEMPLATE_RESOURCE)

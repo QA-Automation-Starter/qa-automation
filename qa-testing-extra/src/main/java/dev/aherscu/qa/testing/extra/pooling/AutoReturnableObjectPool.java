@@ -29,7 +29,7 @@ import lombok.extern.slf4j.*;
  * pooled object is borrowed it will not be borrowed to other running test.
  * Borrowed pooled objects shall be returned as soon as possible in order not
  * block other tests running in parallel.
- * 
+ *
  * @param <T>
  *            type of object to pool
  */

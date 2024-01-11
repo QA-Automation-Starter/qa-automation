@@ -12,6 +12,7 @@
 * additional modules for
   [REST](qa-jgiven-rest/index.html),
   [WebDriver](qa-jgiven-webdriver/index.html),
+* [JDBC](qa-jgiven-jdbc/index.html)
   [SSH](qa-jgiven-ssh/index.html),
   [RabbitMQ](qa-jgiven-rabbitmq/index.html)
   and [Elastic Search](qa-jgiven-elasticsearch/index.html)?...

@@ -19,7 +19,7 @@ import dev.aherscu.qa.jgiven.commons.model.*;
 
 /**
  * Web Driver type of scenario.
- * 
+ *
  * @author aherscu
  *
  */

@@ -30,7 +30,6 @@ import com.samskivert.mustache.*;
 import com.tngtech.jgiven.impl.*;
 import com.tngtech.jgiven.report.model.*;
 
-import dev.aherscu.qa.testing.utils.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
@@ -135,7 +134,7 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
 
     /**
      * Hook for customizing the Mustache compiler.
-     * 
+     *
      * @return default Mustache compiler
      */
     protected Mustache.Compiler compiler() {
@@ -155,7 +154,7 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
     /**
      * Hook for initiating a {@link QaJGivenReportModel}; by default,
      * initializes with a specified JGiven JSON report file.
-     * 
+     *
      * @param targetReportFile
      *            JGiven JSON report file
      * @return the report model
@@ -169,7 +168,7 @@ public abstract class AbstractQaJgivenReporter<M, T extends AbstractQaJgivenRepo
     /**
      * Hook for loading a Mustache template; by default, loads from
      * {@link #templateResource} specified during construction.
-     * 
+     *
      * @return the template
      */
     protected Template template() {

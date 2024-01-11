@@ -22,7 +22,7 @@ import java.util.stream.*;
 /**
  * Abstraction wrapping a data structure that can be walked through to produce
  * streams.
- * 
+ *
  * @param <T>
  *            the type of elements composing the data structure.
  */
@@ -74,7 +74,7 @@ public abstract class Scanner<T> {
      * Scans the elements of the source and returns a scanner emitting relevant
      * items of the given type. This method can return fewer items according to
      * subclass logic. Subclasses implement the actual scanning algorithm.
-     * 
+     *
      * @param clazz
      *            the type selector.
      * @param <X>

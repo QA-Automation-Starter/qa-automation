@@ -89,7 +89,7 @@ public class QaJGivenReporter
                         .sourceDir(sourceDirectory)
                         .targetDir(outputDirectory)
                         .build())
-                            .readDirectory())
+                    .readDirectory())
             .screenshotScale(screenshotScale)
             .datePattern(datePattern)
             .testDocumentId(testDocumentId)

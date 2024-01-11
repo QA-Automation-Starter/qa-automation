@@ -20,7 +20,7 @@ import java.util.stream.*;
 
 /**
  * A scanner iterating over items of a stream. Nothing really fancy.
- * 
+ *
  * @param <T>
  *            the types of the stream items.
  */
@@ -32,7 +32,7 @@ public final class StreamScanner<T> extends Scanner<T> {
 
     /**
      * Create a scanner iterating over a stream.
-     * 
+     *
      * @param stream
      *            the stream to scan.
      * @param <X>

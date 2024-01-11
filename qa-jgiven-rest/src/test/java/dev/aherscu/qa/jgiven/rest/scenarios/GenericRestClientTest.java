@@ -17,8 +17,8 @@ package dev.aherscu.qa.jgiven.rest.scenarios;
 
 import java.net.*;
 
-import javax.ws.rs.*;
-import javax.ws.rs.client.*;
+import jakarta.ws.rs.*;
+import jakarta.ws.rs.client.*;
 
 import org.testng.annotations.*;
 
@@ -45,7 +45,7 @@ import lombok.*;
     justification = "JGiven framework limitation")
 public final class GenericRestClientTest
     extends
-    UnitilsScenarioTest<BaseConfiguration, RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
+    ConfigurableScenarioTest<BaseConfiguration, RestScenarioType, RestFixtures<?>, RestActions<?>, RestVerifications<?>> {
 
     private Client client;
 

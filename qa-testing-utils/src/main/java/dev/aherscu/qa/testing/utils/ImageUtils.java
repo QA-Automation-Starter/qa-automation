@@ -185,7 +185,7 @@ public class ImageUtils {
 
     /**
      * Makes two images same size by scaling down the image with bigger area.
-     * 
+     *
      * @param pair
      *            images to adapt
      * @return adapted images
@@ -352,7 +352,7 @@ public class ImageUtils {
 
         /**
          * Difference between this image and other image.
-         * 
+         *
          * @param other
          *            image to find difference from
          * @param differentiator

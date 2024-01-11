@@ -21,7 +21,9 @@ import com.tngtech.jgiven.annotation.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.rabbitmq.model.*;
 import dev.aherscu.qa.jgiven.rabbitmq.utils.*;
+import lombok.extern.slf4j.*;
 
+@Slf4j
 public class RabbitMqFixtures<K, V, SELF extends RabbitMqFixtures<K, V, SELF>>
     extends GenericFixtures<RabbitMqScenarioType, SELF> {
 
@@ -31,6 +33,7 @@ public class RabbitMqFixtures<K, V, SELF extends RabbitMqFixtures<K, V, SELF>>
     public SELF a_queue(@SuppressWarnings("hiding") @POJOFormat(
         includeFields = { "queue",
             "channel" }) final QueueHandler<K, V> queueHandler) {
+        log.debug("setting queue handler {}", queueHandler);
         this.queueHandler = queueHandler;
         return self();
     }

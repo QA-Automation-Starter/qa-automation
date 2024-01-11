@@ -23,7 +23,7 @@
   <style type="text/css">
     @page {
       @top-left {
-        content: "{{jgivenReport.model.name}}";
+        content: "{{jgivenReport.name}}";
       }
 
       @bottom-right {
@@ -110,7 +110,7 @@
 
 <body>
 
-{{#jgivenReport.model}}
+{{#jgivenReport}}
 <h1><b>{{name}}</b></h1>
 
 {{#scenarios}}
@@ -215,6 +215,6 @@
 </table>
 {{/scenarioCases}}
 {{/scenarios}}
-{{/jgivenReport.model}}
+{{/jgivenReport}}
 </body>
 </html>

@@ -23,7 +23,7 @@ import dev.aherscu.qa.testing.extra.supermachine.traverser.*;
 
 /**
  * A scanner traversing an object graph.
- * 
+ *
  * @param <T>
  *            the type of the traversed items.
  */
@@ -65,7 +65,7 @@ public final class BeanScanner<T> extends Scanner<T> {
     /**
      * Traverses the object graph for each items of this scanner and returns a
      * scanner emitting all found items of the given type.
-     * 
+     *
      * @param clazz
      *            the type selector.
      * @param <X>

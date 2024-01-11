@@ -3,7 +3,7 @@ name: main branch deploy and site publishing
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ 1_0 ]
     paths-ignore:
       - '**.md'
       - '.idea/**'
@@ -12,56 +12,30 @@ on:
 
 jobs:
 
-  # TODO pull into separate workflow file and reuse
-  # same as in on-pull-request.yml
-  # see https://docs.github.com/en/actions/using-workflows/reusing-workflows
-  # and https://docs.github.com/en/actions/creating-actions/creating-a-composite-action
   matrix-build:
-    name: ${{ matrix.os }} jdk-${{ matrix.java-version }} build w/o tests
-    runs-on: ${{ matrix.os }}
+    uses: ./.github/workflows/matrix-build.yml
+    secrets: inherit
 
-    strategy:
-      matrix:
-        java-version: [ 17, 11, 8 ]
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v3
-        with:
-          java-version: ${{ matrix.java-version }}
-          distribution: 'temurin'
-          cache: maven
-          settings-path: ${{ github.workspace }}
-
-      - name: unix mvn install
-        if: ${{ !contains(matrix.os, 'windows') }}
-        run: |
-          chmod +x mvnw && ./mvnw install \
-            -s $GITHUB_WORKSPACE/settings.xml
-
-      - name: windows mvn install
-        if: ${{ contains(matrix.os, 'windows') }}
-        shell: cmd
-        run: |
-          mvnw install ^
-            -s %GITHUB_WORKSPACE%\settings.xml
-
-  deploy-for-jdk8:
-    name: jdk-8 snapshot publish
+  deploy-site-for-jdk11:
+    name: jdk-11 snapshot deploy and site publishing
     # ISSUE ChromeDriver/GeckoDriver fail to initialize on Ubuntu
     # see https://github.com/QA-Automation-Starter/qa-automation/actions/runs/3294884059/jobs/5432863668
     # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
     # and https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
     # ISSUE Google Search behaves differently on MacOS causing tests to fail
-    runs-on: windows-latest
+    # following this issues, the least worst remedy is to run against a
+    # remote Selenium node, like SauceLabs, hence bypassing the need for
+    # a ChromeDriver/GeckoDriver, and allowing this job to run un Ubuntu.
+    runs-on: ubuntu-latest
     environment: development
+    outputs:
+      version: ${{ steps.version.outputs.version }}
 
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
-          java-version: '8'
+          java-version: '11'
           distribution: 'temurin'
           cache: maven
           settings-path: ${{ github.workspace }}
@@ -71,20 +45,20 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
           gpg-passphrase: GPG_PASSPHRASE
 
-      - name: Setup SSH
+      - name: setup SSH
         uses: webfactory/ssh-agent@v0.6.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Maven deploy snapshots and publish site
-        shell: cmd
+      - name: deploy snapshots and publish site
+        id: deploy
+        shell: bash
         run: |
-          reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem /f /v LongPathsEnabled /t REG_DWORD /d 0x1
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
-          mvnw deploy site site:stage scm-publish:publish-scm ^
-            -s %GITHUB_WORKSPACE%\settings.xml ^
+          chmod +x mvnw && ./mvnw deploy site site:stage scm-publish:publish-scm \
+            -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
@@ -93,58 +67,15 @@ jobs:
           SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
           SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
 
-  # TODO pull into separate workflow file and reuse
-  # same as in on-pull-request.yml
+      - name: save project version
+        id: version
+        shell: bash
+        run: |
+          echo "version=$(cat target/version.txt)" >> $GITHUB_OUTPUT
+
   generate-automation-project:
-    name: Generates new automation project and builds it
-    needs: deploy-for-jdk8
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: setup maven for sonatype snapshots
-        uses: whelk-io/maven-settings-xml-action@v20
-        with:
-          repositories: >
-            [
-              {
-                "id": "ossrh",
-                "url": "https://s01.oss.sonatype.org/content/repositories/snapshots",
-                "snapshots": {
-                    "enabled": "true",
-                    "checksumPolicy": "warn"
-                }
-              }
-            ]
-
-      # FIXME should run with controlled java version
-      - name: bootstrap maven
-        uses: aahmed-se/setup-maven@v3
-        with:
-          maven-version: 3.6.1
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
-
-      - name: setup maven cache
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
-
-      - name: generate testing project
-        # ISSUE https://stackoverflow.com/questions/74581510/using-latest-for-archetypeversion-always-resolves-to-latest-release
-        # NOTE will use last released archetype
-        run: |
-          mvn --batch-mode archetype:generate \
-            -DarchetypeGroupId=dev.aherscu.qa \
-            -DarchetypeArtifactId=qa-testing-archetype \
-            -DarchetypeVersion=LATEST \
-            -DgroupId=com.acme \
-            -DartifactId=testing \
-            -Dversion=1.0-SNAPSHOT \
-            -Dpackage=com.acme.testing
-
-      - name: build testing project
-        run: |
-          cd testing && chmod +x mvnw && ./mvnw
+    uses: ./.github/workflows/generate-automation-project.yml
+    with:
+      archetype-version: ${{ needs.deploy-site-for-jdk11.outputs.version }}
+    secrets: inherit
+    needs: deploy-site-for-jdk11

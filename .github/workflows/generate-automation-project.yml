@@ -1,0 +1,83 @@
+name: generate automation and build
+
+on:
+  workflow_call:
+    inputs:
+      archetype-version:
+        required: true
+        type: string
+
+jobs:
+
+  generate-automation-project:
+    name: ${{ matrix.os }} generate and test tutorials
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      # ISSUE ubuntu-latest is missing Google Chrome, hence local Selenium fails
+      # following https://github.com/QA-Automation-Starter/qa-automation/issues/221
+      # we will run these tests on ubuntu via deploy-* jobs,
+      # see on-main-push.yml and on-pull-request.yml.
+      # These jobs have credentials for SauceLabs account associated with
+      # this project, hence can bypass this limitation.
+      matrix:
+        os: [ macos-latest, windows-latest ]
+
+    steps:
+      - uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: setup maven for sonatype snapshots
+        uses: whelk-io/maven-settings-xml-action@v20
+        with:
+          repositories: >
+            [
+              {
+                "id": "ossrh",
+                "url": "https://s01.oss.sonatype.org/content/repositories/snapshots",
+                "snapshots": {
+                    "enabled": "true",
+                    "checksumPolicy": "warn"
+                }
+              }
+            ]
+
+      # FIXME should run with controlled java version
+      - name: bootstrap maven
+        uses: aahmed-se/setup-maven@v3
+        with:
+          maven-version: 3.6.1
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
+      - name: setup maven cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: generate testing project
+        shell: bash
+        run: |
+          mvn --batch-mode archetype:generate \
+            -DarchetypeGroupId=dev.aherscu.qa \
+            -DarchetypeArtifactId=qa-testing-archetype \
+            -DarchetypeVersion=${{ inputs.archetype-version }} \
+            -DgroupId=com.acme \
+            -DartifactId=testing \
+            -Dversion=1.0-SNAPSHOT \
+            -Dpackage=com.acme.testing
+
+      - name: build standalone testing project
+        shell: bash
+        run: |
+          cd testing && chmod +x mvnw && ./mvnw package -Pgenerate-standalone
+
+      - name: run standalone testing project
+        shell: bash
+        run: |
+          cd testing && chmod +x standalone-tutorials.sh && ./standalone-tutorials.sh

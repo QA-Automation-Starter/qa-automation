@@ -16,8 +16,8 @@
 package dev.aherscu.qa.testing.example.scenarios.tutorial6;
 
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
+import static jakarta.ws.rs.core.Response.Status.Family.*;
 import static java.util.Arrays.*;
-import static javax.ws.rs.core.Response.Status.Family.*;
 import static org.hamcrest.Matchers.*;
 import static org.mockserver.matchers.Times.*;
 import static org.mockserver.model.HttpError.*;
@@ -26,8 +26,6 @@ import static org.mockserver.model.HttpResponse.*;
 import static org.mockserver.model.MediaType.*;
 
 import java.util.*;
-
-import javax.ws.rs.client.*;
 
 import org.mockserver.mock.*;
 import org.mockserver.model.*;
@@ -41,6 +39,7 @@ import dev.aherscu.qa.jgiven.rest.tags.*;
 import dev.aherscu.qa.testing.example.*;
 import dev.aherscu.qa.testing.utils.assertions.*;
 import dev.aherscu.qa.testing.utils.rest.*;
+import jakarta.ws.rs.client.*;
 import lombok.*;
 
 /**

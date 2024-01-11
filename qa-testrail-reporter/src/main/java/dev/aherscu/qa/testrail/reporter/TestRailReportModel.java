@@ -56,12 +56,12 @@ public class TestRailReportModel extends QaJGivenReportModel<ScenarioModel> {
     /**
      * To be called from Mustache template for saving screenshots as separate
      * PNG files, in a directory matching the name of the test report file.
-     * 
+     *
      * <p>
      * These are later picked up by the {@link TestRailReporter} and attached to
      * the test result in TestRail.
      * </p>
-     * 
+     *
      * @param frag
      *            Mustache fragment to process, assumed to be a screenshot in
      *            Base64 PNG format

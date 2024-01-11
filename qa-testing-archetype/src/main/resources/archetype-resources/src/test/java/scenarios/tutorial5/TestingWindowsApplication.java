@@ -21,6 +21,7 @@ import static org.hamcrest.Matchers.*;
 
 import java.net.*;
 
+import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.testng.annotations.*;
 
@@ -30,21 +31,20 @@ import lombok.*;
 
 public class TestingWindowsApplication {
 
-    private WindowsDriver<?> driver;
+    private WindowsDriver driver;
+
+    @Test
+    public void shouldCalculate() {
+        driver.findElement(By.id("CalculatorResults"))
+            .sendKeys("8+7=");
+        assertThat(driver.findElement(By.id("CalculatorResults"))
+            .getText(),
+            stringContainsInOrder("Display is", "15"));
+    }
 
     @Test
     public void shouldOpenCalculator() {
         assertThat(driver.getTitle(), equalTo("Calculator"));
-    }
-
-    @Test
-    public void shouldCalculate() {
-        driver.findElementByAccessibilityId("CalculatorResults")
-            .sendKeys("8+7=");
-        assertThat(driver
-            .findElementByAccessibilityId("CalculatorResults")
-            .getText(),
-            stringContainsInOrder("Display is", "15"));
     }
 
     @SuppressFBWarnings(
@@ -66,7 +66,7 @@ public class TestingWindowsApplication {
         val capabilities = new DesiredCapabilities();
         capabilities.setCapability("app",
             "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App");
-        driver = new WindowsDriver<>(new URL("http://127.0.0.1:4723"),
+        driver = new WindowsDriver(new URL("http://127.0.0.1:4723"),
             capabilities);
 
         // NOTE: should uncomment in order to deal with latencies

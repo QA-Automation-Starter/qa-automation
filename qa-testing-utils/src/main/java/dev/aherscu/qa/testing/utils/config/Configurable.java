@@ -17,9 +17,9 @@ package dev.aherscu.qa.testing.utils.config;
 
 /**
  * Base class for all things that use {@link AbstractConfiguration}.
- * 
+ *
  * @author aherscu
- * 
+ *
  * @param <T>
  *            configuration type
  */
@@ -31,7 +31,7 @@ public class Configurable<T extends AbstractConfiguration<?>> {
 
     /**
      * Sets up configuration.
-     * 
+     *
      * @param configuration
      *            the configuration; if null, operations requiring configuration
      *            will fail
@@ -42,7 +42,7 @@ public class Configurable<T extends AbstractConfiguration<?>> {
 
     /**
      * Resolves a value according to configured definitions.
-     * 
+     *
      * @param value
      *            the value to resolve definitions references within
      * @return the resolved value

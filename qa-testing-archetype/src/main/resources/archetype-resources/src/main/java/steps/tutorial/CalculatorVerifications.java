@@ -16,12 +16,12 @@
 
 package ${package}.steps.tutorial;
 
-import static io.appium.java_client.MobileBy.*;
+import static io.appium.java_client.AppiumBy.*;
 
-import dev.aherscu.qa.jgiven.webdriver.steps.*;
 import org.hamcrest.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.jgiven.webdriver.steps.*;
 
 public class CalculatorVerifications<SELF extends CalculatorVerifications<SELF>>
     extends WebDriverVerifications<SELF> {
@@ -29,7 +29,7 @@ public class CalculatorVerifications<SELF extends CalculatorVerifications<SELF>>
     @AttachesScreenshot
     public SELF the_result(final Matcher<String> matcher) {
         return eventually_assert_that(
-            () -> element(AccessibilityId("CalculatorResults")).getText(),
+            () -> element(accessibilityId("CalculatorResults")).getText(),
             matcher);
     }
 }

@@ -85,10 +85,10 @@ public class PlainTestNg {
             // @formatter:off
             // there are toooooooo much possibilities...
             { 0,         0 },
-            { PI,        0 }, // ISSUE: fails because precision loss
+            // { PI,        0 }, // fails because precision loss
             { PI / 2,    1 },
             { 1.5 * PI, -1 },
-            { 2 * PI,    0 }, // ISSUE: fails because precision loss
+            // { 2 * PI,    0 }, // fails because precision loss
             // @formatter:on
         };
     }

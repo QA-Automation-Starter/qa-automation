@@ -34,7 +34,7 @@ public class Bind {
     /**
      * The id of the metadata which will be applied to all the files matching
      * the pattern parameter.
-     * 
+     *
      * @parameter
      * @required
      */

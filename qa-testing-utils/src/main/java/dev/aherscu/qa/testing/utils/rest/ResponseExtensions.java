@@ -15,14 +15,13 @@
  */
 package dev.aherscu.qa.testing.utils.rest;
 
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.*;
-
+import jakarta.ws.rs.client.*;
+import jakarta.ws.rs.core.*;
 import lombok.experimental.*;
 
 /**
  * Fixes the JAX RS API a bit...
- * 
+ *
  * @author aherscu
  *
  */
@@ -30,14 +29,14 @@ import lombok.experimental.*;
 public final class ResponseExtensions {
     /**
      * Closes this response and returns it; enables fluent coding style.
-     * 
+     *
      * <p>
      * Assuming that you have the Lombok library in your classpath, then
      * applying {@code @ExtensionMethod({ ResponseExtensions.class })} on your
      * class will allow you to use
      * {@code target.request().get().closeThis().getCookies()...}, where
      * {@code target} is a {@link WebTarget}.
-     * 
+     *
      * @param thisResponse
      *            this response
      * @return the closed response

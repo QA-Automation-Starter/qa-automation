@@ -19,7 +19,7 @@ import dev.aherscu.qa.jgiven.commons.model.*;
 
 /**
  * Rest client type of scenario.
- * 
+ *
  * @author aherscu
  *
  */

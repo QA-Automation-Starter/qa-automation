@@ -60,7 +60,7 @@ public class JXPathAsserterImpl implements JXPathAsserter {
                 } else {
                     assertThatThrownBy(
                         () -> context.getValue(jxpathAssertion.left))
-                            .isInstanceOf(JXPathNotFoundException.class);
+                        .isInstanceOf(JXPathNotFoundException.class);
                 }
             } catch (final AssertionError e) {
                 assertionErrors.add(

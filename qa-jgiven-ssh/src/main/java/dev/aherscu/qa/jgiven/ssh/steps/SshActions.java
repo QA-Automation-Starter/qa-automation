@@ -39,10 +39,10 @@ import net.schmizz.sshj.transport.verification.*;
 /**
  * Generic SSH configuration actions. Act on previously set configuration. Each
  * action closes the connection.
- * 
+ *
  * @param <SELF>
  *            the type of the subclass
- * 
+ *
  * @author aherscu
  */
 @ThreadSafe
@@ -112,7 +112,7 @@ public class SshActions<SELF extends SshActions<SELF>>
 
     /**
      * Deletes the entire directory of downloaded files.
-     * 
+     *
      * @return {@link #self()}
      */
     @NestedSteps
@@ -122,7 +122,7 @@ public class SshActions<SELF extends SshActions<SELF>>
 
     /**
      * Downloads a file from target SSH machine to local machine.
-     * 
+     *
      * @param url
      *            the machine from which to download
      * @param file
@@ -147,7 +147,7 @@ public class SshActions<SELF extends SshActions<SELF>>
      * Executes a batch command on target SSH machine, using the timeout set by
      * {@link SshFixtures#execution_timeout(int)} and the target output stream
      * set by {@link SshFixtures#execution_output_to(OutputStream)}.
-     * 
+     *
      * @param url
      *            the machine on which to execute
      * @param command
@@ -163,7 +163,7 @@ public class SshActions<SELF extends SshActions<SELF>>
 
     /**
      * Executes a batch command on target SSH machine.
-     * 
+     *
      * @param url
      *            the machine on which to execute
      * @param command

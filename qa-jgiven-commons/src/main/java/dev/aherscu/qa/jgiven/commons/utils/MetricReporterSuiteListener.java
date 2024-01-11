@@ -43,12 +43,12 @@ import lombok.extern.slf4j.*;
  * CSV files are written to directory as specified via {@code target-directory}
  * parameter. If this parameter is not specified, then {@code target} is
  * assumed.
- * 
+ *
  * <p>
  * If {@code metric-report-interval-ms} parameter is specified, then plots the
  * accumulated metrics to console every so milliseconds.
  * </p>
- * 
+ *
  * <p>
  * To be used via {@code testng.xml}; see <a href=
  * "https://testng.org/doc/documentation-main.html#parameters-testng-xml">
@@ -59,11 +59,6 @@ import lombok.extern.slf4j.*;
  */
 @Slf4j
 public class MetricReporterSuiteListener implements ISuiteListener {
-    // ISSUE seems that UnitilsScenarioTest derived test classes
-    // prevents IHookable#run to be invoked, hence cannot use this method
-    // for handling pre/post method execution.
-    // UnitilsScenarioTest implements IHookable#run in order to integrate with
-    // the Unitils framework; perhaps that implementation is faulty.
 
     /**
      * Metrics to be reported shall be registered here.
@@ -94,7 +89,7 @@ public class MetricReporterSuiteListener implements ISuiteListener {
                 pathFor(suite)
                     .resolve("all-metrics.csv")
                     .toFile(),
-                StandardCharsets.UTF_8.toString())) {
+                StandardCharsets.UTF_8)) {
 
             val wasHeaderProcessed = new boolean[] { false };
 

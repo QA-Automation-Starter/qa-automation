@@ -32,7 +32,7 @@ import lombok.extern.slf4j.*;
  * {@link WebDriverConfiguration}. This enables each test method to run in its
  * own thread.
  * </p>
- * 
+ *
  * <p>
  * Eventually, multiple support classes may be derived from this one and
  * override above behaviors as needed.
@@ -71,7 +71,7 @@ public abstract class ApplicationPerMethodWebSessionTest<C extends WebDriverConf
         log.debug("after method quitting web driver");
         requireNonNull(webDriver.get(),
             "web driver not initialized nothing to quit")
-                .safelyQuit();
+            .safelyQuit();
     }
 
     /**

@@ -18,8 +18,6 @@ package dev.aherscu.qa.testing.example;
 import java.io.*;
 import java.net.*;
 
-import javax.ws.rs.core.*;
-
 import org.mockserver.client.*;
 import org.mockserver.integration.*;
 import org.testng.annotations.*;
@@ -28,6 +26,7 @@ import dev.aherscu.qa.jgiven.commons.model.*;
 import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.testing.utils.config.*;
+import jakarta.ws.rs.core.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
@@ -52,7 +51,7 @@ import lombok.extern.slf4j.*;
 @Slf4j
 abstract public class AbstractMockServerTest<T extends AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN extends GenericActions<T, ?> & ScenarioType<T>, THEN extends GenericVerifications<T, ?> & ScenarioType<T>>
     extends
-    UnitilsScenarioTest<BaseConfiguration, T, GIVEN, WHEN, THEN> {
+    ConfigurableScenarioTest<BaseConfiguration, T, GIVEN, WHEN, THEN> {
 
     public static final int          DEFAULT_PORT = 1080;
 

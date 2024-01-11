@@ -48,8 +48,6 @@ import lombok.extern.slf4j.*;
  */
 @Listeners({ ExceptionPerThreadListener.class })
 @Slf4j
-// BUG see UnitilsScenarioTest#unitilsBeforeMethod call to
-// UnitilsScenarioTest#setFormattedThreadName
 // ISSUE https://github.com/cbeust/testng/issues/54
 // Current TestNG implementation ignores
 // @Test(singleThreaded = true)
@@ -70,7 +68,7 @@ public abstract class ApplicationPerClassWebSessionTest<C extends WebDriverConfi
         log.debug("after class quitting web driver");
         requireNonNull(webDriver.get(),
             "web driver not initialized nothing to quit")
-                .safelyQuit();
+            .safelyQuit();
     }
 
     /**
@@ -105,7 +103,7 @@ public abstract class ApplicationPerClassWebSessionTest<C extends WebDriverConfi
 
     /**
      * Continues on same device session without recovery.
-     * 
+     *
      * @see #continuing_section(Runnable)
      */
     protected void continuing_section() {

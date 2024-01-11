@@ -38,14 +38,9 @@ import edu.umd.cs.findbugs.annotations.*;
  *
  */
 @SuppressFBWarnings("BC_UNCONFIRMED_CAST_OF_RETURN_VALUE")
-// BUG see UnitilsScenarioTest#unitilsBeforeMethod call to
-// UnitilsScenarioTest#setFormattedThreadName
-// <C extends AbstractConfiguration<? extends Configuration>, T extends
-// AnyScenarioType, GIVEN extends GenericFixtures<T, ?> & ScenarioType<T>, WHEN
-// extends GenericActions<T, ?> & ScenarioType<T>, THEN extends
-// GenericVerifications<T, ?> & ScenarioType<T>>
 public abstract class ApplicationUnmanagedSessionTest<C extends WebDriverConfiguration, GIVEN extends WebDriverFixtures<?>, WHEN extends WebDriverActions<?>, THEN extends WebDriverVerifications<?>>
-    extends UnitilsScenarioTest<C, WebDriverScenarioType, GIVEN, WHEN, THEN> {
+    extends
+    ConfigurableScenarioTest<C, WebDriverScenarioType, GIVEN, WHEN, THEN> {
 
     protected ApplicationUnmanagedSessionTest(Class<C> configurationType) {
         super(configurationType);

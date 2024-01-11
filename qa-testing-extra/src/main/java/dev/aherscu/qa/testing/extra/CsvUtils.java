@@ -34,7 +34,7 @@ public final class CsvUtils {
 
     /**
      * Provides a Java 8 stream wrapper around a CSV I/O stream.
-     * 
+     *
      * @param inputStream
      *            input stream for CSV data
      * @return non parallel stream of CSV lines parsed as String array

@@ -19,7 +19,7 @@ import dev.aherscu.qa.jgiven.commons.model.*;
 
 /**
  * Elastic Search client type of scenario.
- * 
+ *
  * @author aherscu
  *
  */

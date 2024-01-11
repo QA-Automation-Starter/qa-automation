@@ -22,10 +22,10 @@ import dev.aherscu.qa.jgiven.commons.formatters.*;
 
 /**
  * Wraps a {@link Callable} with a description.
- * 
+ *
  * @param <V>
  *            the type of output
- * 
+ *
  * @author Adrian Herscu
  *
  */

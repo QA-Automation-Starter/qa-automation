@@ -58,7 +58,7 @@ public abstract class AbstractExecutionSetRunResultsExTest {
     public void shouldSerializeExecutionSetRunResultsToXml() {
         try (val resultsByteArrayOutputStream = new ByteArrayOutputStream()) {
             marshal(results.get(), resultsByteArrayOutputStream);
-            assertThat(resultsByteArrayOutputStream.toString(UTF_8.name()),
+            assertThat(resultsByteArrayOutputStream.toString(UTF_8),
                 isIdenticalTo(resultsXmlString)
                     .ignoreComments()
                     .ignoreWhitespace());

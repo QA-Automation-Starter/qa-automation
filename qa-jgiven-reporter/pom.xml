@@ -21,7 +21,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.36-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-jgiven-reporter</artifactId>
@@ -42,7 +42,7 @@
     <dependency>
       <groupId>org.xhtmlrenderer</groupId>
       <artifactId>flying-saucer-pdf-itext5</artifactId>
-      <version>9.1.20</version>
+      <version>9.3.1</version>
     </dependency>
 
     <dependency>
@@ -52,21 +52,25 @@
     </dependency>
 
     <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-      <!-- NOTE: this version makes jgiven-core and maven-* both happy -->
-      <version>29.0-jre</version>
+      <groupId>com.samskivert</groupId>
+      <artifactId>jmustache</artifactId>
+      <version>1.16</version>
     </dependency>
 
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-testing-utils</artifactId>
-      <version>0.0.36-SNAPSHOT</version>
+      <version>1.0.2-SNAPSHOT</version>
     </dependency>
 
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jooq</groupId>
+      <artifactId>jool</artifactId>
     </dependency>
   </dependencies>
 
@@ -94,34 +98,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>platform-jdk11</id>
-      <activation>
-        <jdk>[11,)</jdk>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>org.jooq</groupId>
-          <artifactId>jool</artifactId>
-          <version>0.9.14</version>
-        </dependency>
-      </dependencies>
-    </profile>
-
-    <profile>
-      <id>platform-jdk8</id>
-      <activation>
-        <jdk>1.8</jdk>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>org.jooq</groupId>
-          <artifactId>jool-java-8</artifactId>
-          <version>0.9.14</version>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
 </project>

@@ -16,13 +16,13 @@
 
 package ${package}.steps.tutorial;
 
-import static io.appium.java_client.MobileBy.*;
+import static io.appium.java_client.AppiumBy.*;
 
 import dev.aherscu.qa.jgiven.webdriver.steps.*;
 
 public class CalculatorActions<SELF extends CalculatorActions<SELF>>
     extends WebDriverActions<SELF> {
     public SELF typing(final String expression) {
-        return typing_$_into(expression, AccessibilityId("CalculatorResults"));
+        return typing_$_into(expression, accessibilityId("CalculatorResults"));
     }
 }

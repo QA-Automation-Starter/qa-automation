@@ -20,7 +20,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>0.0.36-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-jgiven-webdriver</artifactId>
@@ -30,15 +30,11 @@
     and support for taking screenshots.
   </description>
 
-  <properties>
-    <skipTests>true</skipTests>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-commons</artifactId>
-      <version>0.0.36-SNAPSHOT</version>
+      <version>1.0.2-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -47,12 +43,16 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>htmlunit-driver</artifactId>
-      <version>2.39.0</version>
+      <version>4.13.0</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
           <groupId>commons-logging</groupId>
           <artifactId>commons-logging</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.eclipse.jetty.websocket</groupId>
+          <artifactId>websocket-client</artifactId>
         </exclusion>
       </exclusions>
     </dependency>

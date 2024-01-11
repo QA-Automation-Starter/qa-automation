@@ -15,15 +15,12 @@
   -->
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <!-- Configured to run at most 5 tests in parallel, each one with a 2-threads 
-  data provider, that is at most 10 database connections open at once. This 
-  number must match the configured connection pool implementation;
-  see src/test/resources/unitils.properties -->
+  data provider, that is at most 10 database connections open at once. -->
 <!-- IMPORTANT: do not use the timeout attribute as it interferes with JGiven
   reporting mechanism causing all tests to be reported as failing -->
 <suite name="JGiven Commons Tests Suite" verbose="1"
        data-provider-thread-count="2">
-  <!-- ISSUE: JGiven does not support parallel methods -->
-  <test name="development" parallel="classes">
+  <test name="development" parallel="methods">
     <packages>
       <package
         name="dev.aherscu.qa.jgiven.commons"/>

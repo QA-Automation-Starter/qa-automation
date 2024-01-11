@@ -53,7 +53,7 @@ public class AttachesScreenshotAspect {
 
     /**
      * Attaches a screenshot even if the advised method failed.
-     * 
+     *
      * @param thisJoinPoint
      *            advised join point
      * @return forwarded from advised method

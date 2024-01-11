@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2023 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,15 +37,6 @@ public class TestingWindowsWithJGiven
         super(TestConfiguration.class);
     }
 
-    @BeforeClass
-    @SneakyThrows
-    @Override
-    protected void beforeClassOpenWebDriver() {
-        log.debug("before class opening WinAppDriver");
-        webDriver.set(WebDriverEx.from(configuration()
-            .capabilitiesFor("provider.local.windows")));
-    }
-
     @DataProvider
     static Object[][] data() {
         return new Object[][] {
@@ -54,15 +45,6 @@ public class TestingWindowsWithJGiven
             { Calculation.builder().expression("333/111").result("3").build() },
             { Calculation.builder().expression("7-8").result("-1").build() },
         };
-    }
-
-    @Test
-    public void shouldOpenCalculator() {
-        given()
-            .a_calculator(webDriver.get());
-
-        then()
-            .the_title(is(equalTo("Calculator")));
     }
 
     @Test(dataProvider = INTERNAL_DATA_PROVIDER)
@@ -76,5 +58,23 @@ public class TestingWindowsWithJGiven
         then()
             .the_result(is(
                 stringContainsInOrder("Display is", calculation.result)));
+    }
+
+    @Test
+    public void shouldOpenCalculator() {
+        given()
+            .a_calculator(webDriver.get());
+
+        then()
+            .the_title(is(equalTo("Calculator")));
+    }
+
+    @BeforeClass
+    @SneakyThrows
+    @Override
+    protected void beforeClassOpenWebDriver() {
+        log.debug("before class opening WinAppDriver");
+        webDriver.set(WebDriverEx.from(configuration()
+            .capabilitiesFor("provider.local.windows")));
     }
 }

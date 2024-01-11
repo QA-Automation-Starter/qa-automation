@@ -19,15 +19,15 @@ import java.io.*;
 import java.lang.annotation.*;
 import java.lang.reflect.*;
 
-import javax.ws.rs.core.*;
 import javax.xml.bind.*;
 import javax.xml.namespace.*;
 
+import jakarta.ws.rs.core.*;
 import lombok.extern.slf4j.*;
 
 /**
  * Provides common XML marshalling over REST.
- * 
+ *
  * @author aherscu
  *
  * @param <T>
@@ -38,7 +38,7 @@ public abstract class AbstractJaxbWriteableProvider<T>
     extends AbstractWriteableProvider<T> {
     /**
      * The root XML element name to use when marshalling.
-     * 
+     *
      * @see #writeTo(Object, Class, Type, Annotation[], MediaType,
      *      MultivaluedMap, OutputStream)
      */
@@ -46,7 +46,7 @@ public abstract class AbstractJaxbWriteableProvider<T>
 
     /**
      * Initializes this provider to use a specified root XML element name.
-     * 
+     *
      * @param elementName
      *            to be used as the name of the root XML element
      */
