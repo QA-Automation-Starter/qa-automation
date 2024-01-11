@@ -2,7 +2,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/dev.aherscu.qa/qa-automation/badge.svg)](https://search.maven.org/search?q=dev.aherscu)
 [![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/on-main-push.yml/badge.svg)](https://github.com/QA-Automation-Starter/qa-automation/actions)
 [![Sauce Test Status](https://saucelabs.com/buildstatus/oauth-adrian.herscu-d81b6)](https://app.saucelabs.com/u/oauth-adrian.herscu-d81b6)
-![JGiven Report](https://img.shields.io/badge/jgiven-example-report?link=https%3A%2F%2Fqa-automation-starter.aherscu.dev%2Fqa-testing-parent%2Fqa-testing-example%2Fjgiven-reports%2Ffunctional-dev%2Flocal%2Fhtml%2Findex.html)
+![JGiven Report](https://img.shields.io/badge/jgiven-example-report)
 
 
 > > **[Usage instructions and Brief introduction](https://qa-automation-starter.aherscu.dev)**
