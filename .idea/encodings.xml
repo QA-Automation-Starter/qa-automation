@@ -33,6 +33,8 @@
     <file url="file://$PROJECT_DIR$/qa-testing-extra/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-testing-parent/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-testing-parent/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qa-testing-starter/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/qa-testing-starter/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-testing-utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-testing-utils/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/qa-testrail-reporter/src/main/java" charset="UTF-8" />
