@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
   ~ Copyright 2024 Adrian Herscu
   ~
@@ -14,21 +15,9 @@
   ~ limitations under the License.
   -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<FindBugsFilter
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="https://github.com/spotbugs/filter/3.0.0"
+  xsi:schemaLocation="https://github.com/spotbugs/filter/3.0.0 https://raw.githubusercontent.com/spotbugs/spotbugs/4.3.0/spotbugs/etc/findbugsfilter.xsd">
 
-  <parent>
-    <groupId>dev.aherscu.qa</groupId>
-    <artifactId>qa-testing-parent</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
-    <relativePath>../qa-testing-parent</relativePath>
-  </parent>
-
-  <artifactId>qa-testing-starter</artifactId>
-  <packaging>jar</packaging>
-
-  <name>QA Testing Starter</name>
-
-</project>
+</FindBugsFilter>
