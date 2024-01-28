@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2023 Adrian Herscu
+  ~ Copyright 2024 Adrian Herscu
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -95,6 +95,41 @@
     <testobject.ipa.id />
     <testobject.apk.id />
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>dev.aherscu.qa</groupId>
+        <artifactId>qa-jgiven-webdriver</artifactId>
+        <version>1.0.3-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>dev.aherscu.qa</groupId>
+        <artifactId>qa-jgiven-ssh</artifactId>
+        <version>1.0.3-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>dev.aherscu.qa</groupId>
+        <artifactId>qa-jgiven-rest</artifactId>
+        <version>1.0.3-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>dev.aherscu.qa</groupId>
+        <artifactId>qa-jgiven-rabbitmq</artifactId>
+        <version>1.0.3-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>dev.aherscu.qa</groupId>
+        <artifactId>qa-jgiven-elasticsearch</artifactId>
+        <version>1.0.3-SNAPSHOT</version>
+      </dependency>
+      <dependency>
+        <groupId>dev.aherscu.qa</groupId>
+        <artifactId>qa-jgiven-jdbc</artifactId>
+        <version>1.0.3-SNAPSHOT</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
