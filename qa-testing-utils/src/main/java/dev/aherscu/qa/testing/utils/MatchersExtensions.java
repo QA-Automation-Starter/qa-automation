@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Adrian Herscu
+ * Copyright 2024 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@ package dev.aherscu.qa.testing.utils;
 
 import static dev.aherscu.qa.testing.utils.NumberUtils.*;
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
+import static java.util.Objects.*;
 import static java.util.regex.Pattern.*;
 import static org.apache.commons.lang3.math.NumberUtils.*;
 
@@ -60,7 +61,7 @@ public class MatchersExtensions extends Matchers {
     public static <T, R> Matcher<Iterable<T>> adapted(
         final java.util.function.Function<T, R> converter,
         final Matcher<Iterable<R>> matcher) {
-        return new TypeSafeMatcher<Iterable<T>>() {
+        return new TypeSafeMatcher<>() {
             @Override
             public void describeTo(final Description description) {
                 description.appendDescriptionOf(matcher);
@@ -91,7 +92,7 @@ public class MatchersExtensions extends Matchers {
     public static <T, R> Matcher<Iterable<T>> adaptedByJXPath(
         final String jxpath,
         final Matcher<Iterable<R>> matcher) {
-        return new TypeSafeMatcher<Iterable<T>>() {
+        return new TypeSafeMatcher<>() {
             @Override
             public void describeTo(final Description description) {
                 description.appendDescriptionOf(matcher);
@@ -138,7 +139,7 @@ public class MatchersExtensions extends Matchers {
     public static Matcher<Stream<String>> adaptedByRegex(
         final String regex,
         final Matcher<Stream<String>> matcher) {
-        return new TypeSafeMatcher<Stream<String>>() {
+        return new TypeSafeMatcher<>() {
             @Override
             public void describeTo(final Description description) {
                 description.appendDescriptionOf(matcher);
@@ -163,7 +164,7 @@ public class MatchersExtensions extends Matchers {
      */
     public static <T> Matcher<Collection<T>> adaptedCollectionToIterableMatcher(
         final Matcher<Iterable<T>> matcher) {
-        return new TypeSafeMatcher<Collection<T>>() {
+        return new TypeSafeMatcher<>() {
             @Override
             public void describeTo(final Description description) {
                 description.appendDescriptionOf(matcher);
@@ -185,7 +186,7 @@ public class MatchersExtensions extends Matchers {
      */
     public static <T> Matcher<Iterable<T>> adaptedIterableToCollectionMatcher(
         final Matcher<Collection<T>> matcher) {
-        return new TypeSafeMatcher<Iterable<T>>() {
+        return new TypeSafeMatcher<>() {
             @Override
             public void describeTo(final Description description) {
                 description.appendDescriptionOf(matcher);
@@ -214,15 +215,20 @@ public class MatchersExtensions extends Matchers {
     public static <T, R> Matcher<T> adaptedObject(
         final java.util.function.Function<T, R> converter,
         final Matcher<R> matcher) {
-        return new TypeSafeMatcher<T>() {
+        // NOTE changed from TypeSafeMatcher in order to support anything()
+        return new BaseMatcher<>() {
             @Override
             public void describeTo(final Description description) {
                 description.appendDescriptionOf(matcher);
             }
 
             @Override
-            protected boolean matchesSafely(final T actual) {
-                return matcher.matches(converter.apply(actual));
+            // NOTE changed from matchesSafely in order to support anything()
+            public boolean matches(final Object actual) {
+                return matcher.matches(
+                    isNull(actual)
+                        ? null
+                        : converter.apply((T) actual));
             }
         };
     }
@@ -236,16 +242,18 @@ public class MatchersExtensions extends Matchers {
      */
     public static Matcher<String> adaptedStringToBooleanMatcher(
         final Matcher<Boolean> booleanMatcher) {
-        return new TypeSafeMatcher<String>() {
+        // NOTE changed from TypeSafeMatcher in order to support anything()
+        return new BaseMatcher<>() {
             @Override
             public void describeTo(final Description description) {
                 description.appendDescriptionOf(booleanMatcher);
             }
 
             @Override
-            protected boolean matchesSafely(final String actual) {
+            // NOTE changed from matchesSafely in order to support anything()
+            public boolean matches(final Object actual) {
                 return booleanMatcher.matches(
-                    BooleanUtils.toBoolean(actual));
+                    BooleanUtils.toBoolean((String) actual));
             }
         };
     }
@@ -264,17 +272,19 @@ public class MatchersExtensions extends Matchers {
     public static Matcher<String> adaptedStringToNumericMatcher(
         final Matcher<? extends Number> numericMatcher,
         final Class<? extends Number>... typeOfExpectedNumber) {
-        return new TypeSafeMatcher<String>() {
+        // NOTE changed from TypeSafeMatcher in order to support anything()
+        return new BaseMatcher<>() {
             @Override
             public void describeTo(final Description description) {
                 description.appendDescriptionOf(numericMatcher);
             }
 
             @Override
-            protected boolean matchesSafely(final String actual) {
-                return isCreatable(actual)
+            // NOTE changed from matchesSafely in order to support anything()
+            public boolean matches(final Object actual) {
+                return isCreatable((String) actual)
                     && numericMatcher.matches(
-                        numericValueOf(actual, typeOfExpectedNumber));
+                        numericValueOf((String) actual, typeOfExpectedNumber));
             }
         };
     }
@@ -312,14 +322,16 @@ public class MatchersExtensions extends Matchers {
     public static Matcher<Number> adaptedTypeOfNumericMatcher(
         final Matcher<? extends Number> numericMatcher,
         final Class<? extends Number> targetType) {
-        return new TypeSafeMatcher<Number>() {
+        // NOTE changed from TypeSafeMatcher in order to support anything()
+        return new BaseMatcher<>() {
             @Override
             public void describeTo(final Description description) {
                 description.appendDescriptionOf(numericMatcher);
             }
 
             @Override
-            protected boolean matchesSafely(final Number actual) {
+            // NOTE changed from matchesSafely in order to support anything()
+            public boolean matches(final Object actual) {
                 return numericMatcher.matches(targetType.cast(actual));
             }
         };
@@ -396,7 +408,7 @@ public class MatchersExtensions extends Matchers {
      * @return the ordering matcher
      */
     public static <T> Matcher<Iterable<T>> ordered(final Ordering<T> ordering) {
-        return new TypeSafeMatcher<Iterable<T>>() {
+        return new TypeSafeMatcher<>() {
             @Override
             public void describeTo(final Description description) {
                 description.appendText(ordering.toString());

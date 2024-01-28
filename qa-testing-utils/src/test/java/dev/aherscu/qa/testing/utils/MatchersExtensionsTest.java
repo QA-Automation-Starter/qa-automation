@@ -25,15 +25,18 @@ import static java.util.Collections.*;
 import static org.apache.commons.lang3.StringUtils.*;
 import static org.hamcrest.MatcherAssert.*;
 
-import com.google.common.collect.*;
-import com.jayway.jsonpath.*;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.*;
-import lombok.*;
+
 import org.apache.commons.jxpath.*;
 import org.hamcrest.*;
 import org.testng.annotations.*;
+
+import com.google.common.collect.*;
+import com.jayway.jsonpath.*;
+
+import lombok.*;
 
 @SuppressWarnings({ "javadoc", "static-method", "boxing", "MagicNumber" })
 public class MatchersExtensionsTest {
@@ -56,9 +59,10 @@ public class MatchersExtensionsTest {
 
     @Test
     public void shouldAssertAdaptedObject() {
-        assertThat(
-            new SomeType(123, "blah"),
+        assertThat(new SomeType(123, "blah"),
             adaptedObject(SomeType::getData, equalTo("blah")));
+        assertThat(null,
+            adaptedObject(SomeType::getData, anything()));
     }
 
     @Test
@@ -118,8 +122,7 @@ public class MatchersExtensionsTest {
 
     @Test
     public void shouldBeAlphabeticallyOrdered() {
-        assertThat(asList(
-                "Ba", "Cain", "Goldstein", "Jimenez", "Thompson"),
+        assertThat(asList("Ba", "Cain", "Goldstein", "Jimenez", "Thompson"),
             is(ordered(natural())));
     }
 
@@ -183,7 +186,7 @@ public class MatchersExtensionsTest {
     @Test
     public void shouldCurryAdapted() {
         val jsonAdapter = MatchersExtensions
-            .<Function<String, String>, Matcher<Iterable<String>>, Matcher<Iterable<String>>>curriedAdapter(
+            .<Function<String, String>, Matcher<Iterable<String>>, Matcher<Iterable<String>>> curriedAdapter(
                 MatchersExtensions::adapted)
             .curry(json -> JsonPath.parse(json).read("$.a"));
 
@@ -198,7 +201,7 @@ public class MatchersExtensionsTest {
     @Test
     public void shouldCurryAdaptedObject() {
         val someTypeAdapter = MatchersExtensions
-            .<Function<SomeType, String>, Matcher<String>, Matcher<SomeType>>curriedAdapter(
+            .<Function<SomeType, String>, Matcher<String>, Matcher<SomeType>> curriedAdapter(
                 MatchersExtensions::adaptedObject)
             .curry(SomeType::getData);
 
@@ -210,8 +213,8 @@ public class MatchersExtensionsTest {
     @Test
     public void shouldGetValueByJXPath() {
         assertThat(JXPathContext
-                .newContext(new SomeType(123, "data"))
-                .getValue("id"),
+            .newContext(new SomeType(123, "data"))
+            .getValue("id"),
             equalTo(123));
     }
 
@@ -219,16 +222,16 @@ public class MatchersExtensionsTest {
     public void shouldIgnoreMissingProperties() {
 
         assertThat(Stream
-                .of(
-                    new SomeListType(123, singletonList("data")),
-                    new SomeListType(123, emptyList()))
-                .map(o1 -> new SomeType(o1.id,
-                    defaultIfBlank(o1.data
-                            .stream()
-                            .map(e -> e.replace('1', '2'))
-                            .collect(Collectors.joining()),
-                        null)))
-                .collect(Collectors.toList()),
+            .of(
+                new SomeListType(123, singletonList("data")),
+                new SomeListType(123, emptyList()))
+            .map(o1 -> new SomeType(o1.id,
+                defaultIfBlank(o1.data
+                    .stream()
+                    .map(e -> e.replace('1', '2'))
+                    .collect(Collectors.joining()),
+                    null)))
+            .collect(Collectors.toList()),
             adapted(o -> o.data, is(ordered(natural().nullsLast()))));
     }
 
