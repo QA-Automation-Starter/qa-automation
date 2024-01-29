@@ -13,13 +13,14 @@ import org.apache.commons.beanutils.*;
 import org.testng.annotations.*;
 
 import com.opencsv.*;
+import com.opencsv.exceptions.*;
 
 import lombok.*;
 import lombok.extern.slf4j.*;
 
 /**
  * Generic CSV data provider.
- * 
+ *
  * <p>
  * Adapted from
  * <a href="https://groups.google.com/forum/#!topic/testng-users/2TgeDItrG7U">
@@ -155,8 +156,8 @@ public class CsvDataProvider implements Iterator<Object[]> {
         if (last == null) {
             try {
                 last = reader.readNext();
-            } catch (final IOException ioe) {
-                throw new RuntimeException(ioe);
+            } catch (final IOException | CsvValidationException e) {
+                throw new RuntimeException(e);
             }
         }
         return last;

@@ -9,16 +9,14 @@ import static org.assertj.core.api.Assertions.*;
 import org.apache.commons.beanutils.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.actions.*;
-import dev.aherscu.qa.jgiven.commons.fixtures.*;
-import dev.aherscu.qa.jgiven.commons.model.*;
-import dev.aherscu.qa.jgiven.commons.tags.*;
-import dev.aherscu.qa.jgiven.commons.utils.*;
-import dev.aherscu.qa.jgiven.commons.verifications.*;
-import dev.aherscu.qa.testing.utils.config.*;
 import com.tngtech.jgiven.*;
 import com.tngtech.jgiven.annotation.*;
 
+import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.steps.*;
+import dev.aherscu.qa.jgiven.commons.tags.*;
+import dev.aherscu.qa.jgiven.commons.utils.*;
+import dev.aherscu.qa.testing.utils.config.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
@@ -39,7 +37,7 @@ import lombok.extern.slf4j.*;
 @SelfTest
 @SuppressWarnings({ "boxing" })
 public final class GenericCsvTest extends
-    UnitilsScenarioTest<BaseConfiguration, AnyScenarioType, GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
+    ConfigurableScenarioTest<BaseConfiguration, AnyScenarioType, GenericFixtures<AnyScenarioType, ?>, GenericActions<AnyScenarioType, ?>, GenericVerifications<AnyScenarioType, ?>> {
     /**
      * Represents data that should be read from a CSV file.
      *
@@ -158,7 +156,7 @@ public final class GenericCsvTest extends
      * @param sum
      *            the sum of first and second cells
      */
-    @Test(enabled = false, dataProviderClass = CsvDataProvider.class,
+    @Test(enabled = true, dataProviderClass = CsvDataProvider.class,
         dataProvider = "data")
     @As("should read Java Bean from CSV")
     @SneakyThrows(Exception.class)
@@ -187,8 +185,7 @@ public final class GenericCsvTest extends
      * @param status
      *            the third column
      */
-    @Test(enabled = false, dataProviderClass = CsvDataProvider.class,
-        dataProvider = "data")
+    @Test(dataProviderClass = CsvDataProvider.class, dataProvider = "data")
     @As("should read enums from CSV")
     @SneakyThrows(Exception.class)
     public void shouldReadEnumsFromCSV(
@@ -206,7 +203,7 @@ public final class GenericCsvTest extends
                 assertThat(x == y
                     ? Status.EQUAL
                     : Status.DIFFERENT)
-                        .isEqualTo(status);
+                    .isEqualTo(status);
             });
     }
 
@@ -219,8 +216,7 @@ public final class GenericCsvTest extends
      * @param y
      *            the second column number
      */
-    @Test(dataProviderClass = CsvDataProvider.class,
-        dataProvider = "data")
+    @Test(dataProviderClass = CsvDataProvider.class, dataProvider = "data")
     @As("should read primitives from CSV")
     @SneakyThrows(Exception.class)
     public void shouldReadPrimitivesFromCSV(final int x, final int y) {
