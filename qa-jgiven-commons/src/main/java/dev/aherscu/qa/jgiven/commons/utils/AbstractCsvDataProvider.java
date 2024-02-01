@@ -44,7 +44,7 @@ import lombok.extern.slf4j.*;
  * </pre>
  *
  * then you can use it like this:
- * 
+ *
  * <pre>
  * &#64;Test(dataProviderClass = FooCsvDataProvider.class, dataProvider = AbstractCsvDataProvider.DATA)
  * public void shouldReadFromCsv(final Foo value) {...}
