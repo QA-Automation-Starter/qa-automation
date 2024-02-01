@@ -105,36 +105,6 @@ public abstract class ConfigurableScenarioTest<C extends AbstractConfiguration<?
                 bindAnnotation(Root.class).toLocale(Locale.ROOT);
             }
         });
-
-        // DELETEME as it is now, works only on
-        // dev.aherscu.qa.jgiven.commons.scenarios
-        // NOTE: the generic CSV data provider feature is not ready for prime
-        // time yet; use -Dcsvtyperesolvers to enable it
-        // see also http://databene.org/feed4testng
-        // if (null != System.getProperty("csvtyperesolvers")) { //$NON-NLS-1$
-        // try {
-        // val typesAnnotatedWithBeanUtilsConverter = new Reflections(
-        // "dev.aherscu.qa.jgiven.commons.scenarios") //$NON-NLS-1$
-        // .getTypesAnnotatedWith(
-        // BeanUtilsConverter.class);
-        // for (val clazz : typesAnnotatedWithBeanUtilsConverter) {
-        // val annotation = clazz
-        // .getAnnotation(BeanUtilsConverter.class);
-        // if (null == annotation)
-        // // NOTE: this may happen only if the BeanUtilsConverter
-        // // annotation has no Runtime retention; but we know it
-        // // has
-        // throw new InternalError(
-        // "should not happen"); //$NON-NLS-1$
-        // val converter = annotation.value();
-        // log.trace("registering {} for {}", converter,
-        // clazz); // $NON-NLS-1$
-        // ConvertUtils.register(converter.newInstance(), clazz);
-        // }
-        // } catch (final InstantiationException | IllegalAccessException e) {
-        // throw new RuntimeException(e);
-        // }
-        // }
     }
 
     /**
