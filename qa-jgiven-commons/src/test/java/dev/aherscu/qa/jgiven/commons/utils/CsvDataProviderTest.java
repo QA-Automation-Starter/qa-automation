@@ -85,8 +85,7 @@ public class CsvDataProviderTest {
     }
 
     // NOTE: there must be a CsvDataProviderTest.shouldReadFromCSV.csv file
-    @Test(dataProviderClass = MyBeanCsvDataProvider.class,
-        dataProvider = "data")
+    @Test(dataProviderClass = MyBeanCsvDataProvider.class, dataProvider = DATA)
     public void shouldReadFromCsv(final MyBean value) {
         assertThat(value, hasProperty("value1", startsWith("line")));
     }
