@@ -88,6 +88,8 @@ public final class ObjectUtilsExtensions extends ObjectUtils {
      * @return the object passed in if not null
      * @throws RuntimeException
      *             if the object is null
+     * @throws IllegalArgumentException
+     *             if the exception was {@code null}
      */
     public static <T> T requireNonNull(final T obj, final RuntimeException e) {
         if (null == obj)
