@@ -16,14 +16,28 @@
 
 package dev.aherscu.qa.testing.utils;
 
-import java.io.*;
-
+import lombok.experimental.*;
 import org.apache.commons.lang3.*;
 
+import java.io.*;
+
+import static dev.aherscu.qa.testing.utils.ObjectUtilsExtensions.*;
+
+
+@UtilityClass
 public class ClassUtilsExtensions extends ClassUtils {
+    /**
+     * Retrieves a resource relative to specified class.
+     *
+     * @param clazz        the class from which the relative look-up should work
+     * @param resourceName the resource name to look-up for
+     * @return the resource as an input stream
+     * @throws IllegalArgumentException if the resource was not found
+     */
     public static InputStream getRelativeResourceAsStream(
         final Class<?> clazz,
-        final String fileName) {
-        return clazz.getResourceAsStream(fileName);
+        final String resourceName) {
+        return requireNonNull(clazz.getResourceAsStream(resourceName),
+            new IllegalArgumentException(resourceName + " file not found"));
     }
 }
