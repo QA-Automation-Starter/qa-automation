@@ -58,6 +58,11 @@ import lombok.extern.slf4j.*;
 @NoArgsConstructor // data provider classes must have a no-args ctor
 @Slf4j
 // NOTE: cannot use generic types due to TestNG restriction
+// java.lang.ClassCastException: class
+// sun.reflect.generics.reflectiveObjects.TypeVariableImpl cannot be cast to
+// class java.lang.Class
+// (sun.reflect.generics.reflectiveObjects.TypeVariableImpl and java.lang.Class
+// are in module java.base of loader 'bootstrap')
 public abstract class AbstractCsvDataProvider {
     public static final String DATA = "data";
 
