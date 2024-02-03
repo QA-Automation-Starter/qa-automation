@@ -40,9 +40,18 @@ public class ClassUtilsExtensionsTest {
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     @SneakyThrows
-    public void shouldNotGetRelativeResourceAsStream() {
+    public void shouldFailUponMissingResource() {
         try (val resourceStream = getRelativeResourceAsStream(
             ClassUtilsExtensions.class, "other")) {
+            fail(); // should not reach here
+        }
+    }
+
+    @Test(expectedExceptions = NullPointerException.class)
+    @SneakyThrows
+    public void shouldFailUponNullResource() {
+        try (val resourceStream = getRelativeResourceAsStream(
+            ClassUtilsExtensions.class, null)) {
             fail(); // should not reach here
         }
     }

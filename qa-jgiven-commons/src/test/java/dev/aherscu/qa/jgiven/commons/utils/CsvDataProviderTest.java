@@ -51,10 +51,22 @@ public class CsvDataProviderTest {
             public final ImmutableSet<String> v;
         }
 
+        @ToString
+        @SuperBuilder
+        @Getter
+        @EqualsAndHashCode
+        @NoArgsConstructor(force = true)
+        public static final class InnerBean {
+            @CsvBindByName
+            public final String value2;
+            @CsvBindByName
+            public final MyEnum myEnum;
+        }
+
         @CsvBindByName
-        public final String value1, value2;
-        @CsvBindByName
-        public final MyEnum myEnum;
+        public final String    value1;
+        @CsvRecurse
+        public final InnerBean innerBean;
     }
 
     public static final class MyBeanCsvDataProvider
@@ -78,8 +90,10 @@ public class CsvDataProviderTest {
                     .stream(),
                 anyMatch(is(MyBean.builder()
                     .value1("line2a")
-                    .value2("line2b")
-                    .myEnum(MyBean.MyEnum.other)
+                    .innerBean(MyBean.InnerBean.builder()
+                        .value2("line2b")
+                        .myEnum(MyBean.MyEnum.other)
+                        .build())
                     .build())));
         }
     }

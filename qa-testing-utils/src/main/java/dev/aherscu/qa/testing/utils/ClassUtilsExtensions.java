@@ -36,6 +36,8 @@ public class ClassUtilsExtensions extends ClassUtils {
      * @return the resource as an input stream
      * @throws IllegalArgumentException
      *             if the resource was not found
+     * @throws NullPointerException
+     *             if the resource name is {@code null}
      */
     public static InputStream getRelativeResourceAsStream(
         final Class<?> clazz,
