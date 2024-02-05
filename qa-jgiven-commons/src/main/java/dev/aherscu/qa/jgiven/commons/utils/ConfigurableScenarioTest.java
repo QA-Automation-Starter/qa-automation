@@ -34,11 +34,8 @@ import java.util.concurrent.atomic.*;
 
 import javax.annotation.concurrent.*;
 
-import org.apache.commons.beanutils.*;
-import org.apache.commons.configuration.Configuration;
+import org.apache.commons.configuration.*;
 import org.jooq.lambda.*;
-import org.reflections.*;
-import org.testng.*;
 import org.testng.annotations.*;
 
 import com.github.rodionmoiseev.c10n.*;
@@ -108,34 +105,6 @@ public abstract class ConfigurableScenarioTest<C extends AbstractConfiguration<?
                 bindAnnotation(Root.class).toLocale(Locale.ROOT);
             }
         });
-
-        // NOTE: the generic CSV data provider feature is not ready for prime
-        // time yet; use -Dcsvtyperesolvers to enable it
-        // see also http://databene.org/feed4testng
-        if (null != System.getProperty("csvtyperesolvers")) { //$NON-NLS-1$
-            try {
-                val typesAnnotatedWithBeanUtilsConverter = new Reflections(
-                    "dev.aherscu.qa.jgiven.commons.scenarios") //$NON-NLS-1$
-                    .getTypesAnnotatedWith(
-                        BeanUtilsConverter.class);
-                for (val clazz : typesAnnotatedWithBeanUtilsConverter) {
-                    val annotation = clazz
-                        .getAnnotation(BeanUtilsConverter.class);
-                    if (null == annotation)
-                        // NOTE: this may happen only if the BeanUtilsConverter
-                        // annotation has no Runtime retention; but we know it
-                        // has
-                        throw new InternalError(
-                            "should not happen"); //$NON-NLS-1$
-                    val converter = annotation.value();
-                    log.trace("registering {} for {}", converter,
-                        clazz); // $NON-NLS-1$
-                    ConvertUtils.register(converter.newInstance(), clazz);
-                }
-            } catch (final InstantiationException | IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     /**
@@ -180,47 +149,6 @@ public abstract class ConfigurableScenarioTest<C extends AbstractConfiguration<?
         log.info("test {}:{} ended", //$NON-NLS-1$
             testMethod.getDeclaringClass().getName(),
             testMethod.getName());
-    }
-
-    /**
-     * On first call initializes the configuration for this scenario type and
-     * caches it; on further calls will return the cached configuration.
-     *
-     * @return the configuration for this type
-     *
-     * @throws RuntimeException
-     *             if the configuration type cannot be instantiated or the
-     *             {@value AbstractConfiguration#CONFIGURATION_SOURCES} refer to
-     *             a non-existing resource.
-     */
-    @SuppressWarnings("unchecked")
-    protected C configuration() {
-        return (C) CACHED_CONFIGURATIONS.computeIfAbsent(
-            configurationType,
-            Unchecked.function((type) -> type
-                .getConstructor(Configuration[].class)
-                .newInstance((Object) new Configuration[] {
-                    defaultConfiguration() })));
-    }
-
-    /**
-     * Generates a Base64, URL-friendly, encoding of a random UUID. It is called
-     * once per thread initialization.
-     * <p>
-     * Override to provide different behavior.
-     * </p>
-     *
-     * @return random identifier to be used during the entire test session
-     */
-    protected String generateRandomId() {
-        return encode(randomUUID());
-    }
-
-    /**
-     * @return a random string; by default, initialized before each method.
-     */
-    protected final String randomId() {
-        return randomId.get();
     }
 
     /**
@@ -308,5 +236,46 @@ public abstract class ConfigurableScenarioTest<C extends AbstractConfiguration<?
             log.debug("running on previous thread, reusing random id {}",
                 randomId.get());
         }
+    }
+
+    /**
+     * On first call initializes the configuration for this scenario type and
+     * caches it; on further calls will return the cached configuration.
+     *
+     * @return the configuration for this type
+     *
+     * @throws RuntimeException
+     *             if the configuration type cannot be instantiated or the
+     *             {@value AbstractConfiguration#CONFIGURATION_SOURCES} refer to
+     *             a non-existing resource.
+     */
+    @SuppressWarnings("unchecked")
+    protected C configuration() {
+        return (C) CACHED_CONFIGURATIONS.computeIfAbsent(
+            configurationType,
+            Unchecked.function((type) -> type
+                .getConstructor(Configuration[].class)
+                .newInstance((Object) new Configuration[] {
+                    defaultConfiguration() })));
+    }
+
+    /**
+     * Generates a Base64, URL-friendly, encoding of a random UUID. It is called
+     * once per thread initialization.
+     * <p>
+     * Override to provide different behavior.
+     * </p>
+     *
+     * @return random identifier to be used during the entire test session
+     */
+    protected String generateRandomId() {
+        return encode(randomUUID());
+    }
+
+    /**
+     * @return a random string; by default, initialized before each method.
+     */
+    protected final String randomId() {
+        return randomId.get();
     }
 }
