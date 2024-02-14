@@ -1,12 +1,8 @@
 # JGiven Commons
 
-Provides generic JGiven-style steps, most important:
-
-* Retry action step for repeating a failing action
-* Eventually verification step for repeating a failing verification
-
-both steps are controlled by a configurable policy --
-see [Failsafe](https://failsafe.dev/)
+Provides generic JGiven-style steps, most importat being the `retry` and
+`eventually_assert_that` steps, both steps are controlled by a configurable
+policy -- see [Failsafe](https://failsafe.dev/)
 
 Additional features:
 
@@ -18,3 +14,5 @@ Additional features:
 * TestNG DataProvider for CSV files
 * Screenshot attachement for annotated JGiven steps
 
+In addition, provides `ConfigurableScenarioTest` as a base class for test
+scenarios.
