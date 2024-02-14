@@ -20,8 +20,9 @@
   parallel methods, do not order tests as expected. -->
 <suite name="QA JGiven Reporter Maven Plugin" verbose="1"
        group-by-instances="true">
-  <test name="Self Tests">
-    <!-- NOTE: the QaJGivenReporterMojoTest is a JUnit3 test,
-     hence not covered by this descriptor-->
+  <test name="Self Tests" junit="true">
+    <classes>
+      <class name="dev.aherscu.qa.jgiven.reporter.maven.plugin.QaJGivenReporterMavenPluginTest" />
+    </classes>
   </test>
 </suite>

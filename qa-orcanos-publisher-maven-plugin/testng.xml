@@ -27,7 +27,6 @@
 
   <test name="Stubbed Tests" junit="true">
     <classes>
-      <!-- NOTE: the OrcanosPublisherMojoStubbedTest is a JUnit3 test -->
       <class
         name="dev.aherscu.qa.orcanos.publisher.maven.plugin.OrcanosPublisherMojoTest"/>
     </classes>

@@ -249,13 +249,6 @@
 
       <plugin>
         <artifactId>maven-failsafe-plugin</artifactId>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.maven.surefire</groupId>
-            <artifactId>surefire-junit3</artifactId>
-            <version>${surefire.version}</version>
-          </dependency>
-        </dependencies>
         <executions>
           <execution>
             <id>integration-tests</id>
