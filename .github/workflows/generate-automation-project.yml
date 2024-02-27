@@ -22,7 +22,7 @@ jobs:
       # this project, hence can bypass this limitation.
       # ISSUE macos-latest fails to create ChromeDriver
       matrix:
-        os: [ windows-latest ]
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
 
     steps:
       - uses: actions/setup-java@v3
