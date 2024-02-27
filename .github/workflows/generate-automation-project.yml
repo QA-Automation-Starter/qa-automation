@@ -20,8 +20,9 @@ jobs:
       # see on-main-push.yml and on-pull-request.yml.
       # These jobs have credentials for SauceLabs account associated with
       # this project, hence can bypass this limitation.
+      # ISSUE macos-latest fails to create ChromeDriver
       matrix:
-        os: [ macos-latest, windows-latest ]
+        os: [ windows-latest ]
 
     steps:
       - uses: actions/setup-java@v3
