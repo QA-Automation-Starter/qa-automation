@@ -15,49 +15,11 @@
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 8990837
+          "durationInNanos": 14086244
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 8990837
-    },
-    {
-      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial2.TestNgWithHamcrest",
-      "testMethodName": "_2_shouldAssertOnBoolean",
-      "description": " 2 shouldAssertOnBoolean",
-      "tagIds": [],
-      "explicitParameters": [],
-      "derivedParameters": [],
-      "scenarioCases": [
-        {
-          "caseNr": 1,
-          "steps": [],
-          "explicitArguments": [],
-          "derivedArguments": [],
-          "durationInNanos": 21911202
-        }
-      ],
-      "casesAsTable": false,
-      "durationInNanos": 21911202
-    },
-    {
-      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial2.TestNgWithHamcrest",
-      "testMethodName": "_5_shouldAssertOnListOrder",
-      "description": " 5 shouldAssertOnListOrder",
-      "tagIds": [],
-      "explicitParameters": [],
-      "derivedParameters": [],
-      "scenarioCases": [
-        {
-          "caseNr": 1,
-          "steps": [],
-          "explicitArguments": [],
-          "derivedArguments": [],
-          "durationInNanos": 22285484
-        }
-      ],
-      "casesAsTable": false,
-      "durationInNanos": 22285484
+      "durationInNanos": 14086244
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial2.TestNgWithHamcrest",
@@ -72,11 +34,11 @@
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 28581581
+          "durationInNanos": 20164819
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 28581581
+      "durationInNanos": 20164819
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial2.TestNgWithHamcrest",
@@ -91,11 +53,49 @@
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 25613493
+          "durationInNanos": 23588797
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 25613493
+      "durationInNanos": 23588797
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial2.TestNgWithHamcrest",
+      "testMethodName": "_2_shouldAssertOnBoolean",
+      "description": " 2 shouldAssertOnBoolean",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 23427785
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 23427785
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial2.TestNgWithHamcrest",
+      "testMethodName": "_5_shouldAssertOnListOrder",
+      "description": " 5 shouldAssertOnListOrder",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 23576424
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 23576424
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial2.TestNgWithHamcrest",
@@ -110,11 +110,11 @@
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 287492
+          "durationInNanos": 243016
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 287492
+      "durationInNanos": 243016
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial2.TestNgWithHamcrest",
@@ -129,11 +129,11 @@
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 2227499
+          "durationInNanos": 2178514
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 2227499
+      "durationInNanos": 2178514
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial2.TestNgWithHamcrest",
@@ -154,7 +154,7 @@
             "0"
           ],
           "derivedArguments": [],
-          "durationInNanos": 506397
+          "durationInNanos": 513242
         },
         {
           "caseNr": 2,
@@ -164,11 +164,11 @@
             "0"
           ],
           "derivedArguments": [],
-          "durationInNanos": 229214
+          "durationInNanos": 569448
         }
       ],
       "casesAsTable": true,
-      "durationInNanos": 735611
+      "durationInNanos": 1082690
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial2.TestNgWithHamcrest",
@@ -183,11 +183,11 @@
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 18482108
+          "durationInNanos": 27084290
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 18482108
+      "durationInNanos": 27084290
     }
   ],
   "tagMap": {}
