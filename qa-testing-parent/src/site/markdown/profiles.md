@@ -14,7 +14,7 @@ no test will run.
 
 ### Environment, mutually-exclusive
 
-* `environment-*`: sets the `environment` property which be default is dev`;
+* `environment-*`: sets the `environment` property which be default is `dev`;
   mutually-exclusive, will run with one of
   properties files found under `src/test/resources/environments`
 

@@ -50,9 +50,9 @@ Later we should add properties to hold URLs, and credentials needed to access
 this system. These may look like this:
 
 ```properties
-system.url        =https://username:password@system-dev.host
-token.url         =https://oauth-dev.host
-token.clientId    =clientId
+system.url=https://username:password@system-dev.host
+token.url=https://oauth-dev.host
+token.clientId=clientId
 token.clientSecret=clientSecret
 ```
 
@@ -79,7 +79,7 @@ public final class TestConfiguration extends BaseConfiguration {
     public SystemOAuthRequestFilter systemOAuthRequestFilter() {
         return SystemOAuthRequestFilter.builder()
                 .refreshTokenUri(getString("token.url"))
-                .authorization(CosOAuthRequestFilter.Authorization.builder()
+                .authorization(SystemOAuthRequestFilter.Authorization.builder()
                         .clientId(getString("token.clientId"))
                         .clientSecret(getString("token.clientSecret"))
                         .build())
@@ -188,6 +188,7 @@ public abstract class SystemRestTest extends ConfigurableScenarioTest<TestConfig
 ```
 
 This will not compile because of missing:
+
 * `SystemRestFixtures`, `SystemRestActions`, and `SystemRestVerifications` -- these are the steps we should define
 * `SomeObject` -- this is a data model we should define too
 

@@ -5,7 +5,7 @@ Maven profile.
 
 A typical execution looks like this:
 
-`mvnw -Ptesting-XX,provider-XX,device-XX,-Penvironment-XX,mode-XX`
+`mvnw -Ptesting-XX,provider-XX,device-XX,environment-XX,mode-XX`
 
 `XX` being the specific profile to be applied.
 
