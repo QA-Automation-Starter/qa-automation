@@ -3,8 +3,7 @@ name: pull request snapshot build
 on:
   pull_request:
     branches: [ main ]
-    # ISSUE does not work
-    # see https://stackoverflow.com/questions/71070064/github-workflow-excluding-paths-does-not-work
+    # TODO ignore changes to *.md files only in root project directories
     paths-ignore:
       - '**.md'
       - '.idea/**'

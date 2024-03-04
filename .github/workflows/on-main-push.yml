@@ -5,6 +5,7 @@ on:
   push:
     branches: [ main ]
     paths-ignore:
+      # TODO ignore changes to *.md files only in root project directories
       - '**.md'
       - '.idea/**'
       - '.*'
@@ -23,7 +24,7 @@ jobs:
     # see https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners
     # and https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
     # ISSUE Google Search behaves differently on MacOS causing tests to fail
-    # following this issues, the least worst remedy is to run against a
+    # following these issues, the least worst remedy is to run against a
     # remote Selenium node, like SauceLabs, hence bypassing the need for
     # a ChromeDriver/GeckoDriver, and allowing this job to run un Ubuntu.
     runs-on: ubuntu-latest
