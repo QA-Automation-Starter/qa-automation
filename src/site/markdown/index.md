@@ -13,10 +13,13 @@ An example project is included -- see its published
 [JGiven Report](https://qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example/jgiven-reports/functional-dev/local/html/index.html#/all)
 and [SauceLabs Dashboard](https://app.saucelabs.com/open_sauce/user/oauth-adrian.herscu-d81b6/tests?ownerId=oauth-adrian.herscu-d81b6&ownerType=user&ownerName=oauth-adrian.herscu-d81b6&start=alltime)
 
-# Improving Existing Automation Projects
+# Migrating Existing Automation Projects
 
 An existing automation project may have its own parent POM containing common dependencies and plugin configurations.
+
 For such cases see [QA Testing Starter](qa-testing-parent/qa-testing-starter/index.html)
+
+You may continue coding the old style, then slowly adapt to [JGiven BDD style](https://jgiven.org/).
 
 Next: [Getting Started](getting-started.html)
 
