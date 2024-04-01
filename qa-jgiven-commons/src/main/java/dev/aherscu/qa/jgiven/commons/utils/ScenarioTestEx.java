@@ -19,6 +19,7 @@ package dev.aherscu.qa.jgiven.commons.utils;
 import org.slf4j.bridge.*;
 import org.testng.annotations.*;
 
+import com.tngtech.jgiven.annotation.*;
 import com.tngtech.jgiven.base.*;
 import com.tngtech.jgiven.impl.*;
 
@@ -57,5 +58,18 @@ public class ScenarioTestEx<GIVEN, WHEN, THEN> extends
 
         throw new Error(
             "should not happen!!! just to make spotbugs happy :)");
+    }
+
+    // ISSUE given/when/then cannot be added
+    protected <T> T given(final Class<T> fixturesClass) {
+        return addStage(fixturesClass);
+    }
+
+    protected <T> T then(final Class<T> verificationsClass) {
+        return addStage(verificationsClass);
+    }
+
+    protected <T> T when(final Class<T> actionsClass) {
+        return addStage(actionsClass);
     }
 }
