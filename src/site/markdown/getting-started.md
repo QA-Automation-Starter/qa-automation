@@ -25,11 +25,11 @@ cd testing
 mvnw -Ptesting-self
 ```
 
-You should see some tests running in console and Chrome openning two times.
+You should see some tests running in console and Chrome opening two times.
 
 ## Browsing the Reports
 
-By default, two kinds of reportes will be generated
+By default, two kinds of reports will be generated
 under `target/site/jgiven-reports`, looking like these:
 
 * [JGiven Dashboard](qa-testing-parent/qa-testing-example/jgiven-reports/functional-dev/local/html/index.html) --

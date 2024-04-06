@@ -4,6 +4,8 @@ More complex testing scenarios may require running multiple types of browsers
 on multiple types of operating systems and running multiple types of mobile
 emulators or even real devices.
 
+Assuming Windows 10 with [Chocolatey installed](https://docs.chocolatey.org/en-us/choco/setup).
+
 ## Self-Signed Certificates
 
 Some services may require special root CA installed. While
@@ -23,7 +25,10 @@ at <http://localhost:4444/ui>.
 
 ### Selenium Hub
 
-1. `choco install -y selenium --params "'/role:hub /service /autostart'"`
+ISSUE: the below installs Selenium Grid 3 -- see #233
+
+1. `choco install -y nssm`
+2. `choco install -y selenium --params "'/role:hub /service /autostart'"`
    >
    > Now, Selenium Grid should be available
    at <http://localhost:4444/grid/console>
@@ -91,12 +96,16 @@ TBD
 see [Known Issues](https://github.com/QA-Automation-Starter/qa-automation/blob/main/docs/KNOWN-ISSUES.md)
 > see also <https://gist.github.com/mrk-han/66ac1a724456cadf1c93f4218c6060ae>
 
-1. `choco install -y android-sdk`
-2. `cd %ANDROID_HOME%`
-3. `.\tools\bin\sdkmanager.bat --no_https --proxy=http --proxy_host=<host> --proxy_port=<port>
-   --install "system-images;android-30;google_apis_playstore;x86"`
-4. `.\tools\bin\sdkmanager.bat --no_https --proxy=http --proxy_host=<host> --proxy_port=<port>
+1. `choco install -y jdk8` -- is required for current `android-sdk`
+2. `choco install -y android-sdk`
+3. `cd %ANDROID_HOME%`
+4. `.\tools\bin\sdkmanager --no_https --proxy=http --proxy_host=<host> --proxy_port=<port>
    --install "platform-tools"`
+5. `.\tools\bin\sdkmanager --no_https --proxy=http --proxy_host=<host> --proxy_port=<port>
+   --install "system-images;android-30;google_apis_playstore;x86_64"`
+6. `.\tools\bin\avdmanager create avd --name "google_apis_playstore"
+   --package "system-images;android-30;google_apis_playstore;x86_64"`
+7. `.\tools\emulator @google_apis_playstore`
 
 > `.\platform-tools\adb.exe devices` -- should list your devices either real or
 > emulated
@@ -112,6 +121,8 @@ For hybrid applications, check DOM Inspector connects to application
 via <chrome://inspect/#devices>
 
 ## Windows Applications Testing
+
+(see #233)
 
 1. Enable Windows Developer Mode
 2. `choco install -y winappdriver`
