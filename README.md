@@ -17,10 +17,11 @@ Following instructions apply to Windows machines:
 
 1. Run PowerShell as Administrator -- required by Chocolatey
 2. Install Chocolatey -- <https://chocolatey.org/install#individual>
-3. `choco install -y jdk11`
+3. `choco install -y temurin11`
 4. `choco install -y git`
-5. `choco install -y tortoisegit`
-6. `choco install -y intellijidea-community`
+5. `choco install -y gpg4win` -- required for signing commits
+6. `choco install -y tortoisegit` -- optional
+7. `choco install -y intellijidea-ultimate`
    or `choco install eclipse-java-oxygen`
 
 There should be similar commands for Mac and various Linux distros.
@@ -112,6 +113,7 @@ and ensure your correct Maven Settings as described above.
 ## Running Web/Mobile tests on SauceLabs
 
 Must add following environment variables before launching Maven:
+
 * `SAUCELABS_USER`
 * `SAUCELABS_PASSWORD`
 

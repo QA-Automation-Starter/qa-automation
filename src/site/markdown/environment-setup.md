@@ -86,7 +86,7 @@ TBD
     2. create shortcut to `appium-startup.cmd`
     3. run it
    >
-   > Open the Selenium Grid Console to ensure proper registration.
+   > Refresh the Selenium Grid Console to ensure proper registration.
 
 ## Mobile Testing
 
