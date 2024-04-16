@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Adrian Herscu
+ * Copyright 2024 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import javax.annotation.concurrent.*;
 import org.apache.commons.configuration.*;
 
 import dev.aherscu.qa.jgiven.webdriver.*;
+import jakarta.ws.rs.client.*;
 
 /**
  * Represents the configuration parameters for tests.
@@ -33,8 +34,8 @@ public final class TestConfiguration extends WebDriverConfiguration {
 
     static {
         // IMPORTANT: this makes all property values to be parsed as
-        // as list if commas are found inside
-        org.apache.commons.configuration.AbstractConfiguration
+        // list if commas are found inside
+        AbstractConfiguration
             .setDefaultListDelimiter(COMMA.charAt(0));
     }
 
@@ -48,4 +49,7 @@ public final class TestConfiguration extends WebDriverConfiguration {
         super(configurations);
     }
 
+    public WebTarget petStore(final Client client) {
+        return client.target(getString("swagger.petstore.url"));
+    }
 }
