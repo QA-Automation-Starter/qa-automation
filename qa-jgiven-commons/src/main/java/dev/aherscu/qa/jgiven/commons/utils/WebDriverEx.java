@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Adrian Herscu
+ * Copyright 2024 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -363,7 +363,8 @@ public class WebDriverEx {
                 ? webDriverClassFor(capabilities)
                     .getConstructor(URL.class, Capabilities.class)
                     .newInstance(new URL(
-                        capabilities.getCapability("-x:url")
+                        requireNonNull(capabilities.getCapability("-x:url"),
+                            "INTERNAL ERROR: missing -x:url capability")
                             .toString()),
                         capabilities)
                 : webDriverClassFor(capabilities)

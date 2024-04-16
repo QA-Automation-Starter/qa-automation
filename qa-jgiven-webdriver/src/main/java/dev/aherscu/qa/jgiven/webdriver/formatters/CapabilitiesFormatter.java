@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Adrian Herscu
+ * Copyright 2024 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ import static java.util.Arrays.*;
 import static java.util.stream.Collectors.*;
 
 import java.lang.annotation.*;
+import java.util.*;
 
 import javax.annotation.concurrent.*;
 
@@ -38,16 +39,6 @@ import com.tngtech.jgiven.format.*;
 public class CapabilitiesFormatter
     implements AnnotationArgumentFormatter<CapabilitiesFormatter.Annotation> {
 
-    @Override
-    public String format(
-        final Object argumentToFormat,
-        final Annotation annotation) {
-        return stream(annotation.value())
-            .map(((Capabilities) argumentToFormat)::getCapability)
-            .map(Object::toString)
-            .collect(joining(COLON));
-    }
-
     /**
      * Formatter annotation for {@link Capabilities} objects.
      *
@@ -62,5 +53,16 @@ public class CapabilitiesFormatter
          * @return array of capabilities
          */
         String[] value();
+    }
+
+    @Override
+    public String format(
+        final Object argumentToFormat,
+        final Annotation annotation) {
+        return stream(annotation.value())
+            .map(((Capabilities) argumentToFormat)::getCapability)
+            .filter(Objects::nonNull)
+            .map(Object::toString)
+            .collect(joining(COLON));
     }
 }
