@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright 2022 Adrian Herscu
+  ~ Copyright 2024 Adrian Herscu
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -49,7 +49,6 @@
   </Properties>
   <XML>
     <option name="XML_KEEP_WHITESPACES" value="true"/>
-    <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true"/>
     <option name="XML_KEEP_WHITE_SPACES_INSIDE_CDATA" value="true"/>
   </XML>
   <editorconfig>
@@ -416,7 +415,7 @@
   <codeStyleSettings language="XML">
     <indentOptions>
       <option name="INDENT_SIZE" value="2"/>
-      <option name="CONTINUATION_INDENT_SIZE" value="4"/>
+      <option name="CONTINUATION_INDENT_SIZE" value="2"/>
       <option name="TAB_SIZE" value="2"/>
     </indentOptions>
   </codeStyleSettings>
