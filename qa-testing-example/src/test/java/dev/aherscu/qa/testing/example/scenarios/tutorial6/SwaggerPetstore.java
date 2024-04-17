@@ -25,6 +25,7 @@ import static org.hamcrest.Matchers.equalTo;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
+import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.jgiven.rest.tags.*;
@@ -53,6 +54,7 @@ public class SwaggerPetstore extends
     }
 
     @Test
+    @Reference("235")
     public void shouldAddPet() {
         given()
             .a_swagger_petstore(client)
@@ -70,6 +72,7 @@ public class SwaggerPetstore extends
 
     @Test(dataProviderClass = CredentialsCsvDataProvider.class,
         dataProvider = DATA)
+    @Reference("235")
     public void shouldLogin(final Credentials credentials) {
         given()
             .a_swagger_petstore(client)
