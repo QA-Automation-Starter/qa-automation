@@ -20,7 +20,6 @@ import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 
 import java.io.*;
 import java.lang.reflect.*;
-import java.util.*;
 
 import org.testng.annotations.*;
 
@@ -74,13 +73,14 @@ public abstract class AbstractCsvDataProvider {
 
     @DataProvider(name = DATA)
     @SneakyThrows
-    public Iterator<Object> data(final Method method) {
+    public Object[] data(final Method method) {
         try (val csvReader = new InputStreamReader(
             getRelativeResourceAsStream(method.getDeclaringClass(),
                 csvFileFor(method)))) {
             return csvBuilderFor(csvReader)
                 .build()
-                .iterator();
+                .parse()
+                .toArray();
         }
     }
 
