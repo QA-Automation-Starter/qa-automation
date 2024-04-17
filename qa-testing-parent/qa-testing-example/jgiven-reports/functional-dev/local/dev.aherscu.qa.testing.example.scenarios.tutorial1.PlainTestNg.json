@@ -19,7 +19,7 @@
             "PlainTestNg.FAT(a\u003dfalse, b\u003dfalse, sum\u003dfalse, carry\u003dfalse)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 267189
+          "durationInNanos": 7420065
         },
         {
           "caseNr": 2,
@@ -28,7 +28,7 @@
             "PlainTestNg.FAT(a\u003dfalse, b\u003dtrue, sum\u003dtrue, carry\u003dfalse)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 262841
+          "durationInNanos": 254614
         },
         {
           "caseNr": 3,
@@ -37,7 +37,7 @@
             "PlainTestNg.FAT(a\u003dtrue, b\u003dfalse, sum\u003dtrue, carry\u003dfalse)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 216975
+          "durationInNanos": 170578
         },
         {
           "caseNr": 4,
@@ -46,65 +46,11 @@
             "PlainTestNg.FAT(a\u003dtrue, b\u003dtrue, sum\u003dtrue, carry\u003dtrue)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 206797
+          "durationInNanos": 173613
         }
       ],
       "casesAsTable": true,
-      "durationInNanos": 953802
-    },
-    {
-      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
-      "testMethodName": "_2_checkNot",
-      "description": " 2 checkNot",
-      "tagIds": [],
-      "explicitParameters": [
-        "argument",
-        "result"
-      ],
-      "derivedParameters": [],
-      "scenarioCases": [
-        {
-          "caseNr": 1,
-          "steps": [],
-          "explicitArguments": [
-            "false",
-            "true"
-          ],
-          "derivedArguments": [],
-          "durationInNanos": 251870
-        },
-        {
-          "caseNr": 2,
-          "steps": [],
-          "explicitArguments": [
-            "true",
-            "false"
-          ],
-          "derivedArguments": [],
-          "durationInNanos": 272319
-        }
-      ],
-      "casesAsTable": true,
-      "durationInNanos": 524189
-    },
-    {
-      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
-      "testMethodName": "_1_shouldSucceed",
-      "description": " 1 shouldSucceed",
-      "tagIds": [],
-      "explicitParameters": [],
-      "derivedParameters": [],
-      "scenarioCases": [
-        {
-          "caseNr": 1,
-          "steps": [],
-          "explicitArguments": [],
-          "derivedArguments": [],
-          "durationInNanos": 205484
-        }
-      ],
-      "casesAsTable": false,
-      "durationInNanos": 205484
+      "durationInNanos": 8018870
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
@@ -125,7 +71,7 @@
             "0"
           ],
           "derivedArguments": [],
-          "durationInNanos": 8288641
+          "durationInNanos": 235639
         },
         {
           "caseNr": 2,
@@ -135,7 +81,7 @@
             "1"
           ],
           "derivedArguments": [],
-          "durationInNanos": 235510
+          "durationInNanos": 262880
         },
         {
           "caseNr": 3,
@@ -145,11 +91,65 @@
             "-1"
           ],
           "derivedArguments": [],
-          "durationInNanos": 249456
+          "durationInNanos": 203409
         }
       ],
       "casesAsTable": true,
-      "durationInNanos": 8773607
+      "durationInNanos": 701928
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
+      "testMethodName": "_1_shouldSucceed",
+      "description": " 1 shouldSucceed",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 29508027
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 29508027
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
+      "testMethodName": "_2_checkNot",
+      "description": " 2 checkNot",
+      "tagIds": [],
+      "explicitParameters": [
+        "argument",
+        "result"
+      ],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [],
+          "explicitArguments": [
+            "false",
+            "true"
+          ],
+          "derivedArguments": [],
+          "durationInNanos": 8508192
+        },
+        {
+          "caseNr": 2,
+          "steps": [],
+          "explicitArguments": [
+            "true",
+            "false"
+          ],
+          "derivedArguments": [],
+          "durationInNanos": 189443
+        }
+      ],
+      "casesAsTable": true,
+      "durationInNanos": 8697635
     }
   ],
   "tagMap": {}
