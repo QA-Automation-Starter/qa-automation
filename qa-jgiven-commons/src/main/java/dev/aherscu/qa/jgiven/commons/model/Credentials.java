@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Adrian Herscu
+ * Copyright 2024 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,10 @@
  */
 package dev.aherscu.qa.jgiven.commons.model;
 
+import com.opencsv.bean.*;
+
 import lombok.*;
+import lombok.experimental.*;
 
 /**
  * Username/password pair.
@@ -23,16 +26,20 @@ import lombok.*;
  * @author Adrian Herscu
  *
  */
-@Builder
+@SuperBuilder
+@NoArgsConstructor(force = true)
 @ToString
+@EqualsAndHashCode
 public class Credentials {
 
     /**
      * The username.
      */
-    public final Name     userName;
+    @CsvBindByName
+    public final String userName;
     /**
      * The password.
      */
-    public final Password password;
+    @CsvBindByName
+    public final String password;
 }

@@ -41,11 +41,11 @@ public class SwaggerPetstoreActions<SELF extends SwaggerPetstoreActions<SELF>>
             .buildPost(json(pet))));
     }
 
-    public SELF logging_in(final Credentials credentials) {
+    public SELF logging_in_with(final Credentials credentials) {
         return retrying(invoke(configuration.petStore(client.get())
             .path("user/login")
-            .queryParam("username", credentials.userName.value)
-            .queryParam("password", credentials.password.value)
+            .queryParam("username", credentials.userName)
+            .queryParam("password", credentials.password)
             .request()
             .buildGet(),
             json -> loginResponse.set(SwaggerLoginResponse.from(json))));

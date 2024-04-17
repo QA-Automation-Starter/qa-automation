@@ -16,7 +16,9 @@
 
 package dev.aherscu.qa.testing.example.scenarios.tutorial6;
 
+import static dev.aherscu.qa.jgiven.commons.utils.AbstractCsvDataProvider.*;
 import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
+import static jakarta.ws.rs.core.Response.Status.Family.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
@@ -35,6 +37,14 @@ import jakarta.ws.rs.client.*;
 @RestTest
 public class SwaggerPetstore extends
     ConfigurableScenarioTest<TestConfiguration, RestScenarioType, SwaggerPetstoreFixtures<?>, SwaggerPetstoreActions<?>, SwaggerPetstoreVerifications<?>> {
+
+    public static final class CredentialsCsvDataProvider
+        extends AbstractCsvDataProvider {
+        @Override
+        protected Class<?> type() {
+            return Credentials.class;
+        }
+    }
 
     protected Client client;
 
@@ -58,20 +68,19 @@ public class SwaggerPetstore extends
                 hasItemsMatching(equalTo(randomId()))));
     }
 
-    @Test
-    public void shouldLogin() {
+    @Test(dataProviderClass = CredentialsCsvDataProvider.class,
+        dataProvider = DATA)
+    public void shouldLogin(final Credentials credentials) {
         given()
             .a_swagger_petstore(client)
             .with(configuration());
 
         when()
-            .logging_in(Credentials.builder()
-                .userName(new Name("username"))
-                .password(new Password("password"))
-                .build());
+            .logging_in_with(credentials);
 
         then()
-            .the_login_response(hasProperty("code", equalTo(200)));
+            .the_login_response(hasProperty("code", equalTo(200)))
+            .and().the_response_status(is(SUCCESSFUL));
     }
 
     @AfterClass
