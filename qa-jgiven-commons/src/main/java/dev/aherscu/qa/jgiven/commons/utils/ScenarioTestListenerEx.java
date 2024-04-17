@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Adrian Herscu
+ * Copyright 2024 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -109,23 +109,43 @@ public final class ScenarioTestListenerEx extends ScenarioTestListener {
     private static void reportSession(
         final WebDriverSessionInfo session,
         final ScenarioModel scenario) {
-        scenario.addTag(new Tag(DEVICE_NAME_TAG, DEVICE_NAME_TAG,
-            session.capabilities.getCapability(DEVICE_NAME_OPTION)));
-        scenario.addTag(new Tag(PLATFORM_NAME_TAG, PLATFORM_NAME_TAG,
-            session.capabilities.getCapability(PLATFORM_NAME)));
-        scenario.addTag(new Tag(PLATFORM_VERSION_TAG, PLATFORM_VERSION_TAG,
-            session.capabilities.getCapability(PLATFORM_VERSION_OPTION)));
+        val capabilities = session.capabilities;
+        if (nonNull(capabilities.getCapability(DEVICE_NAME_OPTION)))
+            scenario
+                .addTag(new Tag(DEVICE_NAME_TAG, DEVICE_NAME_TAG,
+                    capabilities.getCapability(DEVICE_NAME_OPTION)
+                        .toString()));
+        if (nonNull(capabilities.getCapability(PLATFORM_NAME)))
+            scenario
+                .addTag(new Tag(PLATFORM_NAME_TAG, PLATFORM_NAME_TAG,
+                    capabilities.getCapability(PLATFORM_NAME)
+                        .toString()));
+        if (nonNull(capabilities.getCapability(PLATFORM_VERSION_OPTION)))
+            scenario
+                .addTag(new Tag(PLATFORM_VERSION_TAG, PLATFORM_VERSION_TAG,
+                    capabilities.getCapability(PLATFORM_VERSION_OPTION)
+                        .toString()));
     }
 
     private static void reportSession(
         final WebDriverSessionInfo session,
         final ReportModel reportModel) {
-        reportModel.addTag(new Tag(DEVICE_NAME_TAG, DEVICE_NAME_TAG,
-            session.capabilities.getCapability(DEVICE_NAME_OPTION)));
-        reportModel.addTag(new Tag(PLATFORM_NAME_TAG, PLATFORM_NAME_TAG,
-            session.capabilities.getCapability(PLATFORM_NAME)));
-        reportModel.addTag(new Tag(PLATFORM_VERSION_TAG, PLATFORM_VERSION_TAG,
-            session.capabilities.getCapability(PLATFORM_VERSION_OPTION)));
+        val capabilities = session.capabilities;
+        if (nonNull(capabilities.getCapability(DEVICE_NAME_OPTION)))
+            reportModel
+                .addTag(new Tag(DEVICE_NAME_TAG, DEVICE_NAME_TAG,
+                    capabilities.getCapability(DEVICE_NAME_OPTION)
+                        .toString()));
+        if (nonNull(capabilities.getCapability(PLATFORM_NAME)))
+            reportModel
+                .addTag(new Tag(PLATFORM_NAME_TAG, PLATFORM_NAME_TAG,
+                    capabilities.getCapability(PLATFORM_NAME)
+                        .toString()));
+        if (nonNull(capabilities.getCapability(PLATFORM_VERSION_OPTION)))
+            reportModel
+                .addTag(new Tag(PLATFORM_VERSION_TAG, PLATFORM_VERSION_TAG,
+                    capabilities.getCapability(PLATFORM_VERSION_OPTION)
+                        .toString()));
     }
 
     @Override

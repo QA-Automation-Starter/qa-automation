@@ -13,33 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package dev.aherscu.qa.jgiven.commons.model;
 
-import com.opencsv.bean.*;
+package dev.aherscu.qa.testing.example.model.tutorial;
+
+import static dev.aherscu.qa.testing.utils.ObjectMapperUtils.*;
 
 import lombok.*;
-import lombok.experimental.*;
+import lombok.extern.jackson.*;
 
-/**
- * Username/password pair.
- *
- * @author Adrian Herscu
- *
- */
-@SuperBuilder
-@NoArgsConstructor(force = true)
+@Jacksonized
+@Builder
 @ToString
-@EqualsAndHashCode
-public class Credentials {
+@Getter
+public class SwaggerLoginResponse {
+    public final int    code;
+    public final String type;
+    public final String message;
 
-    /**
-     * The username.
-     */
-    @CsvBindByName
-    public final String userName;
-    /**
-     * The password.
-     */
-    @CsvBindByName
-    public final String password;
+    public static SwaggerLoginResponse from(final String json) {
+        return fromJson(json, SwaggerLoginResponse.class);
+    }
 }
