@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 Adrian Herscu
+ * Copyright 2024 Adrian Herscu
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,17 +27,13 @@ import lombok.*;
 import lombok.extern.jackson.*;
 
 public class TextTests {
-    @Test
-    public final void shouldSerialize() {
-        assertThat(deleteWhitespace(toJson(Foo.builder()
-            .text(new Text("blah"))
-            .name(new Name("kuku"))
-            .password(new Password("123"))
-                        .build())),
-            equalToCompressingWhiteSpace(
-                "{\"text\":\"blah\"" +
-                    ",\"password\":\"123\"" +
-                    ",\"name\":\"kuku\"}"));
+    @Jacksonized // meaningful with @Builder/@SuperBuilder
+    @Builder // No-args constructor required by Jackson deserialization
+    @EqualsAndHashCode
+    static class Foo {
+        public final Text   text;
+        public final String password;
+        public final Name   name;
     }
 
     @Test
@@ -46,12 +42,16 @@ public class TextTests {
             equalTo(Foo.builder().text(new Text("blah")).build()));
     }
 
-    @Jacksonized // meaningful with @Builder/@SuperBuilder
-    @Builder // No-args constructor required by Jackson deserialization
-    @EqualsAndHashCode
-    static class Foo {
-        public final Text     text;
-        public final Password password;
-        public final Name     name;
+    @Test
+    public final void shouldSerialize() {
+        assertThat(deleteWhitespace(toJson(Foo.builder()
+            .text(new Text("blah"))
+            .name(new Name("kuku"))
+            .password("123")
+            .build())),
+            equalToCompressingWhiteSpace(
+                "{\"text\":\"blah\"" +
+                    ",\"password\":\"123\"" +
+                    ",\"name\":\"kuku\"}"));
     }
 }

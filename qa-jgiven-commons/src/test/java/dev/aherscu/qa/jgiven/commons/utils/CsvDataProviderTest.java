@@ -30,6 +30,7 @@ import org.testng.annotations.*;
 import com.google.common.collect.*;
 import com.opencsv.bean.*;
 
+import dev.aherscu.qa.jgiven.commons.model.*;
 import lombok.*;
 import lombok.experimental.*;
 import lombok.extern.slf4j.*;
@@ -63,10 +64,12 @@ public class CsvDataProviderTest {
             public final MyEnum myEnum;
         }
 
-        @CsvBindByName
-        public final String    value1;
         @CsvRecurse
-        public final InnerBean innerBean;
+        public final Credentials credentials;
+        @CsvBindByName
+        public final String      value1;
+        @CsvRecurse
+        public final InnerBean   innerBean;
     }
 
     public static final class MyBeanCsvDataProvider
@@ -89,6 +92,10 @@ public class CsvDataProviderTest {
                     .build()
                     .stream(),
                 anyMatch(is(MyBean.builder()
+                    .credentials(Credentials.builder()
+                        .userName("bar")
+                        .password("456")
+                        .build())
                     .value1("line2a")
                     .innerBean(MyBean.InnerBean.builder()
                         .value2("line2b")
