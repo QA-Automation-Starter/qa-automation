@@ -9,11 +9,7 @@ A typical execution looks like this:
 
 `XX` being the specific profile to be applied.
 
-## Test Specific Profiles
-
-Detailed in [QA Testing Parent](qa-testing-parent/profiles.html)
-
-## Generic Modding Profiles
+# Generic Modding Profiles
 
 * `mode-logs-*`: sets the logging level (`debug|error|trace`); if not specified
   defaults to `info`
@@ -25,5 +21,8 @@ Detailed in [QA Testing Parent](qa-testing-parent/profiles.html)
 * `mode-site-fast`: diables SureFire and Project Info reports, useful for
   testing documentation
 * `mode-eclipse`: autoselected when the project is opened in Eclipse
+
+All other profiles are detailed
+in [QA Testing Parent](qa-testing-parent/profiles.html)
 
 Next: [Reporting](reporting.html)

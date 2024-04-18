@@ -3,5 +3,6 @@
     <module2copyright>
       <element module="All" copyright="apache" />
     </module2copyright>
+    <LanguageOptions name="Properties" />
   </settings>
 </component>

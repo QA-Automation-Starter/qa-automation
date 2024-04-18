@@ -9,8 +9,10 @@ In addition, provides an AWS Cognito SRP filter for JAX-RS and a CLI for it.
 Generating an AWS Cognito SRP Authenticator tool
 ================================================
 
+ISSUE: see #240
+
 ```
-mvn -Pgenerate-aws-cognito-srp-authenticator package
+mvnw -Pgenerate-aws-cognito-srp-authenticator package
 ```
 
 This will generate `aws-cognito-srp-authenticator.exe` in target directory. When
