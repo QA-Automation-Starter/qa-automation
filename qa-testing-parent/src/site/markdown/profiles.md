@@ -27,7 +27,7 @@ no test will run.
 
 ### Provider, mutually-exclusive
 
-* `provider-selenium`: will use hosted Selenium Grid
+* `provider-selenium`: will use local Selenium Grid
 * `provider-saucelabs-*`: will use SauceLabs
 
 If no provider is specified, will try to run with local WebDriver per
