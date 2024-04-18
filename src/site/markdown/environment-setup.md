@@ -4,7 +4,8 @@ More complex testing scenarios may require running multiple types of browsers
 on multiple types of operating systems and running multiple types of mobile
 emulators or even real devices.
 
-Assuming Windows 10 with [Chocolatey installed](https://docs.chocolatey.org/en-us/choco/setup).
+Assuming Windows 10
+with [Chocolatey installed](https://docs.chocolatey.org/en-us/choco/setup).
 
 ## Self-Signed Certificates
 
@@ -19,74 +20,31 @@ The default password is `changeit`.
 
 ## Selenium
 
-For a quick standalone Selenium Grid with several Nodes, refer
-to [Selenium Hub Docker](selenium-hub-docker.yml). The Grid UI will be
-at <http://localhost:4444/ui>.
+[Selenium Grid](https://www.selenium.dev/documentation/grid/) 4 is required.
 
-### Selenium Hub
+See https://www.selenium.dev/documentation/grid/getting_started/
 
-ISSUE: the below installs Selenium Grid 3 -- see #233
+After downloading the apropriate JAR, starting a standalone grid is done via:
 
-1. `choco install -y nssm`
-2. `choco install -y selenium --params "'/role:hub /service /autostart'"`
-   >
-   > Now, Selenium Grid should be available
-   at <http://localhost:4444/grid/console>
-   >
-   > Additional reading <https://github.com/dhoer/choco-selenium#hub>
+```shell
+java -jar selenium-server-<version>.jar standalone --selenium-manager true
+```
 
-### Selenium Node
+The grid's UI should be available at http://localhost:4444/ui/
 
-TBD
+Assuming Google Chrome and/or Mozilla Firefox are installed, these will become
+available for automation via the grid.
 
-## Appium Node
+## Appium
+
+[Appium 2](https://appium.io/docs/en/2.5/) is required.
+
+See https://appium.io/docs/en/2.5/quickstart/install/
 
 1. `choco install -y nodejs` -- and restart the console to refresh the env vars
 2. `npm --proxy http(s)://<host>:<port> install -g appium`
-   >
-   > Now, **Appium** should be at `%APPDATA%\npm`.
-3. Configure Appium
-    1. add `nodeconfig.json` to Appium's installation directory
-       ```json
-        {
-          "capabilities": [
-            {
-              "browserName": "",
-              "version": "",
-              "maxInstances": 1,
-              "platform": "WINDOWS"
-            }
-          ],
-          "configuration": {
-            "cleanUpCycle": 2000,
-            "timeout": 30000,
-            "proxy": "org.openqa.grid.selenium.proxy.DefaultRemoteProxy",
-            "url": "http://<machine-hostname>:4723/wd/hub",
-            "host": "<machine-hostname>",
-            "port": 4723,
-            "maxSession": 1,
-            "register": true,
-            "registerCycle": 5000,
-            "hubPort": 4444,
-            "hubHost": "<grid-hostname>",
-            "hubProtocol": "http"
-          }
-        }
-       ```
-    2. add `appium-startup.cmd` to Appium's installation directory
-       ```shell
-       appium.cmd --nodeconfig %APPDATA%\npm\nodeconfig.json ^
-       --log %APPDATA%\npm\appium.log ^
-       --log-timestamp ^
-       --log-level error:debug ^
-       --log-no-colors
-       ```
-4. add Appium to Windows' Start-up Tasks:
-    1. open `%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup`
-    2. create shortcut to `appium-startup.cmd`
-    3. run it
-   >
-   > Refresh the Selenium Grid Console to ensure proper registration.
+3. `npm --proxy http(s)://<host>:<port> update -g appium`
+4. `appium` - configuration files will be scanned from working dir upwards
 
 ## Mobile Testing
 
@@ -122,16 +80,28 @@ via <chrome://inspect/#devices>
 
 ## Windows Applications Testing
 
-(see #233)
+Since Selenium 4 it is no longer possible to access WinAppDriver directly,
+and Appium 2 is required to act as a bridge in between.
 
 1. Enable Windows Developer Mode
-2. `choco install -y winappdriver`
+2. `appium driver install --source=npm appium-windows-driver`
+3. `appium` - start/restart; should list `windows@2.12.21 (automationName '
+   Windows')`
    >
-   > Now, **WinAppDriver** should be
-   > at `%ProgramFiles(x86)%\Windows Application Driver`.
-3. for GUI element discovery --
-   <https://github.com/microsoft/WinAppDriver/releases/tag/UIR-v1.1> or similar
-   tool
+   > The endpoint should be available at http://127.0.0.1:4723.
+4. optional: install Appium Inspector --
+   https://appium.github.io/appium-inspector/latest/quickstart/installation/
+5. optional: check the setup by starting a session using a profile like this:
+
+```json
+{
+  "appium:automationName": "windows",
+  "appium:platformName": "windows",
+  "appium:app": "Microsoft.WindowsCalculator_8wekyb3d8bbwe!App"
+}
+```
+
+`mvn verify -Ptesting-windows` should lauch the Calculator test.
 
 If remote file access is required, then OpenSSH, or similar, is required:
 
