@@ -1,0 +1,8 @@
+{
+  "java.compile.nullAnalysis.mode": "automatic",
+  "maven.view": "hierarchical",
+  "java.dependency.packagePresentation": "hierarchical",
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.sources.organizeImports.starThreshold": 1,
+  "java.sources.organizeImports.staticStarThreshold": 1
+}
