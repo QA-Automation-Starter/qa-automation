@@ -8,8 +8,7 @@ Following instructions apply to Windows machines:
 2. Install Chocolatey -- <https://chocolatey.org/install#individual>
 3. `choco install -y jdk11`
 4. `choco install -y maven`
-5. `choco install -y intellijidea-community`
-   or `choco install eclipse-java-oxygen`
+5. `choco install -y intellijidea-ultimate` or `choco install eclipse`
 
 There should be alternative commands for Mac and various Linux distros.
 
