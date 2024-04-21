@@ -128,7 +128,7 @@
           <ul class="breadcrumb">
         <li id="publishDate">Last Published: 2024-04-21<span class="divider">|</span>
 </li>
-          <li id="projectVersion">Version: 1.0.4-SNAPSHOT</li>
+          <li id="projectVersion">Version: 1.0.5-SNAPSHOT</li>
           </ul>
         </div>
       </header>
@@ -148,7 +148,7 @@
 <tr class="b">
 <td style="text-align: left;">dev.aherscu.qa</td>
 <td>qa-jgiven-webdriver</td>
-<td>1.0.4-SNAPSHOT</td>
+<td>1.0.5-SNAPSHOT</td>
 <td>compile</td>
 <td>-</td>
 <td>jar</td>
@@ -164,7 +164,7 @@
 <tr class="b">
 <td style="text-align: left;">dev.aherscu.qa</td>
 <td>qa-jgiven-rest</td>
-<td>1.0.4-SNAPSHOT</td>
+<td>1.0.5-SNAPSHOT</td>
 <td>compile</td>
 <td>-</td>
 <td>jar</td>
@@ -172,7 +172,7 @@
 <tr class="a">
 <td style="text-align: left;">dev.aherscu.qa</td>
 <td>qa-jgiven-rabbitmq</td>
-<td>1.0.4-SNAPSHOT</td>
+<td>1.0.5-SNAPSHOT</td>
 <td>compile</td>
 <td>-</td>
 <td>jar</td>
@@ -180,7 +180,7 @@
 <tr class="b">
 <td style="text-align: left;">dev.aherscu.qa</td>
 <td>qa-jgiven-elasticsearch</td>
-<td>1.0.4-SNAPSHOT</td>
+<td>1.0.5-SNAPSHOT</td>
 <td>compile</td>
 <td>-</td>
 <td>jar</td>
@@ -212,7 +212,7 @@
 <tr class="b">
 <td style="text-align: left;">dev.aherscu.qa</td>
 <td>qa-jgiven-commons</td>
-<td>1.0.4-SNAPSHOT</td>
+<td>1.0.5-SNAPSHOT</td>
 <td>compile</td>
 <td>-</td>
 <td>jar</td>
@@ -340,6 +340,14 @@
 <td>jar</td>
 <td>false</td></tr>
 <tr class="b">
+<td style="text-align: left;">dev.aherscu.qa</td>
+<td>qa-testing-utils</td>
+<td>1.0.5-SNAPSHOT</td>
+<td>compile</td>
+<td>-</td>
+<td>jar</td>
+<td>false</td></tr>
+<tr class="a">
 <td style="text-align: left;">com.rabbitmq</td>
 <td>amqp-client</td>
 <td>5.19.0</td>
@@ -347,7 +355,7 @@
 <td>-</td>
 <td>jar</td>
 <td>false</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">org.hamcrest</td>
 <td>hamcrest</td>
 <td>2.2</td>
@@ -355,7 +363,7 @@
 <td>-</td>
 <td>jar</td>
 <td>false</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">io.github.bonigarcia</td>
 <td>webdrivermanager</td>
 <td>5.7.0</td>
@@ -363,7 +371,7 @@
 <td>-</td>
 <td>jar</td>
 <td>false</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">org.aspectj</td>
 <td>aspectjrt</td>
 <td>1.9.20.1</td>
@@ -371,7 +379,7 @@
 <td>-</td>
 <td>jar</td>
 <td>false</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">org.testng</td>
 <td>testng</td>
 <td>7.8.0</td>
@@ -379,7 +387,7 @@
 <td>-</td>
 <td>jar</td>
 <td>false</td></tr>
-<tr class="a">
+<tr class="b">
 <td style="text-align: left;">com.jayway.jsonpath</td>
 <td>json-path</td>
 <td>2.7.0</td>
@@ -387,18 +395,10 @@
 <td>-</td>
 <td>jar</td>
 <td>false</td></tr>
-<tr class="b">
+<tr class="a">
 <td style="text-align: left;">org.seleniumhq.selenium</td>
 <td>selenium-remote-driver</td>
 <td>4.19.1</td>
-<td>compile</td>
-<td>-</td>
-<td>jar</td>
-<td>false</td></tr>
-<tr class="a">
-<td style="text-align: left;">dev.aherscu.qa</td>
-<td>qa-testing-utils</td>
-<td>1.0.4-SNAPSHOT</td>
 <td>compile</td>
 <td>-</td>
 <td>jar</td>
@@ -456,7 +456,7 @@
 <tr class="b">
 <td style="text-align: left;">dev.aherscu.qa</td>
 <td>qa-jgiven-reporter</td>
-<td>1.0.4-SNAPSHOT</td>
+<td>1.0.5-SNAPSHOT</td>
 <td>compile</td>
 <td>-</td>
 <td>jar</td>
@@ -536,17 +536,17 @@
 <th>Type</th>
 <th>Optional</th></tr>
 <tr class="b">
-<td style="text-align: left;">dev.aherscu.qa</td>
-<td>qa-jgiven-rabbitmq</td>
-<td>1.0.4-SNAPSHOT</td>
+<td style="text-align: left;">org.mock-server</td>
+<td>mockserver-core</td>
+<td>5.15.0</td>
 <td>compile</td>
 <td>-</td>
 <td>jar</td>
 <td>false</td></tr>
 <tr class="a">
-<td style="text-align: left;">org.mock-server</td>
-<td>mockserver-core</td>
-<td>5.15.0</td>
+<td style="text-align: left;">dev.aherscu.qa</td>
+<td>qa-jgiven-elasticsearch</td>
+<td>1.0.5-SNAPSHOT</td>
 <td>compile</td>
 <td>-</td>
 <td>jar</td>
@@ -601,8 +601,8 @@
 <td>false</td></tr>
 <tr class="b">
 <td style="text-align: left;">dev.aherscu.qa</td>
-<td>qa-jgiven-elasticsearch</td>
-<td>1.0.4-SNAPSHOT</td>
+<td>qa-jgiven-rabbitmq</td>
+<td>1.0.5-SNAPSHOT</td>
 <td>compile</td>
 <td>-</td>
 <td>jar</td>
