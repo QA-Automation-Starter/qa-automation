@@ -17,6 +17,7 @@ package dev.aherscu.qa.jgiven.webdriver;
 
 import static java.util.Objects.*;
 
+import io.github.bonigarcia.wdm.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
@@ -83,7 +84,14 @@ public abstract class ApplicationPerMethodWebSessionTest<C extends WebDriverConf
     protected void beforeMethodOpenWebDriver() {
         log.debug("before method opening web driver");
         webDriver.set(WebDriverEx
-            .from(configuration().capabilities()));
+            .from(configuration().capabilities(),
+                webDriverManager -> {
+                    // ISSUE it is not supported
+                    // see https://github.com/bonigarcia/webdrivermanager/issues/1295#issuecomment-2155504469
+                    webDriverManager.browserVersionDetectionCommand(
+                        "flatpak run com.google.Chrome");
+                    webDriverManager.setup();
+                }));
     }
 
     /**

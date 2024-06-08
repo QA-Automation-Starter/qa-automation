@@ -18,6 +18,7 @@ package dev.aherscu.qa.testing.example.scenarios.tutorial5;
 
 import static org.hamcrest.Matchers.*;
 
+import io.github.bonigarcia.wdm.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
@@ -30,7 +31,8 @@ import lombok.extern.slf4j.*;
 
 @Slf4j
 public class TestingWindowsWithJGiven
-    extends ApplicationPerClassWebSessionTest<TestConfiguration, CalculatorFixtures<?>, CalculatorActions<?>, CalculatorVerifications<?>> {
+    extends
+    ApplicationPerClassWebSessionTest<TestConfiguration, CalculatorFixtures<?>, CalculatorActions<?>, CalculatorVerifications<?>> {
 
     protected TestingWindowsWithJGiven() {
         super(TestConfiguration.class);
@@ -52,7 +54,8 @@ public class TestingWindowsWithJGiven
     protected void beforeClassOpenWebDriver() {
         log.debug("before class opening WinAppDriver");
         webDriver.set(WebDriverEx.from(configuration()
-            .capabilitiesFor("provider.local.windows")));
+            .capabilitiesFor("provider.local.windows"),
+            WebDriverManager::setup));
     }
 
     @Test

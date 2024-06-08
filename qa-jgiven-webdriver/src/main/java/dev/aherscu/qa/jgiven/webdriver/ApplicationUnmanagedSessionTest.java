@@ -16,6 +16,7 @@
 
 package dev.aherscu.qa.jgiven.webdriver;
 
+import io.github.bonigarcia.wdm.*;
 import org.openqa.selenium.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
@@ -70,6 +71,6 @@ public abstract class ApplicationUnmanagedSessionTest<C extends WebDriverConfigu
      *            the WebDriver capabilities to use for scenario
      */
     protected final void starting_section(final Capabilities capabilities) {
-        starting_section(WebDriverEx.from(capabilities));
+        starting_section(WebDriverEx.from(capabilities, WebDriverManager::setup));
     }
 }

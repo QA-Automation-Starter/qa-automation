@@ -18,6 +18,7 @@ package dev.aherscu.qa.jgiven.webdriver;
 
 import static java.util.Objects.*;
 
+import io.github.bonigarcia.wdm.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
@@ -98,7 +99,8 @@ public abstract class ApplicationPerClassWebSessionTest<C extends WebDriverConfi
     @SneakyThrows
     protected void beforeClassOpenWebDriver() {
         log.debug("before class opening web driver");
-        webDriver.set(WebDriverEx.from(configuration().capabilities()));
+        webDriver.set(WebDriverEx.from(configuration().capabilities(),
+            WebDriverManager::setup));
     }
 
     /**

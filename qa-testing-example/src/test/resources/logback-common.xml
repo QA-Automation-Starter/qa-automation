@@ -78,6 +78,7 @@
   <logger name="org" level="off"/>
   <logger name="reactor" level="off"/>
   <logger name="io" level="off"/>
+  <logger name="io.github.bonigarcia" level="trace" />
   <logger name="net" level="off"/>
   <logger name="ca" level="off"/>
   <logger name="tracer" level="off"/>

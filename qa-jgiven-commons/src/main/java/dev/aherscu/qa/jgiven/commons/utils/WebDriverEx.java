@@ -23,13 +23,10 @@ import java.lang.reflect.*;
 import java.net.*;
 import java.text.*;
 import java.util.*;
+import java.util.function.*;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.edge.*;
-import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.remote.*;
-import org.openqa.selenium.safari.*;
 
 import com.google.common.collect.*;
 import com.google.gson.*;
@@ -255,7 +252,9 @@ public class WebDriverEx {
      * @throws RuntimeException
      *             or derivative, if the initialization failed
      */
-    public static WebDriverEx from(final Capabilities capabilities) {
+    public static WebDriverEx from(
+        final Capabilities capabilities,
+        final Consumer<WebDriverManager> webDriverManagerConsumer) {
         log.debug("connecting session {} with {}",
             capabilities.getCapability("sauce:name"), capabilities);
 
@@ -277,7 +276,8 @@ public class WebDriverEx {
                     .onRetriesExceeded(e -> log.error("retries exceeded.",
                         e.getFailure())))
                 .onSuccess(e -> registerSession(e.getResult()))
-                .get(() -> new WebDriverEx(webDriverFor(capabilities),
+                .get(() -> new WebDriverEx(
+                    webDriverFor(capabilities, webDriverManagerConsumer),
                     capabilities));
     }
 
@@ -319,33 +319,16 @@ public class WebDriverEx {
 
     @SneakyThrows
     private static Class<? extends WebDriver> webDriverClassFor(
-        final Capabilities capabilities) {
+        final Capabilities capabilities,
+        final Consumer<WebDriverManager> webDriverManagerConsumer) {
         val driverClass = Class.forName(requireNonNull(capabilities
             .getCapability("-x:class"), "must have a class capability")
             .toString())
             .asSubclass(WebDriver.class);
 
-        if (driverClass.isAssignableFrom(ChromeDriver.class))
-            WebDriverManager.chromedriver().setup();
+        webDriverManagerConsumer.accept(
+            WebDriverManager.getInstance(driverClass));
 
-        // ISSUE sometimes this fails with
-        // WebDriverManagerException: Error HTTP 403 executing
-        // https://api.github.com/repos/mozilla/geckodriver/releases
-        // TODO should find a method to retry these driver downloads
-        if (driverClass.isAssignableFrom(FirefoxDriver.class))
-            WebDriverManager.firefoxdriver().setup();
-
-        if (driverClass.isAssignableFrom(EdgeDriver.class))
-            WebDriverManager.edgedriver().setup();
-
-        if (driverClass.isAssignableFrom(SafariDriver.class))
-            WebDriverManager.safaridriver().setup();
-
-        // if (driverClass.isAssignableFrom(OperaDriver.class))
-        // WebDriverManager.operadriver().setup();
-
-        // NOTE there are drivers, like WinAppDriver, that are not supported
-        // by WebDriverManager -- in this case we just return the class
         return driverClass;
     }
 
@@ -357,17 +340,19 @@ public class WebDriverEx {
      * @return the Web Driver
      */
     @SneakyThrows
-    public static WebDriver webDriverFor(final Capabilities capabilities) {
+    public static WebDriver webDriverFor(
+        final Capabilities capabilities,
+        final Consumer<WebDriverManager> webDriverManagerConsumer) {
         try {
             return nonNull(capabilities.getCapability("-x:url"))
-                ? webDriverClassFor(capabilities)
+                ? webDriverClassFor(capabilities, webDriverManagerConsumer)
                     .getConstructor(URL.class, Capabilities.class)
                     .newInstance(new URL(
                         requireNonNull(capabilities.getCapability("-x:url"),
                             "INTERNAL ERROR: missing -x:url capability")
                             .toString()),
                         capabilities)
-                : webDriverClassFor(capabilities)
+                : webDriverClassFor(capabilities, webDriverManagerConsumer)
                     .getDeclaredConstructor()
                     .newInstance();
         } catch (final InvocationTargetException e) {
