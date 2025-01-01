@@ -32,6 +32,8 @@ Either copy [development-maven-settings.xml](development-maven-settings.xml) to
 your `~/.m2` as `settings.xml`, or run Maven with
 `mvnw -settings development-maven-settings.xml` from this directory.
 
+`JAVA_HOME` -- you must have this environment variable correctly pointing to your JDK installation.
+
 ## IDE Configuration
 
 Project settings are shared via `.idea` folder

@@ -25,9 +25,7 @@
         <MavenRunnerSettings>
           <option name="delegateBuildToMaven" value="false" />
           <option name="environmentProperties">
-            <map>
-              <entry key="JAVA_HOME" value="C:\Program Files\Eclipse Adoptium\jdk-11.0.22.7-hotspot" />
-            </map>
+            <map />
           </option>
           <option name="jreName" value="#USE_PROJECT_JDK" />
           <option name="mavenProperties">
