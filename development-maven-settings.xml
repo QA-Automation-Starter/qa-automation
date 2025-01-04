@@ -24,6 +24,8 @@
     </server>
     <server>
       <id>ossrh</id>
+      <!-- NOTE: login and generate new credentials via
+        https://s01.oss.sonatype.org/#profile;User%20Token -->
       <username>...your user name here...</username>
       <password>...your password here...</password>
     </server>

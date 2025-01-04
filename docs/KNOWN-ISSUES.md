@@ -1,11 +1,19 @@
 # Known Issues
 
+# Linux with Flatpak or similar containers for applications
+
+Selenium Driver is not able to control a containerized browser.
+
+see https://github.com/QA-Automation-Starter/qa-automation/issues/246
+
+
 # IntelliJ
 
 * AspectJ + Lombok projects are incorrectly imported (must ensure post-compile
   weaving for each module)
 * Since IntelliJ 2022.1 profiles from parent POMs are no longer displayed (there
   are several open issues on JetBrains tracker)
+
 
 # Android on Local Emulator/Device
 
