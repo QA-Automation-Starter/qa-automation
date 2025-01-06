@@ -371,7 +371,7 @@ public class WebDriverEx {
                     .getDeclaredConstructor()
                     .newInstance();
         } catch (final InvocationTargetException e) {
-            log.error("remote selenium connection failed");
+            log.error("remote selenium connection failed due to:\n{}", e.getCause().getMessage());
             throw e.getCause();
         }
     }
