@@ -14,7 +14,7 @@ $JAVA_HOME/bin/java \
 -Dpoll.timeout=15 \
 -Dpoll.delay=5 \
 -Dsaucelabs.reporter.url= \
--Dprovider=provider.local. \
+-Dprovider=provider.saucelabs. \
 -Ddevice.type= \
 -Dbuild.label=STANDALONE \
 -Dbuild.tags= \
