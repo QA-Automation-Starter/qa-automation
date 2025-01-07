@@ -16,10 +16,13 @@
 
 package dev.aherscu.qa.jgiven.commons.utils;
 
+import static dev.aherscu.qa.jgiven.commons.utils.WebDriverEx.*;
 import static java.lang.Boolean.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
+import static org.openqa.selenium.remote.CapabilityType.*;
 
+import java.lang.reflect.*;
 import java.time.*;
 import java.util.*;
 import java.util.Optional;
@@ -28,16 +31,16 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.*;
 import org.testng.annotations.*;
 
-import dev.aherscu.qa.jgiven.commons.utils.WebDriverEx.*;
+import com.google.common.collect.*;
+
 import dev.aherscu.qa.testing.utils.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
 
 /**
- * Tests event creation.
+ * Tests WebDriver mechanism.
  *
  * @author Adrian Herscu
- *
  */
 @Test
 @Slf4j
@@ -45,6 +48,15 @@ import net.jodah.failsafe.*;
     value = "SIC_INNER_SHOULD_BE_STATIC_ANON",
     justification = "short lived test instance")
 public class WebDriverExTest {
+    @Test(expectedExceptions = { SessionNotCreatedException.class })
+    public void shouldFailGettingWebDriver() {
+        webDriverFor(new ImmutableCapabilities(ImmutableMap.builder()
+            .put("-x:class", "org.openqa.selenium.remote.RemoteWebDriver")
+            .put("-x:url", "http://host/path")
+            .put("-x:target", "http://host/path")
+            .put(BROWSER_NAME, "chrome")
+            .build()));
+    }
 
     /**
      * Tests creation of {@link PointerEvent}; all others being similar.

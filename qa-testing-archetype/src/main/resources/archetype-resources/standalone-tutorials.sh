@@ -9,12 +9,12 @@ then
 fi
 
 $JAVA_HOME/bin/java \
--Dlog.root.level=info \
+-Dlog.root.level=debug \
 -Dlogback.configurationFile=logback-test.xml \
 -Dpoll.timeout=15 \
 -Dpoll.delay=5 \
 -Dsaucelabs.reporter.url= \
--Dprovider=provider.local. \
+-Dprovider=provider.saucelabs. \
 -Ddevice.type= \
 -Dbuild.label=STANDALONE \
 -Dbuild.tags= \
