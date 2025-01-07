@@ -1,6 +1,20 @@
 @echo off
 setlocal
 pushd target
+
+:: Check for required environment variables
+if "%SAUCELABS_USER%"=="" (
+    echo ERROR: SAUCELABS_USER environment variable is required but not set.
+    echo INFO: Please set this variable before running the script.
+    exit /b 1
+)
+
+if "%SAUCELABS_PASSWORD%"=="" (
+    echo ERROR: SAUCELABS_PASSWORD environment variable is required but not set.
+    echo INFO: Please set this variable before running the script.
+    exit /b 1
+)
+
 for %%F in (*-test-with-dependencies.jar) do (set "TEST_JAR=%%F")
 if [%TEST_JAR%]==[] (
     echo ERROR: No test jar found in target directory

@@ -1,5 +1,12 @@
 pushd target || exit 1
 
+# Check for required environment variables
+if [ -z "$SAUCELABS_USER" ] || [ -z "$SAUCELABS_PASSWORD" ]; then
+    echo "ERROR: SAUCELABS_USER and SAUCELABS_PASSWORD environment variables are required but not set."
+    echo "INFO: Please export these variables before running the script."
+    exit 1
+fi
+
 TEST_JAR=$(find . -name "*-test-with-dependencies.jar")
 if [ -z "$TEST_JAR" ]
 then
