@@ -12,6 +12,7 @@ jobs:
   generate-automation-project:
     name: ${{ matrix.os }} generate and test tutorials
     runs-on: ${{ matrix.os }}
+    environment: development
 
     strategy:
       # ISSUE ubuntu-latest is missing Google Chrome, hence local Selenium fails
@@ -79,5 +80,8 @@ jobs:
 
       - name: run standalone testing project
         shell: bash
+        env:
+          SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
+          SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
         run: |
           cd testing && chmod +x standalone-tutorials.sh && ./standalone-tutorials.sh
