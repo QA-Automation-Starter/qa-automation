@@ -15,14 +15,8 @@ jobs:
     environment: development
 
     strategy:
-      # ISSUE ubuntu-latest is missing Google Chrome, hence local Selenium fails
-      # following https://github.com/QA-Automation-Starter/qa-automation/issues/221
-      # we will run these tests on ubuntu via deploy-* jobs,
-      # see on-main-push.yml and on-pull-request.yml.
-      # These jobs have credentials for SauceLabs account associated with
-      # this project, hence can bypass this limitation.
       matrix:
-        os: [ macos-latest, windows-latest ]
+        os: [ macos-latest, windows-latest, ubuntu-latest ]
 
     steps:
       - uses: actions/setup-java@v3
