@@ -379,189 +379,190 @@
 <a class="jxr_linenumber" name="L371" href="#L371">371</a>                     .getDeclaredConstructor()
 <a class="jxr_linenumber" name="L372" href="#L372">372</a>                     .newInstance();
 <a class="jxr_linenumber" name="L373" href="#L373">373</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> InvocationTargetException e) {
-<a class="jxr_linenumber" name="L374" href="#L374">374</a>             log.error(<span class="jxr_string">"remote selenium connection failed"</span>);
-<a class="jxr_linenumber" name="L375" href="#L375">375</a>             <strong class="jxr_keyword">throw</strong> e.getCause();
-<a class="jxr_linenumber" name="L376" href="#L376">376</a>         }
-<a class="jxr_linenumber" name="L377" href="#L377">377</a>     }
-<a class="jxr_linenumber" name="L378" href="#L378">378</a> 
-<a class="jxr_linenumber" name="L379" href="#L379">379</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L380" href="#L380">380</a> <em class="jxr_javadoccomment">     * Casts an WebDriver into an AndroidDriver.</em>
-<a class="jxr_linenumber" name="L381" href="#L381">381</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L382" href="#L382">382</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
-<a class="jxr_linenumber" name="L383" href="#L383">383</a> <em class="jxr_javadoccomment">     *            type of WebElement</em>
-<a class="jxr_linenumber" name="L384" href="#L384">384</a> <em class="jxr_javadoccomment">     * @return the AndroidDriver interface</em>
-<a class="jxr_linenumber" name="L385" href="#L385">385</a> <em class="jxr_javadoccomment">     * @throws ClassCastException</em>
-<a class="jxr_linenumber" name="L386" href="#L386">386</a> <em class="jxr_javadoccomment">     *             if the driver is not of AndroidDriver type</em>
-<a class="jxr_linenumber" name="L387" href="#L387">387</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L388" href="#L388">388</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L389" href="#L389">389</a>     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
-<a class="jxr_linenumber" name="L390" href="#L390">390</a>         value = <span class="jxr_string">"BC_UNCONFIRMED_CAST"</span>)
-<a class="jxr_linenumber" name="L391" href="#L391">391</a>     <strong class="jxr_keyword">public</strong> &lt;T <strong class="jxr_keyword">extends</strong> WebElement&gt; AndroidDriver asAndroid() {
-<a class="jxr_linenumber" name="L392" href="#L392">392</a>         <strong class="jxr_keyword">return</strong> (AndroidDriver) driver;
-<a class="jxr_linenumber" name="L393" href="#L393">393</a>     }
-<a class="jxr_linenumber" name="L394" href="#L394">394</a> 
-<a class="jxr_linenumber" name="L395" href="#L395">395</a>     <strong class="jxr_keyword">public</strong> WebDriver asGeneric() {
-<a class="jxr_linenumber" name="L396" href="#L396">396</a>         <strong class="jxr_keyword">return</strong> driver;
-<a class="jxr_linenumber" name="L397" href="#L397">397</a>     }
-<a class="jxr_linenumber" name="L398" href="#L398">398</a> 
-<a class="jxr_linenumber" name="L399" href="#L399">399</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L400" href="#L400">400</a>     <strong class="jxr_keyword">public</strong> &lt;T <strong class="jxr_keyword">extends</strong> WebElement&gt; IOSDriver asIOS() {
-<a class="jxr_linenumber" name="L401" href="#L401">401</a>         <strong class="jxr_keyword">return</strong> (IOSDriver) driver;
-<a class="jxr_linenumber" name="L402" href="#L402">402</a>     }
-<a class="jxr_linenumber" name="L403" href="#L403">403</a> 
-<a class="jxr_linenumber" name="L404" href="#L404">404</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L405" href="#L405">405</a> <em class="jxr_javadoccomment">     * Casts an WebDriver into a JavascriptExecutor.</em>
-<a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_javadoccomment">     * @return the JavascriptExecutor interface</em>
-<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">     * @throws ClassCastException</em>
-<a class="jxr_linenumber" name="L409" href="#L409">409</a> <em class="jxr_javadoccomment">     *             if JavaScript not supported</em>
-<a class="jxr_linenumber" name="L410" href="#L410">410</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L411" href="#L411">411</a>     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
-<a class="jxr_linenumber" name="L412" href="#L412">412</a>         value = <span class="jxr_string">"BC_UNCONFIRMED_CAST"</span>)
-<a class="jxr_linenumber" name="L413" href="#L413">413</a>     <strong class="jxr_keyword">public</strong> JavascriptExecutor asJavaScriptExecutor() {
-<a class="jxr_linenumber" name="L414" href="#L414">414</a>         <strong class="jxr_keyword">return</strong> (JavascriptExecutor) driver;
-<a class="jxr_linenumber" name="L415" href="#L415">415</a>     }
-<a class="jxr_linenumber" name="L416" href="#L416">416</a> 
-<a class="jxr_linenumber" name="L417" href="#L417">417</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L418" href="#L418">418</a> <em class="jxr_javadoccomment">     * Casts an WebDriver into a RemoteWebDriver.</em>
-<a class="jxr_linenumber" name="L419" href="#L419">419</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L420" href="#L420">420</a> <em class="jxr_javadoccomment">     * @return the RemoteWebDriver interface</em>
-<a class="jxr_linenumber" name="L421" href="#L421">421</a> <em class="jxr_javadoccomment">     * @throws ClassCastException</em>
-<a class="jxr_linenumber" name="L422" href="#L422">422</a> <em class="jxr_javadoccomment">     *             if the driver is not of RemoteWebDriver type</em>
-<a class="jxr_linenumber" name="L423" href="#L423">423</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L424" href="#L424">424</a>     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
-<a class="jxr_linenumber" name="L425" href="#L425">425</a>         value = <span class="jxr_string">"BC_UNCONFIRMED_CAST"</span>)
-<a class="jxr_linenumber" name="L426" href="#L426">426</a>     <strong class="jxr_keyword">public</strong> RemoteWebDriver asRemote() {
-<a class="jxr_linenumber" name="L427" href="#L427">427</a>         <strong class="jxr_keyword">return</strong> (RemoteWebDriver) driver;
-<a class="jxr_linenumber" name="L428" href="#L428">428</a>     }
-<a class="jxr_linenumber" name="L429" href="#L429">429</a> 
-<a class="jxr_linenumber" name="L430" href="#L430">430</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L431" href="#L431">431</a> <em class="jxr_javadoccomment">     * Casts an WebDriver into a WindowsDriver.</em>
-<a class="jxr_linenumber" name="L432" href="#L432">432</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L433" href="#L433">433</a> <em class="jxr_javadoccomment">     * @return the WindowsDriver interface</em>
-<a class="jxr_linenumber" name="L434" href="#L434">434</a> <em class="jxr_javadoccomment">     * @throws ClassCastException</em>
-<a class="jxr_linenumber" name="L435" href="#L435">435</a> <em class="jxr_javadoccomment">     *             if the driver is not of WindowsDriver type</em>
-<a class="jxr_linenumber" name="L436" href="#L436">436</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L437" href="#L437">437</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
-<a class="jxr_linenumber" name="L438" href="#L438">438</a>     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
-<a class="jxr_linenumber" name="L439" href="#L439">439</a>         value = <span class="jxr_string">"BC_UNCONFIRMED_CAST"</span>)
-<a class="jxr_linenumber" name="L440" href="#L440">440</a>     <strong class="jxr_keyword">public</strong> WindowsDriver asWindows() {
-<a class="jxr_linenumber" name="L441" href="#L441">441</a>         <strong class="jxr_keyword">return</strong> (WindowsDriver) driver;
-<a class="jxr_linenumber" name="L442" href="#L442">442</a>     }
-<a class="jxr_linenumber" name="L443" href="#L443">443</a> 
-<a class="jxr_linenumber" name="L444" href="#L444">444</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L445" href="#L445">445</a> <em class="jxr_javadoccomment">     * Dispatches and event to a target element per &lt;a href=</em>
-<a class="jxr_linenumber" name="L446" href="#L446">446</a> <em class="jxr_javadoccomment">     * "<a href="https://www.w3.org/TR/2015/REC-dom-20151119/" target="alexandria_uri">https://www.w3.org/TR/2015/REC-dom-20151119/</a>#interface-eventtarget"&gt;DOM</em>
-<a class="jxr_linenumber" name="L447" href="#L447">447</a> <em class="jxr_javadoccomment">     * Level4&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L448" href="#L448">448</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L449" href="#L449">449</a> <em class="jxr_javadoccomment">     * @param event</em>
-<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">     *            the event to dispatch</em>
-<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">     * @param element</em>
-<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">     *            the element</em>
-<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">     * @return status of event per specification</em>
-<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">     * @throws UnsupportedOperationException</em>
-<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">     *             if the operation fails</em>
-<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L457" href="#L457">457</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> dispatch(<strong class="jxr_keyword">final</strong> Event event, <strong class="jxr_keyword">final</strong> WebElement element) {
-<a class="jxr_linenumber" name="L458" href="#L458">458</a>         <strong class="jxr_keyword">return</strong> (Boolean) asJavaScriptExecutor()
-<a class="jxr_linenumber" name="L459" href="#L459">459</a>             .executeScript(
-<a class="jxr_linenumber" name="L460" href="#L460">460</a>                 <span class="jxr_string">"return arguments[0].dispatchEvent("</span> + event.toString() + <span class="jxr_string">");"</span>,
-<a class="jxr_linenumber" name="L461" href="#L461">461</a>                 element);
-<a class="jxr_linenumber" name="L462" href="#L462">462</a>     }
-<a class="jxr_linenumber" name="L463" href="#L463">463</a> 
-<a class="jxr_linenumber" name="L464" href="#L464">464</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L465" href="#L465">465</a> <em class="jxr_javadoccomment">     * Bypasses Selenium by executing the click via JavaScript, thus enabling</em>
-<a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     * clicking of obscured or otherwise hidden elements.</em>
-<a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L468" href="#L468">468</a> <em class="jxr_javadoccomment">     * @param element</em>
-<a class="jxr_linenumber" name="L469" href="#L469">469</a> <em class="jxr_javadoccomment">     *            the element to click on</em>
-<a class="jxr_linenumber" name="L470" href="#L470">470</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L471" href="#L471">471</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> forceClick(<strong class="jxr_keyword">final</strong> WebElement element) {
-<a class="jxr_linenumber" name="L472" href="#L472">472</a>         asJavaScriptExecutor()
-<a class="jxr_linenumber" name="L473" href="#L473">473</a>             .executeScript(
-<a class="jxr_linenumber" name="L474" href="#L474">474</a>                 <span class="jxr_string">"arguments[0].click();"</span>,
-<a class="jxr_linenumber" name="L475" href="#L475">475</a>                 element);
-<a class="jxr_linenumber" name="L476" href="#L476">476</a>     }
-<a class="jxr_linenumber" name="L477" href="#L477">477</a> 
-<a class="jxr_linenumber" name="L478" href="#L478">478</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> is(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; type) {
-<a class="jxr_linenumber" name="L479" href="#L479">479</a>         <strong class="jxr_keyword">return</strong> type.isInstance(driver);
-<a class="jxr_linenumber" name="L480" href="#L480">480</a>     }
-<a class="jxr_linenumber" name="L481" href="#L481">481</a> 
-<a class="jxr_linenumber" name="L482" href="#L482">482</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L483" href="#L483">483</a> <em class="jxr_javadoccomment">     * Quits the driver swallowing exceptions.</em>
-<a class="jxr_linenumber" name="L484" href="#L484">484</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L485" href="#L485">485</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> safelyQuit() {
-<a class="jxr_linenumber" name="L486" href="#L486">486</a>         <strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L487" href="#L487">487</a>             log.debug(<span class="jxr_string">"quiting application"</span>);
-<a class="jxr_linenumber" name="L488" href="#L488">488</a>             driver.quit();
-<a class="jxr_linenumber" name="L489" href="#L489">489</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> Exception e) {
-<a class="jxr_linenumber" name="L490" href="#L490">490</a>             <em class="jxr_comment">// NOTE must handle all exceptions here otherwise JGiven reports</em>
-<a class="jxr_linenumber" name="L491" href="#L491">491</a>             <em class="jxr_comment">// are not generated</em>
-<a class="jxr_linenumber" name="L492" href="#L492">492</a>             log.error(<span class="jxr_string">"while quiting got"</span>, e);
-<a class="jxr_linenumber" name="L493" href="#L493">493</a>         }
-<a class="jxr_linenumber" name="L494" href="#L494">494</a>     }
-<a class="jxr_linenumber" name="L495" href="#L495">495</a> 
-<a class="jxr_linenumber" name="L496" href="#L496">496</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L497" href="#L497">497</a> <em class="jxr_javadoccomment">     * Scrolls an Element into View per &lt;a href=</em>
-<a class="jxr_linenumber" name="L498" href="#L498">498</a> <em class="jxr_javadoccomment">     * "<a href="https://www.w3.org/TR/2016/WD-cssom-view-1-20160317/" target="alexandria_uri">https://www.w3.org/TR/2016/WD-cssom-view-1-20160317/</a>#extension-to-the-element-interface"&gt;CSSOM</em>
-<a class="jxr_linenumber" name="L499" href="#L499">499</a> <em class="jxr_javadoccomment">     * View Module Element Interface Extensions&lt;/a&gt;</em>
-<a class="jxr_linenumber" name="L500" href="#L500">500</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L501" href="#L501">501</a> <em class="jxr_javadoccomment">     * @param element</em>
-<a class="jxr_linenumber" name="L502" href="#L502">502</a> <em class="jxr_javadoccomment">     *            the element</em>
-<a class="jxr_linenumber" name="L503" href="#L503">503</a> <em class="jxr_javadoccomment">     * @return the element</em>
-<a class="jxr_linenumber" name="L504" href="#L504">504</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L505" href="#L505">505</a>     <strong class="jxr_keyword">public</strong> WebElement scrollIntoView(<strong class="jxr_keyword">final</strong> WebElement element) {
-<a class="jxr_linenumber" name="L506" href="#L506">506</a>         <strong class="jxr_keyword">if</strong> (driver instanceof WindowsDriver)
-<a class="jxr_linenumber" name="L507" href="#L507">507</a>             <em class="jxr_comment">// TODO implement scrolling for WinAppDriver</em>
-<a class="jxr_linenumber" name="L508" href="#L508">508</a>             <em class="jxr_comment">// https://github.com/microsoft/WinAppDriver/issues/1538</em>
-<a class="jxr_linenumber" name="L509" href="#L509">509</a>             <em class="jxr_comment">// meanwhile do nothing</em>
-<a class="jxr_linenumber" name="L510" href="#L510">510</a>             <strong class="jxr_keyword">return</strong> element;
-<a class="jxr_linenumber" name="L511" href="#L511">511</a> 
-<a class="jxr_linenumber" name="L512" href="#L512">512</a>         <em class="jxr_comment">// ISSUE isDisplayed method is not reliable</em>
-<a class="jxr_linenumber" name="L513" href="#L513">513</a>         <em class="jxr_comment">// if (!element.isDisplayed())</em>
-<a class="jxr_linenumber" name="L514" href="#L514">514</a>         asJavaScriptExecutor()
-<a class="jxr_linenumber" name="L515" href="#L515">515</a>             .executeScript(
-<a class="jxr_linenumber" name="L516" href="#L516">516</a>                 <span class="jxr_string">"arguments[0].scrollIntoView();"</span>,
-<a class="jxr_linenumber" name="L517" href="#L517">517</a>                 element);
-<a class="jxr_linenumber" name="L518" href="#L518">518</a>         <strong class="jxr_keyword">return</strong> element;
-<a class="jxr_linenumber" name="L519" href="#L519">519</a>     }
-<a class="jxr_linenumber" name="L520" href="#L520">520</a> 
-<a class="jxr_linenumber" name="L521" href="#L521">521</a>     <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L522" href="#L522">522</a> <em class="jxr_javadoccomment">     * Retrieves Web context identifier of running mobile application.</em>
-<a class="jxr_linenumber" name="L523" href="#L523">523</a> <em class="jxr_javadoccomment">     *</em>
-<a class="jxr_linenumber" name="L524" href="#L524">524</a> <em class="jxr_javadoccomment">     * @return the identifier of first Web context</em>
-<a class="jxr_linenumber" name="L525" href="#L525">525</a> <em class="jxr_javadoccomment">     * @throws TestRuntimeException</em>
-<a class="jxr_linenumber" name="L526" href="#L526">526</a> <em class="jxr_javadoccomment">     *             if no Web context/view was found</em>
-<a class="jxr_linenumber" name="L527" href="#L527">527</a> <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L528" href="#L528">528</a>     @SneakyThrows
-<a class="jxr_linenumber" name="L529" href="#L529">529</a>     <em class="jxr_comment">// ISSUE seems no longer in use -- maybe should be deprecated?</em>
-<a class="jxr_linenumber" name="L530" href="#L530">530</a>     <strong class="jxr_keyword">public</strong> String webContextIdentifier() {
-<a class="jxr_linenumber" name="L531" href="#L531">531</a>         <em class="jxr_comment">// NOTE one iOS the initialization of web context is slow, hence this</em>
-<a class="jxr_linenumber" name="L532" href="#L532">532</a>         <strong class="jxr_keyword">return</strong> Failsafe.with(
-<a class="jxr_linenumber" name="L533" href="#L533">533</a>             Fallback.of(
-<a class="jxr_linenumber" name="L534" href="#L534">534</a>                 (CheckedConsumer&lt;ExecutionAttemptedEvent&lt;? <strong class="jxr_keyword">extends</strong> String&gt;&gt;) e -&gt; {
-<a class="jxr_linenumber" name="L535" href="#L535">535</a>                     <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a name="TestRuntimeException" href="../../../../../../dev/aherscu/qa/jgiven/commons/TestRuntimeException.html#TestRuntimeException">TestRuntimeException</a>(e.getLastFailure());
-<a class="jxr_linenumber" name="L536" href="#L536">536</a>                 }),
-<a class="jxr_linenumber" name="L537" href="#L537">537</a>             <strong class="jxr_keyword">new</strong> RetryPolicy&lt;String&gt;()
-<a class="jxr_linenumber" name="L538" href="#L538">538</a>                 <em class="jxr_comment">// at most 3 retries by default</em>
-<a class="jxr_linenumber" name="L539" href="#L539">539</a>                 .withMaxDuration(StageEx.pollTimeout)
-<a class="jxr_linenumber" name="L540" href="#L540">540</a>                 .handle(TestRuntimeException.<strong class="jxr_keyword">class</strong>, WebDriverException.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L541" href="#L541">541</a>                 .onRetry(e -&gt; log.debug(<span class="jxr_string">"re-attempting finding web view #{}"</span>,
-<a class="jxr_linenumber" name="L542" href="#L542">542</a>                     e.getAttemptCount()))
-<a class="jxr_linenumber" name="L543" href="#L543">543</a>                 .onRetriesExceeded(e -&gt; log.error(<span class="jxr_string">"retries exceeded."</span>,
-<a class="jxr_linenumber" name="L544" href="#L544">544</a>                     e.getFailure())))
-<a class="jxr_linenumber" name="L545" href="#L545">545</a>             .onSuccess(e -&gt; log
-<a class="jxr_linenumber" name="L546" href="#L546">546</a>                 .debug(<span class="jxr_string">"found web view context {}"</span>, e.getResult()))
-<a class="jxr_linenumber" name="L547" href="#L547">547</a>             .get(() -&gt; ((ContextAware) driver)
-<a class="jxr_linenumber" name="L548" href="#L548">548</a>                 .getContextHandles()
-<a class="jxr_linenumber" name="L549" href="#L549">549</a>                 .stream()
-<a class="jxr_linenumber" name="L550" href="#L550">550</a>                 .peek(contextId -&gt; log.trace(<span class="jxr_string">"found context {}"</span>, contextId))
-<a class="jxr_linenumber" name="L551" href="#L551">551</a>                 .filter(contextId -&gt; contextId.startsWith(<span class="jxr_string">"WEBVIEW"</span>))
-<a class="jxr_linenumber" name="L552" href="#L552">552</a>                 .findFirst()
-<a class="jxr_linenumber" name="L553" href="#L553">553</a>                 .orElseThrow(
-<a class="jxr_linenumber" name="L554" href="#L554">554</a>                     () -&gt; <strong class="jxr_keyword">new</strong> <a name="TestRuntimeException" href="../../../../../../dev/aherscu/qa/jgiven/commons/TestRuntimeException.html#TestRuntimeException">TestRuntimeException</a>(<span class="jxr_string">"no webview available"</span>)));
-<a class="jxr_linenumber" name="L555" href="#L555">555</a>     }
-<a class="jxr_linenumber" name="L556" href="#L556">556</a> }
+<a class="jxr_linenumber" name="L374" href="#L374">374</a>             log.error(<span class="jxr_string">"remote selenium connection failed due to:\n{}"</span>,
+<a class="jxr_linenumber" name="L375" href="#L375">375</a>                 e.getCause().getMessage());
+<a class="jxr_linenumber" name="L376" href="#L376">376</a>             <strong class="jxr_keyword">throw</strong> e.getCause();
+<a class="jxr_linenumber" name="L377" href="#L377">377</a>         }
+<a class="jxr_linenumber" name="L378" href="#L378">378</a>     }
+<a class="jxr_linenumber" name="L379" href="#L379">379</a> 
+<a class="jxr_linenumber" name="L380" href="#L380">380</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L381" href="#L381">381</a> <em class="jxr_javadoccomment">     * Casts an WebDriver into an AndroidDriver.</em>
+<a class="jxr_linenumber" name="L382" href="#L382">382</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L383" href="#L383">383</a> <em class="jxr_javadoccomment">     * @param &lt;T&gt;</em>
+<a class="jxr_linenumber" name="L384" href="#L384">384</a> <em class="jxr_javadoccomment">     *            type of WebElement</em>
+<a class="jxr_linenumber" name="L385" href="#L385">385</a> <em class="jxr_javadoccomment">     * @return the AndroidDriver interface</em>
+<a class="jxr_linenumber" name="L386" href="#L386">386</a> <em class="jxr_javadoccomment">     * @throws ClassCastException</em>
+<a class="jxr_linenumber" name="L387" href="#L387">387</a> <em class="jxr_javadoccomment">     *             if the driver is not of AndroidDriver type</em>
+<a class="jxr_linenumber" name="L388" href="#L388">388</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L389" href="#L389">389</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L390" href="#L390">390</a>     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+<a class="jxr_linenumber" name="L391" href="#L391">391</a>         value = <span class="jxr_string">"BC_UNCONFIRMED_CAST"</span>)
+<a class="jxr_linenumber" name="L392" href="#L392">392</a>     <strong class="jxr_keyword">public</strong> &lt;T <strong class="jxr_keyword">extends</strong> WebElement&gt; AndroidDriver asAndroid() {
+<a class="jxr_linenumber" name="L393" href="#L393">393</a>         <strong class="jxr_keyword">return</strong> (AndroidDriver) driver;
+<a class="jxr_linenumber" name="L394" href="#L394">394</a>     }
+<a class="jxr_linenumber" name="L395" href="#L395">395</a> 
+<a class="jxr_linenumber" name="L396" href="#L396">396</a>     <strong class="jxr_keyword">public</strong> WebDriver asGeneric() {
+<a class="jxr_linenumber" name="L397" href="#L397">397</a>         <strong class="jxr_keyword">return</strong> driver;
+<a class="jxr_linenumber" name="L398" href="#L398">398</a>     }
+<a class="jxr_linenumber" name="L399" href="#L399">399</a> 
+<a class="jxr_linenumber" name="L400" href="#L400">400</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L401" href="#L401">401</a>     <strong class="jxr_keyword">public</strong> &lt;T <strong class="jxr_keyword">extends</strong> WebElement&gt; IOSDriver asIOS() {
+<a class="jxr_linenumber" name="L402" href="#L402">402</a>         <strong class="jxr_keyword">return</strong> (IOSDriver) driver;
+<a class="jxr_linenumber" name="L403" href="#L403">403</a>     }
+<a class="jxr_linenumber" name="L404" href="#L404">404</a> 
+<a class="jxr_linenumber" name="L405" href="#L405">405</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L406" href="#L406">406</a> <em class="jxr_javadoccomment">     * Casts an WebDriver into a JavascriptExecutor.</em>
+<a class="jxr_linenumber" name="L407" href="#L407">407</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L408" href="#L408">408</a> <em class="jxr_javadoccomment">     * @return the JavascriptExecutor interface</em>
+<a class="jxr_linenumber" name="L409" href="#L409">409</a> <em class="jxr_javadoccomment">     * @throws ClassCastException</em>
+<a class="jxr_linenumber" name="L410" href="#L410">410</a> <em class="jxr_javadoccomment">     *             if JavaScript not supported</em>
+<a class="jxr_linenumber" name="L411" href="#L411">411</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L412" href="#L412">412</a>     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+<a class="jxr_linenumber" name="L413" href="#L413">413</a>         value = <span class="jxr_string">"BC_UNCONFIRMED_CAST"</span>)
+<a class="jxr_linenumber" name="L414" href="#L414">414</a>     <strong class="jxr_keyword">public</strong> JavascriptExecutor asJavaScriptExecutor() {
+<a class="jxr_linenumber" name="L415" href="#L415">415</a>         <strong class="jxr_keyword">return</strong> (JavascriptExecutor) driver;
+<a class="jxr_linenumber" name="L416" href="#L416">416</a>     }
+<a class="jxr_linenumber" name="L417" href="#L417">417</a> 
+<a class="jxr_linenumber" name="L418" href="#L418">418</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L419" href="#L419">419</a> <em class="jxr_javadoccomment">     * Casts an WebDriver into a RemoteWebDriver.</em>
+<a class="jxr_linenumber" name="L420" href="#L420">420</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L421" href="#L421">421</a> <em class="jxr_javadoccomment">     * @return the RemoteWebDriver interface</em>
+<a class="jxr_linenumber" name="L422" href="#L422">422</a> <em class="jxr_javadoccomment">     * @throws ClassCastException</em>
+<a class="jxr_linenumber" name="L423" href="#L423">423</a> <em class="jxr_javadoccomment">     *             if the driver is not of RemoteWebDriver type</em>
+<a class="jxr_linenumber" name="L424" href="#L424">424</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L425" href="#L425">425</a>     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+<a class="jxr_linenumber" name="L426" href="#L426">426</a>         value = <span class="jxr_string">"BC_UNCONFIRMED_CAST"</span>)
+<a class="jxr_linenumber" name="L427" href="#L427">427</a>     <strong class="jxr_keyword">public</strong> RemoteWebDriver asRemote() {
+<a class="jxr_linenumber" name="L428" href="#L428">428</a>         <strong class="jxr_keyword">return</strong> (RemoteWebDriver) driver;
+<a class="jxr_linenumber" name="L429" href="#L429">429</a>     }
+<a class="jxr_linenumber" name="L430" href="#L430">430</a> 
+<a class="jxr_linenumber" name="L431" href="#L431">431</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L432" href="#L432">432</a> <em class="jxr_javadoccomment">     * Casts an WebDriver into a WindowsDriver.</em>
+<a class="jxr_linenumber" name="L433" href="#L433">433</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L434" href="#L434">434</a> <em class="jxr_javadoccomment">     * @return the WindowsDriver interface</em>
+<a class="jxr_linenumber" name="L435" href="#L435">435</a> <em class="jxr_javadoccomment">     * @throws ClassCastException</em>
+<a class="jxr_linenumber" name="L436" href="#L436">436</a> <em class="jxr_javadoccomment">     *             if the driver is not of WindowsDriver type</em>
+<a class="jxr_linenumber" name="L437" href="#L437">437</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L438" href="#L438">438</a>     @SuppressWarnings(<span class="jxr_string">"unchecked"</span>)
+<a class="jxr_linenumber" name="L439" href="#L439">439</a>     @edu.umd.cs.findbugs.annotations.SuppressFBWarnings(
+<a class="jxr_linenumber" name="L440" href="#L440">440</a>         value = <span class="jxr_string">"BC_UNCONFIRMED_CAST"</span>)
+<a class="jxr_linenumber" name="L441" href="#L441">441</a>     <strong class="jxr_keyword">public</strong> WindowsDriver asWindows() {
+<a class="jxr_linenumber" name="L442" href="#L442">442</a>         <strong class="jxr_keyword">return</strong> (WindowsDriver) driver;
+<a class="jxr_linenumber" name="L443" href="#L443">443</a>     }
+<a class="jxr_linenumber" name="L444" href="#L444">444</a> 
+<a class="jxr_linenumber" name="L445" href="#L445">445</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L446" href="#L446">446</a> <em class="jxr_javadoccomment">     * Dispatches and event to a target element per &lt;a href=</em>
+<a class="jxr_linenumber" name="L447" href="#L447">447</a> <em class="jxr_javadoccomment">     * "<a href="https://www.w3.org/TR/2015/REC-dom-20151119/" target="alexandria_uri">https://www.w3.org/TR/2015/REC-dom-20151119/</a>#interface-eventtarget"&gt;DOM</em>
+<a class="jxr_linenumber" name="L448" href="#L448">448</a> <em class="jxr_javadoccomment">     * Level4&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L449" href="#L449">449</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L450" href="#L450">450</a> <em class="jxr_javadoccomment">     * @param event</em>
+<a class="jxr_linenumber" name="L451" href="#L451">451</a> <em class="jxr_javadoccomment">     *            the event to dispatch</em>
+<a class="jxr_linenumber" name="L452" href="#L452">452</a> <em class="jxr_javadoccomment">     * @param element</em>
+<a class="jxr_linenumber" name="L453" href="#L453">453</a> <em class="jxr_javadoccomment">     *            the element</em>
+<a class="jxr_linenumber" name="L454" href="#L454">454</a> <em class="jxr_javadoccomment">     * @return status of event per specification</em>
+<a class="jxr_linenumber" name="L455" href="#L455">455</a> <em class="jxr_javadoccomment">     * @throws UnsupportedOperationException</em>
+<a class="jxr_linenumber" name="L456" href="#L456">456</a> <em class="jxr_javadoccomment">     *             if the operation fails</em>
+<a class="jxr_linenumber" name="L457" href="#L457">457</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L458" href="#L458">458</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> dispatch(<strong class="jxr_keyword">final</strong> Event event, <strong class="jxr_keyword">final</strong> WebElement element) {
+<a class="jxr_linenumber" name="L459" href="#L459">459</a>         <strong class="jxr_keyword">return</strong> (Boolean) asJavaScriptExecutor()
+<a class="jxr_linenumber" name="L460" href="#L460">460</a>             .executeScript(
+<a class="jxr_linenumber" name="L461" href="#L461">461</a>                 <span class="jxr_string">"return arguments[0].dispatchEvent("</span> + event.toString() + <span class="jxr_string">");"</span>,
+<a class="jxr_linenumber" name="L462" href="#L462">462</a>                 element);
+<a class="jxr_linenumber" name="L463" href="#L463">463</a>     }
+<a class="jxr_linenumber" name="L464" href="#L464">464</a> 
+<a class="jxr_linenumber" name="L465" href="#L465">465</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L466" href="#L466">466</a> <em class="jxr_javadoccomment">     * Bypasses Selenium by executing the click via JavaScript, thus enabling</em>
+<a class="jxr_linenumber" name="L467" href="#L467">467</a> <em class="jxr_javadoccomment">     * clicking of obscured or otherwise hidden elements.</em>
+<a class="jxr_linenumber" name="L468" href="#L468">468</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L469" href="#L469">469</a> <em class="jxr_javadoccomment">     * @param element</em>
+<a class="jxr_linenumber" name="L470" href="#L470">470</a> <em class="jxr_javadoccomment">     *            the element to click on</em>
+<a class="jxr_linenumber" name="L471" href="#L471">471</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L472" href="#L472">472</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> forceClick(<strong class="jxr_keyword">final</strong> WebElement element) {
+<a class="jxr_linenumber" name="L473" href="#L473">473</a>         asJavaScriptExecutor()
+<a class="jxr_linenumber" name="L474" href="#L474">474</a>             .executeScript(
+<a class="jxr_linenumber" name="L475" href="#L475">475</a>                 <span class="jxr_string">"arguments[0].click();"</span>,
+<a class="jxr_linenumber" name="L476" href="#L476">476</a>                 element);
+<a class="jxr_linenumber" name="L477" href="#L477">477</a>     }
+<a class="jxr_linenumber" name="L478" href="#L478">478</a> 
+<a class="jxr_linenumber" name="L479" href="#L479">479</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> is(<strong class="jxr_keyword">final</strong> Class&lt;?&gt; type) {
+<a class="jxr_linenumber" name="L480" href="#L480">480</a>         <strong class="jxr_keyword">return</strong> type.isInstance(driver);
+<a class="jxr_linenumber" name="L481" href="#L481">481</a>     }
+<a class="jxr_linenumber" name="L482" href="#L482">482</a> 
+<a class="jxr_linenumber" name="L483" href="#L483">483</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L484" href="#L484">484</a> <em class="jxr_javadoccomment">     * Quits the driver swallowing exceptions.</em>
+<a class="jxr_linenumber" name="L485" href="#L485">485</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L486" href="#L486">486</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> safelyQuit() {
+<a class="jxr_linenumber" name="L487" href="#L487">487</a>         <strong class="jxr_keyword">try</strong> {
+<a class="jxr_linenumber" name="L488" href="#L488">488</a>             log.debug(<span class="jxr_string">"quiting application"</span>);
+<a class="jxr_linenumber" name="L489" href="#L489">489</a>             driver.quit();
+<a class="jxr_linenumber" name="L490" href="#L490">490</a>         } <strong class="jxr_keyword">catch</strong> (<strong class="jxr_keyword">final</strong> Exception e) {
+<a class="jxr_linenumber" name="L491" href="#L491">491</a>             <em class="jxr_comment">// NOTE must handle all exceptions here otherwise JGiven reports</em>
+<a class="jxr_linenumber" name="L492" href="#L492">492</a>             <em class="jxr_comment">// are not generated</em>
+<a class="jxr_linenumber" name="L493" href="#L493">493</a>             log.error(<span class="jxr_string">"while quiting got"</span>, e);
+<a class="jxr_linenumber" name="L494" href="#L494">494</a>         }
+<a class="jxr_linenumber" name="L495" href="#L495">495</a>     }
+<a class="jxr_linenumber" name="L496" href="#L496">496</a> 
+<a class="jxr_linenumber" name="L497" href="#L497">497</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L498" href="#L498">498</a> <em class="jxr_javadoccomment">     * Scrolls an Element into View per &lt;a href=</em>
+<a class="jxr_linenumber" name="L499" href="#L499">499</a> <em class="jxr_javadoccomment">     * "<a href="https://www.w3.org/TR/2016/WD-cssom-view-1-20160317/" target="alexandria_uri">https://www.w3.org/TR/2016/WD-cssom-view-1-20160317/</a>#extension-to-the-element-interface"&gt;CSSOM</em>
+<a class="jxr_linenumber" name="L500" href="#L500">500</a> <em class="jxr_javadoccomment">     * View Module Element Interface Extensions&lt;/a&gt;</em>
+<a class="jxr_linenumber" name="L501" href="#L501">501</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L502" href="#L502">502</a> <em class="jxr_javadoccomment">     * @param element</em>
+<a class="jxr_linenumber" name="L503" href="#L503">503</a> <em class="jxr_javadoccomment">     *            the element</em>
+<a class="jxr_linenumber" name="L504" href="#L504">504</a> <em class="jxr_javadoccomment">     * @return the element</em>
+<a class="jxr_linenumber" name="L505" href="#L505">505</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L506" href="#L506">506</a>     <strong class="jxr_keyword">public</strong> WebElement scrollIntoView(<strong class="jxr_keyword">final</strong> WebElement element) {
+<a class="jxr_linenumber" name="L507" href="#L507">507</a>         <strong class="jxr_keyword">if</strong> (driver instanceof WindowsDriver)
+<a class="jxr_linenumber" name="L508" href="#L508">508</a>             <em class="jxr_comment">// TODO implement scrolling for WinAppDriver</em>
+<a class="jxr_linenumber" name="L509" href="#L509">509</a>             <em class="jxr_comment">// https://github.com/microsoft/WinAppDriver/issues/1538</em>
+<a class="jxr_linenumber" name="L510" href="#L510">510</a>             <em class="jxr_comment">// meanwhile do nothing</em>
+<a class="jxr_linenumber" name="L511" href="#L511">511</a>             <strong class="jxr_keyword">return</strong> element;
+<a class="jxr_linenumber" name="L512" href="#L512">512</a> 
+<a class="jxr_linenumber" name="L513" href="#L513">513</a>         <em class="jxr_comment">// ISSUE isDisplayed method is not reliable</em>
+<a class="jxr_linenumber" name="L514" href="#L514">514</a>         <em class="jxr_comment">// if (!element.isDisplayed())</em>
+<a class="jxr_linenumber" name="L515" href="#L515">515</a>         asJavaScriptExecutor()
+<a class="jxr_linenumber" name="L516" href="#L516">516</a>             .executeScript(
+<a class="jxr_linenumber" name="L517" href="#L517">517</a>                 <span class="jxr_string">"arguments[0].scrollIntoView();"</span>,
+<a class="jxr_linenumber" name="L518" href="#L518">518</a>                 element);
+<a class="jxr_linenumber" name="L519" href="#L519">519</a>         <strong class="jxr_keyword">return</strong> element;
+<a class="jxr_linenumber" name="L520" href="#L520">520</a>     }
+<a class="jxr_linenumber" name="L521" href="#L521">521</a> 
+<a class="jxr_linenumber" name="L522" href="#L522">522</a>     <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L523" href="#L523">523</a> <em class="jxr_javadoccomment">     * Retrieves Web context identifier of running mobile application.</em>
+<a class="jxr_linenumber" name="L524" href="#L524">524</a> <em class="jxr_javadoccomment">     *</em>
+<a class="jxr_linenumber" name="L525" href="#L525">525</a> <em class="jxr_javadoccomment">     * @return the identifier of first Web context</em>
+<a class="jxr_linenumber" name="L526" href="#L526">526</a> <em class="jxr_javadoccomment">     * @throws TestRuntimeException</em>
+<a class="jxr_linenumber" name="L527" href="#L527">527</a> <em class="jxr_javadoccomment">     *             if no Web context/view was found</em>
+<a class="jxr_linenumber" name="L528" href="#L528">528</a> <em class="jxr_javadoccomment">     */</em>
+<a class="jxr_linenumber" name="L529" href="#L529">529</a>     @SneakyThrows
+<a class="jxr_linenumber" name="L530" href="#L530">530</a>     <em class="jxr_comment">// ISSUE seems no longer in use -- maybe should be deprecated?</em>
+<a class="jxr_linenumber" name="L531" href="#L531">531</a>     <strong class="jxr_keyword">public</strong> String webContextIdentifier() {
+<a class="jxr_linenumber" name="L532" href="#L532">532</a>         <em class="jxr_comment">// NOTE one iOS the initialization of web context is slow, hence this</em>
+<a class="jxr_linenumber" name="L533" href="#L533">533</a>         <strong class="jxr_keyword">return</strong> Failsafe.with(
+<a class="jxr_linenumber" name="L534" href="#L534">534</a>             Fallback.of(
+<a class="jxr_linenumber" name="L535" href="#L535">535</a>                 (CheckedConsumer&lt;ExecutionAttemptedEvent&lt;? <strong class="jxr_keyword">extends</strong> String&gt;&gt;) e -&gt; {
+<a class="jxr_linenumber" name="L536" href="#L536">536</a>                     <strong class="jxr_keyword">throw</strong> <strong class="jxr_keyword">new</strong> <a name="TestRuntimeException" href="../../../../../../dev/aherscu/qa/jgiven/commons/TestRuntimeException.html#TestRuntimeException">TestRuntimeException</a>(e.getLastFailure());
+<a class="jxr_linenumber" name="L537" href="#L537">537</a>                 }),
+<a class="jxr_linenumber" name="L538" href="#L538">538</a>             <strong class="jxr_keyword">new</strong> RetryPolicy&lt;String&gt;()
+<a class="jxr_linenumber" name="L539" href="#L539">539</a>                 <em class="jxr_comment">// at most 3 retries by default</em>
+<a class="jxr_linenumber" name="L540" href="#L540">540</a>                 .withMaxDuration(StageEx.pollTimeout)
+<a class="jxr_linenumber" name="L541" href="#L541">541</a>                 .handle(TestRuntimeException.<strong class="jxr_keyword">class</strong>, WebDriverException.<strong class="jxr_keyword">class</strong>)
+<a class="jxr_linenumber" name="L542" href="#L542">542</a>                 .onRetry(e -&gt; log.debug(<span class="jxr_string">"re-attempting finding web view #{}"</span>,
+<a class="jxr_linenumber" name="L543" href="#L543">543</a>                     e.getAttemptCount()))
+<a class="jxr_linenumber" name="L544" href="#L544">544</a>                 .onRetriesExceeded(e -&gt; log.error(<span class="jxr_string">"retries exceeded."</span>,
+<a class="jxr_linenumber" name="L545" href="#L545">545</a>                     e.getFailure())))
+<a class="jxr_linenumber" name="L546" href="#L546">546</a>             .onSuccess(e -&gt; log
+<a class="jxr_linenumber" name="L547" href="#L547">547</a>                 .debug(<span class="jxr_string">"found web view context {}"</span>, e.getResult()))
+<a class="jxr_linenumber" name="L548" href="#L548">548</a>             .get(() -&gt; ((ContextAware) driver)
+<a class="jxr_linenumber" name="L549" href="#L549">549</a>                 .getContextHandles()
+<a class="jxr_linenumber" name="L550" href="#L550">550</a>                 .stream()
+<a class="jxr_linenumber" name="L551" href="#L551">551</a>                 .peek(contextId -&gt; log.trace(<span class="jxr_string">"found context {}"</span>, contextId))
+<a class="jxr_linenumber" name="L552" href="#L552">552</a>                 .filter(contextId -&gt; contextId.startsWith(<span class="jxr_string">"WEBVIEW"</span>))
+<a class="jxr_linenumber" name="L553" href="#L553">553</a>                 .findFirst()
+<a class="jxr_linenumber" name="L554" href="#L554">554</a>                 .orElseThrow(
+<a class="jxr_linenumber" name="L555" href="#L555">555</a>                     () -&gt; <strong class="jxr_keyword">new</strong> <a name="TestRuntimeException" href="../../../../../../dev/aherscu/qa/jgiven/commons/TestRuntimeException.html#TestRuntimeException">TestRuntimeException</a>(<span class="jxr_string">"no webview available"</span>)));
+<a class="jxr_linenumber" name="L556" href="#L556">556</a>     }
+<a class="jxr_linenumber" name="L557" href="#L557">557</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2025. All rights reserved.</div>
