@@ -26,7 +26,7 @@ $JAVA_HOME/bin/java \
 -Dscreenshots=true \
 -DscreenshotDelayMs=500 \
 -jar $TEST_JAR \
--listener dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter \
+-listener dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter,dev.aherscu.qa.jgiven.webdriver.utils.SauceLabsReporter \
 -d test-output \
 -testjar $TEST_JAR \
 -xmlpathinjar testing-tutorials.xml

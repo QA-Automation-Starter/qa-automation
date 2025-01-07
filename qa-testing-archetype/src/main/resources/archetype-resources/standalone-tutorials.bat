@@ -13,7 +13,7 @@ if [%TEST_JAR%]==[] (
 -Dpoll.timeout=15 ^
 -Dpoll.delay=5 ^
 -Dsaucelabs.reporter.url= ^
--Dprovider=provider.local. ^
+-Dprovider=provider.saucelabs. ^
 -Ddevice.type= ^
 -Dbuild.label=STANDALONE ^
 -Dbuild.tags= ^
@@ -25,7 +25,7 @@ if [%TEST_JAR%]==[] (
 -Dscreenshots=true ^
 -DscreenshotDelayMs=500 ^
 -jar %TEST_JAR% ^
--listener dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter ^
+-listener dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter,dev.aherscu.qa.jgiven.webdriver.utils.SauceLabsReporter ^
 -d test-output ^
 -testjar %TEST_JAR% ^
 -xmlpathinjar testing-tutorials.xml
