@@ -26,7 +26,7 @@ if [%TEST_JAR%]==[] (
 -Dlogback.configurationFile=logback-test.xml ^
 -Dpoll.timeout=15 ^
 -Dpoll.delay=5 ^
--Dsaucelabs.reporter.url= ^
+-Dsaucelabs.reporter.url=https://%SAUCELABS_USER%:%SAUCELABS_PASSWORD%@ondemand.saucelabs.com:443/wd/hub ^
 -Dprovider=provider.saucelabs. ^
 -Ddevice.type= ^
 -Dbuild.label=STANDALONE ^
