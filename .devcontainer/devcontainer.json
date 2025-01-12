@@ -4,15 +4,13 @@
     "selenium-hub-docker.yml"
   ],
   "service": "tests",
+  "workspaceFolder": "/workspaces/qa-automation", // Codespaces default workspace path
   "features": {
     "ghcr.io/devcontainers-contrib/features/maven-sdkman:2": {
       "jdkVersion": "11"
     }
   },
   "customizations": {
-    "jetbrains": {
-      "backend": "IntelliJ"
-    },
     "codespaces": {
       "openFiles": [
         "README.md"
