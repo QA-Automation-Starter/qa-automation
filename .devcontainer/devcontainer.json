@@ -3,6 +3,7 @@
   "dockerComposeFile": ["selenium-hub-docker.yml"],
   "service": "tests",
   "workspaceFolder": "/workspace",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
   "features": {
     "ghcr.io/devcontainers-contrib/features/maven-sdkman:2": {
       "jdkVersion": "11"
