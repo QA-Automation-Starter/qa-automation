@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3"
 
 volumes:
   maven-cache:
@@ -8,9 +8,12 @@ services:
     image: mcr.microsoft.com/vscode/devcontainers/java:11
     volumes:
       - maven-cache:/root/.m2
-      - ..:/workspace:cached # Mount the parent directory as /workspace
-    working_dir: /workspace # Set the working directory inside the container
     command: sleep infinity
+    environment:
+      - MAVEN_OPTS=-Dmaven.repo.local=/root/.m2/repository
+    working_dir: /workspace
+    ports:
+      - "8080:8080" # Add your required ports here
 
   chrome:
     image: selenium/node-chrome:4.21.0
