@@ -1,10 +1,8 @@
 {
   "name": "qa-automation",
-  "dockerComposeFile": [
-    "selenium-hub-docker.yml"
-  ],
+  "dockerComposeFile": ["selenium-hub-docker.yml"],
   "service": "tests",
-  "workspaceFolder": "/workspaces/qa-automation", // Codespaces default workspace path
+  "workspaceFolder": "/workspace",
   "features": {
     "ghcr.io/devcontainers-contrib/features/maven-sdkman:2": {
       "jdkVersion": "11"
@@ -12,9 +10,7 @@
   },
   "customizations": {
     "codespaces": {
-      "openFiles": [
-        "README.md"
-      ]
+      "openFiles": ["README.md"]
     },
     "vscode": {
       "extensions": [
