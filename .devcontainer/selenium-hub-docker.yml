@@ -7,7 +7,7 @@ services:
   tests:
     image: mcr.microsoft.com/vscode/devcontainers/java:11
     volumes:
-      - maven-cache:/root/.m2
+      - maven-cache:/home/vscode/.m2
     command: sleep infinity
     environment:
       - MAVEN_OPTS=-Dmaven.repo.local=/home/vscode/.m2
