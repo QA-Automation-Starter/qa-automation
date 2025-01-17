@@ -31,7 +31,5 @@
         }
       ]
     }
-  },
-  "remoteUser": "vscode",
-  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.m2"
+  }
 }
