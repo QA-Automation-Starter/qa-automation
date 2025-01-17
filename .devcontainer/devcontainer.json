@@ -7,14 +7,15 @@
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
       "version": "11",
-      "installMaven": "false",
-      "installGradle": "false"
-    }
+      "installMaven": "true"
+    },
+    "ghcr.io/devcontainers/features/git:1": {}
   },
   "customizations": {
     "vscode": {
       "extensions": [
         "vscjava.vscode-java-pack",
+        "ms-vscode-remote.vscode-remote-extensionpack",
         "alphabotsec.vscode-eclipse-keybindings"
       ]
     },
