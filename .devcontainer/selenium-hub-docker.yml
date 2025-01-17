@@ -11,7 +11,7 @@ services:
     command: sleep infinity
     environment:
       - MAVEN_OPTS=-Dmaven.repo.local=/root/.m2/repository
-    working_dir: /workspace
+    working_dir: /workspaces
 
   chrome:
     image: selenium/node-chrome:4.21.0
