@@ -1,3 +1,4 @@
 {
-    "maven.view": "hierarchical"
+    "maven.view": "hierarchical",
+    "terminal.integrated.defaultProfile.linux": "JavaSE-11 LTS"
 }
