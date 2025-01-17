@@ -1,7 +1,7 @@
 version: "3"
 
 volumes:
-  maven-cache:
+  maven-cache:/home/vscode/.m2
 
 services:
   tests:
@@ -10,7 +10,7 @@ services:
       - maven-cache:/root/.m2
     command: sleep infinity
     environment:
-      - MAVEN_OPTS=-Dmaven.repo.local=/root/.m2/repository
+      - MAVEN_OPTS=-Dmaven.repo.local=/home/vscode/.m2
 
   chrome:
     image: selenium/node-chrome:4.21.0

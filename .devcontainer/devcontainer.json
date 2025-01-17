@@ -17,5 +17,6 @@
     "settings": {
       "maven.pomfile.prefetchEffectivePom": true
     }
-  }
+  },
+  "remoteUser": "vscode"
 }
