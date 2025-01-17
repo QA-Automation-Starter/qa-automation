@@ -1,6 +1,6 @@
 {
   "name": "qa-automation",
-  "dockerComposeFile": ["selenium-hub-docker.yml"],
+  "dockerComposeFile": [".devcontainer/selenium-hub-docker.yml"],
   "service": "tests",
   "workspaceFolder": "/workspace",
   "features": {
