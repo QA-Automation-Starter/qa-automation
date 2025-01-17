@@ -2,7 +2,7 @@
   "name": "qa-automation",
   "dockerComposeFile": [".devcontainer/selenium-hub-docker.yml"],
   "service": "tests",
-  "workspaceFolder": "/workspace",
+  "workspaceFolder": "/workspaces",
   "features": {
     "ghcr.io/devcontainers-contrib/features/maven-sdkman:2": {
       "jdkVersion": "11"
