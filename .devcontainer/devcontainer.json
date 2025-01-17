@@ -1,0 +1,22 @@
+{
+  "name": "qa-automation",
+  "dockerComposeFile": ["selenium-hub-docker.yml"],
+  "service": "tests",
+  "workspaceFolder": "/workspace",
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/maven-sdkman:2": {
+      "jdkVersion": "11"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "alphabotsec.vscode-eclipse-keybindings"
+      ]
+    },
+    "settings": {
+      "maven.pomfile.prefetchEffectivePom": true
+    }
+  }
+}
