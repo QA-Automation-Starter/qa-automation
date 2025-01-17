@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     # TODO ignore changes to *.md files only in root project directories
     paths-ignore:
+      - '.workspaces/**'
       - '**.md'
       - '.idea/**'
       - '.*'
