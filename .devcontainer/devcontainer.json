@@ -1,6 +1,6 @@
 {
   "name": "qa-automation",
-  "dockerComposeFile": [".devcontainer/selenium-hub-docker.yml"],
+  "dockerComposeFile": ["selenium-hub-docker.yml"],
   "service": "tests",
   "features": {
     "ghcr.io/devcontainers-contrib/features/maven-sdkman:2": {
