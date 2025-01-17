@@ -1,10 +1,14 @@
 {
   "name": "qa-automation",
-  "dockerComposeFile": ["selenium-hub-docker.yml"],
+  "dockerComposeFile": [
+    "selenium-hub-docker.yml"
+  ],
   "service": "tests",
   "features": {
-    "ghcr.io/devcontainers-contrib/features/maven-sdkman:2": {
-      "jdkVersion": "11"
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "11",
+      "installMaven": "false",
+      "installGradle": "false"
     }
   },
   "customizations": {
@@ -15,7 +19,16 @@
       ]
     },
     "settings": {
-      "maven.pomfile.prefetchEffectivePom": true
+      "maven.pomfile.prefetchEffectivePom": true,
+      "maven.view": "hierarchical",
+      "terminal.integrated.defaultProfile.linux": "JavaSE-11 LTS",
+      "java.configuration.runtimes": [
+        {
+          "name": "JavaSE-11",
+          "path": "/usr/lib/jvm/msopenjdk-current",
+          "default": true
+        }
+      ]
     }
   },
   "remoteUser": "vscode"
