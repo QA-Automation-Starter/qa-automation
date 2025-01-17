@@ -1,7 +1,7 @@
 version: "3"
 
 volumes:
-  maven-cache:/home/vscode/.m2
+  maven-cache:
 
 services:
   tests:
