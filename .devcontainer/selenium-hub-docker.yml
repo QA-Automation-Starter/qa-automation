@@ -1,8 +1,13 @@
+volumes:
+  maven-cache:
+
 services:
   tests:
     image: mcr.microsoft.com/vscode/devcontainers/java:11
     user: vscode
     command: sleep infinity
+    volumes:
+      - maven-cache:/home/vscode/.m2
 
   # chrome:
   #   image: selenium/node-chrome:4.21.0
