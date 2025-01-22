@@ -34,6 +34,7 @@
   },
   "remoteUser": "vscode",
   "postCreateCommand": [
-    "sudo chown -R vscode:vscode /workspaces/qa-automation && sudo chown -R vscode:vscode /home/vscode/.m2sudo chown -R vscode:vscode /home/vscode/.m2"
+    "sudo chown -R vscode:vscode /workspaces/qa-automation",
+    "sudo chown -R vscode:vscode /home/vscode/.m2"
   ]
 }
