@@ -4,7 +4,6 @@
     "selenium-hub-docker.yml"
   ],
   "service": "tests",
-  "workspaceFolder": "/workspaces/qa-automation",
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
       "version": "11",
