@@ -3,7 +3,7 @@
 [![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/on-main-push.yml/badge.svg)](https://github.com/QA-Automation-Starter/qa-automation/actions)
 [![Sauce Test Status](https://saucelabs.com/buildstatus/oauth-adrian.herscu-d81b6)](https://app.saucelabs.com/u/oauth-adrian.herscu-d81b6)
 [![JGiven Report](https://img.shields.io/badge/jgiven-report-example)](https://qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example/jgiven-reports/functional-dev/local/html/index.html)
-[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/QA-Automation-Starter/qa-automation.git)
+[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=git@github.com:QA-Automation-Starter/qa-automation.git)
 
 
 > > **[Usage instructions and Brief introduction](https://qa-automation-starter.aherscu.dev)**
@@ -127,4 +127,3 @@ These are available from https://app.saucelabs.com/
 [![JetBrains Logo (Main) logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg)](https://www.jetbrains.com/community/opensource/#support)
 [<img src="https://jgiven.org/img/logo.png" height="80" alt="JGiven">](https://jgiven.org)
 [![Testing Powered By SauceLabs](https://opensource.saucelabs.com/images/opensauce/powered-by-saucelabs-badge-red.png?sanitize=true "Testing Powered By SauceLabs")](https://saucelabs.com)
-
