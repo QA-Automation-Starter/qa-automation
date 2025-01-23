@@ -4,6 +4,7 @@
 [![Sauce Test Status](https://saucelabs.com/buildstatus/oauth-adrian.herscu-d81b6)](https://app.saucelabs.com/u/oauth-adrian.herscu-d81b6)
 [![JGiven Report](https://img.shields.io/badge/jgiven-report-example)](https://qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example/jgiven-reports/functional-dev/local/html/index.html)
 [![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=git@github.com:QA-Automation-Starter/qa-automation.git)
+[![Open in Codespaces](https://img.shields.io/static/v1?label=Codespaces&message=Open&color=blue&logo=github)](https://github.com/codespaces/new?repo=QA-Automation-Starter/qa-automation)
 
 > > **[Usage instructions and Brief introduction](https://qa-automation-starter.aherscu.dev)**
 >
