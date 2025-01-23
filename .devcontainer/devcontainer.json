@@ -33,5 +33,5 @@
     }
   },
   "remoteUser": "vscode",
-  "postCreateCommand": "/bin/bash .devcontainer/setup.sh"
+  "postCreateCommand": "/bin/bash /workspaces/qa-automation/.devcontainer/setup.sh"
 }
