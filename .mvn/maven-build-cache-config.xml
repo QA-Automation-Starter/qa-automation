@@ -21,6 +21,8 @@
   <!-- ISSUE: support caching of site artifacts
       https://issues.apache.org/jira/projects/MBUILDCACHE/issues/MBUILDCACHE-65
       -->
+  <!-- ISSUE: NoSuchElementException
+      https://issues.apache.org/jira/browse/MBUILDCACHE-68 -->
   <configuration>
     <enabled>true</enabled>
     <hashAlgorithm>SHA-256</hashAlgorithm>

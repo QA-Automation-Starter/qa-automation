@@ -34,6 +34,7 @@ import dev.aherscu.qa.testing.example.*;
 import dev.aherscu.qa.testing.example.steps.tutorial.*;
 import lombok.*;
 
+@Ignore("https://github.com/QA-Automation-Starter/qa-automation/issues/255")
 public class TestingWebWithJGiven
     extends ApplicationPerMethodWebSessionTest<TestConfiguration, GoogleFixtures<?>, GoogleActions<?>, GoogleVerifications<?>> {
 
