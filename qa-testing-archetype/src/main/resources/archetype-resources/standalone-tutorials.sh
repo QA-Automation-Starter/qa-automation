@@ -32,6 +32,7 @@ $JAVA_HOME/bin/java \
 -Ddryrun=false \
 -Dscreenshots=true \
 -DscreenshotDelayMs=500 \
+-Djava.awt.headless=true
 -jar $TEST_JAR \
 -listener dev.aherscu.qa.jgiven.reporter.QaJGivenPerMethodReporter,dev.aherscu.qa.jgiven.webdriver.utils.SauceLabsReporter \
 -d test-output \
