@@ -30,6 +30,7 @@ import dev.aherscu.qa.testing.example.steps.tutorial.*;
 import jakarta.ws.rs.client.*;
 
 @RestTest
+@Ignore("does not work from github")
 public class Binance extends
     ConfigurableScenarioTest<TestConfiguration, RestScenarioType, BinanceFixtures<?>, BinanceActions<?>, BinanceVerifications<?>> {
 
@@ -58,6 +59,11 @@ public class Binance extends
         when()
             .doing_nothing();
 
+        // ISSUE does not work from github's runners... returns with 451
+        // Service unavailable from a restricted location according to
+        // 'b. Eligibility' in https://www.binance.com/en/terms.
+        // Please contact customer service if you believe you received this message in
+        // error.
         then()
             .the_exchange_info(hasSpecificItems(Symbol.builder()
                 .symbol("BTCUSDT")

@@ -71,7 +71,7 @@ jobs:
           chmod +x mvnw && ./mvnw deploy \
             --threads 1 \
             -s $GITHUB_WORKSPACE/settings.xml \
-            -Pmode-logs-level-trace,mode-build-full,provider-saucelabs-selenium,testing-tutorials
+            -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
