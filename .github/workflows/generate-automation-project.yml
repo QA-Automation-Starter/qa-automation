@@ -41,7 +41,7 @@ jobs:
 
       # FIXME should run with controlled java version
       - name: bootstrap maven
-        uses: aahmed-se/setup-maven@v3
+        uses: stCarolas/setup-maven@v5
         with:
           maven-version: 3.9.9
         env:
