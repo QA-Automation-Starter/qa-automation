@@ -52,4 +52,8 @@ public final class TestConfiguration extends WebDriverConfiguration {
     public WebTarget petStore(final Client client) {
         return client.target(getString("swagger.petstore.url"));
     }
+
+    public WebTarget binance(final Client client) {
+        return client.target("https://fapi.binance.com/fapi/v1");
+    }
 }
