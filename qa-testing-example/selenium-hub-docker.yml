@@ -16,18 +16,18 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - VNC_NO_PASSWORD=1
 
-  edge:
-    image: selenium/node-edge:4.4.0-20220812
-    shm_size: 2gb
-    depends_on:
-      - selenium-hub
-    ports:
-      - "7901:7900"
-    environment:
-      - SE_EVENT_BUS_HOST=selenium-hub
-      - SE_EVENT_BUS_PUBLISH_PORT=4442
-      - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
-      - VNC_NO_PASSWORD=1
+  # edge:
+  #   image: selenium/node-edge:4.4.0-20220812
+  #   shm_size: 2gb
+  #   depends_on:
+  #     - selenium-hub
+  #   ports:
+  #     - "7901:7900"
+  #   environment:
+  #     - SE_EVENT_BUS_HOST=selenium-hub
+  #     - SE_EVENT_BUS_PUBLISH_PORT=4442
+  #     - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
+  #     - VNC_NO_PASSWORD=1
 
   firefox:
     image: selenium/node-firefox:4.4.0-20220812
