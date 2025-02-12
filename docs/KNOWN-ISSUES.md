@@ -7,12 +7,24 @@ Selenium Driver is not able to control a containerized browser.
 see https://github.com/QA-Automation-Starter/qa-automation/issues/246
 
 
-# IntelliJ
+# IntelliJ Ultimate
 
 * AspectJ + Lombok projects are incorrectly imported (must ensure post-compile
   weaving for each module)
 * Since IntelliJ 2022.1 profiles from parent POMs are no longer displayed (there
   are several open issues on JetBrains tracker)
+
+
+# IntelliJ Community
+
+* AspectJ is not supported -- must set the `mode-aspectj-skip` profile
+
+
+# VSCode
+
+* AspectJ is not supported -- must set the `mode-aspectj-skip` profile
+* The built-in Java builder interferes with Maven builds -- must set
+`java.server.launchMode` to `LightWeight`
 
 
 # Android on Local Emulator/Device
