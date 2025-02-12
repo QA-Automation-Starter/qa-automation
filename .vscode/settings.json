@@ -1,5 +1,6 @@
 {
     "maven.view": "hierarchical",
+    "java.compile.nullAnalysis.mode": "automatic",
     "maven.executable.preferMavenWrapper": true,
     "java.server.launchMode": "LightWeight"
 }
