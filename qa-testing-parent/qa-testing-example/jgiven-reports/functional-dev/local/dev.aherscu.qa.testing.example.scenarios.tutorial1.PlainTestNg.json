@@ -15,11 +15,11 @@
           "steps": [],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 30828984
+          "durationInNanos": 7046210
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 30828984
+      "durationInNanos": 7046210
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
@@ -38,7 +38,7 @@
             "PlainTestNg.FAT(a\u003dfalse, b\u003dfalse, sum\u003dfalse, carry\u003dfalse)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 14990639
+          "durationInNanos": 4496481
         },
         {
           "caseNr": 2,
@@ -47,7 +47,7 @@
             "PlainTestNg.FAT(a\u003dfalse, b\u003dtrue, sum\u003dtrue, carry\u003dfalse)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 246070
+          "durationInNanos": 257722
         },
         {
           "caseNr": 3,
@@ -56,7 +56,7 @@
             "PlainTestNg.FAT(a\u003dtrue, b\u003dfalse, sum\u003dtrue, carry\u003dfalse)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 186679
+          "durationInNanos": 296996
         },
         {
           "caseNr": 4,
@@ -65,11 +65,11 @@
             "PlainTestNg.FAT(a\u003dtrue, b\u003dtrue, sum\u003dtrue, carry\u003dtrue)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 216765
+          "durationInNanos": 259947
         }
       ],
       "casesAsTable": true,
-      "durationInNanos": 15640153
+      "durationInNanos": 5311146
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
@@ -90,7 +90,7 @@
             "0"
           ],
           "derivedArguments": [],
-          "durationInNanos": 15113992
+          "durationInNanos": 4899583
         },
         {
           "caseNr": 2,
@@ -100,7 +100,7 @@
             "1"
           ],
           "derivedArguments": [],
-          "durationInNanos": 196808
+          "durationInNanos": 6352543
         },
         {
           "caseNr": 3,
@@ -110,11 +110,11 @@
             "-1"
           ],
           "derivedArguments": [],
-          "durationInNanos": 345276
+          "durationInNanos": 249276
         }
       ],
       "casesAsTable": true,
-      "durationInNanos": 15656076
+      "durationInNanos": 11501402
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
@@ -135,7 +135,7 @@
             "true"
           ],
           "derivedArguments": [],
-          "durationInNanos": 17558797
+          "durationInNanos": 3675035
         },
         {
           "caseNr": 2,
@@ -145,11 +145,11 @@
             "false"
           ],
           "derivedArguments": [],
-          "durationInNanos": 187972
+          "durationInNanos": 254997
         }
       ],
       "casesAsTable": true,
-      "durationInNanos": 17746769
+      "durationInNanos": 3930032
     }
   ],
   "tagMap": {}
