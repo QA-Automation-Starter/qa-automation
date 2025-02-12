@@ -1,4 +1,5 @@
 {
     "maven.view": "hierarchical",
-    "terminal.integrated.defaultProfile.linux": "JavaSE-11 LTS"
+    "maven.executable.preferMavenWrapper": true,
+    "java.server.launchMode": "LightWeight"
 }
