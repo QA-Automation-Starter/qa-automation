@@ -24,7 +24,8 @@ see https://github.com/QA-Automation-Starter/qa-automation/issues/246
 
 * AspectJ is not supported -- must set the `mode-aspectj-skip` profile
 * The built-in Java builder interferes with Maven builds -- must set
-`java.server.launchMode` to `LightWeight`
+`java.server.launchMode` to `LightWeight`;
+see https://github.com/microsoft/vscode-maven/issues/698
 
 
 # Android on Local Emulator/Device
