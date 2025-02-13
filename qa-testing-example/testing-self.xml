@@ -33,9 +33,9 @@
   <test name="Self Tests" parallel="classes" thread-count="15">
     <classes>
       <class
-        name="dev.aherscu.qa.testing.example.scenarios.tutorial3.TestingWebWithJGiven"/>
-      <class
-        name="dev.aherscu.qa.testing.example.scenarios.tutorial6.SwaggerPetstore"/>
+        name="dev.aherscu.qa.testing.example.scenarios.tutorial3.Banking"/>
+      <!-- <class
+        name="dev.aherscu.qa.testing.example.scenarios.tutorial6.SwaggerPetstore"/> -->
     </classes>
   </test>
 </suite>
