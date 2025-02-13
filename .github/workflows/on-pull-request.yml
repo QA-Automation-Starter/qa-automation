@@ -85,6 +85,16 @@ jobs:
         run: |
           echo "version=$(cat target/version.txt)" >> $GITHUB_OUTPUT
 
+  devcontainer-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: devcontainers/ci@v0.3
+        with:
+          runCmd: |
+            ./mvnw install -Pmode-build-nosign,mode-logs-level-debug,provider-selenium,testing-tutorials
+
   generate-automation-project:
     uses: ./.github/workflows/generate-automation-project.yml
     secrets: inherit
