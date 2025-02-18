@@ -55,27 +55,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-      - name: generate testing project
-        shell: bash
-        run: |
-          mvn --batch-mode archetype:generate \
-            -DarchetypeGroupId=dev.aherscu.qa \
-            -DarchetypeArtifactId=qa-testing-archetype \
-            -DarchetypeVersion=${{ inputs.archetype-version }} \
-            -DgroupId=com.acme \
-            -DartifactId=testing \
-            -Dversion=1.0-SNAPSHOT \
-            -Dpackage=com.acme.testing
-
-      - name: build standalone testing project
-        shell: bash
-        run: |
-          cd testing && chmod +x mvnw && ./mvnw package -Pgenerate-standalone
-
-      - name: run standalone testing project
+      - name: generate and run standalone testing project
         shell: bash
         env:
           SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
           SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
         run: |
-          cd testing && chmod +x standalone-tutorials.sh && ./standalone-tutorials.sh
+          ./generate-run.sh
