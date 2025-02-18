@@ -21,6 +21,7 @@ import static java.util.Objects.*;
 
 import com.saucelabs.saucerest.*;
 
+import dev.aherscu.qa.testing.utils.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
@@ -40,7 +41,9 @@ public class SauceLabsReporter extends AbstractSauceLabsReporter {
                 "must have a password");
             return new SauceREST(accountName, accessKey, DataCenter.US);
         } catch (final Throwable t) {
-            log.warn("SauceLabs not defined -- {}", t.getMessage());
+            log.warn(
+                "check that one of provider-saucelabs-* profiles is applied -- {}",
+                t.getMessage());
             return null;
         }
     }
