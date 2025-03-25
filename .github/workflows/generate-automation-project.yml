@@ -61,4 +61,4 @@ jobs:
           SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
           SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
         run: |
-          ./generate-run.sh
+          cd testing && chmod +x ./generate-run.sh && ./generate-run.sh
