@@ -72,6 +72,7 @@ public class SwaggerPetstore extends
 
     @Test(dataProviderClass = CredentialsCsvDataProvider.class,
         dataProvider = DATA)
+    @Ignore("requires having this csv file generated on same classpath by maven-archetype-plugin, which is not supported")
     @Reference("235")
     public void shouldLogin(final Credentials credentials) {
         given()
