@@ -55,7 +55,6 @@
             <map>
               <entry key="mode-aspectj-skip" value="true" />
               <entry key="mode-build-full" value="true" />
-              <entry key="testing-tutorials" value="true" />
             </map>
           </option>
           <option name="projectsCmdOptionValues">
