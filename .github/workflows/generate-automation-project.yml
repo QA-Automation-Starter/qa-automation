@@ -61,4 +61,6 @@ jobs:
           SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
           SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
         run: |
+          pwd
+          ls
           cd qa-testing-archetype && chmod +x ./generate-run.sh && ./generate-run.sh
