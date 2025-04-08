@@ -43,6 +43,8 @@ public class Banking
     }
 
     @Test(dataProvider = INTERNAL_DATA_PROVIDER)
+    // FIXME happens only under Github Actions with Linux OS
+    @Ignore("fails with WebDriverEx - initialization failed due to org/apache/commons/io/function/IOIterator")
     public void shouldCreateCustomer(final Customer customer) {
         given()
             .a_bank(webDriver.get());
