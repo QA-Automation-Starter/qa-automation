@@ -49,6 +49,9 @@ import net.jodah.failsafe.*;
     justification = "short lived test instance")
 public class WebDriverExTest {
     @Test(expectedExceptions = { SessionNotCreatedException.class })
+    // FIXME suddenly the exception type changed, perhaps due to some dependency change?
+    // Happens under Github Actions -- couldn't reproduce otherwise
+    // @Ignore("Expected exception of type class org.openqa.selenium.SessionNotCreatedException but got java.lang.NoClassDefFoundError: org/openqa/selenium/mobile/NetworkConnection")
     public void shouldFailGettingWebDriver() {
         webDriverFor(new ImmutableCapabilities(ImmutableMap.builder()
             .put("-x:class", "org.openqa.selenium.remote.RemoteWebDriver")
