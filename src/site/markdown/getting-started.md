@@ -6,7 +6,7 @@ Following instructions apply to Windows machines:
 
 1. Run PowerShell as Administrator -- required by Chocolatey
 2. Install Chocolatey -- <https://chocolatey.org/install#individual>
-3. `choco install -y jdk11`
+3. `choco install -y temurin11`
 4. `choco install -y maven`
 5. `choco install -y intellijidea-ultimate` or `choco install eclipse`
 
