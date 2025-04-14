@@ -21,6 +21,9 @@ mvn --batch-mode archetype:generate ^
 This will generate a fully configured QA Automation project in `testing`
 directory.
 
+> NOTE: if you need to use one of the snapshot versions, then add a `settings.xml` file to your `~\.m2`
+> Maven directory with proper snapshot repository section; see [development-maven-settings.xml](../development-maven-settings.xml)
+
 The generated project inherits from [QA Testing Parent](../index.html) and
 contains few exemplary tests, with all required dependencies for
 [TestNG](https://testng.org/doc/documentation-main.html),
