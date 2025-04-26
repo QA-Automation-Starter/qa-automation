@@ -855,7 +855,6 @@
         <enforcer.skip>false</enforcer.skip>
         <findbugs.skip>false</findbugs.skip>
         <formatter.skip>false</formatter.skip>
-        <gpg.skip>false</gpg.skip>
         <impsort.skip>false</impsort.skip>
         <lombok.delombok.skip>false</lombok.delombok.skip>
         <maven.antrun.skip>false</maven.antrun.skip>

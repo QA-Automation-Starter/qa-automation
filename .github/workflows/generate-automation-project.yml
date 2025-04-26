@@ -70,7 +70,7 @@ jobs:
       - name: build standalone testing project
         shell: bash
         run: |
-          cd testing && chmod +x mvnw && ./mvnw package -Pgenerate-standalone
+          cd testing && chmod +x mvnw && ./mvnw package -Pmode-build-full,generate-standalone
 
       - name: run standalone testing project
         shell: bash
