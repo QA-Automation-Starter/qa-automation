@@ -4,48 +4,22 @@
   "scenarios": [
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
-      "testMethodName": "_4_checkSinus",
-      "description": " 4 checkSinus",
+      "testMethodName": "_1_shouldSucceed",
+      "description": " 1 shouldSucceed",
       "tagIds": [],
-      "explicitParameters": [
-        "angle",
-        "sinus"
-      ],
+      "explicitParameters": [],
       "derivedParameters": [],
       "scenarioCases": [
         {
           "caseNr": 1,
           "steps": [],
-          "explicitArguments": [
-            "0",
-            "0"
-          ],
+          "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 11852377
-        },
-        {
-          "caseNr": 2,
-          "steps": [],
-          "explicitArguments": [
-            "1.5707963267948966",
-            "1"
-          ],
-          "derivedArguments": [],
-          "durationInNanos": 183213
-        },
-        {
-          "caseNr": 3,
-          "steps": [],
-          "explicitArguments": [
-            "4.71238898038469",
-            "-1"
-          ],
-          "derivedArguments": [],
-          "durationInNanos": 181419
+          "durationInNanos": 36492881
         }
       ],
-      "casesAsTable": true,
-      "durationInNanos": 12217009
+      "casesAsTable": false,
+      "durationInNanos": 36492881
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
@@ -64,7 +38,7 @@
             "PlainTestNg.FAT(a\u003dfalse, b\u003dfalse, sum\u003dfalse, carry\u003dfalse)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 16410245
+          "durationInNanos": 13512729
         },
         {
           "caseNr": 2,
@@ -73,7 +47,7 @@
             "PlainTestNg.FAT(a\u003dfalse, b\u003dtrue, sum\u003dtrue, carry\u003dfalse)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 156522
+          "durationInNanos": 270999
         },
         {
           "caseNr": 3,
@@ -82,7 +56,7 @@
             "PlainTestNg.FAT(a\u003dtrue, b\u003dfalse, sum\u003dtrue, carry\u003dfalse)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 214992
+          "durationInNanos": 351561
         },
         {
           "caseNr": 4,
@@ -91,30 +65,56 @@
             "PlainTestNg.FAT(a\u003dtrue, b\u003dtrue, sum\u003dtrue, carry\u003dtrue)"
           ],
           "derivedArguments": [],
-          "durationInNanos": 181149
+          "durationInNanos": 255170
         }
       ],
       "casesAsTable": true,
-      "durationInNanos": 16962908
+      "durationInNanos": 14390459
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
-      "testMethodName": "_1_shouldSucceed",
-      "description": " 1 shouldSucceed",
+      "testMethodName": "_4_checkSinus",
+      "description": " 4 checkSinus",
       "tagIds": [],
-      "explicitParameters": [],
+      "explicitParameters": [
+        "angle",
+        "sinus"
+      ],
       "derivedParameters": [],
       "scenarioCases": [
         {
           "caseNr": 1,
           "steps": [],
-          "explicitArguments": [],
+          "explicitArguments": [
+            "0",
+            "0"
+          ],
           "derivedArguments": [],
-          "durationInNanos": 23010379
+          "durationInNanos": 13601703
+        },
+        {
+          "caseNr": 2,
+          "steps": [],
+          "explicitArguments": [
+            "1.5707963267948966",
+            "1"
+          ],
+          "derivedArguments": [],
+          "durationInNanos": 518395
+        },
+        {
+          "caseNr": 3,
+          "steps": [],
+          "explicitArguments": [
+            "4.71238898038469",
+            "-1"
+          ],
+          "derivedArguments": [],
+          "durationInNanos": 302148
         }
       ],
-      "casesAsTable": false,
-      "durationInNanos": 23010379
+      "casesAsTable": true,
+      "durationInNanos": 14422246
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
@@ -135,7 +135,7 @@
             "true"
           ],
           "derivedArguments": [],
-          "durationInNanos": 16819056
+          "durationInNanos": 13568761
         },
         {
           "caseNr": 2,
@@ -145,11 +145,11 @@
             "false"
           ],
           "derivedArguments": [],
-          "durationInNanos": 173765
+          "durationInNanos": 233880
         }
       ],
       "casesAsTable": true,
-      "durationInNanos": 16992821
+      "durationInNanos": 13802641
     }
   ],
   "tagMap": {}
