@@ -1,8 +1,28 @@
 {
     "maven.view": "hierarchical",
     "java.compile.nullAnalysis.mode": "automatic",
+    "java.dependency.packagePresentation": "hierarchical",
     "maven.executable.preferMavenWrapper": true,
     "java.server.launchMode": "LightWeight",
-    "java.configuration.updateBuildConfiguration": "interactive",
-    "java.autobuild.enabled": false
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.autobuild.enabled": false,
+    "java.sources.organizeImports.starThreshold": 1,
+    "java.sources.organizeImports.staticStarThreshold": 1,
+    "java.test.config": [
+        {
+            "name": "dev",
+            "workingDirectory": "${workspaceFolder}",
+            "vmArgs": ["-Dtest.properties.file=environments/dev/test.properties"]
+        },
+        {
+            "name": "dev-saucelabs",
+            "workingDirectory": "${workspaceFolder}",
+            "vmArgs": [
+                "-Dtest.properties.file=environments/dev/test.properties",
+                "-Dprovider=provider.saucelabs.",
+                "-Dsaucelabs.reporter.url=https://${env.SAUCELABS_USER}:${env.SAUCELABS_PASSWORD}@ondemand.saucelabs.com:443/wd/hub"
+            ]
+        }
+    ],
+    "java.test.defaultConfig": "dev"
 }
