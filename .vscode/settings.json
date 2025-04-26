@@ -22,6 +22,14 @@
                 "-Dprovider=provider.saucelabs.",
                 "-Dsaucelabs.reporter.url=https://${env.SAUCELABS_USER}:${env.SAUCELABS_PASSWORD}@ondemand.saucelabs.com:443/wd/hub"
             ]
+        },
+        {
+            "name": "dev-selenium",
+            "workingDirectory": "${workspaceFolder}",
+            "vmArgs": [
+                "-Dtest.properties.file=environments/dev/test.properties",
+                "-Dprovider=provider.selenium.",
+            ]
         }
     ],
     "java.test.defaultConfig": "dev"
