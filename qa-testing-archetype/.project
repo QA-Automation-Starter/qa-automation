@@ -8,11 +8,6 @@
 		<project>qa-jgiven-reporter</project>
 	</projects>
 	<buildSpec>
-		<buildCommand>
-			<name>org.eclipse.m2e.core.maven2Builder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
 	</buildSpec>
 	<natures>
 	</natures>
