@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>qa-jgiven-commons</name>
-  <comment>Provides generic JGiven-style actions and verifications, mostly for dealing
+	<name>qa-jgiven-commons</name>
+	<comment>Provides generic JGiven-style actions and verifications, mostly for dealing
     with latency and exceptions via a pre-configured retry mechanism.
     In addition, adapts Apache Commons Configuration to be used for loading test
     properties. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects>
-    <project>qa-testing-utils</project>
-  </projects>
-  <buildSpec>
-    <buildCommand>
-      <name>org.eclipse.jdt.core.javabuilder</name>
-    </buildCommand>
-  </buildSpec>
-  <natures>
-    <nature>org.eclipse.jdt.core.javanature</nature>
-  </natures>
+	<projects>
+		<project>qa-testing-utils</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<filteredResources>
+		<filter>
+			<id>1747736404712</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.core.resources.regexFilterMatcher</id>
+				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
 </projectDescription>

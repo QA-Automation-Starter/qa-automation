@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-  <name>qa-testing-utils</name>
-  <comment>JAX-RS generic providers, authenticators and logging filters, an
+	<name>qa-testing-utils</name>
+	<comment>JAX-RS generic providers, authenticators and logging filters, an
     auto-returning pool implementation based on Apache Commons Pooling, a
     wrapper around Apache Commons Configuration to make it look like a map,
     various assertions for JSON and XML, a Read-Multi-Write lock, Hamcrest
@@ -9,13 +9,32 @@
     streams, lists, maps, etc. In addition, provides an AWS Cognito SRP filter
     for JAX-RS and a CLI for it, see generate-aws-cognito-srp-authenticator
     profile for generating it. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects/>
-  <buildSpec>
-    <buildCommand>
-      <name>org.eclipse.jdt.core.javabuilder</name>
-    </buildCommand>
-  </buildSpec>
-  <natures>
-    <nature>org.eclipse.jdt.core.javanature</nature>
-  </natures>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<filteredResources>
+		<filter>
+			<id>1747736404744</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.core.resources.regexFilterMatcher</id>
+				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
 </projectDescription>
