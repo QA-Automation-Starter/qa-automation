@@ -15,8 +15,8 @@
 **/test-output/
 
 # Eclipse auto-generated configuration files
-**/.classpath
-**/.project
+# **/.classpath
+# **/.project
 **/.factorypath
 
 # Other temporary files
