@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>qa-testing-example</name>
+	<comment>Demonstrates how to use QA Automation infrastructure for testing. Provides
+    overviews and example tests. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+	<projects>
+		<project>qa-jgiven-webdriver</project>
+		<project>qa-jgiven-commons</project>
+		<project>qa-testing-utils</project>
+		<project>qa-jgiven-rest</project>
+		<project>qa-jgiven-rabbitmq</project>
+		<project>qa-jgiven-elasticsearch</project>
+		<project>qa-jgiven-reporter</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<filteredResources>
+		<filter>
+			<id>1747736404739</id>
+			<name></name>
+			<type>30</type>
+			<matcher>
+				<id>org.eclipse.core.resources.regexFilterMatcher</id>
+				<arguments>node_modules|\.git|__CREATED_BY_JAVA_LANGUAGE_SERVER__</arguments>
+			</matcher>
+		</filter>
+	</filteredResources>
+</projectDescription>
