@@ -117,7 +117,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td>2025-May-07 05:07 GMT</td>
+    <td>2025-May-23 10:24 GMT</td>
   </tr>
   <tr>
     <th>Reviewer</th>
@@ -273,7 +273,7 @@
 
 <h1>Test Procedures</h1>
 
-<h2>Test Ng With Hamcrest</h2>
+<h2>Generic Rest</h2>
 
 <table>
   <thead>
@@ -283,10 +283,22 @@
   </tr>
   </thead>
   <tbody>
+  <tr>
+    <td>Self Test</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>REST Test</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Reference</td>
+    <td>70</td>
+  </tr>
   </tbody>
 </table>
 
-<h3>[T-2F77C740]  1 shouldSucceed</h3>
+<h3>[T-2E13FA05] Should retrieve json field from fake rest service</h3>
 
 <p>Test scenario:1</p>
 <table>
@@ -301,165 +313,90 @@
   </tr>
   </thead>
   <tbody>
-  </tbody>
-</table>
-
-<h3>[T-F89BACE2]  2 shouldAssertOnBoolean</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
   <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>a REST client</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
   </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-86B7A8D]  5 shouldAssertOnListOrder</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
   <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>connecting to</span>
+      <span>http://localhost:33709</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
   </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-7738241C]  4 shouldAssertOnListContents</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
   <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
+    <td>3</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>appending path</span>
+      <span>some-id</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
   </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-82C983F0]  3 shouldAssertOnStringContents</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
   <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
+    <td>4</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>getting the response</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
   </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-286CB61D]  9 shouldCalculateSinusWithTolerance</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
   <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
+    <td>5</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the response contents</span>
+      <span>[a value greater than &lt;0&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[0].id, &lt;2&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[1].id]</span>
+    </td>
+
+    <td>
+      [{id:1},{id:2},{id:3}]
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
   </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-<p>Test scenario:2</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-43C942DB]  7 shouldAssertOnStreamContents</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-B5F586FC]  6 shouldAssertOnEquality</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-19144194]  8 shouldAssertOnStreamOfJsons</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
   </tbody>
 </table>
 
@@ -522,7 +459,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:42595</span>
+      <span>http://localhost:37345</span>
     </td>
 
     <td>
@@ -556,7 +493,7 @@
     </td>
     <td>
       <span>posting</span>
-      <span>jakarta.ws.rs.core.Form@542a411d</span>
+      <span>jakarta.ws.rs.core.Form@11c92d49</span>
     </td>
 
     <td>
@@ -625,7 +562,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:42595</span>
+      <span>http://localhost:37345</span>
     </td>
 
     <td>
@@ -744,7 +681,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:42595</span>
+      <span>http://localhost:37345</span>
     </td>
 
     <td>
@@ -799,6 +736,100 @@
 
     <td>
       &lt;&lt;empty&gt;&gt;
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+
+<h2>Banking</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Tag</th>
+    <th>Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>UI Test</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>[T-A994D235] Should create customer</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>a bank</span>
+      <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {-x:class: org.openqa.selenium.remote...., -x:target: ${web.url}, -x:type: web, -x:url: https://oauth-adrian.herscu..., browserName: chrome, sauce:build: local, sauce:idleTimeout: 1000, sauce:maxDuration: 6000, sauce:name: Banking:shouldCreateCustome..., sauce:tags: functional,dev}, driver&#x3D;RemoteWebDriver: chrome on windows (4c9c2e0b9438484da41e77805ff4b5b7))</span>
+    </td>
+
+    <td>
+      {-x:class&#x3D;org.openqa.selenium.remote.RemoteWebDriver, -x:target&#x3D;${web.url}, -x:type&#x3D;web, -x:url&#x3D;https://oauth-adrian.herscu-d81b6:524dbdcd-6577-4f9b-bec3-9fc4f193d487@ondemand.saucelabs.com:443/wd/hub, browserName&#x3D;chrome, sauce:build&#x3D;local, sauce:idleTimeout&#x3D;1000, sauce:maxDuration&#x3D;6000, sauce:name&#x3D;Banking:shouldCreateCustomer:b091592a:27:1747995860252, sauce:tags&#x3D;functional,dev}
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>adding</span>
+      <span>Customer(firstName&#x3D;kuku, lastName&#x3D;bar, postalCode&#x3D;12345)</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the customers</span>
+      <span>to match a sequence of following: [&lt;is &lt;Customer(firstName&#x3D;kuku, lastName&#x3D;bar, postalCode&#x3D;12345)&gt;&gt;]</span>
+    </td>
+
+    <td>
+      <!-- ISSUE: current Jenkins configuration blocks data images -->
+      <!-- see https://content-security-policy.com/ -->
+      <!-- and https://www.w3.org/TR/CSP2/ -->
+      <!-- Jenkins sends content-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline'; -->
+      <!-- NOTE: assuming binary attachements are always images -->
+      <img alt="Actual screenshot might be blocked by server"
+           src="data:image/png;base64,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">
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -871,7 +902,7 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1746594439870&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1747995861831&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -906,7 +937,7 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1746594439870&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1747995861831&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -955,7 +986,7 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1746594439948&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1747995861921&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -990,7 +1021,7 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1746594439948&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1747995861921&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -1039,7 +1070,7 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1746594440006&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1747995861965&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -1074,7 +1105,7 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1746594440006&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1747995861965&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -1084,46 +1115,13 @@
   </tbody>
 </table>
 
-<h2>Plain Test Ng</h2>
+<h2>Test Ng With Hamcrest</h2>
 
 <table>
   <thead>
   <tr>
     <th>Tag</th>
     <th>Value</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-371720F9]  2 checkNot</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-<p>Test scenario:2</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
   </tr>
   </thead>
   <tbody>
@@ -1148,7 +1146,97 @@
   </tbody>
 </table>
 
-<h3>[T-DD79C4DA]  4 checkSinus</h3>
+<h3>[T-F89BACE2]  2 shouldAssertOnBoolean</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-82C983F0]  3 shouldAssertOnStringContents</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-7738241C]  4 shouldAssertOnListContents</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-86B7A8D]  5 shouldAssertOnListOrder</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-B5F586FC]  6 shouldAssertOnEquality</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-286CB61D]  9 shouldCalculateSinusWithTolerance</h3>
 
 <p>Test scenario:1</p>
 <table>
@@ -1180,7 +1268,59 @@
   <tbody>
   </tbody>
 </table>
-<p>Test scenario:3</p>
+
+<h3>[T-43C942DB]  7 shouldAssertOnStreamContents</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-19144194]  8 shouldAssertOnStreamOfJsons</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h2>Plain Test Ng</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Tag</th>
+    <th>Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-2F77C740]  1 shouldSucceed</h3>
+
+<p>Test scenario:1</p>
 <table>
   <thead>
   <tr>
@@ -1259,6 +1399,87 @@
   </tbody>
 </table>
 
+<h3>[T-371720F9]  2 checkNot</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<p>Test scenario:2</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-DD79C4DA]  4 checkSinus</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<p>Test scenario:2</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<p>Test scenario:3</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
 <h2>Generic Mock Server Rest</h2>
 
 <table>
@@ -1322,7 +1543,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:38327</span>
+      <span>http://localhost:35263</span>
     </td>
 
     <td>
@@ -1440,7 +1661,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:38327</span>
+      <span>http://localhost:35263</span>
     </td>
 
     <td>
@@ -1541,7 +1762,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:38327</span>
+      <span>http://localhost:35263</span>
     </td>
 
     <td>
@@ -1642,7 +1863,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:38327</span>
+      <span>http://localhost:35263</span>
     </td>
 
     <td>
@@ -1792,7 +2013,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:38327</span>
+      <span>http://localhost:35263</span>
     </td>
 
     <td>
@@ -1895,227 +2116,6 @@
 
     <td>
       &lt;&lt;empty&gt;&gt;
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  </tbody>
-</table>
-
-<h2>Generic Rest</h2>
-
-<table>
-  <thead>
-  <tr>
-    <th>Tag</th>
-    <th>Value</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>Self Test</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>REST Test</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Reference</td>
-    <td>70</td>
-  </tr>
-  </tbody>
-</table>
-
-<h3>[T-2E13FA05] Should retrieve json field from fake rest service</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>1</td>
-    <td>
-      <b>Pre-condition(s)</b>
-    </td>
-    <td>
-      <span>a REST client</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>
-      <b>Operation(s)</b>
-    </td>
-    <td>
-      <span>connecting to</span>
-      <span>http://localhost:34891</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>appending path</span>
-      <span>some-id</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>getting the response</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>
-      <b>Verification(s)</b>
-    </td>
-    <td>
-      <span>the response contents</span>
-      <span>[a value greater than &lt;0&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[0].id, &lt;2&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[1].id]</span>
-    </td>
-
-    <td>
-      [{id:1},{id:2},{id:3}]
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  </tbody>
-</table>
-
-<h2>Banking</h2>
-
-<table>
-  <thead>
-  <tr>
-    <th>Tag</th>
-    <th>Value</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>UI Test</td>
-    <td></td>
-  </tr>
-  </tbody>
-</table>
-
-<h3>[T-A994D235] Should create customer</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>1</td>
-    <td>
-      <b>Pre-condition(s)</b>
-    </td>
-    <td>
-      <span>a bank</span>
-      <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {-x:class: org.openqa.selenium.remote...., -x:target: ${web.url}, -x:type: web, -x:url: https://oauth-adrian.herscu..., browserName: chrome, sauce:build: local, sauce:idleTimeout: 1000, sauce:maxDuration: 6000, sauce:name: Banking:shouldCreateCustome..., sauce:tags: functional,dev}, driver&#x3D;RemoteWebDriver: chrome on windows (3c8a69b20cae4ad6bc09c091628f51d8))</span>
-    </td>
-
-    <td>
-      {-x:class&#x3D;org.openqa.selenium.remote.RemoteWebDriver, -x:target&#x3D;${web.url}, -x:type&#x3D;web, -x:url&#x3D;https://oauth-adrian.herscu-d81b6:524dbdcd-6577-4f9b-bec3-9fc4f193d487@ondemand.saucelabs.com:443/wd/hub, browserName&#x3D;chrome, sauce:build&#x3D;local, sauce:idleTimeout&#x3D;1000, sauce:maxDuration&#x3D;6000, sauce:name&#x3D;Banking:shouldCreateCustomer:b091592a:27:1746594438292, sauce:tags&#x3D;functional,dev}
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>
-      <b>Operation(s)</b>
-    </td>
-    <td>
-      <span>adding</span>
-      <span>Customer(firstName&#x3D;kuku, lastName&#x3D;bar, postalCode&#x3D;12345)</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>
-      <b>Verification(s)</b>
-    </td>
-    <td>
-      <span>the customers</span>
-      <span>to match a sequence of following: [&lt;is &lt;Customer(firstName&#x3D;kuku, lastName&#x3D;bar, postalCode&#x3D;12345)&gt;&gt;]</span>
-    </td>
-
-    <td>
-      <!-- ISSUE: current Jenkins configuration blocks data images -->
-      <!-- see https://content-security-policy.com/ -->
-      <!-- and https://www.w3.org/TR/CSP2/ -->
-      <!-- Jenkins sends content-security-policy: default-src 'self'; style-src 'self' 'unsafe-inline'; -->
-      <!-- NOTE: assuming binary attachements are always images -->
-      <img alt="Actual screenshot might be blocked by server"
-           src="data:image/png;base64,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">
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>

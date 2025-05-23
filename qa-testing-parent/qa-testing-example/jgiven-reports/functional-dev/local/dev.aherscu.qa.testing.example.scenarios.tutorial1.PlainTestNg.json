@@ -4,6 +4,75 @@
   "scenarios": [
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
+      "testMethodName": "_1_shouldSucceed",
+      "description": " 1 shouldSucceed",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "durationInNanos": 18906576
+        }
+      ],
+      "casesAsTable": false,
+      "durationInNanos": 18906576
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
+      "testMethodName": "_3_checkFullAdder",
+      "description": " 3 checkFullAdder",
+      "tagIds": [],
+      "explicitParameters": [
+        "v"
+      ],
+      "derivedParameters": [],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [],
+          "explicitArguments": [
+            "PlainTestNg.FAT(a\u003dfalse, b\u003dfalse, sum\u003dfalse, carry\u003dfalse)"
+          ],
+          "derivedArguments": [],
+          "durationInNanos": 739355
+        },
+        {
+          "caseNr": 2,
+          "steps": [],
+          "explicitArguments": [
+            "PlainTestNg.FAT(a\u003dfalse, b\u003dtrue, sum\u003dtrue, carry\u003dfalse)"
+          ],
+          "derivedArguments": [],
+          "durationInNanos": 250168
+        },
+        {
+          "caseNr": 3,
+          "steps": [],
+          "explicitArguments": [
+            "PlainTestNg.FAT(a\u003dtrue, b\u003dfalse, sum\u003dtrue, carry\u003dfalse)"
+          ],
+          "derivedArguments": [],
+          "durationInNanos": 168024
+        },
+        {
+          "caseNr": 4,
+          "steps": [],
+          "explicitArguments": [
+            "PlainTestNg.FAT(a\u003dtrue, b\u003dtrue, sum\u003dtrue, carry\u003dtrue)"
+          ],
+          "derivedArguments": [],
+          "durationInNanos": 151133
+        }
+      ],
+      "casesAsTable": true,
+      "durationInNanos": 1308680
+    },
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
       "testMethodName": "_2_checkNot",
       "description": " 2 checkNot",
       "tagIds": [],
@@ -21,7 +90,7 @@
             "true"
           ],
           "derivedArguments": [],
-          "durationInNanos": 3680656
+          "durationInNanos": 675834
         },
         {
           "caseNr": 2,
@@ -31,30 +100,11 @@
             "false"
           ],
           "derivedArguments": [],
-          "durationInNanos": 165758
+          "durationInNanos": 147896
         }
       ],
       "casesAsTable": true,
-      "durationInNanos": 3846414
-    },
-    {
-      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
-      "testMethodName": "_1_shouldSucceed",
-      "description": " 1 shouldSucceed",
-      "tagIds": [],
-      "explicitParameters": [],
-      "derivedParameters": [],
-      "scenarioCases": [
-        {
-          "caseNr": 1,
-          "steps": [],
-          "explicitArguments": [],
-          "derivedArguments": [],
-          "durationInNanos": 16518263
-        }
-      ],
-      "casesAsTable": false,
-      "durationInNanos": 16518263
+      "durationInNanos": 823730
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
@@ -75,7 +125,7 @@
             "0"
           ],
           "derivedArguments": [],
-          "durationInNanos": 10124239
+          "durationInNanos": 1057049
         },
         {
           "caseNr": 2,
@@ -85,7 +135,7 @@
             "1"
           ],
           "derivedArguments": [],
-          "durationInNanos": 236480
+          "durationInNanos": 178364
         },
         {
           "caseNr": 3,
@@ -95,61 +145,11 @@
             "-1"
           ],
           "derivedArguments": [],
-          "durationInNanos": 208167
+          "durationInNanos": 171311
         }
       ],
       "casesAsTable": true,
-      "durationInNanos": 10568886
-    },
-    {
-      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial1.PlainTestNg",
-      "testMethodName": "_3_checkFullAdder",
-      "description": " 3 checkFullAdder",
-      "tagIds": [],
-      "explicitParameters": [
-        "v"
-      ],
-      "derivedParameters": [],
-      "scenarioCases": [
-        {
-          "caseNr": 1,
-          "steps": [],
-          "explicitArguments": [
-            "PlainTestNg.FAT(a\u003dfalse, b\u003dfalse, sum\u003dfalse, carry\u003dfalse)"
-          ],
-          "derivedArguments": [],
-          "durationInNanos": 3545348
-        },
-        {
-          "caseNr": 2,
-          "steps": [],
-          "explicitArguments": [
-            "PlainTestNg.FAT(a\u003dfalse, b\u003dtrue, sum\u003dtrue, carry\u003dfalse)"
-          ],
-          "derivedArguments": [],
-          "durationInNanos": 192869
-        },
-        {
-          "caseNr": 3,
-          "steps": [],
-          "explicitArguments": [
-            "PlainTestNg.FAT(a\u003dtrue, b\u003dfalse, sum\u003dtrue, carry\u003dfalse)"
-          ],
-          "derivedArguments": [],
-          "durationInNanos": 155439
-        },
-        {
-          "caseNr": 4,
-          "steps": [],
-          "explicitArguments": [
-            "PlainTestNg.FAT(a\u003dtrue, b\u003dtrue, sum\u003dtrue, carry\u003dtrue)"
-          ],
-          "derivedArguments": [],
-          "durationInNanos": 166940
-        }
-      ],
-      "casesAsTable": true,
-      "durationInNanos": 4060596
+      "durationInNanos": 1406724
     }
   ],
   "tagMap": {}
