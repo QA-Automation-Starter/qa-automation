@@ -54,16 +54,16 @@ public class QueueHandlerTest extends AbstractQueueHandlerTest {
         try (val connection = LOCAL_RABBITMQ.newConnection();
             val channel = connection.createChannel();
             // NOTE lombok.val with Eclipse Java Compiler does not work here
-            final QueueHandler<Integer, byte[]> queueHandler =
-                QueueHandler.<Integer, byte[]> builder()
+            final QueueHandler<Integer, String> queueHandler =
+                QueueHandler.<Integer, String> builder()
                     .channel(channel)
                     .queue(channel.queueDeclare().getQueue())
-                    .indexingBy(message -> Arrays.hashCode(message.content))
-                    .consumingBy(Function.identity())
-                    .publishingBy(Function.identity())
+                    .indexingBy(message -> message.content.hashCode())
+                    .consumingBy(bytes -> new String(bytes, UTF_8))
+                    .publishingBy(string -> string.getBytes(UTF_8))
                     .build()) {
 
-            queueHandler.publishValues(Stream.of(new byte[] { 1, 2, 3, 4 }));
+            queueHandler.publishValues(Stream.of(new String[] { "a", "b", "c" }));
 
             queueHandler.consume();
 
@@ -71,7 +71,7 @@ public class QueueHandlerTest extends AbstractQueueHandlerTest {
                 .run(() -> assertThat(queueHandler
                     .recievedMessages()
                     .values(),
-                    hasSize(1)));
+                    hasSize(3)));
         }
     }
 }
