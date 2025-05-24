@@ -21,8 +21,6 @@ import static org.apache.commons.lang3.StringUtils.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
-import java.util.*;
-import java.util.function.*;
 import java.util.stream.*;
 
 import org.apache.commons.lang3.*;

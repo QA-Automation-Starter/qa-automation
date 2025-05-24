@@ -56,7 +56,7 @@ public class NotIndexedRabbitMqTest
             .and().consuming();
 
         then()
-            .the_retrieved_messages(adaptedStream(message -> message.content,
+            .the_recieved_messages(adaptedStream(message -> message.content,
                 hasSpecificItems("world", "hello")));
     }
 

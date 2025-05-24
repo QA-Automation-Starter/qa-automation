@@ -33,7 +33,7 @@ public class RabbitMqVerifications<K, V, SELF extends RabbitMqVerifications<K, V
     @ExpectedScenarioState
     protected QueueHandler<K, V> queueHandler;
 
-    public SELF the_retrieved_messages(
+    public SELF the_recieved_messages(
         final Matcher<Stream<Message<V>>> matcher) {
         log.debug("retrieving all messages");
         return eventually_assert_that(
