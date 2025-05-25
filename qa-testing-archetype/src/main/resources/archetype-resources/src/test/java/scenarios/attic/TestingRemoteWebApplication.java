@@ -25,6 +25,7 @@ import static org.openqa.selenium.remote.CapabilityType.*;
 
 import java.net.*;
 
+import java.time.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
 import org.testng.annotations.*;
@@ -108,7 +109,7 @@ public class TestingRemoteWebApplication {
         );
 
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(10, SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         webDriver.get("https://google.com?hl=en");
     }
 }

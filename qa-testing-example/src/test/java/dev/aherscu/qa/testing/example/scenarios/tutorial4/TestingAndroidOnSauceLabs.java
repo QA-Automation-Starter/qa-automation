@@ -21,7 +21,6 @@ import static io.appium.java_client.remote.options.SupportsAppOption.*;
 import static io.appium.java_client.remote.options.SupportsAutoWebViewOption.*;
 import static io.appium.java_client.remote.options.SupportsDeviceNameOption.*;
 import static io.appium.java_client.remote.options.SupportsPlatformVersionOption.*;
-import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.openqa.selenium.remote.CapabilityType.*;
@@ -96,6 +95,6 @@ public class TestingAndroidOnSauceLabs {
         // https://saucelabs.com/rest/v1/storage/TBD --data-binary
         // @TBD.apk
         webDriver = saucelabsApp(getClass().getSimpleName());
-        webDriver.manage().timeouts().implicitlyWait(5, SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 }

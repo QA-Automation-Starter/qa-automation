@@ -18,11 +18,11 @@ package dev.aherscu.qa.testing.example.scenarios.tutorial4;
 
 import static dev.aherscu.qa.testing.example.scenarios.tutorial4.TestingAndroidOnSauceLabs.*;
 import static java.lang.Thread.*;
-import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 
 import java.lang.SuppressWarnings;
+import java.time.*;
 
 import org.openqa.selenium.*;
 import org.testng.annotations.*;
@@ -98,7 +98,7 @@ public class TestingAndroidWithJGiven extends
         log.debug("opening web driver");
         webDriver.set(saucelabsApp(getClass().getSimpleName()
             + "#" + currentThread().getId()));
-        webDriver.get().manage().timeouts().implicitlyWait(5, SECONDS);
+        webDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
     static class Actions extends Stage<Actions> {

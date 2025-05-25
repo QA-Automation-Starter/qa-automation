@@ -18,12 +18,12 @@ package dev.aherscu.qa.testing.example.scenarios.attic;
 
 import static dev.aherscu.qa.testing.utils.StreamMatchers.*;
 import static java.util.Objects.*;
-import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.openqa.selenium.remote.CapabilityType.*;
 
 import java.net.*;
+import java.time.*;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.*;
@@ -108,7 +108,7 @@ public class TestingRemoteWebApplication {
         );
 
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(10, SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         webDriver.get("https://google.com?hl=en");
     }
 }

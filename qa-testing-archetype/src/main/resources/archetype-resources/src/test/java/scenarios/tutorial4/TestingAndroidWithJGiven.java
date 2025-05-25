@@ -24,6 +24,7 @@ import static org.hamcrest.Matchers.*;
 
 import java.lang.SuppressWarnings;
 
+import java.time.*;
 import org.openqa.selenium.*;
 import org.testng.annotations.*;
 
@@ -162,6 +163,6 @@ public class TestingAndroidWithJGiven extends
         log.debug("opening web driver");
         webDriver.set(saucelabsApp(getClass().getSimpleName()
             + "#" + currentThread().getId()));
-        webDriver.get().manage().timeouts().implicitlyWait(5, SECONDS);
+        webDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 }

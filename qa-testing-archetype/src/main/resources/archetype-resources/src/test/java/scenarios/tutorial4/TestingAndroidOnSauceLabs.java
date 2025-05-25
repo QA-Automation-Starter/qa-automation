@@ -96,6 +96,6 @@ public class TestingAndroidOnSauceLabs {
         // https://saucelabs.com/rest/v1/storage/TBD --data-binary
         // @TBD.apk
         webDriver = saucelabsApp(getClass().getSimpleName());
-        webDriver.manage().timeouts().implicitlyWait(5, SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 }

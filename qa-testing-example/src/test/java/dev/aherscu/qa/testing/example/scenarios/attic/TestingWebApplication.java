@@ -19,12 +19,12 @@ package dev.aherscu.qa.testing.example.scenarios.attic;
 import static dev.aherscu.qa.jgiven.commons.utils.ConfigurableScenarioTest.*;
 import static dev.aherscu.qa.testing.example.scenarios.attic.TestingRemoteWebApplication.*;
 import static dev.aherscu.qa.testing.utils.StreamMatchers.*;
-import static java.util.concurrent.TimeUnit.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
 import static org.openqa.selenium.remote.CapabilityType.*;
 
 import java.net.*;
+import java.time.*;
 import java.util.function.*;
 
 import org.jooq.lambda.*;
@@ -117,7 +117,7 @@ public class TestingWebApplication {
     private void beforeClassOpenWebDriver() {
         log.trace("before connecting selenium");
         webDriver.manage().window().maximize();
-        webDriver.manage().timeouts().implicitlyWait(10, SECONDS);
+        webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         webDriver.get("https://google.com?hl=en"); // ensure English
     }
 }
