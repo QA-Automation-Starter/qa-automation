@@ -1,5 +1,6 @@
 {
   "name": "qa-automation",
+  "workspaceFolder": "/workspaces/qa-automation",
   "dockerComposeFile": [
     "selenium-hub-docker.yml"
   ],
