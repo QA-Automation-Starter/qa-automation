@@ -29,7 +29,7 @@
       <sideBarEnabled>false</sideBarEnabled>
       <!--profile>pre-release</profile-->
       <gitHub>
-        <projectId>QA-Automation-Starter/qa-automation</projectId>
+        <projectId>QA-Automation-Starter</projectId>
         <ribbonOrientation>right-bottom</ribbonOrientation>
         <ribbonColor>gray</ribbonColor>
       </gitHub>
