@@ -41,7 +41,7 @@
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>      @ExpectedScenarioState
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>      <strong class="jxr_keyword">protected</strong> QueueHandler&lt;K, V&gt; queueHandler;
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <strong class="jxr_keyword">public</strong> SELF the_retrieved_messages(
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>      <strong class="jxr_keyword">public</strong> SELF the_recieved_messages(
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>          <strong class="jxr_keyword">final</strong> Matcher&lt;Stream&lt;Message&lt;V&gt;&gt;&gt; matcher) {
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>          log.debug(<span class="jxr_string">"retrieving all messages"</span>);
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>          <strong class="jxr_keyword">return</strong> eventually_assert_that(
