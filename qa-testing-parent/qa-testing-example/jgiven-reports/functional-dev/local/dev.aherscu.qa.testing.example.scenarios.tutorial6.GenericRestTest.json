@@ -29,7 +29,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 398755,
+              "durationInNanos": 425117,
               "depth": 0,
               "parentFailed": false
             },
@@ -44,15 +44,15 @@
                   "value": "connecting to"
                 },
                 {
-                  "value": "http://localhost:45939",
+                  "value": "http://localhost:34391",
                   "argumentInfo": {
                     "argumentName": "url",
-                    "formattedValue": "http://localhost:45939"
+                    "formattedValue": "http://localhost:34391"
                   }
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 669220,
+              "durationInNanos": 5122576,
               "depth": 0,
               "parentFailed": false
             },
@@ -75,7 +75,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 7852986,
+              "durationInNanos": 390303,
               "depth": 0,
               "parentFailed": false
             },
@@ -106,13 +106,13 @@
                     }
                   ],
                   "status": "PASSED",
-                  "durationInNanos": 638531928,
+                  "durationInNanos": 751830151,
                   "depth": 0,
                   "parentFailed": false
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 639559817,
+              "durationInNanos": 753391759,
               "depth": 0,
               "parentFailed": false
             },
@@ -135,7 +135,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 779585,
+              "durationInNanos": 769082,
               "attachments": [
                 {
                   "title": "actual response",
@@ -150,11 +150,11 @@
           ],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 772357953
+          "durationInNanos": 874285642
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 772357953
+      "durationInNanos": 874285642
     }
   ],
   "tagMap": {

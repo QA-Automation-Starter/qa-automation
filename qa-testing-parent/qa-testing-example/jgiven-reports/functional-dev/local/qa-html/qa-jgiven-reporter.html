@@ -117,7 +117,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td>2025-May-25 18:46 GMT</td>
+    <td>2025-Jun-15 19:10 GMT</td>
   </tr>
   <tr>
     <th>Reviewer</th>
@@ -273,133 +273,6 @@
 
 <h1>Test Procedures</h1>
 
-<h2>Generic Rest</h2>
-
-<table>
-  <thead>
-  <tr>
-    <th>Tag</th>
-    <th>Value</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>Self Test</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>REST Test</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Reference</td>
-    <td>70</td>
-  </tr>
-  </tbody>
-</table>
-
-<h3>[T-2E13FA05] Should retrieve json field from fake rest service</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>1</td>
-    <td>
-      <b>Pre-condition(s)</b>
-    </td>
-    <td>
-      <span>a REST client</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>
-      <b>Operation(s)</b>
-    </td>
-    <td>
-      <span>connecting to</span>
-      <span>http://localhost:45939</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>appending path</span>
-      <span>some-id</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>getting the response</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>
-      <b>Verification(s)</b>
-    </td>
-    <td>
-      <span>the response contents</span>
-      <span>[a value greater than &lt;0&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[0].id, &lt;2&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[1].id]</span>
-    </td>
-
-    <td>
-      [{id:1},{id:2},{id:3}]
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  </tbody>
-</table>
-
 <h2>Stateful Rest</h2>
 
 <table>
@@ -459,7 +332,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:33385</span>
+      <span>http://localhost:44705</span>
     </td>
 
     <td>
@@ -493,7 +366,7 @@
     </td>
     <td>
       <span>posting</span>
-      <span>jakarta.ws.rs.core.Form@4979f18b</span>
+      <span>jakarta.ws.rs.core.Form@4dc93b6</span>
     </td>
 
     <td>
@@ -562,7 +435,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:33385</span>
+      <span>http://localhost:44705</span>
     </td>
 
     <td>
@@ -681,7 +554,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:33385</span>
+      <span>http://localhost:44705</span>
     </td>
 
     <td>
@@ -745,6 +618,196 @@
   </tbody>
 </table>
 
+<h2>Test Ng With Hamcrest</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Tag</th>
+    <th>Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-F89BACE2]  2 shouldAssertOnBoolean</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-82C983F0]  3 shouldAssertOnStringContents</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-86B7A8D]  5 shouldAssertOnListOrder</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-7738241C]  4 shouldAssertOnListContents</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-2F77C740]  1 shouldSucceed</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-B5F586FC]  6 shouldAssertOnEquality</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-43C942DB]  7 shouldAssertOnStreamContents</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-286CB61D]  9 shouldCalculateSinusWithTolerance</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<p>Test scenario:2</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-19144194]  8 shouldAssertOnStreamOfJsons</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
 <h2>Banking</h2>
 
 <table>
@@ -784,11 +847,11 @@
     </td>
     <td>
       <span>a bank</span>
-      <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {-x:class: org.openqa.selenium.remote...., -x:target: ${web.url}, -x:type: web, -x:url: https://oauth-adrian.herscu..., browserName: chrome, sauce:build: local, sauce:idleTimeout: 1000, sauce:maxDuration: 6000, sauce:name: Banking:shouldCreateCustome..., sauce:tags: functional,dev}, driver&#x3D;RemoteWebDriver: chrome on windows (a30bf1895d3b422697943df0b1c20de1))</span>
+      <span>WebDriverEx(originalCapabilities&#x3D;Capabilities {-x:class: org.openqa.selenium.remote...., -x:target: ${web.url}, -x:type: web, -x:url: https://oauth-adrian.herscu..., browserName: chrome, sauce:build: local, sauce:idleTimeout: 1000, sauce:maxDuration: 6000, sauce:name: Banking:shouldCreateCustome..., sauce:tags: functional,dev}, driver&#x3D;RemoteWebDriver: chrome on windows (cdfa3476db324a4b81207f70edc17937))</span>
     </td>
 
     <td>
-      {-x:class&#x3D;org.openqa.selenium.remote.RemoteWebDriver, -x:target&#x3D;${web.url}, -x:type&#x3D;web, -x:url&#x3D;https://oauth-adrian.herscu-d81b6:524dbdcd-6577-4f9b-bec3-9fc4f193d487@ondemand.saucelabs.com:443/wd/hub, browserName&#x3D;chrome, sauce:build&#x3D;local, sauce:idleTimeout&#x3D;1000, sauce:maxDuration&#x3D;6000, sauce:name&#x3D;Banking:shouldCreateCustomer:b091592a:31:1748198739822, sauce:tags&#x3D;functional,dev}
+      {-x:class&#x3D;org.openqa.selenium.remote.RemoteWebDriver, -x:target&#x3D;${web.url}, -x:type&#x3D;web, -x:url&#x3D;https://oauth-adrian.herscu-d81b6:524dbdcd-6577-4f9b-bec3-9fc4f193d487@ondemand.saucelabs.com:443/wd/hub, browserName&#x3D;chrome, sauce:build&#x3D;local, sauce:idleTimeout&#x3D;1000, sauce:maxDuration&#x3D;6000, sauce:name&#x3D;Banking:shouldCreateCustomer:b091592a:29:1750014614442, sauce:tags&#x3D;functional,dev}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -902,7 +965,7 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1748198741372&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1750014616350&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -937,7 +1000,7 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1748198741372&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1750014616350&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -986,7 +1049,7 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1748198741427&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1750014616444&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -1021,7 +1084,7 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1748198741427&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1750014616444&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -1070,7 +1133,7 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1748198741456&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1750014616528&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -1105,203 +1168,13 @@
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1748198741456&quot;}
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1750014616528&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
     <td><!-- spr left blank blank intentionally --></td>
 
   </tr>
-  </tbody>
-</table>
-
-<h2>Test Ng With Hamcrest</h2>
-
-<table>
-  <thead>
-  <tr>
-    <th>Tag</th>
-    <th>Value</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-2F77C740]  1 shouldSucceed</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-F89BACE2]  2 shouldAssertOnBoolean</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-86B7A8D]  5 shouldAssertOnListOrder</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-7738241C]  4 shouldAssertOnListContents</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-82C983F0]  3 shouldAssertOnStringContents</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-B5F586FC]  6 shouldAssertOnEquality</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-286CB61D]  9 shouldCalculateSinusWithTolerance</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-<p>Test scenario:2</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-43C942DB]  7 shouldAssertOnStreamContents</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-19144194]  8 shouldAssertOnStreamOfJsons</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
   </tbody>
 </table>
 
@@ -1351,6 +1224,57 @@
   </tbody>
 </table>
 <p>Test scenario:3</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-2F77C740]  1 shouldSucceed</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-371720F9]  2 checkNot</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<p>Test scenario:2</p>
 <table>
   <thead>
   <tr>
@@ -1429,57 +1353,6 @@
   </tbody>
 </table>
 
-<h3>[T-2F77C740]  1 shouldSucceed</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-371720F9]  2 checkNot</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-<p>Test scenario:2</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
 <h2>Generic Mock Server Rest</h2>
 
 <table>
@@ -1543,7 +1416,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:35877</span>
+      <span>http://localhost:38363</span>
     </td>
 
     <td>
@@ -1661,7 +1534,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:35877</span>
+      <span>http://localhost:38363</span>
     </td>
 
     <td>
@@ -1762,7 +1635,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:35877</span>
+      <span>http://localhost:38363</span>
     </td>
 
     <td>
@@ -1863,7 +1736,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:35877</span>
+      <span>http://localhost:38363</span>
     </td>
 
     <td>
@@ -2013,7 +1886,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:35877</span>
+      <span>http://localhost:38363</span>
     </td>
 
     <td>
@@ -2116,6 +1989,133 @@
 
     <td>
       &lt;&lt;empty&gt;&gt;
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+
+<h2>Generic Rest</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Tag</th>
+    <th>Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Self Test</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>REST Test</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>Reference</td>
+    <td>70</td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>[T-2E13FA05] Should retrieve json field from fake rest service</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>a REST client</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>connecting to</span>
+      <span>http://localhost:34391</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>appending path</span>
+      <span>some-id</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>getting the response</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the response contents</span>
+      <span>[a value greater than &lt;0&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[0].id, &lt;2&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[1].id]</span>
+    </td>
+
+    <td>
+      [{id:1},{id:2},{id:3}]
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
