@@ -23,5 +23,5 @@ For example:
 ## Customize it
 
 Derive your reporter class from one of the reporter classes above -- see
-[TestRailReporter](https://qa-automation-starter.aherscu.dev/qa-testrail-reporter/xref/dev/aherscu/qa/testrail/reporter/TestRailReporter.html#TestRailReporter)
+[TestRailReporter](https://java.qa-automation-starter.aherscu.dev/qa-testrail-reporter/xref/dev/aherscu/qa/testrail/reporter/TestRailReporter.html#TestRailReporter)
 as an example.

@@ -1,4 +1,4 @@
-> [**For users**: introduction, instructions, and tutorials](https://qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example)
+> [**For users**: introduction, instructions, and tutorials](https://java.qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example)
 >
 > (this page is for developing and maintaining this project)
 

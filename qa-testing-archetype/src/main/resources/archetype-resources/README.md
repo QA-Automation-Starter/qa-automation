@@ -1,5 +1,5 @@
 > [**For users
-**: introduction, instructions, and tutorials](https://qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example)
+**: introduction, instructions, and tutorials](https://java.qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example)
 
 # Development Instructions
 

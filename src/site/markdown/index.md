@@ -10,7 +10,7 @@
 * reporting connector for [TestRail](qa-testrail-reporter/index.html)?...
 
 An example project is included -- see its published
-[JGiven Report](https://qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example/jgiven-reports/functional-dev/local/html/index.html#/all)
+[JGiven Report](https://java.qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example/jgiven-reports/functional-dev/local/html/index.html#/all)
 and [SauceLabs Dashboard](https://app.saucelabs.com/open_sauce/user/oauth-adrian.herscu-d81b6/tests?ownerId=oauth-adrian.herscu-d81b6&ownerType=user&ownerName=oauth-adrian.herscu-d81b6&start=alltime)
 
 # Migrating Existing Automation Projects

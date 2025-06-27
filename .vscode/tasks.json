@@ -32,6 +32,41 @@
       },
       "group": "build",
       "problemMatcher": []
-    }
+    },
+    {
+      "label": "site-stage-fast",
+      "type": "shell",
+      "command": "mvn",
+      "args": [
+        "site",
+        "site:stage",
+        "-Pmode-site-fast"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "site-stage",
+      "type": "shell",
+      "command": "mvn",
+      "args": [
+        "site",
+        "site:stage"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
   ]
 }
