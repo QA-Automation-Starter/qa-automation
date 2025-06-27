@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"dev.aherscu.qa.jgiven.jdbc"},{"l":"dev.aherscu.qa.jgiven.jdbc.model"},{"l":"dev.aherscu.qa.jgiven.jdbc.steps"},{"l":"dev.aherscu.qa.jgiven.jdbc.utils.dbutils"}]

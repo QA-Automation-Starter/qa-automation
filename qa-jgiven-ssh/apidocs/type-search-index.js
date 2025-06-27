@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"dev.aherscu.qa.jgiven.ssh.steps","l":"SshActions"},{"p":"dev.aherscu.qa.jgiven.ssh.steps","l":"SshFixtures"},{"p":"dev.aherscu.qa.jgiven.ssh.model","l":"SshInfo"},{"p":"dev.aherscu.qa.jgiven.ssh.model","l":"SshScenarioType"},{"p":"dev.aherscu.qa.jgiven.ssh.steps","l":"SshVerifications"}]

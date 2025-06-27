@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"dev.aherscu.qa.jgiven.rabbitmq"},{"l":"dev.aherscu.qa.jgiven.rabbitmq.model"},{"l":"dev.aherscu.qa.jgiven.rabbitmq.steps"},{"l":"dev.aherscu.qa.jgiven.rabbitmq.utils"}]
