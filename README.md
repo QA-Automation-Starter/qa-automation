@@ -78,7 +78,6 @@ The above has the following effects:
 
 * `SNAPSHOT` suffix will be removed
 * sources will be committed and tagged according to current version
-* artifacts will be deployed to [OSSRH](https://s01.oss.sonatype.org/#nexus-search;quick~dev.aherscu)
 * versions will be bumped up forming a new SNAPSHOT
 * a new commit will be made on main branch
 * after few hours released artifacts will appear on Maven Central
