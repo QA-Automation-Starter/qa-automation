@@ -90,6 +90,13 @@
     </dependency>
 
     <dependency>
+      <!-- NOTE: temporary fix to bring ContextAware and NoSuchContextException -->
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-api</artifactId>
+      <version>4.30.0</version>
+    </dependency>
+
+    <dependency>
       <groupId>io.github.bonigarcia</groupId>
       <artifactId>webdrivermanager</artifactId>
       <version>5.9.3</version>
