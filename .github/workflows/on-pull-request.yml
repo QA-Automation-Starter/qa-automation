@@ -51,16 +51,6 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: OSSRH credentials
-        run: |
-          echo "OSSRH_USERNAME=${OSSRH_USERNAME:0:4}****${OSSRH_USERNAME: -4}"
-          echo "OSSRH_PASSWORD=${OSSRH_PASSWORD:0:4}****${OSSRH_PASSWORD: -4}"
-          cat $GITHUB_WORKSPACE/settings.xml
-        shell: bash
-        env:
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-
       # ISSUE causes Error: Container action is only supported on Linux
       #      - name: Start RabbitMQ
       #        uses: namoshek/rabbitmq-github-action@v1
@@ -78,6 +68,8 @@ jobs:
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
+          echo "OSSRH_USERNAME=${OSSRH_USERNAME:0:4}****${OSSRH_USERNAME: -4}"
+          echo "OSSRH_PASSWORD=${OSSRH_PASSWORD:0:4}****${OSSRH_PASSWORD: -4}"
           chmod +x mvnw && ./mvnw deploy \
             --threads 1 \
             -s $GITHUB_WORKSPACE/settings.xml \
