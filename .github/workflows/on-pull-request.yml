@@ -62,11 +62,11 @@ jobs:
 
       - name: Show token prefix from settings.xml
         run: |
-          grep -A 2 '<id>central</id>' $GITHUB_WORKSPACE/settings.xml | sed 's/.*<\(.*\)>\(.*\)<\/.*>/\1: \2/' | while read line; do
-            key=$(echo "$line" | cut -d':' -f1)
-            val=$(echo "$line" | cut -d':' -f2-)
-            echo "$key: ${val:0:4}****${val: -4}"
-          done
+          echo "Username prefix:"
+          grep -A1 '<id>central</id>' $GITHUB_WORKSPACE/settings.xml | grep '<username>' | sed -E 's/.*<username>(.{4}).*(.{4})<\/username>.*/\1****\2/'
+
+          echo "Password prefix:"
+          grep -A1 '<id>central</id>' $GITHUB_WORKSPACE/settings.xml | grep '<password>' | sed -E 's/.*<password>(.{4}).*(.{4})<\/password>.*/\1****\2/'
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
