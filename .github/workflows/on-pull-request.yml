@@ -51,6 +51,15 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+      - name: OSSRH credentials
+        run: |
+          echo "OSSRH_USERNAME=${OSSRH_USERNAME:0:4}****${OSSRH_USERNAME: -4}"
+          echo "OSSRH_PASSWORD=${OSSRH_PASSWORD:0:4}****${OSSRH_PASSWORD: -4}"
+        shell: bash
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+
       # ISSUE causes Error: Container action is only supported on Linux
       #      - name: Start RabbitMQ
       #        uses: namoshek/rabbitmq-github-action@v1
