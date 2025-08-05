@@ -60,6 +60,15 @@ jobs:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
 
+      - name: Show token prefix from settings.xml
+        run: |
+          grep -A 2 '<id>central</id>' $GITHUB_WORKSPACE/settings.xml | sed 's/.*<\(.*\)>\(.*\)<\/.*>/\1: \2/' | while read line; do
+            key=$(echo "$line" | cut -d':' -f1)
+            val=$(echo "$line" | cut -d':' -f2-)
+            echo "$key: ${val:0:4}****${val: -4}"
+          done
+
+
       # ISSUE causes Error: Container action is only supported on Linux
       #      - name: Start RabbitMQ
       #        uses: namoshek/rabbitmq-github-action@v1
