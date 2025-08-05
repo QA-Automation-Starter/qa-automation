@@ -4,7 +4,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8-SNAPSHOT</version>
   </parent>
 
   <artifactId>qa-jgiven-jdbc</artifactId>
@@ -23,7 +23,7 @@
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-commons</artifactId>
-      <version>1.0.7</version>
+      <version>1.0.8-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
