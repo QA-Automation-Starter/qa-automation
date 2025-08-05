@@ -150,7 +150,6 @@
     <enforcer.skip>true</enforcer.skip>
     <findbugs.skip>true</findbugs.skip>
     <formatter.skip>true</formatter.skip>
-    <gpg.skip>true</gpg.skip>
     <impsort.skip>true</impsort.skip>
     <lombok.delombok.skip>true</lombok.delombok.skip>
     <maven.antrun.skip>true</maven.antrun.skip>
