@@ -55,23 +55,11 @@ jobs:
         run: |
           echo "OSSRH_USERNAME=${OSSRH_USERNAME:0:4}****${OSSRH_USERNAME: -4}"
           echo "OSSRH_PASSWORD=${OSSRH_PASSWORD:0:4}****${OSSRH_PASSWORD: -4}"
+          cat $GITHUB_WORKSPACE/settings.xml
         shell: bash
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-
-      - name: Show token prefix from settings.xml
-        run: |
-          echo "Username prefix:"
-          grep -A1 '<id>central</id>' $GITHUB_WORKSPACE/settings.xml | grep '<username>' | sed -E 's/.*<username>(.{4}).*(.{4})<\/username>.*/\1****\2/'
-
-          echo "Password prefix:"
-          grep -A1 '<id>central</id>' $GITHUB_WORKSPACE/settings.xml | grep '<password>' | sed -E 's/.*<password>(.{4}).*(.{4})<\/password>.*/\1****\2/'
-        env:
-          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-
-
 
       # ISSUE causes Error: Container action is only supported on Linux
       #      - name: Start RabbitMQ
