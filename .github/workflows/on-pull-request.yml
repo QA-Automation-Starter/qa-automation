@@ -67,6 +67,10 @@ jobs:
             val=$(echo "$line" | cut -d':' -f2-)
             echo "$key: ${val:0:4}****${val: -4}"
           done
+        env:
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+
 
 
       # ISSUE causes Error: Container action is only supported on Linux
