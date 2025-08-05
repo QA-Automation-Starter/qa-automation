@@ -34,11 +34,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@v2
         with:
           java-version: '11'
           distribution: 'temurin'
           cache: maven
+          settings-path: ${{ github.workspace }}
           server-id: central # Value of the distributionManagement/repository/id field of the pom.xml
           server-username: OSSRH_USERNAME
           server-password: OSSRH_PASSWORD
@@ -54,7 +55,7 @@ jobs:
         run: |
           echo "OSSRH_USERNAME=${OSSRH_USERNAME:0:4}****${OSSRH_USERNAME: -4}"
           echo "OSSRH_PASSWORD=${OSSRH_PASSWORD:0:4}****${OSSRH_PASSWORD: -4}"
-          cat ~/.m2/settings.xml
+          cat $GITHUB_WORKSPACE/settings.xml
         shell: bash
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
@@ -79,6 +80,7 @@ jobs:
           git config --global user.email "adrian.herscu@gmail.com"
           chmod +x mvnw && ./mvnw deploy \
             --threads 1 \
+            -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
