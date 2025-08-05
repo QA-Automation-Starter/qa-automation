@@ -19,7 +19,7 @@ jobs:
         os: [ macos-latest, windows-latest, ubuntu-latest ]
 
     steps:
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v4
         with:
           java-version: '11'
           distribution: 'temurin'
@@ -31,7 +31,7 @@ jobs:
             [
               {
                 "id": "ossrh",
-                "url": "https://s01.oss.sonatype.org/content/repositories/snapshots",
+                "url": "https://central.sonatype.com/repository/maven-snapshots",
                 "snapshots": {
                     "enabled": "true",
                     "checksumPolicy": "warn"

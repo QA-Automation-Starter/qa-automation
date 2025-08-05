@@ -18,7 +18,7 @@ in your `.m2/settings.xml`:
         <repository>
           <!-- id expected by maven-archetype-plugin to avoid fetching from everywhere -->
           <id>archetype</id>
-          <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+          <url>https://central.sonatype.com/repository/maven-snapshots</url>
           <snapshots>
             <enabled>true</enabled>
             <checksumPolicy>warn</checksumPolicy>

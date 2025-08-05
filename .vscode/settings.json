@@ -1,4 +1,5 @@
 {
+    "files.autoSave": "afterDelay",
     "maven.view": "hierarchical",
     "java.compile.nullAnalysis.mode": "automatic",
     "java.dependency.packagePresentation": "hierarchical",
