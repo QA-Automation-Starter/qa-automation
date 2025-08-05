@@ -1,0 +1,4 @@
+dev.aherscu.qa.jgiven.jdbc
+dev.aherscu.qa.jgiven.jdbc.model
+dev.aherscu.qa.jgiven.jdbc.steps
+dev.aherscu.qa.jgiven.jdbc.utils.dbutils

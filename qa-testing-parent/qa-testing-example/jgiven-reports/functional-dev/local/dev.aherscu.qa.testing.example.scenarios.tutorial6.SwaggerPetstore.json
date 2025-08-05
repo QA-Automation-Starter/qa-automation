@@ -1,0 +1,386 @@
+{
+  "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.SwaggerPetstore",
+  "name": "Swagger Petstore",
+  "scenarios": [
+    {
+      "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.SwaggerPetstore",
+      "testMethodName": "shouldLogin",
+      "description": "Should login",
+      "tagIds": [
+        "dev.aherscu.qa.jgiven.rest.tags.RestTest",
+        "dev.aherscu.qa.jgiven.commons.tags.Reference-235"
+      ],
+      "explicitParameters": [
+        "credentials"
+      ],
+      "derivedParameters": [
+        "credentials"
+      ],
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "a swagger petstore",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "a swagger petstore"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 2077859,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "logging in with",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "logging in with"
+                },
+                {
+                  "value": "Credentials(userName\u003dkuku, password\u003d123)",
+                  "argumentInfo": {
+                    "parameterName": "credentials",
+                    "argumentName": "credentials",
+                    "formattedValue": "Credentials(userName\u003dkuku, password\u003d123)"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 752313162,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754398568438\"}",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the login response",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the login response"
+                },
+                {
+                  "value": "hasProperty(\"code\", \u003c200\u003e)",
+                  "argumentInfo": {
+                    "argumentName": "responseMatcher",
+                    "formattedValue": "hasProperty(\"code\", \u003c200\u003e)"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 3355853,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the response status",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the response status"
+                },
+                {
+                  "value": "is \u003cSUCCESSFUL\u003e",
+                  "argumentInfo": {
+                    "argumentName": "familyMatcher",
+                    "formattedValue": "is \u003cSUCCESSFUL\u003e"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 390108,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754398568438\"}",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [
+            "Credentials(userName\u003dkuku, password\u003d123)"
+          ],
+          "derivedArguments": [
+            "Credentials(userName\u003dkuku, password\u003d123)"
+          ],
+          "durationInNanos": 1059341675
+        },
+        {
+          "caseNr": 2,
+          "steps": [
+            {
+              "name": "a swagger petstore",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "a swagger petstore"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 329184,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "logging in with",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "logging in with"
+                },
+                {
+                  "value": "Credentials(userName\u003dfoo, password\u003dabc)",
+                  "argumentInfo": {
+                    "parameterName": "credentials",
+                    "argumentName": "credentials",
+                    "formattedValue": "Credentials(userName\u003dfoo, password\u003dabc)"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 72625700,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754398568536\"}",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the login response",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the login response"
+                },
+                {
+                  "value": "hasProperty(\"code\", \u003c200\u003e)",
+                  "argumentInfo": {
+                    "argumentName": "responseMatcher",
+                    "formattedValue": "hasProperty(\"code\", \u003c200\u003e)"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 584551,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the response status",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the response status"
+                },
+                {
+                  "value": "is \u003cSUCCESSFUL\u003e",
+                  "argumentInfo": {
+                    "argumentName": "familyMatcher",
+                    "formattedValue": "is \u003cSUCCESSFUL\u003e"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 331169,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754398568536\"}",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [
+            "Credentials(userName\u003dfoo, password\u003dabc)"
+          ],
+          "derivedArguments": [
+            "Credentials(userName\u003dfoo, password\u003dabc)"
+          ],
+          "durationInNanos": 87735412
+        },
+        {
+          "caseNr": 3,
+          "steps": [
+            {
+              "name": "a swagger petstore",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "a swagger petstore"
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 375561,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "logging in with",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "logging in with"
+                },
+                {
+                  "value": "Credentials(userName\u003dbar, password\u003dabc123)",
+                  "argumentInfo": {
+                    "parameterName": "credentials",
+                    "argumentName": "credentials",
+                    "formattedValue": "Credentials(userName\u003dbar, password\u003dabc123)"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 71853369,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754398568623\"}",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the login response",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the login response"
+                },
+                {
+                  "value": "hasProperty(\"code\", \u003c200\u003e)",
+                  "argumentInfo": {
+                    "argumentName": "responseMatcher",
+                    "formattedValue": "hasProperty(\"code\", \u003c200\u003e)"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 498751,
+              "depth": 0,
+              "parentFailed": false
+            },
+            {
+              "name": "the response status",
+              "words": [
+                {
+                  "value": "and",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the response status"
+                },
+                {
+                  "value": "is \u003cSUCCESSFUL\u003e",
+                  "argumentInfo": {
+                    "argumentName": "familyMatcher",
+                    "formattedValue": "is \u003cSUCCESSFUL\u003e"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 346907,
+              "attachments": [
+                {
+                  "title": "actual response",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754398568623\"}",
+                  "mediaType": "text/plain",
+                  "binary": false
+                }
+              ],
+              "depth": 0,
+              "parentFailed": false
+            }
+          ],
+          "explicitArguments": [
+            "Credentials(userName\u003dbar, password\u003dabc123)"
+          ],
+          "derivedArguments": [
+            "Credentials(userName\u003dbar, password\u003dabc123)"
+          ],
+          "durationInNanos": 83211197
+        }
+      ],
+      "casesAsTable": true,
+      "durationInNanos": 1230288284
+    }
+  ],
+  "tagMap": {
+    "dev.aherscu.qa.jgiven.rest.tags.RestTest": {
+      "fullType": "dev.aherscu.qa.jgiven.rest.tags.RestTest",
+      "type": "RestTest",
+      "name": "REST Test",
+      "description": "Tests interacting with REST interfaces",
+      "href": ""
+    },
+    "dev.aherscu.qa.jgiven.commons.tags.Reference-235": {
+      "fullType": "dev.aherscu.qa.jgiven.commons.tags.Reference",
+      "type": "Reference",
+      "name": "Reference",
+      "value": "235",
+      "description": "\u003ca target\u003d\"_blank\" href\u003d\"https://github.com/QA-Automation-Starter/qa-automation/issues/235\"\u003eClick here to open ALM 235\u003c/a\u003e",
+      "prependType": true,
+      "style": "background-color: darkgreen; color: white; font-weight: bold",
+      "href": "https://github.com/QA-Automation-Starter/qa-automation/issues/235"
+    }
+  }
+}
