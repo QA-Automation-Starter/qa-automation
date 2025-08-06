@@ -36,4 +36,5 @@ jobs:
         shell: bash
         run: |
           chmod +x mvnw && ./mvnw install \
+            -Pmode-build-nosign \
             -s $GITHUB_WORKSPACE/settings.xml
