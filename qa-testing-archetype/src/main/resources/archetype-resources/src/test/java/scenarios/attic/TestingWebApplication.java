@@ -59,7 +59,6 @@ public class TestingWebApplication {
             // ISSUE Firefox cannot be installed on certain systems
             // { Unchecked.supplier(() -> {
             // log.trace("setting up firefox driver");
-            // WebDriverManager.firefoxdriver().setup();
             // return new FirefoxDriver();
             // }) },
             { Unchecked.supplier(() -> {

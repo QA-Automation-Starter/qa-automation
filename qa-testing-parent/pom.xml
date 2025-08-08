@@ -128,6 +128,11 @@
         <artifactId>qa-jgiven-jdbc</artifactId>
         <version>1.0.9-SNAPSHOT</version>
       </dependency>
+      <dependency>
+        <groupId>dev.aherscu.qa</groupId>
+        <artifactId>qa-testing-extra</artifactId>
+        <version>1.0.9-SNAPSHOT</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

@@ -42,6 +42,12 @@ public class SwaggerPetstoreVerifications<SELF extends SwaggerPetstoreVerificati
     @ExpectedScenarioState
     protected ThreadLocal<Client>               client;
 
+    public SELF the_login_response(
+        final Matcher<SwaggerLoginResponse> responseMatcher) {
+        assertThat(loginResponse.get(), responseMatcher);
+        return self();
+    }
+
     public SELF the_available_pets(final Matcher<Stream<Pet>> petsMatcher) {
         return eventually_assert_that(
             invoke(
@@ -52,11 +58,5 @@ public class SwaggerPetstoreVerifications<SELF extends SwaggerPetstoreVerificati
                     .buildGet(),
                 json -> Stream.of(fromJson(json, Pet[].class))),
             petsMatcher);
-    }
-
-    public SELF the_login_response(
-        final Matcher<SwaggerLoginResponse> responseMatcher) {
-        assertThat(loginResponse.get(), responseMatcher);
-        return self();
     }
 }

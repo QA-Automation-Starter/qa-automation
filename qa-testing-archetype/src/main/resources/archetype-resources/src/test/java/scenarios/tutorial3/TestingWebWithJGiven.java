@@ -74,7 +74,7 @@ public class TestingWebWithJGiven
                     titleRule));
     }
 
-    @DataProvider
+    @DataProvider(parallel = true)
     private Object[][] data() {
         return new Object[][] {
             { new QuotedText(randomAlphanumeric(40)),

@@ -16,7 +16,7 @@
 
 package ${package}.scenarios.tutorial3;
 
-import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.hasSpecificItems;
+import static dev.aherscu.qa.testing.utils.StreamMatchersExtensions.*;
 
 import org.testng.annotations.*;
 

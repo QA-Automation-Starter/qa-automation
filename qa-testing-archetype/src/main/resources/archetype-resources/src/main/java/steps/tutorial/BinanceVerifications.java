@@ -38,7 +38,8 @@ public class BinanceVerifications<SELF extends BinanceVerifications<SELF>>
     @ExpectedScenarioState
     protected ThreadLocal<Client> client;
 
-    public SELF the_exchange_info(final Matcher<Stream<Symbol>> symbolsMatcher) {
+    public SELF the_exchange_info(
+        final Matcher<Stream<Symbol>> symbolsMatcher) {
         return eventually_assert_that(
             invoke(
                 configuration.binance(client.get())
