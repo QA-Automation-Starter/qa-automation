@@ -28,11 +28,12 @@ import ${package}.model.tutorial.*;
 public class SwaggerPetstoreActions<SELF extends SwaggerPetstoreActions<SELF>>
     extends RestActions<SELF> {
 
+    @ExpectedScenarioState
+    protected TestConfiguration                       configuration;
+
     @ProvidedScenarioState
     protected final ThreadLocal<SwaggerLoginResponse> loginResponse =
         new ThreadLocal<>();
-    @ExpectedScenarioState
-    protected TestConfiguration                       configuration;
 
     public SELF adding(final Pet pet) {
         return retrying(invoke(configuration.petStore(client.get())

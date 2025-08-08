@@ -17,12 +17,12 @@ package ${package};
 
 import static dev.aherscu.qa.testing.utils.StringUtilsExtensions.*;
 
-import jakarta.ws.rs.client.*;
 import javax.annotation.concurrent.*;
 
 import org.apache.commons.configuration.*;
 
 import dev.aherscu.qa.jgiven.webdriver.*;
+import jakarta.ws.rs.client.*;
 
 /**
  * Represents the configuration parameters for tests.
@@ -48,7 +48,6 @@ public final class TestConfiguration extends WebDriverConfiguration {
     public TestConfiguration(final Configuration... configurations) {
         super(configurations);
     }
-
 
     public WebTarget petStore(final Client client) {
         return client.target(getString("swagger.petstore.url"));

@@ -163,6 +163,7 @@ public class TestingAndroidWithJGiven extends
         log.debug("opening web driver");
         webDriver.set(saucelabsApp(getClass().getSimpleName()
             + "#" + currentThread().getId()));
-        webDriver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        webDriver.get().manage().timeouts()
+            .implicitlyWait(Duration.ofSeconds(10));
     }
 }

@@ -25,7 +25,6 @@ import static org.hamcrest.Matchers.equalTo;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
-import dev.aherscu.qa.jgiven.commons.tags.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.rest.model.*;
 import dev.aherscu.qa.jgiven.rest.tags.*;
@@ -47,35 +46,23 @@ public class SwaggerPetstore extends
         }
     }
 
-    protected Client client;
-
     protected SwaggerPetstore() {
         super(TestConfiguration.class);
     }
 
-    @Test
-    @Reference("235")
-    @Ignore("no longer returns the added pet")
-    // FIXME must test manually and fix or otherwise replace with other service
-    public void shouldAddPet() {
-        given()
-            .a_swagger_petstore(client)
-            .with(configuration());
+    protected Client client;
 
-        when()
-            .adding(Pet.builder()
-                .name(randomId())
-                .build());
-
-        then()
-            .the_available_pets(adaptedStream(pet -> pet.name,
-                hasItemsMatching(equalTo(randomId()))));
+    @AfterClass
+    protected void afterClassCloseRestClient() {
+        client.close();
     }
 
-    @Test(dataProviderClass = CredentialsCsvDataProvider.class,
-        dataProvider = DATA)
-    @Ignore("requires having this csv file generated on same classpath by maven-archetype-plugin, which is not supported")
-    @Reference("235")
+    @BeforeClass
+    protected void beforeClassOpenRestClient() {
+        client = LoggingClientBuilder.newClient();
+    }
+
+    @Test(dataProviderClass = CredentialsCsvDataProvider.class, dataProvider = DATA)
     public void shouldLogin(final Credentials credentials) {
         given()
             .a_swagger_petstore(client)
@@ -89,13 +76,19 @@ public class SwaggerPetstore extends
             .and().the_response_status(is(SUCCESSFUL));
     }
 
-    @AfterClass
-    protected void afterClassCloseRestClient() {
-        client.close();
-    }
+    @Test
+    public void shouldAddPet() {
+        given()
+            .a_swagger_petstore(client)
+            .with(configuration());
 
-    @BeforeClass
-    protected void beforeClassOpenRestClient() {
-        client = LoggingClientBuilder.newClient();
+        when()
+            .adding(Pet.builder()
+                .name(randomId())
+                .build());
+
+        then()
+            .the_available_pets(adaptedStream(pet -> pet.name,
+                hasItemsMatching(equalTo(randomId()))));
     }
 }
