@@ -32,7 +32,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 976483,
+              "durationInNanos": 2967963,
               "depth": 0,
               "parentFailed": false
             },
@@ -56,11 +56,11 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 590105364,
+              "durationInNanos": 700836945,
               "attachments": [
                 {
                   "title": "actual response",
-                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754499723672\"}",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754641689793\"}",
                   "mediaType": "text/plain",
                   "binary": false
                 }
@@ -87,7 +87,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 2871700,
+              "durationInNanos": 3556357,
               "depth": 0,
               "parentFailed": false
             },
@@ -110,11 +110,11 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 318028,
+              "durationInNanos": 401215,
               "attachments": [
                 {
                   "title": "actual response",
-                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754499723672\"}",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754641689793\"}",
                   "mediaType": "text/plain",
                   "binary": false
                 }
@@ -129,7 +129,7 @@
           "derivedArguments": [
             "Credentials(userName\u003dkuku, password\u003d123)"
           ],
-          "durationInNanos": 917078874
+          "durationInNanos": 1023472914
         },
         {
           "caseNr": 2,
@@ -146,7 +146,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 358012,
+              "durationInNanos": 418798,
               "depth": 0,
               "parentFailed": false
             },
@@ -170,11 +170,11 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 41854505,
+              "durationInNanos": 40665971,
               "attachments": [
                 {
                   "title": "actual response",
-                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754499723741\"}",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754641689858\"}",
                   "mediaType": "text/plain",
                   "binary": false
                 }
@@ -201,7 +201,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 530015,
+              "durationInNanos": 682648,
               "depth": 0,
               "parentFailed": false
             },
@@ -224,11 +224,11 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 351910,
+              "durationInNanos": 385677,
               "attachments": [
                 {
                   "title": "actual response",
-                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754499723741\"}",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754641689858\"}",
                   "mediaType": "text/plain",
                   "binary": false
                 }
@@ -243,7 +243,7 @@
           "derivedArguments": [
             "Credentials(userName\u003dfoo, password\u003dabc)"
           ],
-          "durationInNanos": 57968546
+          "durationInNanos": 54063889
         },
         {
           "caseNr": 3,
@@ -260,7 +260,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 316093,
+              "durationInNanos": 364147,
               "depth": 0,
               "parentFailed": false
             },
@@ -284,11 +284,11 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 41383539,
+              "durationInNanos": 39024482,
               "attachments": [
                 {
                   "title": "actual response",
-                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754499723796\"}",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754641689913\"}",
                   "mediaType": "text/plain",
                   "binary": false
                 }
@@ -315,7 +315,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 499798,
+              "durationInNanos": 529835,
               "depth": 0,
               "parentFailed": false
             },
@@ -338,11 +338,11 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 315703,
+              "durationInNanos": 303795,
               "attachments": [
                 {
                   "title": "actual response",
-                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754499723796\"}",
+                  "value": "{\"code\":200,\"type\":\"unknown\",\"message\":\"logged in user session:1754641689913\"}",
                   "mediaType": "text/plain",
                   "binary": false
                 }
@@ -357,11 +357,11 @@
           "derivedArguments": [
             "Credentials(userName\u003dbar, password\u003dabc123)"
           ],
-          "durationInNanos": 52333901
+          "durationInNanos": 51064867
         }
       ],
       "casesAsTable": true,
-      "durationInNanos": 1027381321
+      "durationInNanos": 1128601670
     }
   ],
   "tagMap": {
