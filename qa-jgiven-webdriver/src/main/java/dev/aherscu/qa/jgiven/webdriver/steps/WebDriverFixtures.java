@@ -34,6 +34,8 @@ import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.webdriver.formatters.*;
 import dev.aherscu.qa.jgiven.webdriver.model.*;
 import edu.umd.cs.findbugs.annotations.*;
+import io.appium.java_client.NoSuchContextException;
+import io.appium.java_client.remote.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
@@ -126,7 +128,7 @@ public class WebDriverFixtures<SELF extends WebDriverFixtures<SELF>>
      */
     @Hidden
     protected SELF context(final Predicate<String> byRule) {
-        return context(byRule, (ContextAware) thisWebDriver());
+        return context(byRule, (SupportsContextSwitching) thisWebDriver());
     }
 
     /**

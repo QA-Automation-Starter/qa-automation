@@ -37,6 +37,7 @@ import com.google.gson.*;
 import dev.aherscu.qa.jgiven.commons.*;
 import io.appium.java_client.android.*;
 import io.appium.java_client.ios.*;
+import io.appium.java_client.remote.*;
 import io.appium.java_client.windows.*;
 import io.github.bonigarcia.wdm.*;
 import lombok.*;
@@ -545,7 +546,7 @@ public class WebDriverEx {
                     e.getFailure())))
             .onSuccess(e -> log
                 .debug("found web view context {}", e.getResult()))
-            .get(() -> ((ContextAware) driver)
+            .get(() -> ((SupportsContextSwitching) driver)
                 .getContextHandles()
                 .stream()
                 .peek(contextId -> log.trace("found context {}", contextId))
