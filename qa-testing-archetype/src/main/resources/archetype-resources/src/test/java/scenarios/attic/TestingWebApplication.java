@@ -36,7 +36,6 @@ import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import edu.umd.cs.findbugs.annotations.*;
-import io.github.bonigarcia.wdm.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
@@ -65,7 +64,6 @@ public class TestingWebApplication {
             // }) },
             { Unchecked.supplier(() -> {
                 log.trace("setting up chrome driver");
-                WebDriverManager.chromedriver().setup();
                 return new ChromeDriver();
             }) },
             { Unchecked.supplier(() -> {
