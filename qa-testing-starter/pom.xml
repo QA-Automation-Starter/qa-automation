@@ -20,7 +20,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-testing-parent</artifactId>
-    <version>1.0.8-SNAPSHOT</version>
+    <version>1.0.8</version>
     <relativePath>../qa-testing-parent</relativePath>
   </parent>
 

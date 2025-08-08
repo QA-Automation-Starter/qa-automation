@@ -20,7 +20,7 @@
   <parent>
     <groupId>dev.aherscu.qa</groupId>
     <artifactId>qa-automation</artifactId>
-    <version>1.0.8-SNAPSHOT</version>
+    <version>1.0.8</version>
   </parent>
 
   <artifactId>qa-jgiven-rabbitmq</artifactId>
@@ -35,7 +35,7 @@
     <dependency>
       <groupId>dev.aherscu.qa</groupId>
       <artifactId>qa-jgiven-commons</artifactId>
-      <version>1.0.8-SNAPSHOT</version>
+      <version>1.0.8</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
