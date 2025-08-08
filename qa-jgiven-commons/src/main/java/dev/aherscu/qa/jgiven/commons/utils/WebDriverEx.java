@@ -25,11 +25,7 @@ import java.text.*;
 import java.util.*;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.edge.*;
-import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.remote.*;
-import org.openqa.selenium.safari.*;
 
 import com.google.common.collect.*;
 import com.google.gson.*;
@@ -37,8 +33,8 @@ import com.google.gson.*;
 import dev.aherscu.qa.jgiven.commons.*;
 import io.appium.java_client.android.*;
 import io.appium.java_client.ios.*;
+import io.appium.java_client.remote.*;
 import io.appium.java_client.windows.*;
-import io.github.bonigarcia.wdm.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
@@ -325,25 +321,6 @@ public class WebDriverEx {
             .toString())
             .asSubclass(WebDriver.class);
 
-        if (driverClass.isAssignableFrom(ChromeDriver.class))
-            WebDriverManager.chromedriver().setup();
-
-        // ISSUE sometimes this fails with
-        // WebDriverManagerException: Error HTTP 403 executing
-        // https://api.github.com/repos/mozilla/geckodriver/releases
-        // TODO should find a method to retry these driver downloads
-        if (driverClass.isAssignableFrom(FirefoxDriver.class))
-            WebDriverManager.firefoxdriver().setup();
-
-        if (driverClass.isAssignableFrom(EdgeDriver.class))
-            WebDriverManager.edgedriver().setup();
-
-        if (driverClass.isAssignableFrom(SafariDriver.class))
-            WebDriverManager.safaridriver().setup();
-
-        // if (driverClass.isAssignableFrom(OperaDriver.class))
-        // WebDriverManager.operadriver().setup();
-
         // NOTE there are drivers, like WinAppDriver, that are not supported
         // by WebDriverManager -- in this case we just return the class
         return driverClass;
@@ -545,7 +522,7 @@ public class WebDriverEx {
                     e.getFailure())))
             .onSuccess(e -> log
                 .debug("found web view context {}", e.getResult()))
-            .get(() -> ((ContextAware) driver)
+            .get(() -> ((SupportsContextSwitching) driver)
                 .getContextHandles()
                 .stream()
                 .peek(contextId -> log.trace("found context {}", contextId))

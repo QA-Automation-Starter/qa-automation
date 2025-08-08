@@ -36,6 +36,8 @@
 
   <properties>
     <powermock.version>2.0.5</powermock.version>
+    <appium.version>9.5.0</appium.version>
+    <selenium.version>4.34.0</selenium.version>
   </properties>
 
   <dependencies>
@@ -80,26 +82,19 @@
     <dependency>
       <groupId>io.appium</groupId>
       <artifactId>java-client</artifactId>
-      <version>9.4.0</version>
+      <version>${appium.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>4.30.0</version>
+      <version>${selenium.version}</version>
     </dependency>
 
     <dependency>
-      <!-- NOTE: temporary fix to bring ContextAware and NoSuchContextException -->
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-api</artifactId>
-      <version>4.30.0</version>
-    </dependency>
-
-    <dependency>
-      <groupId>io.github.bonigarcia</groupId>
-      <artifactId>webdrivermanager</artifactId>
-      <version>6.2.0</version>
+      <version>${selenium.version}</version>
     </dependency>
 
     <dependency>

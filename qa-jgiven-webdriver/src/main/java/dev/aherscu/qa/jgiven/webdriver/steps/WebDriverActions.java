@@ -27,7 +27,6 @@ import java.util.function.*;
 import javax.annotation.concurrent.*;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.NoSuchContextException;
 import org.openqa.selenium.NoSuchElementException;
 
 import com.tngtech.jgiven.annotation.*;
@@ -36,6 +35,7 @@ import dev.aherscu.qa.jgiven.commons.steps.*;
 import dev.aherscu.qa.jgiven.commons.utils.*;
 import dev.aherscu.qa.jgiven.webdriver.model.*;
 import io.appium.java_client.*;
+import io.appium.java_client.NoSuchContextException;
 import io.appium.java_client.remote.*;
 import io.appium.java_client.windows.*;
 import lombok.*;
@@ -477,7 +477,7 @@ public class WebDriverActions<SELF extends WebDriverActions<SELF>>
      */
     @Hidden
     protected SELF switching_to_context(final Predicate<String> byRule) {
-        return context(byRule, (ContextAware) thisWebDriver());
+        return context(byRule, (SupportsContextSwitching) thisWebDriver());
     }
 
     /**

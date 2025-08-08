@@ -40,6 +40,8 @@ import com.tngtech.jgiven.attachment.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
 import dev.aherscu.qa.testing.utils.*;
+import io.appium.java_client.*;
+import io.appium.java_client.remote.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 import net.jodah.failsafe.*;
@@ -226,7 +228,7 @@ public class StageEx<SELF extends StageEx<?>> extends Stage<SELF> {
      */
     protected SELF context(
         final Predicate<String> byRule,
-        final ContextAware ca) {
+        final SupportsContextSwitching ca) {
         val currentContext = ca.getContext();
 
         if (byRule.test(currentContext)) {
