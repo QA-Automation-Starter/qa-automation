@@ -1,5 +1,5 @@
 [![Apache License 2.0](https://img.shields.io/badge/license-apache2-red.svg?style=flat-square)](http://opensource.org/licenses/Apache-2.0)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/dev.aherscu.qa/qa-automation/badge.svg)](https://central.sonatype.com/search?q=dev.aherscu)
+[![Maven Central](https://maven-badges.sml.io/maven-central/dev.aherscu.qa/qa-automation/badge.svg)](https://central.sonatype.com/search?q=dev.aherscu)
 [![Maven Build](https://github.com/adrian-herscu/qa-automation/actions/workflows/on-main-push.yml/badge.svg)](https://github.com/QA-Automation-Starter/qa-automation/actions)
 [![Sauce Test Status](https://saucelabs.com/buildstatus/oauth-adrian.herscu-d81b6)](https://app.saucelabs.com/u/oauth-adrian.herscu-d81b6)
 [![JGiven Report](https://img.shields.io/badge/jgiven-report-example)](https://java.qa-automation-starter.aherscu.dev/qa-testing-parent/qa-testing-example/jgiven-reports/functional-dev/local/html/index.html)
