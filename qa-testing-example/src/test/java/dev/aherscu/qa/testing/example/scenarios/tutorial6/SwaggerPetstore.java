@@ -22,6 +22,7 @@ import static jakarta.ws.rs.core.Response.Status.Family.*;
 import static org.hamcrest.Matchers.*;
 import static org.hamcrest.Matchers.equalTo;
 
+import java.lang.reflect.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.model.*;
@@ -44,6 +45,12 @@ public class SwaggerPetstore extends
         @Override
         protected Class<?> type() {
             return Credentials.class;
+        }
+
+        @Override
+        protected String csvFileFor(final Method method) {
+            // NOTE: demonstrating custom CSV mapping
+            return "/swagger-petstore-credentials.csv";
         }
     }
 
