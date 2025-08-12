@@ -83,9 +83,16 @@ public class CsvDataProviderTest {
     @Test
     @SneakyThrows
     public void selfTest() {
+        class DataProvider extends AbstractCsvDataProvider {
+            @Override
+            protected Class<?> type() {
+                return MyBean.class; // does not matter
+            }
+        }
+        val dataProvider = new DataProvider();
         try (val csvReader = new InputStreamReader(
             getRelativeResourceAsStream(getClass(),
-                csvFileFor(getClass().getMethod("selfTest"))))) {
+                dataProvider.csvFileFor(getClass().getMethod("selfTest"))))) {
             assertThat(
                 new CsvToBeanBuilder<>(csvReader)
                     .withType(MyBean.class)
