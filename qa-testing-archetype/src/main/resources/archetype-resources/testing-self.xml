@@ -33,7 +33,7 @@
   <test name="Self Tests" parallel="classes" thread-count="15">
     <classes>
       <class
-        name="${package}.scenarios.tutorial3.TestingWebWithJGiven"/>
+        name="${package}.scenarios.SelfTests"/>
     </classes>
   </test>
 </suite>
