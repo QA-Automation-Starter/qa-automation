@@ -111,7 +111,7 @@
     <!-- NOTE: cannot upgrade AspectJ Runtime beyond 1.9.7 for Java 8 -->
     <!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=552687 -->
     <!-- see https://github.com/eclipse/org.aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md -->
-    <aspectj.version>1.9.20.1</aspectj.version>
+    <aspectj.version>1.9.24</aspectj.version>
 
     <maven.version>3.9.5</maven.version>
     <maven.tools.version>3.9.0</maven.tools.version>
@@ -434,7 +434,7 @@
             see https://stackoverflow.com/questions/75142147/re-importing-a-maven-project-into-intellij-turns-off-aspectj-post-compile-mode -->
           <groupId>dev.aspectj</groupId>
           <artifactId>aspectj-maven-plugin</artifactId>
-          <version>1.13.1</version>
+          <version>1.14.1</version>
           <dependencies>
             <dependency>
               <groupId>org.aspectj</groupId>
