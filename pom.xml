@@ -111,7 +111,7 @@
     <!-- NOTE: cannot upgrade AspectJ Runtime beyond 1.9.7 for Java 8 -->
     <!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=552687 -->
     <!-- see https://github.com/eclipse/org.aspectj/blob/master/docs/dist/doc/JavaVersionCompatibility.md -->
-    <aspectj.version>1.9.24</aspectj.version>
+    <aspectj.version>1.9.20.1</aspectj.version>
 
     <maven.version>3.9.5</maven.version>
     <maven.tools.version>3.9.0</maven.tools.version>
