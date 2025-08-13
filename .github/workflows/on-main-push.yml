@@ -52,17 +52,35 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: deploy snapshots and publish site
+      - name: deploy snapshots
         id: deploy
         shell: bash
         run: |
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"
           git config --global user.email "adrian.herscu@gmail.com"
-          chmod +x mvnw && ./mvnw deploy site site:stage scm-publish:publish-scm \
+          chmod +x mvnw && ./mvnw deploy \
             --threads 1 \
             -s $GITHUB_WORKSPACE/settings.xml \
             -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
+          OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
+          SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
+
+      - name: build and publish site
+        id: site
+        shell: bash
+        run: |
+          git config --global core.longpaths true
+          git config --global user.name "Adrian Herscu"
+          git config --global user.email "adrian.herscu@gmail.com"
+          chmod +x mvnw && ./mvnw site site:stage scm-publish:publish-scm \
+            --threads 1 \
+            -s $GITHUB_WORKSPACE/settings.xml \
+            -Pmode-aspectj-skip
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
