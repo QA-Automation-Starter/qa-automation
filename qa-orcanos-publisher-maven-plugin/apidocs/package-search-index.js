@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"dev.aherscu.qa.orcanos.publisher.maven.plugin"},{"l":"dev.aherscu.qa.orcanos.publisher.maven.plugin.model"}]
