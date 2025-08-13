@@ -28,7 +28,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 3249435,
+              "durationInNanos": 3122695,
               "depth": 0,
               "parentFailed": false
             },
@@ -43,15 +43,15 @@
                   "value": "connecting to"
                 },
                 {
-                  "value": "http://localhost:46123",
+                  "value": "http://localhost:42983",
                   "argumentInfo": {
                     "argumentName": "url",
-                    "formattedValue": "http://localhost:46123"
+                    "formattedValue": "http://localhost:42983"
                   }
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 27859383,
+              "durationInNanos": 13628516,
               "depth": 0,
               "parentFailed": false
             },
@@ -74,7 +74,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 2708381,
+              "durationInNanos": 1505409,
               "depth": 0,
               "parentFailed": false
             },
@@ -89,7 +89,7 @@
                   "value": "posting"
                 },
                 {
-                  "value": "jakarta.ws.rs.core.Form@59df6aa9",
+                  "value": "jakarta.ws.rs.core.Form@3604ccf5",
                   "argumentInfo": {
                     "argumentName": "form",
                     "formattedValue": "{}"
@@ -97,7 +97,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 719169130,
+              "durationInNanos": 677256368,
               "depth": 0,
               "parentFailed": false
             },
@@ -120,7 +120,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 593743,
+              "durationInNanos": 412449,
               "attachments": [
                 {
                   "title": "actual response",
@@ -135,11 +135,11 @@
           ],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 788031985
+          "durationInNanos": 712297446
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 788031985
+      "durationInNanos": 712297446
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.StatefulRestTest",
@@ -167,7 +167,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 512258,
+              "durationInNanos": 1924371,
               "depth": 0,
               "parentFailed": false
             },
@@ -182,15 +182,15 @@
                   "value": "connecting to"
                 },
                 {
-                  "value": "http://localhost:46123",
+                  "value": "http://localhost:42983",
                   "argumentInfo": {
                     "argumentName": "url",
-                    "formattedValue": "http://localhost:46123"
+                    "formattedValue": "http://localhost:42983"
                   }
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 517308,
+              "durationInNanos": 509471,
               "depth": 0,
               "parentFailed": false
             },
@@ -213,7 +213,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 435214,
+              "durationInNanos": 392221,
               "depth": 0,
               "parentFailed": false
             },
@@ -244,13 +244,13 @@
                     }
                   ],
                   "status": "PASSED",
-                  "durationInNanos": 22838526,
+                  "durationInNanos": 9796517,
                   "depth": 0,
                   "parentFailed": false
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 24939476,
+              "durationInNanos": 9843535,
               "depth": 0,
               "parentFailed": false
             },
@@ -273,7 +273,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 549880,
+              "durationInNanos": 433349,
               "depth": 0,
               "parentFailed": false
             },
@@ -296,7 +296,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 944666,
+              "durationInNanos": 694375,
               "attachments": [
                 {
                   "title": "actual response",
@@ -311,11 +311,11 @@
           ],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 33248932
+          "durationInNanos": 17651783
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 33248932
+      "durationInNanos": 17651783
     },
     {
       "className": "dev.aherscu.qa.testing.example.scenarios.tutorial6.StatefulRestTest",
@@ -343,7 +343,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 524121,
+              "durationInNanos": 1781213,
               "depth": 0,
               "parentFailed": false
             },
@@ -358,15 +358,15 @@
                   "value": "connecting to"
                 },
                 {
-                  "value": "http://localhost:46123",
+                  "value": "http://localhost:42983",
                   "argumentInfo": {
                     "argumentName": "url",
-                    "formattedValue": "http://localhost:46123"
+                    "formattedValue": "http://localhost:42983"
                   }
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 575769,
+              "durationInNanos": 1206631,
               "depth": 0,
               "parentFailed": false
             },
@@ -389,7 +389,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 753495,
+              "durationInNanos": 498971,
               "depth": 0,
               "parentFailed": false
             },
@@ -420,13 +420,13 @@
                     }
                   ],
                   "status": "PASSED",
-                  "durationInNanos": 8691005,
+                  "durationInNanos": 14364509,
                   "depth": 0,
                   "parentFailed": false
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 8750456,
+              "durationInNanos": 14418731,
               "depth": 0,
               "parentFailed": false
             },
@@ -449,7 +449,7 @@
                 }
               ],
               "status": "PASSED",
-              "durationInNanos": 600605,
+              "durationInNanos": 656535,
               "attachments": [
                 {
                   "title": "actual response",
@@ -464,11 +464,11 @@
           ],
           "explicitArguments": [],
           "derivedArguments": [],
-          "durationInNanos": 14220179
+          "durationInNanos": 24184149
         }
       ],
       "casesAsTable": false,
-      "durationInNanos": 14220179
+      "durationInNanos": 24184149
     }
   ],
   "tagMap": {
