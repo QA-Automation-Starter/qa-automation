@@ -62,7 +62,7 @@ public class SwaggerPetstore extends
 
     @Test
     @Reference("235")
-    @Ignore("no longer returns the added pet")
+    @Ignore("the service fails intermittently -- added pet not found")
     // FIXME must test manually and fix or otherwise replace with other service
     public void shouldAddPet() {
         given()
