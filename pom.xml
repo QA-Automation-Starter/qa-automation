@@ -434,7 +434,7 @@
             see https://stackoverflow.com/questions/75142147/re-importing-a-maven-project-into-intellij-turns-off-aspectj-post-compile-mode -->
           <groupId>dev.aspectj</groupId>
           <artifactId>aspectj-maven-plugin</artifactId>
-          <version>1.13.1</version>
+          <version>1.14.1</version>
           <dependencies>
             <dependency>
               <groupId>org.aspectj</groupId>
