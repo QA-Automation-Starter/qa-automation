@@ -70,7 +70,7 @@ public abstract class ApplicationPerMethodWebSessionTest<C extends WebDriverConf
     protected void afterMethodQuitWebDriver() {
         log.debug("after method quitting web driver");
         requireNonNull(webDriver.get(),
-            "web driver not initialized nothing to quit")
+            "web driver not initialized, hence nothing to quit")
             .safelyQuit();
     }
 
@@ -82,8 +82,9 @@ public abstract class ApplicationPerMethodWebSessionTest<C extends WebDriverConf
     @SneakyThrows
     protected void beforeMethodOpenWebDriver() {
         log.debug("before method opening web driver");
-        webDriver.set(WebDriverEx
-            .from(configuration().capabilities()));
+        webDriver.set(requireNonNull(WebDriverEx
+            .from(configuration().capabilities()),
+            "web driver failed to initialize, look above in logs to find the stacktrace and exceptionS"));
     }
 
     /**

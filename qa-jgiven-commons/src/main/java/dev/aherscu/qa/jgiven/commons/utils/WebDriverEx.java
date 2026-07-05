@@ -261,8 +261,13 @@ public class WebDriverEx {
                 // NOTE: if an exception is not handled during @Before methods
                 // JGiven report is not generated at all
                 Fallback.of(e -> {
-                    log.debug("initialization failed due to {}",
-                        e.getLastFailure().getMessage());
+                    log.error(e.toString());
+                    if (log.isDebugEnabled()) {
+                        for (var stackTraceElement : e.getLastFailure()
+                            .getStackTrace()) {
+                            log.debug("*** {}", stackTraceElement.toString());
+                        }
+                    }
                     return null;
                 }),
                 new RetryPolicy<WebDriverEx>()
