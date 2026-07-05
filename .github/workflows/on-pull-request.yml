@@ -67,6 +67,10 @@ jobs:
           chmod +x mvnw && ./mvnw install \
             -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
             -s $GITHUB_WORKSPACE/settings.xml
+        env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+          SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
+          SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
 
       - name: deploy snapshots
         shell: bash
@@ -85,8 +89,6 @@ jobs:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
-          SAUCELABS_USER: ${{ secrets.SAUCELABS_USER }}
-          SAUCELABS_PASSWORD: ${{ secrets.SAUCELABS_PASSWORD }}
 
       - name: save project version
         id: version
