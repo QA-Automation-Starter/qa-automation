@@ -28,15 +28,11 @@ import java.lang.SuppressWarnings;
 import java.util.*;
 
 import org.apache.commons.configuration.*;
-import org.openqa.selenium.chrome.*;
 import org.testng.annotations.*;
 
 import com.google.common.collect.*;
 
 import edu.umd.cs.findbugs.annotations.*;
-import io.appium.java_client.android.*;
-import io.appium.java_client.ios.*;
-import io.appium.java_client.windows.*;
 import lombok.*;
 import lombok.extern.slf4j.*;
 
@@ -169,20 +165,20 @@ public class WebDriverConfigurationTest {
     @Test(dataProvider = "capabilitiesPerPlatform")
     public void shouldRetrieveCapabilitiesForSpecificPlatform(
         final WebDriverConfiguration.DeviceType deviceType,
-        final Class<?> clazz) {
+        final String expectedClassName) {
         assertThat(configuration
             .capabilities(deviceType)
             .getCapability("class"),
-            is(clazz.getName()));
+            is(expectedClassName));
     }
 
     @DataProvider
     private Object[][] capabilitiesPerPlatform() {
         return new Object[][] {
-            { _ANDROID, AndroidDriver.class },
-            { _WINDOWS, WindowsDriver.class },
-            { _IOS, IOSDriver.class },
-            { _WEB, ChromeDriver.class }
+            { _ANDROID, "io.appium.java_client.android.AndroidDriver" },
+            { _WINDOWS, "io.appium.java_client.windows.WindowsDriver" },
+            { _IOS, "io.appium.java_client.ios.IOSDriver" },
+            { _WEB, "org.openqa.selenium.chrome.ChromeDriver" }
         };
     }
 

@@ -28,7 +28,7 @@ import java.util.*;
 import java.util.Optional;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.htmlunit.*;
+import org.openqa.selenium.chrome.*;
 import org.testng.annotations.*;
 
 import com.google.common.collect.*;
@@ -101,8 +101,10 @@ public class WebDriverExTest {
                 e -> log.debug("success {}", e.getResult().get()))
             .get(() -> {
                 ThreadUtils.sleep(2000);
+                ChromeOptions options = new ChromeOptions();
+                options.addArguments("--headless");
                 return Optional
-                    .of(new WebDriverEx(new HtmlUnitDriver(),
+                    .of(new WebDriverEx(new ChromeDriver(options),
                         new MutableCapabilities()));
                 // throw new WebDriverException();
                 // throw new ClassNotFoundException("bum trah");

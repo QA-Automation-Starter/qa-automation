@@ -19,7 +19,7 @@ import static com.github.tomakehurst.wiremock.client.WireMock.*;
 import static dev.aherscu.qa.testing.utils.MatchersExtensions.*;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.htmlunit.*;
+import org.openqa.selenium.chrome.*;
 import org.testng.annotations.*;
 
 import dev.aherscu.qa.jgiven.commons.*;
@@ -83,7 +83,9 @@ public final class GenericWebDriverTest extends
         justification = "called by testng framework")
     @BeforeClass
     private void beforeClassOpenWebDriver() {
-        driver = new WebDriverEx(new HtmlUnitDriver(true),
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless");
+        driver = new WebDriverEx(new ChromeDriver(options),
             new DesiredCapabilitiesEx());
         log.debug("opened web driver {}", driver);
     }
