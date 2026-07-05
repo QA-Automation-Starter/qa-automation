@@ -34,8 +34,8 @@ jobs:
       version: ${{ steps.version.outputs.version }}
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-java@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-java@v5
         with:
           java-version: '11'
           distribution: 'temurin'
@@ -48,7 +48,7 @@ jobs:
           gpg-passphrase: GPG_PASSPHRASE
 
       - name: setup SSH
-        uses: webfactory/ssh-agent@v0.6.0
+        uses: webfactory/ssh-agent@v0.10.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
