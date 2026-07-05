@@ -70,16 +70,19 @@ public abstract class AbstractCsvDataProvider {
      * Default implementation for mapping an instance method to a CSV file.
      * Override this method if you want to use a different mapping.
      *
-     * @param method the method for which the CSV file should be
+     * @param method
+     *            the method for which the CSV file should be
      * @return the name of the CSV file that should be used for the given
      *         method; the file is expected to be in the same package as the
      *         method's declaring class, and to have the same name as the method
      *         with a ".csv" extension; for example, if the method is
      *         {@code com.example.MyClass#myMethod()}, then the expected file is
      *         {@code com/example/MyClass/myMethod.csv}
-     * @throws NullPointerException if the method is {@code null}
-     * @throws IllegalArgumentException if the method's declaring class is
-     *         {@code null} or if the method's name is {@code null} or empty
+     * @throws NullPointerException
+     *             if the method is {@code null}
+     * @throws IllegalArgumentException
+     *             if the method's declaring class is {@code null} or if the
+     *             method's name is {@code null} or empty
      * @see #csvBuilderFor(Reader)
      * @see #data(Method)
      * @see #type()
