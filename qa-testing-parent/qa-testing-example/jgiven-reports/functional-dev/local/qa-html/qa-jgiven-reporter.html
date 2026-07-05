@@ -117,7 +117,7 @@
     <td></td>
     <td></td>
     <td></td>
-    <td>2025-Aug-13 16:54 GMT</td>
+    <td>2026-Jul-05 20:28 GMT</td>
   </tr>
   <tr>
     <th>Reviewer</th>
@@ -273,7 +273,7 @@
 
 <h1>Test Procedures</h1>
 
-<h2>Swagger Petstore</h2>
+<h2>Generic Rest</h2>
 
 <table>
   <thead>
@@ -284,17 +284,21 @@
   </thead>
   <tbody>
   <tr>
+    <td>Self Test</td>
+    <td></td>
+  </tr>
+  <tr>
     <td>REST Test</td>
     <td></td>
   </tr>
   <tr>
     <td>Reference</td>
-    <td>235</td>
+    <td>70</td>
   </tr>
   </tbody>
 </table>
 
-<h3>[T-644F1ADC] Should login</h3>
+<h3>[T-2E13FA05] Should retrieve json field from fake rest service</h3>
 
 <p>Test scenario:1</p>
 <table>
@@ -315,7 +319,7 @@
       <b>Pre-condition(s)</b>
     </td>
     <td>
-      <span>a swagger petstore</span>
+      <span>a REST client</span>
     </td>
 
     <td>
@@ -331,12 +335,11 @@
       <b>Operation(s)</b>
     </td>
     <td>
-      <span>logging in with</span>
-      <span>Credentials(userName&#x3D;kuku, password&#x3D;123)</span>
+      <span>connecting to</span>
+      <span>http://localhost:35043</span>
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1755104046292&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -346,11 +349,11 @@
   <tr>
     <td>3</td>
     <td>
-      <b>Verification(s)</b>
+      <b>and</b>
     </td>
     <td>
-      <span>the login response</span>
-      <span>hasProperty(&quot;code&quot;, &lt;200&gt;)</span>
+      <span>appending path</span>
+      <span>some-id</span>
     </td>
 
     <td>
@@ -366,18 +369,518 @@
       <b>and</b>
     </td>
     <td>
-      <span>the response status</span>
-      <span>is &lt;SUCCESSFUL&gt;</span>
+      <span>getting the response</span>
     </td>
 
     <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1755104046292&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
     <td><!-- spr left blank blank intentionally --></td>
 
   </tr>
+  <tr>
+    <td>5</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the response contents</span>
+      <span>[a value greater than &lt;0&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[0].id, &lt;2&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[1].id]</span>
+    </td>
+
+    <td>
+      [{id:1},{id:2},{id:3}]
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+
+<h2>Stateful Rest</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Tag</th>
+    <th>Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>Self Test</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>REST Test</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+
+<h3>[T-F4FDC402] Should authenticate</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>a REST client</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>connecting to</span>
+      <span>http://localhost:37159</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>appending path</span>
+      <span>authenticate</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>posting</span>
+      <span>jakarta.ws.rs.core.Form@241f84da</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the response status</span>
+      <span>is &lt;SUCCESSFUL&gt;</span>
+    </td>
+
+    <td>
+      &lt;&lt;empty&gt;&gt;
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+
+<h3>[T-2D432437] Should operate</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>a REST client</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>connecting to</span>
+      <span>http://localhost:37159</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>appending path</span>
+      <span>some-id</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>getting the response</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the response status</span>
+      <span>is &lt;SUCCESSFUL&gt;</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>the response contents</span>
+      <span>[a value greater than &lt;0&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[0].id, &lt;2&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[1].id]</span>
+    </td>
+
+    <td>
+      [{id:1},{id:2},{id:3}]
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+
+<h3>[T-59A05B44] Should fail on authentication</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>a REST client</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>connecting to</span>
+      <span>http://localhost:37159</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>appending path</span>
+      <span>some-id</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>getting the response</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the response status</span>
+      <span>is &lt;CLIENT_ERROR&gt;</span>
+    </td>
+
+    <td>
+      &lt;&lt;empty&gt;&gt;
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+
+<h2>Test Ng With Hamcrest</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>Tag</th>
+    <th>Value</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-82C983F0]  3 shouldAssertOnStringContents</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-86B7A8D]  5 shouldAssertOnListOrder</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-2F77C740]  1 shouldSucceed</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-B5F586FC]  6 shouldAssertOnEquality</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-7738241C]  4 shouldAssertOnListContents</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-F89BACE2]  2 shouldAssertOnBoolean</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-286CB61D]  9 shouldCalculateSinusWithTolerance</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
   </tbody>
 </table>
 <p>Test scenario:2</p>
@@ -393,75 +896,88 @@
   </tr>
   </thead>
   <tbody>
+  </tbody>
+</table>
+
+<h3>[T-43C942DB]  7 shouldAssertOnStreamContents</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
   <tr>
-    <td>1</td>
-    <td>
-      <b>Pre-condition(s)</b>
-    </td>
-    <td>
-      <span>a swagger petstore</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
   </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-19144194]  8 shouldAssertOnStreamOfJsons</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
   <tr>
-    <td>2</td>
-    <td>
-      <b>Operation(s)</b>
-    </td>
-    <td>
-      <span>logging in with</span>
-      <span>Credentials(userName&#x3D;foo, password&#x3D;abc)</span>
-    </td>
-
-    <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1755104046344&quot;}
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
   </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h2>Plain Test Ng</h2>
+
+<table>
+  <thead>
   <tr>
-    <td>3</td>
-    <td>
-      <b>Verification(s)</b>
-    </td>
-    <td>
-      <span>the login response</span>
-      <span>hasProperty(&quot;code&quot;, &lt;200&gt;)</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
+    <th>Tag</th>
+    <th>Value</th>
   </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-48C0AF44]  3 checkFullAdder</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
   <tr>
-    <td>4</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>the response status</span>
-      <span>is &lt;SUCCESSFUL&gt;</span>
-    </td>
-
-    <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1755104046344&quot;}
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
   </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<p>Test scenario:2</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
   </tbody>
 </table>
 <p>Test scenario:3</p>
@@ -477,75 +993,120 @@
   </tr>
   </thead>
   <tbody>
+  </tbody>
+</table>
+<p>Test scenario:4</p>
+<table>
+  <thead>
   <tr>
-    <td>1</td>
-    <td>
-      <b>Pre-condition(s)</b>
-    </td>
-    <td>
-      <span>a swagger petstore</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
   </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-371720F9]  2 checkNot</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
   <tr>
-    <td>2</td>
-    <td>
-      <b>Operation(s)</b>
-    </td>
-    <td>
-      <span>logging in with</span>
-      <span>Credentials(userName&#x3D;bar, password&#x3D;abc123)</span>
-    </td>
-
-    <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1755104046377&quot;}
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
   </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<p>Test scenario:2</p>
+<table>
+  <thead>
   <tr>
-    <td>3</td>
-    <td>
-      <b>Verification(s)</b>
-    </td>
-    <td>
-      <span>the login response</span>
-      <span>hasProperty(&quot;code&quot;, &lt;200&gt;)</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
   </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-2F77C740]  1 shouldSucceed</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
   <tr>
-    <td>4</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>the response status</span>
-      <span>is &lt;SUCCESSFUL&gt;</span>
-    </td>
-
-    <td>
-      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1755104046377&quot;}
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
   </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+<h3>[T-DD79C4DA]  4 checkSinus</h3>
+
+<p>Test scenario:1</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<p>Test scenario:2</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<p>Test scenario:3</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
   </tbody>
 </table>
 
@@ -612,7 +1173,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:38901</span>
+      <span>http://localhost:34255</span>
     </td>
 
     <td>
@@ -730,7 +1291,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:38901</span>
+      <span>http://localhost:34255</span>
     </td>
 
     <td>
@@ -831,7 +1392,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:38901</span>
+      <span>http://localhost:34255</span>
     </td>
 
     <td>
@@ -932,7 +1493,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:38901</span>
+      <span>http://localhost:34255</span>
     </td>
 
     <td>
@@ -1082,7 +1643,7 @@
     </td>
     <td>
       <span>connecting to</span>
-      <span>http://localhost:38901</span>
+      <span>http://localhost:34255</span>
     </td>
 
     <td>
@@ -1194,7 +1755,7 @@
   </tbody>
 </table>
 
-<h2>Plain Test Ng</h2>
+<h2>Swagger Petstore</h2>
 
 <table>
   <thead>
@@ -1204,732 +1765,18 @@
   </tr>
   </thead>
   <tbody>
-  </tbody>
-</table>
-
-<h3>[T-48C0AF44]  3 checkFullAdder</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-<p>Test scenario:2</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-<p>Test scenario:3</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-<p>Test scenario:4</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-2F77C740]  1 shouldSucceed</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-DD79C4DA]  4 checkSinus</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-<p>Test scenario:2</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-<p>Test scenario:3</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-371720F9]  2 checkNot</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-<p>Test scenario:2</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h2>Test Ng With Hamcrest</h2>
-
-<table>
-  <thead>
-  <tr>
-    <th>Tag</th>
-    <th>Value</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-F89BACE2]  2 shouldAssertOnBoolean</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-2F77C740]  1 shouldSucceed</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-B5F586FC]  6 shouldAssertOnEquality</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-86B7A8D]  5 shouldAssertOnListOrder</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-286CB61D]  9 shouldCalculateSinusWithTolerance</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-<p>Test scenario:2</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-82C983F0]  3 shouldAssertOnStringContents</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-7738241C]  4 shouldAssertOnListContents</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-43C942DB]  7 shouldAssertOnStreamContents</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h3>[T-19144194]  8 shouldAssertOnStreamOfJsons</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-
-<h2>Stateful Rest</h2>
-
-<table>
-  <thead>
-  <tr>
-    <th>Tag</th>
-    <th>Value</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>Self Test</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>REST Test</td>
-    <td></td>
-  </tr>
-  </tbody>
-</table>
-
-<h3>[T-F4FDC402] Should authenticate</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>1</td>
-    <td>
-      <b>Pre-condition(s)</b>
-    </td>
-    <td>
-      <span>a REST client</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>
-      <b>Operation(s)</b>
-    </td>
-    <td>
-      <span>connecting to</span>
-      <span>http://localhost:41267</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>appending path</span>
-      <span>authenticate</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>posting</span>
-      <span>jakarta.ws.rs.core.Form@3c4851d9</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>
-      <b>Verification(s)</b>
-    </td>
-    <td>
-      <span>the response status</span>
-      <span>is &lt;SUCCESSFUL&gt;</span>
-    </td>
-
-    <td>
-      &lt;&lt;empty&gt;&gt;
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  </tbody>
-</table>
-
-<h3>[T-2D432437] Should operate</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>1</td>
-    <td>
-      <b>Pre-condition(s)</b>
-    </td>
-    <td>
-      <span>a REST client</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>
-      <b>Operation(s)</b>
-    </td>
-    <td>
-      <span>connecting to</span>
-      <span>http://localhost:41267</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>appending path</span>
-      <span>some-id</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>getting the response</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>
-      <b>Verification(s)</b>
-    </td>
-    <td>
-      <span>the response status</span>
-      <span>is &lt;SUCCESSFUL&gt;</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>the response contents</span>
-      <span>[a value greater than &lt;0&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[0].id, &lt;2&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[1].id]</span>
-    </td>
-
-    <td>
-      [{id:1},{id:2},{id:3}]
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  </tbody>
-</table>
-
-<h3>[T-59A05B44] Should fail on authentication</h3>
-
-<p>Test scenario:1</p>
-<table>
-  <thead>
-  <tr>
-    <th class="centered">#</th>
-    <th class="centered"></th>
-    <th class="centered" style="width: 30%">Step / Expected Result</th>
-    <th class="centered" style="width: 50%">Actual Observed Result</th>
-    <th class="centered">Conclusion</th>
-    <th class="centered">SPR</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>1</td>
-    <td>
-      <b>Pre-condition(s)</b>
-    </td>
-    <td>
-      <span>a REST client</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>
-      <b>Operation(s)</b>
-    </td>
-    <td>
-      <span>connecting to</span>
-      <span>http://localhost:41267</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>appending path</span>
-      <span>some-id</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>
-      <b>and</b>
-    </td>
-    <td>
-      <span>getting the response</span>
-    </td>
-
-    <td>
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>
-      <b>Verification(s)</b>
-    </td>
-    <td>
-      <span>the response status</span>
-      <span>is &lt;CLIENT_ERROR&gt;</span>
-    </td>
-
-    <td>
-      &lt;&lt;empty&gt;&gt;
-    </td>
-
-    <td><!-- conclusion left blank intentionally --></td>
-    <td><!-- spr left blank blank intentionally --></td>
-
-  </tr>
-  </tbody>
-</table>
-
-<h2>Generic Rest</h2>
-
-<table>
-  <thead>
-  <tr>
-    <th>Tag</th>
-    <th>Value</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>Self Test</td>
-    <td></td>
-  </tr>
   <tr>
     <td>REST Test</td>
     <td></td>
   </tr>
   <tr>
     <td>Reference</td>
-    <td>70</td>
+    <td>235</td>
   </tr>
   </tbody>
 </table>
 
-<h3>[T-2E13FA05] Should retrieve json field from fake rest service</h3>
+<h3>[T-644F1ADC] Should login</h3>
 
 <p>Test scenario:1</p>
 <table>
@@ -1950,7 +1797,7 @@
       <b>Pre-condition(s)</b>
     </td>
     <td>
-      <span>a REST client</span>
+      <span>a swagger petstore</span>
     </td>
 
     <td>
@@ -1966,11 +1813,12 @@
       <b>Operation(s)</b>
     </td>
     <td>
-      <span>connecting to</span>
-      <span>http://localhost:44297</span>
+      <span>logging in with</span>
+      <span>Credentials(userName&#x3D;kuku, password&#x3D;123)</span>
     </td>
 
     <td>
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1783283300246&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
@@ -1980,11 +1828,11 @@
   <tr>
     <td>3</td>
     <td>
-      <b>and</b>
+      <b>Verification(s)</b>
     </td>
     <td>
-      <span>appending path</span>
-      <span>some-id</span>
+      <span>the login response</span>
+      <span>hasProperty(&quot;code&quot;, &lt;200&gt;)</span>
     </td>
 
     <td>
@@ -2000,7 +1848,40 @@
       <b>and</b>
     </td>
     <td>
-      <span>getting the response</span>
+      <span>the response status</span>
+      <span>is &lt;SUCCESSFUL&gt;</span>
+    </td>
+
+    <td>
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1783283300246&quot;}
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+<p>Test scenario:2</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>a swagger petstore</span>
     </td>
 
     <td>
@@ -2011,17 +1892,136 @@
 
   </tr>
   <tr>
-    <td>5</td>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>logging in with</span>
+      <span>Credentials(userName&#x3D;foo, password&#x3D;abc)</span>
+    </td>
+
+    <td>
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1783283300404&quot;}
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>3</td>
     <td>
       <b>Verification(s)</b>
     </td>
     <td>
-      <span>the response contents</span>
-      <span>[a value greater than &lt;0&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[0].id, &lt;2&gt; &lt;&lt;&lt;---&gt;&gt;&gt; $[1].id]</span>
+      <span>the login response</span>
+      <span>hasProperty(&quot;code&quot;, &lt;200&gt;)</span>
     </td>
 
     <td>
-      [{id:1},{id:2},{id:3}]
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>the response status</span>
+      <span>is &lt;SUCCESSFUL&gt;</span>
+    </td>
+
+    <td>
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1783283300404&quot;}
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  </tbody>
+</table>
+<p>Test scenario:3</p>
+<table>
+  <thead>
+  <tr>
+    <th class="centered">#</th>
+    <th class="centered"></th>
+    <th class="centered" style="width: 30%">Step / Expected Result</th>
+    <th class="centered" style="width: 50%">Actual Observed Result</th>
+    <th class="centered">Conclusion</th>
+    <th class="centered">SPR</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>1</td>
+    <td>
+      <b>Pre-condition(s)</b>
+    </td>
+    <td>
+      <span>a swagger petstore</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>
+      <b>Operation(s)</b>
+    </td>
+    <td>
+      <span>logging in with</span>
+      <span>Credentials(userName&#x3D;bar, password&#x3D;abc123)</span>
+    </td>
+
+    <td>
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1783283300493&quot;}
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>
+      <b>Verification(s)</b>
+    </td>
+    <td>
+      <span>the login response</span>
+      <span>hasProperty(&quot;code&quot;, &lt;200&gt;)</span>
+    </td>
+
+    <td>
+    </td>
+
+    <td><!-- conclusion left blank intentionally --></td>
+    <td><!-- spr left blank blank intentionally --></td>
+
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>
+      <b>and</b>
+    </td>
+    <td>
+      <span>the response status</span>
+      <span>is &lt;SUCCESSFUL&gt;</span>
+    </td>
+
+    <td>
+      {&quot;code&quot;:200,&quot;type&quot;:&quot;unknown&quot;,&quot;message&quot;:&quot;logged in user session:1783283300493&quot;}
     </td>
 
     <td><!-- conclusion left blank intentionally --></td>
