@@ -60,10 +60,18 @@ jobs:
       #          container-name: 'mqtt'
 
       # NOTE: must run install at least in order to have artifacts in .m2
-      # .m2 artifacts are cached and reused in following generate-automation-project
-      # ISSUE: building in multi-threaded mode blocks during deploy phase
+      # .m2 artifacts are cached and reused in deploy and generate-automation-project
+      - name: install snapshots and test them
+        shell: bash
+        run: |
+          chmod +x mvnw && ./mvnw install \
+            -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
+            -s $GITHUB_WORKSPACE/settings.xml
+
       - name: deploy snapshots
         shell: bash
+        # ISSUE: building in multi-threaded mode blocks during deploy phase,
+        # hence running maven in single-threaded mode for deploy phase
         run: |
           git config --global core.longpaths true
           git config --global user.name "Adrian Herscu"
@@ -72,8 +80,7 @@ jobs:
           echo "OSSRH_PASSWORD=${OSSRH_PASSWORD:0:4}****${OSSRH_PASSWORD: -4}"
           chmod +x mvnw && ./mvnw deploy \
             --threads 1 \
-            -s $GITHUB_WORKSPACE/settings.xml \
-            -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
+            -s $GITHUB_WORKSPACE/settings.xml
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
