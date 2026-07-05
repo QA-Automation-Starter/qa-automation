@@ -65,7 +65,7 @@ jobs:
         shell: bash
         run: |
           chmod +x mvnw && ./mvnw install \
-            -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials
+            -Pmode-build-full,provider-saucelabs-selenium,testing-tutorials \
             -s $GITHUB_WORKSPACE/settings.xml
         env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
