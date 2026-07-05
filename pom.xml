@@ -909,7 +909,9 @@
 
     <profile>
       <!-- NOTE for clean code during debugging
-        it is sometimes necessary to turn off AspectJ weaving -->
+        it is sometimes necessary to turn off AspectJ weaving.
+        Yet another scenario, is when working in an IDE that does not support AspectJ,
+        like IntelliJ Community or VSCode -->
       <id>mode-aspectj-skip</id>
       <properties>
         <aspectj.skip>true</aspectj.skip>
