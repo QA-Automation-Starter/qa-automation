@@ -39,3 +39,8 @@ see https://github.com/microsoft/vscode-maven/issues/698
   then `adb` process must be killed.
 * No internet access when running behind a proxy server that uses self-signed
   certificates 
+
+
+# Committing directly to main branch cause the build fail due to missing snapshot
+
+Open a ticket and associated branch, open a PR, then merge it when ready.
