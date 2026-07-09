@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="test-self" type="MavenRunConfiguration" factoryName="Maven">
+  <configuration default="false" name="test-tutorials" type="MavenRunConfiguration" factoryName="Maven">
     <MavenSettings>
       <option name="myGeneralSettings">
         <MavenGeneralSettings>
@@ -40,7 +40,7 @@
               <entry key="mode-aspectj-skip" value="true" />
               <entry key="mode-logs-level-trace" value="true" />
               <entry key="mode-build-nosign" value="true" />
-              <entry key="testing-self" value="true" />
+              <entry key="testing-tutorials" value="true" />
             </map>
           </option>
           <option name="projectsCmdOptionValues">

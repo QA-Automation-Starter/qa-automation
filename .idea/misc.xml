@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
     <list size="1">
@@ -15,6 +16,15 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+    <option name="enabledProfiles">
+      <list>
+        <option value="mode-aspectj-skip" />
+        <option value="mode-logs-level-trace" />
+        <option value="mode-build-full" />
+        <option value="mode-build-nosign" />
+        <option value="testing-self" />
       </list>
     </option>
   </component>
